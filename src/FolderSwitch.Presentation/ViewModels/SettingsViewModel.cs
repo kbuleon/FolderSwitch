@@ -12,8 +12,8 @@ using FolderSwitch.Presentation.Services;
 namespace FolderSwitch.Presentation.ViewModels;
 
 /// <summary>
-/// The settings panel of Customize mode: language, shortcut, start with Windows, export and import of the
-/// configuration, update check. Every change takes effect at once and is saved exactly once; a change the system
+/// The settings window: language, shortcut, start with Windows, export and import of the configuration, update
+/// check. Every change takes effect at once and is saved exactly once; a change the system
 /// refuses is reported (<see cref="IUserPrompts.ShowError"/>) and leaves the setting as it was.
 /// Meant to be used from the UI thread.
 /// </summary>
@@ -31,6 +31,7 @@ public sealed partial class SettingsViewModel : ObservableObject
     private AppConfig _config;
     private bool _startWithWindows;
     private bool _isUpdateBusy;
+    private bool _isHotkeyRegistered = true;
 
     /// <param name="hotkey">The shortcut editor, starting from the shortcut of <paramref name="config"/>.</param>
     /// <param name="exePath">The executable to start with Windows.</param>
@@ -146,8 +147,31 @@ public sealed partial class SettingsViewModel : ObservableObject
     }
 
     /// <summary>
+    /// Whether the shortcut of the configuration is registered, as the application found at startup (true until it
+    /// says otherwise); an « Apply » or an import that registers one makes it true again.
+    /// </summary>
+    public bool IsHotkeyRegistered
+    {
+        get => _isHotkeyRegistered;
+        set
+        {
+            if (SetProperty(ref _isHotkeyRegistered, value))
+            {
+                // The editor tests, and shows as in effect, only a shortcut that can be pressed.
+                Hotkey.SetRegistered(value);
+            }
+        }
+    }
+
+    /// <summary>
+    /// The combination shown is the shortcut in effect: there is nothing to apply (<see cref="ApplyHotkeyCommand"/> is
+    /// disabled), and the settings say the shortcut is active.
+    /// </summary>
+    public bool IsHotkeyApplied => Hotkey.IsInEffect;
+
+    /// <summary>
     /// Registers the editor's combination in place of the current shortcut, then records it. Only possible without a
-    /// blocking problem. When the registration is refused (taken in the meantime, say), the reason is shown, the
+    /// blocking problem, and when the combination is not the shortcut in effect already. When the registration is refused (taken in the meantime, say), the reason is shown, the
     /// editor checks the combination again so that it shows the problem too, and the previous shortcut stays in
     /// effect and in the configuration.
     /// </summary>
@@ -168,6 +192,7 @@ public sealed partial class SettingsViewModel : ObservableObject
         }
 
         Hotkey.SetInEffect(hotkey);
+        IsHotkeyRegistered = true;
         if (hotkey == _config.Settings.Hotkey)
         {
             return;
@@ -246,6 +271,10 @@ public sealed partial class SettingsViewModel : ObservableObject
             {
                 imported.Settings.Hotkey = previous.Settings.Hotkey;
             }
+            else
+            {
+                IsHotkeyRegistered = true;
+            }
         }
 
         _config = imported;
@@ -287,7 +316,7 @@ public sealed partial class SettingsViewModel : ObservableObject
     /// <summary>How the file system and the registry refuse an operation.</summary>
     private static bool IsStorageError(Exception e) => e is IOException or UnauthorizedAccessException or SecurityException;
 
-    private bool CanApplyHotkey() => Hotkey.CanApply;
+    private bool CanApplyHotkey() => Hotkey.CanApply && !IsHotkeyApplied;
 
     private bool CanCheckUpdates() => _checkUpdates is not null && !_isUpdateBusy;
 
@@ -324,6 +353,17 @@ public sealed partial class SettingsViewModel : ObservableObject
         {
             ApplyHotkeyCommand.NotifyCanExecuteChanged();
         }
+
+        if (string.IsNullOrEmpty(e.PropertyName) || e.PropertyName == nameof(HotkeyEditorViewModel.IsInEffect))
+        {
+            OnHotkeyAppliedChanged();
+        }
+    }
+
+    private void OnHotkeyAppliedChanged()
+    {
+        OnPropertyChanged(nameof(IsHotkeyApplied));
+        ApplyHotkeyCommand.NotifyCanExecuteChanged();
     }
 
     private void Save() => _persistence.Save(_config);

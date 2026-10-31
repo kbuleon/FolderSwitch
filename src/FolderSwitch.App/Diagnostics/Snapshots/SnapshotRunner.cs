@@ -38,11 +38,13 @@ namespace FolderSwitch.App.Diagnostics.Snapshots;
 /// </para>
 /// <para>
 /// The interactions of Customize mode, in Fluent light and dark and in Cards dark (Fluent light only at 144 DPI): the
-/// appearance menu (<c>…-appearance</c>), the « + Folder ▾ » menu of a group holding special folders
-/// (<c>…-addfolder</c>), the palette (<c>…-palette</c>), the settings panel (<c>…-settings</c>), a rename in progress
-/// (<c>…-rename</c>), the insertion line of an item being dragged (<c>…-drag</c>), a confirmation (<c>…-confirm</c>),
-/// and in Fluent light a column being resized (<c>…-resize</c>). Menus and panels are drawn where their popup would be
-/// (<see cref="MainView.FlyoutLayer"/>), the dialog centered on the window as an owned one would be.
+/// settings window on each of its pages (<c>…-settings-general</c>, <c>…-settings-hotkey</c> with a combination not
+/// applied yet, <c>…-settings-hotkey-applied</c> with the shortcut in effect, <c>…-settings-appearance</c>,
+/// <c>…-settings-configuration</c>), the About window (<c>…-about</c>), the
+/// « + Folder ▾ » menu of a group holding special folders (<c>…-addfolder</c>), the palette (<c>…-palette</c>), a rename
+/// in progress (<c>…-rename</c>), the insertion line of an item being dragged (<c>…-drag</c>), a confirmation
+/// (<c>…-confirm</c>), and in Fluent light a column being resized (<c>…-resize</c>). Menus are drawn where their popup
+/// would be (<see cref="MainView.FlyoutLayer"/>), the dialog centered on the window as an owned one would be.
 /// </para>
 /// <para>
 /// The first-run wizard (<see cref="WizardView"/>, in its own look, <see cref="WizardTheme"/>), Fluent light, at both
@@ -189,7 +191,7 @@ internal static class SnapshotRunner
                     }
 
                     Use(appearance, theme, variant);
-                    written += SaveInteractions(scene, main, directory, theme, variant, scale, suffix);
+                    written += SaveInteractions(scene, main, services, directory, theme, variant, scale, suffix);
                 }
 
                 Use(appearance, "fluent", Variant.Light);
@@ -232,7 +234,7 @@ internal static class SnapshotRunner
     }
 
     /// <summary>The interactions of Customize mode in one look; returns the number of files written.</summary>
-    private static int SaveInteractions(Scene scene, MainViewModel main, string directory, string theme, Variant variant, double scale, string suffix)
+    private static int SaveInteractions(Scene scene, MainViewModel main, SnapshotServices services, string directory, string theme, Variant variant, double scale, string suffix)
     {
         string File(string kind) => Path.Combine(directory, FileName(theme, variant, kind, scale, suffix));
 
@@ -241,10 +243,36 @@ internal static class SnapshotRunner
         scene.Layout();
         var view = scene.View;
 
-        // The appearance menu.
-        view.OpenAppearanceMenu();
-        scene.Save(File("appearance"), variant);
-        view.CloseFlyout();
+        // The settings window, page by page, then the About window.
+        foreach (var (page, kind) in new[]
+        {
+            (SettingsPage.General, "settings-general"),
+            (SettingsPage.Hotkey, "settings-hotkey"),
+            (SettingsPage.Appearance, "settings-appearance"),
+            (SettingsPage.Configuration, "settings-configuration"),
+        })
+        {
+            view.OpenSettings(page);
+            scene.Save(File(kind), variant);
+            written++;
+        }
+
+        // The shortcut in effect: nothing to apply, a note says it is active. Then the combination with a warning again
+        // (a capture « presses » it at once, see SnapshotServices.CaptureResult).
+        var hotkey = view.Settings!.Hotkey;
+        var shown = hotkey.Current;
+        view.OpenSettings(SettingsPage.Hotkey);
+        hotkey.ResetToDefault();
+        scene.Save(File("settings-hotkey-applied"), variant);
+        services.CaptureResult = shown;
+        hotkey.StartCapture();
+        services.CaptureResult = null;
+        written++;
+
+        view.CloseDialog();
+        view.OpenAbout();
+        scene.Save(File("about"), variant);
+        view.CloseDialog();
         written++;
 
         // The « + Folder ▾ » menu of « Personnel », which holds Downloads, Documents and Desktop: those are checked.
@@ -258,12 +286,6 @@ internal static class SnapshotRunner
         var projects = scene.Group("Projets");
         view.OpenPalette((GroupViewModel)projects.DataContext, projects.ColorDotAnchor);
         scene.Save(File("palette"), variant);
-        view.CloseFlyout();
-        written++;
-
-        // The settings panel.
-        view.OpenSettingsPanel();
-        scene.Save(File("settings"), variant);
         view.CloseFlyout();
         written++;
 

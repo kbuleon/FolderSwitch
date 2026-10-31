@@ -14,14 +14,13 @@ internal enum FlyoutAlignment
     /// <summary>Its left edge under the anchor's left edge (« + Folder ▾ »).</summary>
     Left,
 
-    /// <summary>Its right edge under the anchor's right edge (the appearance menu, the settings, the palette).</summary>
+    /// <summary>Its right edge under the anchor's right edge (the palette).</summary>
     Right,
 }
 
 /// <summary>
-/// The menus and panels of Customize mode, one at a time: the « + Folder ▾ » menu, the palette, the appearance menu
-/// and the settings panel. Each is shown below its anchor in a frame of the theme (<see cref="ThemeKeys.Menu"/>,
-/// rounded, with a shadow), in a popup that closes on a click outside it; the window also closes it on Escape, when it
+/// The menus of Customize mode, one at a time: the « + Folder ▾ » menu and the palette. Each is shown below its anchor
+/// in a frame of the theme (<see cref="ThemeKeys.Menu"/>, rounded, with a shadow), in a popup that closes on a click outside it; the window also closes it on Escape, when it
 /// loses the focus or hides, and when Customize mode ends (see <see cref="MainView"/>).
 /// </summary>
 /// <remarks>

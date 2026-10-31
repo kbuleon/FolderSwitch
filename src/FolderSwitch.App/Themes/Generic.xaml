@@ -447,7 +447,7 @@
         </Style.Triggers>
     </Style>
 
-    <!-- ===== Menus, the settings panel and dialogs (on Fs.Menu) ===== -->
+    <!-- ===== Menus, the settings window and dialogs (on Fs.Menu) ===== -->
 
     <!-- A thin vertical scroll bar for the menus: a rounded thumb, no arrows, in the theme's colors. -->
     <Style x:Key="Fs.ThinScrollBar" TargetType="ScrollBar">
@@ -645,7 +645,44 @@
         </Setter>
     </Style>
 
-    <!-- A button of the settings panel and of the dialogs. -->
+    <!-- ===== Settings and About windows ===== -->
+
+    <!-- The backdrop under the settings and About windows: the same dimming in every theme. -->
+    <SolidColorBrush x:Key="Fs.Scrim" Color="#80000000" po:Freeze="True" />
+
+    <!-- The close cross of a window drawn on the menu surface (settings, About). -->
+    <Style x:Key="Fs.DialogCloseButton" TargetType="Button" BasedOn="{StaticResource Fs.CloseButton}">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Foreground" Value="{DynamicResource Fs.MenuMuted}" />
+    </Style>
+
+    <!-- A category of the settings window: the whole width, highlighted under the mouse, framed and bold when shown. -->
+    <Style x:Key="Fs.NavButton" TargetType="Button" BasedOn="{StaticResource Fs.MenuItemButton}">
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Padding" Value="9,6,10,7" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="7"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter RecognizesAccessKey="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="views:Selection.IsSelected" Value="True">
+                <Setter Property="Background" Value="{DynamicResource Fs.MenuSelected}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource Fs.MenuSelectedBorder}" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- A button of the settings window and of the dialogs. -->
     <Style x:Key="Fs.PanelButton" TargetType="Button">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Cursor" Value="Hand" />
@@ -693,7 +730,7 @@
         </Style.Triggers>
     </Style>
 
-    <!-- A check box of the settings panel: a rounded box, filled with the accent color and ticked when checked. -->
+    <!-- A check box of the settings window: a rounded box, filled with the accent color and ticked when checked. -->
     <Style x:Key="Fs.CheckBox" TargetType="CheckBox">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Cursor" Value="Hand" />
@@ -768,7 +805,7 @@
         </Setter>
     </Style>
 
-    <!-- A drop-down list of the settings panel (the language), drawn on the menu surface. -->
+    <!-- A drop-down list of the settings window (the language), drawn on the menu surface. -->
     <Style x:Key="Fs.ComboBox" TargetType="ComboBox">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Cursor" Value="Hand" />

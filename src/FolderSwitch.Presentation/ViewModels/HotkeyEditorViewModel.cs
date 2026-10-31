@@ -22,6 +22,7 @@ public sealed partial class HotkeyEditorViewModel : ObservableObject, IDisposabl
 
     private Hotkey _current;
     private Hotkey? _inEffect;
+    private bool _registered = true;
     private IReadOnlyList<HotkeyIssue> _issues;
     private IReadOnlyList<HotkeyIssueMessage> _messages;
     private IDisposable? _capture;
@@ -81,10 +82,16 @@ public sealed partial class HotkeyEditorViewModel : ObservableObject, IDisposabl
 
     /// <summary>
     /// Whether the test zone can test <see cref="Current"/>: a press of the shortcut can only be the shortcut in effect.
-    /// False in the settings while the combination shown is not applied yet; always true in the wizard, which registers
-    /// the combination shown for its test.
+    /// False in the settings while the combination shown is not applied yet, or while no shortcut is registered (it was
+    /// refused at startup); always true in the wizard, which registers the combination shown for its test.
     /// </summary>
-    public bool CanTest => _inEffect is null || _inEffect == _current;
+    public bool CanTest => _registered && (_inEffect is null || _inEffect == _current);
+
+    /// <summary>
+    /// True when the combination shown is the shortcut in effect, as its owner knows it (the settings), and it is
+    /// registered; always false in the wizard, which has no shortcut in effect.
+    /// </summary>
+    public bool IsInEffect => _registered && _inEffect is not null && _inEffect == _current;
 
     /// <summary>Label of the reset button, e.g. « Reset to Ctrl + ⊞ Win ».</summary>
     public string ResetLabel => _localizer.Format("Hotkey.Reset", Format(Hotkey.Default));
@@ -174,7 +181,7 @@ public sealed partial class HotkeyEditorViewModel : ObservableObject, IDisposabl
         }
     }
 
-    /// <summary>The test zone starts again, waiting for a press (the settings panel was opened).</summary>
+    /// <summary>The test zone starts again, waiting for a press (the shortcut page of the settings was shown).</summary>
     public void ResetTest() => TestRecognized = false;
 
     public void Dispose()
@@ -213,6 +220,25 @@ public sealed partial class HotkeyEditorViewModel : ObservableObject, IDisposabl
         _inEffect = h;
         TestRecognized = false;
         OnPropertyChanged(nameof(CanTest));
+        OnPropertyChanged(nameof(IsInEffect));
+        OnPropertyChanged(nameof(TestPrompt));
+    }
+
+    /// <summary>
+    /// Whether the shortcut in effect (<see cref="SetInEffect"/>) is registered: one refused at startup is recorded but
+    /// cannot be pressed, so the test zone asks to apply it first.
+    /// </summary>
+    internal void SetRegistered(bool registered)
+    {
+        if (registered == _registered)
+        {
+            return;
+        }
+
+        _registered = registered;
+        TestRecognized = false;
+        OnPropertyChanged(nameof(CanTest));
+        OnPropertyChanged(nameof(IsInEffect));
         OnPropertyChanged(nameof(TestPrompt));
     }
 
@@ -269,6 +295,7 @@ public sealed partial class HotkeyEditorViewModel : ObservableObject, IDisposabl
         OnPropertyChanged(nameof(Current));
         OnPropertyChanged(nameof(Display));
         OnPropertyChanged(nameof(CanTest));
+        OnPropertyChanged(nameof(IsInEffect));
         OnPropertyChanged(nameof(TestPrompt));
         OnPropertyChanged(nameof(Issues));
         OnPropertyChanged(nameof(Messages));

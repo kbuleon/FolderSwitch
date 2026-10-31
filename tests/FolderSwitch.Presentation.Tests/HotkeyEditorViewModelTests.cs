@@ -293,6 +293,7 @@ public class HotkeyEditorViewModelTests
         _hotkeys.Press(CtrlShiftF);
 
         Assert.True(vm.CanTest);
+        Assert.False(vm.IsInEffect);
         Assert.Equal("Try the shortcut: press Ctrl + Shift + F", vm.TestPrompt);
         vm.NotifyTriggered();
         Assert.True(vm.TestRecognized);

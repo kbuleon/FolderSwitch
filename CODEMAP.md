@@ -234,18 +234,19 @@ The shell and composition root.
 ### Views/
 
 - `MainWindow` — the borderless resident window: frame, keyboard (Tab, Escape, F2), hide on close.
-- `MainView` — the window's content: title bar, tab bar, board, context line; flyout host; rename focus handling.
+- `MainView` — the window's content: title bar (with ⚙ and (?)), tab bar, board, context line; flyout host; dialog layer (settings and About over a dimmed backdrop); rename focus handling.
 - `TabBar`, `BoardView`, `ColumnView`, `GroupView`, `ItemView` — the board's views (the tab bar wraps); Customize-mode gestures and drop targets.
 - `ColumnResizeGrip` — drag a column's width, double-click for automatic.
-- `AppearanceMenu` — mode, theme tiles, backgrounds, corners (with `ThemeTile`, `ModeChoice`, `BackgroundSwatch`, `RadiusChoice`).
+- `AppearanceMenu` — the settings' Appearance page: mode, theme tiles, backgrounds, corners (with `ThemeTile`, `ModeChoice`, `BackgroundSwatch`, `RadiusChoice`).
 - `ThemePreview` — a theme's thumbnail drawn with the real catalog colours.
-- `SettingsPanel` — settings flyout (language, shortcut, autostart, import/export, updates, version).
+- `SettingsView` — the settings window: categories (`SettingsPage`, `SettingsPageChoice`) and their pages (General: language, autostart, updates, version; Shortcut; Appearance; Configuration: import/export).
+- `AboutView` — the About window: icon, name, version, description.
 - `AddFolderMenu` — the « + Folder » menu with special folders.
 - `ColorPalettePopup` — the group colour palette.
 - `HotkeyEditor` — the shortcut editor control used by settings and wizard.
 - `WizardView`, `WizardWindow` — the first-run wizard's content and window.
 - `PromptView`, `PromptWindow` — the application's own themed message box.
-- `Flyout` — one-at-a-time popup for menus and panels of Customize mode.
+- `Flyout` — one-at-a-time popup for the menus of Customize mode.
 - `InlineRename` — rename-in-place text box behaviour.
 - `ViewTexts` — the localizer as a binding source that follows language changes.
 - `Selection` — attached property marking the selected choice of a menu.

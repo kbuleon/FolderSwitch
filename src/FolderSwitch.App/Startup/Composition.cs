@@ -90,10 +90,10 @@ internal sealed class Composition : IDisposable
     /// <summary>The main view model (for the views of later steps).</summary>
     public MainViewModel Main => _main ?? throw new InvalidOperationException("Not built yet.");
 
-    /// <summary>The appearance menu's view model (for the views of later steps).</summary>
+    /// <summary>The appearance's view model (for the views of later steps).</summary>
     public AppearanceViewModel Appearance => _appearance ?? throw new InvalidOperationException("Not built yet.");
 
-    /// <summary>The settings panel's view model (for the views of later steps).</summary>
+    /// <summary>The settings window's view model (for the views of later steps).</summary>
     public SettingsViewModel Settings => _settings ?? throw new InvalidOperationException("Not built yet.");
 
     /// <summary>Messages for the user about the startup, as localization keys, in the order they arose.</summary>
@@ -155,7 +155,8 @@ internal sealed class Composition : IDisposable
             }
         }
 
-        if (RegisterHotkey(config.Settings.Hotkey, reportFailure: true) && wizardCompleted)
+        var hotkeyRegistered = RegisterHotkey(config.Settings.Hotkey, reportFailure: true);
+        if (hotkeyRegistered && wizardCompleted)
         {
             // Told once the application is ready (AnnounceReady): the wizard just ended, and nothing else shows.
             _firstRunHotkey = config.Settings.Hotkey;
@@ -175,7 +176,11 @@ internal sealed class Composition : IDisposable
         _hotkeyEditor = new HotkeyEditorViewModel(config.Settings.Hotkey, _hotkeys, Localizer, KeyNames.Instance);
         _settings = new SettingsViewModel(
             config, Localizer, _hotkeyEditor, _hotkeys, autostart, exePath, store, prompts, persistence,
-            checkUpdates: _updates is null ? null : _updates.CheckNowAsync);
+            checkUpdates: _updates is null ? null : _updates.CheckNowAsync)
+        {
+            // A shortcut refused at startup can be applied again from the settings.
+            IsHotkeyRegistered = hotkeyRegistered,
+        };
         _settings.ConfigReplaced += OnConfigReplaced;
         if (_updates is not null)
         {
@@ -484,13 +489,16 @@ internal sealed class Composition : IDisposable
 
         // The settings already registered the imported shortcut when it differed (and kept the previous one in the
         // configuration if it was refused): registering it again makes sure the one in effect is the one recorded.
-        RegisterHotkey(config.Settings.Hotkey, reportFailure: false);
+        if (_settings is not null)
+        {
+            _settings.IsHotkeyRegistered = RegisterHotkey(config.Settings.Hotkey, reportFailure: false);
+        }
     }
 
     /// <summary>
     /// The shortcut, routed by <see cref="ShortcutRouting"/>: it shows the hidden window, hides the window in front,
     /// brings back to the front a window left behind another one (Customize mode) with that window as the new calling
-    /// window, and does nothing while one of FolderSwitch's own boxes is open. While the settings panel is open it goes
+    /// window, and does nothing while one of FolderSwitch's own boxes is open. While the settings show their shortcut page it goes
     /// to the shortcut editor's test zone instead, which says it was recognized when the combination shown is the one in
     /// effect (see <see cref="HotkeyEditorViewModel.CanTest"/>).
     /// </summary>
@@ -505,7 +513,7 @@ internal sealed class Composition : IDisposable
         var action = ShortcutRouting.Decide(
             windowShown: shown,
             ownWindowInFront: shown && controller.IsInFront,
-            settingsPanelOpen: shown && _window is { MainContent.IsSettingsPanelOpen: true },
+            hotkeyTestShown: shown && _window is { MainContent.IsHotkeyTestShown: true },
             promptOpen: controller.IsPromptOpen);
 
         switch (action)

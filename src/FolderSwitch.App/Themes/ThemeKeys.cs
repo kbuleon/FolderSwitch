@@ -106,7 +106,7 @@ internal static class ThemeKeys
 
     // ----- Menus, panels and dialogs -----
 
-    /// <summary>Surface of the menus, the settings panel and the dialogs.</summary>
+    /// <summary>Surface of the menus, the settings and About windows and the dialogs.</summary>
     public const string Menu = "Fs.Menu";
 
     /// <summary>Text on <see cref="Menu"/> (4.5:1 at least).</summary>

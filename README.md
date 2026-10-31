@@ -183,7 +183,7 @@ FolderSwitch.exe --snapshot <directory> [--snapshot-language <code>]
 | Start with Windows | The `FolderSwitch` value of `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`. |
 | Installed program | `%LocalAppData%\FolderSwitch`, owned by Velopack. Uninstalling removes it and the `Run` value, and keeps `%APPDATA%\FolderSwitch`. |
 
-The configuration can be exported to a file and imported again from the settings panel of Customize mode.
+The configuration can be exported to a file and imported again from the Configuration page of the settings (⚙ in the title bar).
 
 ## Privacy
 

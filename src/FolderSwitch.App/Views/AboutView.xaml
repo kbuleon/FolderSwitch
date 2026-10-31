@@ -1,0 +1,37 @@
+<!--
+    The About window, opened by the (?) button of the title bar and shown by MainView over the whole window on a dimmed
+    backdrop, like the settings: the icon, the name, the version and what FolderSwitch does, with ✕ to close it.
+-->
+<UserControl x:Class="FolderSwitch.App.Views.AboutView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Root"
+             Width="340">
+    <Grid>
+        <Button Margin="0,10,10,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Style="{StaticResource Fs.DialogCloseButton}"
+                Click="OnCloseClick"
+                ToolTip="{Binding Texts[Window.Close], ElementName=Root}"
+                AutomationProperties.Name="{Binding Texts[Window.Close], ElementName=Root}" />
+        <StackPanel Margin="28,30,28,28">
+            <Image x:Name="Icon" Width="56" Height="56" HorizontalAlignment="Center" />
+            <TextBlock Margin="0,14,0,0"
+                       HorizontalAlignment="Center"
+                       FontSize="19"
+                       FontWeight="SemiBold"
+                       Text="FolderSwitch" />
+            <TextBlock Margin="0,3,0,0"
+                       HorizontalAlignment="Center"
+                       FontSize="12.2"
+                       Foreground="{DynamicResource Fs.MenuMuted}"
+                       Text="{Binding VersionText, ElementName=Root}" />
+            <TextBlock Margin="0,16,0,0"
+                       FontSize="12.8"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap"
+                       Text="{Binding Texts[About.Description], ElementName=Root}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

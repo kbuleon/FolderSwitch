@@ -12,7 +12,7 @@ namespace FolderSwitch.App.Views;
 public sealed record HotkeyNote(string Text, bool IsConfirmation);
 
 /// <summary>
-/// The shortcut editor, bound to a <see cref="HotkeyEditorViewModel"/>: in the settings panel and in the first-run
+/// The shortcut editor, bound to a <see cref="HotkeyEditorViewModel"/>: in the settings window and in the first-run
 /// wizard. The capture, the checks and the test belong to the view model; this only shows them, with the
 /// <see cref="Note"/> its owner may add.
 /// </summary>

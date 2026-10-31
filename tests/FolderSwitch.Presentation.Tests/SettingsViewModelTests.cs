@@ -168,6 +168,93 @@ public sealed class SettingsViewModelTests : IDisposable
         Assert.Empty(_prompts.Errors);
     }
 
+    // ----- Apply: only a combination that is not in effect yet -----
+
+    [Fact]
+    public void The_shortcut_in_effect_has_nothing_to_apply()
+    {
+        var vm = Create();
+
+        Assert.True(vm.Hotkey.IsInEffect);
+        Assert.True(vm.IsHotkeyApplied);
+        Assert.False(vm.ApplyHotkeyCommand.CanExecute(null));
+
+        vm.ApplyHotkey();
+
+        Assert.Empty(_hotkeys.RegisterCalls);
+        Assert.Equal(0, _persistence.SaveCount);
+    }
+
+    [Fact]
+    public void Another_combination_can_be_applied_and_then_shows_as_applied()
+    {
+        var vm = Create();
+        var changes = RecordChanges(vm);
+
+        Capture(vm, CtrlShiftF);
+
+        Assert.False(vm.Hotkey.IsInEffect);
+        Assert.False(vm.IsHotkeyApplied);
+        Assert.True(vm.ApplyHotkeyCommand.CanExecute(null));
+        Assert.Contains(nameof(SettingsViewModel.IsHotkeyApplied), changes);
+        changes.Clear();
+
+        vm.ApplyHotkey();
+
+        Assert.True(vm.IsHotkeyApplied);
+        Assert.False(vm.ApplyHotkeyCommand.CanExecute(null));
+        Assert.Contains(nameof(SettingsViewModel.IsHotkeyApplied), changes);
+    }
+
+    [Fact]
+    public void Going_back_to_the_shortcut_in_effect_has_nothing_to_apply()
+    {
+        var vm = Create();
+        Capture(vm, CtrlShiftF);
+
+        vm.Hotkey.ResetToDefault();
+
+        Assert.True(vm.IsHotkeyApplied);
+        Assert.False(vm.ApplyHotkeyCommand.CanExecute(null));
+    }
+
+    [Fact]
+    public void A_shortcut_refused_at_startup_can_be_applied_again()
+    {
+        var vm = Create();
+
+        vm.IsHotkeyRegistered = false;
+
+        Assert.False(vm.IsHotkeyApplied);
+        Assert.True(vm.ApplyHotkeyCommand.CanExecute(null));
+
+        // Nothing can be pressed: the test zone asks to apply the shortcut first.
+        Assert.False(vm.Hotkey.CanTest);
+        Assert.Equal("Apply this shortcut first, then try it here.", vm.Hotkey.TestPrompt);
+        vm.Hotkey.NotifyTriggered();
+        Assert.False(vm.Hotkey.TestRecognized);
+
+        vm.ApplyHotkey();
+
+        Assert.Equal([Hotkey.Default], _hotkeys.RegisterCalls);
+        Assert.True(vm.IsHotkeyRegistered);
+        Assert.True(vm.IsHotkeyApplied);
+        Assert.True(vm.Hotkey.CanTest);
+        Assert.Equal(0, _persistence.SaveCount);
+    }
+
+    [Fact]
+    public void A_refused_registration_shows_nothing_as_applied()
+    {
+        var vm = Create();
+        Capture(vm, CtrlShiftF);
+        _hotkeys.Taken.Add(CtrlShiftF);
+
+        vm.ApplyHotkey();
+
+        Assert.False(vm.IsHotkeyApplied);
+    }
+
     // ----- Test zone: only the shortcut in effect can be pressed -----
 
     [Fact]

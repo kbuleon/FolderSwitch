@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Interop;
@@ -22,12 +23,13 @@ namespace FolderSwitch.App.Views;
 /// </para>
 /// <para>
 /// <b>Keyboard.</b> Tab and Shift+Tab show the next and previous tab, in a loop, and never move the focus between
-/// controls (WPF's focus traversal is off, and nothing in the window takes the focus); Escape hides the window. A text
-/// box that has the focus (a rename, in Customize mode) keeps its keys: Escape then cancels the rename. Escape first
-/// closes the menu or panel open in Customize mode, if any; F2 renames the selection.
+/// controls (WPF's focus traversal is off, and nothing in the window takes the focus but a text box); Escape hides the
+/// window. A text box that has the focus (a rename, in Customize mode) keeps its keys: Escape then cancels the rename. Escape first
+/// closes the menu open in Customize mode, then the settings or About window, if any; F2 renames the selection. While
+/// the settings or About window is open, Tab and F2 do nothing.
 /// </para>
 /// <para>
-/// <b>Focus lost.</b> The menu or panel open closes, and a shortcut capture in progress ends
+/// <b>Focus lost.</b> The menu open closes (not the settings or About window), and a shortcut capture in progress ends
 /// (<see cref="MainView.OnWindowDeactivated"/>); whether the window hides is the controller's call.
 /// </para>
 /// <para>
@@ -151,18 +153,37 @@ public partial class MainWindow : Window
     {
         if (e.Key == Key.Escape)
         {
-            // A column being resized stops (nothing is recorded); a rename's box cancels the rename itself; otherwise an
-            // open menu or panel closes before the window hides.
+            // A column being resized stops (nothing is recorded); a rename's box cancels the rename itself; a shortcut
+            // capture ends (the hook lets Escape through), an open drop-down list closes; otherwise an open menu, then
+            // the settings or About window, closes before the window hides.
             if (Mouse.Captured is ColumnResizeGrip { IsResizing: true } grip)
             {
                 grip.ReleaseMouseCapture();
                 e.Handled = true;
             }
-            else if (!InlineRename.IsRenameBox(Keyboard.FocusedElement) && View.CloseFlyout())
+            else if (View.Settings?.Hotkey is { IsCapturing: true } hotkey)
+            {
+                hotkey.StopCapture();
+                e.Handled = true;
+            }
+            else if (Mouse.Captured is ComboBox { IsDropDownOpen: true } list)
+            {
+                list.IsDropDownOpen = false;
+                e.Handled = true;
+            }
+            else if (!InlineRename.IsRenameBox(Keyboard.FocusedElement) && (View.CloseFlyout() || View.CloseDialog()))
             {
                 e.Handled = true;
             }
 
+            return;
+        }
+
+        // The settings and About windows cover the board: its keys (another tab, a rename) wait until they close. A
+        // text box of theirs (the custom color) keeps Tab; F2 never reaches the board.
+        if (View.IsDialogOpen && (e.Key == Key.F2 || (e.Key == Key.Tab && Keyboard.FocusedElement is not TextBoxBase)))
+        {
+            e.Handled = true;
             return;
         }
 

@@ -21,7 +21,7 @@ namespace FolderSwitch.App.Themes;
 /// <para>
 /// Besides the theme's tokens, a few colors are FolderSwitch's own and the same in every theme: the accent of
 /// Customize mode (amber, with dark text, which reads at 4.5:1 or better on it where white would not) and the red of
-/// the close cross under the mouse (the one of Windows, on which white reads at 4.6:1). The menus, the settings panel
+/// the close cross under the mouse (the one of Windows, on which white reads at 4.6:1). The menus, the settings window
 /// and the dialogs are drawn on <see cref="ThemeKeys.Menu"/> (the card), with their own text colors corrected against
 /// it; their messages are tinted in red, amber, green or blue, the text corrected to 4.5:1 against the tint.
 /// </para>

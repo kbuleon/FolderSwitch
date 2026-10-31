@@ -18,7 +18,7 @@ internal enum ShortcutAction
     /// </summary>
     Recall,
 
-    /// <summary>The settings panel is open: the press goes to its shortcut test zone.</summary>
+    /// <summary>The settings window shows its shortcut page, in front: the press goes to its test zone.</summary>
     TestZone,
 }
 
@@ -31,16 +31,18 @@ internal static class ShortcutRouting
 {
     /// <param name="windowShown">The main window is on screen.</param>
     /// <param name="ownWindowInFront">The foreground window is one of FolderSwitch's (the main window, one of its menus).</param>
-    /// <param name="settingsPanelOpen">The settings panel, with its test zone, is open.</param>
+    /// <param name="hotkeyTestShown">The settings window shows its shortcut page, with its test zone.</param>
     /// <param name="promptOpen">One of FolderSwitch's own boxes or pickers is open.</param>
-    public static ShortcutAction Decide(bool windowShown, bool ownWindowInFront, bool settingsPanelOpen, bool promptOpen)
+    public static ShortcutAction Decide(bool windowShown, bool ownWindowInFront, bool hotkeyTestShown, bool promptOpen)
     {
         if (!windowShown)
         {
             return ShortcutAction.Show;
         }
 
-        if (settingsPanelOpen)
+        // The test zone is for a press made while looking at it: a window left behind another one (the settings stay
+        // open when the focus goes elsewhere) is recalled instead.
+        if (hotkeyTestShown && ownWindowInFront)
         {
             return ShortcutAction.TestZone;
         }

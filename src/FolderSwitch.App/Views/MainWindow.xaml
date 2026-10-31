@@ -4,7 +4,8 @@
     screen (WindowController places it and sets the bounds); the Desktop Window Manager rounds its corners on Windows 11
     and gives it a shadow, while Windows 10 gets a 1 px border instead (see the code-behind).
     Keyboard: Tab / Shift+Tab change tab and never move the focus, Escape hides (spec 5.3); in Customize mode F2
-    renames the selection (spec 5.4), and Escape first closes an open menu or panel, or cancels a rename.
+    renames the selection (spec 5.4), and Escape first closes an open menu, the settings or About window, or cancels a
+    rename.
 -->
 <Window x:Class="FolderSwitch.App.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

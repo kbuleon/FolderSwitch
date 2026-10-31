@@ -1,15 +1,15 @@
 <!--
-    The appearance menu (Customize mode, spec 5.4), bound to AppearanceViewModel, compact (one screen, no scrolling): the mode
+    The appearance menu (spec 5.4), bound to AppearanceViewModel, compact (one screen, no scrolling): the mode
     (Light, Dark, Auto), a thumbnail per theme drawn in the variant shown, the background (the theme's own first, the
     tints of the variant, then a custom color typed as #rrggbb) and the group corners. Every choice takes effect and is
-    saved at once; the menu stays open. Shown in a Flyout under the « ◐ Theme · Mode » button.
+    saved at once. The Appearance page of the settings window (SettingsView).
 -->
 <UserControl x:Class="FolderSwitch.App.Views.AppearanceMenu"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:FolderSwitch.App.Views"
              x:Name="Root"
-             Width="300">
+             Width="340">
     <StackPanel Margin="1,0,1,1">
         <!-- Mode -->
         <TextBlock Style="{StaticResource Fs.MenuLabel}" Margin="4,2,4,5" Text="{Binding Texts[Appearance.Mode], ElementName=Root, Converter={StaticResource Fs.UpperCase}}" />

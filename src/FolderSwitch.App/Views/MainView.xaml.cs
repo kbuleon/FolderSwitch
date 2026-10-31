@@ -10,15 +10,22 @@ namespace FolderSwitch.App.Views;
 
 /// <summary>
 /// The content of the main window, bound to <see cref="MainViewModel"/>. The views inside reach the view model through
-/// it: <see cref="ActivateItem"/> for a click on an item, the Open… methods for the menus and panels of Customize mode.
+/// it: <see cref="ActivateItem"/> for a click on an item, the Open… methods for the windows and menus.
 /// </summary>
 /// <remarks>
 /// <para>
-/// <b>Flyouts.</b> One at a time (<see cref="Flyout"/>): the appearance menu, the settings panel, a group's
-/// « + Folder ▾ » menu or palette. A flyout closes on a click outside it, on Escape (<see cref="CloseFlyout"/>, called
-/// by the window), when the window loses the focus to another window than the flyout's own or hides, when Customize
-/// mode ends, and, for those of a group, when another tab is shown. Closing the settings panel ends a shortcut capture
-/// in progress.
+/// <b>Settings and About.</b> The ⚙ and (?) buttons of the title bar, in normal use as in Customize mode, open the
+/// settings window (<see cref="SettingsView"/>) or the About window (<see cref="AboutView"/>), one at a time, in the
+/// dialog layer: over the whole window, on a dimmed backdrop; the window grows to hold it when the board is smaller.
+/// It closes with its ✕, a click on the backdrop, Escape (<see cref="CloseDialog"/>, called by the window) and when the
+/// window hides; it stays open when the window only loses the focus (a file picker, another application). The settings
+/// open again on the category shown last.
+/// </para>
+/// <para>
+/// <b>Flyouts.</b> One at a time (<see cref="Flyout"/>): a group's « + Folder ▾ » menu or palette, in Customize mode.
+/// A flyout closes on a click outside it, on Escape (<see cref="CloseFlyout"/>, called by the window), when the window
+/// loses the focus to another window than the flyout's own or hides, when Customize mode ends, when another tab is
+/// shown, and when a window of the dialog layer opens.
 /// </para>
 /// <para>
 /// <b>Rename.</b> Nothing in the window takes the keyboard focus but a rename's text box, so a click elsewhere would
@@ -32,19 +39,11 @@ public partial class MainView : UserControl
         nameof(Texts),
         typeof(ViewTexts),
         typeof(MainView),
-        new PropertyMetadata(null, OnTextsChanged));
-
-    private static readonly DependencyPropertyKey AppearanceLabelPropertyKey = DependencyProperty.RegisterReadOnly(
-        nameof(AppearanceLabel),
-        typeof(string),
-        typeof(MainView),
-        new PropertyMetadata(string.Empty));
-
-    public static readonly DependencyProperty AppearanceLabelProperty = AppearanceLabelPropertyKey.DependencyProperty;
+        new PropertyMetadata(null));
 
     private readonly Flyout _flyout;
-    private AppearanceViewModel? _appearance;
     private MainViewModel? _viewModel;
+    private SettingsPage _settingsPage = SettingsPage.General;
 
     public MainView()
     {
@@ -61,45 +60,30 @@ public partial class MainView : UserControl
         SizeChanged += (_, _) => _flyout.Reposition();
     }
 
-    /// <summary>The texts of the views themselves (tooltips, the appearance button).</summary>
+    /// <summary>The texts of the views themselves (tooltips, the settings and About windows).</summary>
     public ViewTexts? Texts
     {
         get => (ViewTexts?)GetValue(TextsProperty);
         set => SetValue(TextsProperty, value);
     }
 
-    /// <summary>The label of the appearance button: « Fluent · Light », in the current language.</summary>
-    public string AppearanceLabel => (string)GetValue(AppearanceLabelProperty);
+    /// <summary>The view model of the settings window's appearance page.</summary>
+    public AppearanceViewModel? Appearance { get; set; }
 
-    /// <summary>The appearance menu's view model.</summary>
-    public AppearanceViewModel? Appearance
-    {
-        get => _appearance;
-        set
-        {
-            if (_appearance is not null)
-            {
-                _appearance.PropertyChanged -= OnAppearancePropertyChanged;
-            }
-
-            _appearance = value;
-            if (value is not null)
-            {
-                value.PropertyChanged += OnAppearancePropertyChanged;
-            }
-
-            UpdateAppearanceLabel();
-        }
-    }
-
-    /// <summary>The settings panel's view model.</summary>
+    /// <summary>The settings window's view model.</summary>
     public SettingsViewModel? Settings { get; set; }
 
     /// <summary>
-    /// True while the settings panel is open: the shortcut then goes to its test zone instead of hiding the window
-    /// (see the composition).
+    /// True while the settings window shows its shortcut page: the shortcut then goes to its test zone instead of
+    /// hiding the window (see the composition).
     /// </summary>
-    internal bool IsSettingsPanelOpen => _flyout.Content is SettingsPanel;
+    internal bool IsHotkeyTestShown => DialogFrame.Child is SettingsView { Page: SettingsPage.Hotkey };
+
+    /// <summary>True while the settings or the About window is open.</summary>
+    internal bool IsDialogOpen => DialogFrame.Child is not null;
+
+    /// <summary>The window open in the dialog layer; <c>null</c> when none is.</summary>
+    internal FrameworkElement? OpenDialog => DialogFrame.Child as FrameworkElement;
 
     /// <summary>What the open flyout shows; <c>null</c> when none is open.</summary>
     internal FrameworkElement? OpenFlyoutContent => _flyout.Content;
@@ -110,12 +94,6 @@ public partial class MainView : UserControl
         get => _flyout.InlineLayer;
         set => _flyout.InlineLayer = value;
     }
-
-    /// <summary>The ⚙ button, the settings panel's anchor.</summary>
-    internal FrameworkElement SettingsAnchor => SettingsButton;
-
-    /// <summary>The « ◐ Theme · Mode » button, the appearance menu's anchor.</summary>
-    internal FrameworkElement AppearanceAnchor => AppearanceButton;
 
     /// <summary>The <see cref="MainView"/> that holds <paramref name="element"/>, if any.</summary>
     internal static MainView? Of(DependencyObject? element)
@@ -152,23 +130,50 @@ public partial class MainView : UserControl
         }
     }
 
-    /// <summary>Opens the appearance menu under its button (Customize mode).</summary>
-    internal void OpenAppearanceMenu()
+    /// <summary>
+    /// Opens the settings window on <paramref name="page"/>, or on the category shown last; shows that category when the
+    /// window is open already.
+    /// </summary>
+    internal void OpenSettings(SettingsPage? page = null)
     {
-        if (_viewModel is { IsCustomizing: true } && Appearance is { } appearance && Texts is { } texts)
+        if (DialogFrame.Child is SettingsView open)
         {
-            _flyout.Open(new AppearanceMenu(appearance, texts), AppearanceButton, FlyoutAlignment.Right);
+            open.Show(page ?? open.Page);
+            return;
+        }
+
+        if (Settings is { } settings && Appearance is { } appearance && Texts is { } texts)
+        {
+            ShowDialog(new SettingsView(settings, appearance, texts, page ?? _settingsPage, () => CloseDialog()));
         }
     }
 
-    /// <summary>Opens the settings panel under the ⚙ button (Customize mode), its shortcut test zone waiting for a press.</summary>
-    internal void OpenSettingsPanel()
+    /// <summary>Opens the About window.</summary>
+    internal void OpenAbout()
     {
-        if (_viewModel is { IsCustomizing: true } && Settings is { } settings && Texts is { } texts)
+        if (DialogFrame.Child is not AboutView && Texts is { } texts)
         {
-            settings.Hotkey.ResetTest();
-            _flyout.Open(new SettingsPanel(settings, texts), SettingsButton, FlyoutAlignment.Right);
+            ShowDialog(new AboutView(texts, () => CloseDialog()));
         }
+    }
+
+    /// <summary>Closes the settings or the About window; false when none was open.</summary>
+    internal bool CloseDialog()
+    {
+        if (DialogFrame.Child is not FrameworkElement content)
+        {
+            return false;
+        }
+
+        if (content is SettingsView settings)
+        {
+            _settingsPage = settings.Page;
+        }
+
+        DialogFrame.Child = null;
+        DialogLayer.Visibility = Visibility.Collapsed;
+        (content as IDisposable)?.Dispose();
+        return true;
     }
 
     /// <summary>Opens the « + Folder ▾ » menu of <paramref name="group"/> under <paramref name="anchor"/>.</summary>
@@ -197,9 +202,8 @@ public partial class MainView : UserControl
 
     /// <summary>
     /// The window lost the focus: a shortcut capture ends (the next keys pressed are meant for the other window, not
-    /// for the capture) and the flyout closes, unless the focus went into the
-    /// flyout itself: its popup is a window of its own, which a text box taking the keyboard (the custom color of the
-    /// appearance menu) activates. Checked once the focus has settled.
+    /// for the capture) and the flyout closes, unless the focus went into the flyout itself (its popup is a window of
+    /// its own). Checked once the focus has settled. The settings and About windows stay open.
     /// </summary>
     internal void OnWindowDeactivated()
     {
@@ -213,39 +217,13 @@ public partial class MainView : UserControl
         });
     }
 
-    private static void OnTextsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    /// <summary>Shows <paramref name="content"/> in the dialog layer, in place of the window open there and of any flyout.</summary>
+    private void ShowDialog(FrameworkElement content)
     {
-        var view = (MainView)d;
-        if (e.OldValue is ViewTexts old)
-        {
-            old.PropertyChanged -= view.OnLanguageChanged;
-        }
-
-        if (e.NewValue is ViewTexts texts)
-        {
-            texts.PropertyChanged += view.OnLanguageChanged;
-        }
-
-        view.UpdateAppearanceLabel();
-    }
-
-    private void OnLanguageChanged(object? sender, PropertyChangedEventArgs e) => UpdateAppearanceLabel();
-
-    private void OnAppearancePropertyChanged(object? sender, PropertyChangedEventArgs e)
-    {
-        if (e.PropertyName is null or "" or nameof(AppearanceViewModel.Theme) or nameof(AppearanceViewModel.Mode))
-        {
-            UpdateAppearanceLabel();
-        }
-    }
-
-    /// <summary>« Fluent · Light »: the theme's and the mode's names (spec 5.4: « ◐ Theme · Mode »).</summary>
-    private void UpdateAppearanceLabel()
-    {
-        var label = Appearance is { } appearance && Texts is { } texts
-            ? $"{texts["Theme." + appearance.Theme]} · {texts["Appearance.Mode." + appearance.Mode]}"
-            : string.Empty;
-        SetValue(AppearanceLabelPropertyKey, label);
+        CloseFlyout();
+        CloseDialog();
+        DialogFrame.Child = content;
+        DialogLayer.Visibility = Visibility.Visible;
     }
 
     private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -256,6 +234,7 @@ public partial class MainView : UserControl
         }
 
         CloseFlyout();
+        CloseDialog();
         _viewModel = e.NewValue as MainViewModel;
         if (_viewModel is not null)
         {
@@ -282,18 +261,11 @@ public partial class MainView : UserControl
         if (e.NewValue is false)
         {
             CloseFlyout();
+            CloseDialog();
         }
     }
 
-    private void OnFlyoutClosed(object? sender, FrameworkElement content)
-    {
-        if (content is SettingsPanel)
-        {
-            Settings?.Hotkey.StopCapture();
-        }
-
-        (content as IDisposable)?.Dispose();
-    }
+    private void OnFlyoutClosed(object? sender, FrameworkElement content) => (content as IDisposable)?.Dispose();
 
     private void OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
@@ -304,7 +276,17 @@ public partial class MainView : UserControl
         }
     }
 
-    private void OnAppearanceClick(object sender, RoutedEventArgs e) => OpenAppearanceMenu();
+    /// <summary>A click on the backdrop, outside the window it shows, closes that window.</summary>
+    private void OnDialogLayerMouseDown(object sender, MouseButtonEventArgs e)
+    {
+        if (ReferenceEquals(e.OriginalSource, DialogLayer))
+        {
+            CloseDialog();
+            e.Handled = true;
+        }
+    }
 
-    private void OnSettingsClick(object sender, RoutedEventArgs e) => OpenSettingsPanel();
+    private void OnSettingsClick(object sender, RoutedEventArgs e) => OpenSettings();
+
+    private void OnAboutClick(object sender, RoutedEventArgs e) => OpenAbout();
 }

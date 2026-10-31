@@ -282,8 +282,17 @@ public partial class AppearanceMenu : UserControl, IDisposable
 
     private void OnHexLostFocus(object sender, KeyboardFocusChangedEventArgs e) => ApplyHex();
 
+    /// <summary>
+    /// Applies a valid color typed in the box. Not once the menu is closed: the box then loses the focus because its
+    /// window closed (Escape), which applies nothing.
+    /// </summary>
     private void ApplyHex()
     {
+        if (_disposed)
+        {
+            return;
+        }
+
         if (ParseHex(HexBox.Text) is { } hex)
         {
             _appearance.Background = hex;
