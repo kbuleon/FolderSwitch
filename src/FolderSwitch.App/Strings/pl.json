@@ -1,7 +1,7 @@
 {
   "_meta.nativeName": "Polski",
 
-  "Window.Customize": "Dostosuj",
+  "Window.Customize": "Edytuj",
   "Window.Done": "Gotowe",
   "Window.Close": "Zamknij",
   "Window.Appearance": "Wygląd",
@@ -163,15 +163,15 @@
   "Wizard.Mode.Auto": "Auto (jak Windows)",
   "Wizard.Startup.Intro": "Ostatnie ustawienia przed rozpoczęciem.",
   "Wizard.Start.Sample.Hint": "Grupa „Windows” z folderami Pulpit, Dokumenty, Pobrane i Obrazy.",
-  "Wizard.Start.Empty.Hint": "Wszystko dodajesz samodzielnie w trybie Dostosuj.",
+  "Wizard.Start.Empty.Hint": "Wszystko dodajesz samodzielnie w trybie Edytuj.",
   "Wizard.StepCount": "Krok {0} z {1}",
-  "Wizard.AutostartFailed": "Nie udało się ustawić uruchamiania FolderSwitch razem z systemem Windows. Możesz spróbować ponownie później w ustawieniach trybu Dostosuj.",
+  "Wizard.AutostartFailed": "Nie udało się ustawić uruchamiania FolderSwitch razem z systemem Windows. Możesz spróbować ponownie później w ustawieniach.",
   "Default.SampleTab": "Przykład",
   "Default.SampleGroup": "Windows",
   "Default.EmptyTab": "Moje foldery",
 
   "Tray.Open": "Otwórz",
-  "Tray.Customize": "Dostosuj",
+  "Tray.Customize": "Edytuj",
   "Tray.Quit": "Zakończ",
   "Tray.Ready": "FolderSwitch jest gotowy: naciśnij {0}",
   "Tray.InstallUpdate": "Zainstaluj aktualizację {0}",
@@ -188,6 +188,6 @@
   "Config.ResetToDefault": "Plik konfiguracji był uszkodzony i nie udało się użyć żadnej kopii zapasowej: FolderSwitch uruchomił się z nową konfiguracją. Uszkodzony plik zachowano w tym samym folderze.",
   "Config.LoadFailed": "FolderSwitch nie mógł odczytać pliku konfiguracji. Działa z konfiguracją tymczasową, a zmiany nie będą zapisywane do czasu ponownego uruchomienia.",
   "Config.SaveFailed": "FolderSwitch nie mógł zapisać zmian.",
-  "Startup.HotkeyFailed": "FolderSwitch nie mógł zarejestrować skrótu. Otwórz go za pomocą ikony w obszarze powiadomień, a następnie wybierz inny skrót w trybie Dostosuj.",
+  "Startup.HotkeyFailed": "FolderSwitch nie mógł zarejestrować skrótu. Otwórz go za pomocą ikony w obszarze powiadomień, a następnie wybierz inny skrót w ustawieniach.",
   "Startup.Failed": "Nie udało się uruchomić programu FolderSwitch."
 }

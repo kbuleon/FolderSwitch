@@ -12,13 +12,13 @@ C# on .NET 10 with WPF, for Windows 10 and 11 (the installer is x64). Installed 
 
 - **Global shortcut**, Ctrl + Win pressed alone by default. It acts when the keys are released, so the Windows
   shortcuts that start with Ctrl + Win keep working. Any other combination can be chosen. Pressed again it hides the
-  window; in Customize mode, a window left behind another one comes back to the front instead, keeping Customize mode
+  window; in Edit mode, a window left behind another one comes back to the front instead, keeping Edit mode
   and taking the window you came from as the new calling window.
 - **Context aware**: the calling Explorer window (its active tab on Windows 11) or file dialog (modern and legacy Open,
   Save As, folder pickers) is moved to the folder. Ctrl + click opens a new Explorer tab on Windows 11, a new window
   on Windows 10.
-- **A board you organise by drag and drop** in Customize mode: tabs, columns of fixed or automatic width, groups with
-  a colour that collapse, folders, files and Windows special folders (Desktop, Documents, This PC…). « + Current
+- **A board you organise by drag and drop** in Edit mode (« Edit » in the title bar): tabs, columns of fixed or
+  automatic width, groups with a colour that collapse, folders, files and Windows special folders (Desktop, Documents, This PC…). « + Current
   folder » remembers the folder of the window you called it from. Every change is saved at once.
 - **Seven themes**, each in a light and a dark variant (or following the Windows mode), with a choice of background
   and group corners.
@@ -167,8 +167,8 @@ FolderSwitch.exe --snapshot <directory> [--snapshot-language <code>]
   program: `(Start-Process .\FolderSwitch.exe -ArgumentList '--self-test' -Wait -PassThru).ExitCode`; from source:
   `dotnet run --project src/FolderSwitch.App -c Release -- --self-test`.
 - `--snapshot <directory>` draws the main window's content and the first-run wizard into PNG files, off-screen (nothing
-  appears on screen): every theme in both variants at 96 and 144 DPI, Customize mode, the menus and message boxes, in
-  the language of `--snapshot-language` (French by default). It needs no running instance, touches neither the
+  appears on screen): every theme in both variants at 96 and 144 DPI, Edit mode, the menus, each page of the settings,
+  the About window and the message boxes, in the language of `--snapshot-language` (French by default). It needs no running instance, touches neither the
   configuration nor the keyboard, and writes its log, `folderswitch.log`, in the output folder. Exit code 0 when every
   file was written, 1 otherwise.
 

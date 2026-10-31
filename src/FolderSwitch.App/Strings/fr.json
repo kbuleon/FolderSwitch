@@ -1,7 +1,7 @@
 {
   "_meta.nativeName": "Français",
 
-  "Window.Customize": "Configurer",
+  "Window.Customize": "Modifier",
   "Window.Done": "Terminé",
   "Window.Close": "Fermer",
   "Window.Appearance": "Apparence",
@@ -163,15 +163,15 @@
   "Wizard.Mode.Auto": "Auto (comme Windows)",
   "Wizard.Startup.Intro": "Derniers réglages avant de commencer.",
   "Wizard.Start.Sample.Hint": "Un groupe « Windows » avec Bureau, Documents, Téléchargements, Images.",
-  "Wizard.Start.Empty.Hint": "Vous ajoutez tout vous-même en mode Configurer.",
+  "Wizard.Start.Empty.Hint": "Vous ajoutez tout vous-même en mode Modifier.",
   "Wizard.StepCount": "Étape {0} sur {1}",
-  "Wizard.AutostartFailed": "FolderSwitch n'a pas pu s'inscrire au démarrage de Windows. Vous pourrez réessayer plus tard dans les réglages du mode Configurer.",
+  "Wizard.AutostartFailed": "FolderSwitch n'a pas pu s'inscrire au démarrage de Windows. Vous pourrez réessayer plus tard dans les réglages.",
   "Default.SampleTab": "Exemple",
   "Default.SampleGroup": "Windows",
   "Default.EmptyTab": "Mes dossiers",
 
   "Tray.Open": "Ouvrir",
-  "Tray.Customize": "Configurer",
+  "Tray.Customize": "Modifier",
   "Tray.Quit": "Quitter",
   "Tray.Ready": "FolderSwitch est prêt : appuyez sur {0}",
   "Tray.InstallUpdate": "Installer la mise à jour {0}",
@@ -188,6 +188,6 @@
   "Config.ResetToDefault": "Votre fichier de configuration était endommagé et aucune sauvegarde n'était utilisable : FolderSwitch a démarré avec une nouvelle configuration. Le fichier endommagé a été conservé dans le même dossier.",
   "Config.LoadFailed": "FolderSwitch n'a pas pu lire son fichier de configuration. Il fonctionne avec une configuration temporaire, et vos modifications ne seront pas enregistrées avant son redémarrage.",
   "Config.SaveFailed": "FolderSwitch n'a pas pu enregistrer vos modifications.",
-  "Startup.HotkeyFailed": "FolderSwitch n'a pas pu activer son raccourci. Ouvrez-le depuis son icône dans la zone de notification, puis choisissez un autre raccourci en mode Configurer.",
+  "Startup.HotkeyFailed": "FolderSwitch n'a pas pu activer son raccourci. Ouvrez-le depuis son icône dans la zone de notification, puis choisissez un autre raccourci dans les réglages.",
   "Startup.Failed": "FolderSwitch n'a pas pu démarrer."
 }

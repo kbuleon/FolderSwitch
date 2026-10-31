@@ -1,7 +1,7 @@
 {
   "_meta.nativeName": "Deutsch",
 
-  "Window.Customize": "Anpassen",
+  "Window.Customize": "Bearbeiten",
   "Window.Done": "Fertig",
   "Window.Close": "Schließen",
   "Window.Appearance": "Darstellung",
@@ -163,15 +163,15 @@
   "Wizard.Mode.Auto": "Auto (wie Windows)",
   "Wizard.Startup.Intro": "Letzte Einstellungen, bevor es losgeht.",
   "Wizard.Start.Sample.Hint": "Eine Gruppe „Windows“ mit Desktop, Dokumente, Downloads und Bilder.",
-  "Wizard.Start.Empty.Hint": "Sie fügen alles selbst im Modus „Anpassen“ hinzu.",
+  "Wizard.Start.Empty.Hint": "Sie fügen alles selbst im Modus „Bearbeiten“ hinzu.",
   "Wizard.StepCount": "Schritt {0} von {1}",
-  "Wizard.AutostartFailed": "FolderSwitch konnte den Start mit Windows nicht einrichten. Sie können es später in den Einstellungen des Modus „Anpassen“ erneut versuchen.",
+  "Wizard.AutostartFailed": "FolderSwitch konnte den Start mit Windows nicht einrichten. Sie können es später in den Einstellungen erneut versuchen.",
   "Default.SampleTab": "Beispiel",
   "Default.SampleGroup": "Windows",
   "Default.EmptyTab": "Meine Ordner",
 
   "Tray.Open": "Öffnen",
-  "Tray.Customize": "Anpassen",
+  "Tray.Customize": "Bearbeiten",
   "Tray.Quit": "Beenden",
   "Tray.Ready": "FolderSwitch ist bereit: Drücken Sie {0}",
   "Tray.InstallUpdate": "Update {0} installieren",
@@ -188,6 +188,6 @@
   "Config.ResetToDefault": "Ihre Konfigurationsdatei war beschädigt, und keine Sicherung war verwendbar: FolderSwitch wurde mit einer neuen Konfiguration gestartet. Die beschädigte Datei wurde im selben Ordner aufbewahrt.",
   "Config.LoadFailed": "FolderSwitch konnte seine Konfigurationsdatei nicht lesen. Es läuft mit einer vorübergehenden Konfiguration, und Ihre Änderungen werden bis zum nächsten Start nicht gespeichert.",
   "Config.SaveFailed": "FolderSwitch konnte Ihre Änderungen nicht speichern.",
-  "Startup.HotkeyFailed": "FolderSwitch konnte seine Tastenkombination nicht registrieren. Öffnen Sie es über sein Symbol im Infobereich und wählen Sie im Modus Anpassen eine andere Tastenkombination.",
+  "Startup.HotkeyFailed": "FolderSwitch konnte seine Tastenkombination nicht registrieren. Öffnen Sie es über sein Symbol im Infobereich und wählen Sie in den Einstellungen eine andere Tastenkombination.",
   "Startup.Failed": "FolderSwitch konnte nicht gestartet werden."
 }

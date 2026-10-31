@@ -1,7 +1,7 @@
 {
   "_meta.nativeName": "Español",
 
-  "Window.Customize": "Personalizar",
+  "Window.Customize": "Editar",
   "Window.Done": "Listo",
   "Window.Close": "Cerrar",
   "Window.Appearance": "Apariencia",
@@ -163,15 +163,15 @@
   "Wizard.Mode.Auto": "Auto (como Windows)",
   "Wizard.Startup.Intro": "Últimos ajustes antes de empezar.",
   "Wizard.Start.Sample.Hint": "Un grupo «Windows» con Escritorio, Documentos, Descargas e Imágenes.",
-  "Wizard.Start.Empty.Hint": "Lo añades todo tú mismo en el modo Personalizar.",
+  "Wizard.Start.Empty.Hint": "Lo añades todo tú mismo en el modo Editar.",
   "Wizard.StepCount": "Paso {0} de {1}",
-  "Wizard.AutostartFailed": "FolderSwitch no ha podido configurarse para iniciarse con Windows. Puedes volver a intentarlo más tarde en los ajustes del modo Personalizar.",
+  "Wizard.AutostartFailed": "FolderSwitch no ha podido configurarse para iniciarse con Windows. Puedes volver a intentarlo más tarde en los ajustes.",
   "Default.SampleTab": "Ejemplo",
   "Default.SampleGroup": "Windows",
   "Default.EmptyTab": "Mis carpetas",
 
   "Tray.Open": "Abrir",
-  "Tray.Customize": "Personalizar",
+  "Tray.Customize": "Editar",
   "Tray.Quit": "Salir",
   "Tray.Ready": "FolderSwitch está listo: pulsa {0}",
   "Tray.InstallUpdate": "Instalar la actualización {0}",
@@ -188,6 +188,6 @@
   "Config.ResetToDefault": "Tu archivo de configuración estaba dañado y no se pudo usar ninguna copia de seguridad: FolderSwitch se ha iniciado con una configuración nueva. El archivo dañado se ha conservado en la misma carpeta.",
   "Config.LoadFailed": "FolderSwitch no pudo leer su archivo de configuración. Funciona con una configuración temporal y tus cambios no se guardarán hasta que se reinicie.",
   "Config.SaveFailed": "FolderSwitch no pudo guardar tus cambios.",
-  "Startup.HotkeyFailed": "FolderSwitch no pudo registrar su atajo. Ábrelo desde su icono en el área de notificación y elige otro atajo en el modo Personalizar.",
+  "Startup.HotkeyFailed": "FolderSwitch no pudo registrar su atajo. Ábrelo desde su icono en el área de notificación y elige otro atajo en los ajustes.",
   "Startup.Failed": "FolderSwitch no pudo iniciarse."
 }

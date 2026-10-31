@@ -181,15 +181,15 @@ public class StringFilesTests
     }
 
     [Theory]
-    [InlineData("en", "Customize", "Done")]
-    [InlineData("fr", "Configurer", "Terminé")]
-    [InlineData("es", "Personalizar", "Listo")]
-    [InlineData("de", "Anpassen", "Fertig")]
-    [InlineData("it", "Personalizza", "Fine")]
-    [InlineData("pt-BR", "Personalizar", "Concluído")]
-    [InlineData("pt-PT", "Personalizar", "Concluído")]
-    [InlineData("nl", "Aanpassen", "Klaar")]
-    [InlineData("pl", "Dostosuj", "Gotowe")]
+    [InlineData("en", "Edit", "Done")]
+    [InlineData("fr", "Modifier", "Terminé")]
+    [InlineData("es", "Editar", "Listo")]
+    [InlineData("de", "Bearbeiten", "Fertig")]
+    [InlineData("it", "Modifica", "Fine")]
+    [InlineData("pt-BR", "Editar", "Concluído")]
+    [InlineData("pt-PT", "Editar", "Concluído")]
+    [InlineData("nl", "Bewerken", "Klaar")]
+    [InlineData("pl", "Edytuj", "Gotowe")]
     public void StringFiles_customize_labels_match_spec(string code, string customize, string done)
     {
         var entries = Files.Value[code];
@@ -205,7 +205,7 @@ public class StringFilesTests
     {
         var expected = new Dictionary<string, string>
         {
-            ["Window.Customize"] = "Configurer",
+            ["Window.Customize"] = "Modifier",
             ["Window.Done"] = "Terminé",
             ["Context.Explorer"] = "Appelé depuis l'Explorateur",
             ["Context.FileDialog"] = "Appelé depuis une boîte de dialogue de fichiers",
@@ -221,7 +221,7 @@ public class StringFilesTests
             ["Key.Shift"] = "Maj",
             ["Key.Win"] = "⊞ Win",
             ["Tray.Open"] = "Ouvrir",
-            ["Tray.Customize"] = "Configurer",
+            ["Tray.Customize"] = "Modifier",
             ["Tray.Quit"] = "Quitter",
         };
 

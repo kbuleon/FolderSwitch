@@ -1,7 +1,7 @@
 {
   "_meta.nativeName": "Italiano",
 
-  "Window.Customize": "Personalizza",
+  "Window.Customize": "Modifica",
   "Window.Done": "Fine",
   "Window.Close": "Chiudi",
   "Window.Appearance": "Aspetto",
@@ -163,15 +163,15 @@
   "Wizard.Mode.Auto": "Auto (come Windows)",
   "Wizard.Startup.Intro": "Ultime impostazioni prima di iniziare.",
   "Wizard.Start.Sample.Hint": "Un gruppo «Windows» con Desktop, Documenti, Download e Immagini.",
-  "Wizard.Start.Empty.Hint": "Aggiungi tutto tu in modalità Personalizza.",
+  "Wizard.Start.Empty.Hint": "Aggiungi tutto tu in modalità Modifica.",
   "Wizard.StepCount": "Passaggio {0} di {1}",
-  "Wizard.AutostartFailed": "FolderSwitch non è riuscito a impostare l'avvio con Windows. Potrai riprovare più tardi nelle impostazioni della modalità Personalizza.",
+  "Wizard.AutostartFailed": "FolderSwitch non è riuscito a impostare l'avvio con Windows. Potrai riprovare più tardi nelle impostazioni.",
   "Default.SampleTab": "Esempio",
   "Default.SampleGroup": "Windows",
   "Default.EmptyTab": "Le mie cartelle",
 
   "Tray.Open": "Apri",
-  "Tray.Customize": "Personalizza",
+  "Tray.Customize": "Modifica",
   "Tray.Quit": "Esci",
   "Tray.Ready": "FolderSwitch è pronto: premi {0}",
   "Tray.InstallUpdate": "Installa l'aggiornamento {0}",
@@ -188,6 +188,6 @@
   "Config.ResetToDefault": "Il file di configurazione era danneggiato e nessun backup era utilizzabile: FolderSwitch è stato avviato con una nuova configurazione. Il file danneggiato è stato conservato nella stessa cartella.",
   "Config.LoadFailed": "FolderSwitch non è riuscito a leggere il file di configurazione. Funziona con una configurazione temporanea e le modifiche non verranno salvate fino al riavvio.",
   "Config.SaveFailed": "FolderSwitch non è riuscito a salvare le modifiche.",
-  "Startup.HotkeyFailed": "FolderSwitch non è riuscito a registrare la sua scorciatoia. Aprilo dalla sua icona nell'area di notifica, poi scegli un'altra scorciatoia in modalità Personalizza.",
+  "Startup.HotkeyFailed": "FolderSwitch non è riuscito a registrare la sua scorciatoia. Aprilo dalla sua icona nell'area di notifica, poi scegli un'altra scorciatoia nelle impostazioni.",
   "Startup.Failed": "Impossibile avviare FolderSwitch."
 }

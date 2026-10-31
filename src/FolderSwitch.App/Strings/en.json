@@ -1,7 +1,7 @@
 {
   "_meta.nativeName": "English",
 
-  "Window.Customize": "Customize",
+  "Window.Customize": "Edit",
   "Window.Done": "Done",
   "Window.Close": "Close",
   "Window.Appearance": "Appearance",
@@ -163,15 +163,15 @@
   "Wizard.Mode.Auto": "Auto (like Windows)",
   "Wizard.Startup.Intro": "A few last settings before you start.",
   "Wizard.Start.Sample.Hint": "A “Windows” group with Desktop, Documents, Downloads and Pictures.",
-  "Wizard.Start.Empty.Hint": "You add everything yourself in Customize mode.",
+  "Wizard.Start.Empty.Hint": "You add everything yourself in Edit mode.",
   "Wizard.StepCount": "Step {0} of {1}",
-  "Wizard.AutostartFailed": "FolderSwitch could not set itself to start with Windows. You can try again later in the settings of Customize mode.",
+  "Wizard.AutostartFailed": "FolderSwitch could not set itself to start with Windows. You can try again later in the settings.",
   "Default.SampleTab": "Example",
   "Default.SampleGroup": "Windows",
   "Default.EmptyTab": "My folders",
 
   "Tray.Open": "Open",
-  "Tray.Customize": "Customize",
+  "Tray.Customize": "Edit",
   "Tray.Quit": "Quit",
   "Tray.Ready": "FolderSwitch is ready: press {0}",
   "Tray.InstallUpdate": "Install update {0}",
@@ -188,6 +188,6 @@
   "Config.ResetToDefault": "Your configuration file was damaged and no backup could be used: FolderSwitch started with a new configuration. The damaged file was kept in the same folder.",
   "Config.LoadFailed": "FolderSwitch could not read its configuration file. It is running with a temporary configuration, and your changes will not be saved until it is restarted.",
   "Config.SaveFailed": "FolderSwitch could not save your changes.",
-  "Startup.HotkeyFailed": "FolderSwitch could not register its shortcut. Open it from its icon in the notification area, then choose another shortcut in Customize mode.",
+  "Startup.HotkeyFailed": "FolderSwitch could not register its shortcut. Open it from its icon in the notification area, then choose another shortcut in the settings.",
   "Startup.Failed": "FolderSwitch could not start."
 }

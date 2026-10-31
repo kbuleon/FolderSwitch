@@ -1,7 +1,7 @@
 {
   "_meta.nativeName": "Nederlands",
 
-  "Window.Customize": "Aanpassen",
+  "Window.Customize": "Bewerken",
   "Window.Done": "Klaar",
   "Window.Close": "Sluiten",
   "Window.Appearance": "Uiterlijk",
@@ -163,15 +163,15 @@
   "Wizard.Mode.Auto": "Auto (zoals Windows)",
   "Wizard.Startup.Intro": "Laatste instellingen voordat u begint.",
   "Wizard.Start.Sample.Hint": "Een groep ‘Windows’ met Bureaublad, Documenten, Downloads en Afbeeldingen.",
-  "Wizard.Start.Empty.Hint": "U voegt alles zelf toe in de modus Aanpassen.",
+  "Wizard.Start.Empty.Hint": "U voegt alles zelf toe in de modus Bewerken.",
   "Wizard.StepCount": "Stap {0} van {1}",
-  "Wizard.AutostartFailed": "FolderSwitch kon het starten met Windows niet instellen. U kunt het later opnieuw proberen in de instellingen van de modus Aanpassen.",
+  "Wizard.AutostartFailed": "FolderSwitch kon het starten met Windows niet instellen. U kunt het later opnieuw proberen in de instellingen.",
   "Default.SampleTab": "Voorbeeld",
   "Default.SampleGroup": "Windows",
   "Default.EmptyTab": "Mijn mappen",
 
   "Tray.Open": "Openen",
-  "Tray.Customize": "Aanpassen",
+  "Tray.Customize": "Bewerken",
   "Tray.Quit": "Afsluiten",
   "Tray.Ready": "FolderSwitch is klaar: druk op {0}",
   "Tray.InstallUpdate": "Update {0} installeren",
@@ -188,6 +188,6 @@
   "Config.ResetToDefault": "Uw configuratiebestand was beschadigd en geen enkele back-up was bruikbaar: FolderSwitch is gestart met een nieuwe configuratie. Het beschadigde bestand is in dezelfde map bewaard.",
   "Config.LoadFailed": "FolderSwitch kon zijn configuratiebestand niet lezen. Het werkt met een tijdelijke configuratie en uw wijzigingen worden pas na een herstart weer opgeslagen.",
   "Config.SaveFailed": "FolderSwitch kon uw wijzigingen niet opslaan.",
-  "Startup.HotkeyFailed": "FolderSwitch kon zijn sneltoets niet registreren. Open het via zijn pictogram in het systeemvak en kies een andere sneltoets in de modus Aanpassen.",
+  "Startup.HotkeyFailed": "FolderSwitch kon zijn sneltoets niet registreren. Open het via zijn pictogram in het systeemvak en kies een andere sneltoets in de instellingen.",
   "Startup.Failed": "FolderSwitch kon niet worden gestart."
 }

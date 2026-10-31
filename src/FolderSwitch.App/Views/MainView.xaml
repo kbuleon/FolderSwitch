@@ -19,7 +19,7 @@
     <AdornerDecorator>
         <Grid>
             <DockPanel>
-                <!-- Title bar: icon and name; on the right (?) (About), ⚙ (the settings), « Customize » and ✕. -->
+                <!-- Title bar: icon and name; on the right « Edit », ⚙ (the settings), (?) (About) and ✕. -->
                 <DockPanel DockPanel.Dock="Top" Margin="16,9,10,6">
                     <Button DockPanel.Dock="Right"
                             Margin="8,0,0,0"
@@ -27,7 +27,27 @@
                             Command="{Binding CloseCommand}"
                             ToolTip="{Binding Texts[Window.Close], ElementName=Root}"
                             AutomationProperties.Name="{Binding Texts[Window.Close], ElementName=Root}" />
-                    <Button DockPanel.Dock="Right" Style="{StaticResource Fs.CustomizeButton}" Command="{Binding ToggleCustomizeCommand}">
+                    <Button x:Name="AboutButton"
+                            DockPanel.Dock="Right"
+                            Margin="0"
+                            Padding="7,3,7,4"
+                            Style="{StaticResource Fs.ChromeButton}"
+                            ToolTip="{Binding Texts[Settings.About], ElementName=Root}"
+                            AutomationProperties.Name="{Binding Texts[Settings.About], ElementName=Root}"
+                            Click="OnAboutClick">
+                        <TextBlock Text="&#xE9CE;" FontFamily="{StaticResource Fs.IconFont}" FontSize="12" Margin="0,1,0,0" VerticalAlignment="Center" />
+                    </Button>
+                    <Button x:Name="SettingsButton"
+                            DockPanel.Dock="Right"
+                            Margin="0,0,6,0"
+                            Padding="7,3,7,4"
+                            Style="{StaticResource Fs.ChromeButton}"
+                            ToolTip="{Binding Texts[Window.Settings], ElementName=Root}"
+                            AutomationProperties.Name="{Binding Texts[Window.Settings], ElementName=Root}"
+                            Click="OnSettingsClick">
+                        <TextBlock Text="&#xE713;" FontFamily="{StaticResource Fs.IconFont}" FontSize="12" Margin="0,1,0,0" VerticalAlignment="Center" />
+                    </Button>
+                    <Button DockPanel.Dock="Right" Margin="0,0,6,0" Style="{StaticResource Fs.CustomizeButton}" Command="{Binding ToggleCustomizeCommand}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock FontFamily="{StaticResource Fs.IconFont}" FontSize="11" Margin="0,1,6,0" VerticalAlignment="Center">
                                 <TextBlock.Style>
@@ -45,26 +65,6 @@
                                 <TextBlock Text="{Binding CustomizeLabel}" />
                             </layout:TextRoom>
                         </StackPanel>
-                    </Button>
-                    <Button x:Name="SettingsButton"
-                            DockPanel.Dock="Right"
-                            Margin="0,0,6,0"
-                            Padding="7,3,7,4"
-                            Style="{StaticResource Fs.ChromeButton}"
-                            ToolTip="{Binding Texts[Window.Settings], ElementName=Root}"
-                            AutomationProperties.Name="{Binding Texts[Window.Settings], ElementName=Root}"
-                            Click="OnSettingsClick">
-                        <TextBlock Text="&#xE713;" FontFamily="{StaticResource Fs.IconFont}" FontSize="12" Margin="0,1,0,0" VerticalAlignment="Center" />
-                    </Button>
-                    <Button x:Name="AboutButton"
-                            DockPanel.Dock="Right"
-                            Margin="0,0,6,0"
-                            Padding="7,3,7,4"
-                            Style="{StaticResource Fs.ChromeButton}"
-                            ToolTip="{Binding Texts[Settings.About], ElementName=Root}"
-                            AutomationProperties.Name="{Binding Texts[Settings.About], ElementName=Root}"
-                            Click="OnAboutClick">
-                        <TextBlock Text="&#xE9CE;" FontFamily="{StaticResource Fs.IconFont}" FontSize="12" Margin="0,1,0,0" VerticalAlignment="Center" />
                     </Button>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <Image x:Name="AppIcon" Width="16" Height="16" Margin="0,0,9,0" VerticalAlignment="Center" />

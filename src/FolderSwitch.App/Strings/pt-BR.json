@@ -1,7 +1,7 @@
 {
   "_meta.nativeName": "Português (Brasil)",
 
-  "Window.Customize": "Personalizar",
+  "Window.Customize": "Editar",
   "Window.Done": "Concluído",
   "Window.Close": "Fechar",
   "Window.Appearance": "Aparência",
@@ -163,15 +163,15 @@
   "Wizard.Mode.Auto": "Auto (como o Windows)",
   "Wizard.Startup.Intro": "Últimos ajustes antes de começar.",
   "Wizard.Start.Sample.Hint": "Um grupo “Windows” com Área de Trabalho, Documentos, Downloads e Imagens.",
-  "Wizard.Start.Empty.Hint": "Você mesmo adiciona tudo no modo Personalizar.",
+  "Wizard.Start.Empty.Hint": "Você mesmo adiciona tudo no modo Editar.",
   "Wizard.StepCount": "Etapa {0} de {1}",
-  "Wizard.AutostartFailed": "Não foi possível configurar o FolderSwitch para iniciar com o Windows. Você pode tentar novamente mais tarde nas configurações do modo Personalizar.",
+  "Wizard.AutostartFailed": "Não foi possível configurar o FolderSwitch para iniciar com o Windows. Você pode tentar novamente mais tarde nas configurações.",
   "Default.SampleTab": "Exemplo",
   "Default.SampleGroup": "Windows",
   "Default.EmptyTab": "Minhas pastas",
 
   "Tray.Open": "Abrir",
-  "Tray.Customize": "Personalizar",
+  "Tray.Customize": "Editar",
   "Tray.Quit": "Sair",
   "Tray.Ready": "O FolderSwitch está pronto: pressione {0}",
   "Tray.InstallUpdate": "Instalar a atualização {0}",
@@ -188,6 +188,6 @@
   "Config.ResetToDefault": "Seu arquivo de configuração estava danificado e nenhum backup pôde ser usado: o FolderSwitch foi iniciado com uma nova configuração. O arquivo danificado foi mantido na mesma pasta.",
   "Config.LoadFailed": "O FolderSwitch não conseguiu ler o arquivo de configuração. Ele está funcionando com uma configuração temporária, e suas alterações não serão salvas até que seja reiniciado.",
   "Config.SaveFailed": "O FolderSwitch não conseguiu salvar suas alterações.",
-  "Startup.HotkeyFailed": "O FolderSwitch não conseguiu registrar o atalho. Abra-o pelo ícone na área de notificação e escolha outro atalho no modo Personalizar.",
+  "Startup.HotkeyFailed": "O FolderSwitch não conseguiu registrar o atalho. Abra-o pelo ícone na área de notificação e escolha outro atalho nas configurações.",
   "Startup.Failed": "Não foi possível iniciar o FolderSwitch."
 }
