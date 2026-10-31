@@ -5,7 +5,7 @@ This file is maintained by the agent. The log is timestamped and **concise**. It
 
 ## 2026-10-31
 
-* **Fix: Ctrl+click opened a stray window**: the new tab stayed on Home and the folder opened in a new Explorer window when Ctrl was still held at the navigation; the new tab is now navigated with `IShellBrowser.BrowseObject` (same browser), which ignores Ctrl. Title bar buttons share one height.
+* **0.2.1 — Fix: Ctrl+click opened a stray window**: the new tab stayed on Home and the folder opened in a new Explorer window when Ctrl was still held at the navigation; the new tab is now navigated with `IShellBrowser.BrowseObject` (same browser), which ignores Ctrl. Title bar buttons share one height.
 * **0.2.0 — Settings in one window** (FOS-0002): ⚙ and (?) always in the title bar; one settings window drawn over the main window on a dimmed backdrop, with categories (General, Shortcut, Appearance, Configuration) and ✕ / Escape / backdrop click to close; the separate appearance button is gone. « Apply » is disabled while the shortcut shown is the one in effect, with a « ✓ This shortcut is active » note; a shortcut refused at startup can be applied again. New About window. The shortcut goes to the test zone only on the Shortcut page.
 * **« Customize » becomes « Edit »** (FOS-0002): « Modifier » in French, in the nine languages, tray menu included; title bar order « Edit », ⚙, (?), ✕; messages that sent the user to « Customize mode » for the settings now point to the settings.
 * **Version in the repository**: `<Version>` property in `Directory.Build.props` (0.1.1, the last release); `build/pack.ps1` releases it by default, `-Version` now optional.

@@ -5,9 +5,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <LangVersion>latest</LangVersion>
-    <!-- The application's version, bumped by the agent once per work item (see Versioning in AGENTS.md).
+    <!-- The application's version, bumped by the agent with every change of the software (see Versioning in AGENTS.md).
          build/pack.ps1 releases this version unless it is given another one. -->
-    <Version>0.2.0</Version>
+    <Version>0.2.1</Version>
   </PropertyGroup>
 
 </Project>
