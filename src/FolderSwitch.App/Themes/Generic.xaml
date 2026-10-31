@@ -40,7 +40,7 @@
 
     <!-- ===== Title bar ===== -->
 
-    <!-- A small framed button on the card surface: « Customize », the appearance button. -->
+    <!-- A small framed button of the title bar: « Edit », ⚙, (?). -->
     <Style x:Key="Fs.ChromeButton" TargetType="Button">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Cursor" Value="Hand" />
@@ -50,6 +50,8 @@
         <Setter Property="BorderBrush" Value="{DynamicResource Fs.Border}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Padding" Value="10,3,10,4" />
+        <!-- The height of the close cross: a button with text and one with an icon only line up. -->
+        <Setter Property="Height" Value="26" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>

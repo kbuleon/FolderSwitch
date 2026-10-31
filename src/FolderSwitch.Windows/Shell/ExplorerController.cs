@@ -21,8 +21,8 @@ namespace FolderSwitch.Windows.Shell;
 /// failing with <c>ERROR_CANCELLED</c>, where the ID list navigates at once. Parsing here also puts the
 /// slow part (a network path) on the controller's thread, within its budget, rather than on Explorer's
 /// window thread, and a location that does not parse fails before anything is asked of Explorer (in
-/// particular before a new tab is opened). <c>IShellBrowser.BrowseObject</c> would take the same ID
-/// list through a second interface with its own flags: <c>Navigate2</c> keeps to one.
+/// particular before a new tab is opened). A new tab takes the same ID list through
+/// <c>IShellBrowser.BrowseObject</c> instead (see below).
 /// </para>
 /// <para>
 /// <b>Threads.</b> Any thread, STA (the UI thread) or MTA; calls are serialized. The COM work runs on an
@@ -47,7 +47,11 @@ namespace FolderSwitch.Windows.Shell;
 /// <para>
 /// <b>New tab (Windows 11).</b> Undocumented: <c>WM_COMMAND 0xA21B</c>, the command of the tab bar's
 /// "+" button, posted to the active tab window. The new tab is told apart in <c>IShellWindows</c> as a
-/// browser of the same window whose tab window was not there before. If it does not appear within
+/// browser of the same window whose tab window was not there before, and navigated with
+/// <c>IShellBrowser.BrowseObject</c> and <c>SBSP_SAMEBROWSER</c>, not <c>Navigate2</c>: Explorer carries out
+/// a <c>Navigate2</c> made while Ctrl is held down in a new window of its own, and the user still holds the
+/// Ctrl of their Ctrl+click a moment after it (the tab then stayed on its start page, beside a new window).
+/// If it does not appear within
 /// <see cref="NewTabTimeout"/>, the call fails; if it appears but does not take the navigation within
 /// <see cref="NewTabNavigationTimeout"/>, it is closed and the call fails. If the call overran meanwhile
 /// (the caller then falls back to a new window), the work, still running, closes the tab when it appears
@@ -268,7 +272,7 @@ public sealed class ExplorerController : IExplorerController, IDisposable
                         return false;
                     }
 
-                    if (TryNavigate(tab, location))
+                    if (tab.BrowseHere(location))
                     {
                         return true;
                     }

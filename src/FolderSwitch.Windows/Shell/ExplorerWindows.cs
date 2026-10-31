@@ -180,6 +180,12 @@ internal sealed class ExplorerBrowser : IDisposable
 {
     private static readonly Guid PersistFolder2Iid = typeof(IPersistFolder2).GUID;
 
+    /// <summary><c>SBSP_SAMEBROWSER</c>: in this browser, never a new window.</summary>
+    private const uint SameBrowser = 0x0001;
+
+    /// <summary><c>SBSP_ABSOLUTE</c>: the ID list is absolute.</summary>
+    private const uint Absolute = 0x0000;
+
     private IWebBrowser2? _webBrowser;
     private IShellBrowser? _shellBrowser;
 
@@ -251,6 +257,36 @@ internal sealed class ExplorerBrowser : IDisposable
 
             ShellNative.Release(folder);
             ShellNative.Release(view);
+        }
+    }
+
+    /// <summary>
+    /// Navigates this browser itself to the absolute ID list <paramref name="idList"/>
+    /// (<c>IShellBrowser.BrowseObject</c> with <c>SBSP_SAMEBROWSER | SBSP_ABSOLUTE</c>); <c>false</c> if it has no
+    /// <c>IShellBrowser</c> or refused.
+    /// </summary>
+    public bool BrowseHere(byte[] idList)
+    {
+        if (_shellBrowser is not { } browser)
+        {
+            return false;
+        }
+
+        var pidl = Marshal.AllocCoTaskMem(idList.Length);
+        try
+        {
+            Marshal.Copy(idList, 0, pidl, idList.Length);
+            browser.BrowseObject(pidl, SameBrowser | Absolute);
+            return true;
+        }
+        catch (Exception)
+        {
+            // Refused (a tab not ready yet), or the browser is gone.
+            return false;
+        }
+        finally
+        {
+            Marshal.FreeCoTaskMem(pidl);
         }
     }
 
