@@ -7,9 +7,6 @@ public class GroupVisualsTests
     private const string White = "#ffffff";
     private const string Black = "#000000";
 
-    /// <summary>The text color of the light variant: the dark title of a light Cards header.</summary>
-    private const string LightBaseText = "#1c1c22";
-
     [Theory]
     [MemberData(nameof(ThemeTestData.AllThemesAndVariants), MemberType = typeof(ThemeTestData))]
     public void Group_headers_readable_for_every_palette_color(string theme, Variant variant)
@@ -113,11 +110,15 @@ public class GroupVisualsTests
         foreach (var color in ThemeCatalog.GroupPalette)
         {
             var light = GroupVisuals.For("cards", Variant.Light, color.Hex, "#ffffff");
+            Assert.Equal(ColorMath.EnsureBackgroundContrast(White, color.Hex, 4.5), light.HeaderBackground);
             Assert.Equal(light.HeaderBackground, light.Accent);
             Assert.Equal("#ffffff", light.BodyBackground);
             Assert.Equal(color.Hex, light.ItemIcon);
 
             var dark = GroupVisuals.For("cards", Variant.Dark, color.Hex, "#262830");
+            Assert.Equal(
+                ColorMath.EnsureBackgroundContrast(White, ColorMath.Mix(color.Hex, 0.85, Black), 4.5),
+                dark.HeaderBackground);
             Assert.Equal(dark.HeaderBackground, dark.Accent);
             Assert.Equal("#262830", dark.BodyBackground);
             Assert.Equal(ColorMath.Mix(color.Hex, 0.78, White), dark.ItemIcon);
@@ -125,68 +126,18 @@ public class GroupVisualsTests
     }
 
     [Theory]
-    [InlineData("yellow")]
-    [InlineData("amber")]
-    [InlineData("olive")]
-    [InlineData("green")]
-    [InlineData("teal")]
-    [InlineData("cyan")]
-    [InlineData("orange")]
-    public void SolidHeader_keeps_a_light_color_and_gives_it_a_dark_title(string key)
-    {
-        var hex = ThemeCatalog.GroupPalette.Single(c => c.Key == key).Hex;
-
-        var visual = GroupVisuals.For("cards", Variant.Light, hex, "#ffffff");
-
-        Assert.Equal(hex, visual.HeaderBackground);
-        Assert.Equal(LightBaseText, visual.HeaderText);
-        Assert.True(ColorMath.ContrastRatio(visual.HeaderText, hex) >= 4.5);
-    }
-
-    [Theory]
-    [InlineData("blue")]
-    [InlineData("red")]
-    [InlineData("pink")]
-    [InlineData("fuchsia")]
-    [InlineData("violet")]
-    [InlineData("indigo")]
-    [InlineData("brown")]
-    [InlineData("slate")]
-    public void SolidHeader_keeps_a_white_title_on_a_strong_color(string key)
-    {
-        var hex = ThemeCatalog.GroupPalette.Single(c => c.Key == key).Hex;
-
-        var visual = GroupVisuals.For("cards", Variant.Light, hex, "#ffffff");
-
-        Assert.Equal(White, visual.HeaderText);
-        Assert.Equal(ColorMath.EnsureBackgroundContrast(White, hex, 4.5), visual.HeaderBackground);
-    }
-
-    [Theory]
     [InlineData(Variant.Light, "#ffffff")]
     [InlineData(Variant.Dark, "#262830")]
-    public void SolidHeader_title_is_white_on_a_header_darkened_enough_or_dark_on_the_untouched_color(Variant variant, string card)
+    public void SolidHeader_title_is_always_white_on_a_header_darkened_enough(Variant variant, string card)
     {
         foreach (var color in ThemeCatalog.GroupPalette)
         {
-            var fill = variant == Variant.Dark ? ColorMath.Mix(color.Hex, 0.85, Black) : color.Hex;
             var visual = GroupVisuals.For("cards", variant, color.Hex, card);
 
-            // White wherever it reads at 3:1 on the color (then the header is shaded to 4.5:1), dark elsewhere.
-            if (ColorMath.ContrastRatio(White, fill) >= 3)
-            {
-                Assert.Equal(White, visual.HeaderText);
-                Assert.Equal(ColorMath.EnsureBackgroundContrast(White, fill, 4.5), visual.HeaderBackground);
-            }
-            else
-            {
-                Assert.Equal(LightBaseText, visual.HeaderText);
-                Assert.Equal(fill, visual.HeaderBackground);
-            }
-
+            Assert.Equal(White, visual.HeaderText);
             Assert.True(
-                ColorMath.ContrastRatio(visual.HeaderText, visual.HeaderBackground) >= 4.5,
-                $"{variant}/{color.Key}: {visual.HeaderText} on {visual.HeaderBackground}");
+                ColorMath.ContrastRatio(White, visual.HeaderBackground) >= 4.5,
+                $"{variant}/{color.Key}: white on {visual.HeaderBackground}");
         }
     }
 
@@ -348,7 +299,7 @@ public class GroupVisualsTests
     [Theory]
     [InlineData(Variant.Light)]
     [InlineData(Variant.Dark)]
-    public void Count_badge_on_a_filled_header_takes_the_title_color_on_a_shaded_pill(Variant variant)
+    public void Count_badge_on_a_filled_header_stays_white_on_a_shaded_pill(Variant variant)
     {
         var tokens = ThemeCatalog.Resolve("cards", variant, null);
 
@@ -356,10 +307,9 @@ public class GroupVisualsTests
         {
             var visual = GroupVisuals.For("cards", variant, color.Hex, tokens.Card);
             var badge = GroupVisuals.CountBadge(GroupStyle.SolidHeader, visual.HeaderBackground, tokens.Muted);
-            var pill = ColorMath.Mix(Black, 0.14, visual.HeaderBackground);
 
-            Assert.Equal(pill, badge.Background);
-            Assert.Equal(ColorMath.EnsureContrast(visual.HeaderText, pill, 4.5), badge.Text);
+            Assert.Equal(White, badge.Text);
+            Assert.Equal(ColorMath.Mix(Black, 0.14, visual.HeaderBackground), badge.Background);
         }
     }
 

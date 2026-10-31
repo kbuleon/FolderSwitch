@@ -856,15 +856,14 @@ public class MainViewModelTests
         var h = new Harness();
         var vm = h.Customizing();
         var right = h.ColumnVm("Work", 1);
-        var size = ThemeCatalog.GroupPalette.Count;
 
-        for (var i = 0; i < size; i++)
+        for (var i = 0; i < 10; i++)
         {
             vm.AddGroup(right);
         }
 
-        // Work already holds two groups: the new ones take palette colors 2, 3, ... and wrap after the last one.
-        var expected = Enumerable.Range(2, size).Select(i => ThemeCatalog.GroupPalette[i % size].Hex);
+        // Work already holds two groups: the new ones take palette colors 2, 3, ... and wrap after the tenth.
+        var expected = Enumerable.Range(2, 10).Select(i => ThemeCatalog.GroupPalette[i % 10].Hex);
         Assert.Equal(expected, right.Groups.Select(g => g.Color));
         Assert.Equal(expected, h.WorkRight.Groups.Select(g => g.Color));
 

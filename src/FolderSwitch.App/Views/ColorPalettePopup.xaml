@@ -1,6 +1,6 @@
 <!--
-    The palette of a group (Customize mode, spec 5.4): the fifteen colors of ThemeCatalog.GroupPalette, in three rows of
-    five, named in the current language in their tooltips, the group's own one ringed. A click recolors the group and closes it. Shown in
+    The palette of a group (Customize mode, spec 5.4): the ten colors of ThemeCatalog.GroupPalette, named in the
+    current language in their tooltips, the group's own one ringed. A click recolors the group and closes it. Shown in
     a Flyout under the group's color dot.
 -->
 <UserControl x:Class="FolderSwitch.App.Views.ColorPalettePopup"

@@ -228,14 +228,14 @@ public class ThemeCatalogTests
     }
 
     [Fact]
-    public void GroupPalette_has_the_fifteen_colors_around_the_hue_wheel_from_blue()
+    public void GroupPalette_has_the_ten_colors_in_spec_order()
     {
         Assert.Equal(
             new[]
             {
-                ("blue", "#3b82f6"), ("cyan", "#06b6d4"), ("teal", "#14b8a6"), ("green", "#22c55e"), ("olive", "#84cc16"),
-                ("yellow", "#facc15"), ("amber", "#f59e0b"), ("orange", "#f97316"), ("red", "#ef4444"), ("pink", "#ec4899"),
-                ("fuchsia", "#d946ef"), ("violet", "#8b5cf6"), ("indigo", "#6366f1"), ("brown", "#92400e"), ("slate", "#64748b"),
+                ("blue", "#3b82f6"), ("cyan", "#06b6d4"), ("green", "#22c55e"), ("olive", "#84cc16"),
+                ("amber", "#f59e0b"), ("orange", "#f97316"), ("red", "#ef4444"), ("pink", "#ec4899"),
+                ("violet", "#8b5cf6"), ("slate", "#64748b"),
             },
             ThemeCatalog.GroupPalette.Select(c => (c.Key, c.Hex)));
     }

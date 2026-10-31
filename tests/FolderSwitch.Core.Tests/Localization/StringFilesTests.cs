@@ -262,18 +262,13 @@ public class StringFilesTests
             ["Background.aubergine"] = "Aubergine",
             ["Color.blue"] = "Bleu",
             ["Color.cyan"] = "Cyan",
-            ["Color.teal"] = "Sarcelle",
             ["Color.green"] = "Vert",
             ["Color.olive"] = "Olive",
-            ["Color.yellow"] = "Jaune",
             ["Color.amber"] = "Ambre",
             ["Color.orange"] = "Orange",
             ["Color.red"] = "Rouge",
             ["Color.pink"] = "Rose",
-            ["Color.fuchsia"] = "Fuchsia",
             ["Color.violet"] = "Violet",
-            ["Color.indigo"] = "Indigo",
-            ["Color.brown"] = "Brun",
             ["Color.slate"] = "Ardoise",
             ["SpecialFolder.Desktop"] = "Bureau",
             ["SpecialFolder.Documents"] = "Documents",
@@ -306,16 +301,8 @@ public class StringFilesTests
     {
         string[] themes = ["fluent", "cards", "pastel", "paper", "outline", "neon", "compact"];
         string[] themeNames = ["Fluent", "Cards", "Pastel", "Paper", "Outline", "Neon", "Compact"];
-        string[] colors =
-        [
-            "blue", "cyan", "teal", "green", "olive", "yellow", "amber", "orange", "red", "pink",
-            "fuchsia", "violet", "indigo", "brown", "slate",
-        ];
-        string[] colorNames =
-        [
-            "Blue", "Cyan", "Teal", "Green", "Olive", "Yellow", "Amber", "Orange", "Red", "Pink",
-            "Fuchsia", "Violet", "Indigo", "Brown", "Slate",
-        ];
+        string[] colors = ["blue", "cyan", "green", "olive", "amber", "orange", "red", "pink", "violet", "slate"];
+        string[] colorNames = ["Blue", "Cyan", "Green", "Olive", "Amber", "Orange", "Red", "Pink", "Violet", "Slate"];
 
         Assert.Equal(themeNames, themes.Select(key => English["Theme." + key]));
         Assert.Equal(colorNames, colors.Select(key => English["Color." + key]));
