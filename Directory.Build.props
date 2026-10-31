@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <LangVersion>latest</LangVersion>
-    <!-- The application's version, bumped by the agent with every change of the software (see Versioning in AGENTS.md).
+    <!-- The application's version (semantic versioning), bumped with every change of the software.
          build/pack.ps1 releases this version unless it is given another one. -->
     <Version>1.1.0</Version>
   </PropertyGroup>

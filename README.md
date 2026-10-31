@@ -44,18 +44,9 @@ C# on .NET 10 with WPF, for Windows 10 and 11 (the installer is x64). Installed 
 | `build/pack.ps1` | Publishes and packs the installer and update packages. |
 | `assets/icon` | The icon (`.ico`, `.svg`, PNG sizes). |
 | `Directory.Build.props`, `Directory.Packages.props`, `global.json`, `nuget.config` | Shared build settings, central package versions, .NET SDK pin, package source. |
-| `.config`, `.claude/skills` | The local dotnet tool (`vpk`, in `.config/dotnet-tools.json`); the project's agent skills. |
+| `.config` | The local dotnet tool (`vpk`, in `.config/dotnet-tools.json`). |
 | `artifacts` | Build output (`publish`, `releases`); not versioned. |
-| `ARCHITECTURE.md`, `CODEMAP.md`, `CHANGELOG.md` | Software architecture, map of the code, history of changes. `TODO.md` is the author's own list. |
-| `AGENTS.md`, `CLAUDE.md` | Instructions for the coding agent, and the repository's documentation conventions. |
-| `docs/00-knowledge-base` | General knowledge about the project, with the domain glossary. |
-| `docs/05-draft` | The author's drafts in progress. |
-| `docs/07-studies` | One-off studies, dated and not kept up to date. |
-| `docs/10-work-items` | Analyses of requests (work items). |
-| `docs/20-specs` | Specifications. |
-| `docs/30-plans` | Execution plans. |
-| `docs/40-adr` | Architecture decision records. |
-| `docs/50-technical-references` | Technical reference documents, one per topic, kept up to date. |
+| `ARCHITECTURE.md`, `CODEMAP.md`, `CHANGELOG.md` | Software architecture, map of the code, history of changes. |
 
 Build and run from source (the .NET 10 SDK is enough; warnings are errors):
 
