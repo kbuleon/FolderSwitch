@@ -76,12 +76,13 @@ version equal to the `Velopack` package of `Directory.Packages.props`. `vpk` run
 the SDK, so no roll-forward setting is needed.
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File build/pack.ps1 -Version 0.1.0
+powershell -ExecutionPolicy Bypass -File build/pack.ps1
 ```
 
 The script (Windows PowerShell 5.1 or PowerShell 7) publishes the application self-contained, ReadyToRun, win-x64 to
-`artifacts/publish`, then packs it with `vpk` into `artifacts/releases`. `-Version` is `x.y.z` or `x.y.z-prerelease`; it
-is also the version of the application (the settings show its `x.y.z` part). The executable is `FolderSwitch.exe`.
+`artifacts/publish`, then packs it with `vpk` into `artifacts/releases`. The version released is the `<Version>` property of
+`Directory.Build.props`; `-Version` (`x.y.z` or `x.y.z-prerelease`) releases another one, such as a prerelease. It is
+also the version of the application (the settings show its `x.y.z` part). The executable is `FolderSwitch.exe`.
 `-ExecutionPolicy Bypass` is for a Windows client whose policy refuses unsigned scripts.
 
 | In `artifacts/releases`                | What it is                                               |
@@ -114,7 +115,7 @@ application's files, the updater and the installer (the code signing certificate
 the parameters). Unsigned, SmartScreen warns about an unknown publisher.
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File build/pack.ps1 -Version 0.1.0 -SignParams '/a /fd sha256 /tr http://timestamp.digicert.com /td sha256'
+powershell -ExecutionPolicy Bypass -File build/pack.ps1 -SignParams '/a /fd sha256 /tr http://timestamp.digicert.com /td sha256'
 ```
 
 **Checks to make by hand on a release** (no test runs the installer):

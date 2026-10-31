@@ -16,8 +16,9 @@
     by hand, 'dotnet tool restore' is run here. Works in Windows PowerShell 5.1 and in PowerShell 7.
 
 .PARAMETER Version
-    The version to release, x.y.z or x.y.z-prerelease (for instance 0.1.0 or 0.2.0-beta.1). It is also the version of
-    the application (shown in the settings).
+    Optional. The version to release, x.y.z or x.y.z-prerelease (for instance 0.1.0 or 0.2.0-beta.1). It is also the
+    version of the application (shown in the settings). Defaults to the <Version> property of Directory.Build.props;
+    pass it only to release another one, such as a prerelease.
 
 .PARAMETER SignParams
     Optional. Parameters passed to signtool.exe (vpk runs its embedded copy) to sign the application's files, the
@@ -25,11 +26,13 @@
     signing certificate in the user's store. Not signed when omitted.
 
 .EXAMPLE
-    powershell -ExecutionPolicy Bypass -File build/pack.ps1 -Version 0.1.0
+    powershell -ExecutionPolicy Bypass -File build/pack.ps1
+
+.EXAMPLE
+    powershell -ExecutionPolicy Bypass -File build/pack.ps1 -Version 0.2.0-beta.1
 #>
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory = $true)]
     [string] $Version,
 
     [string] $SignParams
@@ -37,6 +40,16 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+
+# The version of the repository, unless another one is asked for.
+if (-not $Version) {
+    $propsPath = Join-Path (Split-Path -Parent $PSScriptRoot) 'Directory.Build.props'
+    $node = ([xml] (Get-Content -Raw -Encoding UTF8 $propsPath)).SelectSingleNode('/Project/PropertyGroup/Version')
+    if (-not $node) {
+        throw "No <Version> property in $propsPath."
+    }
+    $Version = $node.InnerText.Trim()
+}
 
 # x.y.z or x.y.z-prerelease (semantic versioning, no build metadata): what Velopack and NuGet accept.
 if ($Version -notmatch '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$') {

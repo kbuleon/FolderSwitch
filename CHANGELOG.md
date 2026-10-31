@@ -3,6 +3,10 @@ This file is maintained by the agent. The log is timestamped and **concise**. It
 
 ------
 
+## 2026-10-31
+
+* **Version in the repository**: `<Version>` property in `Directory.Build.props` (0.1.1, the last release); `build/pack.ps1` releases it by default, `-Version` now optional.
+
 ## 2026-10-30
 
 * **Initial version** (FOS-0001): resident WPF utility opened by a global shortcut (default Ctrl + Win) on a pre-built hidden window of tabs, columns and groups of folders and files; a click navigates the calling Explorer window or file dialog, else opens a new Explorer window or the file. Customize mode with drag and drop, 7 themes, 9 languages, first-run wizard, JSON configuration with backups, notification-area icon, Velopack installer and updates, `--self-test` and `--snapshot` modes.
