@@ -457,6 +457,53 @@ public class ActivationServiceTests
         Assert.Equal([@"D:\a\b.xyz"], _shell.Calls);
     }
 
+    // The item's menu.
+
+    [Theory]
+    [InlineData(CallContextKind.Explorer)]
+    [InlineData(CallContextKind.FileDialog)]
+    [InlineData(CallContextKind.Other)]
+    public async Task Open_in_Explorer_opens_a_folder_in_a_new_window_whatever_the_call(CallContextKind _)
+    {
+        var outcome = await CreateService().OpenInExplorerAsync(Folder(@"C:\Work"));
+
+        Assert.Equal(ActivationOutcome.OpenedElsewhere, outcome);
+        Assert.Equal([new ExplorerCall("OpenNewWindow", 0, @"C:\Work")], _explorer.Calls);
+        Assert.Empty(_dialog.Calls);
+        Assert.Empty(_shell.Calls);
+    }
+
+    [Fact]
+    public async Task Open_in_Explorer_opens_the_folder_of_a_file_and_not_the_file()
+    {
+        var outcome = await CreateService().OpenInExplorerAsync(File(@"D:\a\b.txt"));
+
+        Assert.Equal(ActivationOutcome.OpenedElsewhere, outcome);
+        Assert.Equal([new ExplorerCall("OpenNewWindow", 0, @"D:\a")], _explorer.Calls);
+        Assert.Empty(_shell.Calls);
+    }
+
+    [Fact]
+    public async Task Open_in_Explorer_checks_the_target_first()
+    {
+        _resolver.ExistsFunc = (_, _) => Task.FromResult(false);
+
+        var outcome = await CreateService().OpenInExplorerAsync(File(@"D:\a\gone.txt"));
+
+        Assert.Equal(ActivationOutcome.TargetUnavailable, outcome);
+        AssertNothingCalled();
+    }
+
+    [Theory]
+    [InlineData(ItemKind.Folder, WindowsGeneration.Windows11, true)]
+    [InlineData(ItemKind.Folder, WindowsGeneration.Windows10, false)]
+    [InlineData(ItemKind.File, WindowsGeneration.Windows11, false)]
+    public void CtrlOpensNewTab_follows_the_router(ItemKind kind, WindowsGeneration os, bool expected)
+    {
+        Assert.Equal(expected, CreateService(os).CtrlOpensNewTab(kind, ExplorerContext));
+        Assert.False(CreateService(os).CtrlOpensNewTab(kind, OtherContext));
+    }
+
     [Fact]
     public void ActivationService_is_usable_through_IItemActivator()
     {

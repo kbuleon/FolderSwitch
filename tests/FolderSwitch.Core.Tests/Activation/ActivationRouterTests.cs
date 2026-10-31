@@ -140,4 +140,48 @@ public class ActivationRouterTests
         Assert.Equal(new ActivationPlan(ActivationKind.OpenNewExplorerWindow, @"C:\Work", null), folder);
         Assert.Equal(new ActivationPlan(ActivationKind.OpenFile, @"C:\Work\a.txt", null), file);
     }
+
+    // The item's menu: « Open in File Explorer ».
+
+    [Fact]
+    public void In_Explorer_a_folder_opens_in_a_new_window()
+    {
+        Assert.Equal(
+            new ActivationPlan(ActivationKind.OpenNewExplorerWindow, @"C:\Work", null),
+            ActivationRouter.PlanInExplorer(ItemKind.Folder, @"C:\Work"));
+    }
+
+    [Theory]
+    [InlineData(@"C:\Work\a.txt", @"C:\Work")]
+    [InlineData(@"\\server\share\b.docx", @"\\server\share")]
+    public void In_Explorer_a_file_opens_its_folder_in_a_new_window(string file, string folder)
+    {
+        Assert.Equal(
+            new ActivationPlan(ActivationKind.OpenNewExplorerWindow, folder, null),
+            ActivationRouter.PlanInExplorer(ItemKind.File, file));
+    }
+
+    // The item's menu: « Open in a new tab » is offered exactly when Ctrl+click opens one.
+
+    [Theory]
+    [InlineData(CallContextKind.Explorer, ItemKind.Folder, WindowsGeneration.Windows11)]
+    [InlineData(CallContextKind.Explorer, ItemKind.Folder, WindowsGeneration.Windows10)]
+    [InlineData(CallContextKind.Explorer, ItemKind.File, WindowsGeneration.Windows11)]
+    [InlineData(CallContextKind.FileDialog, ItemKind.Folder, WindowsGeneration.Windows11)]
+    [InlineData(CallContextKind.Other, ItemKind.Folder, WindowsGeneration.Windows11)]
+    public void CtrlOpensNewTab_agrees_with_the_plan_of_a_ctrl_click(CallContextKind context, ItemKind kind, WindowsGeneration os)
+    {
+        var ctx = new CallContext(context, 42, null);
+        var ctrlClick = ActivationRouter.Plan(ctx, kind, @"C:\Work", ctrl: true, os);
+
+        Assert.Equal(ctrlClick.Kind == ActivationKind.OpenExplorerNewTab, ActivationRouter.CtrlOpensNewTab(ctx, kind, os));
+    }
+
+    [Fact]
+    public void CtrlOpensNewTab_only_for_a_folder_called_from_Explorer_on_Windows11()
+    {
+        Assert.True(ActivationRouter.CtrlOpensNewTab(new CallContext(CallContextKind.Explorer, 42, null), ItemKind.Folder, WindowsGeneration.Windows11));
+        Assert.False(ActivationRouter.CtrlOpensNewTab(new CallContext(CallContextKind.Explorer, 42, null), ItemKind.Folder, WindowsGeneration.Windows10));
+        Assert.False(ActivationRouter.CtrlOpensNewTab(CallContext.None, ItemKind.Folder, WindowsGeneration.Windows11));
+    }
 }

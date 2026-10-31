@@ -33,7 +33,7 @@ The domain, with no dependency on Windows, WPF or packages.
 
 ### Activation/ — what a click does
 
-- `ActivationRouter` — pure behaviour table: calling context × Windows generation × item kind × Ctrl → an `ActivationPlan`.
+- `ActivationRouter` — pure behaviour table: calling context × Windows generation × item kind × Ctrl → an `ActivationPlan`; the plan of « Open in File Explorer », and whether Ctrl+click opens a new tab (the item menu).
 - `ActivationPlan`, `ActivationKind` — the action to run (navigate Explorer, new tab, new window, navigate file dialog, open file) and its fallback.
 - `ActivationService` — the `IItemActivator`: resolve, check existence within 2 s, route, run the plan with its fallback, map everything to an outcome.
 - `ActivationOutcome` — Done (in the calling window), OpenedElsewhere (a new window, a file in its application), TargetUnavailable, Failed, ReportedByShell (the shell showed its own error).
@@ -51,7 +51,7 @@ The domain, with no dependency on Windows, WPF or packages.
 - `ICallContextProvider` — captures the foreground window as a `CallContext`.
 - `IExplorerController` — navigate, new tab, new window.
 - `IFileDialogNavigator` — move a file dialog to a folder.
-- `IItemActivator` — carries out a click on an item.
+- `IItemActivator` — carries out a click on an item and « Open in File Explorer »; tells whether Ctrl+click opens a new tab.
 - `IPathResolver` — item to path, and existence check with timeout.
 - `IShellLauncher` — open a file with the shell.
 - `IForegroundActivator` — bring a window to the foreground; whether the foreground window is one of this process.
@@ -242,6 +242,7 @@ The shell and composition root.
 - `SettingsView` — the settings window: categories (`SettingsPage`, `SettingsPageChoice`) and their pages (General: language, autostart, updates, version; Shortcut; Appearance; Configuration: import/export).
 - `AboutView` — the About window: icon, name, version, description.
 - `AddFolderMenu` — the « + Folder » menu with special folders.
+- `ItemMenu` — an item's right-click menu in normal use: open in File Explorer, open in a new tab (Ctrl+click).
 - `ColorPalettePopup` — the group colour palette.
 - `HotkeyEditor` — the shortcut editor control used by settings and wizard.
 - `WizardView`, `WizardWindow` — the first-run wizard's content and window.

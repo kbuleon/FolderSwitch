@@ -24,4 +24,9 @@ internal sealed class FocusReturningActivator(IItemActivator inner, WindowContro
 
         return outcome;
     }
+
+    /// <summary>Always a new window: what was opened comes to the front, there is no focus to give back.</summary>
+    public Task<ActivationOutcome> OpenInExplorerAsync(Item item) => inner.OpenInExplorerAsync(item);
+
+    public bool CtrlOpensNewTab(ItemKind kind, CallContext ctx) => inner.CtrlOpensNewTab(kind, ctx);
 }

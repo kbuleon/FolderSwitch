@@ -22,10 +22,11 @@ namespace FolderSwitch.App.Views;
 /// open again on the category shown last.
 /// </para>
 /// <para>
-/// <b>Flyouts.</b> One at a time (<see cref="Flyout"/>): a group's « + Folder ▾ » menu or palette, in Customize mode.
-/// A flyout closes on a click outside it, on Escape (<see cref="CloseFlyout"/>, called by the window), when the window
-/// loses the focus to another window than the flyout's own or hides, when Customize mode ends, when another tab is
-/// shown, and when a window of the dialog layer opens.
+/// <b>Flyouts.</b> One at a time (<see cref="Flyout"/>): a group's « + Folder ▾ » menu or palette, in Customize mode;
+/// an item's menu (<see cref="ItemMenu"/>, a right-click), in normal use. A flyout closes on a click outside it, on
+/// Escape (<see cref="CloseFlyout"/>, called by the window), when the window loses the focus to another window than the
+/// flyout's own or hides, when Customize mode starts or ends, when another tab is shown, and when a window of the
+/// dialog layer opens.
 /// </para>
 /// <para>
 /// <b>Rename.</b> Nothing in the window takes the keyboard focus but a rename's text box, so a click elsewhere would
@@ -49,6 +50,7 @@ public partial class MainView : UserControl
     {
         InitializeComponent();
         AppIcon.Source = AppIconDrawing.Glyph;
+        VersionRun.Text = SettingsView.Version;
 
         _flyout = new Flyout(FlyoutPopup);
         _flyout.Closed += OnFlyoutClosed;
@@ -176,6 +178,39 @@ public partial class MainView : UserControl
         return true;
     }
 
+    /// <summary>
+    /// « Open in File Explorer », from an item's menu: carried out by the view model, which hides the window or says
+    /// why it could not. Whatever goes wrong is logged, never thrown at the dispatcher.
+    /// </summary>
+    internal async void OpenInExplorer(ItemViewModel item)
+    {
+        if (DataContext is not MainViewModel viewModel)
+        {
+            return;
+        }
+
+        try
+        {
+            await viewModel.OpenInExplorerAsync(item);
+        }
+        catch (Exception e) when (!ExceptionPolicy.IsCritical(e))
+        {
+            DebugLog.Error($"Opening the item « {item.DisplayName} » in File Explorer failed", e);
+        }
+    }
+
+    /// <summary>Opens the menu of <paramref name="item"/> under <paramref name="anchor"/> (a right-click, in normal use).</summary>
+    internal void OpenItemMenu(ItemViewModel item, FrameworkElement anchor)
+    {
+        if (_viewModel is { IsCustomizing: false } viewModel && Texts is { } texts && !IsDialogOpen)
+        {
+            _flyout.Open(
+                new ItemMenu(viewModel, item, texts, () => CloseFlyout(), OpenInExplorer, i => ActivateItem(i, ctrl: true)),
+                anchor,
+                FlyoutAlignment.Left);
+        }
+    }
+
     /// <summary>Opens the « + Folder ▾ » menu of <paramref name="group"/> under <paramref name="anchor"/>.</summary>
     internal void OpenAddFolderMenu(GroupViewModel group, FrameworkElement anchor)
     {
@@ -246,10 +281,11 @@ public partial class MainView : UserControl
     {
         switch (e.PropertyName)
         {
-            case nameof(MainViewModel.IsCustomizing) when _viewModel is { IsCustomizing: false }:
+            case nameof(MainViewModel.IsCustomizing):
+                // The menus of Edit mode end with it, and an item's menu is for normal use only.
                 CloseFlyout();
                 break;
-            case nameof(MainViewModel.ActiveTab) when _flyout.Content is AddFolderMenu or ColorPalettePopup:
+            case nameof(MainViewModel.ActiveTab) when _flyout.Content is AddFolderMenu or ColorPalettePopup or ItemMenu:
                 // What a group's flyout acts on is no longer on screen.
                 CloseFlyout();
                 break;

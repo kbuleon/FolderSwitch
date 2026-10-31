@@ -16,7 +16,8 @@ C# on .NET 10 with WPF, for Windows 10 and 11 (the installer is x64). Installed 
   and taking the window you came from as the new calling window.
 - **Context aware**: the calling Explorer window (its active tab on Windows 11) or file dialog (modern and legacy Open,
   Save As, folder pickers) is moved to the folder. Ctrl + click opens a new Explorer tab on Windows 11, a new window
-  on Windows 10.
+  on Windows 10. A right-click on an item opens its menu: « Open in File Explorer » (a new window; a file's folder for
+  a file), and « Open in new tab » when Ctrl + click would open one. The title bar shows the version that runs.
 - **A board you organise by drag and drop** in Edit mode (« Edit » in the title bar): tabs, columns of fixed or
   automatic width, groups with a colour that collapse, folders, files and Windows special folders (Desktop, Documents, This PC…). « + Current
   folder » remembers the folder of the window you called it from. Every change is saved at once.

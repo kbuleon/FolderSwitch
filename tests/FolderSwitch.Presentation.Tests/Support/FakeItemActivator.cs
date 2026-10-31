@@ -14,9 +14,23 @@ internal sealed class FakeItemActivator : IItemActivator
 
     public List<(Item Item, CallContext Context, bool Ctrl)> Calls { get; } = new();
 
+    /// <summary>The items « Open in File Explorer » was asked for.</summary>
+    public List<Item> ExplorerCalls { get; } = new();
+
+    /// <summary>The answer of <see cref="CtrlOpensNewTab"/>, for any item and context.</summary>
+    public bool NewTabPossible { get; set; }
+
     public Task<ActivationOutcome> ActivateAsync(Item item, CallContext ctx, bool ctrl)
     {
         Calls.Add((item, ctx, ctrl));
         return Pending ?? Task.FromResult(Outcome);
     }
+
+    public Task<ActivationOutcome> OpenInExplorerAsync(Item item)
+    {
+        ExplorerCalls.Add(item);
+        return Pending ?? Task.FromResult(Outcome);
+    }
+
+    public bool CtrlOpensNewTab(ItemKind kind, CallContext ctx) => NewTabPossible;
 }

@@ -1,0 +1,43 @@
+<!--
+    The menu of an item, opened by a right-click in normal use (not in Edit mode): « Open in File Explorer » (a file:
+    « Open file location »), then « Open in new tab » with « Ctrl+click » at the end of the line, only when a Ctrl+click
+    would open the item in a new tab of the calling window. Shown in a Flyout under the item; a choice closes it.
+-->
+<UserControl x:Class="FolderSwitch.App.Views.ItemMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Root"
+             MinWidth="230">
+    <StackPanel>
+        <Button Style="{StaticResource Fs.MenuItemButton}" Click="OnExplorerClick">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Left"
+                           Width="16"
+                           Margin="0,1,9,0"
+                           VerticalAlignment="Center"
+                           FontFamily="{StaticResource Fs.IconFont}"
+                           FontSize="13"
+                           Text="&#xE838;" />
+                <TextBlock VerticalAlignment="Center" Text="{Binding ExplorerLabel, ElementName=Root}" TextTrimming="CharacterEllipsis" />
+            </DockPanel>
+        </Button>
+        <Button x:Name="NewTabEntry" Style="{StaticResource Fs.MenuItemButton}" Margin="0,2,0,0" Click="OnNewTabClick">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Left"
+                           Width="16"
+                           Margin="0,1,9,0"
+                           VerticalAlignment="Center"
+                           FontFamily="{StaticResource Fs.IconFont}"
+                           FontSize="13"
+                           Text="&#xE8A7;" />
+                <TextBlock DockPanel.Dock="Right"
+                           Margin="18,0,0,0"
+                           FontSize="11"
+                           VerticalAlignment="Center"
+                           Foreground="{DynamicResource Fs.MenuMuted}"
+                           Text="{Binding Texts[Item.CtrlClick], ElementName=Root}" />
+                <TextBlock VerticalAlignment="Center" Text="{Binding Texts[Item.OpenInNewTab], ElementName=Root}" TextTrimming="CharacterEllipsis" />
+            </DockPanel>
+        </Button>
+    </StackPanel>
+</UserControl>

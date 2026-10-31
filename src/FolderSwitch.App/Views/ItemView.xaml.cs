@@ -1,3 +1,4 @@
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using FolderSwitch.App.Views.DragDrop;
@@ -6,8 +7,9 @@ using FolderSwitch.Presentation.ViewModels;
 namespace FolderSwitch.App.Views;
 
 /// <summary>
-/// An item of a group, bound to an <see cref="ItemViewModel"/>. In normal use a click opens it; in Customize mode a
-/// click selects it, a double-click renames it and a drag moves it (<see cref="BoardDragDrop"/>).
+/// An item of a group, bound to an <see cref="ItemViewModel"/>. In normal use a click opens it and a right-click opens
+/// its menu (<see cref="ItemMenu"/>); in Customize mode a click selects it, a double-click renames it and a drag moves
+/// it (<see cref="BoardDragDrop"/>).
 /// </summary>
 public partial class ItemView : UserControl
 {
@@ -26,9 +28,24 @@ public partial class ItemView : UserControl
                 BoardDragDrop.Start(this, item);
             }
         };
+
+        Row.MouseRightButtonUp += OnRightClick;
     }
 
+    /// <summary>What the item's menu opens under.</summary>
+    internal FrameworkElement MenuAnchor => Row;
+
     private MainViewModel? ViewModel => MainView.Of(this)?.DataContext as MainViewModel;
+
+    /// <summary>A right-click opens the item's menu, in normal use (<see cref="ItemMenu"/>).</summary>
+    private void OnRightClick(object sender, MouseButtonEventArgs e)
+    {
+        if (DataContext is ItemViewModel item && MainView.Of(this) is { } view)
+        {
+            view.OpenItemMenu(item, Row);
+            e.Handled = true;
+        }
+    }
 
     /// <summary>A click opens the item; with Ctrl held, in a new tab or window (spec 5.3). In Customize mode it selects it.</summary>
     private void OnClick()

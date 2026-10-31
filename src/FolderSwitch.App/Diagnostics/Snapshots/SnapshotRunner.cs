@@ -31,10 +31,10 @@ namespace FolderSwitch.App.Diagnostics.Snapshots;
 /// <para>
 /// Drawn at 96 and at 144 DPI (<c>…-144dpi.png</c>), in the language of <c>--snapshot-language &lt;code&gt;</c>
 /// (French by default): every theme in both variants, in normal use (<c>&lt;theme&gt;-&lt;variant&gt;.png</c>); then
-/// Customize mode with an empty column (<c>…-customize.png</c>), the context line (<c>…-context.png</c>), long names in
-/// narrow columns (<c>…-narrow.png</c>), a board larger than the work area (<c>…-overflow.png</c>) and twelve tabs that
-/// wrap in a narrow work area, in normal use and in Customize mode (<c>…-manytabs.png</c>,
-/// <c>…-manytabs-customize.png</c>). Another language than French adds its code to every name (<c>…-de.png</c>).
+/// Customize mode with an empty column (<c>…-customize.png</c>), the context line (<c>…-context.png</c>) with the menu
+/// of a folder and of a file (<c>…-itemmenu.png</c>, <c>…-itemmenu-file.png</c>), long names in narrow columns
+/// (<c>…-narrow.png</c>), a board larger than the work area (<c>…-overflow.png</c>) and twelve tabs that wrap in a
+/// narrow work area, in normal use and in Customize mode (<c>…-manytabs.png</c>, <c>…-manytabs-customize.png</c>). Another language than French adds its code to every name (<c>…-de.png</c>).
 /// </para>
 /// <para>
 /// The interactions of Customize mode, in Fluent light and dark and in Cards dark (Fluent light only at 144 DPI): the
@@ -197,8 +197,19 @@ internal static class SnapshotRunner
                 Use(appearance, "fluent", Variant.Light);
                 main.OnShown(new CallContext(CallContextKind.Explorer, 0, @"D:\Clients\Acme\Contrats"));
                 scene.Save(Path.Combine(directory, FileName("fluent", Variant.Light, "context", scale, suffix)), Variant.Light);
-                main.OnShown(CallContext.None);
                 written++;
+
+                // The menu of an item, called from Explorer: a folder (with « Open in new tab ») and a file.
+                foreach (var (name, kind) in new[] { ("Maquettes", "itemmenu"), ("Cahier des charges.docx", "itemmenu-file") })
+                {
+                    var item = scene.Item(name);
+                    scene.View.OpenItemMenu((ItemViewModel)item.DataContext, item.MenuAnchor);
+                    scene.Save(Path.Combine(directory, FileName("fluent", Variant.Light, kind, scale, suffix)), Variant.Light);
+                    scene.View.CloseFlyout();
+                    written++;
+                }
+
+                main.OnShown(CallContext.None);
 
                 scene.View.DataContext = narrow;
                 scene.Save(Path.Combine(directory, FileName("fluent", Variant.Light, "narrow", scale, suffix)), Variant.Light);

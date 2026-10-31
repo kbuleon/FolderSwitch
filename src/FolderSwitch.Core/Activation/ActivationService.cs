@@ -5,9 +5,9 @@ using FolderSwitch.Core.Services;
 namespace FolderSwitch.Core.Activation;
 
 /// <summary>
-/// Carries out the click (or Ctrl+click) on an item: resolves its target, checks that the target is
-/// reachable (never for a virtual <c>shell:</c> / <c>::{CLSID}</c> location), then runs the action
-/// chosen by <see cref="ActivationRouter"/>.
+/// Carries out the click (or Ctrl+click) on an item, or « Open in File Explorer » from its menu: resolves its target,
+/// checks that the target is reachable (never for a virtual <c>shell:</c> / <c>::{CLSID}</c> location), then runs the
+/// action chosen by <see cref="ActivationRouter"/>.
 /// </summary>
 /// <remarks>
 /// <para>
@@ -48,7 +48,16 @@ public sealed class ActivationService(
         ReportedByShell,
     }
 
-    public async Task<ActivationOutcome> ActivateAsync(Item item, CallContext ctx, bool ctrl)
+    public Task<ActivationOutcome> ActivateAsync(Item item, CallContext ctx, bool ctrl) =>
+        ActivateAsync(item, ctx, resolved => ActivationRouter.Plan(ctx, item.Kind, resolved, ctrl, os));
+
+    public Task<ActivationOutcome> OpenInExplorerAsync(Item item) =>
+        ActivateAsync(item, CallContext.None, resolved => ActivationRouter.PlanInExplorer(item.Kind, resolved));
+
+    public bool CtrlOpensNewTab(ItemKind kind, CallContext ctx) => ActivationRouter.CtrlOpensNewTab(ctx, kind, os);
+
+    /// <summary>Resolves <paramref name="item"/>, checks its target, then runs the plan <paramref name="planFor"/> makes for it.</summary>
+    private async Task<ActivationOutcome> ActivateAsync(Item item, CallContext ctx, Func<string, ActivationPlan> planFor)
     {
         string? resolved = null;
         ActivationPlan? plan = null;
@@ -71,7 +80,7 @@ public sealed class ActivationService(
                     null);
             }
 
-            plan = ActivationRouter.Plan(ctx, item.Kind, resolved, ctrl, os);
+            plan = planFor(resolved);
             return Run(plan, ctx);
         }
         catch (Exception e) when (!CriticalExceptions.IsCritical(e))

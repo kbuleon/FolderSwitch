@@ -377,6 +377,60 @@ public class MainViewModelTests
         Assert.Empty(h.Prompts.Errors);
     }
 
+    // ----- The item's menu -----
+
+    [Fact]
+    public async Task OpenInExplorer_asks_for_a_new_window_and_hides()
+    {
+        var h = new Harness();
+        h.Vm.OnShown(ExplorerContext);
+        h.Activator.Outcome = ActivationOutcome.OpenedElsewhere;
+
+        await h.Vm.OpenInExplorerAsync(h.ItemVm("Notes.txt"));
+
+        Assert.Equal([h.Notes], h.Activator.ExplorerCalls);
+        Assert.Empty(h.Activator.Calls);
+        Assert.Equal(1, h.Host.HideCount);
+    }
+
+    [Fact]
+    public async Task OpenInExplorer_keeps_window_and_shows_why_it_failed()
+    {
+        var h = new Harness();
+        h.Activator.Outcome = ActivationOutcome.TargetUnavailable;
+
+        await h.Vm.OpenInExplorerAsync(h.ItemVm("Music"));
+
+        Assert.Equal(["Error.TargetUnavailable"], h.Prompts.Errors);
+        Assert.Equal(0, h.Host.HideCount);
+    }
+
+    [Fact]
+    public async Task OpenInExplorer_does_nothing_in_Customize_mode()
+    {
+        var h = new Harness();
+        h.Vm.ToggleCustomize();
+
+        await h.Vm.OpenInExplorerAsync(h.ItemVm("Music"));
+
+        Assert.Empty(h.Activator.ExplorerCalls);
+    }
+
+    [Fact]
+    public void A_new_tab_is_offered_when_Ctrl_click_opens_one_and_not_in_Customize_mode()
+    {
+        var h = new Harness();
+        var music = h.ItemVm("Music");
+
+        Assert.False(h.Vm.CanOpenInNewTab(music));
+
+        h.Activator.NewTabPossible = true;
+        Assert.True(h.Vm.CanOpenInNewTab(music));
+
+        h.Vm.ToggleCustomize();
+        Assert.False(h.Vm.CanOpenInNewTab(music));
+    }
+
     [Fact]
     public async Task ActivateItem_keeps_window_and_shows_error_when_unavailable()
     {

@@ -228,7 +228,27 @@ public sealed partial class MainViewModel : ObservableObject
     /// being carried out. An outcome that arrives after the window was shown again (for another calling window) is
     /// dropped: it no longer concerns what is on screen.
     /// </summary>
-    public async Task ActivateItemAsync(ItemViewModel item, bool ctrl)
+    public Task ActivateItemAsync(ItemViewModel item, bool ctrl) =>
+        RunActivationAsync(item, () => _activator.ActivateAsync(item.Model, Context, ctrl));
+
+    /// <summary>
+    /// « Open in File Explorer », from the item's menu: a new Explorer window on the folder (a file: on its folder),
+    /// whatever the window FolderSwitch was called from. Hides the window or says why not, and is ignored, as a click is
+    /// (<see cref="ActivateItemAsync"/>).
+    /// </summary>
+    public Task OpenInExplorerAsync(ItemViewModel item) =>
+        RunActivationAsync(item, () => _activator.OpenInExplorerAsync(item.Model));
+
+    /// <summary>
+    /// Whether the item's menu offers « Open in a new tab »: in normal use, when a Ctrl+click on
+    /// <paramref name="item"/> would open it in a new tab of the calling window (a folder, called from Explorer, on
+    /// Windows 11). The entry then does what Ctrl+click does.
+    /// </summary>
+    public bool CanOpenInNewTab(ItemViewModel item) =>
+        IsLive(item) && !IsCustomizing && _activator.CtrlOpensNewTab(item.Model.Kind, Context);
+
+    /// <summary>Runs one activation of <paramref name="item"/> (see <see cref="ActivateItemAsync"/>) and acts on its outcome.</summary>
+    private async Task RunActivationAsync(ItemViewModel item, Func<Task<ActivationOutcome>> activate)
     {
         if (!IsLive(item) || IsCustomizing || _activating)
         {
@@ -240,7 +260,7 @@ public sealed partial class MainViewModel : ObservableObject
         _activating = true;
         try
         {
-            outcome = await _activator.ActivateAsync(item.Model, Context, ctrl);
+            outcome = await activate();
         }
         finally
         {

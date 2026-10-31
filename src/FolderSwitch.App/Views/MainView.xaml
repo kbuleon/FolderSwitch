@@ -69,10 +69,11 @@
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <Image x:Name="AppIcon" Width="16" Height="16" Margin="0,0,9,0" VerticalAlignment="Center" />
                         <layout:TextRoom VerticalAlignment="Center">
-                            <TextBlock Text="FolderSwitch"
-                                       FontSize="12.8"
-                                       FontWeight="SemiBold"
-                                       Foreground="{DynamicResource Fs.OnBackgroundMuted}" />
+                            <!-- The name, then the version that runs, lighter. -->
+                            <TextBlock FontSize="12.8" Foreground="{DynamicResource Fs.OnBackgroundMuted}">
+                                <Run Text="FolderSwitch" FontWeight="SemiBold" />
+                                <Run x:Name="VersionRun" FontSize="11.4" />
+                            </TextBlock>
                         </layout:TextRoom>
                     </StackPanel>
                 </DockPanel>

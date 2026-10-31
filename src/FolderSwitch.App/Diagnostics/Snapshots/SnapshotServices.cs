@@ -27,6 +27,11 @@ internal sealed class SnapshotServices : IItemActivator, IConfigPersistence, IUs
 
     public Task<ActivationOutcome> ActivateAsync(Item item, CallContext ctx, bool ctrl) => Task.FromResult(ActivationOutcome.Done);
 
+    public Task<ActivationOutcome> OpenInExplorerAsync(Item item) => Task.FromResult(ActivationOutcome.OpenedElsewhere);
+
+    /// <summary>As on Windows 11: a folder, called from Explorer.</summary>
+    public bool CtrlOpensNewTab(ItemKind kind, CallContext ctx) => ActivationRouter.CtrlOpensNewTab(ctx, kind, Generation);
+
     public void Save(AppConfig c)
     {
     }
