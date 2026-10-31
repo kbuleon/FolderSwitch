@@ -87,7 +87,6 @@ internal static class GroupStyleSelector
     /// <summary>A group whose color cannot be read (a hand-edited configuration) is drawn in slate.</summary>
     public const string FallbackColor = "#64748b";
 
-    private const string White = "#ffffff";
     private const string Black = "#000000";
 
     private const double TitleSize = 13.75;
@@ -141,12 +140,13 @@ internal static class GroupStyleSelector
 
         return style switch
         {
-            // Cards: the header filled with the group color, a white title; a soft shadow.
+            // Cards: the header filled with the group color, a white title (a dark one on a light color) that the
+            // glyphs and the dot's ring follow; a soft shadow.
             GroupStyle.SolidHeader => look with
             {
                 HeaderPadding = new Thickness(12, 9, 12, 9),
-                HeaderGlyph = Brush(White, 0.92),
-                DotRing = Brush(White),
+                HeaderGlyph = Brush(visual.HeaderText, 0.92),
+                DotRing = Brush(visual.HeaderText),
                 FrameBrush = dark ? Brush(tokens.Border) : Brush(Black, 0.04),
                 FrameThickness = new Thickness(1),
                 Shadow = dark ? Drop(Black, 6, 16, 0.5) : Drop("#281e0a", 4, 14, 0.10),

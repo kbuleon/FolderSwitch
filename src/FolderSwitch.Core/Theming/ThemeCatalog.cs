@@ -75,17 +75,23 @@ public static class ThemeCatalog
         new("aubergine", "#1e1626"),
     ];
 
+    // Around the hue wheel from blue, the neutrals last; three rows of five in the palette.
     private static readonly NamedColor[] Palette =
     [
         new("blue", "#3b82f6"),
         new("cyan", "#06b6d4"),
+        new("teal", "#14b8a6"),
         new("green", "#22c55e"),
         new("olive", "#84cc16"),
+        new("yellow", "#facc15"),
         new("amber", "#f59e0b"),
         new("orange", "#f97316"),
         new("red", "#ef4444"),
         new("pink", "#ec4899"),
+        new("fuchsia", "#d946ef"),
         new("violet", "#8b5cf6"),
+        new("indigo", "#6366f1"),
+        new("brown", "#92400e"),
         new("slate", "#64748b"),
     ];
 
@@ -96,7 +102,7 @@ public static class ThemeCatalog
     public static IReadOnlyList<string> ThemeKeys { get; } =
         Array.AsReadOnly(["fluent", "cards", "pastel", "paper", "outline", "neon", "compact"]);
 
-    /// <summary>The ten group colors, in display order.</summary>
+    /// <summary>The fifteen group colors, in display order.</summary>
     public static IReadOnlyList<NamedColor> GroupPalette { get; } = Array.AsReadOnly(Palette);
 
     /// <summary>Base text color of a variant, before any adaptation to a background.</summary>

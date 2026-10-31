@@ -5,6 +5,8 @@ This file is maintained by the agent. The log is timestamped and **concise**. It
 
 ## 2026-10-31
 
+* **1.2.0 — Fifteen group colors**: the palette goes from ten to fifteen colors, in three rows of five around the hue wheel from blue: teal, yellow, fuchsia, indigo and brown are new, named in the nine languages. Existing groups keep their color; a new group still takes the next color of the palette.
+* **Cards: light colors no longer darken** (1.2.0): a header whose color is too light for a white title (white under 3:1: yellow, amber, olive, green, teal, cyan, orange) keeps its true color and takes a dark title, count, glyphs and dot ring; the other colors keep their white title.
 * **1.1.0 — Columns move by drag and drop**: in Edit mode, each column has a ⠿ grip on the middle of its top edge; dragging it moves the column, with its groups and its width, within its tab (an insertion line shows where). Edit mode leaves room above the columns, so the grip, the ✕ of an empty column and the width being dragged are no longer cut off at the top.
 * **1.0.0 — First stable version; item menu and version in the title** (FOS-0003): a right-click on an item, in normal use, opens a menu: « Open in File Explorer » (a new window; for a file, « Open file location », its folder) and « Open in new tab » with « Ctrl+click », only when a Ctrl+click opens a tab (a folder, called from Explorer, Windows 11). The title bar shows the version after « FolderSwitch ».
 * **0.2.1 — Fix: Ctrl+click opened a stray window**: the new tab stayed on Home and the folder opened in a new Explorer window when Ctrl was still held at the navigation; the new tab is now navigated with `IShellBrowser.BrowseObject` (same browser), which ignores Ctrl. Title bar buttons share one height.
