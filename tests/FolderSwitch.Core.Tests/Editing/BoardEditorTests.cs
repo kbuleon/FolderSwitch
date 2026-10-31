@@ -189,6 +189,39 @@ public class BoardEditorTests
         Assert.Equal(520, column.Width);
     }
 
+    [Fact]
+    public void MoveColumn_reorders_with_its_groups_and_width()
+    {
+        var config = ConfigWithTabs("A");
+        var tab = config.Tabs[0];
+        var third = BoardEditor.AddColumn(tab);
+        var group = BoardEditor.AddGroup(third, "Clients", Blue);
+        BoardEditor.SetColumnWidth(tab, third.Id, 300);
+        var (first, second) = (tab.Columns[0], tab.Columns[1]);
+
+        var result = BoardEditor.MoveColumn(tab, third.Id, 0);
+
+        Assert.True(result.Ok);
+        Assert.Equal(new[] { third, first, second }, tab.Columns);
+        Assert.Same(group, Assert.Single(third.Groups));
+        Assert.Equal(300, third.Width);
+    }
+
+    [Fact]
+    public void MoveColumn_clamps_out_of_range_indexes()
+    {
+        var config = ConfigWithTabs("A");
+        var tab = config.Tabs[0];
+        BoardEditor.AddColumn(tab);
+        var (a, b, c) = (tab.Columns[0], tab.Columns[1], tab.Columns[2]);
+
+        BoardEditor.MoveColumn(tab, a.Id, 99);
+        Assert.Equal(new[] { b, c, a }, tab.Columns);
+
+        BoardEditor.MoveColumn(tab, a.Id, -5);
+        Assert.Equal(new[] { a, b, c }, tab.Columns);
+    }
+
     // ----- Groups -----
 
     [Fact]
@@ -448,6 +481,7 @@ public class BoardEditorTests
         Assert.Equal(EditError.NotFound, BoardEditor.MoveTab(config, unknown, 0).Error);
         Assert.Equal(EditError.NotFound, BoardEditor.RemoveColumn(tab, unknown).Error);
         Assert.Equal(EditError.NotFound, BoardEditor.SetColumnWidth(tab, unknown, 200).Error);
+        Assert.Equal(EditError.NotFound, BoardEditor.MoveColumn(tab, unknown, 0).Error);
         Assert.Equal(EditError.NotFound, BoardEditor.RemoveGroup(config, unknown).Error);
         Assert.Equal(EditError.NotFound, BoardEditor.MoveGroup(config, unknown, tab.Columns[1].Id, 0).Error);
         Assert.Equal(EditError.NotFound, BoardEditor.MoveGroup(config, group.Id, unknown, 0).Error);

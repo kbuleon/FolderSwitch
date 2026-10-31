@@ -565,6 +565,7 @@ public class MainViewModelTests
 
         vm.AddTab();
         vm.AddColumn();
+        vm.MoveColumn(h.ColumnVm("Work", 1), 0);
         vm.AddGroup(h.ColumnVm("Work", 1));
         vm.RemoveItem(h.ItemVm("Music"));
         vm.Selected = h.GroupVm("Media");
@@ -572,6 +573,7 @@ public class MainViewModelTests
 
         Assert.Equal(3, vm.Tabs.Count);
         Assert.Single(h.Home.Columns);
+        Assert.Equal([h.WorkLeft, h.WorkRight], h.Work.Columns);
         Assert.Empty(h.WorkRight.Groups);
         Assert.Equal(2, h.Media.Items.Count);
         Assert.False(h.GroupVm("Media").IsRenaming);
@@ -596,7 +598,9 @@ public class MainViewModelTests
         vm.AddGroup(staleColumn);
         vm.AddSpecialFolder(staleGroup, SpecialFolderKey.Documents);
         vm.SetColumnWidth(staleColumn, 300);
+        vm.MoveColumn(staleColumn, 0);
 
+        Assert.Equal([h.WorkLeft, h.WorkRight], h.Work.Columns);
         Assert.Empty(h.WorkRight.Groups);
         Assert.Empty(h.Inbox.Items);
         Assert.Null(h.WorkRight.Width);
@@ -609,6 +613,7 @@ public class MainViewModelTests
     [InlineData("MoveTab")]
     [InlineData("AddColumn")]
     [InlineData("RemoveColumn")]
+    [InlineData("MoveColumn")]
     [InlineData("SetColumnWidth")]
     [InlineData("AddGroup")]
     [InlineData("RemoveGroup")]
@@ -637,6 +642,7 @@ public class MainViewModelTests
             "MoveTab" => () => vm.MoveTab(h.TabVm("Misc"), 0),
             "AddColumn" => () => vm.AddColumnCommand.Execute(null),
             "RemoveColumn" => () => vm.RemoveColumnCommand.Execute(h.ColumnVm("Work", 1)),
+            "MoveColumn" => () => vm.MoveColumn(h.ColumnVm("Work", 1), 0),
             "SetColumnWidth" => () => vm.SetColumnWidth(h.ColumnVm("Work", 0), 300),
             "AddGroup" => () => vm.AddGroupCommand.Execute(h.ColumnVm("Work", 1)),
             "RemoveGroup" => () => vm.RemoveGroupCommand.Execute(h.GroupVm("Projects")),
@@ -781,6 +787,22 @@ public class MainViewModelTests
 
         Assert.Single(h.TabVm("Work").Columns);
         Assert.Equal([h.WorkLeft], h.Work.Columns);
+        Assert.Equal(1, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void MoveColumn_reorders_view_models_like_the_model()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        var left = h.ColumnVm("Work", 0);
+        var right = h.ColumnVm("Work", 1);
+
+        vm.MoveColumn(right, 0);
+
+        Assert.Equal([right, left], h.TabVm("Work").Columns);
+        Assert.Equal([h.WorkRight, h.WorkLeft], h.Work.Columns);
+        Assert.Equal(["Projects", "Inbox"], left.Groups.Select(g => g.Name));
         Assert.Equal(1, h.Persistence.SaveCount);
     }
 

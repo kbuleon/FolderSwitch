@@ -18,6 +18,7 @@
   "Column.Remove": "Delete this empty column",
   "Column.Width": "{0} px",
   "Column.ResizeHint": "Drag to set the width; double-click for an automatic width",
+  "Column.MoveHint": "Drag to move the column",
   "Group.Remove": "Delete this group",
   "Group.Color": "Group color",
   "Item.AddFolder": "+ Folder",

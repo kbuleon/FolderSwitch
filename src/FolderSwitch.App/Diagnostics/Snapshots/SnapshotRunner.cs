@@ -43,7 +43,8 @@ namespace FolderSwitch.App.Diagnostics.Snapshots;
 /// <c>…-settings-configuration</c>), the About window (<c>…-about</c>), the
 /// « + Folder ▾ » menu of a group holding special folders (<c>…-addfolder</c>), the palette (<c>…-palette</c>), a rename
 /// in progress (<c>…-rename</c>), the insertion line of an item being dragged (<c>…-drag</c>), a confirmation
-/// (<c>…-confirm</c>), and in Fluent light a column being resized (<c>…-resize</c>). Menus are drawn where their popup
+/// (<c>…-confirm</c>), and in Fluent light a column being resized (<c>…-resize</c>) and a column dragged by its grip to
+/// the front (<c>…-column-drag</c>). Menus are drawn where their popup
 /// would be (<see cref="MainView.FlyoutLayer"/>), the dialog centered on the window as an owned one would be.
 /// </para>
 /// <para>
@@ -333,6 +334,16 @@ internal static class SnapshotRunner
             scene.Save(File("resize"), variant);
             presenter.PreviewWidth = null;
             written++;
+
+            // The last column dragged by its grip to the front: it fades, the line shows before the first column.
+            var last = scene.Column(main.ActiveTab.Columns.Count - 1);
+            last.Opacity = 0.4;
+            scene.Layout();
+            BoardDragDrop.ShowIndicator(scene.Board.Columns, 0, Orientation.Horizontal);
+            scene.Save(File("column-drag"), variant);
+            BoardDragDrop.HideIndicator();
+            last.Opacity = 1;
+            written++;
         }
 
         main.ToggleCustomize();
@@ -555,6 +566,9 @@ internal static class SnapshotRunner
 
         /// <summary>The view of column <paramref name="index"/> of the board.</summary>
         public ColumnView Column(int index) => Descendants(View).OfType<ColumnView>().ElementAt(index);
+
+        /// <summary>The board of the tab shown.</summary>
+        public BoardView Board => Descendants(View).OfType<BoardView>().First();
 
         /// <summary>Shows <paramref name="prompt"/> centered on the window, as an owned dialog; <c>null</c> removes it.</summary>
         public void ShowDialog(PromptView? prompt)

@@ -254,7 +254,7 @@ The shell and composition root.
 - `Converters` — the value converters of the views.
 - `TreeHelpers` — element-tree walks used by the views.
 - `AppIconDrawing` — the icon as code; shared with the icon builder (compiled by both).
-- `DragDrop/BoardDragDrop` — drag-and-drop start, targets and slot finding for tabs (line by line when they wrap), groups and items.
+- `DragDrop/BoardDragDrop` — drag-and-drop start, targets and slot finding for tabs (line by line when they wrap), columns, groups and items.
 - `DragDrop/PressGesture` — press, click, double-click or drag-start recogniser.
 - `DragDrop/InsertionAdorner` — the insertion line shown while dragging.
 - `Layout/ColumnWidthPresenter` — gives a column its effective width (preview, fixed or content-driven).

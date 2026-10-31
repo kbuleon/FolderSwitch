@@ -1,9 +1,10 @@
 <!--
     A column of the board, bound to a ColumnViewModel: its groups stacked, all at the column's effective width (fixed,
     or fitted to the content).
-    Customize mode: outlined with dashes, « + Group » at the bottom, ✕ on its corner while it is empty, the resize grip
-    on its right edge (with the width shown above the column while it is dragged), and it takes the groups dropped on
-    it (an insertion line shows where).
+    Customize mode: outlined with dashes, « + Group » at the bottom, the grip ⠿ the column is dragged by in the middle
+    of its top edge, ✕ on its corner while it is empty, the resize grip on its right edge (with the width shown above
+    the column while it is dragged, over the ⠿ grip), and it takes the groups dropped on it (an insertion line shows
+    where).
 -->
 <UserControl x:Class="FolderSwitch.App.Views.ColumnView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -87,6 +88,26 @@
                 </Style>
             </Button.Style>
         </Button>
+
+        <!-- The grip ⠿ the column is dragged by, on the middle of its top edge. -->
+        <Border x:Name="MoveGrip"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Margin="0,-10,0,0"
+                Height="18"
+                Padding="7,0,7,0"
+                CornerRadius="4"
+                Background="{DynamicResource Fs.Menu}"
+                BorderBrush="{DynamicResource Fs.Border}"
+                BorderThickness="1"
+                Cursor="SizeAll"
+                ToolTip="{Binding Texts[Column.MoveHint], RelativeSource={RelativeSource AncestorType=local:MainView}}"
+                ToolTipService.InitialShowDelay="900"
+                Visibility="{Binding IsCustomizing, ElementName=Root, Converter={StaticResource Fs.BoolToVisibility}}">
+            <TextBlock Text="⠿"
+                       VerticalAlignment="Center"
+                       Foreground="{DynamicResource Fs.MenuMuted}" />
+        </Border>
 
         <!-- The resize grip, in the gap after the column. -->
         <local:ColumnResizeGrip x:Name="Grip"

@@ -18,6 +18,7 @@
   "Column.Remove": "Elimina questa colonna vuota",
   "Column.Width": "{0} px",
   "Column.ResizeHint": "Trascina per regolare la larghezza; doppio clic per la larghezza automatica",
+  "Column.MoveHint": "Trascina per spostare la colonna",
   "Group.Remove": "Elimina questo gruppo",
   "Group.Color": "Colore del gruppo",
   "Item.AddFolder": "+ Cartella",

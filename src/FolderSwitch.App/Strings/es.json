@@ -18,6 +18,7 @@
   "Column.Remove": "Eliminar esta columna vacía",
   "Column.Width": "{0} px",
   "Column.ResizeHint": "Arrastra para ajustar el ancho; doble clic para un ancho automático",
+  "Column.MoveHint": "Arrastra para mover la columna",
   "Group.Remove": "Eliminar este grupo",
   "Group.Color": "Color del grupo",
   "Item.AddFolder": "+ Carpeta",

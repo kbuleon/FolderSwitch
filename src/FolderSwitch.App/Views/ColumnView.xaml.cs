@@ -7,9 +7,10 @@ using FolderSwitch.Presentation.ViewModels;
 namespace FolderSwitch.App.Views;
 
 /// <summary>
-/// A column of the board, bound to a <see cref="ColumnViewModel"/>. In Customize mode it takes the groups of its tab
-/// dropped on it (by their grip, <see cref="BoardDragDrop"/>), at the slot under the mouse; a group of another tab is
-/// refused. An item dropped on it outside any group is refused too (the groups take the items).
+/// A column of the board, bound to a <see cref="ColumnViewModel"/>. In Customize mode its grip ⠿ starts a drag of the
+/// column (<see cref="BoardDragDrop"/>), which the board takes; the column itself takes the groups of its tab dropped on
+/// it (by their grip), at the slot under the mouse; a group of another tab is refused. An item dropped on it outside
+/// any group is refused too (the groups take the items).
 /// </summary>
 public partial class ColumnView : UserControl
 {
@@ -24,6 +25,16 @@ public partial class ColumnView : UserControl
         });
         InitializeComponent();
         Grip.Presenter = WidthPresenter;
+
+        var move = PressGesture.For(MoveGrip);
+        move.CanDrag = () => IsCustomizing && DataContext is ColumnViewModel;
+        move.Drag = () =>
+        {
+            if (DataContext is ColumnViewModel column)
+            {
+                BoardDragDrop.Start(this, column);
+            }
+        };
     }
 
     /// <summary>Whether the window is in Customize mode (bound to the main view model).</summary>
@@ -51,6 +62,12 @@ public partial class ColumnView : UserControl
 
     private void OnDragOver(object sender, DragEventArgs e)
     {
+        if (BoardDragDrop.Payload<ColumnViewModel>(e) is not null)
+        {
+            // A column: the board's to take.
+            return;
+        }
+
         if (BoardDragDrop.Payload<GroupViewModel>(e) is { } group && CanTake(group))
         {
             var slot = BoardDragDrop.SlotAt(GroupsList, e.GetPosition(GroupsList), Orientation.Vertical);
@@ -66,10 +83,21 @@ public partial class ColumnView : UserControl
         e.Handled = true;
     }
 
-    private void OnDragLeave(object sender, DragEventArgs e) => BoardDragDrop.HideIndicatorIfLeft(this, e);
+    private void OnDragLeave(object sender, DragEventArgs e)
+    {
+        if (BoardDragDrop.Payload<ColumnViewModel>(e) is null)
+        {
+            BoardDragDrop.HideIndicatorIfLeft(this, e);
+        }
+    }
 
     private void OnDrop(object sender, DragEventArgs e)
     {
+        if (BoardDragDrop.Payload<ColumnViewModel>(e) is not null)
+        {
+            return;
+        }
+
         e.Handled = true;
         BoardDragDrop.HideIndicator();
         if (BoardDragDrop.Payload<GroupViewModel>(e) is not { } group || !CanTake(group)

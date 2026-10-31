@@ -18,6 +18,7 @@
   "Column.Remove": "Deze lege kolom verwijderen",
   "Column.Width": "{0} px",
   "Column.ResizeHint": "Sleep om de breedte in te stellen; dubbelklik voor een automatische breedte",
+  "Column.MoveHint": "Sleep om de kolom te verplaatsen",
   "Group.Remove": "Deze groep verwijderen",
   "Group.Color": "Groepskleur",
   "Item.AddFolder": "+ Map",

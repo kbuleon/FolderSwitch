@@ -18,6 +18,7 @@
   "Column.Remove": "Diese leere Spalte löschen",
   "Column.Width": "{0} px",
   "Column.ResizeHint": "Ziehen, um die Breite festzulegen; Doppelklick für automatische Breite",
+  "Column.MoveHint": "Ziehen, um die Spalte zu verschieben",
   "Group.Remove": "Diese Gruppe löschen",
   "Group.Color": "Gruppenfarbe",
   "Item.AddFolder": "+ Ordner",

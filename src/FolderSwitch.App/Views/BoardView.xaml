@@ -1,14 +1,34 @@
 <!--
     The columns of a tab, side by side, bound to a TabViewModel (the active tab). Customize mode adds « + Column » at
-    the right, as tall as the board.
+    the right, as tall as the board, and takes the columns of the tab dropped on it (an insertion line shows where).
 -->
 <UserControl x:Class="FolderSwitch.App.Views.BoardView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:FolderSwitch.App.Views"
-             xmlns:layout="clr-namespace:FolderSwitch.App.Views.Layout">
-    <layout:SpacingPanel Orientation="Horizontal" Spacing="{DynamicResource Fs.ColumnGap}" Margin="12,4,12,18">
-        <ItemsControl ItemsSource="{Binding Columns}" Focusable="False">
+             xmlns:layout="clr-namespace:FolderSwitch.App.Views.Layout"
+             x:Name="Root"
+             Background="Transparent"
+             AllowDrop="{Binding DataContext.IsCustomizing, RelativeSource={RelativeSource AncestorType=local:MainView}}"
+             DragEnter="OnDragOver"
+             DragOver="OnDragOver"
+             DragLeave="OnDragLeave"
+             Drop="OnDrop">
+    <!-- Transparent (above): a column dragged over the gaps between the columns still lands on the board. -->
+    <layout:SpacingPanel Orientation="Horizontal" Spacing="{DynamicResource Fs.ColumnGap}">
+        <layout:SpacingPanel.Style>
+            <Style TargetType="layout:SpacingPanel">
+                <Setter Property="Margin" Value="12,4,12,18" />
+                <Style.Triggers>
+                    <!-- Room above the columns for what sits on their top edge (⠿, ✕, the width being dragged): the
+                         board's scroller clips what goes past its top. -->
+                    <DataTrigger Binding="{Binding DataContext.IsCustomizing, RelativeSource={RelativeSource AncestorType=local:MainView}}" Value="True">
+                        <Setter Property="Margin" Value="12,10,12,18" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </layout:SpacingPanel.Style>
+        <ItemsControl x:Name="ColumnsList" ItemsSource="{Binding Columns}" Focusable="False">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <layout:SpacingPanel Orientation="Horizontal" Spacing="{DynamicResource Fs.ColumnGap}" />

@@ -7,8 +7,9 @@ using FolderSwitch.Presentation.ViewModels;
 namespace FolderSwitch.App.Views.DragDrop;
 
 /// <summary>
-/// The drag and drop of Customize mode: tabs within the tab bar, groups (by their grip) within a column or to another
-/// column of the same tab, items within a group or to another group of the same tab. WPF's drag and drop, with the
+/// The drag and drop of Customize mode: tabs within the tab bar, columns (by their grip) within their tab, groups (by
+/// their grip) within a column or to another column of the same tab, items within a group or to another group of the
+/// same tab. WPF's drag and drop, with the
 /// view model being dragged as the data, in a format of FolderSwitch's own: nothing from another application is
 /// accepted, and nothing dragged out of FolderSwitch means anything elsewhere.
 /// </summary>
@@ -24,7 +25,7 @@ namespace FolderSwitch.App.Views.DragDrop;
 /// </remarks>
 internal static class BoardDragDrop
 {
-    /// <summary>The data format of a dragged tab, group or item: the view model itself.</summary>
+    /// <summary>The data format of a dragged tab, column, group or item: the view model itself.</summary>
     private const string Format = "FolderSwitch.BoardObject";
 
     /// <summary>What the dragged element fades to while it is dragged, as in the mockups.</summary>
@@ -41,7 +42,7 @@ internal static class BoardDragDrop
     /// Drags <paramref name="payload"/>, shown by <paramref name="source"/> (faded meanwhile), until the button is
     /// released. Returns once the drag is over, dropped or not.
     /// </summary>
-    public static void Start(FrameworkElement source, RenamableViewModel payload)
+    public static void Start(FrameworkElement source, object payload)
     {
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(payload);
@@ -65,7 +66,7 @@ internal static class BoardDragDrop
         }
     }
 
-    /// <summary>The tab, group or item being dragged, if the drag is one of FolderSwitch's and carries a <typeparamref name="T"/>.</summary>
+    /// <summary>The tab, column, group or item being dragged, if the drag is one of FolderSwitch's and carries a <typeparamref name="T"/>.</summary>
     public static T? Payload<T>(DragEventArgs e)
         where T : class
     {

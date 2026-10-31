@@ -82,6 +82,19 @@ public static class BoardEditor
         return Success;
     }
 
+    /// <summary>Moves a column within its tab, with its groups and its width.</summary>
+    public static EditResult MoveColumn(Tab t, Guid columnId, int newIndex)
+    {
+        var index = t.Columns.FindIndex(col => col.Id == columnId);
+        if (index < 0)
+        {
+            return Fail(EditError.NotFound);
+        }
+
+        MoveWithin(t.Columns, index, newIndex);
+        return Success;
+    }
+
     /// <summary>Sets the width of a column; <c>null</c> means automatic, otherwise the width is clamped.</summary>
     public static EditResult SetColumnWidth(Tab t, Guid columnId, int? width)
     {

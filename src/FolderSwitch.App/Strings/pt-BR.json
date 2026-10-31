@@ -18,6 +18,7 @@
   "Column.Remove": "Excluir esta coluna vazia",
   "Column.Width": "{0} px",
   "Column.ResizeHint": "Arraste para ajustar a largura; clique duas vezes para a largura automática",
+  "Column.MoveHint": "Arraste para mover a coluna",
   "Group.Remove": "Excluir este grupo",
   "Group.Color": "Cor do grupo",
   "Item.AddFolder": "+ Pasta",

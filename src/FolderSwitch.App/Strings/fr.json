@@ -18,6 +18,7 @@
   "Column.Remove": "Supprimer cette colonne vide",
   "Column.Width": "{0} px",
   "Column.ResizeHint": "Tirer pour régler la largeur ; double-clic pour la largeur automatique",
+  "Column.MoveHint": "Glisser pour déplacer la colonne",
   "Group.Remove": "Supprimer ce groupe",
   "Group.Color": "Couleur du groupe",
   "Item.AddFolder": "+ Dossier",

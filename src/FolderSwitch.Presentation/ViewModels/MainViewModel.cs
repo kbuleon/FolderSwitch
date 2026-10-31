@@ -382,6 +382,20 @@ public sealed partial class MainViewModel : ObservableObject
         Save();
     }
 
+    /// <summary>Moves a column to <paramref name="newIndex"/> (clamped) of its tab, as a drag and drop does.</summary>
+    public void MoveColumn(ColumnViewModel column, int newIndex)
+    {
+        if (!IsCustomizing || !IsLive(column)
+            || !Succeeded(BoardEditor.MoveColumn(column.Tab.Model, column.Model.Id, newIndex)))
+        {
+            return;
+        }
+
+        var columns = column.Tab.Columns;
+        columns.Move(columns.IndexOf(column), column.Tab.Model.Columns.IndexOf(column.Model));
+        Save();
+    }
+
     /// <summary>
     /// Sets a fixed width (rounded to 10 and clamped to 150..520) or, with <c>null</c>, automatic width.
     /// Called once, at the end of a resize gesture.

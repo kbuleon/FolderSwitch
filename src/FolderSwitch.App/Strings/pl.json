@@ -18,6 +18,7 @@
   "Column.Remove": "Usuń tę pustą kolumnę",
   "Column.Width": "{0} px",
   "Column.ResizeHint": "Przeciągnij, aby ustawić szerokość; kliknij dwukrotnie, aby wybrać szerokość automatyczną",
+  "Column.MoveHint": "Przeciągnij, aby przenieść kolumnę",
   "Group.Remove": "Usuń tę grupę",
   "Group.Color": "Kolor grupy",
   "Item.AddFolder": "+ Folder",
