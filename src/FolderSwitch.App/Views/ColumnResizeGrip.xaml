@@ -1,0 +1,34 @@
+<!--
+    The resize grip on the right edge of a column (Customize mode): a thin bar, in the accent color under the mouse
+    and while it is dragged. Dragging sets the column's width (150 to 520 DIPs, in steps of 10, shown above the
+    column meanwhile), recorded once when the button is released; a double-click gives the column back its automatic
+    width. See the code-behind.
+-->
+<UserControl x:Class="FolderSwitch.App.Views.ColumnResizeGrip"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Root"
+             Width="10"
+             Cursor="SizeWE"
+             Focusable="False"
+             Background="Transparent">
+    <Border x:Name="Bar"
+            Width="3"
+            Margin="0,6"
+            CornerRadius="1.5"
+            HorizontalAlignment="Center">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Setter Property="Background" Value="{DynamicResource Fs.ResizeGrip}" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsMouseOver, ElementName=Root}" Value="True">
+                        <Setter Property="Background" Value="{DynamicResource Fs.Accent}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsResizing, ElementName=Root}" Value="True">
+                        <Setter Property="Background" Value="{DynamicResource Fs.Accent}" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+    </Border>
+</UserControl>

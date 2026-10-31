@@ -1,0 +1,23 @@
+<!--
+    The notification area icon, present for as long as FolderSwitch runs. Left click: open the window (spec 5.9).
+    Right click: Open, Customize, Quit; between them the entry « Install update » while an update is announced (it
+    stays until FolderSwitch restarts). Texts come from the localizer (see the code-behind).
+-->
+<tb:TaskbarIcon x:Class="FolderSwitch.App.Tray.TrayIcon"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:tb="clr-namespace:H.NotifyIcon;assembly=H.NotifyIcon.Wpf"
+                ToolTipText="FolderSwitch"
+                NoLeftClickDelay="True"
+                MenuActivation="RightClick">
+    <tb:TaskbarIcon.ContextMenu>
+        <ContextMenu>
+            <MenuItem x:Name="OpenItem" FontWeight="Bold" Click="OnOpenClick" />
+            <MenuItem x:Name="CustomizeItem" Click="OnCustomizeClick" />
+            <Separator x:Name="UpdateSeparator" Visibility="Collapsed" />
+            <MenuItem x:Name="UpdateItem" Visibility="Collapsed" Click="OnInstallUpdateClick" />
+            <Separator />
+            <MenuItem x:Name="QuitItem" Click="OnQuitClick" />
+        </ContextMenu>
+    </tb:TaskbarIcon.ContextMenu>
+</tb:TaskbarIcon>

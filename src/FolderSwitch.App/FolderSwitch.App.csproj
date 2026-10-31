@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <!-- The executable is FolderSwitch.exe (Task Manager, the Run entry, the installer's main exe); the namespace stays FolderSwitch.App. -->
+    <AssemblyName>FolderSwitch</AssemblyName>
+    <RootNamespace>FolderSwitch.App</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- Program.Main is the entry point: Velopack hooks and the single-instance check run before WPF starts. -->
+    <StartupObject>FolderSwitch.App.Program</StartupObject>
+    <!-- The icon of the executable (File Explorer, the taskbar, the installer); made by tools/FolderSwitch.IconBuilder. -->
+    <ApplicationIcon>..\..\assets\icon\FolderSwitch.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- App.xaml as a page: no generated Main (Program.Main starts the application with its options). -->
+    <ApplicationDefinition Remove="App.xaml" />
+    <Page Include="App.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Translation files: one flat JSON object per language, loaded at run time from Strings\ next to the executable. -->
+    <Content Include="Strings\*.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- The same icon file, as a resource of the assembly: the notification area icon (see TrayIconImage) and the wizard window's. -->
+    <Resource Include="..\..\assets\icon\FolderSwitch.ico" Link="Assets\FolderSwitch.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="H.NotifyIcon.Wpf" />
+    <PackageReference Include="Velopack" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- The App's own decisions (exception policy, error breaker, shortcut routing, log roll, feed address) are tested there. -->
+    <InternalsVisibleTo Include="FolderSwitch.App.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FolderSwitch.Presentation\FolderSwitch.Presentation.csproj" />
+    <ProjectReference Include="..\FolderSwitch.Windows\FolderSwitch.Windows.csproj" />
+    <ProjectReference Include="..\FolderSwitch.Core\FolderSwitch.Core.csproj" />
+  </ItemGroup>
+
+</Project>

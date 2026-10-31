@@ -1,0 +1,136 @@
+<!--
+    The appearance menu (Customize mode, spec 5.4), bound to AppearanceViewModel, compact (one screen, no scrolling): the mode
+    (Light, Dark, Auto), a thumbnail per theme drawn in the variant shown, the background (the theme's own first, the
+    tints of the variant, then a custom color typed as #rrggbb) and the group corners. Every choice takes effect and is
+    saved at once; the menu stays open. Shown in a Flyout under the « ◐ Theme · Mode » button.
+-->
+<UserControl x:Class="FolderSwitch.App.Views.AppearanceMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:FolderSwitch.App.Views"
+             x:Name="Root"
+             Width="300">
+    <StackPanel Margin="1,0,1,1">
+        <!-- Mode -->
+        <TextBlock Style="{StaticResource Fs.MenuLabel}" Margin="4,2,4,5" Text="{Binding Texts[Appearance.Mode], ElementName=Root, Converter={StaticResource Fs.UpperCase}}" />
+        <Border Background="{DynamicResource Fs.SegmentTrack}" CornerRadius="8" Padding="3">
+            <ItemsControl ItemsSource="{Binding Modes, ElementName=Root}" Focusable="False">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="1" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Style="{StaticResource Fs.SegmentButton}" Margin="1,0" Click="OnModeClick" local:Selection.IsSelected="{Binding IsSelected}">
+                            <TextBlock TextTrimming="CharacterEllipsis">
+                                <Run Text="{Binding Glyph, Mode=OneWay}" />
+                                <Run Text="{Binding Label, Mode=OneWay}" />
+                            </TextBlock>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <!-- Theme -->
+        <TextBlock Style="{StaticResource Fs.MenuLabel}" Margin="4,10,4,4" Text="{Binding Texts[Appearance.Theme], ElementName=Root, Converter={StaticResource Fs.UpperCase}}" />
+        <ItemsControl ItemsSource="{Binding Themes, ElementName=Root}" Focusable="False">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="3" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Style="{StaticResource Fs.TileButton}" Margin="1.5" Click="OnThemeClick" local:Selection.IsSelected="{Binding IsSelected}">
+                        <StackPanel>
+                            <local:ThemePreview Height="28"
+                                                Theme="{Binding Key}"
+                                                BackgroundColor="{Binding Background}"
+                                                Variant="{Binding DataContext.EffectiveVariant, RelativeSource={RelativeSource AncestorType=local:AppearanceMenu}}"
+                                                Radius="{Binding DataContext.Radius, RelativeSource={RelativeSource AncestorType=local:AppearanceMenu}}" />
+                            <TextBlock Margin="1,4,1,1" Text="{Binding Label}" TextTrimming="CharacterEllipsis" />
+                        </StackPanel>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- Background -->
+        <TextBlock Style="{StaticResource Fs.MenuLabel}" Margin="4,10,4,6" Text="{Binding Texts[Appearance.Background], ElementName=Root, Converter={StaticResource Fs.UpperCase}}" />
+        <!-- The theme's own background first, the tints of the variant, then the custom color (last). -->
+        <ItemsControl Margin="5,0,0,0" ItemsSource="{Binding Backgrounds, ElementName=Root}" Focusable="False">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Style="{StaticResource Fs.SwatchButton}"
+                            Margin="0,0,8,7"
+                            Background="{Binding Brush}"
+                            ToolTip="{Binding Label}"
+                            AutomationProperties.Name="{Binding Label}"
+                            local:Selection.IsSelected="{Binding IsSelected}"
+                            Click="OnBackgroundClick" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <TextBlock Margin="5,0,5,0"
+                   FontSize="11.2"
+                   Foreground="{DynamicResource Fs.MenuMuted}"
+                   TextTrimming="CharacterEllipsis"
+                   Text="{Binding BackgroundName, ElementName=Root}" />
+
+        <!-- The custom color: typed as #rrggbb, applied with Enter or when the box is left. -->
+        <StackPanel Orientation="Horizontal"
+                    Margin="5,7,5,0"
+                    Visibility="{Binding IsEditorShown, ElementName=Root, Converter={StaticResource Fs.BoolToVisibility}}">
+            <TextBox x:Name="HexBox"
+                     Style="{StaticResource Fs.HexBox}"
+                     Width="96"
+                     PreviewKeyDown="OnHexKeyDown"
+                     LostKeyboardFocus="OnHexLostFocus"
+                     TextChanged="OnHexChanged" />
+            <Border Width="24"
+                    Height="24"
+                    Margin="8,0,0,0"
+                    CornerRadius="6"
+                    BorderThickness="1"
+                    BorderBrush="{DynamicResource Fs.SwatchRing}"
+                    Background="{Binding HexPreview, ElementName=Root}" />
+        </StackPanel>
+
+        <!-- Group corners -->
+        <TextBlock Style="{StaticResource Fs.MenuLabel}" Margin="4,10,4,4" Text="{Binding Texts[Appearance.Radius], ElementName=Root, Converter={StaticResource Fs.UpperCase}}" />
+        <ItemsControl ItemsSource="{Binding Radii, ElementName=Root}" Focusable="False">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="1" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Style="{StaticResource Fs.TileButton}" Margin="1" Padding="2,6,2,4" Click="OnRadiusClick" local:Selection.IsSelected="{Binding IsSelected}">
+                        <StackPanel>
+                            <Rectangle Width="20"
+                                       Height="14"
+                                       StrokeThickness="2"
+                                       RadiusX="{Binding BoxRadius}"
+                                       RadiusY="{Binding BoxRadius}"
+                                       StrokeDashArray="{Binding Dashes}"
+                                       Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
+                            <TextBlock Margin="0,4,0,0"
+                                       FontSize="10.4"
+                                       HorizontalAlignment="Center"
+                                       TextTrimming="CharacterEllipsis"
+                                       Text="{Binding Label}" />
+                        </StackPanel>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+</UserControl>

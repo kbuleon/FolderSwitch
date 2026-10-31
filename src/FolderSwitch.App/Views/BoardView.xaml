@@ -1,0 +1,30 @@
+<!--
+    The columns of a tab, side by side, bound to a TabViewModel (the active tab). Customize mode adds « + Column » at
+    the right, as tall as the board.
+-->
+<UserControl x:Class="FolderSwitch.App.Views.BoardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:FolderSwitch.App.Views"
+             xmlns:layout="clr-namespace:FolderSwitch.App.Views.Layout">
+    <layout:SpacingPanel Orientation="Horizontal" Spacing="{DynamicResource Fs.ColumnGap}" Margin="12,4,12,18">
+        <ItemsControl ItemsSource="{Binding Columns}" Focusable="False">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <layout:SpacingPanel Orientation="Horizontal" Spacing="{DynamicResource Fs.ColumnGap}" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:ColumnView />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Button Style="{StaticResource Fs.AddColumnButton}"
+                Margin="2,0,0,0"
+                Command="{Binding DataContext.AddColumnCommand, RelativeSource={RelativeSource AncestorType=local:MainView}}"
+                Visibility="{Binding DataContext.IsCustomizing, RelativeSource={RelativeSource AncestorType=local:MainView}, Converter={StaticResource Fs.BoolToVisibility}}">
+            <TextBlock Text="{Binding Texts[Board.AddColumn], RelativeSource={RelativeSource AncestorType=local:MainView}}" />
+        </Button>
+    </layout:SpacingPanel>
+</UserControl>

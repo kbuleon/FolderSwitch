@@ -1,0 +1,108 @@
+<#
+.SYNOPSIS
+    Builds the FolderSwitch installer and update packages (Velopack).
+
+.DESCRIPTION
+    Publishes the application (self-contained, ReadyToRun, win-x64) to artifacts/publish, then packs it with
+    Velopack's vpk tool into artifacts/releases: the installer (FolderSwitch-win-Setup.exe), the full package
+    (FolderSwitch-<version>-full.nupkg), a delta package from the previous version found in artifacts/releases,
+    and the feed file (releases.win.json). The content of artifacts/releases is what is uploaded to the update site
+    (see UpdateFeed.Url in src/FolderSwitch.App/UpdateFeed.cs).
+
+    Keep the previous releases in artifacts/releases between two runs: the next version builds its delta package
+    from them. artifacts/publish is rebuilt from scratch each time.
+
+    vpk is a local dotnet tool (.config/dotnet-tools.json, same version as the Velopack package): nothing to install
+    by hand, 'dotnet tool restore' is run here. Works in Windows PowerShell 5.1 and in PowerShell 7.
+
+.PARAMETER Version
+    The version to release, x.y.z or x.y.z-prerelease (for instance 0.1.0 or 0.2.0-beta.1). It is also the version of
+    the application (shown in the settings).
+
+.PARAMETER SignParams
+    Optional. Parameters passed to signtool.exe (vpk runs its embedded copy) to sign the application's files, the
+    updater and the installer, for instance '/a /fd sha256 /tr http://timestamp.digicert.com /td sha256' with the code
+    signing certificate in the user's store. Not signed when omitted.
+
+.EXAMPLE
+    powershell -ExecutionPolicy Bypass -File build/pack.ps1 -Version 0.1.0
+#>
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory = $true)]
+    [string] $Version,
+
+    [string] $SignParams
+)
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
+
+# x.y.z or x.y.z-prerelease (semantic versioning, no build metadata): what Velopack and NuGet accept.
+if ($Version -notmatch '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$') {
+    throw "Invalid version '$Version': expected x.y.z or x.y.z-prerelease (for instance 0.1.0 or 0.2.0-beta.1)."
+}
+
+# Everything below is relative to the repository root (this script is in <root>/build).
+$root = Split-Path -Parent $PSScriptRoot
+Push-Location $root
+try {
+    $publishDir = 'artifacts/publish'
+    $releasesDir = 'artifacts/releases'
+
+    # Never pack what an earlier build left behind.
+    if (Test-Path $publishDir) {
+        Remove-Item -Recurse -Force $publishDir
+    }
+
+    Write-Host "==> Publishing FolderSwitch $Version"
+    dotnet publish src/FolderSwitch.App -c Release -r win-x64 --self-contained -p:PublishReadyToRun=true "-p:Version=$Version" -o $publishDir
+    if ($LASTEXITCODE -ne 0) {
+        throw "dotnet publish failed (exit code $LASTEXITCODE)."
+    }
+
+    Write-Host '==> Restoring the local tools (vpk)'
+    dotnet tool restore
+    if ($LASTEXITCODE -ne 0) {
+        throw "dotnet tool restore failed (exit code $LASTEXITCODE)."
+    }
+
+    # -r: the architecture of the package; without it vpk assumes x86 (FolderSwitch is x64 only).
+    $vpkArgs = @(
+        'vpk', 'pack',
+        '-u', 'FolderSwitch',
+        '-v', $Version,
+        '-p', $publishDir,
+        '-e', 'FolderSwitch.exe',
+        '-i', 'assets/icon/FolderSwitch.ico',
+        '-o', $releasesDir,
+        '-r', 'win-x64'
+    )
+
+    if ($SignParams) {
+        # Windows PowerShell 5.1 (and PowerShell 7 before 7.3) hands a double quote of an argument to the program
+        # unescaped: escape them, as a path with spaces in the signtool parameters would need.
+        $signArgument = $SignParams
+        $ps = $PSVersionTable.PSVersion
+        if ($ps.Major -lt 7 -or ($ps.Major -eq 7 -and $ps.Minor -lt 3)) {
+            $signArgument = $SignParams.Replace('"', '\"')
+        }
+
+        $vpkArgs += @('--signParams', $signArgument)
+        Write-Host '==> Packing with Velopack (signed)'
+    }
+    else {
+        Write-Host '==> Packing with Velopack (not signed)'
+    }
+
+    dotnet @vpkArgs
+    if ($LASTEXITCODE -ne 0) {
+        throw "vpk pack failed (exit code $LASTEXITCODE)."
+    }
+
+    Write-Host "==> Done: $releasesDir"
+    Get-ChildItem $releasesDir | ForEach-Object { '{0,12:N0}  {1}' -f $_.Length, $_.Name }
+}
+finally {
+    Pop-Location
+}

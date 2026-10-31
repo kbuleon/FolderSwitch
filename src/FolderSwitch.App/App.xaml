@@ -1,0 +1,7 @@
+<Application x:Class="FolderSwitch.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             ShutdownMode="OnExplicitShutdown">
+    <!-- No StartupUri: Program.Main starts the application and Startup/Composition builds its only window. -->
+    <Application.Resources />
+</Application>

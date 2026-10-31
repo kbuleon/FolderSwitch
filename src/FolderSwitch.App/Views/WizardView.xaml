@@ -1,0 +1,381 @@
+<!--
+    The content of the first-run wizard's window (spec 5.8), bound to WizardViewModel, from top to
+    bottom: the title row (moves the window; ✕ closes it), the progress of the four steps, the step shown, and the
+    footer (« ← Previous », « Step n of 4 », « Next → » then « Finish ✓ »). The steps: 1. the language (native names,
+    the one of Windows marked); 2. the shortcut (the shortcut editor, with its note and its test zone); 3. the mode and
+    the theme (a thumbnail per theme); 4. starting with Windows (checked, with a warning once unchecked) and the content
+    of the first tab. Every text comes from Texts and follows the language chosen at step 1 at once. The four steps
+    share one cell: those not shown are hidden, not collapsed, so that the window keeps the height of the tallest from
+    step to step. Hosted by WizardWindow, and rendered off-screen by the snapshot mode.
+-->
+<UserControl x:Class="FolderSwitch.App.Views.WizardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:FolderSwitch.App.Views"
+             xmlns:persistence="clr-namespace:FolderSwitch.Core.Persistence;assembly=FolderSwitch.Core"
+             xmlns:vm="clr-namespace:FolderSwitch.Presentation.ViewModels;assembly=FolderSwitch.Presentation"
+             x:Name="Root"
+             Width="620"
+             FontFamily="Segoe UI"
+             FontSize="13"
+             Foreground="{DynamicResource Fs.OnBackgroundText}">
+    <UserControl.Resources>
+        <local:StepVisibilityConverter x:Key="Wz.StepVisibility" />
+        <local:ValueIsParameterConverter x:Key="Wz.IsValue" />
+
+        <!-- The title of a step. -->
+        <Style x:Key="Wz.Heading" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18.4" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Margin" Value="0,0,0,4" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
+        <!-- The sentence under it. -->
+        <Style x:Key="Wz.Intro" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13.8" />
+            <Setter Property="Foreground" Value="{DynamicResource Fs.OnBackgroundMuted}" />
+            <Setter Property="Margin" Value="0,0,0,14" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
+        <!-- A small explanation under a control. -->
+        <Style x:Key="Wz.Hint" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12.2" />
+            <Setter Property="Foreground" Value="{DynamicResource Fs.OnBackgroundMuted}" />
+            <Setter Property="Margin" Value="1,7,0,0" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
+        <!-- The second line of a card (step 4). -->
+        <Style x:Key="Wz.CardHint" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="11.8" />
+            <Setter Property="Foreground" Value="{DynamicResource Fs.MenuMuted}" />
+            <Setter Property="Margin" Value="0,2,0,0" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
+        <!-- A mode: the chosen one raised on the card surface, as in the mockup. -->
+        <Style x:Key="Wz.SegmentButton" TargetType="Button" BasedOn="{StaticResource Fs.SegmentButton}">
+            <Setter Property="FontSize" Value="12.8" />
+            <Setter Property="Padding" Value="13,5,13,6" />
+            <Style.Triggers>
+                <Trigger Property="local:Selection.IsSelected" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource Fs.Menu}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource Fs.KeyCapBorder}" />
+                    <Setter Property="Foreground" Value="{DynamicResource Fs.MenuText}" />
+                    <Setter Property="FontWeight" Value="SemiBold" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- A choice drawn as a card on the menu surface, with its check box (or radio dot) on the left. -->
+        <Style x:Key="Wz.Card" TargetType="ToggleButton">
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="FontSize" Value="13.6" />
+            <Setter Property="Foreground" Value="{DynamicResource Fs.MenuText}" />
+            <Setter Property="Background" Value="{DynamicResource Fs.Menu}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource Fs.Border}" />
+            <Setter Property="Padding" Value="11,9,12,10" />
+            <Setter Property="Margin" Value="0,0,0,8" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+
+        <Style x:Key="Wz.CheckCard" TargetType="CheckBox" BasedOn="{StaticResource Wz.Card}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Border x:Name="Card"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Border x:Name="Box"
+                                        Width="17"
+                                        Height="17"
+                                        Margin="0,1,11,0"
+                                        VerticalAlignment="Top"
+                                        CornerRadius="4"
+                                        BorderThickness="1.5"
+                                        BorderBrush="{DynamicResource Fs.MenuMuted}"
+                                        Background="{DynamicResource Fs.Menu}">
+                                    <TextBlock x:Name="Tick"
+                                               Text="&#xE73E;"
+                                               FontFamily="{StaticResource Fs.IconFont}"
+                                               FontSize="10"
+                                               Foreground="{DynamicResource Fs.OnAccent}"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Visibility="Hidden" />
+                                </Border>
+                                <ContentPresenter Grid.Column="1" RecognizesAccessKey="False" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Card" Property="BorderBrush" Value="{DynamicResource Fs.MenuMuted}" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Box" Property="Background" Value="{DynamicResource Fs.Accent}" />
+                                <Setter TargetName="Box" Property="BorderBrush" Value="{DynamicResource Fs.Accent}" />
+                                <Setter TargetName="Tick" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="Wz.RadioCard" TargetType="RadioButton" BasedOn="{StaticResource Wz.Card}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="Card"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Width="17" Height="17" Margin="0,1,11,0" VerticalAlignment="Top">
+                                    <Ellipse x:Name="Ring" StrokeThickness="1.5" Stroke="{DynamicResource Fs.MenuMuted}" Fill="{DynamicResource Fs.Menu}" />
+                                    <Ellipse x:Name="Dot" Width="8" Height="8" Fill="{DynamicResource Fs.Accent}" Visibility="Hidden" />
+                                </Grid>
+                                <ContentPresenter Grid.Column="1" RecognizesAccessKey="False" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Card" Property="BorderBrush" Value="{DynamicResource Fs.MenuMuted}" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Ring" Property="Stroke" Value="{DynamicResource Fs.Accent}" />
+                                <Setter TargetName="Dot" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <DockPanel>
+        <!-- Title row: icon and « Welcome to FolderSwitch »; ✕ on the right. The window is moved by it. -->
+        <DockPanel x:Name="TitleBar" DockPanel.Dock="Top" Margin="16,9,10,6" Background="Transparent">
+            <Button DockPanel.Dock="Right"
+                    Style="{StaticResource Fs.CloseButton}"
+                    Click="OnCloseClick"
+                    ToolTip="{Binding Texts[Window.Close], ElementName=Root}"
+                    AutomationProperties.Name="{Binding Texts[Window.Close], ElementName=Root}" />
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Image x:Name="AppIcon" Width="16" Height="16" Margin="0,0,9,0" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Texts[Wizard.Title], ElementName=Root}"
+                           VerticalAlignment="Center"
+                           FontSize="12.8"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource Fs.OnBackgroundMuted}"
+                           TextTrimming="CharacterEllipsis" />
+            </StackPanel>
+        </DockPanel>
+
+        <!-- Progress: one bar per step, in the accent color up to the step shown, with its name. -->
+        <ItemsControl DockPanel.Dock="Top" Margin="19,4,19,0" Focusable="False" ItemsSource="{Binding StepHeaders, ElementName=Root}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="1" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="3,0">
+                        <Border x:Name="Bar" Height="4" CornerRadius="2" Background="{DynamicResource Fs.SegmentTrack}" />
+                        <TextBlock x:Name="Label"
+                                   Margin="0,5,0,0"
+                                   FontSize="11.2"
+                                   Text="{Binding Label}"
+                                   Foreground="{DynamicResource Fs.OnBackgroundMuted}"
+                                   TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsReached}" Value="True">
+                            <Setter TargetName="Bar" Property="Background" Value="{DynamicResource Fs.Accent}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsCurrent}" Value="True">
+                            <Setter TargetName="Label" Property="Foreground" Value="{DynamicResource Fs.OnBackgroundText}" />
+                            <Setter TargetName="Label" Property="FontWeight" Value="SemiBold" />
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- Footer: « ← Previous », « Step n of 4 », « Next → » (« Finish ✓ » at the last step). -->
+        <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource Fs.Border}" Padding="22,12,22,13">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Style="{StaticResource Fs.PanelButton}"
+                        HorizontalAlignment="Left"
+                        MinWidth="104"
+                        FontSize="13"
+                        Command="{Binding PreviousCommand}">
+                    <TextBlock>
+                        <Run Text="←" />
+                        <Run Text="{Binding Texts[Wizard.Previous], ElementName=Root, Mode=OneWay}" />
+                    </TextBlock>
+                </Button>
+                <TextBlock Grid.Column="1"
+                           Margin="12,0"
+                           VerticalAlignment="Center"
+                           FontSize="11.8"
+                           Foreground="{DynamicResource Fs.OnBackgroundMuted}"
+                           Text="{Binding StepCountText, ElementName=Root}" />
+                <Button Grid.Column="2" HorizontalAlignment="Right" MinWidth="104" FontSize="13">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource Fs.PrimaryButton}">
+                            <Setter Property="Command" Value="{Binding NextCommand}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Step}" Value="{x:Static vm:WizardViewModel.LastStep}">
+                                    <Setter Property="Command" Value="{Binding FinishCommand}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <TextBlock Text="{Binding ForwardLabel, ElementName=Root}" />
+                </Button>
+            </Grid>
+        </Border>
+
+        <!-- The steps, one cell. -->
+        <Grid Margin="22,20,22,18" MinHeight="310">
+            <!-- 1. Language -->
+            <StackPanel Visibility="{Binding Step, Converter={StaticResource Wz.StepVisibility}, ConverterParameter=0}">
+                <TextBlock Style="{StaticResource Wz.Heading}" Text="{Binding Texts[Wizard.Language.Title], ElementName=Root}" />
+                <TextBlock Style="{StaticResource Wz.Intro}" Text="{Binding Texts[Wizard.Language.Intro], ElementName=Root}" />
+                <ComboBox Style="{StaticResource Fs.ComboBox}"
+                          MinHeight="36"
+                          FontSize="14.2"
+                          ItemsSource="{Binding LanguageChoices, ElementName=Root}"
+                          SelectedValuePath="Code"
+                          SelectedValue="{Binding Language, Mode=TwoWay}"
+                          AutomationProperties.Name="{Binding Texts[Wizard.Step.Language], ElementName=Root}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Label}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Style="{StaticResource Wz.Hint}" Text="{Binding Texts[Wizard.Language.Hint], ElementName=Root}" />
+            </StackPanel>
+
+            <!-- 2. Shortcut -->
+            <StackPanel Visibility="{Binding Step, Converter={StaticResource Wz.StepVisibility}, ConverterParameter=1}">
+                <TextBlock Style="{StaticResource Wz.Heading}" Text="{Binding Texts[Wizard.Hotkey.Title], ElementName=Root}" />
+                <TextBlock Style="{StaticResource Wz.Intro}" Text="{Binding Texts[Wizard.Hotkey.Intro], ElementName=Root}" />
+                <local:HotkeyEditor x:Name="Editor"
+                                    DataContext="{Binding Hotkey}"
+                                    Foreground="{DynamicResource Fs.MenuText}"
+                                    Texts="{Binding Texts, ElementName=Root}"
+                                    Note="{Binding HotkeyNote, ElementName=Root}" />
+            </StackPanel>
+
+            <!-- 3. Appearance -->
+            <StackPanel Visibility="{Binding Step, Converter={StaticResource Wz.StepVisibility}, ConverterParameter=2}">
+                <TextBlock Style="{StaticResource Wz.Heading}" Text="{Binding Texts[Wizard.Step.Appearance], ElementName=Root}" />
+                <TextBlock Style="{StaticResource Wz.Intro}" Text="{Binding Texts[Wizard.Appearance.Intro], ElementName=Root}" />
+                <Border HorizontalAlignment="Left" Margin="0,0,0,14" Padding="3" CornerRadius="8" Background="{DynamicResource Fs.SegmentTrack}">
+                    <ItemsControl ItemsSource="{Binding Modes, ElementName=Root}" Focusable="False">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource Wz.SegmentButton}" Margin="1,0" Click="OnModeClick" local:Selection.IsSelected="{Binding IsSelected}">
+                                    <TextBlock>
+                                        <Run Text="{Binding Glyph, Mode=OneWay}" />
+                                        <Run Text="{Binding Label, Mode=OneWay}" />
+                                    </TextBlock>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Border>
+                <ItemsControl Margin="-3,0" ItemsSource="{Binding Themes, ElementName=Root}" Focusable="False">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="4" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource Fs.TileButton}" Margin="3" Padding="5" Click="OnThemeClick" local:Selection.IsSelected="{Binding IsSelected}">
+                                <StackPanel>
+                                    <local:ThemePreview Height="32"
+                                                        Theme="{Binding Key}"
+                                                        BackgroundColor="{Binding Background}"
+                                                        Variant="{Binding PreviewVariant, RelativeSource={RelativeSource AncestorType=local:WizardView}}" />
+                                    <TextBlock Margin="1,5,1,1" FontSize="11.8" Text="{Binding Label}" TextTrimming="CharacterEllipsis" />
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+            <!-- 4. Startup -->
+            <StackPanel Visibility="{Binding Step, Converter={StaticResource Wz.StepVisibility}, ConverterParameter=3}">
+                <TextBlock Style="{StaticResource Wz.Heading}" Text="{Binding Texts[Wizard.Step.Startup], ElementName=Root}" />
+                <TextBlock Style="{StaticResource Wz.Intro}" Text="{Binding Texts[Wizard.Startup.Intro], ElementName=Root}" />
+                <CheckBox Style="{StaticResource Wz.CheckCard}" IsChecked="{Binding StartWithWindows, Mode=TwoWay}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Texts[Settings.StartWithWindows], ElementName=Root}" TextWrapping="Wrap" />
+                        <TextBlock Style="{StaticResource Wz.CardHint}" Text="{Binding Texts[Wizard.StartWithWindows.Hint], ElementName=Root}" />
+                    </StackPanel>
+                </CheckBox>
+                <!-- Unchecked: why it matters, in amber. -->
+                <Border Margin="0,-2,0,10"
+                        Padding="9,6,9,7"
+                        CornerRadius="7"
+                        Background="{DynamicResource Fs.WarningBackground}"
+                        Visibility="{Binding StartWithWindows, Converter={StaticResource Fs.InverseBoolToVisibility}}">
+                    <TextBlock Text="{Binding Texts[Wizard.StartWithWindows.Warning], ElementName=Root}"
+                               FontSize="12"
+                               TextWrapping="Wrap"
+                               Foreground="{DynamicResource Fs.Warning}" />
+                </Border>
+                <RadioButton Style="{StaticResource Wz.RadioCard}"
+                             GroupName="WizardStartContent"
+                             IsChecked="{Binding StartContent, Mode=TwoWay, Converter={StaticResource Wz.IsValue}, ConverterParameter={x:Static persistence:StartContent.SampleTab}}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Texts[Wizard.Start.Sample], ElementName=Root}" TextWrapping="Wrap" />
+                        <TextBlock Style="{StaticResource Wz.CardHint}" Text="{Binding Texts[Wizard.Start.Sample.Hint], ElementName=Root}" />
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton Style="{StaticResource Wz.RadioCard}"
+                             GroupName="WizardStartContent"
+                             IsChecked="{Binding StartContent, Mode=TwoWay, Converter={StaticResource Wz.IsValue}, ConverterParameter={x:Static persistence:StartContent.EmptyTab}}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Texts[Wizard.Start.Empty], ElementName=Root}" TextWrapping="Wrap" />
+                        <TextBlock Style="{StaticResource Wz.CardHint}" Text="{Binding Texts[Wizard.Start.Empty.Hint], ElementName=Root}" />
+                    </StackPanel>
+                </RadioButton>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,27 @@
+<!--
+    The first-run wizard's window (spec 5.8): while FolderSwitch is being set up, a normal window, listed in the
+    taskbar. Borderless like FolderSwitch's other windows (rounded and shadowed by the Desktop Window Manager on
+    Windows 11, a 1 px border on Windows 10), drawn in the mode and theme chosen at step 3 (see WizardTheme); its content
+    is WizardView. Centered on the primary monitor's work area; its title row moves it. ✕ and Alt+F4 close it, which
+    leaves the first run to be done (see FirstRunWizard). Escape only ends a shortcut capture. Its icon, in the taskbar
+    and Alt+Tab, is the application's (the resource Assets/FolderSwitch.ico: WPF picks the image of the size it needs).
+-->
+<Window x:Class="FolderSwitch.App.Views.WizardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:FolderSwitch.App.Views"
+        Title="FolderSwitch"
+        Icon="pack://application:,,,/Assets/FolderSwitch.ico"
+        WindowStyle="None"
+        AllowsTransparency="False"
+        ResizeMode="NoResize"
+        ShowInTaskbar="True"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="Manual"
+        Background="{DynamicResource Fs.Background}"
+        BorderBrush="{DynamicResource Fs.WindowBorder}"
+        BorderThickness="0"
+        UseLayoutRounding="True"
+        PreviewKeyDown="OnPreviewKeyDown">
+    <local:WizardView x:Name="View" />
+</Window>

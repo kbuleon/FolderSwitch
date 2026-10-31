@@ -1,0 +1,39 @@
+<!--
+    The palette of a group (Customize mode, spec 5.4): the ten colors of ThemeCatalog.GroupPalette, named in the
+    current language in their tooltips, the group's own one ringed. A click recolors the group and closes it. Shown in
+    a Flyout under the group's color dot.
+-->
+<UserControl x:Class="FolderSwitch.App.Views.ColorPalettePopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:FolderSwitch.App.Views"
+             x:Name="Root"
+             Width="186">
+    <StackPanel Margin="3,1,3,3">
+        <TextBlock Margin="2,1,2,7"
+                   FontSize="11.8"
+                   FontWeight="SemiBold"
+                   Foreground="{DynamicResource Fs.MenuMuted}"
+                   Text="{Binding Texts[Group.Color], ElementName=Root}" />
+        <ItemsControl ItemsSource="{Binding Swatches, ElementName=Root}" Focusable="False">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="5" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Style="{StaticResource Fs.SwatchButton}"
+                            Width="25"
+                            Height="25"
+                            Margin="5"
+                            Background="{Binding Brush}"
+                            ToolTip="{Binding Name}"
+                            AutomationProperties.Name="{Binding Name}"
+                            local:Selection.IsSelected="{Binding IsCurrent}"
+                            Click="OnSwatchClick" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+</UserControl>

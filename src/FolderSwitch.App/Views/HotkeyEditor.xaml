@@ -1,0 +1,182 @@
+<!--
+    The shortcut editor, bound to a HotkeyEditorViewModel (spec 5.8 step 2, also in the settings, spec 5.4): the keys
+    as key caps, « Change » (which captures the next combination; « Cancel » while it does) and « Reset to Ctrl + ⊞ Win »,
+    why a capture could not start, the problems of the combination (a refusal in red, a warning in amber), the owner's
+    Note (the wizard's), and the test zone (hidden for a refused combination), which says when the shortcut was
+    recognized. Edits nothing by itself: its owner applies the combination. The texts of the view itself come from Texts.
+-->
+<UserControl x:Class="FolderSwitch.App.Views.HotkeyEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Root">
+    <StackPanel>
+        <!-- The keys, or the invitation to press them while capturing. -->
+        <Grid MinHeight="50">
+            <Rectangle RadiusX="10" RadiusY="10" StrokeThickness="1" Fill="{DynamicResource Fs.Menu}">
+                <Rectangle.Style>
+                    <Style TargetType="Rectangle">
+                        <Setter Property="Stroke" Value="{DynamicResource Fs.KeyCapBorder}" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsCapturing}" Value="True">
+                                <Setter Property="Stroke" Value="{DynamicResource Fs.Accent}" />
+                                <Setter Property="StrokeThickness" Value="2" />
+                                <Setter Property="StrokeDashArray" Value="3 2" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Rectangle.Style>
+            </Rectangle>
+            <ItemsControl Margin="10,8"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Focusable="False"
+                          AlternationCount="100"
+                          ItemsSource="{Binding Display, Converter={StaticResource Fs.HotkeyParts}}"
+                          Visibility="{Binding IsCapturing, Converter={StaticResource Fs.InverseBoolToVisibility}}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="Plus"
+                                       Text="+"
+                                       Margin="7,0"
+                                       VerticalAlignment="Center"
+                                       FontWeight="SemiBold"
+                                       Foreground="{DynamicResource Fs.MenuMuted}" />
+                            <Border Style="{StaticResource Fs.KeyCapBox}">
+                                <TextBlock Text="{Binding}" FontSize="13.4" FontWeight="SemiBold" HorizontalAlignment="Center" />
+                            </Border>
+                        </StackPanel>
+                        <DataTemplate.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                <Setter TargetName="Plus" Property="Visibility" Value="Collapsed" />
+                            </Trigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <TextBlock Margin="12,8"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       FontWeight="SemiBold"
+                       Text="{Binding Texts[Hotkey.PressKeys], ElementName=Root}"
+                       Visibility="{Binding IsCapturing, Converter={StaticResource Fs.BoolToVisibility}}" />
+        </Grid>
+
+        <WrapPanel Margin="0,8,0,0">
+            <Button Style="{StaticResource Fs.PanelButton}"
+                    Margin="0,0,6,4"
+                    Command="{Binding StartCaptureCommand}"
+                    Visibility="{Binding IsCapturing, Converter={StaticResource Fs.InverseBoolToVisibility}}">
+                <TextBlock Text="{Binding Texts[Hotkey.Change], ElementName=Root}" />
+            </Button>
+            <Button Style="{StaticResource Fs.PanelButton}"
+                    Margin="0,0,6,4"
+                    Command="{Binding StopCaptureCommand}"
+                    Visibility="{Binding IsCapturing, Converter={StaticResource Fs.BoolToVisibility}}">
+                <TextBlock Text="{Binding Texts[Hotkey.CancelCapture], ElementName=Root}" />
+            </Button>
+            <Button Style="{StaticResource Fs.PanelButton}" Margin="0,0,6,4" Command="{Binding ResetToDefaultCommand}">
+                <TextBlock Text="{Binding ResetLabel}" TextTrimming="CharacterEllipsis" />
+            </Button>
+        </WrapPanel>
+
+        <!-- Why « Change » could not capture (the keyboard hook was refused): right under it. -->
+        <Border Margin="0,4,0,0"
+                Padding="9,6,9,7"
+                CornerRadius="7"
+                Background="{DynamicResource Fs.DangerBackground}"
+                Visibility="{Binding CaptureError, Converter={StaticResource Fs.NullToCollapsed}}">
+            <TextBlock Text="{Binding CaptureError}" FontSize="12" TextWrapping="Wrap" Foreground="{DynamicResource Fs.Danger}" />
+        </Border>
+
+        <!-- The problems: a refusal in red, a warning in amber. -->
+        <ItemsControl ItemsSource="{Binding Messages}" Focusable="False">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="0,4,0,0" Padding="9,6,9,7" CornerRadius="7">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="{DynamicResource Fs.WarningBackground}" />
+                                <Setter Property="TextElement.Foreground" Value="{DynamicResource Fs.Warning}" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsBlocking}" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource Fs.DangerBackground}" />
+                                        <Setter Property="TextElement.Foreground" Value="{DynamicResource Fs.Danger}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <TextBlock Text="{Binding Text}" FontSize="12" TextWrapping="Wrap" />
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- The owner's note, when there is no problem: advice in blue, a confirmation in green. -->
+        <Border Margin="0,4,0,0"
+                Padding="9,6,9,7"
+                CornerRadius="7"
+                Visibility="{Binding Note, ElementName=Root, Converter={StaticResource Fs.NullToCollapsed}}">
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="Background" Value="{DynamicResource Fs.InfoBackground}" />
+                    <Setter Property="TextElement.Foreground" Value="{DynamicResource Fs.Info}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Note.IsConfirmation, ElementName=Root}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource Fs.SuccessBackground}" />
+                            <Setter Property="TextElement.Foreground" Value="{DynamicResource Fs.Success}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <TextBlock Text="{Binding Note.Text, ElementName=Root}" FontSize="12" TextWrapping="Wrap" />
+        </Border>
+
+        <!-- The test zone; not for a refused combination, which cannot be registered (and ⊞ Win + L would lock the session). -->
+        <Grid Margin="0,8,0,0">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding CanApply}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Rectangle RadiusX="8" RadiusY="8" StrokeThickness="1" StrokeDashArray="4 3" Stroke="{DynamicResource Fs.KeyCapBorder}">
+                <Rectangle.Style>
+                    <Style TargetType="Rectangle">
+                        <Setter Property="Fill" Value="Transparent" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding TestRecognized}" Value="True">
+                                <Setter Property="Fill" Value="{DynamicResource Fs.SuccessBackground}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Rectangle.Style>
+            </Rectangle>
+            <TextBlock Margin="10,7,10,8" FontSize="12" TextWrapping="Wrap">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Text" Value="{Binding TestPrompt}" />
+                        <Setter Property="Foreground" Value="{DynamicResource Fs.MenuMuted}" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding TestRecognized}" Value="True">
+                                <Setter Property="Text" Value="{Binding Recognized, ElementName=Root}" />
+                                <Setter Property="Foreground" Value="{DynamicResource Fs.Success}" />
+                                <Setter Property="FontWeight" Value="SemiBold" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/FolderSwitch.App/FolderSwitch.App.csproj" />
+    <Project Path="src/FolderSwitch.Core/FolderSwitch.Core.csproj" />
+    <Project Path="src/FolderSwitch.Presentation/FolderSwitch.Presentation.csproj" />
+    <Project Path="src/FolderSwitch.Windows/FolderSwitch.Windows.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DialogHost/DialogHost.csproj" />
+    <Project Path="tests/FolderSwitch.App.Tests/FolderSwitch.App.Tests.csproj" />
+    <Project Path="tests/FolderSwitch.Core.Tests/FolderSwitch.Core.Tests.csproj" />
+    <Project Path="tests/FolderSwitch.Presentation.Tests/FolderSwitch.Presentation.Tests.csproj" />
+    <Project Path="tests/FolderSwitch.Windows.IntegrationTests/FolderSwitch.Windows.IntegrationTests.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/FolderSwitch.IconBuilder/FolderSwitch.IconBuilder.csproj" />
+  </Folder>
+</Solution>

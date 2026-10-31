@@ -1,0 +1,74 @@
+<!--
+    An item of a group, bound to an ItemViewModel: a folder or file icon in the group's color, the name, then the path
+    in grey, both ellipsized when the column is too narrow (the full path is in the tooltip). Click or Ctrl+click opens it.
+    Customize mode: a click selects it (F2 renames it), a double-click on it renames it in place, a drag moves it
+    within its group or to another group of the tab, and ✕ shows under the mouse to remove it.
+-->
+<UserControl x:Class="FolderSwitch.App.Views.ItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:FolderSwitch.App.Views"
+             xmlns:layout="clr-namespace:FolderSwitch.App.Views.Layout"
+             x:Name="Root">
+    <ContentControl x:Name="Row"
+                    Style="{StaticResource Fs.ItemRow}"
+                    ToolTip="{Binding SecondaryText}"
+                    ToolTipService.InitialShowDelay="700">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <layout:ItemRowPanel Spacing="8">
+                <Viewbox Width="16" Height="16">
+                    <Canvas Width="24" Height="24">
+                        <Path Style="{StaticResource Fs.ItemIcon}" />
+                    </Canvas>
+                </Viewbox>
+                <Grid>
+                    <layout:FitText Text="{Binding DisplayName}"
+                                    FontSize="{DynamicResource Fs.ItemFontSize}"
+                                    Foreground="{DynamicResource Fs.Group.ItemText}"
+                                    TextTrimming="CharacterEllipsis"
+                                    Visibility="{Binding IsRenaming, Converter={StaticResource Fs.InverseBoolToVisibility}}" />
+                    <TextBox Style="{StaticResource Fs.RenameBox}"
+                             Margin="-4,-3,0,-3"
+                             FontSize="{DynamicResource Fs.ItemFontSize}"
+                             local:InlineRename.IsActive="{Binding IsRenaming, Mode=OneWay}"
+                             Visibility="{Binding IsRenaming, Converter={StaticResource Fs.BoolToVisibility}}" />
+                </Grid>
+                <TextBlock Text="{Binding SecondaryText}"
+                           FontSize="11.5"
+                           Foreground="{DynamicResource Fs.Group.ItemMuted}"
+                           TextTrimming="CharacterEllipsis" />
+            </layout:ItemRowPanel>
+
+            <!-- Customize mode: ✕, shown under the mouse (its room is kept, so that nothing moves). -->
+            <Button Grid.Column="1"
+                    Margin="6,-2,-4,-2"
+                    Foreground="{DynamicResource Fs.Group.ItemMuted}"
+                    Command="{Binding DataContext.RemoveItemCommand, RelativeSource={RelativeSource AncestorType=local:MainView}}"
+                    CommandParameter="{Binding}"
+                    ToolTip="{Binding Texts[Item.Remove], RelativeSource={RelativeSource AncestorType=local:MainView}}"
+                    AutomationProperties.Name="{Binding Texts[Item.Remove], RelativeSource={RelativeSource AncestorType=local:MainView}}">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource Fs.RemoveButton}">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding DataContext.IsCustomizing, RelativeSource={RelativeSource AncestorType=local:MainView}}" Value="True">
+                                <Setter Property="Visibility" Value="Hidden" />
+                            </DataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding DataContext.IsCustomizing, RelativeSource={RelativeSource AncestorType=local:MainView}}" Value="True" />
+                                    <Condition Binding="{Binding IsMouseOver, ElementName=Row}" Value="True" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Visibility" Value="Visible" />
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+    </ContentControl>
+</UserControl>
