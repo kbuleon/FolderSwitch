@@ -29,26 +29,17 @@ C# on .NET 10 with WPF, for Windows 10 and 11 (the installer is x64). Installed 
   with Windows, export and import of the configuration.
 - An installer and updates (Velopack), updates being off until a feed address is set.
 
-## Repository layout
+## Documentation
 
-| Path | Contents |
-| ---- | -------- |
-| `FolderSwitch.slnx` | The solution. |
-| `src/FolderSwitch.Core` | Pure logic: configuration model, board editing, click routing, window classification, shortcut rules, layout, persistence, localization, themes, and the interfaces (ports) of everything that needs Windows. |
-| `src/FolderSwitch.Presentation` | View models (MVVM, no WPF types). |
-| `src/FolderSwitch.Windows` | Win32, COM and registry implementations of the ports: shortcut and keyboard hook, Explorer and file-dialog control, shell launch, single instance, system information. |
-| `src/FolderSwitch.App` | The WPF shell and composition root: entry point, windows and views, theme resources, notification icon, updates, diagnostics, `Strings/*.json` translations. Builds `FolderSwitch.exe`. |
-| `tests/FolderSwitch.Core.Tests`, `tests/FolderSwitch.Presentation.Tests`, `tests/FolderSwitch.App.Tests`, `tests/FolderSwitch.Windows.IntegrationTests` | The four test projects (see Tests). |
-| `tests/DialogHost` | Helper executable that opens one file dialog of a requested kind, for the integration tests. |
-| `tools/FolderSwitch.IconBuilder` | Renders the application icon into `assets/icon`. |
-| `build/pack.ps1` | Publishes and packs the installer and update packages. |
-| `assets/icon` | The icon (`.ico`, `.svg`, PNG sizes). |
-| `Directory.Build.props`, `Directory.Packages.props`, `global.json`, `nuget.config` | Shared build settings, central package versions, .NET SDK pin, package source. |
-| `.config` | The local dotnet tool (`vpk`, in `.config/dotnet-tools.json`). |
-| `artifacts` | Build output (`publish`, `releases`); not versioned. |
-| `ARCHITECTURE.md`, `CODEMAP.md`, `CHANGELOG.md` | Software architecture, map of the code, history of changes. |
+- [ARCHITECTURE.md](ARCHITECTURE.md): how the software is built. The projects and their dependencies, the process
+  lifecycle, threads and time budgets, the integration with Windows, persistence, localization, theming, the error
+  policy, packaging and the testing strategy.
+- [CODEMAP.md](CODEMAP.md): the map of the code, one line per significant file or type, folder by folder.
+- [CHANGELOG.md](CHANGELOG.md): the history of changes, version by version.
 
-Build and run from source (the .NET 10 SDK is enough; warnings are errors):
+## Build and run from source
+
+Prerequisites: Windows and the .NET 10 SDK (pinned by `global.json`). Warnings are errors.
 
 ```powershell
 dotnet build FolderSwitch.slnx -c Release
@@ -60,11 +51,11 @@ source. A copy that Velopack did not install never checks for updates. A copy ru
 configuration, `%APPDATA%\FolderSwitch`, like an installed one, and « Start with Windows » (in the settings or the
 first-run wizard) rewrites the same `Run` value, then pointing at the `bin\…\FolderSwitch.exe` of the source tree.
 
-## Build and publish
+## Package and publish
 
-Prerequisites: Windows and the .NET 10 SDK (`global.json`). Nothing else to install by hand: the packaging tool,
-Velopack's `vpk`, is a local dotnet tool (`.config/dotnet-tools.json`) that the script restores. When upgrading, keep its
-version equal to the `Velopack` package of `Directory.Packages.props`. `vpk` runs on the .NET 10 runtime that comes with
+Nothing to install beyond the SDK: the packaging tool, Velopack's `vpk`, is a local dotnet tool
+(`.config/dotnet-tools.json`) that the script restores. When upgrading, keep its version equal to the `Velopack` package
+of `Directory.Packages.props`. `vpk` runs on the .NET 10 runtime that comes with
 the SDK, so no roll-forward setting is needed.
 
 ```powershell
@@ -125,14 +116,9 @@ powershell -ExecutionPolicy Bypass -File build/pack.ps1 -SignParams '/a /fd sha2
 
 ## Tests
 
-Four xUnit projects, plus the `DialogHost` helper:
-
-| Project | Covers |
-| ------- | ------ |
-| `tests/FolderSwitch.Core.Tests` | The pure logic (routing, shortcut rules, persistence, localization, themes, layout) and the shipped translation files. Runs anywhere .NET 10 does. |
-| `tests/FolderSwitch.Presentation.Tests` | The view models, over fakes of every service. |
-| `tests/FolderSwitch.App.Tests` | The application's own decisions, without showing any window and in temporary folders only: the exception policy and the error breaker, what a press of the shortcut does, the debug log's roll, saving and its failures, the update feed address. |
-| `tests/FolderSwitch.Windows.IntegrationTests` | The real Windows services on the real desktop session. Every class is tagged `Category=Desktop`. |
+Four xUnit projects (Core, Presentation, App, Windows integration), plus the `DialogHost` helper; the testing strategy
+of [ARCHITECTURE.md](ARCHITECTURE.md) says what each one covers. Every class of the Windows integration tests is tagged
+`Category=Desktop`.
 
 The **Desktop** category drives real windows: it opens Explorer windows, file dialogs (through `DialogHost`), a message
 box and a text editor, moves the foreground window, and installs the real keyboard hook. No keystroke is sent, but do
@@ -185,14 +171,14 @@ above); without one it never connects.
 
 ## Known limits
 
-From the specification of the initial version:
+Imposed by Windows:
 
 - **The shortcut has no effect while a window running as administrator has the focus.** Windows does not give the
   keyboard to a program that is not elevated then. Running FolderSwitch as administrator is not supported.
 - **On Windows 11, Ctrl + click opening a new Explorer tab is not guaranteed.** It relies on an Explorer command that
   Microsoft does not document and may stop working after a Windows update. FolderSwitch then opens a new window.
 
-Also visible in the code:
+In the current version:
 
 - A file clicked while a file dialog is the calling window moves the dialog to the file's folder; it does not select
   the file.
