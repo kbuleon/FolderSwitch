@@ -75,7 +75,7 @@ The domain, with no dependency on Windows, WPF or packages.
 
 ### Editing/
 
-- `BoardEditor` — every edit of the board as a pure operation on `AppConfig` (tabs, columns, groups, items, rename, move, collapse, colour, width).
+- `BoardEditor` — every edit of the board as a pure operation on `AppConfig` (tabs, columns, groups, items, rename, move within or across tabs, collapse, colour, width); a tab keeps at least one column.
 - `EditResult`, `EditError` — success or the reason an edit was refused.
 
 ### Persistence/
@@ -125,7 +125,7 @@ View models and the UI-facing ports. Depends on Core and CommunityToolkit.Mvvm.
 
 ### ViewModels/
 
-- `MainViewModel` — the window: board projection, normal use and Customize mode, all edits, rename, activation and its outcomes, context line, `OnShown`/`OnDeactivated`, `Reload` after an import.
+- `MainViewModel` — the window: board projection, normal use and Customize mode, all edits, rename, activation and its outcomes, context line, tab shown during a drag across tabs, `OnShown`/`OnDeactivated`, `Reload` after an import.
 - `TabViewModel`, `ColumnViewModel`, `GroupViewModel`, `ItemViewModel` — projections of the model objects.
 - `RenamableViewModel` — base of the three nameable objects (tab, group, item).
 - `InsertionSlot` — converts a drop slot into the index the model expects.
@@ -234,8 +234,8 @@ The shell and composition root.
 ### Views/
 
 - `MainWindow` — the borderless resident window: frame, keyboard (Tab, Escape, F2), hide on close.
-- `MainView` — the window's content: title bar (with ⚙ and (?)), tab bar, board, context line; flyout host; dialog layer (settings and About over a dimmed backdrop); rename focus handling.
-- `TabBar`, `BoardView`, `ColumnView`, `GroupView`, `ItemView` — the board's views (the tab bar wraps); Customize-mode gestures and drop targets.
+- `MainView` — the window's content: title bar (with ⚙ and (?)), tab bar, the boards of every tab (the active one shown), context line; flyout host; dialog layer (settings and About over a dimmed backdrop); rename focus handling.
+- `TabBar`, `BoardView`, `ColumnView`, `GroupView`, `ItemView` — the board's views (the tab bar wraps, and shows the tab a drag rests on); Customize-mode gestures and drop targets.
 - `ColumnResizeGrip` — drag a column's width, double-click for automatic.
 - `AppearanceMenu` — the settings' Appearance page: mode, theme tiles, backgrounds, corners (with `ThemeTile`, `ModeChoice`, `BackgroundSwatch`, `RadiusChoice`).
 - `ThemePreview` — a theme's thumbnail drawn with the real catalog colours.
@@ -243,6 +243,7 @@ The shell and composition root.
 - `AboutView` — the About window: icon, name, version, description.
 - `AddFolderMenu` — the « + Folder » menu with special folders.
 - `ItemMenu` — an item's right-click menu in normal use: open in File Explorer, open in a new tab (Ctrl+click).
+- `EditMenu` — the right-click menu of a tab, a group's header or an item in Customize mode: rename (F2).
 - `ColorPalettePopup` — the group colour palette.
 - `HotkeyEditor` — the shortcut editor control used by settings and wizard.
 - `WizardView`, `WizardWindow` — the first-run wizard's content and window.
@@ -254,10 +255,11 @@ The shell and composition root.
 - `Converters` — the value converters of the views.
 - `TreeHelpers` — element-tree walks used by the views.
 - `AppIconDrawing` — the icon as code; shared with the icon builder (compiled by both).
-- `DragDrop/BoardDragDrop` — drag-and-drop start, targets and slot finding for tabs (line by line when they wrap), columns, groups and items.
+- `DragDrop/BoardDragDrop` — drag-and-drop start, targets and slot finding for tabs (line by line when they wrap), columns, groups and items, within a tab or across tabs.
 - `DragDrop/PressGesture` — press, click, double-click or drag-start recogniser.
 - `DragDrop/InsertionAdorner` — the insertion line shown while dragging.
 - `Layout/ColumnWidthPresenter` — gives a column its effective width (preview, fixed or content-driven).
+- `Layout/TabBoardsPanel` — holds every tab's board: as wide as the widest, as tall as the one shown.
 - `Layout/CollapsibleBox` — collapses height but keeps measuring width.
 - `Layout/ItemRowPanel` — icon, name, then path that yields room to the name.
 - `Layout/FitText` — text that tells its column to re-fit when it changes.

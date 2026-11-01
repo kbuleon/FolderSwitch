@@ -65,12 +65,18 @@ public static class BoardEditor
         return column;
     }
 
+    /// <summary>Removes an empty column; a tab keeps at least one column.</summary>
     public static EditResult RemoveColumn(Tab t, Guid columnId)
     {
         var index = t.Columns.FindIndex(col => col.Id == columnId);
         if (index < 0)
         {
             return Fail(EditError.NotFound);
+        }
+
+        if (t.Columns.Count == 1)
+        {
+            return Fail(EditError.LastColumnCannotBeRemoved);
         }
 
         if (t.Columns[index].Groups.Count > 0)
@@ -82,16 +88,24 @@ public static class BoardEditor
         return Success;
     }
 
-    /// <summary>Moves a column within its tab, with its groups and its width.</summary>
-    public static EditResult MoveColumn(Tab t, Guid columnId, int newIndex)
+    /// <summary>
+    /// Moves a column, with its groups and its width, within its tab or to another tab. The last column of a tab does
+    /// not leave it: a tab keeps at least one column.
+    /// </summary>
+    public static EditResult MoveColumn(AppConfig c, Guid columnId, Guid targetTabId, int index)
     {
-        var index = t.Columns.FindIndex(col => col.Id == columnId);
-        if (index < 0)
+        if (FindColumn(c, columnId) is not { } source || c.Tabs.Find(t => t.Id == targetTabId) is not { } target)
         {
             return Fail(EditError.NotFound);
         }
 
-        MoveWithin(t.Columns, index, newIndex);
+        if (!ReferenceEquals(source.Tab, target) && source.Tab.Columns.Count == 1)
+        {
+            return Fail(EditError.LastColumnCannotBeRemoved);
+        }
+
+        source.Tab.Columns.Remove(source.Column);
+        InsertClamped(target.Columns, index, source.Column);
         return Success;
     }
 
@@ -136,17 +150,12 @@ public static class BoardEditor
         return Success;
     }
 
-    /// <summary>Moves a group to another column of the same tab (or within its own column).</summary>
+    /// <summary>Moves a group to any column, in any tab, keeping the same <see cref="Group"/> instance.</summary>
     public static EditResult MoveGroup(AppConfig c, Guid groupId, Guid targetColumnId, int index)
     {
         if (FindGroup(c, groupId) is not { } source || FindColumn(c, targetColumnId) is not { } target)
         {
             return Fail(EditError.NotFound);
-        }
-
-        if (!ReferenceEquals(source.Tab, target.Tab))
-        {
-            return Fail(EditError.CrossTabMoveNotAllowed);
         }
 
         source.Column.Groups.Remove(source.Group);

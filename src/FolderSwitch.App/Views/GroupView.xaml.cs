@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 using FolderSwitch.App.Diagnostics;
 using FolderSwitch.App.Themes;
 using FolderSwitch.App.Views.DragDrop;
@@ -20,10 +21,11 @@ namespace FolderSwitch.App.Views;
 /// selects the group (F2), except that a click on the name's text only selects it: the second click of a
 /// double-click there renames the group in place, and a first click that had collapsed it would leave it collapsed
 /// under the rename. The grip ⠿ starts a drag of the group (<see cref="BoardDragDrop"/>) past the system's threshold
-/// and never collapses it; the color dot opens the palette and ✕ deletes the group, both buttons of their own.
+/// and never collapses it; the color dot opens the palette and ✕ deletes the group, both buttons of their own. A
+/// right-click on the header opens the group's <see cref="EditMenu"/> in Customize mode.
 /// </para>
 /// <para>
-/// <b>Drop.</b> In Customize mode the group takes the items of its tab dropped on it while it is open, at the slot
+/// <b>Drop.</b> In Customize mode the group takes the items of any tab dropped on it while it is open, at the slot
 /// under the mouse (the header counts as the top of the list); a collapsed group refuses them. A dragged group is left
 /// to the column.
 /// </para>
@@ -92,6 +94,7 @@ public partial class GroupView : UserControl
         var header = PressGesture.For(Header);
         header.Click = _ => OnHeaderClick(header.PressedOn(NameRoom));
         header.DoubleClick = () => header.PressedOn(NameRoom) && BeginRename();
+        Header.MouseRightButtonUp += OnHeaderRightClick;
 
         var grip = PressGesture.For(Grip);
         grip.Click = _ => Select();
@@ -100,7 +103,9 @@ public partial class GroupView : UserControl
         {
             if (DataContext is GroupViewModel group)
             {
+                var viewModel = ViewModel;
                 BoardDragDrop.Start(this, group);
+                viewModel?.EndDrag();
             }
         };
     }
@@ -285,6 +290,17 @@ public partial class GroupView : UserControl
         return true;
     }
 
+    /// <summary>In Customize mode, a right-click on the header selects the group and opens its <see cref="EditMenu"/>.</summary>
+    private void OnHeaderRightClick(object sender, MouseButtonEventArgs e)
+    {
+        if (IsCustomizing && DataContext is GroupViewModel { IsRenaming: false } group && MainView.Of(this) is { } view)
+        {
+            Select();
+            view.OpenEditMenu(group, Header);
+            e.Handled = true;
+        }
+    }
+
     private void Select()
     {
         if (ViewModel is { IsCustomizing: true } viewModel && DataContext is GroupViewModel group)
@@ -354,10 +370,8 @@ public partial class GroupView : UserControl
         }
     }
 
-    /// <summary>Only in Customize mode, while open, and only an item of this group's tab.</summary>
-    private bool CanTake(ItemViewModel item) =>
-        IsCustomizing && !IsCollapsed && DataContext is GroupViewModel group
-        && ReferenceEquals(item.Group.Column.Tab, group.Column.Tab);
+    /// <summary>Only in Customize mode and while open; an item of any tab.</summary>
+    private bool CanTake(ItemViewModel _) => IsCustomizing && !IsCollapsed && DataContext is GroupViewModel;
 
     private string GroupColorOrFallback() =>
         GroupColor is { } color && Core.Theming.ColorMath.IsValidHex(color) ? color : Themes.GroupStyleSelector.FallbackColor;

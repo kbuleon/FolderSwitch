@@ -7,9 +7,9 @@ using FolderSwitch.Presentation.ViewModels;
 namespace FolderSwitch.App.Views.DragDrop;
 
 /// <summary>
-/// The drag and drop of Customize mode: tabs within the tab bar, columns (by their grip) within their tab, groups (by
-/// their grip) within a column or to another column of the same tab, items within a group or to another group of the
-/// same tab. WPF's drag and drop, with the
+/// The drag and drop of Customize mode: tabs within the tab bar; columns (by their grip), groups (by their grip) and
+/// items to any place of their tab or of another one, which the tab bar shows when the drag rests on it (the view that
+/// started the drag then calls <see cref="MainViewModel.EndDrag"/>). WPF's drag and drop, with the
 /// view model being dragged as the data, in a format of FolderSwitch's own: nothing from another application is
 /// accepted, and nothing dragged out of FolderSwitch means anything elsewhere.
 /// </summary>

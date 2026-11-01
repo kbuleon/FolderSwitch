@@ -34,6 +34,7 @@
   "Item.SpecialSystem": "Foldery specjalne · systemowe",
   "Item.AlreadyPresent": "Już w tej grupie",
   "Item.Remove": "Usuń ten element",
+  "Edit.Rename": "Zmień nazwę",
   "Confirm.DeleteTab": "Usunąć tę kartę wraz ze wszystkimi grupami, które zawiera?",
   "Confirm.DeleteGroup": "Usunąć tę grupę wraz ze wszystkimi elementami, które zawiera?",
   "Error.TargetUnavailable": "Nie można uzyskać dostępu do tej lokalizacji. Mogła zostać przeniesiona lub usunięta albo jej dysk jest offline.",

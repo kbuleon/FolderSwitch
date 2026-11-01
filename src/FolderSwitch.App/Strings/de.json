@@ -34,6 +34,7 @@
   "Item.SpecialSystem": "Sonderordner · System",
   "Item.AlreadyPresent": "Bereits in dieser Gruppe",
   "Item.Remove": "Dieses Element entfernen",
+  "Edit.Rename": "Umbenennen",
   "Confirm.DeleteTab": "Diese Registerkarte und alle darin enthaltenen Gruppen löschen?",
   "Confirm.DeleteGroup": "Diese Gruppe und alle darin enthaltenen Elemente löschen?",
   "Error.TargetUnavailable": "Dieser Speicherort ist nicht erreichbar. Er wurde möglicherweise verschoben oder gelöscht, oder das Laufwerk ist offline.",

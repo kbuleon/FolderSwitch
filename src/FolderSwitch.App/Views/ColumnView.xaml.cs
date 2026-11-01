@@ -1,6 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using FolderSwitch.App.Themes;
 using FolderSwitch.App.Views.DragDrop;
 using FolderSwitch.Presentation.ViewModels;
 
@@ -8,17 +9,21 @@ namespace FolderSwitch.App.Views;
 
 /// <summary>
 /// A column of the board, bound to a <see cref="ColumnViewModel"/>. In Customize mode its grip ⠿ starts a drag of the
-/// column (<see cref="BoardDragDrop"/>), which the board takes; the column itself takes the groups of its tab dropped on
-/// it (by their grip), at the slot under the mouse; a group of another tab is refused. An item dropped on it outside
-/// any group is refused too (the groups take the items).
+/// column (<see cref="BoardDragDrop"/>), which the board takes; the column itself takes the groups dropped on it (by
+/// their grip), at the slot under the mouse, whatever tab they come from. An item dropped on it outside any group is
+/// refused (the groups take the items).
 /// </summary>
 public partial class ColumnView : UserControl
 {
     public static readonly DependencyProperty IsCustomizingProperty = DependencyProperty.Register(
-        nameof(IsCustomizing), typeof(bool), typeof(ColumnView), new PropertyMetadata(false, OnIsCustomizingChanged));
+        nameof(IsCustomizing), typeof(bool), typeof(ColumnView), new PropertyMetadata(false, OnContentChanged));
+
+    public static readonly DependencyProperty AppearanceProperty = DependencyProperty.Register(
+        nameof(Appearance), typeof(object), typeof(ColumnView), new PropertyMetadata(null, OnContentChanged));
 
     public ColumnView()
     {
+        SetResourceReference(AppearanceProperty, ThemeKeys.Appearance);
         SetBinding(IsCustomizingProperty, new Binding($"{nameof(DataContext)}.{nameof(MainViewModel.IsCustomizing)}")
         {
             RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(MainView), 1),
@@ -32,7 +37,9 @@ public partial class ColumnView : UserControl
         {
             if (DataContext is ColumnViewModel column)
             {
+                var viewModel = ViewModel;
                 BoardDragDrop.Start(this, column);
+                viewModel?.EndDrag();
             }
         };
     }
@@ -44,6 +51,13 @@ public partial class ColumnView : UserControl
         set => SetValue(IsCustomizingProperty, value);
     }
 
+    /// <summary>The current appearance (a resource): a theme changes what the groups need.</summary>
+    public object? Appearance
+    {
+        get => GetValue(AppearanceProperty);
+        set => SetValue(AppearanceProperty, value);
+    }
+
     /// <summary>The list of the column's groups: where a dragged group goes (the snapshots draw its indicator).</summary>
     internal ItemsControl Groups => GroupsList;
 
@@ -53,12 +67,12 @@ public partial class ColumnView : UserControl
     private MainViewModel? ViewModel => MainView.Of(this)?.DataContext as MainViewModel;
 
     /// <summary>
-    /// Customize mode shows more in every group (grip, dot, ✕, the « + » buttons): an automatic column fits its content
-    /// again. WPF alone would measure the content at the column's last width and never widen it (see
-    /// <see cref="Layout.ColumnWidthPresenter"/>).
+    /// Customize mode shows more in every group (grip, dot, ✕, the « + » buttons), and a theme draws them otherwise: an
+    /// automatic column fits its content again. WPF alone would measure the content at the column's last width and never
+    /// widen it (see <see cref="Layout.ColumnWidthPresenter"/>).
     /// </summary>
-    private static void OnIsCustomizingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) =>
-        ((ColumnView)d).WidthPresenter?.Remeasure();
+    private static void OnContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) =>
+        ((ColumnView)d).WidthPresenter?.RemeasureAll();
 
     private void OnDragOver(object sender, DragEventArgs e)
     {
@@ -114,7 +128,6 @@ public partial class ColumnView : UserControl
         }
     }
 
-    /// <summary>Only in Customize mode, and only a group of this column's tab (spec 5.4: no move to another tab).</summary>
-    private bool CanTake(GroupViewModel group) =>
-        IsCustomizing && DataContext is ColumnViewModel column && ReferenceEquals(group.Column.Tab, column.Tab);
+    /// <summary>Only in Customize mode; a group of any tab.</summary>
+    private bool CanTake(GroupViewModel _) => IsCustomizing && DataContext is ColumnViewModel;
 }

@@ -113,6 +113,11 @@ public static class ConfigSerializer
             tab.Name ??= string.Empty;
             tab.Columns ??= new List<Column>();
             tab.Columns.RemoveAll(column => column is null);
+            if (tab.Columns.Count == 0)
+            {
+                // A tab keeps at least one column (older versions let the last one be removed).
+                tab.Columns.Add(new Column());
+            }
 
             foreach (var column in tab.Columns)
             {

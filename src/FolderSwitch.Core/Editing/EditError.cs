@@ -7,5 +7,5 @@ public enum EditError
     EmptyName,
     LastTabCannotBeRemoved,
     ColumnNotEmpty,
-    CrossTabMoveNotAllowed,
+    LastColumnCannotBeRemoved,
 }

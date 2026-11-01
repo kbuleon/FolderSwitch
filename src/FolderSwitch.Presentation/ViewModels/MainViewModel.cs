@@ -45,6 +45,9 @@ public sealed partial class MainViewModel : ObservableObject
     private bool _activating;
     private int _shownGeneration;
 
+    /// <summary>The tab a drag started on, while the drag shows other tabs (<see cref="ShowTabWhileDragging"/>).</summary>
+    private TabViewModel? _dragOrigin;
+
     /// <exception cref="ArgumentException"><paramref name="config"/> has no tab.</exception>
     public MainViewModel(
         AppConfig config,
@@ -383,17 +386,33 @@ public sealed partial class MainViewModel : ObservableObject
     }
 
     /// <summary>Moves a column to <paramref name="newIndex"/> (clamped) of its tab, as a drag and drop does.</summary>
-    public void MoveColumn(ColumnViewModel column, int newIndex)
+    /// <summary>
+    /// Moves a column to <paramref name="newIndex"/> (clamped) of <paramref name="target"/>, its own tab or another
+    /// one, as a drag and drop does. The last column of a tab does not leave it.
+    /// </summary>
+    public void MoveColumn(ColumnViewModel column, TabViewModel target, int newIndex)
     {
-        if (!IsCustomizing || !IsLive(column)
-            || !Succeeded(BoardEditor.MoveColumn(column.Tab.Model, column.Model.Id, newIndex)))
+        if (!IsCustomizing || !IsLive(column) || !IsLive(target)
+            || !Succeeded(BoardEditor.MoveColumn(_config, column.Model.Id, target.Id, newIndex)))
         {
             return;
         }
 
-        var columns = column.Tab.Columns;
-        columns.Move(columns.IndexOf(column), column.Tab.Model.Columns.IndexOf(column.Model));
-        Save();
+        var index = target.Model.Columns.IndexOf(column.Model);
+        if (ReferenceEquals(column.Tab, target))
+        {
+            target.Columns.Move(target.Columns.IndexOf(column), index);
+        }
+        else
+        {
+            // The owner changes first, so that whatever reacts to the insertion sees the column where it now is.
+            var source = column.Tab;
+            column.Tab = target;
+            source.Columns.Remove(column);
+            target.Columns.Insert(index, column);
+        }
+
+        SaveMove();
     }
 
     /// <summary>
@@ -457,7 +476,7 @@ public sealed partial class MainViewModel : ObservableObject
         Save();
     }
 
-    /// <summary>Moves a group to <paramref name="index"/> (clamped) of a column of the same tab.</summary>
+    /// <summary>Moves a group to <paramref name="index"/> (clamped) of any column, in any tab.</summary>
     public void MoveGroup(GroupViewModel group, ColumnViewModel target, int index)
     {
         if (!IsCustomizing || !IsLive(group) || !IsLive(target)
@@ -480,7 +499,7 @@ public sealed partial class MainViewModel : ObservableObject
             target.Groups.Insert(newIndex, group);
         }
 
-        Save();
+        SaveMove();
     }
 
     /// <summary>Changes the header color; only a <c>#rrggbb</c> color is accepted.</summary>
@@ -599,7 +618,40 @@ public sealed partial class MainViewModel : ObservableObject
             target.Items.Insert(newIndex, item);
         }
 
-        Save();
+        SaveMove();
+    }
+
+    // ----- Customize mode: drag and drop across tabs -----
+
+    /// <summary>
+    /// A drag rests on another tab of the bar: shows that tab, without recording it, so that the drag can end in it.
+    /// The tab the drag started on is remembered for <see cref="EndDrag"/>.
+    /// </summary>
+    public void ShowTabWhileDragging(TabViewModel tab)
+    {
+        if (!IsCustomizing || !IsLive(tab))
+        {
+            return;
+        }
+
+        _dragOrigin ??= _activeTab;
+        ShowTab(tab);
+    }
+
+    /// <summary>
+    /// A drag is over. When it showed other tabs and moved nothing, the tab it started on comes back; a move during the
+    /// drag already recorded the tab it ended on (<see cref="SaveMove"/>).
+    /// </summary>
+    public void EndDrag()
+    {
+        if (_dragOrigin is { } origin)
+        {
+            _dragOrigin = null;
+            if (IsLive(origin))
+            {
+                ShowTab(origin);
+            }
+        }
     }
 
     // ----- Customize mode: rename -----
@@ -655,9 +707,9 @@ public sealed partial class MainViewModel : ObservableObject
         }
     }
 
-    /// <summary>F2: renames the selected tab, group or item.</summary>
+    /// <summary>F2: renames the selected tab, group or item; without a selection, the tab shown.</summary>
     [RelayCommand(CanExecute = nameof(CanCustomize))]
-    public void RenameSelected() => BeginRename(Selected);
+    public void RenameSelected() => BeginRename(Selected ?? _activeTab);
 
     // ----- Internals -----
 
@@ -722,6 +774,7 @@ public sealed partial class MainViewModel : ObservableObject
         try
         {
             _config = config;
+            _dragOrigin = null;
             Tabs.Clear();
             foreach (var tab in config.Tabs)
             {
@@ -743,8 +796,8 @@ public sealed partial class MainViewModel : ObservableObject
     }
 
     /// <summary>
-    /// Shows a tab without recording it (the configuration already names it, or names none). A selected group or
-    /// item of another tab is no longer visible, so it is unselected; a selected tab stays selected.
+    /// Shows a tab without recording it (the configuration already names it, or names none). A selection that belongs
+    /// to another tab (that tab, or one of its groups or items) is no longer the one F2 should act on: it is dropped.
     /// </summary>
     private void ShowTab(TabViewModel tab)
     {
@@ -756,6 +809,7 @@ public sealed partial class MainViewModel : ObservableObject
         EndRename();
         var selectedTab = Selected switch
         {
+            TabViewModel selected => selected,
             GroupViewModel group => group.Column.Tab,
             ItemViewModel item => item.Group.Column.Tab,
             _ => null,
@@ -879,6 +933,18 @@ public sealed partial class MainViewModel : ObservableObject
     }
 
     private void Save() => _persistence.Save(_config);
+
+    /// <summary>Saves a move; during a drag that showed other tabs, the tab shown becomes the active one.</summary>
+    private void SaveMove()
+    {
+        if (_dragOrigin is not null)
+        {
+            _dragOrigin = null;
+            _config.Settings.ActiveTabId = _activeTab.Id;
+        }
+
+        Save();
+    }
 
     private void OnLanguageChanged(object? sender, EventArgs e)
     {

@@ -3,6 +3,10 @@ This file is maintained by the agent. The log is timestamped and **concise**. It
 
 ------
 
+## 2026-11-01
+
+* **1.2.0 — Drag and drop to another tab; Edit-mode right-click menu**: in Edit mode, a column, a group or an item dragged onto another tab and held there for half a second shows that tab, where it can be dropped anywhere (an item needs a group); a drag that drops nothing goes back to its tab. A tab keeps at least one column: the last one has no ✕ and cannot be dragged out, and a tab without a column, from an older configuration, gets an empty one when loaded. A right-click on a tab, a group's header or an item, in Edit mode, opens a menu with « Rename » (F2); tabs lose their selection frame (the underline already marks the tab shown) and F2 without a selection renames the tab shown. The window keeps the width of its widest tab, so the tabs no longer move when another one is shown; only the height follows the tab. A column fits its content again after a change of theme.
+
 ## 2026-10-31
 
 * **1.1.0 — Columns move by drag and drop**: in Edit mode, each column has a ⠿ grip on the middle of its top edge; dragging it moves the column, with its groups and its width, within its tab (an insertion line shows where). Edit mode leaves room above the columns, so the grip, the ✕ of an empty column and the width being dragged are no longer cut off at the top.

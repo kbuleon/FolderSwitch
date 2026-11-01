@@ -34,6 +34,7 @@
   "Item.SpecialSystem": "Carpetas especiales · sistema",
   "Item.AlreadyPresent": "Ya está en este grupo",
   "Item.Remove": "Quitar este elemento",
+  "Edit.Rename": "Cambiar nombre",
   "Confirm.DeleteTab": "¿Eliminar esta pestaña y todos los grupos que contiene?",
   "Confirm.DeleteGroup": "¿Eliminar este grupo y todos los elementos que contiene?",
   "Error.TargetUnavailable": "No se puede acceder a esta ubicación. Es posible que se haya movido o eliminado, o que su unidad esté sin conexión.",

@@ -565,7 +565,7 @@ public class MainViewModelTests
 
         vm.AddTab();
         vm.AddColumn();
-        vm.MoveColumn(h.ColumnVm("Work", 1), 0);
+        vm.MoveColumn(h.ColumnVm("Work", 1), h.TabVm("Work"), 0);
         vm.AddGroup(h.ColumnVm("Work", 1));
         vm.RemoveItem(h.ItemVm("Music"));
         vm.Selected = h.GroupVm("Media");
@@ -593,12 +593,13 @@ public class MainViewModelTests
         var vm = h.Customizing();
         var staleColumn = h.ColumnVm("Work", 1);
         var staleGroup = h.GroupVm("Inbox");
+        var staleTab = h.TabVm("Work");
         vm.Reload(new AppConfig { Tabs = { new Tab { Name = "Only", Columns = { new Column() } } } });
 
         vm.AddGroup(staleColumn);
         vm.AddSpecialFolder(staleGroup, SpecialFolderKey.Documents);
         vm.SetColumnWidth(staleColumn, 300);
-        vm.MoveColumn(staleColumn, 0);
+        vm.MoveColumn(staleColumn, staleTab, 0);
 
         Assert.Equal([h.WorkLeft, h.WorkRight], h.Work.Columns);
         Assert.Empty(h.WorkRight.Groups);
@@ -642,7 +643,7 @@ public class MainViewModelTests
             "MoveTab" => () => vm.MoveTab(h.TabVm("Misc"), 0),
             "AddColumn" => () => vm.AddColumnCommand.Execute(null),
             "RemoveColumn" => () => vm.RemoveColumnCommand.Execute(h.ColumnVm("Work", 1)),
-            "MoveColumn" => () => vm.MoveColumn(h.ColumnVm("Work", 1), 0),
+            "MoveColumn" => () => vm.MoveColumn(h.ColumnVm("Work", 1), h.TabVm("Work"), 0),
             "SetColumnWidth" => () => vm.SetColumnWidth(h.ColumnVm("Work", 0), 300),
             "AddGroup" => () => vm.AddGroupCommand.Execute(h.ColumnVm("Work", 1)),
             "RemoveGroup" => () => vm.RemoveGroupCommand.Execute(h.GroupVm("Projects")),
@@ -798,11 +799,72 @@ public class MainViewModelTests
         var left = h.ColumnVm("Work", 0);
         var right = h.ColumnVm("Work", 1);
 
-        vm.MoveColumn(right, 0);
+        vm.MoveColumn(right, h.TabVm("Work"), 0);
 
         Assert.Equal([right, left], h.TabVm("Work").Columns);
         Assert.Equal([h.WorkRight, h.WorkLeft], h.Work.Columns);
         Assert.Equal(["Projects", "Inbox"], left.Groups.Select(g => g.Name));
+        Assert.Equal(1, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void MoveColumn_to_another_tab_moves_the_view_model_with_its_groups()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        var left = h.ColumnVm("Work", 0);
+        var home = h.TabVm("Home");
+        var projects = h.GroupVm("Projects");
+
+        vm.MoveColumn(left, home, 1);
+
+        Assert.Equal([h.WorkRight], h.Work.Columns);
+        Assert.Equal([h.HomeMain, h.WorkLeft], h.Home.Columns);
+        Assert.Single(h.TabVm("Work").Columns);
+        Assert.Same(left, home.Columns[1]);
+        Assert.Same(home, left.Tab);
+        Assert.Same(left, projects.Column);
+        Assert.Equal(["Projects", "Inbox"], left.Groups.Select(g => g.Name));
+        Assert.Equal(1, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void MoveColumn_does_not_take_the_last_column_out_of_its_tab()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        var media = h.ColumnVm("Home", 0);
+
+        vm.MoveColumn(media, h.TabVm("Work"), 0);
+
+        Assert.Equal([h.HomeMain], h.Home.Columns);
+        Assert.Same(media, Assert.Single(h.TabVm("Home").Columns));
+        Assert.Equal(2, h.TabVm("Work").Columns.Count);
+        Assert.Equal(0, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void A_column_is_removable_only_when_empty_and_not_the_last_of_its_tab()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        var right = h.ColumnVm("Work", 1);
+        var changes = RecordChanges(right);
+
+        Assert.False(h.ColumnVm("Work", 0).IsRemovable);
+        Assert.True(right.IsRemovable);
+        Assert.False(h.ColumnVm("Misc", 0).IsRemovable);
+
+        vm.MoveColumn(h.ColumnVm("Work", 0), h.TabVm("Misc"), 1);
+
+        Assert.False(right.IsRemovable);
+        Assert.Contains(nameof(ColumnViewModel.IsRemovable), changes);
+        Assert.True(h.ColumnVm("Misc", 0).IsRemovable);
+
+        vm.RemoveColumn(right);
+
+        Assert.Same(right, Assert.Single(h.TabVm("Work").Columns));
+        Assert.Equal([h.WorkRight], h.Work.Columns);
         Assert.Equal(1, h.Persistence.SaveCount);
     }
 
@@ -825,6 +887,76 @@ public class MainViewModelTests
         Assert.Null(left.Width);
         Assert.Null(h.WorkLeft.Width);
         Assert.Equal(2, h.Persistence.SaveCount);
+    }
+
+    // ----- Drag and drop across tabs -----
+
+    [Fact]
+    public void ShowTabWhileDragging_shows_the_tab_without_recording_it()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+
+        vm.ShowTabWhileDragging(h.TabVm("Work"));
+
+        Assert.Same(h.TabVm("Work"), vm.ActiveTab);
+        Assert.Equal(h.Home.Id, h.Config.Settings.ActiveTabId);
+        Assert.Equal(0, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void A_drag_that_moves_nothing_goes_back_to_the_tab_it_started_on()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+
+        vm.ShowTabWhileDragging(h.TabVm("Work"));
+        vm.ShowTabWhileDragging(h.TabVm("Misc"));
+        vm.EndDrag();
+
+        Assert.Same(h.TabVm("Home"), vm.ActiveTab);
+        Assert.Equal(h.Home.Id, h.Config.Settings.ActiveTabId);
+        Assert.Equal(0, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void A_drag_that_moves_something_stays_on_the_tab_it_ended_on()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+
+        vm.ShowTabWhileDragging(h.TabVm("Work"));
+        vm.MoveItem(h.ItemVm("Music"), h.GroupVm("Inbox"), 0);
+        vm.EndDrag();
+
+        Assert.Same(h.TabVm("Work"), vm.ActiveTab);
+        Assert.Equal(h.Work.Id, h.Config.Settings.ActiveTabId);
+        Assert.Equal([h.Music], h.Inbox.Items);
+        Assert.Same(h.Config, Assert.Single(h.Persistence.Saved));
+    }
+
+    [Fact]
+    public void EndDrag_without_a_tab_switch_changes_nothing()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        vm.ActiveTab = h.TabVm("Misc");
+
+        vm.EndDrag();
+
+        Assert.Same(h.TabVm("Misc"), vm.ActiveTab);
+        Assert.Equal(1, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void ShowTabWhileDragging_does_nothing_in_normal_mode()
+    {
+        var h = new Harness();
+        var vm = h.Vm;
+
+        vm.ShowTabWhileDragging(h.TabVm("Work"));
+
+        Assert.Same(h.TabVm("Home"), vm.ActiveTab);
     }
 
     // ----- Groups -----
@@ -929,17 +1061,21 @@ public class MainViewModelTests
     }
 
     [Fact]
-    public void MoveGroup_to_another_tab_is_refused()
+    public void MoveGroup_to_another_tab_moves_the_view_model_like_the_model()
     {
         var h = new Harness();
         var vm = h.Customizing();
+        var projects = h.GroupVm("Projects");
+        var media = h.ColumnVm("Home", 0);
 
-        vm.MoveGroup(h.GroupVm("Projects"), h.ColumnVm("Home", 0), 0);
+        vm.MoveGroup(projects, media, 1);
 
-        Assert.Contains(h.Projects, h.WorkLeft.Groups);
-        Assert.Equal(["Media"], h.ColumnVm("Home", 0).Groups.Select(g => g.Name));
-        Assert.Empty(h.Prompts.Errors);
-        Assert.Equal(0, h.Persistence.SaveCount);
+        Assert.Equal([h.Inbox], h.WorkLeft.Groups);
+        Assert.Equal([h.Media, h.Projects], h.HomeMain.Groups);
+        Assert.Equal(["Media", "Projects"], media.Groups.Select(g => g.Name));
+        Assert.Same(media, projects.Column);
+        Assert.Equal(["Acme", "Desktop"], projects.Items.Select(i => i.DisplayName));
+        Assert.Equal(1, h.Persistence.SaveCount);
     }
 
     [Fact]
@@ -1384,7 +1520,7 @@ public class MainViewModelTests
     }
 
     [Fact]
-    public void F2_does_nothing_in_normal_mode_or_without_a_selection()
+    public void F2_does_nothing_in_normal_mode_or_on_something_else_than_a_board_object()
     {
         var h = new Harness();
         var vm = h.Vm;
@@ -1395,12 +1531,24 @@ public class MainViewModelTests
         Assert.False(media.IsRenaming);
 
         vm.IsCustomizing = true;
-        vm.Selected = null;
-        vm.RenameSelected();
         vm.Selected = "not a board object";
         vm.RenameSelected();
 
         Assert.False(media.IsRenaming);
+        Assert.False(h.TabVm("Home").IsRenaming);
+    }
+
+    [Fact]
+    public void F2_without_a_selection_renames_the_tab_shown()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        vm.Selected = null;
+
+        vm.RenameSelected();
+
+        Assert.True(h.TabVm("Home").IsRenaming);
+        Assert.Same(h.TabVm("Home"), vm.Selected);
     }
 
     [Fact]
@@ -1512,19 +1660,21 @@ public class MainViewModelTests
         vm.Selected = media;
 
         vm.NextTab();
-        vm.RenameSelected();
 
         Assert.Null(vm.Selected);
+        vm.RenameSelected();
         Assert.False(media.IsRenaming);
+        Assert.True(h.TabVm("Misc").IsRenaming);
 
         vm.Selected = h.ItemVm("Acme");
         vm.ActiveTab = h.TabVm("Home");
         Assert.Null(vm.Selected);
 
         var work = h.TabVm("Work");
+        vm.ActiveTab = work;
         vm.Selected = work;
         vm.NextTab();
-        Assert.Same(work, vm.Selected);
+        Assert.Null(vm.Selected);
 
         vm.Selected = h.GroupVm("Projects");
         vm.ActiveTab = work;

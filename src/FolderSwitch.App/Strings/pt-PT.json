@@ -34,6 +34,7 @@
   "Item.SpecialSystem": "Pastas especiais · sistema",
   "Item.AlreadyPresent": "Já existe neste grupo",
   "Item.Remove": "Remover este item",
+  "Edit.Rename": "Mudar o nome",
   "Confirm.DeleteTab": "Eliminar este separador e todos os grupos que contém?",
   "Confirm.DeleteGroup": "Eliminar este grupo e todos os itens que contém?",
   "Error.TargetUnavailable": "Não foi possível aceder a esta localização. Pode ter sido movida ou eliminada, ou a unidade está offline.",

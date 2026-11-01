@@ -34,6 +34,7 @@
   "Item.SpecialSystem": "Cartelle speciali · sistema",
   "Item.AlreadyPresent": "Già presente in questo gruppo",
   "Item.Remove": "Rimuovi questo elemento",
+  "Edit.Rename": "Rinomina",
   "Confirm.DeleteTab": "Eliminare questa scheda e tutti i gruppi che contiene?",
   "Confirm.DeleteGroup": "Eliminare questo gruppo e tutti gli elementi che contiene?",
   "Error.TargetUnavailable": "Impossibile raggiungere questa posizione. Potrebbe essere stata spostata o eliminata, oppure la sua unità è offline.",

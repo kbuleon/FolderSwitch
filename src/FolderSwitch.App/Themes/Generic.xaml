@@ -116,9 +116,9 @@
 
     <!-- ===== Tab bar ===== -->
 
-    <!-- A tab: grey, the active one in the text color, bold and underlined; ringed in the accent color while it is the
-         selection of Customize mode. Bound to a TabViewModel, inside the ItemsControl of MainViewModel.Tabs. Clicks and
-         drags are TabBar's (not a button: a button's capture would fight the drag). -->
+    <!-- A tab: grey, the active one in the text color, bold and underlined (no selection ring: the selection of
+         Customize mode is never another tab than the one shown). Bound to a TabViewModel, inside the ItemsControl of
+         MainViewModel.Tabs. Clicks and drags are TabBar's (not a button: a button's capture would fight the drag). -->
     <Style x:Key="Fs.TabSurface" TargetType="ContentControl">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Cursor" Value="Hand" />
@@ -132,13 +132,6 @@
                         <Border x:Name="Surface" Background="Transparent" CornerRadius="6,6,0,0" Margin="0,0,0,1" Padding="{TemplateBinding Padding}">
                             <ContentPresenter RecognizesAccessKey="False" />
                         </Border>
-                        <Border x:Name="SelectRing"
-                                CornerRadius="6,6,0,0"
-                                Margin="0,0,0,1"
-                                BorderThickness="1.5"
-                                BorderBrush="{DynamicResource Fs.Accent}"
-                                IsHitTestVisible="False"
-                                Visibility="Hidden" />
                         <!-- Over the bar's hairline, which runs under the tab's bottom DIP (see TabBar), as in the mockups. -->
                         <Border x:Name="Underline"
                                 Height="2.5"
@@ -163,15 +156,6 @@
                             <Setter TargetName="Underline" Property="Visibility" Value="Visible" />
                             <Setter Property="Foreground" Value="{DynamicResource Fs.OnBackgroundText}" />
                             <Setter Property="FontWeight" Value="SemiBold" />
-                        </DataTrigger>
-                        <DataTrigger Value="True">
-                            <DataTrigger.Binding>
-                                <MultiBinding Converter="{StaticResource Fs.SameReference}">
-                                    <Binding />
-                                    <Binding Path="DataContext.Selected" RelativeSource="{RelativeSource AncestorType=views:MainView}" />
-                                </MultiBinding>
-                            </DataTrigger.Binding>
-                            <Setter TargetName="SelectRing" Property="Visibility" Value="Visible" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

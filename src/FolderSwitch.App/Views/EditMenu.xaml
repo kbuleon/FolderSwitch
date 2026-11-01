@@ -1,0 +1,30 @@
+<!--
+    The menu of a tab, a group's header or an item, opened by a right-click in Edit mode: « Rename », with « F2 » at the
+    end of the line. Shown in a Flyout under what was clicked; a choice closes it.
+-->
+<UserControl x:Class="FolderSwitch.App.Views.EditMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Root"
+             MinWidth="200">
+    <StackPanel>
+        <Button Style="{StaticResource Fs.MenuItemButton}" Click="OnRenameClick">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Left"
+                           Width="16"
+                           Margin="0,1,9,0"
+                           VerticalAlignment="Center"
+                           FontFamily="{StaticResource Fs.IconFont}"
+                           FontSize="13"
+                           Text="&#xE8AC;" />
+                <TextBlock DockPanel.Dock="Right"
+                           Margin="18,0,0,0"
+                           FontSize="11"
+                           VerticalAlignment="Center"
+                           Foreground="{DynamicResource Fs.MenuMuted}"
+                           Text="F2" />
+                <TextBlock VerticalAlignment="Center" Text="{Binding Texts[Edit.Rename], ElementName=Root}" TextTrimming="CharacterEllipsis" />
+            </DockPanel>
+        </Button>
+    </StackPanel>
+</UserControl>

@@ -11,6 +11,14 @@ public sealed class TabViewModel : RenamableViewModel
     {
         Model = model;
         Columns = new ObservableCollection<ColumnViewModel>(model.Columns.Select(column => new ColumnViewModel(column, this, localizer)));
+        Columns.CollectionChanged += (_, _) =>
+        {
+            // Whether a column can be removed depends on how many columns its tab has.
+            foreach (var column in Columns)
+            {
+                column.NotifyRemovable();
+            }
+        };
     }
 
     public string Name => Model.Name;

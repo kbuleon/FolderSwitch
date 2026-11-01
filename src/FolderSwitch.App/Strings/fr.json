@@ -34,6 +34,7 @@
   "Item.SpecialSystem": "Dossiers spéciaux · système",
   "Item.AlreadyPresent": "Déjà dans ce groupe",
   "Item.Remove": "Retirer cet élément",
+  "Edit.Rename": "Renommer",
   "Confirm.DeleteTab": "Supprimer cet onglet et tous les groupes qu'il contient ?",
   "Confirm.DeleteGroup": "Supprimer ce groupe et tous les éléments qu'il contient ?",
   "Error.TargetUnavailable": "Cet emplacement est inaccessible. Il a peut-être été déplacé ou supprimé, ou son lecteur est hors ligne.",

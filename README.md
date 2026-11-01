@@ -37,7 +37,10 @@ These images are drawn by the `--snapshot` diagnostic mode (see « Diagnostic mo
   a file), and « Open in new tab » when Ctrl + click would open one. The title bar shows the version that runs.
 - **A board you organise by drag and drop** in Edit mode (« Edit » in the title bar): tabs, columns (moved by their
   ⠿ grip) of fixed or automatic width, groups with a colour that collapse, folders, files and Windows special folders (Desktop, Documents, This PC…). « + Current
-  folder » remembers the folder of the window you called it from. Every change is saved at once.
+  folder » remembers the folder of the window you called it from. A column, group or item held over another tab for a
+  moment shows that tab, where it can be dropped. A right-click on a tab, a group's header or an item offers « Rename »
+  (F2). Every change is saved at once. The window keeps the width of its widest tab: the tabs stay in place when you
+  switch.
 - **Seven themes**, each in a light and a dark variant (or following the Windows mode), with a choice of background
   and group corners.
 - **Nine languages**: English, French, Spanish, German, Italian, Portuguese (Brazil and Portugal), Dutch, Polish. A

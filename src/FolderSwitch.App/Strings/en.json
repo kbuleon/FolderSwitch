@@ -34,6 +34,7 @@
   "Item.SpecialSystem": "Special folders · System",
   "Item.AlreadyPresent": "Already in this group",
   "Item.Remove": "Remove this item",
+  "Edit.Rename": "Rename",
   "Confirm.DeleteTab": "Delete this tab and all the groups it contains?",
   "Confirm.DeleteGroup": "Delete this group and all the items it contains?",
   "Error.TargetUnavailable": "This location can't be reached. It may have been moved or deleted, or its drive is offline.",

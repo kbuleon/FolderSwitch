@@ -212,6 +212,15 @@ internal static class SnapshotRunner
 
                 main.OnShown(CallContext.None);
 
+                // The menu of an item in Customize mode: « Rename ».
+                main.ToggleCustomize();
+                var renamed = scene.Item("Maquettes");
+                scene.View.OpenEditMenu((ItemViewModel)renamed.DataContext, renamed.MenuAnchor);
+                scene.Save(Path.Combine(directory, FileName("fluent", Variant.Light, "editmenu", scale, suffix)), Variant.Light);
+                scene.View.CloseFlyout();
+                main.ToggleCustomize();
+                written++;
+
                 scene.View.DataContext = narrow;
                 scene.Save(Path.Combine(directory, FileName("fluent", Variant.Light, "narrow", scale, suffix)), Variant.Light);
                 scene.View.DataContext = main;
@@ -558,17 +567,18 @@ internal static class SnapshotRunner
 
         /// <summary>The view of the group named <paramref name="name"/> on the board.</summary>
         public GroupView Group(string name) =>
-            Descendants(View).OfType<GroupView>().First(group => group.DataContext is GroupViewModel { Name: var n } && n == name);
+            Descendants(Board).OfType<GroupView>().First(group => group.DataContext is GroupViewModel { Name: var n } && n == name);
 
         /// <summary>The view of the item shown as <paramref name="name"/> on the board.</summary>
         public ItemView Item(string name) =>
-            Descendants(View).OfType<ItemView>().First(item => item.DataContext is ItemViewModel { DisplayName: var n } && n == name);
+            Descendants(Board).OfType<ItemView>().First(item => item.DataContext is ItemViewModel { DisplayName: var n } && n == name);
 
         /// <summary>The view of column <paramref name="index"/> of the board.</summary>
-        public ColumnView Column(int index) => Descendants(View).OfType<ColumnView>().ElementAt(index);
+        public ColumnView Column(int index) => Descendants(Board).OfType<ColumnView>().ElementAt(index);
 
-        /// <summary>The board of the tab shown.</summary>
-        public BoardView Board => Descendants(View).OfType<BoardView>().First();
+        /// <summary>The board of the tab shown (the boards of the other tabs are there too, hidden).</summary>
+        public BoardView Board =>
+            Descendants(View).OfType<BoardView>().First(board => ReferenceEquals(board.DataContext, (View.DataContext as MainViewModel)?.ActiveTab));
 
         /// <summary>Shows <paramref name="prompt"/> centered on the window, as an owned dialog; <c>null</c> removes it.</summary>
         public void ShowDialog(PromptView? prompt)

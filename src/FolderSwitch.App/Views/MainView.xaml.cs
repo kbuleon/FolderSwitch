@@ -23,7 +23,8 @@ namespace FolderSwitch.App.Views;
 /// </para>
 /// <para>
 /// <b>Flyouts.</b> One at a time (<see cref="Flyout"/>): a group's « + Folder ▾ » menu or palette, in Customize mode;
-/// an item's menu (<see cref="ItemMenu"/>, a right-click), in normal use. A flyout closes on a click outside it, on
+/// an item's menu (<see cref="ItemMenu"/>, a right-click), in normal use; a tab's, a group's or an item's menu
+/// (<see cref="EditMenu"/>, a right-click), in Customize mode. A flyout closes on a click outside it, on
 /// Escape (<see cref="CloseFlyout"/>, called by the window), when the window loses the focus to another window than the
 /// flyout's own or hides, when Customize mode starts or ends, when another tab is shown, and when a window of the
 /// dialog layer opens.
@@ -211,6 +212,15 @@ public partial class MainView : UserControl
         }
     }
 
+    /// <summary>Opens the Edit-mode menu of a tab, a group or an item under <paramref name="anchor"/> (a right-click).</summary>
+    internal void OpenEditMenu(RenamableViewModel target, FrameworkElement anchor)
+    {
+        if (_viewModel is { IsCustomizing: true } viewModel && Texts is { } texts && !IsDialogOpen)
+        {
+            _flyout.Open(new EditMenu(viewModel, target, texts, () => CloseFlyout()), anchor, FlyoutAlignment.Left);
+        }
+    }
+
     /// <summary>Opens the « + Folder ▾ » menu of <paramref name="group"/> under <paramref name="anchor"/>.</summary>
     internal void OpenAddFolderMenu(GroupViewModel group, FrameworkElement anchor)
     {
@@ -285,7 +295,7 @@ public partial class MainView : UserControl
                 // The menus of Edit mode end with it, and an item's menu is for normal use only.
                 CloseFlyout();
                 break;
-            case nameof(MainViewModel.ActiveTab) when _flyout.Content is AddFolderMenu or ColorPalettePopup or ItemMenu:
+            case nameof(MainViewModel.ActiveTab) when _flyout.Content is AddFolderMenu or ColorPalettePopup or ItemMenu or EditMenu:
                 // What a group's flyout acts on is no longer on screen.
                 CloseFlyout();
                 break;

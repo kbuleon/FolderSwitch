@@ -34,6 +34,7 @@
   "Item.SpecialSystem": "Speciale mappen · systeem",
   "Item.AlreadyPresent": "Staat al in deze groep",
   "Item.Remove": "Dit item verwijderen",
+  "Edit.Rename": "Naam wijzigen",
   "Confirm.DeleteTab": "Dit tabblad en alle groepen erin verwijderen?",
   "Confirm.DeleteGroup": "Deze groep en alle items erin verwijderen?",
   "Error.TargetUnavailable": "Deze locatie is niet bereikbaar. Mogelijk is ze verplaatst of verwijderd, of de schijf is offline.",

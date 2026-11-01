@@ -210,6 +210,18 @@ public class ConfigSerializerTests
         Assert.Equal(SpecialFolderKey.Desktop, items[1].Special);
     }
 
+    [Theory]
+    [InlineData("""{ "schemaVersion": 1, "tabs": [ { "name": "A", "columns": [] } ] }""")]
+    [InlineData("""{ "schemaVersion": 1, "tabs": [ { "name": "A", "columns": [ null ] } ] }""")]
+    [InlineData("""{ "schemaVersion": 1, "tabs": [ { "name": "A" } ] }""")]
+    public void Tab_without_a_column_gets_an_empty_one(string json)
+    {
+        var column = Assert.Single(ConfigSerializer.Deserialize(json).Tabs[0].Columns);
+
+        Assert.Empty(column.Groups);
+        Assert.Null(column.Width);
+    }
+
     [Fact]
     public void Null_lists_become_empty_and_null_names_become_empty_strings()
     {
@@ -223,7 +235,7 @@ public class ConfigSerializerTests
         var config = ConfigSerializer.Deserialize(json);
 
         Assert.Equal(string.Empty, config.Tabs[0].Name);
-        Assert.Empty(config.Tabs[0].Columns);
+        Assert.Empty(Assert.Single(config.Tabs[0].Columns).Groups);
         Assert.Empty(config.Tabs[1].Columns[0].Groups);
         var group = Assert.Single(config.Tabs[1].Columns[1].Groups);
         Assert.Equal(string.Empty, group.Name);

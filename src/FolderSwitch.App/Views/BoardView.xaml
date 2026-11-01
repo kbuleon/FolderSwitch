@@ -1,5 +1,5 @@
 <!--
-    The columns of a tab, side by side, bound to a TabViewModel (the active tab). Customize mode adds « + Column » at
+    The columns of a tab, side by side, bound to a TabViewModel (one board per tab, the active one shown). Customize mode adds « + Column » at
     the right, as tall as the board, and takes the columns of the tab dropped on it (an insertion line shows where).
 -->
 <UserControl x:Class="FolderSwitch.App.Views.BoardView"

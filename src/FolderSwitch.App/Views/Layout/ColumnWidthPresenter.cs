@@ -101,6 +101,17 @@ public sealed class ColumnWidthPresenter : Decorator
         }
     }
 
+    /// <summary>
+    /// <see cref="Remeasure"/>, with every element of the column's content invalidated too. What changes everywhere at
+    /// once (Customize mode, a theme) reaches the elements in no set order: one that has not changed yet when the column is
+    /// measured, and changes afterwards, is measured again at the column's width only, and the column never hears of it.
+    /// </summary>
+    public void RemeasureAll()
+    {
+        InvalidateDescendants(this);
+        Remeasure();
+    }
+
     protected override Size MeasureOverride(Size constraint)
     {
         var child = Child;
@@ -126,5 +137,15 @@ public sealed class ColumnWidthPresenter : Decorator
     {
         Child?.Arrange(new Rect(0, 0, _width, arrangeSize.Height));
         return new Size(_width, arrangeSize.Height);
+    }
+
+    private static void InvalidateDescendants(DependencyObject parent)
+    {
+        for (var i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+        {
+            var child = VisualTreeHelper.GetChild(parent, i);
+            (child as UIElement)?.InvalidateMeasure();
+            InvalidateDescendants(child);
+        }
     }
 }

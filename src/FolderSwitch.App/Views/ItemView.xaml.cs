@@ -25,7 +25,9 @@ public partial class ItemView : UserControl
         {
             if (DataContext is ItemViewModel item)
             {
+                var viewModel = ViewModel;
                 BoardDragDrop.Start(this, item);
+                viewModel?.EndDrag();
             }
         };
 
@@ -37,14 +39,31 @@ public partial class ItemView : UserControl
 
     private MainViewModel? ViewModel => MainView.Of(this)?.DataContext as MainViewModel;
 
-    /// <summary>A right-click opens the item's menu, in normal use (<see cref="ItemMenu"/>).</summary>
+    /// <summary>
+    /// A right-click opens the item's menu: <see cref="ItemMenu"/> in normal use, <see cref="EditMenu"/> in Customize
+    /// mode (where it also selects the item).
+    /// </summary>
     private void OnRightClick(object sender, MouseButtonEventArgs e)
     {
-        if (DataContext is ItemViewModel item && MainView.Of(this) is { } view)
+        if (DataContext is not ItemViewModel item || MainView.Of(this) is not { } view)
+        {
+            return;
+        }
+
+        if (view.DataContext is MainViewModel { IsCustomizing: true } viewModel)
+        {
+            if (!item.IsRenaming)
+            {
+                viewModel.Selected = item;
+                view.OpenEditMenu(item, Row);
+            }
+        }
+        else
         {
             view.OpenItemMenu(item, Row);
-            e.Handled = true;
         }
+
+        e.Handled = true;
     }
 
     /// <summary>A click opens the item; with Ctrl held, in a new tab or window (spec 5.3). In Customize mode it selects it.</summary>

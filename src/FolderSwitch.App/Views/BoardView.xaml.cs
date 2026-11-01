@@ -6,9 +6,9 @@ using FolderSwitch.Presentation.ViewModels;
 namespace FolderSwitch.App.Views;
 
 /// <summary>
-/// The board of a tab, bound to a <see cref="TabViewModel"/>. In Customize mode it takes the columns of its tab dropped
-/// on it (by their grip, <see cref="BoardDragDrop"/>), at the slot under the mouse; the columns pass a dragged column on
-/// to it.
+/// The board of a tab, bound to a <see cref="TabViewModel"/>. In Customize mode it takes the columns dropped on it (by
+/// their grip, <see cref="BoardDragDrop"/>), at the slot under the mouse, from its tab or from another one (shown by
+/// the tab bar during the drag); the columns pass a dragged column on to it.
 /// </summary>
 public partial class BoardView : UserControl
 {
@@ -44,20 +44,22 @@ public partial class BoardView : UserControl
     {
         e.Handled = true;
         BoardDragDrop.HideIndicator();
-        if (BoardDragDrop.Payload<ColumnViewModel>(e) is not { } column || !CanTake(column) || ViewModel is not { } viewModel)
+        if (BoardDragDrop.Payload<ColumnViewModel>(e) is not { } column || !CanTake(column) || ViewModel is not { } viewModel
+            || DataContext is not TabViewModel target)
         {
             return;
         }
 
         var slot = BoardDragDrop.SlotAt(ColumnsList, e.GetPosition(ColumnsList), Orientation.Horizontal);
-        var source = column.Tab.Columns.IndexOf(column);
-        if (source >= 0 && !InsertionSlot.IsNoMove(slot, source))
+        var source = target.Columns.IndexOf(column);
+        if (!InsertionSlot.IsNoMove(slot, source))
         {
-            viewModel.MoveColumn(column, InsertionSlot.ToMoveIndex(slot, source));
+            viewModel.MoveColumn(column, target, InsertionSlot.ToMoveIndex(slot, source));
         }
     }
 
-    /// <summary>Only in Customize mode, and only a column of the tab shown.</summary>
+    /// <summary>Only in Customize mode; a column of another tab only if it is not the last one of its tab.</summary>
     private bool CanTake(ColumnViewModel column) =>
-        ViewModel is { IsCustomizing: true } && ReferenceEquals(column.Tab, DataContext);
+        ViewModel is { IsCustomizing: true } && DataContext is TabViewModel tab
+        && (ReferenceEquals(column.Tab, tab) || column.Tab.Columns.Count > 1);
 }

@@ -139,6 +139,20 @@ public class BoardEditorTests
         Assert.DoesNotContain(column, tab.Columns);
     }
 
+    [Fact]
+    public void RemoveColumn_refuses_the_last_column_of_a_tab()
+    {
+        var config = ConfigWithTabs("A");
+        var tab = config.Tabs[0];
+        BoardEditor.RemoveColumn(tab, tab.Columns[0].Id);
+        var last = tab.Columns[0];
+
+        var result = BoardEditor.RemoveColumn(tab, last.Id);
+
+        Assert.Equal(EditError.LastColumnCannotBeRemoved, result.Error);
+        Assert.Same(last, Assert.Single(tab.Columns));
+    }
+
     [Theory]
     [InlineData(100, 150)]
     [InlineData(150, 150)]
@@ -199,7 +213,7 @@ public class BoardEditorTests
         BoardEditor.SetColumnWidth(tab, third.Id, 300);
         var (first, second) = (tab.Columns[0], tab.Columns[1]);
 
-        var result = BoardEditor.MoveColumn(tab, third.Id, 0);
+        var result = BoardEditor.MoveColumn(config, third.Id, tab.Id, 0);
 
         Assert.True(result.Ok);
         Assert.Equal(new[] { third, first, second }, tab.Columns);
@@ -215,11 +229,72 @@ public class BoardEditorTests
         BoardEditor.AddColumn(tab);
         var (a, b, c) = (tab.Columns[0], tab.Columns[1], tab.Columns[2]);
 
-        BoardEditor.MoveColumn(tab, a.Id, 99);
+        BoardEditor.MoveColumn(config, a.Id, tab.Id, 99);
         Assert.Equal(new[] { b, c, a }, tab.Columns);
 
-        BoardEditor.MoveColumn(tab, a.Id, -5);
+        BoardEditor.MoveColumn(config, a.Id, tab.Id, -5);
         Assert.Equal(new[] { a, b, c }, tab.Columns);
+    }
+
+    [Fact]
+    public void MoveColumn_to_another_tab_keeps_its_groups_and_width()
+    {
+        var config = ConfigWithTabs("A", "B");
+        var (source, target) = (config.Tabs[0], config.Tabs[1]);
+        var moved = source.Columns[0];
+        var group = BoardEditor.AddGroup(moved, "Clients", Blue);
+        BoardEditor.SetColumnWidth(source, moved.Id, 300);
+        var (first, second) = (target.Columns[0], target.Columns[1]);
+
+        var result = BoardEditor.MoveColumn(config, moved.Id, target.Id, 1);
+
+        Assert.True(result.Ok);
+        Assert.DoesNotContain(moved, source.Columns);
+        Assert.Single(source.Columns);
+        Assert.Equal(new[] { first, moved, second }, target.Columns);
+        Assert.Same(group, Assert.Single(moved.Groups));
+        Assert.Equal(300, moved.Width);
+    }
+
+    [Fact]
+    public void MoveColumn_to_another_tab_clamps_the_index_in_the_target_tab()
+    {
+        var config = ConfigWithTabs("A", "B");
+        var (source, target) = (config.Tabs[0], config.Tabs[1]);
+        var moved = source.Columns[0];
+
+        BoardEditor.MoveColumn(config, moved.Id, target.Id, 99);
+
+        Assert.Same(moved, target.Columns[^1]);
+        Assert.Equal(3, target.Columns.Count);
+    }
+
+    [Fact]
+    public void MoveColumn_refuses_to_take_the_last_column_out_of_its_tab()
+    {
+        var config = ConfigWithTabs("A", "B");
+        var (source, target) = (config.Tabs[0], config.Tabs[1]);
+        BoardEditor.RemoveColumn(source, source.Columns[0].Id);
+        var last = source.Columns[0];
+
+        var result = BoardEditor.MoveColumn(config, last.Id, target.Id, 0);
+
+        Assert.Equal(EditError.LastColumnCannotBeRemoved, result.Error);
+        Assert.Same(last, Assert.Single(source.Columns));
+        Assert.Equal(2, target.Columns.Count);
+    }
+
+    [Fact]
+    public void MoveColumn_reports_an_unknown_target_tab()
+    {
+        var config = ConfigWithTabs("A");
+        var tab = config.Tabs[0];
+        var column = tab.Columns[0];
+
+        var result = BoardEditor.MoveColumn(config, column.Id, Guid.NewGuid(), 0);
+
+        Assert.Equal(EditError.NotFound, result.Error);
+        Assert.Same(column, tab.Columns[0]);
     }
 
     // ----- Groups -----
@@ -302,18 +377,23 @@ public class BoardEditorTests
     }
 
     [Fact]
-    public void MoveGroup_to_other_tab_is_refused()
+    public void MoveGroup_to_another_tab_keeps_the_group_and_its_items()
     {
         var config = ConfigWithTabs("A", "B");
         var sourceColumn = config.Tabs[0].Columns[0];
-        var foreignColumn = config.Tabs[1].Columns[0];
+        var foreignColumn = config.Tabs[1].Columns[1];
+        var existing = BoardEditor.AddGroup(foreignColumn, "Other", Blue);
         var group = BoardEditor.AddGroup(sourceColumn, "G", Blue);
+        var item = BoardEditor.AddItem(group, FolderItem(@"C:\Work"));
+        BoardEditor.SetCollapsed(config, group.Id, true);
 
         var result = BoardEditor.MoveGroup(config, group.Id, foreignColumn.Id, 0);
 
-        Assert.Equal(EditError.CrossTabMoveNotAllowed, result.Error);
-        Assert.Same(group, Assert.Single(sourceColumn.Groups));
-        Assert.Empty(foreignColumn.Groups);
+        Assert.True(result.Ok);
+        Assert.Empty(sourceColumn.Groups);
+        Assert.Equal(new[] { group, existing }, foreignColumn.Groups);
+        Assert.Same(item, Assert.Single(group.Items));
+        Assert.True(group.Collapsed);
     }
 
     [Fact]
@@ -481,7 +561,7 @@ public class BoardEditorTests
         Assert.Equal(EditError.NotFound, BoardEditor.MoveTab(config, unknown, 0).Error);
         Assert.Equal(EditError.NotFound, BoardEditor.RemoveColumn(tab, unknown).Error);
         Assert.Equal(EditError.NotFound, BoardEditor.SetColumnWidth(tab, unknown, 200).Error);
-        Assert.Equal(EditError.NotFound, BoardEditor.MoveColumn(tab, unknown, 0).Error);
+        Assert.Equal(EditError.NotFound, BoardEditor.MoveColumn(config, unknown, tab.Id, 0).Error);
         Assert.Equal(EditError.NotFound, BoardEditor.RemoveGroup(config, unknown).Error);
         Assert.Equal(EditError.NotFound, BoardEditor.MoveGroup(config, unknown, tab.Columns[1].Id, 0).Error);
         Assert.Equal(EditError.NotFound, BoardEditor.MoveGroup(config, group.Id, unknown, 0).Error);
