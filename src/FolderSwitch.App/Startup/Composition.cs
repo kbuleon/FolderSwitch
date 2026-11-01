@@ -34,8 +34,9 @@ namespace FolderSwitch.App.Startup;
 /// is shown, modally, before the shortcut is registered and before the view models and the main window are built, so
 /// that the wizard alone decides the configuration they start from; the composition goes on with the configuration it
 /// created. Closed without finishing, it leaves nothing saved, and <see cref="Build"/> returns <c>false</c>: FolderSwitch
-/// quits. Once the application is ready, <see cref="AnnounceReady"/> says, in a notification, which shortcut opens it;
-/// it also says that an installation or an update just ended (<see cref="StartupOptions.Setup"/>).
+/// quits. Once the application is ready, after an installation, a repair or an update
+/// (<see cref="StartupOptions.Setup"/>), <see cref="ShowSetupNotice"/> says so in a box, with the shortcut that opens it;
+/// after a first run without one, <see cref="AnnounceReady"/> says, in a notification, which shortcut opens it.
 /// A self-test leaves the first run to a real start.
 /// </para>
 /// <para>
@@ -159,18 +160,17 @@ internal sealed class Composition : IDisposable
         }
 
         var hotkeyRegistered = RegisterHotkey(config.Settings.Hotkey, reportFailure: true);
-        if (hotkeyRegistered && wizardCompleted)
+        if (_options.Setup is { } setup)
+        {
+            // Told once the application is ready (ShowSetupNotice), with the shortcut when it works, after the wizard too:
+            // its box says what the ready notification would.
+            _setup = setup;
+            _setupHotkey = hotkeyRegistered ? config.Settings.Hotkey : null;
+        }
+        else if (hotkeyRegistered && wizardCompleted)
         {
             // Told once the application is ready (AnnounceReady): the wizard just ended, and nothing else shows.
             _firstRunHotkey = config.Settings.Hotkey;
-        }
-
-        if (!wizardCompleted && _options.Setup is { } setup)
-        {
-            // Told once the application is ready too, with the shortcut when it works; after the wizard, the ready
-            // notification says it all.
-            _setup = setup;
-            _setupHotkey = hotkeyRegistered ? config.Settings.Hotkey : null;
         }
 
         _controller = new WindowController(_contexts, foreground, prompts);
@@ -234,31 +234,39 @@ internal sealed class Composition : IDisposable
     }
 
     /// <summary>
-    /// The application is up, and nothing else appears: after a first run that just ended, a notification says that
-    /// FolderSwitch is ready and which shortcut opens it (nothing when the shortcut could not be registered: a startup
-    /// notice says so instead); after an installation or an update, it says so, and which shortcut opens FolderSwitch
-    /// when it works. Does nothing after any other start.
+    /// The application is up after a first run that just ended, without an installation (the configuration was removed,
+    /// a development run): a notification says that FolderSwitch is ready and which shortcut opens it, since nothing
+    /// else appears once the wizard closes. Does nothing after any other start, after an installation (a box says it,
+    /// see <see cref="ShowSetupNotice"/>), or when the shortcut could not be registered (a startup notice says so).
     /// </summary>
     public void AnnounceReady()
     {
-        if (_tray is null || Localizer is null)
+        if (_firstRunHotkey is not { } hotkey || _tray is null || Localizer is null)
         {
             return;
         }
 
-        if (_firstRunHotkey is { } hotkey)
+        _firstRunHotkey = null;
+        _tray.ShowReady(Localizer.Format("Tray.Ready", FormatHotkey(Localizer, hotkey)));
+        DebugLog.Info("First run: the ready notification is shown");
+    }
+
+    /// <summary>
+    /// The application is up after an installation (a first one, a repair) or an update, which end without a word: a box
+    /// says so, with the version, and which shortcut opens FolderSwitch when it works, after the wizard of a first
+    /// installation too. Once, before the startup notices; does nothing after any other start.
+    /// </summary>
+    public void ShowSetupNotice()
+    {
+        if (_setup is not { } setup || Prompts is null || Localizer is null)
         {
-            _firstRunHotkey = null;
-            _tray.ShowReady(Localizer.Format("Tray.Ready", FormatHotkey(Localizer, hotkey)));
-            DebugLog.Info("First run: the ready notification is shown");
+            return;
         }
-        else if (_setup is { } setup)
-        {
-            _setup = null;
-            var shortcut = _setupHotkey is { } setupHotkey ? FormatHotkey(Localizer, setupHotkey) : null;
-            _tray.ShowReady(setup.Text(Localizer, shortcut));
-            DebugLog.Info($"{setup.Kind} {setup.Version}: the notification is shown");
-        }
+
+        _setup = null;
+        var shortcut = _setupHotkey is { } hotkey ? FormatHotkey(Localizer, hotkey) : null;
+        DebugLog.Info($"{setup.Kind} {setup.Version}: the box is shown");
+        Prompts.ShowInfo($"Setup.{setup.Kind}", setup.Text(Localizer, shortcut));
     }
 
     private static string FormatHotkey(Localizer localizer, Hotkey hotkey) =>

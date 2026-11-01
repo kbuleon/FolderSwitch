@@ -44,9 +44,9 @@ public class SetupNoticeTests
         var content = new Dictionary<string, string>
         {
             [Localizer.NativeNameKey] = "English",
-            ["Tray.Installed"] = "Installed {0}",
-            ["Tray.Updated"] = "Updated to {0}",
-            ["Tray.OpenWith"] = "Press {0}",
+            ["Setup.Installed"] = "Installed {0}",
+            ["Setup.Updated"] = "Updated to {0}",
+            ["Setup.OpenWith"] = "Press {0}",
         };
         File.WriteAllText(dir.File("en.json"), JsonSerializer.Serialize(content), new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
         return Localizer.LoadFromDirectory(dir.Root);

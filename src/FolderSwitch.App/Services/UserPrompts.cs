@@ -57,6 +57,12 @@ internal sealed class UserPrompts : IUserPrompts
     public void ShowInfo(string messageKey) => Run(() => Show(messageKey, PromptKind.Info));
 
     /// <summary>
+    /// An information message already localized and formatted (<paramref name="message"/>), such as the end of an
+    /// installation; <paramref name="messageKey"/> is what the log says when nothing is shown.
+    /// </summary>
+    public void ShowInfo(string messageKey, string message) => Run(() => Present(messageKey, message, PromptKind.Info));
+
+    /// <summary>
     /// Offers to install the update <paramref name="version"/>: true for « Install », false for « Later » (also the
     /// default answer, and Escape).
     /// </summary>

@@ -45,10 +45,10 @@ These images are drawn by the `--snapshot` diagnostic mode (see « Diagnostic mo
   and group corners.
 - **Nine languages**: English, French, Spanish, German, Italian, Portuguese (Brazil and Portugal), Dutch, Polish. A
   language is one JSON file.
-- A first-run wizard (a notification then says which shortcut opens FolderSwitch), a notification-area icon, start
+- A first-run wizard (a message then says which shortcut opens FolderSwitch), a notification-area icon, start
   with Windows, export and import of the configuration.
-- An installer and updates (Velopack), updates being off until a feed address is set. Once an installation or an
-  update ends, a notification says so, with the version and the shortcut that opens FolderSwitch.
+- An installer and updates (Velopack), updates being off until a feed address is set. Once an installation, a repair or
+  an update ends, a message box says so, with the version and the shortcut that opens FolderSwitch.
 
 ## Documentation
 

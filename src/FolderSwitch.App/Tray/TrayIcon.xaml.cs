@@ -12,8 +12,7 @@ namespace FolderSwitch.App.Tray;
 /// The notification area icon. It only reports what the user asked for (<see cref="OpenRequested"/> on a left click
 /// as for the « Open » entry, then one event per other menu entry); the menu texts follow the language of the
 /// interface. It also announces an available update (<see cref="AnnounceUpdate"/>) and shows its download
-/// (<see cref="SetUpdateDownloading"/>), and, after the first run, an installation or an update, that FolderSwitch is
-/// ready (<see cref="ShowReady"/>).
+/// (<see cref="SetUpdateDownloading"/>), and, after the first run, that FolderSwitch is ready (<see cref="ShowReady"/>).
 /// </summary>
 /// <remarks>UI thread only. <see cref="Close"/> removes the icon.</remarks>
 public partial class TrayIcon : TaskbarIcon
@@ -99,8 +98,7 @@ public partial class TrayIcon : TaskbarIcon
 
     /// <summary>
     /// Shows the notification that FolderSwitch is ready, with <paramref name="text"/> (« FolderSwitch is ready: press
-    /// Ctrl + ⊞ Win », or that it was installed or updated): after the first-run wizard, the installer or the updater,
-    /// the only sign that FolderSwitch runs. A click on it does nothing.
+    /// Ctrl + ⊞ Win »): after the first-run wizard, the only sign that FolderSwitch runs. A click on it does nothing.
     /// </summary>
     public void ShowReady(string text)
     {
@@ -186,8 +184,8 @@ public partial class TrayIcon : TaskbarIcon
     private void OnQuitClick(object sender, RoutedEventArgs e) => QuitRequested?.Invoke(this, EventArgs.Empty);
 
     /// <summary>
-    /// A click on a notification: the one of an update opens its offer; the ready notification has nothing to open
-    /// (unless an update was announced since, whose offer is then what the click opens).
+    /// A click on a notification: the one of an update opens its offer; the ready notification of the first run has
+    /// nothing to open (unless an update was announced since, whose offer is then what the click opens).
     /// </summary>
     private void OnBalloonTipClicked(object sender, RoutedEventArgs e)
     {

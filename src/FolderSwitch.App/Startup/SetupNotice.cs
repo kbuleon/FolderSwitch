@@ -5,7 +5,7 @@ namespace FolderSwitch.App.Startup;
 /// <summary>What Velopack just did before this start.</summary>
 internal enum SetupKind
 {
-    /// <summary>Installed by the installer, over an existing configuration or not (Velopack's first run).</summary>
+    /// <summary>Installed by the installer, a first time or a repair (Velopack's first run).</summary>
     Installed,
 
     /// <summary>Updated by FolderSwitch itself, then restarted by Velopack.</summary>
@@ -13,8 +13,8 @@ internal enum SetupKind
 }
 
 /// <summary>
-/// An installation or an update that just ended, at version <paramref name="Version"/>: once FolderSwitch is ready, a
-/// notification says so, since the installer and the updater end without a word.
+/// An installation or an update that just ended, at version <paramref name="Version"/>: once FolderSwitch is ready, a box
+/// says so, since the installer and the updater end without a word.
 /// </summary>
 internal sealed record SetupNotice(SetupKind Kind, string Version)
 {
@@ -27,7 +27,7 @@ internal sealed record SetupNotice(SetupKind Kind, string Version)
     {
         ArgumentNullException.ThrowIfNull(localizer);
 
-        var text = localizer.Format(Kind == SetupKind.Updated ? "Tray.Updated" : "Tray.Installed", Version);
-        return shortcut is null ? text : text + "\n" + localizer.Format("Tray.OpenWith", shortcut);
+        var text = localizer.Format(Kind == SetupKind.Updated ? "Setup.Updated" : "Setup.Installed", Version);
+        return shortcut is null ? text : text + "\n" + localizer.Format("Setup.OpenWith", shortcut);
     }
 }

@@ -154,6 +154,7 @@ public partial class App : Application
             return;
         }
 
+        _composition.ShowSetupNotice();
         foreach (var (key, isError) in _composition.StartupNotices)
         {
             if (isError)
