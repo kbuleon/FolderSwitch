@@ -8,6 +8,23 @@ folder opens in a new Explorer window, and a file opens with its associated appl
 
 C# on .NET 10 with WPF, for Windows 10 and 11 (the installer is x64). Installed per user, without administrator rights.
 
+## Screenshots
+
+The board, as the shortcut shows it (Fluent theme, light):
+
+![The FolderSwitch window: three tabs, three columns of coloured groups of folders and files](assets/screenshots/board.png)
+
+Edit mode, where tabs, columns, groups and items are added, renamed, recoloured and moved by drag and drop (Cards
+theme, dark):
+
+![Edit mode: grips, colour and delete buttons on every group, « + Folder », « + File », « + Group » and « + Column » buttons](assets/screenshots/edit-mode.png)
+
+The Appearance page of the settings: the mode, the theme, the background colour and the group corners:
+
+![The Appearance page of the settings, with the Light, Dark and Auto modes and the seven themes](assets/screenshots/settings-appearance.png)
+
+These images are drawn by the `--snapshot` diagnostic mode (see « Diagnostic modes » below).
+
 ## Main features
 
 - **Global shortcut**, Ctrl + Win pressed alone by default. It acts when the keys are released, so the Windows
