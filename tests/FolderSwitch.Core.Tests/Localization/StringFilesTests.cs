@@ -365,10 +365,24 @@ public class StringFilesTests
             Assert.Contains("{0}", entries["Hotkey.Test"]);
             Assert.Contains("{0}", entries["Hotkey.Reset"]);
             Assert.Contains("{0}", entries["Tray.Ready"]);
+            Assert.Contains("{0}", entries["Tray.OpenWith"]);
             Assert.DoesNotContain("{1}", entries["Hotkey.Test"]);
             Assert.DoesNotContain("{1}", entries["Hotkey.Reset"]);
             Assert.DoesNotContain("{1}", entries["Tray.Ready"]);
+            Assert.DoesNotContain("{1}", entries["Tray.OpenWith"]);
             Assert.DoesNotContain("{0}", entries["Hotkey.ApplyToTest"]);
+        }
+    }
+
+    [Theory]
+    [InlineData("Tray.Installed")]
+    [InlineData("Tray.Updated")]
+    public void StringFiles_setup_texts_receive_the_version(string key)
+    {
+        foreach (var entries in Files.Value.Values)
+        {
+            Assert.Contains("{0}", entries[key]);
+            Assert.DoesNotContain("{1}", entries[key]);
         }
     }
 

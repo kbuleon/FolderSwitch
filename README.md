@@ -47,7 +47,8 @@ These images are drawn by the `--snapshot` diagnostic mode (see « Diagnostic mo
   language is one JSON file.
 - A first-run wizard (a notification then says which shortcut opens FolderSwitch), a notification-area icon, start
   with Windows, export and import of the configuration.
-- An installer and updates (Velopack), updates being off until a feed address is set.
+- An installer and updates (Velopack), updates being off until a feed address is set. Once an installation or an
+  update ends, a notification says so, with the version and the shortcut that opens FolderSwitch.
 
 ## Documentation
 

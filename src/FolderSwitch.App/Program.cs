@@ -35,9 +35,13 @@ public static class Program
     {
         var clock = Stopwatch.StartNew();
 
-        // Velopack must run first: on install, update and uninstall it runs the matching hook and exits.
+        // Velopack must run first: on install, update and uninstall it runs the matching hook and exits. The first start
+        // after an installation, or the restart after an update, goes on: it is told once FolderSwitch is ready.
+        SetupNotice? setup = null;
         VelopackApp.Build()
             .OnBeforeUninstallFastCallback(_ => DisableAutostart())
+            .OnFirstRun(version => setup = new SetupNotice(SetupKind.Installed, version.ToString()))
+            .OnRestarted(version => setup = new SetupNotice(SetupKind.Updated, version.ToString()))
             .Run();
 
         var snapshot = HasOption(args, SnapshotArgument);
@@ -58,7 +62,7 @@ public static class Program
 
             exitCode = snapshot
                 ? RunSnapshot(args)
-                : RunApplication(selfTest, selfTestDirectory ?? ConfigStore.DefaultDirectory, clock);
+                : RunApplication(selfTest, selfTestDirectory ?? ConfigStore.DefaultDirectory, clock, setup);
             return exitCode;
         }
         finally
@@ -100,10 +104,11 @@ public static class Program
     }
 
     /// <summary>The WPF application: single instance, composition, then the dispatcher until « Quit ». The exit code.</summary>
-    private static int RunApplication(bool selfTest, string configDirectory, Stopwatch clock)
+    private static int RunApplication(bool selfTest, string configDirectory, Stopwatch clock, SetupNotice? setup)
     {
         DebugLog.Info($"Starting FolderSwitch {typeof(Program).Assembly.GetName().Version} on Windows {Environment.OSVersion.Version}"
-            + (selfTest ? " (self-test)" : string.Empty));
+            + (selfTest ? " (self-test)" : string.Empty)
+            + (setup is null ? string.Empty : $" ({setup.Kind} {setup.Version})"));
 
         // The UI thread's context, created before anything that posts to it: the services raise their events there.
         // Posts made before the dispatcher runs wait in its queue.
@@ -132,7 +137,7 @@ public static class Program
         App? app = null;
         try
         {
-            app = new App(new StartupOptions(selfTest, configDirectory, clock, uiContext, instance));
+            app = new App(new StartupOptions(selfTest, configDirectory, clock, uiContext, instance, setup));
             app.InitializeComponent();
             var exitCode = app.Run();
             DebugLog.Info($"Exit with code {exitCode}");

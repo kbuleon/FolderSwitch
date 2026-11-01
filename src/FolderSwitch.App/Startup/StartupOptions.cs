@@ -19,9 +19,13 @@ namespace FolderSwitch.App.Startup;
 /// <param name="Clock">Started at the very beginning of <see cref="Program.Main"/>: measures the startup.</param>
 /// <param name="UiContext">The UI thread's synchronization context, where the services raise their events.</param>
 /// <param name="Instance">The single-instance ownership; disposed by <see cref="Program.Main"/> at the very end.</param>
+/// <param name="Setup">
+/// The installation or the update that just ended, as Velopack reported it; <c>null</c> for any other start.
+/// </param>
 internal sealed record StartupOptions(
     bool SelfTest,
     string ConfigDirectory,
     Stopwatch Clock,
     SynchronizationContext UiContext,
-    SingleInstance Instance);
+    SingleInstance Instance,
+    SetupNotice? Setup);

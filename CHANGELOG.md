@@ -5,6 +5,7 @@ This file is maintained by the agent. The log is timestamped and **concise**. It
 
 ## 2026-11-01
 
+* **1.3.0 — Notification after an installation or an update**: the installer and the updater end without a word; FolderSwitch now says, once ready, « FolderSwitch has been updated to version x.y.z » or « FolderSwitch x.y.z has been installed », then « Press Ctrl + ⊞ Win to open FolderSwitch » (the shortcut in effect, left out when it could not be registered). A first installation keeps the wizard's ready notification only. From Velopack's first-run and restarted hooks; nine languages.
 * **1.2.0 — Drag and drop to another tab; Edit-mode right-click menu**: in Edit mode, a column, a group or an item dragged onto another tab and held there for half a second shows that tab, where it can be dropped anywhere (an item needs a group); a drag that drops nothing goes back to its tab. A tab keeps at least one column: the last one has no ✕ and cannot be dragged out, and a tab without a column, from an older configuration, gets an empty one when loaded. A right-click on a tab, a group's header or an item, in Edit mode, opens a menu with « Rename » (F2); tabs lose their selection frame (the underline already marks the tab shown) and F2 without a selection renames the tab shown. The window keeps the width of its widest tab, so the tabs no longer move when another one is shown; only the height follows the tab. A column fits its content again after a change of theme.
 
 ## 2026-10-31

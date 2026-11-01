@@ -34,7 +34,8 @@ namespace FolderSwitch.App.Startup;
 /// is shown, modally, before the shortcut is registered and before the view models and the main window are built, so
 /// that the wizard alone decides the configuration they start from; the composition goes on with the configuration it
 /// created. Closed without finishing, it leaves nothing saved, and <see cref="Build"/> returns <c>false</c>: FolderSwitch
-/// quits. Once the application is ready, <see cref="AnnounceReady"/> says, in a notification, which shortcut opens it.
+/// quits. Once the application is ready, <see cref="AnnounceReady"/> says, in a notification, which shortcut opens it;
+/// it also says that an installation or an update just ended (<see cref="StartupOptions.Setup"/>).
 /// A self-test leaves the first run to a real start.
 /// </para>
 /// <para>
@@ -65,6 +66,8 @@ internal sealed class Composition : IDisposable
     private UpdateChecker? _updates;
     private FirstRunWizard? _wizard;
     private Hotkey? _firstRunHotkey;
+    private SetupNotice? _setup;
+    private Hotkey? _setupHotkey;
     private bool _triggersWired;
     private bool _disposed;
 
@@ -162,6 +165,14 @@ internal sealed class Composition : IDisposable
             _firstRunHotkey = config.Settings.Hotkey;
         }
 
+        if (!wizardCompleted && _options.Setup is { } setup)
+        {
+            // Told once the application is ready too, with the shortcut when it works; after the wizard, the ready
+            // notification says it all.
+            _setup = setup;
+            _setupHotkey = hotkeyRegistered ? config.Settings.Hotkey : null;
+        }
+
         _controller = new WindowController(_contexts, foreground, prompts);
         _main = new MainViewModel(config, new FocusReturningActivator(activation, _controller), persistence, prompts, _controller, Localizer);
         _appearance = new AppearanceViewModel(config, _system, persistence);
@@ -223,22 +234,35 @@ internal sealed class Composition : IDisposable
     }
 
     /// <summary>
-    /// The application is up after a first run that just ended: a notification says that FolderSwitch is ready and
-    /// which shortcut opens it, since nothing else appears once the wizard closes. Does nothing after any other start,
-    /// or when the shortcut could not be registered (a startup notice says so instead).
+    /// The application is up, and nothing else appears: after a first run that just ended, a notification says that
+    /// FolderSwitch is ready and which shortcut opens it (nothing when the shortcut could not be registered: a startup
+    /// notice says so instead); after an installation or an update, it says so, and which shortcut opens FolderSwitch
+    /// when it works. Does nothing after any other start.
     /// </summary>
     public void AnnounceReady()
     {
-        if (_firstRunHotkey is not { } hotkey || _tray is null || Localizer is null)
+        if (_tray is null || Localizer is null)
         {
             return;
         }
 
-        _firstRunHotkey = null;
-        var text = Localizer.Format("Tray.Ready", HotkeyRules.Format(hotkey, key => Localizer[key], KeyNames.Instance));
-        _tray.ShowReady(text);
-        DebugLog.Info("First run: the ready notification is shown");
+        if (_firstRunHotkey is { } hotkey)
+        {
+            _firstRunHotkey = null;
+            _tray.ShowReady(Localizer.Format("Tray.Ready", FormatHotkey(Localizer, hotkey)));
+            DebugLog.Info("First run: the ready notification is shown");
+        }
+        else if (_setup is { } setup)
+        {
+            _setup = null;
+            var shortcut = _setupHotkey is { } setupHotkey ? FormatHotkey(Localizer, setupHotkey) : null;
+            _tray.ShowReady(setup.Text(Localizer, shortcut));
+            DebugLog.Info($"{setup.Kind} {setup.Version}: the notification is shown");
+        }
     }
+
+    private static string FormatHotkey(Localizer localizer, Hotkey hotkey) =>
+        HotkeyRules.Format(hotkey, key => localizer[key], KeyNames.Instance);
 
     /// <summary>
     /// Releases everything, the sources of input first (shortcut and keyboard hook, single instance, notification

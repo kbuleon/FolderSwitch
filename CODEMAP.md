@@ -196,7 +196,8 @@ The shell and composition root.
 ### Startup/
 
 - `Composition` — builds and releases everything in order; owns the services, view models, window, icon, update checker.
-- `StartupOptions` — what `Main` hands to the app (self-test, config folder, clock, UI context, instance).
+- `StartupOptions` — what `Main` hands to the app (self-test, config folder, clock, UI context, instance, setup notice).
+- `SetupNotice`, `SetupKind` — an installation or an update reported by Velopack's hooks, and the text of its notification.
 - `WindowController` — shows, hides, recalls (to the front, new calling window), places and pre-renders the main window; captures the call context first; returns focus to the calling window (`IWindowHost`).
 - `ShortcutRouting`, `ShortcutAction` — pure: what a press of the shortcut does (show, hide, recall, test zone, nothing).
 - `FocusReturningActivator` — decorates the activator to tell the controller which window to give focus back to.
@@ -228,7 +229,7 @@ The shell and composition root.
 
 ### Tray/
 
-- `TrayIcon` (`TrayIcon.xaml`) — the notification-area icon and menu; update entry and balloon; the ready notification of the first run.
+- `TrayIcon` (`TrayIcon.xaml`) — the notification-area icon and menu; update entry and balloon; the ready notification of the first run, an installation or an update.
 - `TrayIconImage` — loads the right icon size for the system scale.
 
 ### Views/
