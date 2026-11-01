@@ -2,9 +2,9 @@
 
 FolderSwitch is a small resident Windows utility that gives instant access to remembered folders and files. A global
 shortcut (Ctrl + Win by default) shows a window that was built once and is only hidden between calls: tabs hold
-columns, columns hold collapsible coloured groups, groups hold folders and files. One click takes the File Explorer
+columns, columns hold collapsible coloured groups, groups hold folders, files and web sites. One click takes the File Explorer
 window, or the Open / Save As / folder-picker dialog, you called it from to that folder. From any other window the
-folder opens in a new Explorer window, and a file opens with its associated application.
+folder opens in a new Explorer window, a file opens with its associated application and a site in the default browser.
 
 C# on .NET 10 with WPF, for Windows 10 and 11 (the installer is x64). Installed per user, without administrator rights.
 
@@ -17,7 +17,12 @@ The board, as the shortcut shows it (Fluent theme, light):
 Edit mode, where tabs, columns, groups and items are added, renamed, recoloured and moved by drag and drop (Cards
 theme, dark):
 
-![Edit mode: grips, colour and delete buttons on every group, « + Folder », « + File », « + Group » and « + Column » buttons](assets/screenshots/edit-mode.png)
+![Edit mode: grips, colour and delete buttons on every group, an « Add ▾ » button under each group, « + Group » and « + Column » buttons](assets/screenshots/edit-mode.png)
+
+The « Add ▾ » menu of a group, called from Firefox: the page shown by the browser comes first, then the folder picker,
+the special folders, the file picker and the address prompt. Called from Explorer, « Current folder » comes first:
+
+![The Add menu of the Finance group, called from Firefox: Current URL, Folder…, Special folders, File…, URL…](assets/screenshots/add-menu.png)
 
 The Appearance page of the settings: the mode, the theme, the background colour and the group corners:
 
@@ -34,13 +39,19 @@ These images are drawn by the `--snapshot` diagnostic mode (see « Diagnostic mo
 - **Context aware**: the calling Explorer window (its active tab on Windows 11) or file dialog (modern and legacy Open,
   Save As, folder pickers) is moved to the folder. Ctrl + click opens a new Explorer tab on Windows 11, a new window
   on Windows 10. A right-click on an item opens its menu: « Open in File Explorer » (a new window; a file's folder for
-  a file), and « Open in new tab » when Ctrl + click would open one. The title bar shows the version that runs.
+  a file), and « Open in new tab » when Ctrl + click would open one; for a site, « Copy address ». The title bar shows
+  the version that runs. From a file dialog only folders can be used: files and sites are greyed out, with a tooltip.
 - **A board you organise by drag and drop** in Edit mode (« Edit » in the title bar): tabs, columns (moved by their
-  ⠿ grip) of fixed or automatic width, groups with a colour that collapse, folders, files and Windows special folders (Desktop, Documents, This PC…). « + Current
-  folder » remembers the folder of the window you called it from. A column, group or item held over another tab for a
+  ⠿ grip) of fixed or automatic width, groups with a colour that collapse, folders, files, web sites and Windows special folders (Desktop, Documents, This PC…). A group's
+  « Add ▾ » menu starts with what the window you called FolderSwitch from shows: « Current folder » from Explorer or a
+  file dialog, « Current URL » from Firefox, Chrome or Edge, added in one click. It goes on with « Folder… », « Special folders »,
+  « File… » and « URL… » (an address typed or pasted; the clipboard's is offered). A column, group or item held over another tab for a
   moment shows that tab, where it can be dropped. A right-click on a tab, a group's header or an item offers « Rename »
   (F2). Every change is saved at once. The window keeps the width of its widest tab: the tabs stay in place when you
   switch.
+- **Icons that say what an item is**: a file shows the icon Windows gives its type, found without touching the file; a
+  site shows its favicon, fetched once in the background when the site is added (and tried once more per session when
+  the cache has none), and a globe until then or when it has none.
 - **Seven themes**, each in a light and a dark variant (or following the Windows mode), with a choice of background
   and group corners.
 - **Nine languages**: English, French, Spanish, German, Italian, Portuguese (Brazil and Portugal), Dutch, Polish. A
@@ -110,9 +121,10 @@ hours. It announces a version with a notification and an « Install update » en
 session, so again after the next start of FolderSwitch while the update is not installed, and during a session again
 only for a newer version. It installs the update when the user accepts (the entry reads « Downloading update… » and the
 « Check for updates » button is disabled meanwhile). A copy that Velopack did not install (a development run) never
-checks. This is the only network access of FolderSwitch: the request of the feed (`releases.win.json`, with
-the operating system, the architecture, the application id and the installed version in its query string) and, when the
-user accepts, the download of the package. No identifier, no telemetry.
+checks. The update accounts for one of the two kinds of network access of FolderSwitch (the other is the favicons of the
+sites, see « Privacy »): the request of the feed (`releases.win.json`, with the operating system, the architecture, the
+application id and the installed version in its query string) and, when the user accepts, the download of the package.
+No identifier, no telemetry.
 
 **Signing.** `-SignParams` hands the parameters of `signtool.exe` to `vpk`, which runs its own copy of it to sign the
 application's files, the updater and the installer (the code signing certificate must be in the user's store, or named in
@@ -139,14 +151,16 @@ powershell -ExecutionPolicy Bypass -File build/pack.ps1 -SignParams '/a /fd sha2
 
 Four xUnit projects (Core, Presentation, App, Windows integration), plus the `DialogHost` helper; the testing strategy
 of [ARCHITECTURE.md](ARCHITECTURE.md) says what each one covers. Every class of the Windows integration tests is tagged
-`Category=Desktop`.
+`Category=Desktop`, except three that touch no window (the browser reading rule, its wait per window, the file type
+icons).
 
 The **Desktop** category drives real windows: it opens Explorer windows, file dialogs (through `DialogHost`), a message
-box and a text editor, moves the foreground window, and installs the real keyboard hook. No keystroke is sent, but do
-not run it while someone is using the machine. Filter it out, or run it alone:
+box, a text editor and, for each of Firefox, Chrome and Edge that is installed, a browser with a throwaway profile on
+pages served by the test itself (a browser that is not installed skips its tests), moves the foreground window, and
+installs the real keyboard hook. No keystroke is sent, but do not run it while someone is using the machine. Filter it out, or run it alone:
 
 ```powershell
-dotnet test FolderSwitch.slnx --filter "Category!=Desktop"   # Core, Presentation and App tests: safe at any time
+dotnet test FolderSwitch.slnx --filter "Category!=Desktop"   # Core, Presentation, App and the windowless Windows tests: safe at any time
 dotnet test FolderSwitch.slnx --filter "Category=Desktop"    # Windows integration tests: on an idle desktop
 ```
 
@@ -175,9 +189,10 @@ FolderSwitch.exe --snapshot <directory> [--snapshot-language <code>]
 
 | What | Where |
 | ---- | ----- |
-| Configuration | `%APPDATA%\FolderSwitch\config.json`: indented JSON with a schema version, written at every change (a temporary file, then an atomic replace). |
+| Configuration | `%APPDATA%\FolderSwitch\config.json`: indented JSON with a schema version (2; a version 1 file is read as it is), written at every change (a temporary file, then an atomic replace). |
 | Backups | `%APPDATA%\FolderSwitch\backups\config-<yyyyMMdd-HHmmss>.json`: one at each start and one before an import replaces the configuration; the 10 most recent are kept. |
 | Invalid configuration | `%APPDATA%\FolderSwitch\config.invalid-<timestamp>.json`: a damaged `config.json` is kept aside, then replaced by the latest valid backup (or by a new configuration), and the user is told. |
+| Favicons | `%APPDATA%\FolderSwitch\favicons\`: one image per host (`morningstar.fr.png`, the host in lower-case punycode), outside the configuration and its export; deleting the folder is harmless, the icons are fetched again. |
 | Debug log | `%APPDATA%\FolderSwitch\logs\folderswitch.log`, rolling to `folderswitch.1.log` at 512 KiB. Local only. |
 | Start with Windows | The `FolderSwitch` value of `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`. |
 | Installed program | `%LocalAppData%\FolderSwitch`, owned by Velopack. Uninstalling removes it and the `Run` value, and keeps `%APPDATA%\FolderSwitch`. |
@@ -186,9 +201,17 @@ The configuration can be exported to a file and imported again from the Configur
 
 ## Privacy
 
-FolderSwitch collects nothing and sends nothing: no telemetry, no analytics, no identifier. Its debug log stays on the
-machine. Its only network access is the update feed, and only when a feed address is configured (see « Publishing »
-above); without one it never connects.
+FolderSwitch collects nothing and sends nothing about you: no telemetry, no analytics, no identifier. Its debug log stays
+on the machine. It makes two kinds of network request, and no other:
+
+- The update feed, only when a feed address is configured (see « Publishing » above).
+- The favicon of a web site, when a site is added to a board, and once per session for a site that has none in the
+  cache. It is a plain `GET` of the site's own page, then of the icon the page declares or `/favicon.ico`, to the site
+  itself, up to 5 redirects, with no cookie and the single header `User-Agent: FolderSwitch/<version>`; it gives up after
+  5 s in all, and reads 256 KiB at most from any response. Nothing from the board or the configuration is in a request.
+  Reading the address of the page a browser shows (for « Current URL ») stays on the machine.
+
+Without a configured feed and without a site on the board, FolderSwitch never connects.
 
 ## Known limits
 
@@ -201,13 +224,24 @@ Imposed by Windows:
 
 In the current version:
 
-- A file clicked while a file dialog is the calling window moves the dialog to the file's folder; it does not select
-  the file.
+- « Current URL » works with Firefox, Chrome and Edge only, and relies on what they expose to Windows accessibility
+  (UI Automation): a browser update may break it, and the address can still be typed (« URL… »). A browser run as
+  administrator cannot be read. The first reading of a browser session can be slow, so the line may appear after a moment,
+  or not at all; the browser is not otherwise touched, but reading it may turn on its accessibility mode until it closes.
+  A site opens in the default browser, not in the browser the address came from.
+  From a Chrome or Edge window that is hidden or fully covered, only the address bar can be read, and it hides the scheme:
+  an `http` page is then stored as `https` (remove it and add it again with « URL… »).
+- Only the `http` and `https` schemes are accepted for a site. A favicon that is neither an ICO nor a bitmap (PNG, GIF,
+  JPEG, BMP), such as an SVG, shows the globe.
+- Going back to an earlier version of FolderSwitch loses the changes made since the update: it does not read a version 2
+  configuration, sets it aside and starts again from the latest backup it can read.
+- From a file dialog only folders can be used: a file or a site is greyed out, and a file no longer moves the dialog to
+  its folder. Edit mode is not affected.
 - Only genuine file dialogs are driven, and only to folders such a dialog can show (This PC, libraries and network
   locations qualify, the Recycle Bin and the Control Panel do not). The move is limited to 1.5 s and fails with a
   message rather than waiting.
 - The calling window's current folder is read within 50 ms. If Explorer or the dialog does not answer in time,
-  FolderSwitch still knows the kind of window but « + Current folder » is unavailable for that call. It is unavailable
+  FolderSwitch still knows the kind of window but « Current folder » is unavailable for that call. It is unavailable
   too for search results, which are a query rather than a place.
 - The OneDrive special folder resolves only when the OneDrive client has set its environment variable.
-- File Explorer is the only supported file manager; items are folders and files; languages written left to right only.
+- File Explorer is the only supported file manager; items are folders, files and web sites; languages written left to right only.

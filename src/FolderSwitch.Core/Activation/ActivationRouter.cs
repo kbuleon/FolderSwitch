@@ -3,7 +3,7 @@ using FolderSwitch.Core.Model;
 namespace FolderSwitch.Core.Activation;
 
 /// <summary>
-/// The behaviour table of the spec (5.3): what a click or Ctrl+click on a folder or a file does,
+/// The behaviour table of the spec (5.3): what a click or Ctrl+click on a folder, a file or a web site does,
 /// according to the calling context and the Windows generation. Pure logic.
 /// </summary>
 /// <remarks>
@@ -19,12 +19,16 @@ public static class ActivationRouter
         bool ctrl,
         WindowsGeneration os)
     {
+        // A file or a site opens in its own application, whatever the context. A file dialog never offers them
+        // (see IsUsable); should one get here, it is opened like anywhere else.
         if (kind == ItemKind.File)
         {
-            // Selecting the file in an Open dialog is out of scope: the dialog goes to the file's folder.
-            return ctx.Kind == CallContextKind.FileDialog
-                ? new ActivationPlan(ActivationKind.NavigateFileDialog, ParentFolderOf(resolvedPath), null)
-                : new ActivationPlan(ActivationKind.OpenFile, resolvedPath, null);
+            return new ActivationPlan(ActivationKind.OpenFile, resolvedPath, null);
+        }
+
+        if (kind == ItemKind.Url)
+        {
+            return new ActivationPlan(ActivationKind.OpenUrl, resolvedPath, null);
         }
 
         return ctx.Kind switch
@@ -44,6 +48,13 @@ public static class ActivationRouter
             _ => new ActivationPlan(ActivationKind.OpenNewExplorerWindow, resolvedPath, null),
         };
     }
+
+    /// <summary>
+    /// Whether an item of <paramref name="kind"/> can be used from a call of <paramref name="ctx"/>: a file dialog can
+    /// only be moved to a folder, so a file or a site is greyed out there (spec 5.7). The view model applies the guard.
+    /// </summary>
+    public static bool IsUsable(CallContextKind ctx, ItemKind kind) =>
+        !(ctx == CallContextKind.FileDialog && (kind == ItemKind.File || kind == ItemKind.Url));
 
     /// <summary>
     /// « Open in File Explorer » (the item's menu): a new Explorer window on the folder, whatever the calling context;

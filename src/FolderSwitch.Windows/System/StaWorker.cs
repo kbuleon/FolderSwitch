@@ -22,10 +22,17 @@ internal sealed class StaWorker : IDisposable
 
     private readonly BlockingCollection<WorkItem> _queue = new();
     private readonly Thread _thread;
+    private readonly Action? _onExit;
     private volatile bool _disposed;
 
-    public StaWorker(string name)
+    /// <param name="name">The name of the thread.</param>
+    /// <param name="onExit">
+    /// Run on the thread once it stops taking work, after its last item (to release the COM objects it created there);
+    /// its exceptions are ignored.
+    /// </param>
+    public StaWorker(string name, Action? onExit = null)
     {
+        _onExit = onExit;
         _thread = new Thread(Run) { IsBackground = true, Name = name };
         _thread.SetApartmentState(ApartmentState.STA);
         _thread.Start();
@@ -107,6 +114,15 @@ internal sealed class StaWorker : IDisposable
         {
             // After Dispose, only the item already running may go on: the queued ones are dropped.
             item.Execute(skip: _disposed);
+        }
+
+        try
+        {
+            _onExit?.Invoke();
+        }
+        catch (Exception)
+        {
+            // Best effort: the thread ends anyway.
         }
 
         _queue.Dispose();

@@ -36,6 +36,7 @@ internal static class TestConfigs
                                 new Item { Kind = ItemKind.Folder, Special = SpecialFolderKey.OneDrive },
                                 new Item { Kind = ItemKind.Folder, Path = @"\\nas\partage", Name = "Partage NAS" },
                                 new Item { Kind = ItemKind.File, Path = @"C:\Docs\notes.txt" },
+                                new Item { Kind = ItemKind.Url, Url = "https://www.morningstar.fr/fr/funds", Name = "Morningstar" },
                             },
                         },
                     },
@@ -119,6 +120,7 @@ internal static class TestConfigs
                         Assert.Equal(ei.Name, ai.Name);
                         Assert.Equal(ei.Path, ai.Path);
                         Assert.Equal(ei.Special, ai.Special);
+                        Assert.Equal(ei.Url, ai.Url);
                     }
                 }
             }

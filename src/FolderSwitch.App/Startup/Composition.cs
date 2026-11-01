@@ -1,5 +1,7 @@
 using System.ComponentModel;
 using System.IO;
+using System.Net.Http;
+using System.Reflection;
 using System.Security;
 using System.Windows;
 using System.Windows.Threading;
@@ -13,7 +15,9 @@ using FolderSwitch.Core.Hotkeys;
 using FolderSwitch.Core.Localization;
 using FolderSwitch.Core.Model;
 using FolderSwitch.Core.Persistence;
+using FolderSwitch.Core.Web;
 using FolderSwitch.Presentation.ViewModels;
+using FolderSwitch.Windows.Browsers;
 using FolderSwitch.Windows.Dialogs;
 using FolderSwitch.Windows.Hotkeys;
 using FolderSwitch.Windows.Shell;
@@ -56,6 +60,9 @@ internal sealed class Composition : IDisposable
     private CallContextProvider? _contexts;
     private ExplorerController? _explorer;
     private FileDialogNavigator? _fileDialog;
+    private BrowserAddressReader? _browserReader;
+    private SocketsHttpHandler? _faviconHandler;
+    private FileTypeIcons? _fileTypeIcons;
     private MainViewModel? _main;
     private AppearanceViewModel? _appearance;
     private HotkeyEditorViewModel? _hotkeyEditor;
@@ -132,6 +139,9 @@ internal sealed class Composition : IDisposable
         _contexts = new CallContextProvider();
         _explorer = new ExplorerController();
         _fileDialog = new FileDialogNavigator();
+        _browserReader = new BrowserAddressReader();
+        _fileTypeIcons = new FileTypeIcons();
+        var favicons = CreateFavicons();
 
         // One source for the Windows generation: the one that decides on tabs is the one the system reports.
         var activation = new ActivationService(
@@ -174,7 +184,7 @@ internal sealed class Composition : IDisposable
         }
 
         _controller = new WindowController(_contexts, foreground, prompts);
-        _main = new MainViewModel(config, new FocusReturningActivator(activation, _controller), persistence, prompts, _controller, Localizer);
+        _main = new MainViewModel(config, new FocusReturningActivator(activation, _controller), persistence, prompts, _controller, _browserReader, favicons, Localizer);
         _appearance = new AppearanceViewModel(config, _system, persistence);
 
         // Before the window: its views read the theme's resources from the first layout on.
@@ -200,6 +210,7 @@ internal sealed class Composition : IDisposable
 
         // Built once, for the whole life of the process.
         _window = new MainWindow(_main, texts, _appearance, _settings);
+        _window.View.Icons = new ItemIcons(_fileTypeIcons);
         _controller.Attach(_window, _main);
 
         // A self-test builds the icon but never puts it in the notification area.
@@ -317,7 +328,31 @@ internal sealed class Composition : IDisposable
         Release("call context", () => _contexts?.Dispose());
         Release("Explorer control", () => _explorer?.Dispose());
         Release("file dialogs", () => _fileDialog?.Dispose());
+        Release("browser address reader", () => _browserReader?.Dispose());
+        Release("file type icons", () => _fileTypeIcons?.Dispose());
+        Release("favicon connections", () => _faviconHandler?.Dispose());
         DebugLog.Info("Released");
+    }
+
+    /// <summary>
+    /// The favicons of the web sites: kept in the `favicons` folder beside the configuration (a throwaway folder in a
+    /// self-test), fetched over a handler that keeps no cookie and follows no redirect itself (the fetcher does, and
+    /// checks each hop).
+    /// </summary>
+    private Favicons CreateFavicons()
+    {
+        _faviconHandler = new SocketsHttpHandler { UseCookies = false, AllowAutoRedirect = false };
+        var fetcher = new FaviconFetcher(_faviconHandler, "FolderSwitch/" + ProductVersion());
+        return new Favicons(new FaviconCache(Path.Combine(_options.ConfigDirectory, "favicons")), fetcher, DebugLog.Info);
+    }
+
+    /// <summary>The version of the assembly (the build metadata after a <c>+</c> left out), as the settings show it.</summary>
+    private static string ProductVersion()
+    {
+        var assembly = typeof(Composition).Assembly;
+        var informational = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+        var version = informational?.Split('+')[0];
+        return string.IsNullOrWhiteSpace(version) ? assembly.GetName().Version?.ToString(3) ?? "0" : version;
     }
 
     private static bool IsStorageError(Exception e) => e is IOException or UnauthorizedAccessException or SecurityException;

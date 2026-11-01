@@ -1,7 +1,7 @@
 namespace FolderSwitch.Core.Activation;
 
 /// <summary>
-/// Decides whether a window is a File Explorer window, a file dialog, or anything else. Pure logic:
+/// Decides whether a window is a File Explorer window, a file dialog, a web browser, or anything else. Pure logic:
 /// the Windows layer gathers the <see cref="WindowInfo"/>.
 /// </summary>
 /// <remarks>
@@ -17,6 +17,8 @@ public static class WindowClassifier
     private const string TreeViewClass = "SysTreeView32";
     private const string StaticClass = "Static";
     private const string FolderPickerTreeClass = "SHBrowseForFolder ShellNameSpace Control";
+    private const string FirefoxClass = "MozillaWindowClass";
+    private const string ChromiumClass = "Chrome_WidgetWin_1";
 
     /// <summary>
     /// Control ID of the tree of the legacy folder picker without <c>BIF_NEWDIALOGSTYLE</c> (shell32's
@@ -45,7 +47,36 @@ public static class WindowClassifier
             return CallContextKind.FileDialog;
         }
 
-        return CallContextKind.Other;
+        return BrowserOf(window) is null ? CallContextKind.Other : CallContextKind.Browser;
+    }
+
+    /// <summary>
+    /// The browser a window is the main window of, <c>null</c> if it is not one: Firefox is process <c>firefox</c>
+    /// with class <c>MozillaWindowClass</c>, Chrome <c>chrome</c> and Edge <c>msedge</c> with <c>Chrome_WidgetWin_1</c>.
+    /// Both conditions are needed: Chrome's notifications and other applications built on Chromium (Electron)
+    /// share the class or the process name, not both.
+    /// </summary>
+    public static BrowserKind? BrowserOf(WindowInfo window)
+    {
+        if (string.Equals(window.ClassName, FirefoxClass, StringComparison.Ordinal))
+        {
+            return IsProcess(window.ProcessName, "firefox") ? BrowserKind.Firefox : null;
+        }
+
+        if (string.Equals(window.ClassName, ChromiumClass, StringComparison.Ordinal))
+        {
+            if (IsProcess(window.ProcessName, "chrome"))
+            {
+                return BrowserKind.Chrome;
+            }
+
+            if (IsProcess(window.ProcessName, "msedge"))
+            {
+                return BrowserKind.Edge;
+            }
+        }
+
+        return null;
     }
 
     /// <summary>

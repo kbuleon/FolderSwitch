@@ -22,9 +22,9 @@ namespace FolderSwitch.App.Views;
 /// open again on the category shown last.
 /// </para>
 /// <para>
-/// <b>Flyouts.</b> One at a time (<see cref="Flyout"/>): a group's « + Folder ▾ » menu or palette, in Customize mode;
-/// an item's menu (<see cref="ItemMenu"/>, a right-click), in normal use; a tab's, a group's or an item's menu
-/// (<see cref="EditMenu"/>, a right-click), in Customize mode. A flyout closes on a click outside it, on
+/// <b>Flyouts.</b> One at a time (<see cref="Flyout"/>): a group's « Add ▾ » menu (<see cref="AddMenu"/>) or palette,
+/// in Customize mode; an item's menu (<see cref="ItemMenu"/>, a right-click), in normal use; a tab's, a group's or an
+/// item's menu (<see cref="EditMenu"/>, a right-click), in Customize mode. A flyout closes on a click outside it, on
 /// Escape (<see cref="CloseFlyout"/>, called by the window), when the window loses the focus to another window than the
 /// flyout's own or hides, when Customize mode starts or ends, when another tab is shown, and when a window of the
 /// dialog layer opens.
@@ -75,6 +75,9 @@ public partial class MainView : UserControl
 
     /// <summary>The settings window's view model.</summary>
     public SettingsViewModel? Settings { get; set; }
+
+    /// <summary>The pictures of the items: file type icons and favicons (<see cref="ItemIcon"/>); none, the drawn icons only.</summary>
+    internal ItemIcons? Icons { get; set; }
 
     /// <summary>
     /// True while the settings window shows its shortcut page: the shortcut then goes to its test zone instead of
@@ -221,12 +224,19 @@ public partial class MainView : UserControl
         }
     }
 
-    /// <summary>Opens the « + Folder ▾ » menu of <paramref name="group"/> under <paramref name="anchor"/>.</summary>
-    internal void OpenAddFolderMenu(GroupViewModel group, FrameworkElement anchor)
+    /// <summary>
+    /// Opens the « Add ▾ » menu of <paramref name="group"/> under <paramref name="anchor"/>, for the window FolderSwitch
+    /// was called from; a click on the anchor of the open menu closes it instead. The menu's view model ends with it.
+    /// </summary>
+    internal void OpenAddMenu(GroupViewModel group, FrameworkElement anchor)
     {
         if (_viewModel is { IsCustomizing: true } viewModel && Texts is { } texts)
         {
-            _flyout.Open(new AddFolderMenu(viewModel, group, texts, () => CloseFlyout()), anchor, FlyoutAlignment.Left);
+            var menu = viewModel.OpenAddMenu(group);
+            if (!_flyout.Open(new AddMenu(menu, viewModel, group, texts, () => CloseFlyout()), anchor, FlyoutAlignment.Left))
+            {
+                menu.Dispose();
+            }
         }
     }
 
@@ -295,7 +305,7 @@ public partial class MainView : UserControl
                 // The menus of Edit mode end with it, and an item's menu is for normal use only.
                 CloseFlyout();
                 break;
-            case nameof(MainViewModel.ActiveTab) when _flyout.Content is AddFolderMenu or ColorPalettePopup or ItemMenu or EditMenu:
+            case nameof(MainViewModel.ActiveTab) when _flyout.Content is AddMenu or ColorPalettePopup or ItemMenu or EditMenu:
                 // What a group's flyout acts on is no longer on screen.
                 CloseFlyout();
                 break;

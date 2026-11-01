@@ -138,3 +138,30 @@ DWMWINDOWATTRIBUTE
 DWM_WINDOW_CORNER_PREFERENCE
 DWMNCRENDERINGPOLICY
 MARGINS
+
+// Browser address reader: COM UI Automation, window title
+CUIAutomation8
+IUIAutomation2
+IUIAutomationElement
+IUIAutomationValuePattern
+IUIAutomationCondition
+IUIAutomationCacheRequest
+UIA_PROPERTY_ID
+UIA_PATTERN_ID
+UIA_CONTROLTYPE_ID
+PropertyConditionFlags
+GetWindowText
+GetWindowTextLength
+
+// File type icons: the small icon of an extension, read as pixels
+GetIconInfo
+ICONINFO
+DestroyIcon
+GetObject
+BITMAP
+BITMAPINFO
+BITMAPINFOHEADER
+GetDIBits
+DeleteObject
+GetDC
+ReleaseDC

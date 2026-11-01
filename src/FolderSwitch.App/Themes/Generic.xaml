@@ -35,6 +35,11 @@
     <Geometry x:Key="Fs.FolderGeometry" po:Freeze="True">M2.5 6.2A2.2 2.2 0 0 1 4.7 4h4.6l2.1 2.3h7.9a2.2 2.2 0 0 1 2.2 2.2v9.3a2.2 2.2 0 0 1-2.2 2.2H4.7a2.2 2.2 0 0 1-2.2-2.2z</Geometry>
     <Geometry x:Key="Fs.FileGeometry" po:Freeze="True">M6.5 3h7.2L19 8.3v11.2a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 19.5v-15A1.5 1.5 0 0 1 6.5 3z M13.5 3v5.5H19</Geometry>
 
+    <!-- Outlines, to stroke: a globe (a site without its own icon), a circled « + » (« Add ▾ ») and a circled « ? » (a tip). -->
+    <Geometry x:Key="Fs.GlobeGeometry" po:Freeze="True">M12 3a9 9 0 1 1 0 18a9 9 0 1 1 0-18z M3 12h18 M12 3c-2.7 2.4-4 5.4-4 9s1.3 6.6 4 9 M12 3c2.7 2.4 4 5.4 4 9s-1.3 6.6-4 9 M4.3 7.6h15.4 M4.3 16.4h15.4</Geometry>
+    <Geometry x:Key="Fs.AddCircleGeometry" po:Freeze="True">M12 3a9 9 0 1 1 0 18a9 9 0 1 1 0-18z M12 7.8v8.4 M7.8 12h8.4</Geometry>
+    <Geometry x:Key="Fs.HelpGeometry" po:Freeze="True">M12 3a9 9 0 1 1 0 18a9 9 0 1 1 0-18z M9.4 9.6a2.7 2.7 0 1 1 3.8 2.5c-.8.4-1.2.9-1.2 1.8v.4 M12 16.9v.3</Geometry>
+
     <!-- The header chevron, pointing right (collapsed); turned a quarter down when the group is open. -->
     <Geometry x:Key="Fs.ChevronGeometry" po:Freeze="True">M0 0 6 4 0 8z</Geometry>
 
@@ -204,7 +209,7 @@
         </Setter>
     </Style>
 
-    <!-- A dashed « + » button: the template of « + Group », « + Column », the tab bar's « + » and a group's « + Folder ».
+    <!-- A dashed « + » button: the template of « + Group », « + Column », the tab bar's « + » and a group's « Add ▾ ».
          The dash thickness is BorderThickness.Left, the corner radius Tag (a double). -->
     <ControlTemplate x:Key="Fs.DashedButtonTemplate" TargetType="Button">
         <Grid>
@@ -272,7 +277,7 @@
         </Setter>
     </Style>
 
-    <!-- « + Folder ▾ », « + File », « + Current folder » inside a group: dashed in the group's color. -->
+    <!-- « Add ▾ » at the bottom of a group: dashed in the group's color. -->
     <Style x:Key="Fs.AddItemButton" TargetType="Button">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Cursor" Value="Hand" />
@@ -375,7 +380,9 @@
     <!-- ===== Groups and items ===== -->
 
     <!-- An item row, highlighted in its group's color under the mouse and ringed in the accent color while it is the
-         selection of Customize mode. Inside a GroupView (Fs.Group.*). Clicks and drags are ItemView's. -->
+         selection of Customize mode. Inside a GroupView (Fs.Group.*), bound to an ItemViewModel: an item that cannot be
+         used from the calling window (IsUsable false: a file or a site, from a file dialog) is faded and never
+         highlighted. Clicks and drags are ItemView's. -->
     <Style x:Key="Fs.ItemRow" TargetType="ContentControl">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Cursor" Value="Hand" />
@@ -403,6 +410,9 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Surface" Property="Background" Value="{DynamicResource Fs.Group.ItemHover}" />
                         </Trigger>
+                        <DataTrigger Binding="{Binding IsUsable}" Value="False">
+                            <Setter TargetName="Surface" Property="Background" Value="Transparent" />
+                        </DataTrigger>
                         <DataTrigger Value="True">
                             <DataTrigger.Binding>
                                 <MultiBinding Converter="{StaticResource Fs.SameReference}">
@@ -418,7 +428,8 @@
         </Setter>
     </Style>
 
-    <!-- The icon of an item: a filled folder, or the outline of a file. Bound to an ItemViewModel. -->
+    <!-- The drawn icon of an item: a filled folder, the outline of a file, or a globe in the accent color for a site.
+         Bound to an ItemViewModel. A file's type icon or a site's own icon, once known, shows in its place (ItemIcon). -->
     <Style x:Key="Fs.ItemIcon" TargetType="Path">
         <Setter Property="Data" Value="{StaticResource Fs.FolderGeometry}" />
         <Setter Property="Fill" Value="{DynamicResource Fs.Group.FolderIcon}" />
@@ -430,7 +441,21 @@
                 <Setter Property="StrokeThickness" Value="1.7" />
                 <Setter Property="StrokeLineJoin" Value="Round" />
             </DataTrigger>
+            <DataTrigger Binding="{Binding IsUrl}" Value="True">
+                <Setter Property="Data" Value="{StaticResource Fs.GlobeGeometry}" />
+                <Setter Property="Stroke" Value="{DynamicResource Fs.Accent}" />
+                <Setter Property="StrokeThickness" Value="1.6" />
+            </DataTrigger>
         </Style.Triggers>
+    </Style>
+
+    <!-- A drawn outline icon of the menus and buttons (Fs.GlobeGeometry, Fs.AddCircleGeometry, Fs.HelpGeometry...):
+         set Data and Stroke where it is used; drawn on the 24 × 24 grid, put it in a Viewbox. -->
+    <Style x:Key="Fs.OutlineIcon" TargetType="Path">
+        <Setter Property="StrokeThickness" Value="1.8" />
+        <Setter Property="StrokeLineJoin" Value="Round" />
+        <Setter Property="StrokeStartLineCap" Value="Round" />
+        <Setter Property="StrokeEndLineCap" Value="Round" />
     </Style>
 
     <!-- ===== Menus, the settings window and dialogs (on Fs.Menu) ===== -->

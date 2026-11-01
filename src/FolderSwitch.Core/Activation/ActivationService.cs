@@ -1,6 +1,7 @@
 using FolderSwitch.Core.Diagnostics;
 using FolderSwitch.Core.Model;
 using FolderSwitch.Core.Services;
+using FolderSwitch.Core.Web;
 
 namespace FolderSwitch.Core.Activation;
 
@@ -10,6 +11,10 @@ namespace FolderSwitch.Core.Activation;
 /// action chosen by <see cref="ActivationRouter"/>.
 /// </summary>
 /// <remarks>
+/// <para>
+/// A web site (<see cref="ItemKind.Url"/>) skips the resolution and the check: its address is normalized and handed to the
+/// default browser, and « Open in File Explorer » is <see cref="ActivationOutcome.TargetUnavailable"/> for it.
+/// </para>
 /// <para>
 /// The existence check waits at most 2 seconds, even if the resolver ignores its timeout. Only that
 /// check runs off the caller's thread; the actions run on the caller's synchronization context, so the
@@ -49,10 +54,14 @@ public sealed class ActivationService(
     }
 
     public Task<ActivationOutcome> ActivateAsync(Item item, CallContext ctx, bool ctrl) =>
-        ActivateAsync(item, ctx, resolved => ActivationRouter.Plan(ctx, item.Kind, resolved, ctrl, os));
+        item.Kind == ItemKind.Url
+            ? Task.FromResult(OpenUrl(item, ctx, ctrl))
+            : ActivateAsync(item, ctx, resolved => ActivationRouter.Plan(ctx, item.Kind, resolved, ctrl, os));
 
     public Task<ActivationOutcome> OpenInExplorerAsync(Item item) =>
-        ActivateAsync(item, CallContext.None, resolved => ActivationRouter.PlanInExplorer(item.Kind, resolved));
+        item.Kind == ItemKind.Url
+            ? Task.FromResult(Report(ActivationOutcome.TargetUnavailable, "a web address has no folder to show", item.Url, null, null))
+            : ActivateAsync(item, CallContext.None, resolved => ActivationRouter.PlanInExplorer(item.Kind, resolved));
 
     public bool CtrlOpensNewTab(ItemKind kind, CallContext ctx) => ActivationRouter.CtrlOpensNewTab(ctx, kind, os);
 
@@ -89,9 +98,33 @@ public sealed class ActivationService(
         }
     }
 
+    /// <summary>
+    /// Opens a web site: there is nothing to resolve nor to check on disk. The stored address may have been edited by
+    /// hand (spaces, upper case), so it goes through <see cref="WebAddress.TryNormalize"/> first; one that is not an
+    /// <c>http</c> or <c>https</c> address makes the item unavailable, and nothing is launched.
+    /// </summary>
+    private ActivationOutcome OpenUrl(Item item, CallContext ctx, bool ctrl)
+    {
+        ActivationPlan? plan = null;
+        try
+        {
+            if (!WebAddress.TryNormalize(item.Url, out var url))
+            {
+                return Report(ActivationOutcome.TargetUnavailable, "the item holds no valid http or https address", item.Url, null, null);
+            }
+
+            plan = ActivationRouter.Plan(ctx, item.Kind, url, ctrl, os);
+            return Run(plan, ctx);
+        }
+        catch (Exception e) when (!CriticalExceptions.IsCritical(e))
+        {
+            return Report(ActivationOutcome.Failed, "an exception was thrown", item.Url, plan, e);
+        }
+    }
+
     /// <summary>Where the action of <paramref name="kind"/> takes place when it succeeds.</summary>
     private static ActivationOutcome SuccessOf(ActivationKind kind) =>
-        kind is ActivationKind.OpenNewExplorerWindow or ActivationKind.OpenFile
+        kind is ActivationKind.OpenNewExplorerWindow or ActivationKind.OpenFile or ActivationKind.OpenUrl
             ? ActivationOutcome.OpenedElsewhere
             : ActivationOutcome.Done;
 
@@ -197,6 +230,8 @@ public sealed class ActivationService(
                 return fileDialog.Navigate(ctx.Window, target) ? Step.Done : Step.Failed;
             case ActivationKind.OpenFile:
                 return shell.OpenFile(target) ? Step.Done : Step.ReportedByShell;
+            case ActivationKind.OpenUrl:
+                return shell.OpenUrl(target) ? Step.Done : Step.ReportedByShell;
             default:
                 return Step.Failed;
         }

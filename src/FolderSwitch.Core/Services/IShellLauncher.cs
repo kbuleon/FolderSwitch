@@ -1,6 +1,6 @@
 namespace FolderSwitch.Core.Services;
 
-/// <summary>Opens files through the Windows shell.</summary>
+/// <summary>Opens files and web addresses through the Windows shell.</summary>
 public interface IShellLauncher
 {
     /// <summary>Opens the file with its associated application.</summary>
@@ -9,4 +9,12 @@ public interface IShellLauncher
     /// could not open it and has already told the user so, with its own message.
     /// </returns>
     bool OpenFile(string path);
+
+    /// <summary>Opens the web address in the default browser.</summary>
+    /// <returns>
+    /// <c>true</c> when the address was handed to the browser, or when the user declined a prompt of the shell;
+    /// <c>false</c> when the address is not an <c>http</c> or <c>https</c> one (nothing is launched), or when the shell
+    /// could not open it and has already told the user so, with its own message.
+    /// </returns>
+    bool OpenUrl(string url);
 }

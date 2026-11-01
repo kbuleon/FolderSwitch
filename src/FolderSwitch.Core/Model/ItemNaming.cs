@@ -1,4 +1,5 @@
 using FolderSwitch.Core.SpecialFolders;
+using FolderSwitch.Core.Web;
 
 namespace FolderSwitch.Core.Model;
 
@@ -9,7 +10,8 @@ public static class ItemNaming
 
     /// <summary>
     /// The user's <see cref="Item.Name"/> when it is not blank; otherwise the translated name of the
-    /// special folder; otherwise the last segment of the path (<c>D:\Clients\Acme</c> gives <c>Acme</c>,
+    /// special folder; otherwise, for a web site, its host without <c>www.</c>
+    /// (<see cref="WebAddress.HostLabel"/>); otherwise the last segment of the path (<c>D:\Clients\Acme</c> gives <c>Acme</c>,
     /// <c>\\nas\partage</c> gives <c>partage</c>, a drive root such as <c>D:\</c> is kept as is).
     /// Empty when the item has no name, no special folder and no path.
     /// </summary>
@@ -28,6 +30,11 @@ public static class ItemNaming
         if (item.Special is { } special)
         {
             return localize(SpecialFolderCatalog.NameKeyFor(special));
+        }
+
+        if (item.Kind == ItemKind.Url && !string.IsNullOrWhiteSpace(item.Url))
+        {
+            return WebAddress.HostLabel(item.Url);
         }
 
         return LastSegment(item.Path);

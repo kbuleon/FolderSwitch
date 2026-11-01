@@ -4,8 +4,10 @@ namespace FolderSwitch.App.Diagnostics.Snapshots;
 
 /// <summary>
 /// The configuration the snapshots are drawn with: the board of the mockups (tab « Travail », three columns: Projets,
-/// Clients / Personnel, Archives collapsed / Outils, Réseau collapsed; then « Maison » and « Admin »). Names and paths
-/// are examples, in French like the mockups: they are the user's content, never translated.
+/// Clients / Personnel, Archives collapsed, Finance / Outils, Réseau collapsed; then « Maison » and « Admin »). Finance
+/// holds one item of each kind: a folder, two files of types Windows has icons for, a site whose favicon is in the
+/// snapshot's cache (<see cref="FaviconHost"/>) and one without. Names, paths and addresses are examples, in French like
+/// the mockups: they are the user's content, never translated.
 /// </summary>
 internal static class SnapshotSample
 {
@@ -17,6 +19,10 @@ internal static class SnapshotSample
     private const string Pink = "#ec4899";
     private const string Violet = "#8b5cf6";
     private const string Slate = "#64748b";
+    private const string Red = "#ef4444";
+
+    /// <summary>The host of the site whose favicon the snapshots keep (see <see cref="SnapshotServices.FaviconFile"/>).</summary>
+    public const string FaviconHost = "www.morningstar.fr";
 
     /// <summary>The mockups' board, on « Travail », every column automatic.</summary>
     public static AppConfig Create()
@@ -40,7 +46,13 @@ internal static class SnapshotSample
                     File(@"%USERPROFILE%\Documents\Notes de réunion.md")),
                 Group("Archives", Slate, true,
                     Folder(@"E:\Archives\2024"),
-                    Folder(@"E:\Archives\2025"))),
+                    Folder(@"E:\Archives\2025")),
+                Group("Finance", Red, false,
+                    Folder(@"D:\Finance\Relevés"),
+                    File(@"D:\Finance\Budget 2026.xlsx"),
+                    File(@"D:\Finance\Avis d'imposition 2025.pdf"),
+                    Site("https://" + FaviconHost + "/fr/", "Morningstar"),
+                    Site("https://www.boursorama.com/bourse/"))),
             Column(
                 Group("Outils", Violet, false,
                     Folder(@"C:\Outils\Scripts"),
@@ -142,4 +154,6 @@ internal static class SnapshotSample
     private static Item File(string path) => new() { Kind = ItemKind.File, Path = path };
 
     private static Item Special(SpecialFolderKey key) => new() { Kind = ItemKind.Folder, Special = key };
+
+    private static Item Site(string url, string? name = null) => new() { Kind = ItemKind.Url, Url = url, Name = name };
 }

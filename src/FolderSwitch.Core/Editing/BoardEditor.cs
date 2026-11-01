@@ -1,4 +1,5 @@
 using FolderSwitch.Core.Model;
+using FolderSwitch.Core.Web;
 
 namespace FolderSwitch.Core.Editing;
 
@@ -252,7 +253,7 @@ public static class BoardEditor
 
     /// <summary>
     /// True when the group already holds the same target: same <see cref="Item.Special"/>, or same
-    /// <see cref="Item.Path"/> ignoring case and a trailing backslash.
+    /// <see cref="Item.Path"/> ignoring case and a trailing backslash, or same web site (<see cref="WebAddress.SameSite"/>).
     /// </summary>
     public static bool ContainsTarget(Group g, Item candidate)
     {
@@ -261,6 +262,11 @@ public static class BoardEditor
 
     private static bool SameTarget(Item a, Item b)
     {
+        if (a.Kind == ItemKind.Url || b.Kind == ItemKind.Url)
+        {
+            return a.Kind == b.Kind && a.Url is not null && b.Url is not null && WebAddress.SameSite(a.Url, b.Url);
+        }
+
         if (a.Special is { } special)
         {
             return b.Special == special;

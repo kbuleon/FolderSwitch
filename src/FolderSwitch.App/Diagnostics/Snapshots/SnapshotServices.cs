@@ -2,15 +2,17 @@ using FolderSwitch.Core.Activation;
 using FolderSwitch.Core.Hotkeys;
 using FolderSwitch.Core.Model;
 using FolderSwitch.Core.Services;
+using FolderSwitch.Core.Web;
 using FolderSwitch.Presentation.Services;
 
 namespace FolderSwitch.App.Diagnostics.Snapshots;
 
 /// <summary>
 /// The services the view models of a snapshot are built with: they do nothing, save nothing, show nothing and open
-/// nothing. A snapshot never touches the user's configuration, windows, files, keyboard or startup programs.
+/// nothing. A snapshot never touches the user's configuration, windows, files, keyboard, startup programs or the
+/// network. A browser « shows » <see cref="BrowserPage"/>, and the favicon cache holds one file, made by the snapshot.
 /// </summary>
-internal sealed class SnapshotServices : IItemActivator, IConfigPersistence, IUserPrompts, IWindowHost, ISystemInfo, IHotkeyService, IAutostart
+internal sealed class SnapshotServices : IItemActivator, IConfigPersistence, IUserPrompts, IWindowHost, IBrowserAddressReader, IFavicons, ISystemInfo, IHotkeyService, IAutostart
 {
     public event EventHandler? ThemeChanged
     {
@@ -50,9 +52,29 @@ internal sealed class SnapshotServices : IItemActivator, IConfigPersistence, IUs
 
     public string? PickImportPath() => null;
 
+    public string? AskUrl() => null;
+
     public void HideWindow()
     {
     }
+
+    /// <summary>The page every browser shows: what the Add menu of a snapshot reads, at once.</summary>
+    public static BrowserPage BrowserPage { get; } =
+        new("https://www.morningstar.fr/fr/funds/snapshot/default.aspx?id=F00000QW1N", "Fonds Actions Europe – Synthèse");
+
+    public BrowserPage? TryRead(nint window, BrowserKind browser) => BrowserPage;
+
+    // ----- IFavicons: no network; the cache holds one file, for SnapshotSample.FaviconHost. -----
+
+    /// <summary>The favicon of <see cref="SnapshotSample.FaviconHost"/>; <c>null</c>: every site shows the globe.</summary>
+    public string? FaviconFile { get; set; }
+
+    public string? CachedPath(string url) =>
+        Uri.TryCreate(url, UriKind.Absolute, out var uri) && string.Equals(uri.Host, SnapshotSample.FaviconHost, StringComparison.OrdinalIgnoreCase)
+            ? FaviconFile
+            : null;
+
+    public Task<string?> FetchAsync(string url, CancellationToken ct) => Task.FromResult<string?>(null);
 
     // ----- IHotkeyService: no keyboard hook, no registration. -----
 

@@ -23,4 +23,10 @@ public interface IUserPrompts
 
     /// <summary>Which configuration file to import (open dialog); <c>null</c> when cancelled.</summary>
     string? PickImportPath();
+
+    /// <summary>
+    /// Asks for a web address, the field starting with the clipboard when it holds one. The normalized <c>http</c> or
+    /// <c>https</c> address; <c>null</c> when cancelled.
+    /// </summary>
+    string? AskUrl();
 }

@@ -1,7 +1,8 @@
 <!--
     The menu of an item, opened by a right-click in normal use (not in Edit mode): « Open in File Explorer » (a file:
     « Open file location »), then « Open in new tab » with « Ctrl+click » at the end of the line, only when a Ctrl+click
-    would open the item in a new tab of the calling window. Shown in a Flyout under the item; a choice closes it.
+    would open the item in a new tab of the calling window. A site has « Copy address » only. Shown in a Flyout under
+    the item; a choice closes it.
 -->
 <UserControl x:Class="FolderSwitch.App.Views.ItemMenu"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -9,7 +10,19 @@
              x:Name="Root"
              MinWidth="230">
     <StackPanel>
-        <Button Style="{StaticResource Fs.MenuItemButton}" Click="OnExplorerClick">
+        <Button x:Name="CopyAddressEntry" Style="{StaticResource Fs.MenuItemButton}" Click="OnCopyAddressClick">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Left"
+                           Width="16"
+                           Margin="0,1,9,0"
+                           VerticalAlignment="Center"
+                           FontFamily="{StaticResource Fs.IconFont}"
+                           FontSize="13"
+                           Text="&#xE8C8;" />
+                <TextBlock VerticalAlignment="Center" Text="{Binding Texts[Item.CopyAddress], ElementName=Root}" TextTrimming="CharacterEllipsis" />
+            </DockPanel>
+        </Button>
+        <Button x:Name="ExplorerEntry" Style="{StaticResource Fs.MenuItemButton}" Click="OnExplorerClick">
             <DockPanel>
                 <TextBlock DockPanel.Dock="Left"
                            Width="16"

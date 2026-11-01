@@ -11,4 +11,7 @@ public enum CallContextKind
 
     /// <summary>An Open, Save As or folder-picker dialog.</summary>
     FileDialog,
+
+    /// <summary>A window of a web browser (see <see cref="BrowserKind"/>).</summary>
+    Browser,
 }

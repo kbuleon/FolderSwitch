@@ -4,8 +4,8 @@
     code-behind puts those values in the block's own resources (Fs.Group.*, see GroupStyleSelector), read here with
     DynamicResource only. A click on the header collapses or expands the group.
     Customize mode adds, in the header: the grip ⠿ the group is dragged by, the color dot that opens the palette and ✕;
-    under the items: « + Folder ▾ », « + File » and « + Current folder ». A double-click on the name renames it in
-    place. The header is no button: its clicks, the grip's drag and the name's double-click are told apart by the
+    under the items, the whole width: « Add ▾ », which opens the Add menu (AddMenu). A double-click on the name renames
+    it in place. The header is no button: its clicks, the grip's drag and the name's double-click are told apart by the
     code-behind, and the dot and ✕ are buttons of their own inside it.
     Layers, back to front: the shadow (cast by a plain shape, so that the effect never touches the text), the ring of
     the selection, then, clipped to the rounded corners, the body, the frame and the colored edges.
@@ -168,43 +168,27 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
 
-                            <!-- Customize mode: what adds an item. « + Current folder » is greyed without a current folder. -->
-                            <Grid Margin="6,0,6,7" Visibility="{Binding CustomizeVisibility, ElementName=Root}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="5" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="5" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Button x:Name="AddFolderButton"
-                                        Grid.Column="0"
-                                        Style="{StaticResource Fs.AddItemButton}"
-                                        Click="OnAddFolderClick">
-                                    <TextBlock TextTrimming="CharacterEllipsis">
-                                        <Run Text="{Binding Texts[Item.AddFolder], RelativeSource={RelativeSource AncestorType=local:MainView}, Mode=OneWay}" />
+                            <!-- Customize mode: what adds an item. -->
+                            <Button x:Name="AddButton"
+                                    Margin="6,0,6,7"
+                                    Style="{StaticResource Fs.AddItemButton}"
+                                    Visibility="{Binding CustomizeVisibility, ElementName=Root}"
+                                    Click="OnAddClick">
+                                <StackPanel Orientation="Horizontal">
+                                    <Viewbox Width="13" Height="13" Margin="0,0,5,0" VerticalAlignment="Center">
+                                        <Canvas Width="24" Height="24">
+                                            <Path Style="{StaticResource Fs.OutlineIcon}"
+                                                  Data="{StaticResource Fs.AddCircleGeometry}"
+                                                  Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                                  StrokeThickness="2" />
+                                        </Canvas>
+                                    </Viewbox>
+                                    <TextBlock VerticalAlignment="Center" TextTrimming="CharacterEllipsis">
+                                        <Run Text="{Binding Texts[AddMenu.Button], RelativeSource={RelativeSource AncestorType=local:MainView}, Mode=OneWay}" />
                                         <Run Text="▾" />
                                     </TextBlock>
-                                </Button>
-                                <Button Grid.Column="2"
-                                        Style="{StaticResource Fs.AddItemButton}"
-                                        Command="{Binding DataContext.AddFileCommand, RelativeSource={RelativeSource AncestorType=local:MainView}}"
-                                        CommandParameter="{Binding}">
-                                    <TextBlock Text="{Binding Texts[Item.AddFile], RelativeSource={RelativeSource AncestorType=local:MainView}}"
-                                               TextTrimming="CharacterEllipsis" />
-                                </Button>
-                                <Button Grid.Row="2"
-                                        Grid.ColumnSpan="3"
-                                        Style="{StaticResource Fs.AddItemButton}"
-                                        Command="{Binding DataContext.AddCurrentFolderCommand, RelativeSource={RelativeSource AncestorType=local:MainView}}"
-                                        CommandParameter="{Binding}">
-                                    <TextBlock Text="{Binding Texts[Item.AddCurrentFolder], RelativeSource={RelativeSource AncestorType=local:MainView}}"
-                                               TextTrimming="CharacterEllipsis" />
-                                </Button>
-                            </Grid>
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </layout:CollapsibleBox>
                 </DockPanel>

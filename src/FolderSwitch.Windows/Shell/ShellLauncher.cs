@@ -2,11 +2,12 @@ using System.ComponentModel;
 using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
 using FolderSwitch.Core.Services;
+using FolderSwitch.Core.Web;
 
 namespace FolderSwitch.Windows.Shell;
 
 /// <summary>
-/// Opens files as a double-click in Explorer does: <c>ShellExecuteEx</c> with the default verb, the shell
+/// Opens files and web addresses as a double-click in Explorer does: <c>ShellExecuteEx</c> with the default verb, the shell
 /// choosing the associated application.
 /// </summary>
 /// <remarks>
@@ -47,6 +48,31 @@ public sealed class ShellLauncher : IShellLauncher
         try
         {
             Execute(path, verb: null, showErrors: true, WorkingDirectory(path));
+            return true;
+        }
+        catch (Win32Exception)
+        {
+            return false;
+        }
+    }
+
+    /// <inheritdoc/>
+    /// <returns>
+    /// <c>false</c> without launching anything when <paramref name="url"/> is not an <c>http</c> or <c>https</c>
+    /// address (<c>javascript:</c>, <c>file:</c>, <c>mailto:</c>, a bare path: the shell would run them);
+    /// otherwise as <see cref="OpenFile"/>.
+    /// </returns>
+    public bool OpenUrl(string url)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(url);
+        if (!WebAddress.IsWebUrl(url))
+        {
+            return false;
+        }
+
+        try
+        {
+            Execute(url, verb: null, showErrors: true);
             return true;
         }
         catch (Win32Exception)

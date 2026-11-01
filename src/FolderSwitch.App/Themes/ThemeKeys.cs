@@ -26,7 +26,7 @@ internal static class ThemeKeys
     /// <summary>Text drawn on the window background: title, tabs.</summary>
     public const string OnBackgroundText = "Fs.OnBackgroundText";
 
-    /// <summary>Secondary text drawn on the window background: title, inactive tabs, context line.</summary>
+    /// <summary>Secondary text drawn on the window background: title, inactive tabs.</summary>
     public const string OnBackgroundMuted = "Fs.OnBackgroundMuted";
 
     // ----- Metrics and flags -----

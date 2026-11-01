@@ -40,7 +40,22 @@ public class WindowClassifierTests
 
         // File-dialog descendants in a window that is not a #32770 dialog.
         { "Notepad", "notepad", ["SHELLDLL_DefView"], CallContextKind.Other },
-        { "Chrome_WidgetWin_1", "chrome", None, CallContextKind.Other },
+
+        // The browsers: process and class together.
+        { "MozillaWindowClass", "firefox", None, CallContextKind.Browser },
+        { "Chrome_WidgetWin_1", "chrome", None, CallContextKind.Browser },
+        { "Chrome_WidgetWin_1", "msedge", None, CallContextKind.Browser },
+        { "MozillaWindowClass", "firefox.EXE", None, CallContextKind.Browser },
+        { "Chrome_WidgetWin_1", "CHROME.exe", None, CallContextKind.Browser },
+        // A browser process with another class (a notification, a tooltip), or a browser class in another process.
+        { "NotificationWindow", "chrome", None, CallContextKind.Other },
+        { "Chrome_WidgetWin_1", "slack", None, CallContextKind.Other },
+        { "MozillaWindowClass", "thunderbird", None, CallContextKind.Other },
+        { "Chrome_WidgetWin_1", "firefox", None, CallContextKind.Other },
+        { "MozillaWindowClass", "chrome", None, CallContextKind.Other },
+        { "chrome_widgetwin_1", "chrome", None, CallContextKind.Other },
+        // A browser's file dialog is a dialog, not the browser.
+        { "#32770", "chrome", ["SHELLDLL_DefView"], CallContextKind.FileDialog },
     };
 
     [Theory]
@@ -198,4 +213,19 @@ public class WindowClassifierTests
         Assert.Equal(nint.Zero, CallContext.None.Window);
         Assert.Null(CallContext.None.CurrentFolder);
     }
+
+    [Theory]
+    [InlineData("MozillaWindowClass", "firefox", BrowserKind.Firefox)]
+    [InlineData("MozillaWindowClass", "Firefox.EXE", BrowserKind.Firefox)]
+    [InlineData("Chrome_WidgetWin_1", "chrome", BrowserKind.Chrome)]
+    [InlineData("Chrome_WidgetWin_1", "chrome.exe", BrowserKind.Chrome)]
+    [InlineData("Chrome_WidgetWin_1", "msedge", BrowserKind.Edge)]
+    [InlineData("Chrome_WidgetWin_1", "MSEdge.exe", BrowserKind.Edge)]
+    [InlineData("NotificationWindow", "chrome", null)]
+    [InlineData("Chrome_WidgetWin_1", "explorer", null)]
+    [InlineData("Chrome_WidgetWin_1", "", null)]
+    [InlineData("MozillaWindowClass", "chrome", null)]
+    [InlineData("CabinetWClass", "explorer", null)]
+    public void BrowserOf_reads_the_process_and_the_class(string className, string processName, BrowserKind? expected) =>
+        Assert.Equal(expected, WindowClassifier.BrowserOf(new WindowInfo(className, processName, None)));
 }

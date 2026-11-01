@@ -1,13 +1,16 @@
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
+using FolderSwitch.App.Diagnostics;
 using FolderSwitch.Presentation.ViewModels;
 
 namespace FolderSwitch.App.Views;
 
 /// <summary>
 /// The menu of an item in normal use: open it in File Explorer, or in a new tab as Ctrl+click does
-/// (<see cref="MainViewModel.CanOpenInNewTab"/>). Built when it opens, for the calling window of that moment. A choice
-/// closes the menu first, then is carried out by the view, as a click on the item is.
+/// (<see cref="MainViewModel.CanOpenInNewTab"/>); for a site, copy its address to the clipboard, and nothing else.
+/// Built when it opens, for the calling window of that moment. A choice closes the menu first, then is carried out by
+/// the view, as a click on the item is.
 /// </summary>
 public partial class ItemMenu : UserControl
 {
@@ -41,7 +44,9 @@ public partial class ItemMenu : UserControl
         ExplorerLabel = texts[item.IsFolder ? "Item.OpenInExplorer" : "Item.OpenFileLocation"];
 
         InitializeComponent();
-        NewTabEntry.Visibility = main.CanOpenInNewTab(item) ? Visibility.Visible : Visibility.Collapsed;
+        CopyAddressEntry.Visibility = item.IsUrl ? Visibility.Visible : Visibility.Collapsed;
+        ExplorerEntry.Visibility = item.IsUrl ? Visibility.Collapsed : Visibility.Visible;
+        NewTabEntry.Visibility = !item.IsUrl && main.CanOpenInNewTab(item) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     public ViewTexts Texts { get; }
@@ -51,6 +56,25 @@ public partial class ItemMenu : UserControl
 
     /// <summary>Whether « Open in new tab » is offered.</summary>
     internal bool OffersNewTab => NewTabEntry.Visibility == Visibility.Visible;
+
+    /// <summary>The clipboard may be held by another application for a moment: then nothing is copied, and the log says so.</summary>
+    private void OnCopyAddressClick(object sender, RoutedEventArgs e)
+    {
+        _close();
+        if (_item.Url is not { } url)
+        {
+            return;
+        }
+
+        try
+        {
+            Clipboard.SetText(url);
+        }
+        catch (Exception exception) when (exception is ExternalException or InvalidOperationException)
+        {
+            DebugLog.Warn($"The address could not be copied: {exception.Message}");
+        }
+    }
 
     private void OnExplorerClick(object sender, RoutedEventArgs e)
     {

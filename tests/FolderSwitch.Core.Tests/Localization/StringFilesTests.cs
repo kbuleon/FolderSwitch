@@ -1,6 +1,7 @@
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using FolderSwitch.Core.Activation;
 using FolderSwitch.Core.Localization;
 using FolderSwitch.Core.Model;
 using FolderSwitch.Core.SpecialFolders;
@@ -207,16 +208,27 @@ public class StringFilesTests
         {
             ["Window.Customize"] = "Modifier",
             ["Window.Done"] = "Terminé",
-            ["Context.Explorer"] = "Appelé depuis l'Explorateur",
-            ["Context.FileDialog"] = "Appelé depuis une boîte de dialogue de fichiers",
             ["Board.AddColumn"] = "+ Colonne",
             ["Board.AddGroup"] = "+ Groupe",
             ["Tab.New"] = "Nouvel onglet",
             ["Group.New"] = "Nouveau groupe",
-            ["Item.AddFolder"] = "+ Dossier",
-            ["Item.AddFile"] = "+ Fichier",
-            ["Item.AddCurrentFolder"] = "+ Dossier courant",
-            ["Item.Browse"] = "Parcourir…",
+            ["AddMenu.Button"] = "Ajouter",
+            ["AddMenu.CurrentFolder"] = "Dossier courant",
+            ["AddMenu.CurrentUrl"] = "URL courante",
+            ["AddMenu.Folder"] = "Dossier…",
+            ["AddMenu.SpecialFolders"] = "Dossiers spéciaux",
+            ["AddMenu.File"] = "Fichier…",
+            ["AddMenu.Url"] = "URL…",
+            ["AddMenu.UrlHint"] = "coller ou saisir",
+            ["AddMenu.FromExplorer"] = "Appel depuis l'Explorateur",
+            ["AddMenu.FromFileDialog"] = "Appel depuis une boîte de dialogue de fichiers",
+            ["Item.BrowseHint"] = "sélecteur Windows",
+            ["Item.CopyAddress"] = "Copier l'adresse",
+            ["Item.FoldersOnly"] = "Seuls les dossiers peuvent être ouverts dans cette fenêtre.",
+            ["UrlPrompt.Title"] = "Ajouter un site web",
+            ["UrlPrompt.Address"] = "Adresse",
+            ["UrlPrompt.Add"] = "Ajouter",
+            ["UrlPrompt.Invalid"] = "Saisissez une adresse web, par exemple morningstar.fr ou https://www.morningstar.fr.",
             ["Default.SampleGroup"] = "Windows",
             ["Key.Shift"] = "Maj",
             ["Key.Win"] = "⊞ Win",
@@ -371,6 +383,28 @@ public class StringFilesTests
             Assert.DoesNotContain("{1}", entries["Tray.Ready"]);
             Assert.DoesNotContain("{1}", entries["Setup.OpenWith"]);
             Assert.DoesNotContain("{0}", entries["Hotkey.ApplyToTest"]);
+        }
+    }
+
+    [Fact]
+    public void StringFiles_browser_footer_receives_the_browser_name()
+    {
+        foreach (var entries in Files.Value.Values)
+        {
+            Assert.Contains("{0}", entries["AddMenu.FromBrowser"]);
+            Assert.DoesNotContain("{1}", entries["AddMenu.FromBrowser"]);
+        }
+    }
+
+    [Fact]
+    public void StringFiles_url_tip_names_only_the_recognised_browsers()
+    {
+        foreach (var entries in Files.Value.Values)
+        {
+            foreach (var browser in Enum.GetNames<BrowserKind>())
+            {
+                Assert.Contains(browser, entries["AddMenu.UrlTip"]);
+            }
         }
     }
 

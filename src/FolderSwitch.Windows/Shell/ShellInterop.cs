@@ -314,6 +314,24 @@ internal struct ShellExecuteInfo
     public nint hProcess;
 }
 
+/// <summary>
+/// <c>SHFILEINFOW</c>, declared by hand: CsWin32 only generates it for a fixed CPU architecture (the header packs it to
+/// 1 byte on 32-bit Windows, where the natural layout is the same).
+/// </summary>
+[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+internal struct ShFileInfo
+{
+    public nint hIcon;
+    public int iIcon;
+    public uint dwAttributes;
+
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
+    public string szDisplayName;
+
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
+    public string szTypeName;
+}
+
 /// <summary>Flat shell functions working on ID lists (<c>nint</c> PIDLs, freed with <c>CoTaskMemFree</c>).</summary>
 internal static class ShellNative
 {
@@ -373,6 +391,22 @@ internal static class ShellNative
     public const uint SeeMaskFlagNoUi = 0x00000400;
 
     public const int SwShowNormal = 1;
+
+    /// <summary><c>SHGFI_ICON</c>: the icon handle is returned in <see cref="ShFileInfo.hIcon"/>.</summary>
+    public const uint ShgfiIcon = 0x00000100;
+
+    /// <summary><c>SHGFI_SMALLICON</c>: the small icon, with <see cref="ShgfiIcon"/>.</summary>
+    public const uint ShgfiSmallIcon = 0x00000001;
+
+    /// <summary><c>SHGFI_USEFILEATTRIBUTES</c>: the name is only an extension to look up: the file is not touched.</summary>
+    public const uint ShgfiUseFileAttributes = 0x00000010;
+
+    /// <summary><c>FILE_ATTRIBUTE_NORMAL</c>.</summary>
+    public const uint FileAttributeNormal = 0x00000080;
+
+    /// <summary>File information; with <see cref="ShgfiIcon"/> the icon is to be released with <c>DestroyIcon</c>.</summary>
+    [DllImport("shell32.dll", EntryPoint = "SHGetFileInfoW", ExactSpelling = true, CharSet = CharSet.Unicode)]
+    public static extern nuint SHGetFileInfo(string path, uint fileAttributes, ref ShFileInfo info, uint size, uint flags);
 
     [DllImport("shell32.dll", EntryPoint = "ShellExecuteExW", ExactSpelling = true, SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]

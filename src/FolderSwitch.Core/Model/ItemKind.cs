@@ -5,4 +5,7 @@ public enum ItemKind
 {
     Folder,
     File,
+
+    /// <summary>A web site: the item holds an <c>http</c> or <c>https</c> address in <see cref="Item.Url"/>.</summary>
+    Url,
 }

@@ -20,7 +20,7 @@ public class ModelDefaultsTests
     {
         var config = new AppConfig();
 
-        Assert.Equal(1, config.SchemaVersion);
+        Assert.Equal(2, config.SchemaVersion);
         Assert.Empty(config.Tabs);
         Assert.Equal(Hotkey.Default, config.Settings.Hotkey);
         Assert.True(config.Settings.StartWithWindows);

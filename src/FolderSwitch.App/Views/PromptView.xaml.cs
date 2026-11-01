@@ -25,7 +25,7 @@ internal enum PromptKind
 /// The content of a message box (<see cref="PromptWindow"/>): its icon follows the kind (a question in amber, an
 /// error in red, a notice in the menu's text color), its texts come from the localizer.
 /// </summary>
-public partial class PromptView : UserControl
+public partial class PromptView : UserControl, IPromptContent
 {
     public static readonly DependencyProperty IconBackgroundProperty = DependencyProperty.Register(
         nameof(IconBackground), typeof(Brush), typeof(PromptView));
@@ -88,8 +88,8 @@ public partial class PromptView : UserControl
         set => SetValue(IconForegroundProperty, value);
     }
 
-    /// <summary>The button the keyboard starts on: the default answer.</summary>
-    internal Button DefaultButton => NoButton;
+    /// <summary>The keyboard starts on the default answer.</summary>
+    void IPromptContent.FocusStart() => NoButton.Focus();
 
     private void OnYesClick(object sender, RoutedEventArgs e) => Answered?.Invoke(this, true);
 

@@ -17,4 +17,7 @@ public enum ActivationKind
 
     /// <summary>Open the file with its associated application.</summary>
     OpenFile,
+
+    /// <summary>Open the web address in the default browser.</summary>
+    OpenUrl,
 }

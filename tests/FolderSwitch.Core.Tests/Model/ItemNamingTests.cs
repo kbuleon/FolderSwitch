@@ -44,6 +44,18 @@ public class ItemNamingTests
     }
 
     [Fact]
+    public void Url_item_without_name_is_named_by_host()
+    {
+        var item = new Item { Kind = ItemKind.Url, Url = "https://www.morningstar.fr/x" };
+
+        Assert.Equal("morningstar.fr", ItemNaming.DisplayName(item, Localize));
+
+        item.Name = "Morningstar";
+
+        Assert.Equal("Morningstar", ItemNaming.DisplayName(item, Localize));
+    }
+
+    [Fact]
     public void DisplayName_does_not_localize_when_a_name_or_a_path_is_enough()
     {
         static string Fail(string key) => throw new InvalidOperationException("localize must not be called: " + key);

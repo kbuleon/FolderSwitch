@@ -13,7 +13,7 @@ namespace FolderSwitch.Core.Theming;
 /// <param name="GroupStyle">How groups are drawn.</param>
 /// <param name="Dense">Tighter row spacing.</param>
 /// <param name="UppercaseTitles">Group titles are shown in capitals.</param>
-/// <param name="OnBackgroundText">Text drawn directly on <paramref name="Background"/> (tabs, title, context line).</param>
+/// <param name="OnBackgroundText">Text drawn directly on <paramref name="Background"/> (tabs, title).</param>
 /// <param name="OnBackgroundMuted">Secondary text drawn directly on <paramref name="Background"/>.</param>
 public sealed record ThemeTokens(
     string Background,

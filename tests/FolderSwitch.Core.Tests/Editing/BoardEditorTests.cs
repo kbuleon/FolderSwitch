@@ -589,6 +589,17 @@ public class BoardEditorTests
     }
 
     [Fact]
+    public void ContainsTarget_matches_same_site()
+    {
+        var group = new Group();
+        group.Items.Add(new Item { Kind = ItemKind.Url, Url = "https://example.com/" });
+
+        Assert.True(BoardEditor.ContainsTarget(group, new Item { Kind = ItemKind.Url, Url = "https://Example.com" }));
+        Assert.False(BoardEditor.ContainsTarget(group, new Item { Kind = ItemKind.Url, Url = "https://example.org/" }));
+        Assert.False(BoardEditor.ContainsTarget(group, FolderItem(@"D:\Clients")));
+    }
+
+    [Fact]
     public void ContainsTarget_does_not_match_different_targets()
     {
         var group = new Group();

@@ -134,7 +134,7 @@ public class ConfigStoreTests : IDisposable
     [Fact]
     public void Load_file_with_newer_schema_is_treated_as_invalid()
     {
-        const string newer = """{ "schemaVersion": 2, "tabs": [ { "name": "Future" } ] }""";
+        const string newer = """{ "schemaVersion": 3, "tabs": [ { "name": "Future" } ] }""";
         File.WriteAllText(ConfigPath, newer);
         WriteBackup("config-20261030-100000.json", ConfigSerializer.Serialize(TestConfigs.Minimal("Backup")));
 
@@ -363,7 +363,7 @@ public class ConfigStoreTests : IDisposable
         var before = File.ReadAllBytes(ConfigPath);
         var filesBefore = Directory.GetFileSystemEntries(directory).Order().ToArray();
         var bad = Path.Combine(temp.Root, "bad.json");
-        File.WriteAllText(bad, "{ \"schemaVersion\": 2, \"tabs\": [] }");
+        File.WriteAllText(bad, "{ \"schemaVersion\": 3, \"tabs\": [] }");
 
         Assert.Throws<ConfigFormatException>(() => store.Import(bad));
 

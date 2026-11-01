@@ -1,8 +1,8 @@
 namespace FolderSwitch.Core.Model;
 
 /// <summary>
-/// A folder or file shortcut inside a <see cref="Group"/>.
-/// Exactly one of <see cref="Path"/> and <see cref="Special"/> is set.
+/// A folder, file or web site shortcut inside a <see cref="Group"/>.
+/// Exactly one of <see cref="Path"/>, <see cref="Special"/> and <see cref="Url"/> is set.
 /// </summary>
 public sealed class Item
 {
@@ -16,4 +16,7 @@ public sealed class Item
     public string? Path { get; set; }
 
     public SpecialFolderKey? Special { get; set; }
+
+    /// <summary>The <c>http</c> or <c>https</c> address of an item of kind <see cref="ItemKind.Url"/>.</summary>
+    public string? Url { get; set; }
 }

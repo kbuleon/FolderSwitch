@@ -58,37 +58,71 @@ public class ActivationRouterTests
         Assert.Equal(new ActivationPlan(ActivationKind.NavigateFileDialog, @"D:\a", null), plan);
     }
 
-    // Spec 5.3: file in a file dialog goes to the file's folder (Ctrl is ignored).
+    // Spec 5.3, 5.7: a file opens with its application in every context, a file dialog included
+    // (the interface never offers a file there: the guard is in the view model).
 
     [Theory]
-    [InlineData(@"D:\a\b.txt", @"D:\a")]
-    [InlineData(@"D:\a\b\c.docx", @"D:\a\b")]
-    [InlineData(@"D:\b.txt", @"D:\")]
-    [InlineData(@"\\srv\share\dir\f.txt", @"\\srv\share\dir")]
-    [InlineData(@"\\srv\share\f.txt", @"\\srv\share")]
-    public void FileDialog_file_click_moves_the_dialog_to_the_parent_folder(string file, string expectedFolder)
+    [InlineData(CallContextKind.Other, false, WindowsGeneration.Windows10)]
+    [InlineData(CallContextKind.Other, true, WindowsGeneration.Windows11)]
+    [InlineData(CallContextKind.Explorer, false, WindowsGeneration.Windows10)]
+    [InlineData(CallContextKind.Explorer, true, WindowsGeneration.Windows11)]
+    [InlineData(CallContextKind.FileDialog, false, WindowsGeneration.Windows10)]
+    [InlineData(CallContextKind.FileDialog, true, WindowsGeneration.Windows11)]
+    public void File_opens_with_its_application_in_every_context(CallContextKind context, bool ctrl, WindowsGeneration os)
     {
-        foreach (var ctrl in new[] { false, true })
-        {
-            foreach (var os in new[] { WindowsGeneration.Windows10, WindowsGeneration.Windows11 })
-            {
-                var plan = Plan(CallContextKind.FileDialog, ItemKind.File, file, ctrl, os);
+        var plan = Plan(context, ItemKind.File, @"D:\a\b.txt", ctrl, os);
 
-                Assert.Equal(new ActivationPlan(ActivationKind.NavigateFileDialog, expectedFolder, null), plan);
-            }
+        Assert.Equal(new ActivationPlan(ActivationKind.OpenFile, @"D:\a\b.txt", null), plan);
+    }
+
+    // Spec 5.7: a web site opens in the default browser, whatever the context.
+
+    [Theory]
+    [InlineData(CallContextKind.Other, false)]
+    [InlineData(CallContextKind.Other, true)]
+    [InlineData(CallContextKind.Explorer, false)]
+    [InlineData(CallContextKind.Explorer, true)]
+    public void Url_opens_in_default_browser_in_every_context(CallContextKind context, bool ctrl)
+    {
+        foreach (var os in new[] { WindowsGeneration.Windows10, WindowsGeneration.Windows11 })
+        {
+            var plan = Plan(context, ItemKind.Url, "https://example.com/", ctrl, os);
+
+            Assert.Equal(new ActivationPlan(ActivationKind.OpenUrl, "https://example.com/", null), plan);
         }
     }
 
     [Theory]
-    [InlineData("shell:Downloads")]
-    [InlineData("::{645FF040-5081-101B-9F08-00AA002F954E}")]
-    [InlineData("::{20D04FE0-3AEA-1069-A2D8-08002B30309D}")]
-    public void FileDialog_file_with_a_shell_form_keeps_its_target_as_is(string target)
+    [InlineData(CallContextKind.FileDialog, ItemKind.File, false)]
+    [InlineData(CallContextKind.FileDialog, ItemKind.Url, false)]
+    [InlineData(CallContextKind.FileDialog, ItemKind.Folder, true)]
+    [InlineData(CallContextKind.Explorer, ItemKind.File, true)]
+    [InlineData(CallContextKind.Explorer, ItemKind.Url, true)]
+    [InlineData(CallContextKind.Other, ItemKind.Url, true)]
+    [InlineData(CallContextKind.Other, ItemKind.File, true)]
+    public void IsUsable_greys_files_and_urls_in_file_dialogs(CallContextKind context, ItemKind kind, bool expected)
     {
-        var plan = Plan(CallContextKind.FileDialog, ItemKind.File, target, ctrl: false, WindowsGeneration.Windows11);
-
-        Assert.Equal(new ActivationPlan(ActivationKind.NavigateFileDialog, target, null), plan);
+        Assert.Equal(expected, ActivationRouter.IsUsable(context, kind));
     }
+
+    // A browser window is like any other window: no folder to navigate, a new Explorer window.
+
+    [Theory]
+    [InlineData(false, WindowsGeneration.Windows10)]
+    [InlineData(true, WindowsGeneration.Windows11)]
+    public void Browser_folder_click_opens_a_new_explorer_window(bool ctrl, WindowsGeneration os)
+    {
+        var plan = Plan(CallContextKind.Browser, ItemKind.Folder, @"C:\Work", ctrl, os);
+
+        Assert.Equal(new ActivationPlan(ActivationKind.OpenNewExplorerWindow, @"C:\Work", null), plan);
+    }
+
+    [Theory]
+    [InlineData(ItemKind.Folder)]
+    [InlineData(ItemKind.File)]
+    [InlineData(ItemKind.Url)]
+    public void Every_kind_of_item_is_usable_from_a_browser(ItemKind kind) =>
+        Assert.True(ActivationRouter.IsUsable(CallContextKind.Browser, kind));
 
     // Spec 5.3: other context, folder.
 
@@ -113,22 +147,6 @@ public class ActivationRouterTests
         var plan = Plan(CallContextKind.Other, ItemKind.Folder, target, ctrl: false, WindowsGeneration.Windows11);
 
         Assert.Equal(new ActivationPlan(ActivationKind.OpenNewExplorerWindow, target, null), plan);
-    }
-
-    // Spec 5.3: file in the Explorer or in another context opens with the associated application.
-
-    [Theory]
-    [InlineData(CallContextKind.Other, false, WindowsGeneration.Windows10)]
-    [InlineData(CallContextKind.Other, true, WindowsGeneration.Windows11)]
-    [InlineData(CallContextKind.Explorer, false, WindowsGeneration.Windows10)]
-    [InlineData(CallContextKind.Explorer, true, WindowsGeneration.Windows10)]
-    [InlineData(CallContextKind.Explorer, false, WindowsGeneration.Windows11)]
-    [InlineData(CallContextKind.Explorer, true, WindowsGeneration.Windows11)]
-    public void File_click_outside_a_file_dialog_opens_the_file(CallContextKind context, bool ctrl, WindowsGeneration os)
-    {
-        var plan = Plan(context, ItemKind.File, @"D:\a\b.txt", ctrl, os);
-
-        Assert.Equal(new ActivationPlan(ActivationKind.OpenFile, @"D:\a\b.txt", null), plan);
     }
 
     [Fact]
@@ -175,6 +193,16 @@ public class ActivationRouterTests
         var ctrlClick = ActivationRouter.Plan(ctx, kind, @"C:\Work", ctrl: true, os);
 
         Assert.Equal(ctrlClick.Kind == ActivationKind.OpenExplorerNewTab, ActivationRouter.CtrlOpensNewTab(ctx, kind, os));
+    }
+
+    [Theory]
+    [InlineData(CallContextKind.Explorer, WindowsGeneration.Windows11)]
+    [InlineData(CallContextKind.Explorer, WindowsGeneration.Windows10)]
+    [InlineData(CallContextKind.FileDialog, WindowsGeneration.Windows11)]
+    [InlineData(CallContextKind.Other, WindowsGeneration.Windows11)]
+    public void CtrlOpensNewTab_is_false_for_urls(CallContextKind context, WindowsGeneration os)
+    {
+        Assert.False(ActivationRouter.CtrlOpensNewTab(new CallContext(context, 42, null), ItemKind.Url, os));
     }
 
     [Fact]

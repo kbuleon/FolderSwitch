@@ -59,4 +59,16 @@ public sealed class ShellLauncherRulesTests
     {
         Assert.Null(ShellLauncher.WorkingDirectory(path));
     }
+
+    [Theory]
+    [InlineData("javascript:alert(1)")]
+    [InlineData("file:///C:/Windows/notepad.exe")]
+    [InlineData("mailto:a@b.c")]
+    [InlineData("ftp://example.com/")]
+    [InlineData(@"C:\Windows\notepad.exe")]
+    [InlineData("example.com")]
+    public void OpenUrl_refuses_what_is_not_a_web_address_and_launches_nothing(string url)
+    {
+        Assert.False(new ShellLauncher().OpenUrl(url));
+    }
 }

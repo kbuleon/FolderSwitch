@@ -3,6 +3,7 @@ using FolderSwitch.Core.Activation;
 using FolderSwitch.Core.Model;
 using FolderSwitch.Core.SpecialFolders;
 using FolderSwitch.Core.Theming;
+using FolderSwitch.Core.Web;
 using FolderSwitch.Presentation.Tests.Support;
 using FolderSwitch.Presentation.ViewModels;
 
@@ -46,31 +47,11 @@ public class MainViewModelTests
     }
 
     [Fact]
-    public void ContextLine_follows_context()
-    {
-        var h = new Harness();
-        var vm = h.Vm;
-        var changes = RecordChanges(vm);
-
-        vm.OnShown(ExplorerContext);
-        Assert.Equal("Called from File Explorer", vm.ContextLine);
-
-        vm.OnShown(DialogContext);
-        Assert.Equal("Called from a file dialog", vm.ContextLine);
-
-        vm.OnShown(CallContext.None);
-        Assert.Null(vm.ContextLine);
-
-        Assert.Equal(3, changes.Count(name => name == nameof(MainViewModel.ContextLine)));
-    }
-
-    [Fact]
     public void Context_starts_as_none()
     {
         var h = new Harness();
 
         Assert.Same(CallContext.None, h.Vm.Context);
-        Assert.Null(h.Vm.ContextLine);
         Assert.False(h.Vm.IsCustomizing);
     }
 
@@ -652,7 +633,7 @@ public class MainViewModelTests
             "AddFolder" => () => vm.AddFolderCommand.Execute(h.GroupVm("Inbox")),
             "AddSpecialFolder" => () => vm.AddSpecialFolder(h.GroupVm("Inbox"), SpecialFolderKey.Downloads),
             "AddFile" => () => vm.AddFileCommand.Execute(h.GroupVm("Inbox")),
-            "AddCurrentFolder" => () => vm.AddCurrentFolderCommand.Execute(h.GroupVm("Inbox")),
+            "AddCurrentFolder" => () => vm.AddCurrentFolder(h.GroupVm("Inbox")),
             "RemoveItem" => () => vm.RemoveItemCommand.Execute(h.ItemVm("Acme")),
             "MoveItem" => () => vm.MoveItem(h.ItemVm("Acme"), h.GroupVm("Media"), 0),
             "Rename" => () =>
@@ -1169,6 +1150,119 @@ public class MainViewModelTests
     }
 
     [Fact]
+    public void AddUrl_adds_a_url_item_named_by_host()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        var inbox = h.GroupVm("Inbox");
+        h.Prompts.UrlToAsk = "https://www.a.fr/";
+
+        vm.AddUrl(inbox);
+
+        var item = Assert.Single(h.Inbox.Items);
+        Assert.Equal(ItemKind.Url, item.Kind);
+        Assert.Equal("https://www.a.fr/", item.Url);
+        Assert.Null(item.Name);
+        Assert.Equal("a.fr", Assert.Single(inbox.Items).DisplayName);
+        Assert.Equal(1, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void AddUrl_cancelled_adds_nothing()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+
+        vm.AddUrl(h.GroupVm("Inbox"));
+
+        Assert.Empty(h.Inbox.Items);
+        Assert.Equal(0, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void AddUrl_outside_edit_mode_does_nothing()
+    {
+        var h = new Harness();
+        var vm = h.Vm;
+        h.Prompts.UrlToAsk = "https://www.a.fr/";
+
+        vm.AddUrl(h.GroupVm("Inbox"));
+
+        Assert.Empty(h.Inbox.Items);
+        Assert.Equal(0, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void AddUrl_skips_a_site_the_group_already_holds()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        var inbox = h.GroupVm("Inbox");
+        h.Prompts.UrlToAsk = "https://a.fr/";
+        vm.AddUrl(inbox);
+
+        h.Prompts.UrlToAsk = "https://A.fr";
+        vm.AddUrl(inbox);
+
+        Assert.Single(h.Inbox.Items);
+        Assert.Equal(1, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void AddCurrentUrl_uses_page_title()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        var inbox = h.GroupVm("Inbox");
+
+        vm.AddCurrentUrl(inbox, new BrowserPage("https://www.a.fr/p", "Page A"));
+
+        var item = Assert.Single(h.Inbox.Items);
+        Assert.Equal(ItemKind.Url, item.Kind);
+        Assert.Equal("https://www.a.fr/p", item.Url);
+        Assert.Equal("Page A", item.Name);
+        Assert.Equal("Page A", Assert.Single(inbox.Items).DisplayName);
+        Assert.Equal(1, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void AddCurrentUrl_without_a_title_is_named_by_host()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        var inbox = h.GroupVm("Inbox");
+
+        vm.AddCurrentUrl(inbox, new BrowserPage("https://www.a.fr/p", null));
+
+        Assert.Equal("a.fr", Assert.Single(inbox.Items).DisplayName);
+    }
+
+    [Fact]
+    public void AddCurrentUrl_twice_adds_once()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        var inbox = h.GroupVm("Inbox");
+
+        vm.AddCurrentUrl(inbox, new BrowserPage("https://a.fr/", "A"));
+        vm.AddCurrentUrl(inbox, new BrowserPage("https://a.fr/", "A"));
+
+        Assert.Single(h.Inbox.Items);
+        Assert.Equal(1, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void AddCurrentUrl_outside_edit_mode_does_nothing()
+    {
+        var h = new Harness();
+        var vm = h.Vm;
+
+        vm.AddCurrentUrl(h.GroupVm("Inbox"), new BrowserPage("https://a.fr/", "A"));
+
+        Assert.Empty(h.Inbox.Items);
+    }
+
+    [Fact]
     public void AddSpecialFolder_adds_the_reference_and_skips_one_already_present()
     {
         var h = new Harness();
@@ -1193,7 +1287,7 @@ public class MainViewModelTests
     }
 
     [Fact]
-    public void AddCurrentFolder_disabled_without_current_folder()
+    public void AddCurrentFolder_does_nothing_without_current_folder()
     {
         var h = new Harness();
         var vm = h.Vm;
@@ -1201,19 +1295,13 @@ public class MainViewModelTests
         vm.OnShown(CallContext.None);
         vm.IsCustomizing = true;
 
-        Assert.False(vm.AddCurrentFolderCommand.CanExecute(inbox));
         vm.AddCurrentFolder(inbox);
         Assert.Empty(h.Inbox.Items);
         Assert.Equal(0, h.Persistence.SaveCount);
 
-        var raised = 0;
-        vm.AddCurrentFolderCommand.CanExecuteChanged += (_, _) => raised++;
         vm.OnShown(ExplorerContext);
         vm.IsCustomizing = true;
-
-        Assert.True(raised > 0);
-        Assert.True(vm.AddCurrentFolderCommand.CanExecute(inbox));
-        vm.AddCurrentFolderCommand.Execute(inbox);
+        vm.AddCurrentFolder(inbox);
 
         var item = Assert.Single(h.Inbox.Items);
         Assert.Equal(ItemKind.Folder, item.Kind);
@@ -1312,7 +1400,6 @@ public class MainViewModelTests
         vm.OnShown(new CallContext(CallContextKind.Explorer, 7, currentFolder, "Résultats"));
         vm.IsCustomizing = true;
 
-        Assert.False(vm.AddCurrentFolderCommand.CanExecute(inbox));
         vm.AddCurrentFolder(inbox);
 
         Assert.Empty(h.Inbox.Items);
@@ -1339,11 +1426,9 @@ public class MainViewModelTests
         Assert.Same(h.TabVm("Work"), vm.ActiveTab);
         Assert.Same(inbox, vm.Selected);
         Assert.Same(ExplorerContext, vm.Context);
-        Assert.Equal("Called from File Explorer", vm.ContextLine);
         Assert.Equal(saves, h.Persistence.SaveCount);
 
-        // « + Current folder » now adds the folder of the new calling window.
-        Assert.True(vm.AddCurrentFolderCommand.CanExecute(inbox));
+        // « Current folder » now adds the folder of the new calling window.
         vm.AddCurrentFolder(inbox);
         Assert.Equal(@"C:\Users\Me\Work", Assert.Single(h.Inbox.Items).Path);
     }
@@ -1709,7 +1794,7 @@ public class MainViewModelTests
     // ----- Language -----
 
     [Fact]
-    public void LanguageChanged_refreshes_context_line_labels_and_display_names()
+    public void LanguageChanged_refreshes_labels_and_display_names()
     {
         var h = new Harness();
         var vm = h.Vm;
@@ -1724,12 +1809,10 @@ public class MainViewModelTests
 
         h.Localizer.SetLanguage("fr");
 
-        Assert.Equal("Appelé depuis l'Explorateur", vm.ContextLine);
         Assert.Equal("Configurer", vm.CustomizeLabel);
         Assert.Equal("Bureau", desktop.DisplayName);
         Assert.Equal("Acme", acme.DisplayName);
         Assert.Equal("Bureau", projects.SpecialFolderStates.Single(s => s.Info.Key == SpecialFolderKey.Desktop).Name);
-        Assert.Contains(nameof(MainViewModel.ContextLine), vmChanges);
         Assert.Contains(nameof(MainViewModel.CustomizeLabel), vmChanges);
         Assert.Contains(nameof(ItemViewModel.DisplayName), itemChanges);
         Assert.Contains(nameof(GroupViewModel.SpecialFolderStates), groupChanges);
@@ -1748,5 +1831,261 @@ public class MainViewModelTests
 
         Assert.Equal("Nouvel onglet", vm.ActiveTab.Name);
         Assert.Equal("Nouveau groupe", vm.ActiveTab.Columns[0].Groups[0].Name);
+    }
+
+    // ----- Usability, favicons, type icons -----
+
+    private static Item Site(string url) => new() { Kind = ItemKind.Url, Url = url };
+
+    [Fact]
+    public void Files_and_urls_are_unusable_in_file_dialog_outside_edit_mode()
+    {
+        var h = new Harness(h => h.Media.Items.Add(Site("https://a.fr/")));
+        var vm = h.Vm;
+        var notes = h.ItemVm("Notes.txt");
+        var site = h.ItemVm("a.fr");
+        var music = h.ItemVm("Music");
+
+        vm.OnShown(DialogContext);
+        Assert.False(notes.IsUsable);
+        Assert.False(site.IsUsable);
+        Assert.True(music.IsUsable);
+
+        vm.IsCustomizing = true;
+        Assert.True(notes.IsUsable);
+        Assert.True(site.IsUsable);
+        Assert.True(music.IsUsable);
+
+        vm.IsCustomizing = false;
+        Assert.False(notes.IsUsable);
+
+        vm.OnShown(ExplorerContext);
+        Assert.True(notes.IsUsable);
+        Assert.True(site.IsUsable);
+        Assert.True(music.IsUsable);
+    }
+
+    [Fact]
+    public void IsUsable_notifies_when_the_context_or_the_mode_changes()
+    {
+        var h = new Harness();
+        var notes = h.ItemVm("Notes.txt");
+        var changes = RecordChanges(notes);
+
+        h.Vm.OnRecalled(DialogContext);
+        Assert.Contains(nameof(ItemViewModel.IsUsable), changes);
+
+        changes.Clear();
+        h.Vm.IsCustomizing = true;
+        Assert.Contains(nameof(ItemViewModel.IsUsable), changes);
+    }
+
+    [Fact]
+    public void An_item_added_in_a_file_dialog_session_is_unusable_once_edit_mode_ends()
+    {
+        var h = new Harness();
+        var vm = h.Vm;
+        vm.OnShown(DialogContext);
+        vm.IsCustomizing = true;
+
+        vm.AddCurrentUrl(h.GroupVm("Inbox"), new BrowserPage("https://a.fr/", "A"));
+        var added = Assert.Single(h.GroupVm("Inbox").Items);
+        Assert.True(added.IsUsable);
+
+        vm.IsCustomizing = false;
+        Assert.False(added.IsUsable);
+    }
+
+    [Fact]
+    public async Task Unusable_item_click_does_nothing()
+    {
+        var h = new Harness();
+        h.Vm.OnShown(DialogContext);
+
+        await h.Vm.ActivateItemAsync(h.ItemVm("Notes.txt"), ctrl: false);
+
+        Assert.Empty(h.Activator.Calls);
+        Assert.Equal(0, h.Host.HideCount);
+    }
+
+    [Fact]
+    public async Task Usable_item_click_in_file_dialog_still_activates()
+    {
+        var h = new Harness();
+        h.Vm.OnShown(DialogContext);
+
+        await h.Vm.ActivateItemAsync(h.ItemVm("Music"), ctrl: false);
+
+        Assert.Single(h.Activator.Calls);
+    }
+
+    [Fact]
+    public void Item_exposes_its_kind_extension_and_site_host()
+    {
+        var h = new Harness(h => h.Media.Items.Add(Site("https://www.café.fr/page")));
+
+        var notes = h.ItemVm("Notes.txt");
+        var site = h.ItemVm("café.fr");
+        var music = h.ItemVm("Music");
+
+        Assert.True(notes.IsFile);
+        Assert.False(notes.IsUrl);
+        Assert.Equal(".txt", notes.Extension);
+        Assert.True(site.IsUrl);
+        Assert.False(site.IsFile);
+        Assert.Null(site.Extension);
+        Assert.Equal("café.fr", site.SecondaryText);
+        Assert.Null(music.Extension);
+        Assert.False(music.IsUrl);
+        Assert.False(music.IsFile);
+    }
+
+    [Fact]
+    public void Url_without_cached_favicon_is_fetched_once_per_session()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness(h =>
+        {
+            // The icon is not kept: only the session's set of hosts can stop a second fetch after the reload.
+            h.Favicons.Caches = false;
+            h.Favicons.Result = _ => @"C:\fav\a.fr.png";
+            h.Media.Items.Add(Site("https://a.fr/"));
+            h.Media.Items.Add(Site("https://a.fr/other"));
+        });
+        var sites = h.GroupVm("Media").Items.Where(i => i.IsUrl).ToList();
+        Assert.All(sites, s => Assert.Null(s.FaviconPath));
+
+        ui.WaitUntil(() => sites.All(s => s.FaviconPath is not null));
+
+        Assert.Single(h.Favicons.Fetches);
+        Assert.All(sites, s => Assert.Equal(@"C:\fav\a.fr.png", s.FaviconPath));
+
+        h.Vm.Reload(h.Config);
+        ui.Pump();
+        Thread.Sleep(50);
+        ui.Pump();
+
+        Assert.Single(h.Favicons.Fetches);
+    }
+
+    [Fact]
+    public void A_failed_fetch_is_not_retried_in_the_same_session()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness(h => h.Media.Items.Add(Site("https://a.fr/")));
+        ui.WaitUntil(() => h.Favicons.Fetches.Count == 1);
+
+        h.Vm.Reload(h.Config);
+        ui.Pump();
+        Thread.Sleep(50);
+        ui.Pump();
+
+        Assert.Single(h.Favicons.Fetches);
+        Assert.Null(h.ItemVm("a.fr").FaviconPath);
+    }
+
+    [Fact]
+    public void A_site_with_a_cached_favicon_is_shown_with_it_and_not_fetched()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness(h =>
+        {
+            h.Favicons.Seed("https://a.fr/", @"C:\fav\a.fr.png");
+            h.Favicons.Result = _ => @"C:\fav\other.png";
+            h.Media.Items.Add(Site("https://a.fr/"));
+        });
+
+        // The cache is looked up off the UI thread, and its answer posted back.
+        ui.WaitUntil(() => h.ItemVm("a.fr").FaviconPath is not null);
+        Assert.Equal(@"C:\fav\a.fr.png", h.ItemVm("a.fr").FaviconPath);
+        Assert.Empty(h.Favicons.Fetches);
+    }
+
+    [Fact]
+    public void The_cache_is_looked_up_off_the_ui_thread_in_one_go()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness(h =>
+        {
+            h.Favicons.Seed("https://a.fr/", @"C:\fav\a.fr.png");
+            h.Favicons.Seed("https://b.fr/", @"C:\fav\b.fr.png");
+            h.Media.Items.Add(Site("https://a.fr/"));
+            h.Media.Items.Add(Site("https://b.fr/"));
+        });
+
+        // Nothing is shown before the UI thread runs what the lookup posted.
+        Assert.Null(h.ItemVm("a.fr").FaviconPath);
+        Assert.Null(h.ItemVm("b.fr").FaviconPath);
+
+        ui.WaitUntil(() => h.ItemVm("a.fr").FaviconPath is not null && h.ItemVm("b.fr").FaviconPath is not null);
+
+        Assert.Equal(@"C:\fav\b.fr.png", h.ItemVm("b.fr").FaviconPath);
+        Assert.Empty(h.Favicons.Fetches);
+    }
+
+    [Fact]
+    public void A_site_added_after_a_failed_attempt_for_its_host_is_fetched()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness(h =>
+        {
+            // The first attempt (the site of the board) fails; the one for the added site would succeed.
+            h.Favicons.Result = url => url.EndsWith("/new", StringComparison.Ordinal) ? @"C:\fav\a.fr.png" : null;
+            h.Media.Items.Add(Site("https://a.fr/"));
+        });
+        ui.WaitUntil(() => h.Favicons.Fetches.Count == 1);
+        Assert.Null(h.ItemVm("a.fr").FaviconPath);
+        var vm = h.Customizing();
+
+        vm.AddCurrentUrl(h.GroupVm("Inbox"), new BrowserPage("https://a.fr/new", "New"));
+        var added = Assert.Single(h.GroupVm("Inbox").Items);
+        ui.WaitUntil(() => added.FaviconPath is not null);
+
+        Assert.Equal(2, h.Favicons.Fetches.Count);
+        Assert.Equal(@"C:\fav\a.fr.png", added.FaviconPath);
+        Assert.Equal(@"C:\fav\a.fr.png", h.ItemVm("a.fr").FaviconPath);
+    }
+
+    [Fact]
+    public void Added_url_fetches_its_favicon()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness(h => h.Favicons.Result = _ => @"C:\fav\b.fr.ico");
+        var vm = h.Customizing();
+
+        vm.AddCurrentUrl(h.GroupVm("Inbox"), new BrowserPage("https://b.fr/", "B"));
+        var added = Assert.Single(h.GroupVm("Inbox").Items);
+        var changes = RecordChanges(added);
+
+        ui.WaitUntil(() => added.FaviconPath is not null);
+
+        Assert.Equal(@"C:\fav\b.fr.ico", added.FaviconPath);
+        Assert.Single(h.Favicons.Fetches);
+        Assert.Contains(nameof(ItemViewModel.FaviconPath), changes);
+    }
+
+    [Fact]
+    public void Favicon_arriving_after_a_reload_updates_the_items_then_on_the_board()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var gate = new TaskCompletionSource();
+        var h = new Harness(h =>
+        {
+            h.Favicons.Gate = gate.Task;
+            h.Favicons.Result = _ => @"C:\fav\a.fr.png";
+            h.Media.Items.Add(Site("https://a.fr/"));
+        });
+        var before = h.ItemVm("a.fr");
+        ui.WaitUntil(() => h.Favicons.Fetches.Count == 1);
+
+        h.Vm.Reload(h.Config);
+        var after = h.ItemVm("a.fr");
+        Assert.NotSame(before, after);
+
+        gate.SetResult();
+        ui.WaitUntil(() => after.FaviconPath is not null);
+
+        Assert.Equal(@"C:\fav\a.fr.png", after.FaviconPath);
+        Assert.Single(h.Favicons.Fetches);
     }
 }

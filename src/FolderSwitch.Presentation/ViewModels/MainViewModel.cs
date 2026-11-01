@@ -3,11 +3,13 @@ using System.Diagnostics.CodeAnalysis;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using FolderSwitch.Core.Activation;
+using FolderSwitch.Core.Diagnostics;
 using FolderSwitch.Core.Editing;
 using FolderSwitch.Core.Localization;
 using FolderSwitch.Core.Model;
 using FolderSwitch.Core.Services;
 using FolderSwitch.Core.Theming;
+using FolderSwitch.Core.Web;
 using FolderSwitch.Presentation.Services;
 
 namespace FolderSwitch.Presentation.ViewModels;
@@ -34,7 +36,14 @@ public sealed partial class MainViewModel : ObservableObject
     private readonly IConfigPersistence _persistence;
     private readonly IUserPrompts _prompts;
     private readonly IWindowHost _host;
+    private readonly IBrowserAddressReader _browserReader;
+    private readonly IFavicons _favicons;
     private readonly Localizer _localizer;
+    private readonly TimeProvider _time;
+    private readonly SynchronizationContext? _ui = SynchronizationContext.Current;
+
+    /// <summary>The hosts whose favicon was already asked for in this session: one attempt each, whatever the outcome.</summary>
+    private readonly HashSet<string> _faviconHosts = new(StringComparer.OrdinalIgnoreCase);
 
     private AppConfig _config;
     private TabViewModel _activeTab;
@@ -44,6 +53,7 @@ public sealed partial class MainViewModel : ObservableObject
     private int _openPrompts;
     private bool _activating;
     private int _shownGeneration;
+    private AddMenuViewModel? _addMenu;
 
     /// <summary>The tab a drag started on, while the drag shows other tabs (<see cref="ShowTabWhileDragging"/>).</summary>
     private TabViewModel? _dragOrigin;
@@ -55,12 +65,17 @@ public sealed partial class MainViewModel : ObservableObject
         IConfigPersistence persistence,
         IUserPrompts prompts,
         IWindowHost host,
-        Localizer localizer)
+        IBrowserAddressReader browserReader,
+        IFavicons favicons,
+        Localizer localizer,
+        TimeProvider? time = null)
     {
         ArgumentNullException.ThrowIfNull(activator);
         ArgumentNullException.ThrowIfNull(persistence);
         ArgumentNullException.ThrowIfNull(prompts);
         ArgumentNullException.ThrowIfNull(host);
+        ArgumentNullException.ThrowIfNull(browserReader);
+        ArgumentNullException.ThrowIfNull(favicons);
         ArgumentNullException.ThrowIfNull(localizer);
         RequireTabs(config);
 
@@ -68,7 +83,10 @@ public sealed partial class MainViewModel : ObservableObject
         _persistence = persistence;
         _prompts = prompts;
         _host = host;
+        _browserReader = browserReader;
+        _favicons = favicons;
         _localizer = localizer;
+        _time = time ?? TimeProvider.System;
 
         Load(config);
         _localizer.LanguageChanged += OnLanguageChanged;
@@ -115,19 +133,10 @@ public sealed partial class MainViewModel : ObservableObject
         {
             if (SetProperty(ref _context, value))
             {
-                OnPropertyChanged(nameof(ContextLine));
-                AddCurrentFolderCommand.NotifyCanExecuteChanged();
+                RefreshUsability();
             }
         }
     }
-
-    /// <summary>The line at the bottom of the window; <c>null</c> (nothing shown) for any other window.</summary>
-    public string? ContextLine => Context.Kind switch
-    {
-        CallContextKind.Explorer => _localizer["Context.Explorer"],
-        CallContextKind.FileDialog => _localizer["Context.FileDialog"],
-        _ => null,
-    };
 
     /// <summary>The tab, group or item last clicked: the target of F2 (<see cref="RenameSelected"/>).</summary>
     [ObservableProperty]
@@ -139,7 +148,7 @@ public sealed partial class MainViewModel : ObservableObject
     private IEnumerable<IRelayCommand> CustomizeCommands =>
     [
         AddTabCommand, RemoveTabCommand, AddColumnCommand, RemoveColumnCommand, AddGroupCommand, RemoveGroupCommand,
-        AddFolderCommand, AddFileCommand, AddCurrentFolderCommand, RemoveItemCommand, BeginRenameCommand,
+        AddFolderCommand, AddFileCommand, RemoveItemCommand, BeginRenameCommand,
         RenameSelectedCommand,
     ];
 
@@ -151,6 +160,7 @@ public sealed partial class MainViewModel : ObservableObject
         ArgumentNullException.ThrowIfNull(ctx);
 
         _shownGeneration++;
+        EndAddMenu();
         Context = ctx;
         IsCustomizing = false;
         EndRename();
@@ -169,16 +179,23 @@ public sealed partial class MainViewModel : ObservableObject
         ArgumentNullException.ThrowIfNull(ctx);
 
         _shownGeneration++;
+        EndAddMenu();
         Context = ctx;
         EndRename();
     }
+
+    /// <summary>
+    /// The window is now hidden, by whatever path (Escape, the close button, an activation, the loss of the focus, the
+    /// shortcut, the tray): an Add menu still reading a page stops reading.
+    /// </summary>
+    public void OnHidden() => EndAddMenu();
 
     /// <summary>The window lost the focus: it hides in normal use, unless one of its own prompts took the focus.</summary>
     public void OnDeactivated()
     {
         if (!IsCustomizing && _openPrompts == 0)
         {
-            _host.HideWindow();
+            HideWindow();
         }
     }
 
@@ -191,6 +208,7 @@ public sealed partial class MainViewModel : ObservableObject
     {
         RequireTabs(config);
 
+        EndAddMenu();
         EndRename();
         Selected = null;
         Load(config);
@@ -203,7 +221,7 @@ public sealed partial class MainViewModel : ObservableObject
     public void ToggleCustomize() => IsCustomizing = !IsCustomizing;
 
     [RelayCommand]
-    public void Close() => _host.HideWindow();
+    public void Close() => HideWindow();
 
     [RelayCommand]
     public void NextTab() => StepTab(1);
@@ -227,12 +245,14 @@ public sealed partial class MainViewModel : ObservableObject
     /// <summary>
     /// Click (or Ctrl+click) on an item in normal use: hides the window when it worked, otherwise shows why and
     /// stays open; when Windows already said why (its own message for a file it could not open), nothing more is
-    /// shown. Ignored in Customize mode, for an item no longer on the board, and while a previous click is still
-    /// being carried out. An outcome that arrives after the window was shown again (for another calling window) is
+    /// shown. Ignored in Customize mode, for an item no longer on the board, for an item that is not usable from the
+    /// calling window (<see cref="ItemViewModel.IsUsable"/>), and while a previous click is still being carried out. An outcome that arrives after the window was shown again (for another calling window) is
     /// dropped: it no longer concerns what is on screen.
     /// </summary>
     public Task ActivateItemAsync(ItemViewModel item, bool ctrl) =>
-        RunActivationAsync(item, () => _activator.ActivateAsync(item.Model, Context, ctrl));
+        item.IsUsable
+            ? RunActivationAsync(item, () => _activator.ActivateAsync(item.Model, Context, ctrl))
+            : Task.CompletedTask;
 
     /// <summary>
     /// « Open in File Explorer », from the item's menu: a new Explorer window on the folder (a file: on its folder),
@@ -278,7 +298,7 @@ public sealed partial class MainViewModel : ObservableObject
         switch (outcome)
         {
             case ActivationOutcome.Done or ActivationOutcome.OpenedElsewhere:
-                _host.HideWindow();
+                HideWindow();
                 break;
             case ActivationOutcome.ReportedByShell:
                 break;
@@ -565,13 +585,61 @@ public sealed partial class MainViewModel : ObservableObject
     }
 
     /// <summary>
+    /// Adds a web site typed or pasted in the address prompt, named by its host; nothing when the prompt is cancelled
+    /// or when the group already holds the site.
+    /// </summary>
+    public void AddUrl(GroupViewModel? group)
+    {
+        if (!IsCustomizing || !IsLive(group))
+        {
+            return;
+        }
+
+        var url = WhilePromptOpen(_prompts.AskUrl);
+        if (!string.IsNullOrWhiteSpace(url) && IsLive(group))
+        {
+            AddUrlItem(group, new Item { Kind = ItemKind.Url, Url = url });
+        }
+    }
+
+    /// <summary>
+    /// Adds the page a browser shows, named by its title (by its host when it has none); nothing when the group
+    /// already holds the site.
+    /// </summary>
+    public void AddCurrentUrl(GroupViewModel? group, BrowserPage page)
+    {
+        ArgumentNullException.ThrowIfNull(page);
+
+        if (!IsCustomizing || !IsLive(group))
+        {
+            return;
+        }
+
+        var name = string.IsNullOrWhiteSpace(page.Title) ? null : page.Title.Trim();
+        AddUrlItem(group, new Item { Kind = ItemKind.Url, Url = page.Url, Name = name });
+    }
+
+    /// <summary>
+    /// The Add menu of a group, for the window FolderSwitch was called from. When that is a browser, the menu starts
+    /// reading its page (see <see cref="AddMenuViewModel"/>); that read ends when the menu is disposed, when another
+    /// menu is opened, and when the window hides, is called again, leaves Customize mode or is reloaded.
+    /// </summary>
+    public AddMenuViewModel OpenAddMenu(GroupViewModel group)
+    {
+        ArgumentNullException.ThrowIfNull(group);
+
+        EndAddMenu();
+        _addMenu = new AddMenuViewModel(this, group, Context, _browserReader, _time, _localizer);
+        return _addMenu;
+    }
+
+    /// <summary>
     /// Adds the current folder of the calling window. This PC and the Recycle Bin, seen as <c>::{CLSID}</c>, become
     /// special folders; anything else is kept as a path. Another virtual location (Home, a library...) is named as the
     /// shell shows it, when the context knows that name, since its parsing name means nothing to a reader. Only
     /// possible when the context has a current folder, and not for search results (<c>search-ms:</c>), which are no
     /// place to go back to.
     /// </summary>
-    [RelayCommand(CanExecute = nameof(CanAddCurrentFolder))]
     public void AddCurrentFolder(GroupViewModel? group)
     {
         if (!CanAddCurrentFolder() || !IsLive(group) || Context.CurrentFolder is not { } folder)
@@ -715,8 +783,11 @@ public sealed partial class MainViewModel : ObservableObject
 
     partial void OnIsCustomizingChanged(bool value)
     {
+        RefreshUsability();
+
         if (!value)
         {
+            EndAddMenu();
             EndRename();
             Selected = null;
         }
@@ -742,6 +813,15 @@ public sealed partial class MainViewModel : ObservableObject
         var groupCount = tab.Model.Columns.Sum(column => column.Groups.Count);
         return palette[groupCount % palette.Count].Hex;
     }
+
+    /// <summary>
+    /// The item the current folder of <paramref name="context"/> would make; <c>null</c> when it has none, or when it
+    /// is a search result (<c>search-ms:</c>), which is no place to go back to.
+    /// </summary>
+    internal static Item? ItemForCurrentFolder(CallContext context) =>
+        context.CurrentFolder is { } folder && !string.IsNullOrWhiteSpace(folder) && !IsSearchResults(folder)
+            ? ItemForCurrentFolder(folder, context.CurrentFolderName)
+            : null;
 
     private static Item ItemForCurrentFolder(string folder, string? shellName)
     {
@@ -787,6 +867,9 @@ public sealed partial class MainViewModel : ObservableObject
         {
             _loading = false;
         }
+
+        RefreshUsability();
+        RefreshFavicons();
     }
 
     private TabViewModel ResolveActiveTab()
@@ -837,14 +920,167 @@ public sealed partial class MainViewModel : ObservableObject
 
     private bool CanCustomize() => IsCustomizing;
 
-    private bool CanAddCurrentFolder() =>
-        IsCustomizing && Context.CurrentFolder is { } folder && !string.IsNullOrWhiteSpace(folder) && !IsSearchResults(folder);
+    private bool CanAddCurrentFolder() => IsCustomizing && ItemForCurrentFolder(Context) is not null;
 
-    private void AddItem(GroupViewModel group, Item item)
+    private ItemViewModel AddItem(GroupViewModel group, Item item)
     {
-        group.Items.Add(new ItemViewModel(BoardEditor.AddItem(group.Model, item), group, _localizer));
+        var viewModel = new ItemViewModel(BoardEditor.AddItem(group.Model, item), group, _localizer);
+        viewModel.SetUsable(IsUsableNow(viewModel));
+        group.Items.Add(viewModel);
         Save();
+        return viewModel;
     }
+
+    /// <summary>Adds a web site unless the group already holds it, and starts what follows an addition.</summary>
+    private void AddUrlItem(GroupViewModel group, Item item)
+    {
+        if (!BoardEditor.ContainsTarget(group.Model, item))
+        {
+            OnUrlAdded(AddItem(group, item));
+        }
+    }
+
+    /// <summary>What follows the addition of a web site (its favicon is fetched).</summary>
+    private void OnUrlAdded(ItemViewModel item) => LookUpFavicons([item], onceInSession: false);
+
+    // ----- Usability and favicons -----
+
+    private IEnumerable<ItemViewModel> AllItems() =>
+        Tabs.SelectMany(tab => tab.Columns).SelectMany(column => column.Groups).SelectMany(group => group.Items);
+
+    /// <summary>A folder is always usable; a file or a site is not from a file dialog, except in Customize mode.</summary>
+    private bool IsUsableNow(ItemViewModel item) => IsCustomizing || ActivationRouter.IsUsable(Context.Kind, item.Model.Kind);
+
+    /// <summary>The context or the mode changed: every item notifies its new <see cref="ItemViewModel.IsUsable"/>.</summary>
+    private void RefreshUsability()
+    {
+        foreach (var item in AllItems())
+        {
+            item.SetUsable(IsUsableNow(item));
+        }
+    }
+
+    /// <summary>After the board is built: each site shows the icon in the cache, or has its icon fetched once.</summary>
+    private void RefreshFavicons() => LookUpFavicons(AllItems().Where(item => item.IsUrl).ToList(), onceInSession: true);
+
+    /// <summary>
+    /// Looks the cache up for <paramref name="sites"/>, all in one go off the UI thread (it reads the disk), then, on the
+    /// UI thread, shows what it found (<see cref="ShowFavicon"/>) on the ones still on the board. Without a
+    /// synchronization context (tests, snapshots), where it stands.
+    /// </summary>
+    private void LookUpFavicons(IReadOnlyList<ItemViewModel> sites, bool onceInSession)
+    {
+        var lookups = sites.Where(item => item.Model.Url is not null).Select(item => (Item: item, Url: item.Model.Url!)).ToList();
+        if (lookups.Count == 0)
+        {
+            return;
+        }
+
+        if (_ui is null)
+        {
+            foreach (var (item, url) in lookups)
+            {
+                ShowFavicon(item, url, CachedFavicon(url), onceInSession);
+            }
+
+            return;
+        }
+
+        _ = Task.Run(() =>
+        {
+            var found = lookups.Select(lookup => CachedFavicon(lookup.Url)).ToList();
+            PostToUi(() =>
+            {
+                for (var i = 0; i < lookups.Count; i++)
+                {
+                    if (IsLive(lookups[i].Item))
+                    {
+                        ShowFavicon(lookups[i].Item, lookups[i].Url, found[i], onceInSession);
+                    }
+                }
+            });
+        });
+    }
+
+    /// <summary>The cached icon of <paramref name="url"/>; <c>null</c> when there is none or the cache cannot be read.</summary>
+    private string? CachedFavicon(string url)
+    {
+        try
+        {
+            return _favicons.CachedPath(url);
+        }
+        catch (Exception e) when (!CriticalExceptions.IsCritical(e))
+        {
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Shows the cached icon of a site (<paramref name="cached"/>); without one, starts the fetch of its host. The
+    /// catch-up of the sites already on the board (<paramref name="onceInSession"/>) tries a host once per session,
+    /// whatever the outcome; a site the user adds is always fetched when nothing is cached (the earlier attempt may have
+    /// failed, offline for instance). Nothing found leaves the item as it is: a fetch may have given it its icon since
+    /// the cache was looked up.
+    /// </summary>
+    private void ShowFavicon(ItemViewModel item, string url, string? cached, bool onceInSession)
+    {
+        if (cached is not null)
+        {
+            item.SetFavicon(cached);
+            return;
+        }
+
+        if (HostOf(url) is { } host && (_faviconHosts.Add(host) || !onceInSession))
+        {
+            _ = FetchFaviconAsync(url, host);
+        }
+    }
+
+    /// <summary>
+    /// Fetches the icon of <paramref name="url"/> off the UI thread (a failure, already logged by the fetch, is the globe),
+    /// then gives it, on the UI thread, to the sites of the board that have its host.
+    /// </summary>
+    private async Task FetchFaviconAsync(string url, string host)
+    {
+        string? path;
+        try
+        {
+            path = await Task.Run(() => _favicons.FetchAsync(url, CancellationToken.None)).ConfigureAwait(false);
+        }
+        catch (Exception e) when (!CriticalExceptions.IsCritical(e))
+        {
+            return;
+        }
+
+        if (path is not null)
+        {
+            PostToUi(() => ApplyFavicon(host, path));
+        }
+    }
+
+    /// <summary>Gives <paramref name="path"/> to every site of the board that is on <paramref name="host"/> now (not the ones a reload dropped).</summary>
+    private void ApplyFavicon(string host, string path)
+    {
+        foreach (var item in AllItems().Where(item => item.IsUrl && item.Model.Url is { } url && string.Equals(HostOf(url), host, StringComparison.OrdinalIgnoreCase)))
+        {
+            item.SetFavicon(path);
+        }
+    }
+
+    /// <summary>Runs <paramref name="work"/> on the context of the construction; where it stands without one (tests, snapshots).</summary>
+    private void PostToUi(Action work)
+    {
+        if (_ui is null)
+        {
+            work();
+            return;
+        }
+
+        _ui.Post(_ => work(), null);
+    }
+
+    private static string? HostOf(string url) =>
+        Uri.TryCreate(url, UriKind.Absolute, out var uri) && !string.IsNullOrEmpty(uri.IdnHost) ? uri.IdnHost : null;
 
     private void StartRename(RenamableViewModel target)
     {
@@ -934,6 +1170,19 @@ public sealed partial class MainViewModel : ObservableObject
 
     private void Save() => _persistence.Save(_config);
 
+    /// <summary>Hides the window; an Add menu still reading a page stops reading.</summary>
+    private void HideWindow()
+    {
+        EndAddMenu();
+        _host.HideWindow();
+    }
+
+    private void EndAddMenu()
+    {
+        _addMenu?.Dispose();
+        _addMenu = null;
+    }
+
     /// <summary>Saves a move; during a drag that showed other tabs, the tab shown becomes the active one.</summary>
     private void SaveMove()
     {
@@ -948,7 +1197,6 @@ public sealed partial class MainViewModel : ObservableObject
 
     private void OnLanguageChanged(object? sender, EventArgs e)
     {
-        OnPropertyChanged(nameof(ContextLine));
         OnPropertyChanged(nameof(CustomizeLabel));
         foreach (var tab in Tabs)
         {

@@ -8,8 +8,6 @@ public class StringKeysTests
     [Theory]
     [InlineData("Window.Customize")]
     [InlineData("Window.Done")]
-    [InlineData("Context.Explorer")]
-    [InlineData("Context.FileDialog")]
     [InlineData("Tab.New")]
     [InlineData("Group.New")]
     [InlineData("Confirm.DeleteTab")]
@@ -19,6 +17,12 @@ public class StringKeysTests
     [InlineData("Error.ColumnNotEmpty")]
     [InlineData("Error.LastTab")]
     public void Main_view_model_keys_exist_in_english(string key) => AssertEnglishHas(key);
+
+    [Theory]
+    [InlineData("AddMenu.FromExplorer")]
+    [InlineData("AddMenu.FromFileDialog")]
+    [InlineData("AddMenu.FromBrowser")]
+    public void Add_menu_keys_exist_in_english(string key) => AssertEnglishHas(key);
 
     [Theory]
     [InlineData("Key.Ctrl")]

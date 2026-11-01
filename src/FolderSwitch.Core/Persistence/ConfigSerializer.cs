@@ -2,6 +2,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using FolderSwitch.Core.Model;
+using FolderSwitch.Core.Web;
 
 namespace FolderSwitch.Core.Persistence;
 
@@ -13,7 +14,8 @@ namespace FolderSwitch.Core.Persistence;
 public static class ConfigSerializer
 {
     /// <summary>The newest schema version this build can read.</summary>
-    public const int CurrentSchemaVersion = 1;
+    /// <remarks>Version 2 adds the <c>url</c> item kind; a version 1 file is read as is.</remarks>
+    public const int CurrentSchemaVersion = 2;
 
     /// <summary>Color given to a group whose stored color is missing or malformed (the palette's blue).</summary>
     public const string DefaultGroupColor = "#3b82f6";
@@ -90,6 +92,9 @@ public static class ConfigSerializer
     /// </summary>
     private static void Normalize(AppConfig config)
     {
+        // An older file is written back in the current format.
+        config.SchemaVersion = CurrentSchemaVersion;
+
         config.Settings ??= new Settings();
         config.Settings.Hotkey ??= Hotkey.Default;
 
@@ -139,7 +144,10 @@ public static class ConfigSerializer
         }
     }
 
-    private static bool HasTarget(Item item) => !string.IsNullOrWhiteSpace(item.Path) || item.Special is not null;
+    private static bool HasTarget(Item item) =>
+        item.Kind == ItemKind.Url
+            ? WebAddress.IsWebUrl(item.Url)
+            : !string.IsNullOrWhiteSpace(item.Path) || item.Special is not null;
 
     /// <summary>True for <c>#RRGGBB</c> (either case of the hex digits).</summary>
     private static bool IsHexColor(string? color)

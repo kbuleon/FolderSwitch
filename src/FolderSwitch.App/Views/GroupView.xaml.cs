@@ -70,7 +70,7 @@ public partial class GroupView : UserControl
     /// <summary>The chevron points down while the group is open, right while it is collapsed.</summary>
     private const double OpenAngle = 90;
 
-    /// <summary>The dashes of « + Folder », « + File », « + Current folder »: the group's color, half see-through.</summary>
+    /// <summary>The dashes of « Add ▾ »: the group's color, half see-through.</summary>
     private const double AddBorderOpacity = 0.55;
 
     /// <summary>How far out of the block the selection ring runs (its margin, see the template).</summary>
@@ -113,8 +113,8 @@ public partial class GroupView : UserControl
     /// <summary>The list of the group's items: where a dragged item goes (the snapshots draw its indicator).</summary>
     internal ItemsControl Items => ItemsList;
 
-    /// <summary>« + Folder ▾ »: the anchor of its menu.</summary>
-    internal FrameworkElement AddFolderAnchor => AddFolderButton;
+    /// <summary>« Add ▾ »: the anchor of its menu.</summary>
+    internal FrameworkElement AddAnchor => AddButton;
 
     /// <summary>The color dot: the anchor of the palette.</summary>
     internal FrameworkElement ColorDotAnchor => ColorDot;
@@ -317,11 +317,11 @@ public partial class GroupView : UserControl
         }
     }
 
-    private void OnAddFolderClick(object sender, RoutedEventArgs e)
+    private void OnAddClick(object sender, RoutedEventArgs e)
     {
         if (DataContext is GroupViewModel group)
         {
-            MainView.Of(this)?.OpenAddFolderMenu(group, AddFolderButton);
+            MainView.Of(this)?.OpenAddMenu(group, AddButton);
         }
     }
 

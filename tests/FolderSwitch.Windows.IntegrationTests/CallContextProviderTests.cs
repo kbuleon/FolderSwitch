@@ -173,6 +173,17 @@ public sealed class CallContextProviderTests(ITestOutputHelper output) : IDispos
         Assert.Null(Sta.Run(() => FileDialogInspector.CurrentFolder(box.Window)));
     }
 
+    // ---- Browsers ----
+
+    [BrowserFact(BrowserKind.Firefox)]
+    public void Browser_window_gives_browser_context_without_folder_Firefox() => AssertBrowserContext(BrowserKind.Firefox);
+
+    [BrowserFact(BrowserKind.Chrome)]
+    public void Browser_window_gives_browser_context_without_folder_Chrome() => AssertBrowserContext(BrowserKind.Chrome);
+
+    [BrowserFact(BrowserKind.Edge)]
+    public void Browser_window_gives_browser_context_without_folder_Edge() => AssertBrowserContext(BrowserKind.Edge);
+
     // ---- Budget and threads ----
 
     [Fact]
@@ -411,6 +422,52 @@ public sealed class CallContextProviderTests(ITestOutputHelper output) : IDispos
     }
 
     // ---- Helpers ----
+
+    /// <summary>
+    /// Starts the browser alone (new profile, see <see cref="BrowserSession"/>), brings its window to the foreground and
+    /// captures: a browser context with the browser, the window, and no folder, within the budget once warm.
+    /// </summary>
+    private void AssertBrowserContext(BrowserKind browser)
+    {
+        using var session = BrowserSession.Start(browser);
+        var snapshot = WindowInspector.Snapshot(session.Window);
+        output.WriteLine($"{browser}: window 0x{session.Window:X}, {snapshot.ClassName} ({snapshot.ProcessName}), {snapshot.DescendantClassNames.Count} descendants");
+
+        // A freshly started window may not be able to take the foreground at once, and the first captures of the
+        // process run cold: the first right one is the check of the context, the next ones are timed.
+        var deadline = DateTime.UtcNow + SettleTimeout;
+        CallContext context;
+        do
+        {
+            Foreground.Bring(session.Window);
+            context = _sut.CaptureForeground();
+            output.WriteLine($"capture: {context}");
+            if (context.Kind == CallContextKind.Browser || DateTime.UtcNow > deadline)
+            {
+                break;
+            }
+
+            Thread.Sleep(100);
+        }
+        while (true);
+
+        Assert.Equal(CallContextKind.Browser, context.Kind);
+        Assert.Equal(browser, context.Browser);
+        Assert.Equal(session.Window, context.Window);
+        Assert.Null(context.CurrentFolder);
+        Assert.Null(context.CurrentFolderName);
+
+        for (var i = 0; i < 5; i++)
+        {
+            var watch = Stopwatch.StartNew();
+            var warm = _sut.CaptureForeground();
+            watch.Stop();
+            output.WriteLine($"warm capture {i}: {watch.Elapsed.TotalMilliseconds:F1} ms, {warm}");
+
+            Assert.Equal(context, warm);
+            Assert.True(watch.Elapsed < CallContextProvider.DefaultBudget + TimeSpan.FromMilliseconds(15), $"{watch.Elapsed.TotalMilliseconds:F1} ms");
+        }
+    }
 
     /// <summary>
     /// Brings <paramref name="window"/> to the foreground and captures until the context shows

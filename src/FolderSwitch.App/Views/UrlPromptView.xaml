@@ -1,0 +1,70 @@
+<!--
+    The content of the window that asks for a web address (PromptWindow): a title, the « Address » field (with its own
+    Cut / Copy / Paste / Select all menu, see the code-behind), the message that explains a refused address, whose room
+    is kept while it is hidden (nothing moves when it shows), and « Cancel » / « Add », on the menu surface of the theme.
+    Enter is « Add » (when the address is valid), Escape is « Cancel ».
+-->
+<UserControl x:Class="FolderSwitch.App.Views.UrlPromptView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Root"
+             FontFamily="Segoe UI"
+             FontSize="13"
+             Foreground="{DynamicResource Fs.MenuText}"
+             MinWidth="380"
+             MaxWidth="480">
+    <StackPanel Margin="20,18,18,16">
+        <TextBlock FontSize="15"
+                   FontWeight="SemiBold"
+                   TextWrapping="Wrap"
+                   Text="{Binding TitleLabel, ElementName=Root}" />
+
+        <TextBlock x:Name="AddressCaption"
+                   Style="{StaticResource Fs.MenuLabel}"
+                   Margin="0,14,0,5"
+                   Text="{Binding AddressLabel, ElementName=Root, Converter={StaticResource Fs.UpperCase}}" />
+        <TextBox x:Name="AddressBox"
+                 AutomationProperties.LabeledBy="{Binding ElementName=AddressCaption}"
+                 Style="{StaticResource Fs.HexBox}"
+                 FontFamily="Segoe UI"
+                 FontSize="13"
+                 MaxLength="2048"
+                 Padding="7,5,7,5"
+                 Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Margin="0,6,0,0"
+                   TextWrapping="Wrap"
+                   FontSize="12"
+                   Foreground="{DynamicResource Fs.Danger}"
+                   Text="{Binding InvalidMessage, ElementName=Root}">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Visibility" Value="Hidden" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ShowsError}" Value="True">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Style="{StaticResource Fs.PanelButton}"
+                    MinWidth="84"
+                    Margin="0,0,8,0"
+                    Focusable="True"
+                    IsCancel="True"
+                    Click="OnCancelClick">
+                <TextBlock Text="{Binding CancelLabel, ElementName=Root}" />
+            </Button>
+            <Button Style="{StaticResource Fs.PrimaryButton}"
+                    MinWidth="84"
+                    Focusable="True"
+                    IsDefault="True"
+                    IsEnabled="{Binding CanAdd}"
+                    Click="OnAddClick">
+                <TextBlock Text="{Binding AddLabel, ElementName=Root}" />
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

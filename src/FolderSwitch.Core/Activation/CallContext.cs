@@ -11,7 +11,13 @@ namespace FolderSwitch.Core.Activation;
 /// The name the shell shows for that folder (« Home », « Documents » for a library...), when it was read: the default
 /// name of an item made from a virtual location, whose parsing name means nothing to a reader.
 /// </param>
-public sealed record CallContext(CallContextKind Kind, nint Window, string? CurrentFolder, string? CurrentFolderName = null)
+/// <param name="Browser">Which browser the window is, when <paramref name="Kind"/> is <see cref="CallContextKind.Browser"/>.</param>
+public sealed record CallContext(
+    CallContextKind Kind,
+    nint Window,
+    string? CurrentFolder,
+    string? CurrentFolderName = null,
+    BrowserKind? Browser = null)
 {
     /// <summary>No usable calling window: behaves like <see cref="CallContextKind.Other"/>.</summary>
     public static CallContext None { get; } = new(CallContextKind.Other, nint.Zero, null);

@@ -1,9 +1,11 @@
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Threading;
 using FolderSwitch.App.Diagnostics;
 using FolderSwitch.App.Views;
 using FolderSwitch.Core.Localization;
 using FolderSwitch.Presentation.Services;
+using FolderSwitch.Presentation.ViewModels;
 using Microsoft.Win32;
 
 namespace FolderSwitch.App.Services;
@@ -105,6 +107,23 @@ internal sealed class UserPrompts : IUserPrompts
         return Run(() => ShowDialog(dialog)) ? dialog.FileName : null;
     }
 
+    /// <summary>
+    /// Asks for a web address in a small window of the theme, the field starting with the clipboard when it holds a
+    /// web address (a clipboard that cannot be read is ignored). Silent: cancelled.
+    /// </summary>
+    public string? AskUrl()
+    {
+        if (_silent)
+        {
+            DebugLog.Info("Web address prompt not shown (silent)");
+            return null;
+        }
+
+        var viewModel = new UrlPromptViewModel(ReadClipboardText());
+        var view = new UrlPromptView(viewModel, key => _localizer[key]);
+        return Run(() => new PromptWindow(view, VisibleOwner()).Ask()) ? viewModel.Result : null;
+    }
+
     /// <summary>The main window when it is on screen; otherwise no owner (a hidden owner would hide the box with it).</summary>
     private Window? VisibleOwner() => _owner() is { IsVisible: true } window ? window : null;
 
@@ -123,6 +142,20 @@ internal sealed class UserPrompts : IUserPrompts
 
         var view = new PromptView(kind, message, key => _localizer[key], yesText, noText);
         return new PromptWindow(view, VisibleOwner()).Ask();
+    }
+
+    /// <summary>The text on the clipboard; <c>null</c> when there is none or when the clipboard is busy.</summary>
+    private static string? ReadClipboardText()
+    {
+        try
+        {
+            return Clipboard.ContainsText() ? Clipboard.GetText() : null;
+        }
+        catch (Exception exception) when (exception is ExternalException or InvalidOperationException)
+        {
+            DebugLog.Warn($"The clipboard could not be read: {exception.Message}");
+            return null;
+        }
     }
 
     private bool ShowDialog(CommonDialog dialog) =>

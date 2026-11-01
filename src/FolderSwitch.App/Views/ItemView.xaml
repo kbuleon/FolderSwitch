@@ -1,6 +1,9 @@
 <!--
-    An item of a group, bound to an ItemViewModel: a folder or file icon in the group's color, the name, then the path
-    in grey, both ellipsized when the column is too narrow (the full path is in the tooltip). Click or Ctrl+click opens it.
+    An item of a group, bound to an ItemViewModel: its icon, the name, then the path (the host, for a site) in grey, both
+    ellipsized when the column is too narrow (the full path is in the tooltip). The icon is a folder in the group's color,
+    the icon Windows gives the type of a file, the site's own icon, or the drawn file outline or globe until that one is
+    known and when there is none. Click or Ctrl+click opens it. An item the calling window cannot use (a file or a site,
+    from a file dialog) is faded, and its tooltip says why.
     Customize mode: a click selects it (F2 renames it), a double-click on it renames it in place, a drag moves it
     within its group or to another group of the tab, and ✕ shows under the mouse to remove it.
 -->
@@ -10,21 +13,33 @@
              xmlns:local="clr-namespace:FolderSwitch.App.Views"
              xmlns:layout="clr-namespace:FolderSwitch.App.Views.Layout"
              x:Name="Root">
-    <ContentControl x:Name="Row"
-                    Style="{StaticResource Fs.ItemRow}"
-                    ToolTip="{Binding SecondaryText}"
-                    ToolTipService.InitialShowDelay="700">
+    <ContentControl x:Name="Row" ToolTipService.InitialShowDelay="700">
+        <ContentControl.Style>
+            <Style TargetType="ContentControl" BasedOn="{StaticResource Fs.ItemRow}">
+                <Setter Property="ToolTip" Value="{Binding SecondaryText}" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsUsable}" Value="False">
+                        <Setter Property="ToolTip" Value="{Binding Texts[Item.FoldersOnly], RelativeSource={RelativeSource AncestorType=local:MainView}}" />
+                        <Setter Property="Opacity" Value="0.4" />
+                        <Setter Property="Cursor" Value="Arrow" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ContentControl.Style>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <layout:ItemRowPanel Spacing="8">
-                <Viewbox Width="16" Height="16">
-                    <Canvas Width="24" Height="24">
-                        <Path Style="{StaticResource Fs.ItemIcon}" />
-                    </Canvas>
-                </Viewbox>
+                <Grid Width="16" Height="16">
+                    <Viewbox Visibility="{Binding HasPicture, ElementName=Picture, Converter={StaticResource Fs.InverseBoolToVisibility}}">
+                        <Canvas Width="24" Height="24">
+                            <Path Style="{StaticResource Fs.ItemIcon}" />
+                        </Canvas>
+                    </Viewbox>
+                    <local:ItemIcon x:Name="Picture" Extension="{Binding Extension}" FaviconPath="{Binding FaviconPath}" />
+                </Grid>
                 <Grid>
                     <layout:FitText Text="{Binding DisplayName}"
                                     FontSize="{DynamicResource Fs.ItemFontSize}"

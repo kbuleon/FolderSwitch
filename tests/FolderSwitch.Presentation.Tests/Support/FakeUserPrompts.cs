@@ -15,6 +15,8 @@ internal sealed class FakeUserPrompts : IUserPrompts
 
     public string? ImportPathToPick { get; set; }
 
+    public string? UrlToAsk { get; set; }
+
     /// <summary>Runs while a prompt is "on screen", the way a modal dialog lets window events through.</summary>
     public Action? DuringPrompt { get; set; }
 
@@ -57,5 +59,11 @@ internal sealed class FakeUserPrompts : IUserPrompts
     {
         DuringPrompt?.Invoke();
         return ImportPathToPick;
+    }
+
+    public string? AskUrl()
+    {
+        DuringPrompt?.Invoke();
+        return UrlToAsk;
     }
 }

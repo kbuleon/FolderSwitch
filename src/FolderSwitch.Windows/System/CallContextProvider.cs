@@ -14,7 +14,8 @@ namespace FolderSwitch.Windows.SystemServices;
 /// <summary>
 /// Captures the call context from the foreground window: classified with <see cref="WindowClassifier"/>
 /// from a <see cref="WindowInspector.Snapshot"/>, then, for an Explorer window or a file dialog, its
-/// current folder (<see cref="ExplorerWindows"/>, <see cref="FileDialogInspector"/>).
+/// current folder (<see cref="ExplorerWindows"/>, <see cref="FileDialogInspector"/>). A browser window gives its
+/// <see cref="BrowserKind"/> and no folder: nothing is read from the browser during the capture.
 /// </summary>
 /// <remarks>
 /// <para>
@@ -126,14 +127,20 @@ public sealed class CallContextProvider : ICallContextProvider, IDisposable
                     return CallContext.None;
                 }
 
-                if (Classify(window) is not (var target, var kind))
+                if (Classify(window) is not (var target, var kind, var browser))
                 {
                     return CallContext.None;
                 }
 
+                // No folder to look up, so no search on the lookup thread.
                 if (kind == CallContextKind.Other)
                 {
                     return new CallContext(CallContextKind.Other, target, null);
+                }
+
+                if (kind == CallContextKind.Browser)
+                {
+                    return new CallContext(CallContextKind.Browser, target, null, null, browser);
                 }
 
                 var location = LookUpFolder(kind, target, start);
@@ -173,9 +180,10 @@ public sealed class CallContextProvider : ICallContextProvider, IDisposable
     /// The window to classify and its kind. A dialog is judged by itself (its root owner is the
     /// application's main window). Another window that is not recognized, typically a popup of an
     /// Explorer window that took the activation (a Windows 11 menu or flyout), stands for its root
-    /// owner when that owner is an Explorer window. <c>null</c> for a window that is gone.
+    /// owner when that owner is an Explorer window. <c>null</c> for a window that is gone. The browser is
+    /// the window's, for a <see cref="CallContextKind.Browser"/> kind.
     /// </summary>
-    private static (nint Window, CallContextKind Kind)? Classify(nint window)
+    private static (nint Window, CallContextKind Kind, BrowserKind? Browser)? Classify(nint window)
     {
         var info = WindowInspector.Snapshot(window);
         if (info.ClassName.Length == 0)
@@ -186,17 +194,17 @@ public sealed class CallContextProvider : ICallContextProvider, IDisposable
         var kind = WindowClassifier.Classify(info);
         if (kind != CallContextKind.Other || string.Equals(info.ClassName, DialogClass, StringComparison.Ordinal))
         {
-            return (window, kind);
+            return (window, kind, kind == CallContextKind.Browser ? WindowClassifier.BrowserOf(info) : null);
         }
 
         var owner = (nint)PInvoke.GetAncestor((HWND)window, GET_ANCESTOR_FLAGS.GA_ROOTOWNER);
         if (owner != 0 && owner != window
             && WindowClassifier.Classify(WindowInspector.Snapshot(owner)) == CallContextKind.Explorer)
         {
-            return (owner, CallContextKind.Explorer);
+            return (owner, CallContextKind.Explorer, null);
         }
 
-        return (window, kind);
+        return (window, kind, null);
     }
 
     /// <summary>

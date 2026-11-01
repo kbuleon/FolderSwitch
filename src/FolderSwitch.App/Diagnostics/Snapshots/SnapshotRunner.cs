@@ -18,6 +18,7 @@ using FolderSwitch.Core.Model;
 using FolderSwitch.Core.Persistence;
 using FolderSwitch.Core.Theming;
 using FolderSwitch.Presentation.ViewModels;
+using FolderSwitch.Windows.Shell;
 using ThemeMode = FolderSwitch.Core.Model.ThemeMode;
 
 namespace FolderSwitch.App.Diagnostics.Snapshots;
@@ -31,8 +32,8 @@ namespace FolderSwitch.App.Diagnostics.Snapshots;
 /// <para>
 /// Drawn at 96 and at 144 DPI (<c>…-144dpi.png</c>), in the language of <c>--snapshot-language &lt;code&gt;</c>
 /// (French by default): every theme in both variants, in normal use (<c>&lt;theme&gt;-&lt;variant&gt;.png</c>); then
-/// Customize mode with an empty column (<c>…-customize.png</c>), the context line (<c>…-context.png</c>) with the menu
-/// of a folder and of a file (<c>…-itemmenu.png</c>, <c>…-itemmenu-file.png</c>), long names in narrow columns
+/// Customize mode with an empty column (<c>…-customize.png</c>), called from Explorer, the menu of a folder, of a file
+/// and of a site (<c>…-itemmenu.png</c>, <c>…-itemmenu-file.png</c>, <c>…-itemmenu-site.png</c>), long names in narrow columns
 /// (<c>…-narrow.png</c>), a board larger than the work area (<c>…-overflow.png</c>) and twelve tabs that wrap in a
 /// narrow work area, in normal use and in Customize mode (<c>…-manytabs.png</c>, <c>…-manytabs-customize.png</c>). Another language than French adds its code to every name (<c>…-de.png</c>).
 /// </para>
@@ -40,12 +41,20 @@ namespace FolderSwitch.App.Diagnostics.Snapshots;
 /// The interactions of Customize mode, in Fluent light and dark and in Cards dark (Fluent light only at 144 DPI): the
 /// settings window on each of its pages (<c>…-settings-general</c>, <c>…-settings-hotkey</c> with a combination not
 /// applied yet, <c>…-settings-hotkey-applied</c> with the shortcut in effect, <c>…-settings-appearance</c>,
-/// <c>…-settings-configuration</c>), the About window (<c>…-about</c>), the
-/// « + Folder ▾ » menu of a group holding special folders (<c>…-addfolder</c>), the palette (<c>…-palette</c>), a rename
+/// <c>…-settings-configuration</c>), the About window (<c>…-about</c>), the palette (<c>…-palette</c>), a rename
 /// in progress (<c>…-rename</c>), the insertion line of an item being dragged (<c>…-drag</c>), a confirmation
 /// (<c>…-confirm</c>), and in Fluent light a column being resized (<c>…-resize</c>) and a column dragged by its grip to
 /// the front (<c>…-column-drag</c>). Menus are drawn where their popup
 /// would be (<see cref="MainView.FlyoutLayer"/>), the dialog centered on the window as an owned one would be.
+/// </para>
+/// <para>
+/// What adds an item, in Fluent and Cards, light and dark (Fluent light only at 144 DPI): the board called from a file
+/// dialog, its files and sites faded (<c>…-filedialog</c>); the « Add ▾ » menu called from another window
+/// (<c>…-addmenu</c>), from Explorer (<c>…-addmenu-explorer</c>), from Explorer on a folder the group holds already
+/// (<c>…-addmenu-present</c>) and from a browser (<c>…-addmenu-browser</c>), and its special folders
+/// (<c>…-addmenu-special</c>); the address prompt with an address (<c>…-urlprompt</c>) and with a refused one
+/// (<c>…-urlprompt-invalid</c>). The icons of the file types are Windows' own, read as the application reads them; the
+/// one favicon is made by the snapshot.
 /// </para>
 /// <para>
 /// The first-run wizard (<see cref="WizardView"/>, in its own look, <see cref="WizardTheme"/>), Fluent light, at both
@@ -79,6 +88,16 @@ internal static class SnapshotRunner
     /// <summary>Where the interactions of Customize mode are drawn.</summary>
     private static readonly (string Theme, Variant Variant)[] InteractionLooks =
         [("fluent", Variant.Light), ("fluent", Variant.Dark), ("cards", Variant.Dark)];
+
+    /// <summary>Where what adds an item is drawn.</summary>
+    private static readonly (string Theme, Variant Variant)[] AdditionLooks =
+        [("fluent", Variant.Light), ("fluent", Variant.Dark), ("cards", Variant.Light), ("cards", Variant.Dark)];
+
+    /// <summary>The longest a file is held back for the pictures of its items (file type icons, favicons).</summary>
+    private static readonly TimeSpan PictureTimeout = TimeSpan.FromSeconds(10);
+
+    /// <summary>The longest the Add menu is given to read the page of a browser.</summary>
+    private static readonly TimeSpan PageTimeout = TimeSpan.FromSeconds(5);
 
     private const string ExePath = @"C:\FolderSwitch\FolderSwitch.exe";
 
@@ -118,15 +137,22 @@ internal static class SnapshotRunner
         Directory.CreateDirectory(directory);
         var application = Application.Current ?? new Application { ShutdownMode = ShutdownMode.OnExplicitShutdown };
 
-        // The settings need a store: a throwaway folder, never the user's (nothing is exported or imported anyway).
+        // The settings need a store: a throwaway folder, never the user's (nothing is exported or imported anyway). The
+        // favicon cache is there too.
         var storeDirectory = Path.Combine(Path.GetTempPath(), "FolderSwitch.Snapshot-" + Guid.NewGuid().ToString("N"));
+
+        // The Add menu publishes the page it read on the context it was opened on, as in the application.
+        var previousContext = SynchronizationContext.Current;
+        SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher));
         try
         {
-            var services = new SnapshotServices();
+            var services = new SnapshotServices { FaviconFile = WriteFavicon(Path.Combine(storeDirectory, "favicons")) };
+            using var fileTypes = new FileTypeIcons();
+            var icons = new ItemIcons(fileTypes);
             var config = SnapshotSample.Create();
-            var main = new MainViewModel(config, services, services, services, services, localizer);
-            var narrow = new MainViewModel(SnapshotSample.CreateNarrow(), services, services, services, services, localizer);
-            var manyTabs = new MainViewModel(SnapshotSample.CreateManyTabs(), services, services, services, services, localizer);
+            var main = new MainViewModel(config, services, services, services, services, services, services, localizer);
+            var narrow = new MainViewModel(SnapshotSample.CreateNarrow(), services, services, services, services, services, services, localizer);
+            var manyTabs = new MainViewModel(SnapshotSample.CreateManyTabs(), services, services, services, services, services, services, localizer);
             using var appearance = new AppearanceViewModel(config, services, services);
             using var applier = new ThemeApplier(appearance, application.Resources);
 
@@ -141,7 +167,7 @@ internal static class SnapshotRunner
             foreach (var scale in Scales)
             {
                 var clock = Stopwatch.StartNew();
-                var view = new MainView { DataContext = main, Texts = texts, Appearance = appearance, Settings = settings };
+                var view = new MainView { DataContext = main, Texts = texts, Appearance = appearance, Settings = settings, Icons = icons };
                 var scene = new Scene(view, () => ThemeApplier.Build(applier.Current), scale);
                 scene.Layout();
                 DebugLog.Info(FormattableString.Invariant($"Snapshot: view built and laid out in {clock.Elapsed.TotalMilliseconds:F0} ms at scale {scale}"));
@@ -195,13 +221,22 @@ internal static class SnapshotRunner
                     written += SaveInteractions(scene, main, services, directory, theme, variant, scale, suffix);
                 }
 
+                foreach (var (theme, variant) in AdditionLooks)
+                {
+                    if (scale != 1.0 && (theme, variant) != ("fluent", Variant.Light))
+                    {
+                        continue;
+                    }
+
+                    Use(appearance, theme, variant);
+                    written += SaveAdditions(scene, main, directory, theme, variant, scale, suffix);
+                }
+
                 Use(appearance, "fluent", Variant.Light);
                 main.OnShown(new CallContext(CallContextKind.Explorer, 0, @"D:\Clients\Acme\Contrats"));
-                scene.Save(Path.Combine(directory, FileName("fluent", Variant.Light, "context", scale, suffix)), Variant.Light);
-                written++;
 
-                // The menu of an item, called from Explorer: a folder (with « Open in new tab ») and a file.
-                foreach (var (name, kind) in new[] { ("Maquettes", "itemmenu"), ("Cahier des charges.docx", "itemmenu-file") })
+                // The menu of an item, called from Explorer: a folder (with « Open in new tab »), a file and a site.
+                foreach (var (name, kind) in new[] { ("Maquettes", "itemmenu"), ("Cahier des charges.docx", "itemmenu-file"), ("Morningstar", "itemmenu-site") })
                 {
                     var item = scene.Item(name);
                     scene.View.OpenItemMenu((ItemViewModel)item.DataContext, item.MenuAnchor);
@@ -250,6 +285,7 @@ internal static class SnapshotRunner
         }
         finally
         {
+            SynchronizationContext.SetSynchronizationContext(previousContext);
             DeleteQuietly(storeDirectory);
         }
     }
@@ -294,13 +330,6 @@ internal static class SnapshotRunner
         view.OpenAbout();
         scene.Save(File("about"), variant);
         view.CloseDialog();
-        written++;
-
-        // The « + Folder ▾ » menu of « Personnel », which holds Downloads, Documents and Desktop: those are checked.
-        var personal = scene.Group("Personnel");
-        view.OpenAddFolderMenu((GroupViewModel)personal.DataContext, personal.AddFolderAnchor);
-        scene.Save(File("addfolder"), variant);
-        view.CloseFlyout();
         written++;
 
         // The palette of « Projets » (blue).
@@ -357,6 +386,112 @@ internal static class SnapshotRunner
 
         main.ToggleCustomize();
         return written;
+    }
+
+    /// <summary>What adds an item, in one look; returns the number of files written.</summary>
+    private static int SaveAdditions(Scene scene, MainViewModel main, string directory, string theme, Variant variant, double scale, string suffix)
+    {
+        string File(string kind) => Path.Combine(directory, FileName(theme, variant, kind, scale, suffix));
+
+        var written = 0;
+        var view = scene.View;
+
+        // Normal use, called from a file dialog: only the folders can be used.
+        main.OnShown(new CallContext(CallContextKind.FileDialog, 0, @"D:\Clients\Acme\Contrats"));
+        scene.Save(File("filedialog"), variant);
+        written++;
+
+        // The « Add ▾ » menu, for the calling window: nothing more, its folder (a new one, then one the group holds), the
+        // page of a browser.
+        main.ToggleCustomize();
+        foreach (var (kind, group, context) in new (string, string, CallContext)[]
+        {
+            ("addmenu", "Finance", CallContext.None),
+            ("addmenu-explorer", "Projets", new CallContext(CallContextKind.Explorer, 0, @"D:\Clients\Acme\Contrats")),
+            ("addmenu-present", "Clients", new CallContext(CallContextKind.Explorer, 0, @"D:\Clients\Acme")),
+            ("addmenu-browser", "Finance", new CallContext(CallContextKind.Browser, 0, null, Browser: BrowserKind.Firefox)),
+        })
+        {
+            main.OnRecalled(context);
+            OpenAddMenu(scene, group);
+            scene.Save(File(kind), variant);
+            view.CloseFlyout();
+            written++;
+        }
+
+        // Its special folders, for « Personnel », which holds Downloads, Documents and Desktop: those are checked.
+        main.OnRecalled(CallContext.None);
+        OpenAddMenu(scene, "Personnel").ShowSpecialFolders(true);
+        scene.Save(File("addmenu-special"), variant);
+        view.CloseFlyout();
+        written++;
+
+        main.ToggleCustomize();
+        main.OnShown(CallContext.None);
+
+        // The address prompt, over the window: an address from the clipboard, then one that is refused.
+        var valid = new UrlPromptViewModel("https://www.morningstar.fr/fr/funds");
+        var refused = new UrlPromptViewModel(null) { Text = "javascript:alert(1)" };
+        foreach (var (kind, prompt) in new[] { ("urlprompt", valid), ("urlprompt-invalid", refused) })
+        {
+            scene.ShowDialog(new UrlPromptView(prompt, key => Localized(scene, key)));
+            scene.Save(File(kind), variant);
+            scene.ShowDialog(null);
+            written++;
+        }
+
+        return written;
+    }
+
+    /// <summary>Opens the « Add ▾ » menu of the group named <paramref name="name"/>, once it has read the browser's page, if any.</summary>
+    private static AddMenu OpenAddMenu(Scene scene, string name)
+    {
+        var group = scene.Group(name);
+        scene.View.OpenAddMenu((GroupViewModel)group.DataContext, group.AddAnchor);
+        var menu = scene.View.OpenFlyoutContent as AddMenu ?? throw new InvalidOperationException("The Add menu did not open.");
+
+        var clock = Stopwatch.StartNew();
+        while (menu.ViewModel.IsReading && clock.Elapsed < PageTimeout)
+        {
+            Settle();
+            Thread.Sleep(10);
+        }
+
+        return menu;
+    }
+
+    /// <summary>
+    /// A favicon for the snapshots' cache, as a site would serve it: a 32-pixel PNG, a letter on a rounded square.
+    /// Returns its path.
+    /// </summary>
+    private static string WriteFavicon(string directory)
+    {
+        const int Size = 32;
+        var visual = new DrawingVisual();
+        using (var context = visual.RenderOpen())
+        {
+            context.DrawRoundedRectangle(ThemeApplier.SolidBrush("#c2410c"), null, new Rect(0, 0, Size, Size), 7, 7);
+            var letter = new FormattedText(
+                "M",
+                CultureInfo.InvariantCulture,
+                FlowDirection.LeftToRight,
+                new Typeface(new FontFamily("Segoe UI"), FontStyles.Normal, FontWeights.Bold, FontStretches.Normal),
+                22,
+                Brushes.White,
+                1.0);
+            context.DrawText(letter, new Point((Size - letter.Width) / 2, (Size - letter.Height) / 2));
+        }
+
+        var bitmap = new RenderTargetBitmap(Size, Size, 96, 96, PixelFormats.Pbgra32);
+        bitmap.Render(visual);
+
+        Directory.CreateDirectory(directory);
+        var path = Path.Combine(directory, SnapshotSample.FaviconHost + ".png");
+        var encoder = new PngBitmapEncoder();
+        encoder.Frames.Add(BitmapFrame.Create(bitmap));
+        using var file = File.Create(path);
+        encoder.Save(file);
+        return path;
     }
 
     /// <summary>The first-run wizard's scenes at one scale; returns the number of files written.</summary>
@@ -580,8 +715,11 @@ internal static class SnapshotRunner
         public BoardView Board =>
             Descendants(View).OfType<BoardView>().First(board => ReferenceEquals(board.DataContext, (View.DataContext as MainViewModel)?.ActiveTab));
 
-        /// <summary>Shows <paramref name="prompt"/> centered on the window, as an owned dialog; <c>null</c> removes it.</summary>
-        public void ShowDialog(PromptView? prompt)
+        /// <summary>
+        /// Shows <paramref name="prompt"/> (what a <see cref="PromptWindow"/> shows) centered on the window, as an owned
+        /// dialog; <c>null</c> removes it.
+        /// </summary>
+        public void ShowDialog(FrameworkElement? prompt)
         {
             if (_dialog is not null)
             {
@@ -678,6 +816,13 @@ internal static class SnapshotRunner
             // The application tells its windows when its resources change, and this tree is in none: the same resources,
             // put at its root, make every DynamicResource in it look its value up again, as a window's tree does.
             _desk.Resources = _resources();
+
+            // The pictures of the items come off the UI thread: the ones this layout asks for are waited for.
+            if (Content is MainView { Icons: { } icons })
+            {
+                Layout();
+                icons.WaitForPending(PictureTimeout);
+            }
 
             // The mockups' backdrops: a light grey desk, a darker one under the dark variant.
             _desk.Background = ThemeApplier.SolidBrush(variant == Variant.Dark ? "#9aa0ab" : "#d6d9e0");

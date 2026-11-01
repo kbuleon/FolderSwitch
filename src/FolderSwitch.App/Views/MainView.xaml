@@ -1,9 +1,9 @@
 <!--
     The whole content of the main window, bound to MainViewModel (spec 5.2), from top to bottom: the title bar, the tab
-    bar, the board of the active tab (scrolling past the screen's work area) and the context line. Hosted by MainWindow,
-    and rendered off-screen by the snapshot mode.
+    bar and the board of the active tab (scrolling past the screen's work area). Hosted by MainWindow, and rendered
+    off-screen by the snapshot mode.
     The title bar's (?) and ⚙ open the About and settings windows, drawn over everything on a dimmed backdrop (the
-    dialog layer). The « + Folder ▾ » menu and the palette of Customize mode open in the flyout declared here (see
+    dialog layer). The menus (a group's Add menu and palette, an item's menu...) open in the flyout declared here (see
     Flyout). The adorner layer at the top carries the insertion line of a drag and drop over the tab bar (the board's
     scroller has its own).
 -->
@@ -79,18 +79,6 @@
                 </DockPanel>
 
                 <local:TabBar DockPanel.Dock="Top" />
-
-                <!-- Context line: only when called from File Explorer or a file dialog. -->
-                <Border DockPanel.Dock="Bottom"
-                        BorderThickness="0,1,0,0"
-                        BorderBrush="{DynamicResource Fs.Border}"
-                        Padding="16,6,16,7"
-                        Visibility="{Binding ContextLine, Converter={StaticResource Fs.NullToCollapsed}}">
-                    <TextBlock Text="{Binding ContextLine}"
-                               FontSize="11.85"
-                               Foreground="{DynamicResource Fs.OnBackgroundMuted}"
-                               TextTrimming="CharacterEllipsis" />
-                </Border>
 
                 <!-- The board; dotted in Customize mode. -->
                 <Border>

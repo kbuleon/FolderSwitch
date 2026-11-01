@@ -29,6 +29,8 @@ public class ActivationServiceTests
 
     private static Item File(string path) => new() { Kind = ItemKind.File, Path = path };
 
+    private static Item Url(string? address) => new() { Kind = ItemKind.Url, Url = address };
+
     private void AssertNothingCalled()
     {
         Assert.Empty(_explorer.Calls);
@@ -340,14 +342,15 @@ public class ActivationServiceTests
     }
 
     [Fact]
-    public async Task Dialog_file_moves_to_the_parent_folder_after_checking_the_file_itself()
+    public async Task Dialog_file_is_opened_with_the_shell_after_checking_the_file_itself()
     {
+        // The dialog never offers a file (spec 5.7); a file reaching the service is opened like anywhere else.
         var outcome = await CreateService().ActivateAsync(File(@"D:\a\b.txt"), DialogContext, ctrl: false);
 
-        Assert.Equal(ActivationOutcome.Done, outcome);
+        Assert.Equal(ActivationOutcome.OpenedElsewhere, outcome);
         Assert.Equal([(@"D:\a\b.txt", TimeSpan.FromSeconds(2))], _resolver.ExistsCalls);
-        Assert.Equal([(DialogWindow, @"D:\a")], _dialog.Calls);
-        Assert.Empty(_shell.Calls);
+        Assert.Equal([@"D:\a\b.txt"], _shell.Calls);
+        Assert.Empty(_dialog.Calls);
     }
 
     [Fact]
@@ -356,6 +359,80 @@ public class ActivationServiceTests
         _resolver.ExistsFunc = (path, _) => Task.FromResult(path == @"D:\a");
 
         var outcome = await CreateService().ActivateAsync(File(@"D:\a\gone.txt"), DialogContext, ctrl: false);
+
+        Assert.Equal(ActivationOutcome.TargetUnavailable, outcome);
+        AssertNothingCalled();
+    }
+
+    // Web sites (spec 5.7): nothing to resolve, nothing to check.
+
+    [Fact]
+    public async Task Url_is_opened_without_resolving_or_checking()
+    {
+        var resolved = false;
+        _resolver.ResolveFunc = _ =>
+        {
+            resolved = true;
+            return null;
+        };
+
+        var outcome = await CreateService().ActivateAsync(Url("https://example.com/page"), OtherContext, ctrl: false);
+
+        Assert.Equal(ActivationOutcome.OpenedElsewhere, outcome);
+        Assert.False(resolved);
+        Assert.Empty(_resolver.ExistsCalls);
+        Assert.Equal(["https://example.com/page"], _shell.Calls);
+        Assert.Empty(_explorer.Calls);
+        Assert.Empty(_dialog.Calls);
+    }
+
+    [Fact]
+    public async Task Url_is_normalized_before_it_is_launched()
+    {
+        var outcome = await CreateService().ActivateAsync(Url("  HTTPS://Example.com "), ExplorerContext, ctrl: true);
+
+        Assert.Equal(ActivationOutcome.OpenedElsewhere, outcome);
+        Assert.Equal(["https://example.com/"], _shell.Calls);
+    }
+
+    [Theory]
+    [InlineData("ftp://x")]
+    [InlineData("javascript:alert(1)")]
+    [InlineData("file:///C:/")]
+    [InlineData("")]
+    [InlineData(null)]
+    public async Task Url_item_with_invalid_address_is_unavailable(string? address)
+    {
+        var outcome = await CreateService().ActivateAsync(Url(address), OtherContext, ctrl: false);
+
+        Assert.Equal(ActivationOutcome.TargetUnavailable, outcome);
+        AssertNothingCalled();
+    }
+
+    [Fact]
+    public async Task Url_the_shell_could_not_open_is_reported_by_the_shell()
+    {
+        _shell.OpenUrlResult = false;
+
+        var outcome = await CreateService().ActivateAsync(Url("https://example.com/"), OtherContext, ctrl: false);
+
+        Assert.Equal(ActivationOutcome.ReportedByShell, outcome);
+    }
+
+    [Fact]
+    public async Task Url_launch_that_throws_gives_Failed_and_never_propagates()
+    {
+        _shell.OpenUrlException = new InvalidOperationException("boom");
+
+        var outcome = await CreateService().ActivateAsync(Url("https://example.com/"), OtherContext, ctrl: false);
+
+        Assert.Equal(ActivationOutcome.Failed, outcome);
+    }
+
+    [Fact]
+    public async Task OpenInExplorer_of_a_url_is_unavailable()
+    {
+        var outcome = await CreateService().OpenInExplorerAsync(Url("https://example.com/"));
 
         Assert.Equal(ActivationOutcome.TargetUnavailable, outcome);
         AssertNothingCalled();
@@ -696,6 +773,22 @@ public class ActivationServiceTests
             }
 
             return OpenFileResult;
+        }
+
+        public Exception? OpenUrlException { get; set; }
+
+        /// <summary>What <see cref="OpenUrl"/> returns.</summary>
+        public bool OpenUrlResult { get; set; } = true;
+
+        public bool OpenUrl(string url)
+        {
+            Calls.Add(url);
+            if (OpenUrlException is not null)
+            {
+                throw OpenUrlException;
+            }
+
+            return OpenUrlResult;
         }
     }
 

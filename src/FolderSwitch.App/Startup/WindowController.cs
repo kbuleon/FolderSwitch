@@ -220,6 +220,9 @@ internal sealed class WindowController : IWindowHost
         _returnFocusTo = 0;
         window.Hide();
 
+        // Every hide of the shown window goes through here (the view model's, the shortcut's).
+        _viewModel?.OnHidden();
+
         if (returnTo != 0)
         {
             _foreground.Activate(returnTo);

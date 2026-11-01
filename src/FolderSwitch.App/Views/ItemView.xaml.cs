@@ -8,8 +8,9 @@ namespace FolderSwitch.App.Views;
 
 /// <summary>
 /// An item of a group, bound to an <see cref="ItemViewModel"/>. In normal use a click opens it and a right-click opens
-/// its menu (<see cref="ItemMenu"/>); in Customize mode a click selects it, a double-click renames it and a drag moves
-/// it (<see cref="BoardDragDrop"/>).
+/// its menu (<see cref="ItemMenu"/>), unless the calling window cannot use it (<see cref="ItemViewModel.IsUsable"/>):
+/// then neither does anything, and only its tooltip shows. In Customize mode a click selects it, a double-click renames
+/// it and a drag moves it (<see cref="BoardDragDrop"/>).
 /// </summary>
 public partial class ItemView : UserControl
 {
@@ -58,7 +59,7 @@ public partial class ItemView : UserControl
                 view.OpenEditMenu(item, Row);
             }
         }
-        else
+        else if (item.IsUsable)
         {
             view.OpenItemMenu(item, Row);
         }
@@ -80,8 +81,11 @@ public partial class ItemView : UserControl
             return;
         }
 
-        var ctrl = (Keyboard.Modifiers & ModifierKeys.Control) != 0;
-        view.ActivateItem(item, ctrl);
+        if (item.IsUsable)
+        {
+            var ctrl = (Keyboard.Modifiers & ModifierKeys.Control) != 0;
+            view.ActivateItem(item, ctrl);
+        }
     }
 
     private bool BeginRename()
