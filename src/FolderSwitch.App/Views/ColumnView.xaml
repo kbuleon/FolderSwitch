@@ -1,4 +1,9 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     A column of the board, bound to a ColumnViewModel: its groups stacked, all at the column's effective width (fixed,
     or fitted to the content).
     Customize mode: outlined with dashes, « + Group » at the bottom, the grip ⠿ the column is dragged by in the middle

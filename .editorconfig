@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Karl BULEON
+# Additional terms under GPLv3 section 7: see the License section of README.md.
+
+root = true
+
+[*.cs]
+# Every C# file starts with the license header; the build fails without it (EnforceCodeStyleInBuild,
+# warnings as errors). The IDE's quick fix (Ctrl+.) inserts it. XAML and PowerShell files carry the same header by hand.
+file_header_template = SPDX-License-Identifier: GPL-3.0-or-later\nCopyright (C) 2026 Karl BULEON\nAdditional terms under GPLv3 section 7: see the License section of README.md.
+dotnet_diagnostic.IDE0073.severity = warning

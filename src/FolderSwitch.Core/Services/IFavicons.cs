@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Karl BULEON
+// Additional terms under GPLv3 section 7: see the License section of README.md.
+
 namespace FolderSwitch.Core.Services;
 
 /// <summary>The favicons of the web sites held by the board: what is kept on the disk, and how to get what is missing.</summary>

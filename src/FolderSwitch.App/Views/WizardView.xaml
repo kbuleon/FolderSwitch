@@ -1,4 +1,9 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     The content of the first-run wizard's window (spec 5.8), bound to WizardViewModel, from top to
     bottom: the title row (moves the window; ✕ closes it), the progress of the four steps, the step shown, and the
     footer (« ← Previous », « Step n of 4 », « Next → » then « Finish ✓ »). The steps: 1. the language (native names,

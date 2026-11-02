@@ -1,6 +1,14 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     The About window, opened by the (?) button of the title bar and shown by MainView over the whole window on a dimmed
     backdrop, like the settings: the icon, the name, the version and what FolderSwitch does, with ✕ to close it.
+    Under a rule, the legal notices of GPLv3 section 0: the copyright, the license and the absence of warranty, with links
+    to the license and the third-party notices installed next to the executable. The copyright line and the license's
+    name are not translated.
 -->
 <UserControl x:Class="FolderSwitch.App.Views.AboutView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -32,6 +40,25 @@
                        TextAlignment="Center"
                        TextWrapping="Wrap"
                        Text="{Binding Texts[About.Description], ElementName=Root}" />
+            <Border Margin="0,18,0,12" Height="1" Background="{DynamicResource Fs.Border}" />
+            <TextBlock FontSize="11.5"
+                       Foreground="{DynamicResource Fs.MenuMuted}"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap">
+                <Run Text="Copyright (C) 2026 Karl BULEON" />
+                <LineBreak />
+                <Run Text="GPL-3.0-or-later ·" />
+                <Run Text="{Binding Texts[About.NoWarranty], ElementName=Root, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Margin="0,8,0,0" FontSize="11.5" TextAlignment="Center" TextWrapping="Wrap">
+                <Hyperlink Foreground="{DynamicResource Fs.Accent}" Click="OnLicenseClick">
+                    <Run Text="{Binding Texts[About.License], ElementName=Root, Mode=OneWay}" />
+                </Hyperlink>
+                <Run Text=" · " Foreground="{DynamicResource Fs.MenuMuted}" />
+                <Hyperlink Foreground="{DynamicResource Fs.Accent}" Click="OnNoticesClick">
+                    <Run Text="{Binding Texts[About.ThirdPartyNotices], ElementName=Root, Mode=OneWay}" />
+                </Hyperlink>
+            </TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -1,4 +1,9 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     The tabs of MainViewModel.Tabs, the active one bold and underlined. A click shows a tab (the view model records it);
     Tab and Shift+Tab are handled by the window.
     Customize mode: a click also selects the tab (F2 renames it), a double-click on it renames it in place, it can be

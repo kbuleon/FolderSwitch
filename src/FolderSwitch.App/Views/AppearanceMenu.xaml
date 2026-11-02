@@ -1,4 +1,9 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     The appearance menu (spec 5.4), bound to AppearanceViewModel, compact (one screen, no scrolling): the mode
     (Light, Dark, Auto), a thumbnail per theme drawn in the variant shown, the background (the theme's own first, the
     tints of the variant, then a custom color typed as #rrggbb) and the group corners. Every choice takes effect and is

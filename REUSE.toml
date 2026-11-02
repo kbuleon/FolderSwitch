@@ -1,0 +1,10 @@
+# Licensing of the files that cannot carry a header (REUSE specification, https://reuse.software/spec/):
+# the icon and the screenshots, the translation files, the project and configuration files.
+# A file that has its own SPDX header keeps it ("closest"); every other file falls under this annotation.
+version = 1
+
+[[annotations]]
+path = "**"
+precedence = "closest"
+SPDX-FileCopyrightText = "2026 Karl BULEON"
+SPDX-License-Identifier = "GPL-3.0-or-later"

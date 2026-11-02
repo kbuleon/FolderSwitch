@@ -1,4 +1,9 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     The settings window (spec 5.4), bound to SettingsViewModel, shown by MainView over the whole window on a dimmed
     backdrop: its title and ✕ at the top, the categories on the left, the page of the chosen one on the right. General:
     the language (native names), starting with Windows, the update check (greyed out without one) and the version.

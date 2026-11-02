@@ -1,4 +1,9 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     The palette of a group (Customize mode, spec 5.4): the ten colors of ThemeCatalog.GroupPalette, named in the
     current language in their tooltips, the group's own one ringed. A click recolors the group and closes it. Shown in
     a Flyout under the group's color dot.

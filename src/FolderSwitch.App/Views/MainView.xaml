@@ -1,4 +1,9 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     The whole content of the main window, bound to MainViewModel (spec 5.2), from top to bottom: the title bar, the tab
     bar and the board of the active tab (scrolling past the screen's work area). Hosted by MainWindow, and rendered
     off-screen by the snapshot mode.

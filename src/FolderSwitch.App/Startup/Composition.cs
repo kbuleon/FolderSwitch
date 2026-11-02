@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Karl BULEON
+// Additional terms under GPLv3 section 7: see the License section of README.md.
+
 using System.ComponentModel;
 using System.IO;
 using System.Net.Http;
@@ -144,8 +148,9 @@ internal sealed class Composition : IDisposable
         var favicons = CreateFavicons();
 
         // One source for the Windows generation: the one that decides on tabs is the one the system reports.
+        var shell = new ShellLauncher();
         var activation = new ActivationService(
-            _explorer, _fileDialog, new ShellLauncher(), new PathResolver(), _system.Generation, LogActivationProblem);
+            _explorer, _fileDialog, shell, new PathResolver(), _system.Generation, LogActivationProblem);
 
         var wizardCompleted = false;
         if (!config.Settings.FirstRunCompleted)
@@ -211,6 +216,7 @@ internal sealed class Composition : IDisposable
         // Built once, for the whole life of the process.
         _window = new MainWindow(_main, texts, _appearance, _settings);
         _window.View.Icons = new ItemIcons(_fileTypeIcons);
+        _window.View.Shell = shell;
         _controller.Attach(_window, _main);
 
         // A self-test builds the icon but never puts it in the notification area.

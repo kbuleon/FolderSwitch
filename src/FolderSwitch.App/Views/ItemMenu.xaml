@@ -1,4 +1,9 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     The menu of an item, opened by a right-click in normal use (not in Edit mode): « Open in File Explorer » (a file:
     « Open file location »), then « Open in new tab » with « Ctrl+click » at the end of the line, only when a Ctrl+click
     would open the item in a new tab of the calling window. A site has « Copy address » only. Shown in a Flyout under

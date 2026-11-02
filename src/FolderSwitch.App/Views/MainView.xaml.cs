@@ -1,9 +1,14 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Karl BULEON
+// Additional terms under GPLv3 section 7: see the License section of README.md.
+
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using FolderSwitch.App.Diagnostics;
+using FolderSwitch.Core.Services;
 using FolderSwitch.Presentation.ViewModels;
 
 namespace FolderSwitch.App.Views;
@@ -78,6 +83,9 @@ public partial class MainView : UserControl
 
     /// <summary>The pictures of the items: file type icons and favicons (<see cref="ItemIcon"/>); none, the drawn icons only.</summary>
     internal ItemIcons? Icons { get; set; }
+
+    /// <summary>Opens the license and the third-party notices from the About window; none, its links do nothing.</summary>
+    internal IShellLauncher? Shell { get; set; }
 
     /// <summary>
     /// True while the settings window shows its shortcut page: the shortcut then goes to its test zone instead of
@@ -159,7 +167,7 @@ public partial class MainView : UserControl
     {
         if (DialogFrame.Child is not AboutView && Texts is { } texts)
         {
-            ShowDialog(new AboutView(texts, () => CloseDialog()));
+            ShowDialog(new AboutView(texts, Shell, () => CloseDialog()));
         }
     }
 

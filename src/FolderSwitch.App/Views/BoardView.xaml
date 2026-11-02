@@ -1,4 +1,9 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     The columns of a tab, side by side, bound to a TabViewModel (one board per tab, the active one shown). Customize mode adds « + Column » at
     the right, as tall as the board, and takes the columns of the tab dropped on it (an insertion line shows where).
 -->

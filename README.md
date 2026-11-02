@@ -69,10 +69,24 @@ These images are drawn by the `--snapshot` diagnostic mode (see « Diagnostic mo
   policy, packaging and the testing strategy.
 - [CODEMAP.md](CODEMAP.md): the map of the code, one line per significant file or type, folder by folder.
 - [CHANGELOG.md](CHANGELOG.md): the history of changes, version by version.
+- [LICENSE](LICENSE), [THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt) and [CONTRIBUTING.md](CONTRIBUTING.md): see
+  « License » and « Contributing » below.
 
 ## Build and run from source
 
 Prerequisites: Windows and the .NET 10 SDK (pinned by `global.json`). Warnings are errors.
+
+Every `.cs`, `.xaml` and `.ps1` file starts with the license header:
+
+```csharp
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Karl BULEON
+// Additional terms under GPLv3 section 7: see the License section of README.md.
+```
+
+A C# file without it fails the build (rule IDE0073, from `.editorconfig`; the IDE's quick fix, Ctrl+., inserts it). XAML
+files carry it in a `<!-- -->` comment and PowerShell files in `#` lines, by hand. Files that cannot carry a comment are
+declared in `REUSE.toml`.
 
 ```powershell
 dotnet build FolderSwitch.slnx -c Release
@@ -90,6 +104,12 @@ Nothing to install beyond the SDK: the packaging tool, Velopack's `vpk`, is a lo
 (`.config/dotnet-tools.json`) that the script restores. When upgrading, keep its version equal to the `Velopack` package
 of `Directory.Packages.props`. `vpk` runs on the .NET 10 runtime that comes with
 the SDK, so no roll-forward setting is needed.
+
+`artifacts/publish` holds `LICENSE.txt` (the GPLv3) and `THIRD-PARTY-NOTICES.txt` next to `FolderSwitch.exe`, and the
+installer installs them. When a package is added or updated, or the SDK brings another runtime, update
+`THIRD-PARTY-NOTICES.txt` (name, version, address, copyright and license text of each component); compare it with
+`dotnet list src/FolderSwitch.App package --include-transitive` and the runtime packs of `artifacts/publish/FolderSwitch.deps.json`.
+Check the license of a new package first: it must be compatible with the GPLv3 (a GPLv2-only one is not).
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File build/pack.ps1
@@ -127,6 +147,10 @@ sites, see « Privacy »): the request of the feed (`releases.win.json`, with th
 application id and the installed version in its query string) and, when the user accepts, the download of the package.
 No identifier, no telemetry.
 
+**Source code.** The GPL requires each published binary to come with a way to get its source (section 6). Tag the
+commit of each published version `v<version>` (`git tag v1.7.0`, then `git push origin v1.7.0`), and link the download
+page to the repository and to that tag.
+
 **Signing.** `-SignParams` hands the parameters of `signtool.exe` to `vpk`, which runs its own copy of it to sign the
 application's files, the updater and the installer (the code signing certificate must be in the user's store, or named in
 the parameters). Unsigned, SmartScreen warns about an unknown publisher.
@@ -138,7 +162,8 @@ powershell -ExecutionPolicy Bypass -File build/pack.ps1 -SignParams '/a /fd sha2
 **Checks to make by hand on a release** (no test runs the installer):
 
 1. Quit FolderSwitch, then run `FolderSwitch-win-Setup.exe`: it installs to `%LocalAppData%\FolderSwitch` (the folder
-   that Velopack owns) with no elevation prompt and starts FolderSwitch. The wizard's « Start with Windows » writes the
+   that Velopack owns) with no elevation prompt and starts FolderSwitch; `current\` holds `LICENSE.txt` and
+   `THIRD-PARTY-NOTICES.txt`, which the About window's links open. The wizard's « Start with Windows » writes the
    `FolderSwitch` value of `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`, with the path
    `%LocalAppData%\FolderSwitch\current\FolderSwitch.exe`; after signing out and in, FolderSwitch is running.
 2. Uninstall it from « Apps »: the `Run` value is gone, and `%APPDATA%\FolderSwitch` (the configuration and the debug
@@ -246,3 +271,43 @@ In the current version:
   too for search results, which are a query rather than a place.
 - The OneDrive special folder resolves only when the OneDrive client has set its environment variable.
 - File Explorer is the only supported file manager; items are folders, files and web sites; languages written left to right only.
+
+## Contributing
+
+Code contributions are not accepted; bug reports and suggestions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License
+
+FolderSwitch is Copyright (C) 2026 Karl BULEON.
+
+FolderSwitch is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later
+version (SPDX: `GPL-3.0-or-later`), with the additional terms below. It is distributed in the hope that it will be
+useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE. See [LICENSE](LICENSE) for the full text of the license.
+
+### Additional terms under section 7 of the GPLv3
+
+These terms apply to all of FolderSwitch, as permitted by section 7 of the GPLv3:
+
+1. **Attribution (section 7(b)).** A work based on FolderSwitch must preserve the author attribution of FolderSwitch in
+   the Appropriate Legal Notices it displays, in the form « Based on FolderSwitch by Karl BULEON ».
+2. **Origin and name (section 7(c)).** The origin of FolderSwitch must not be misrepresented: a modified version must
+   not be conveyed under the name « FolderSwitch » nor with the FolderSwitch icon, and must be marked in reasonable ways
+   as different from the original version. Referring to FolderSwitch to state where a work comes from, as in term 1, is
+   allowed.
+3. **Trademarks (section 7(e)).** This license grants no right under trademark law to use the name « FolderSwitch » or
+   its icon.
+
+The icon's files (`assets/icon/`) are licensed under the GPL-3.0-or-later like the rest of the repository (see
+`REUSE.toml`), and it is compiled into the executable; only its use to identify a modified version is restricted, by
+term 2.
+
+### Third-party components
+
+FolderSwitch is distributed with components under their own licenses, all compatible with the GPLv3: H.NotifyIcon,
+Velopack (with the `Setup.exe` and `Update.exe` programs), CommunityToolkit.Mvvm, the code generated by CsWin32, and
+the .NET and Windows Desktop runtimes, under the MIT license; the Rust crates of `Setup.exe` and `Update.exe` are under
+permissive licenses and the MPL-2.0. Their notices are in
+[THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt), installed next to `FolderSwitch.exe` with the license
+(`LICENSE.txt`); the About window links to both.

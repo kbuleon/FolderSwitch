@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Karl BULEON
+// Additional terms under GPLv3 section 7: see the License section of README.md.
+
 namespace FolderSwitch.Core.Services;
 
 /// <summary>An icon as pixels: <paramref name="Bgra32"/> holds <c>Width * Height</c> pixels, top row first, 4 bytes each (blue, green, red, alpha; the colors are not premultiplied).</summary>

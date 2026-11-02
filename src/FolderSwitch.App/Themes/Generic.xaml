@@ -1,4 +1,9 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     The views' shared styles, geometries and converters, merged once into the application's resources by ThemeApplier.
     No color here: every theme value is a DynamicResource of ThemeKeys (Fs.*), or of a group's own resources
     (Fs.Group.*, set by GroupView), so that a change of appearance reaches every view at once.

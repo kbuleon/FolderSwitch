@@ -26,6 +26,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- The license and the third-party notices, next to the executable: shipped by the installer, opened by the About window. -->
+    <Content Include="..\..\LICENSE" Link="LICENSE.txt" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\THIRD-PARTY-NOTICES.txt" Link="THIRD-PARTY-NOTICES.txt" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
     <!-- The same icon file, as a resource of the assembly: the notification area icon (see TrayIconImage) and the wizard window's. -->
     <Resource Include="..\..\assets\icon\FolderSwitch.ico" Link="Assets\FolderSwitch.ico" />
   </ItemGroup>

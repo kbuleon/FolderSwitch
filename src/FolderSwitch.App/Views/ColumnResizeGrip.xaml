@@ -1,4 +1,9 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     The resize grip on the right edge of a column (Customize mode): a thin bar, in the accent color under the mouse
     and while it is dragged. Dragging sets the column's width (150 to 520 DIPs, in steps of 10, shown above the
     column meanwhile), recorded once when the button is released; a double-click gives the column back its automatic

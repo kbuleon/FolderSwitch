@@ -1,4 +1,9 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     The « Add ▾ » menu of a group (Customize mode), bound to an AddMenuViewModel. From top to bottom: what the calling
     window shows, « Current folder » or « Current URL » with its path or address in grey (greyed out and checked when the
     group holds it already), and a separator, only when there is one; « Folder… » (the Windows folder picker),

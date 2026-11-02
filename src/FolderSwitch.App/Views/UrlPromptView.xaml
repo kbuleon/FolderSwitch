@@ -1,4 +1,9 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     The content of the window that asks for a web address (PromptWindow): a title, the « Address » field (with its own
     Cut / Copy / Paste / Select all menu, see the code-behind), the message that explains a refused address, whose room
     is kept while it is hidden (nothing moves when it shows), and « Cancel » / « Add », on the menu surface of the theme.

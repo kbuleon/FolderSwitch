@@ -7,7 +7,12 @@ One line per significant type or file: what it is for. A XAML view and its code-
 ## Repository root
 
 - `FolderSwitch.slnx` — the solution: the four `src/` projects, the five `tests/` projects, `tools/FolderSwitch.IconBuilder`.
-- `Directory.Build.props` — settings for every project: nullable on, implicit usings, warnings as errors, latest C#.
+- `Directory.Build.props` — settings for every project: nullable on, implicit usings, warnings as errors, latest C#, the version and the copyright, code style checked by the build.
+- `.editorconfig` — the license header every C# file must start with (IDE0073, an error at build time).
+- `LICENSE` — the GPLv3 text, unchanged; installed next to the executable as `LICENSE.txt`.
+- `THIRD-PARTY-NOTICES.txt` — name, version, address, copyright and license of each distributed component; installed next to the executable.
+- `REUSE.toml` — copyright and license (GPL-3.0-or-later) of the files without a header: icon, screenshots, JSON, project files.
+- `CONTRIBUTING.md` — bug reports and suggestions welcome, code contributions not accepted.
 - `Directory.Packages.props` — central package versions (xUnit and test SDK; CommunityToolkit.Mvvm, H.NotifyIcon.Wpf, CsWin32, Velopack).
 - `global.json` — pins the .NET 10 SDK (roll forward to the latest feature band).
 - `nuget.config` — nuget.org as the only package source.
@@ -264,7 +269,7 @@ The shell and composition root.
 - `AppearanceMenu` — the settings' Appearance page: mode, theme tiles, backgrounds, corners (with `ThemeTile`, `ModeChoice`, `BackgroundSwatch`, `RadiusChoice`).
 - `ThemePreview` — a theme's thumbnail drawn with the real catalog colours.
 - `SettingsView` — the settings window: categories (`SettingsPage`, `SettingsPageChoice`) and their pages (General: language, autostart, updates, version; Shortcut; Appearance; Configuration: import/export).
-- `AboutView` — the About window: icon, name, version, description.
+- `AboutView` — the About window: icon, name, version, description; the legal notices (copyright, license, no warranty) with links that open `LICENSE.txt` and `THIRD-PARTY-NOTICES.txt` next to the executable.
 - `AddMenu` — the « Add ▾ » menu of a group: current folder or URL, folder, special folders, file, URL, footer (with the `SpecialFolderEntry` record).
 - `UrlPromptView` — the content of the web address prompt (shown in a `PromptWindow`).
 - `ItemIcon.cs` — `ItemIcons`: the pictures of the items that do not come from the application (a file type's icon, a favicon), made off the UI thread and kept for the process.

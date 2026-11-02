@@ -1,4 +1,9 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     The shortcut editor, bound to a HotkeyEditorViewModel (spec 5.8 step 2, also in the settings, spec 5.4): the keys
     as key caps, « Change » (which captures the next combination; « Cancel » while it does) and « Reset to Ctrl + ⊞ Win »,
     why a capture could not start, the problems of the combination (a refusal in red, a warning in amber), the owner's

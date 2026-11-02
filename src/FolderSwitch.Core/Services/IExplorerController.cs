@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Karl BULEON
+// Additional terms under GPLv3 section 7: see the License section of README.md.
+
 namespace FolderSwitch.Core.Services;
 
 /// <summary>Drives File Explorer windows. Paths may be disk, UNC, <c>shell:</c> or <c>::{CLSID}</c> forms.</summary>

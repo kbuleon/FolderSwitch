@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Karl BULEON
+// Additional terms under GPLv3 section 7: see the License section of README.md.
+
 namespace FolderSwitch.Core.Tests.Persistence;
 
 /// <summary>A fresh, empty directory under the system temp folder, deleted on dispose.</summary>

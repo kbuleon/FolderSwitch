@@ -1,4 +1,9 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     A group block, bound to a GroupViewModel: its header (chevron, name, item count while collapsed) and its items.
     How it is drawn (colors, edges, frame, shadow) depends on the theme's group style and on the group's color: the
     code-behind puts those values in the block's own resources (Fs.Group.*, see GroupStyleSelector), read here with

@@ -1,4 +1,9 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     The content of FolderSwitch's own message boxes (PromptWindow): an icon, the message and the buttons, on the menu
     surface of the theme. A question has « Yes » and « No » (« No » is the default: Enter and Escape both answer it,
     as the message boxes did); an error or a notice has « OK ». Also drawn by the snapshots.

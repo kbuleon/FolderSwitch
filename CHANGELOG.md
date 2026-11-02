@@ -5,6 +5,8 @@ This file is maintained by the agent. The log is timestamped and **concise**. It
 
 ## 2026-11-02
 
+* **1.7.0 — GPL-3.0-or-later license** (FOS-0007): FolderSwitch is free software under the GPL-3.0-or-later, Copyright (C) 2026 Karl BULEON, with additional terms (section 7): attribution kept, no « FolderSwitch » name nor icon for a modified version, no trademark right. `LICENSE` (the GPLv3 text), `THIRD-PARTY-NOTICES.txt` (MIT notices of the packages and runtimes; a pointer for Velopack's Rust crates), `REUSE.toml`, `CONTRIBUTING.md` (no code contributions) and a « License » section in the README. Every `.cs`, `.xaml` and `.ps1` file starts with an SPDX header; a C# file without it fails the build (IDE0073). The About window has a shorter description and shows the copyright, the license and the absence of warranty, with links to `LICENSE.txt` and `THIRD-PARTY-NOTICES.txt`, now installed next to `FolderSwitch.exe`; nine languages. The executable's properties show the copyright.
+
 * **1.6.0 — Current URL checked before it is added** (FOS-0009): « Current URL » in the Add menu no longer adds the page at once; it opens the « URL… » prompt with the page's address, which can be edited (to remove a session id, say) before it is added, still named by the page's title. Cancelling adds nothing. The menu's tip says so, in nine languages.
 
 ## 2026-11-01

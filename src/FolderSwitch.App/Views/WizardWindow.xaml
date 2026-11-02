@@ -1,4 +1,9 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     The first-run wizard's window (spec 5.8): while FolderSwitch is being set up, a normal window, listed in the
     taskbar. Borderless like FolderSwitch's other windows (rounded and shadowed by the Desktop Window Manager on
     Windows 11, a 1 px border on Windows 10), drawn in the mode and theme chosen at step 3 (see WizardTheme); its content

@@ -1,4 +1,9 @@
 <!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
     An item of a group, bound to an ItemViewModel: its icon, the name, then the path (the host, for a site) in grey, both
     ellipsized when the column is too narrow (the full path is in the tooltip). The icon is a folder in the group's color,
     the icon Windows gives the type of a file, the site's own icon, or the drawn file outline or globe until that one is
