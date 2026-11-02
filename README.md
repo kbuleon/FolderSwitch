@@ -1,5 +1,7 @@
 # Folder Switch
 
+**Your favorite folders and files, opened instantly.**
+
 FolderSwitch is a small resident Windows utility that gives instant access to remembered folders and files. A global
 shortcut (Ctrl + Win by default) shows a window that was built once and is only hidden between calls: tabs hold
 columns, columns hold collapsible coloured groups, groups hold folders, files and web sites. One click takes the File Explorer
