@@ -2,6 +2,13 @@
 
 **Your favorite folders and files, opened instantly.**
 
+[![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue)](LICENSE)
+![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white)
+![WPF](https://img.shields.io/badge/UI-WPF-512BD4)
+![Windows 10 and 11](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D4)
+
+<a href="https://ko-fi.com/karlbuleon"><img src="https://storage.ko-fi.com/cdn/kofi2.png?v=3" height="36" alt="Buy me a coffee on Ko-fi"></a>
+
 FolderSwitch is a small resident Windows utility that gives instant access to remembered folders and files. A global
 shortcut (Ctrl + Win by default) shows a window that was built once and is only hidden between calls: tabs hold
 columns, columns hold collapsible coloured groups, groups hold folders, files and web sites. One click takes the File Explorer
