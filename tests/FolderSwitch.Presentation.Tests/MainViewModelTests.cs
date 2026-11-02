@@ -1212,11 +1212,13 @@ public class MainViewModelTests
     public void AddCurrentUrl_uses_page_title()
     {
         var h = new Harness();
+        h.Prompts.AcceptsUrlPrefill = true;
         var vm = h.Customizing();
         var inbox = h.GroupVm("Inbox");
 
         vm.AddCurrentUrl(inbox, new BrowserPage("https://www.a.fr/p", "Page A"));
 
+        Assert.Equal("https://www.a.fr/p", Assert.Single(h.Prompts.UrlPrefills));
         var item = Assert.Single(h.Inbox.Items);
         Assert.Equal(ItemKind.Url, item.Kind);
         Assert.Equal("https://www.a.fr/p", item.Url);
@@ -1229,6 +1231,7 @@ public class MainViewModelTests
     public void AddCurrentUrl_without_a_title_is_named_by_host()
     {
         var h = new Harness();
+        h.Prompts.AcceptsUrlPrefill = true;
         var vm = h.Customizing();
         var inbox = h.GroupVm("Inbox");
 
@@ -1238,9 +1241,40 @@ public class MainViewModelTests
     }
 
     [Fact]
+    public void AddCurrentUrl_adds_the_address_as_edited_in_the_prompt()
+    {
+        var h = new Harness();
+        h.Prompts.UrlToAsk = "https://www.a.fr/p";
+        var vm = h.Customizing();
+        var inbox = h.GroupVm("Inbox");
+
+        vm.AddCurrentUrl(inbox, new BrowserPage("https://www.a.fr/p?sid=42", "Page A"));
+
+        Assert.Equal("https://www.a.fr/p?sid=42", Assert.Single(h.Prompts.UrlPrefills));
+        var item = Assert.Single(h.Inbox.Items);
+        Assert.Equal("https://www.a.fr/p", item.Url);
+        Assert.Equal("Page A", item.Name);
+        Assert.Equal(1, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void AddCurrentUrl_cancelled_adds_nothing()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+
+        vm.AddCurrentUrl(h.GroupVm("Inbox"), new BrowserPage("https://a.fr/", "A"));
+
+        Assert.Single(h.Prompts.UrlPrefills);
+        Assert.Empty(h.Inbox.Items);
+        Assert.Equal(0, h.Persistence.SaveCount);
+    }
+
+    [Fact]
     public void AddCurrentUrl_twice_adds_once()
     {
         var h = new Harness();
+        h.Prompts.AcceptsUrlPrefill = true;
         var vm = h.Customizing();
         var inbox = h.GroupVm("Inbox");
 
@@ -1255,10 +1289,12 @@ public class MainViewModelTests
     public void AddCurrentUrl_outside_edit_mode_does_nothing()
     {
         var h = new Harness();
+        h.Prompts.AcceptsUrlPrefill = true;
         var vm = h.Vm;
 
         vm.AddCurrentUrl(h.GroupVm("Inbox"), new BrowserPage("https://a.fr/", "A"));
 
+        Assert.Empty(h.Prompts.UrlPrefills);
         Assert.Empty(h.Inbox.Items);
     }
 
@@ -1887,6 +1923,7 @@ public class MainViewModelTests
         var vm = h.Vm;
         vm.OnShown(DialogContext);
         vm.IsCustomizing = true;
+        h.Prompts.AcceptsUrlPrefill = true;
 
         vm.AddCurrentUrl(h.GroupVm("Inbox"), new BrowserPage("https://a.fr/", "A"));
         var added = Assert.Single(h.GroupVm("Inbox").Items);
@@ -2036,6 +2073,7 @@ public class MainViewModelTests
         ui.WaitUntil(() => h.Favicons.Fetches.Count == 1);
         Assert.Null(h.ItemVm("a.fr").FaviconPath);
         var vm = h.Customizing();
+        h.Prompts.AcceptsUrlPrefill = true;
 
         vm.AddCurrentUrl(h.GroupVm("Inbox"), new BrowserPage("https://a.fr/new", "New"));
         var added = Assert.Single(h.GroupVm("Inbox").Items);
@@ -2052,6 +2090,7 @@ public class MainViewModelTests
         using var ui = new ManualSynchronizationContext();
         var h = new Harness(h => h.Favicons.Result = _ => @"C:\fav\b.fr.ico");
         var vm = h.Customizing();
+        h.Prompts.AcceptsUrlPrefill = true;
 
         vm.AddCurrentUrl(h.GroupVm("Inbox"), new BrowserPage("https://b.fr/", "B"));
         var added = Assert.Single(h.GroupVm("Inbox").Items);

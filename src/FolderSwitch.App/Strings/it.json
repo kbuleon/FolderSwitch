@@ -28,7 +28,7 @@
   "AddMenu.Url": "URL…",
   "AddMenu.UrlHint": "incolla o digita",
   "AddMenu.FolderTip": "Suggerimento: richiama FolderSwitch da Esplora file: «Cartella corrente» compare allora in cima a questo menu e aggiunge la cartella aperta con un clic.",
-  "AddMenu.UrlTip": "Suggerimento: richiama FolderSwitch da Firefox, Chrome o Edge: «URL corrente» compare allora in cima a questo menu e aggiunge la pagina visualizzata con un clic.",
+  "AddMenu.UrlTip": "Suggerimento: richiama FolderSwitch da Firefox, Chrome o Edge: «URL corrente» compare allora in cima a questo menu e propone l'indirizzo della pagina visualizzata, da controllare prima di aggiungerla.",
   "AddMenu.FromExplorer": "Richiamato da Esplora file",
   "AddMenu.FromFileDialog": "Richiamato da una finestra di dialogo dei file",
   "AddMenu.FromBrowser": "Richiamato dal browser: {0}",

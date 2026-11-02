@@ -142,7 +142,7 @@ View models and the UI-facing ports. Depends on Core and CommunityToolkit.Mvvm.
 
 - `MainViewModel` — the window: board projection, normal use and Customize mode, all edits, rename, activation and its outcomes, which items the calling window can use, adding a site (and fetching its favicon: at once, and once per host per session when missing), opening the Add menu, tab shown during a drag across tabs, `OnShown`/`OnHidden`/`OnDeactivated`, `Reload` after an import.
 - `AddMenuViewModel` — the « Add ▾ » menu of a group: the first line for the calling window (folder or page), the footer, the additions; reads a browser's page while the menu is open (every 200 ms, for 2 s), and stops when disposed.
-- `UrlPromptViewModel` — the web address prompt: clipboard prefill, validation, the normalised result.
+- `UrlPromptViewModel` — the web address prompt: prefill (a browser's page or the clipboard), validation, the normalised result.
 - `TabViewModel`, `ColumnViewModel`, `GroupViewModel`, `ItemViewModel` — projections of the model objects.
 - `RenamableViewModel` — base of the three nameable objects (tab, group, item).
 - `InsertionSlot` — converts a drop slot into the index the model expects.

@@ -290,6 +290,7 @@ public sealed class AddMenuViewModelTests
     {
         using var ui = new ManualSynchronizationContext();
         var h = new Harness();
+        h.Prompts.AcceptsUrlPrefill = true;
         h.Browser.Responder = _ => new BrowserPage(PageUrl, "Docs");
         Show(h, BrowserContext(BrowserKind.Firefox));
 
@@ -297,6 +298,7 @@ public sealed class AddMenuViewModelTests
         ui.WaitUntil(() => menu.CurrentKind == AddMenuCurrent.Url);
         menu.AddCurrent();
 
+        Assert.Equal(PageUrl, Assert.Single(h.Prompts.UrlPrefills));
         var item = Assert.Single(h.Inbox.Items);
         Assert.Equal(ItemKind.Url, item.Kind);
         Assert.Equal(PageUrl, item.Url);
@@ -308,12 +310,46 @@ public sealed class AddMenuViewModelTests
     {
         using var ui = new ManualSynchronizationContext();
         var h = new Harness();
+        h.Prompts.AcceptsUrlPrefill = true;
         Show(h, BrowserContext(BrowserKind.Firefox));
 
         using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
         menu.AddCurrent();
 
+        Assert.Null(menu.CurrentPage);
+        Assert.Empty(h.Prompts.UrlPrefills);
         Assert.Empty(h.Inbox.Items);
+    }
+
+    [Fact]
+    public void CurrentPage_is_the_page_read_until_the_menu_is_disposed()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        var page = new BrowserPage(PageUrl, "Docs");
+        h.Browser.Responder = _ => page;
+        Show(h, BrowserContext(BrowserKind.Firefox));
+
+        var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        ui.WaitUntil(() => menu.CurrentKind == AddMenuCurrent.Url);
+
+        Assert.Same(page, menu.CurrentPage);
+        menu.Dispose();
+        Assert.Null(menu.CurrentPage);
+    }
+
+    [Fact]
+    public void CurrentPage_is_null_when_the_group_already_holds_it()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness(arrange: x => x.Inbox.Items.Add(new Item { Kind = ItemKind.Url, Url = PageUrl }));
+        h.Browser.Responder = _ => new BrowserPage(PageUrl, "Docs");
+        Show(h, BrowserContext(BrowserKind.Firefox));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        ui.WaitUntil(() => menu.CurrentKind == AddMenuCurrent.Url);
+
+        Assert.Null(menu.CurrentPage);
     }
 
     // ----- The window hides, the context changes, another menu opens -----

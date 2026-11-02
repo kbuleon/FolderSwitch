@@ -28,7 +28,7 @@
   "AddMenu.Url": "URL…",
   "AddMenu.UrlHint": "wklej lub wpisz",
   "AddMenu.FolderTip": "Wskazówka: wywołaj FolderSwitch z Eksploratora plików: „Bieżący folder” pojawi się wtedy na początku tego menu i doda otwarty folder jednym kliknięciem.",
-  "AddMenu.UrlTip": "Wskazówka: wywołaj FolderSwitch z przeglądarki Firefox, Chrome lub Edge: „Bieżący URL” pojawi się wtedy na początku tego menu i doda wyświetlaną stronę jednym kliknięciem.",
+  "AddMenu.UrlTip": "Wskazówka: wywołaj FolderSwitch z przeglądarki Firefox, Chrome lub Edge: „Bieżący URL” pojawi się wtedy na początku tego menu i zaproponuje adres wyświetlanej strony do sprawdzenia przed dodaniem.",
   "AddMenu.FromExplorer": "Wywołano z Eksploratora plików",
   "AddMenu.FromFileDialog": "Wywołano z okna dialogowego plików",
   "AddMenu.FromBrowser": "Wywołano z przeglądarki: {0}",

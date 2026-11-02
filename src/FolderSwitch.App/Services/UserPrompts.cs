@@ -108,10 +108,11 @@ internal sealed class UserPrompts : IUserPrompts
     }
 
     /// <summary>
-    /// Asks for a web address in a small window of the theme, the field starting with the clipboard when it holds a
-    /// web address (a clipboard that cannot be read is ignored). Silent: cancelled.
+    /// Asks for a web address in a small window of the theme, the field starting with <paramref name="prefill"/>, or
+    /// with the clipboard when it holds a web address and nothing is given (a clipboard that cannot be read is
+    /// ignored). Silent: cancelled.
     /// </summary>
-    public string? AskUrl()
+    public string? AskUrl(string? prefill = null)
     {
         if (_silent)
         {
@@ -119,7 +120,7 @@ internal sealed class UserPrompts : IUserPrompts
             return null;
         }
 
-        var viewModel = new UrlPromptViewModel(ReadClipboardText());
+        var viewModel = new UrlPromptViewModel(prefill ?? ReadClipboardText());
         var view = new UrlPromptView(viewModel, key => _localizer[key]);
         return Run(() => new PromptWindow(view, VisibleOwner()).Ask()) ? viewModel.Result : null;
     }

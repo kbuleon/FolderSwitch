@@ -28,7 +28,7 @@
   "AddMenu.Url": "URL…",
   "AddMenu.UrlHint": "plakken of typen",
   "AddMenu.FolderTip": "Tip: roep FolderSwitch aan vanuit Verkenner: ‘Huidige map’ verschijnt dan bovenaan dit menu en voegt de geopende map met één klik toe.",
-  "AddMenu.UrlTip": "Tip: roep FolderSwitch aan vanuit Firefox, Chrome of Edge: ‘Huidige URL’ verschijnt dan bovenaan dit menu en voegt de getoonde pagina met één klik toe.",
+  "AddMenu.UrlTip": "Tip: roep FolderSwitch aan vanuit Firefox, Chrome of Edge: ‘Huidige URL’ verschijnt dan bovenaan dit menu en stelt het adres van de getoonde pagina voor, om te controleren voordat u het toevoegt.",
   "AddMenu.FromExplorer": "Aangeroepen vanuit Verkenner",
   "AddMenu.FromFileDialog": "Aangeroepen vanuit een bestandsdialoogvenster",
   "AddMenu.FromBrowser": "Aangeroepen vanuit de browser: {0}",

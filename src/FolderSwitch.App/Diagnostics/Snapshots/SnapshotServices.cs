@@ -52,7 +52,7 @@ internal sealed class SnapshotServices : IItemActivator, IConfigPersistence, IUs
 
     public string? PickImportPath() => null;
 
-    public string? AskUrl() => null;
+    public string? AskUrl(string? prefill = null) => null;
 
     public void HideWindow()
     {

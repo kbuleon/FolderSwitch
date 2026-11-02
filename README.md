@@ -44,7 +44,8 @@ These images are drawn by the `--snapshot` diagnostic mode (see « Diagnostic mo
 - **A board you organise by drag and drop** in Edit mode (« Edit » in the title bar): tabs, columns (moved by their
   ⠿ grip) of fixed or automatic width, groups with a colour that collapse, folders, files, web sites and Windows special folders (Desktop, Documents, This PC…). A group's
   « Add ▾ » menu starts with what the window you called FolderSwitch from shows: « Current folder » from Explorer or a
-  file dialog, « Current URL » from Firefox, Chrome or Edge, added in one click. It goes on with « Folder… », « Special folders »,
+  file dialog, added in one click, « Current URL » from Firefox, Chrome or Edge, whose address opens in the « URL… » prompt to be
+  trimmed (of a session id, say) before it is added. It goes on with « Folder… », « Special folders »,
   « File… » and « URL… » (an address typed or pasted; the clipboard's is offered). A column, group or item held over another tab for a
   moment shows that tab, where it can be dropped. A right-click on a tab, a group's header or an item offers « Rename »
   (F2). Every change is saved at once. The window keeps the width of its widest tab: the tabs stay in place when you

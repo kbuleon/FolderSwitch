@@ -28,7 +28,7 @@
   "AddMenu.Url": "URL…",
   "AddMenu.UrlHint": "einfügen oder eingeben",
   "AddMenu.FolderTip": "Tipp: Rufen Sie FolderSwitch aus dem Explorer auf: „Aktueller Ordner“ erscheint dann oben in diesem Menü und fügt den geöffneten Ordner mit einem Klick hinzu.",
-  "AddMenu.UrlTip": "Tipp: Rufen Sie FolderSwitch aus Firefox, Chrome oder Edge auf: „Aktuelle URL“ erscheint dann oben in diesem Menü und fügt die angezeigte Seite mit einem Klick hinzu.",
+  "AddMenu.UrlTip": "Tipp: Rufen Sie FolderSwitch aus Firefox, Chrome oder Edge auf: „Aktuelle URL“ erscheint dann oben in diesem Menü und schlägt die Adresse der angezeigten Seite vor, die Sie vor dem Hinzufügen prüfen können.",
   "AddMenu.FromExplorer": "Aufgerufen aus dem Explorer",
   "AddMenu.FromFileDialog": "Aufgerufen aus einem Dateidialog",
   "AddMenu.FromBrowser": "Aufgerufen aus dem Browser: {0}",

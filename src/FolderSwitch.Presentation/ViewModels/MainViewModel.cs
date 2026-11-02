@@ -595,7 +595,7 @@ public sealed partial class MainViewModel : ObservableObject
             return;
         }
 
-        var url = WhilePromptOpen(_prompts.AskUrl);
+        var url = WhilePromptOpen(() => _prompts.AskUrl());
         if (!string.IsNullOrWhiteSpace(url) && IsLive(group))
         {
             AddUrlItem(group, new Item { Kind = ItemKind.Url, Url = url });
@@ -603,8 +603,9 @@ public sealed partial class MainViewModel : ObservableObject
     }
 
     /// <summary>
-    /// Adds the page a browser shows, named by its title (by its host when it has none); nothing when the group
-    /// already holds the site.
+    /// Adds the page a browser shows, once its address is confirmed in the address prompt, which starts with it so that
+    /// arguments (a session id...) can be removed first. Named by the page's title (by its host when it has none);
+    /// nothing when the prompt is cancelled or when the group already holds the site.
     /// </summary>
     public void AddCurrentUrl(GroupViewModel? group, BrowserPage page)
     {
@@ -615,8 +616,14 @@ public sealed partial class MainViewModel : ObservableObject
             return;
         }
 
+        var url = WhilePromptOpen(() => _prompts.AskUrl(page.Url));
+        if (string.IsNullOrWhiteSpace(url) || !IsLive(group))
+        {
+            return;
+        }
+
         var name = string.IsNullOrWhiteSpace(page.Title) ? null : page.Title.Trim();
-        AddUrlItem(group, new Item { Kind = ItemKind.Url, Url = page.Url, Name = name });
+        AddUrlItem(group, new Item { Kind = ItemKind.Url, Url = url, Name = name });
     }
 
     /// <summary>

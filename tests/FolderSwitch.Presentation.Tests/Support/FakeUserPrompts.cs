@@ -17,6 +17,12 @@ internal sealed class FakeUserPrompts : IUserPrompts
 
     public string? UrlToAsk { get; set; }
 
+    /// <summary>The address prompt is confirmed as it was prefilled; <see cref="UrlToAsk"/> answers it otherwise.</summary>
+    public bool AcceptsUrlPrefill { get; set; }
+
+    /// <summary>What each address prompt was prefilled with, <c>null</c> for nothing.</summary>
+    public List<string?> UrlPrefills { get; } = new();
+
     /// <summary>Runs while a prompt is "on screen", the way a modal dialog lets window events through.</summary>
     public Action? DuringPrompt { get; set; }
 
@@ -61,9 +67,10 @@ internal sealed class FakeUserPrompts : IUserPrompts
         return ImportPathToPick;
     }
 
-    public string? AskUrl()
+    public string? AskUrl(string? prefill = null)
     {
+        UrlPrefills.Add(prefill);
         DuringPrompt?.Invoke();
-        return UrlToAsk;
+        return AcceptsUrlPrefill ? prefill : UrlToAsk;
     }
 }

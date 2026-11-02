@@ -132,7 +132,18 @@ public sealed class AddMenuViewModel : ObservableObject, IDisposable
     /// <summary>The special folders of the catalog and whether the group holds them, as the group lists them.</summary>
     public IReadOnlyList<SpecialFolderState> SpecialFolders => _group.SpecialFolderStates;
 
-    /// <summary>Adds what the first line offers; nothing when it offers nothing or the group already holds it.</summary>
+    /// <summary>
+    /// The page the first line offers, when the group does not hold it yet; <c>null</c> otherwise, and once disposed.
+    /// The view takes it before closing the menu: adding it opens the address prompt, which must wait until the menu is
+    /// gone.
+    /// </summary>
+    public BrowserPage? CurrentPage =>
+        !_disposed && CurrentKind == AddMenuCurrent.Url && !CurrentAlreadyPresent ? _page : null;
+
+    /// <summary>
+    /// Adds what the first line offers, a page once its address is confirmed (see
+    /// <see cref="MainViewModel.AddCurrentUrl"/>); nothing when it offers nothing or the group already holds it.
+    /// </summary>
     public void AddCurrent()
     {
         if (_disposed || CurrentAlreadyPresent)

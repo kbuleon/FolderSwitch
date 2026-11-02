@@ -28,7 +28,7 @@
   "AddMenu.Url": "URL…",
   "AddMenu.UrlHint": "colar ou digitar",
   "AddMenu.FolderTip": "Dica: chame o FolderSwitch a partir do Explorador de Arquivos: “Pasta atual” aparece então no topo deste menu e adiciona a pasta aberta com um clique.",
-  "AddMenu.UrlTip": "Dica: chame o FolderSwitch a partir do Firefox, Chrome ou Edge: “URL atual” aparece então no topo deste menu e adiciona a página exibida com um clique.",
+  "AddMenu.UrlTip": "Dica: chame o FolderSwitch a partir do Firefox, Chrome ou Edge: “URL atual” aparece então no topo deste menu e propõe o endereço da página exibida, para conferir antes de adicioná-la.",
   "AddMenu.FromExplorer": "Chamado do Explorador de Arquivos",
   "AddMenu.FromFileDialog": "Chamado de uma caixa de diálogo de arquivos",
   "AddMenu.FromBrowser": "Chamado do navegador: {0}",

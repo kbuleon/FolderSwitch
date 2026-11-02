@@ -28,7 +28,7 @@
   "AddMenu.Url": "URL…",
   "AddMenu.UrlHint": "coller ou saisir",
   "AddMenu.FolderTip": "Astuce : appelez FolderSwitch depuis l'Explorateur : « Dossier courant » apparaît alors en tête de ce menu et ajoute le dossier ouvert en un clic.",
-  "AddMenu.UrlTip": "Astuce : appelez FolderSwitch depuis Firefox, Chrome ou Edge : « URL courante » apparaît alors en tête de ce menu et ajoute la page affichée en un clic.",
+  "AddMenu.UrlTip": "Astuce : appelez FolderSwitch depuis Firefox, Chrome ou Edge : « URL courante » apparaît alors en tête de ce menu et propose l'adresse de la page affichée, à vérifier avant de l'ajouter.",
   "AddMenu.FromExplorer": "Appel depuis l'Explorateur",
   "AddMenu.FromFileDialog": "Appel depuis une boîte de dialogue de fichiers",
   "AddMenu.FromBrowser": "Appel depuis le navigateur : {0}",

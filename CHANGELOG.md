@@ -3,6 +3,10 @@ This file is maintained by the agent. The log is timestamped and **concise**. It
 
 ------
 
+## 2026-11-02
+
+* **1.6.0 — Current URL checked before it is added** (FOS-0009): « Current URL » in the Add menu no longer adds the page at once; it opens the « URL… » prompt with the page's address, which can be edited (to remove a session id, say) before it is added, still named by the page's title. Cancelling adds nothing. The menu's tip says so, in nine languages.
+
 ## 2026-11-01
 
 * **1.5.0 — Web sites, file type icons and the Add menu** (FOS-0004): a third kind of item, the web site, next to the folder and the file: it opens in the default browser, and its right-click menu offers « Copy address ». A group has one « Add ▾ » button in place of « + Folder », « + File » and « + Current folder »; its menu starts with what the calling window shows, « Current folder » from Explorer or a file dialog, « Current URL » from Firefox, Chrome or Edge (read through UI Automation while the menu is open, retried for 2 s, no extension), then « Folder… », « Special folders », « File… » and « URL… » (a prompt that starts with the clipboard's address), and ends with a line that says where FolderSwitch was called from. A file shows the icon Windows gives its type, found without touching the file; a site shows its favicon, fetched in the background into `%APPDATA%\FolderSwitch\favicons` (5 s, 256 KiB, no cookie, `User-Agent: FolderSwitch/<version>`; one more try per session for a site missing from the cache), the globe meanwhile. Called from a file dialog, files and sites are greyed out with a tooltip, and a file no longer moves the dialog to its folder; the context line at the bottom of the window is gone. Configuration schema 2 (`url` items): a version 1 file is read as is, a previous FolderSwitch sets a version 2 file aside. The update feed is no longer the only host contacted. Nine languages.

@@ -22,11 +22,12 @@ public sealed record SpecialFolderEntry(SpecialFolderKey Key, string Name, strin
 /// </summary>
 /// <remarks>
 /// <para>
-/// What adds at once (the current folder or page, a special folder) is carried out first, then the menu closes: the
-/// menu's view model holds what was read, and a disposed one does nothing.
+/// What adds at once (the current folder, a special folder) is carried out first, then the menu closes: the menu's view
+/// model holds what was read, and a disposed one does nothing.
 /// </para>
 /// <para>
-/// « Folder… », « File… » and « URL… » open a modal window (a picker, the address prompt). The menu closes first, and
+/// « Folder… », « File… », « URL… » and « Current URL » (whose address is confirmed in the address prompt, its page
+/// taken from the menu beforehand) open a modal window (a picker, the address prompt). The menu closes first, and
 /// the window opens once it is gone, from the main view model: a popup stays above a modal window, and closing it
 /// from the modal window's own message loop would tear it down under its click handler. The main view model ignores
 /// the addition when Customize mode ended, or the group left the board, in between.
@@ -101,7 +102,18 @@ public partial class AddMenu : UserControl, IDisposable
         Dispatcher.BeginInvoke(DispatcherPriority.Input, () => choice(group));
     }
 
-    private void OnCurrentClick(object sender, RoutedEventArgs e) => RunThenClose(_menu.AddCurrent);
+    private void OnCurrentClick(object sender, RoutedEventArgs e)
+    {
+        // The page is taken now: the menu, disposed once closed, forgets it.
+        if (_menu.CurrentPage is { } page)
+        {
+            CloseThenAsk(group => _main.AddCurrentUrl(group, page));
+        }
+        else
+        {
+            RunThenClose(_menu.AddCurrent);
+        }
+    }
 
     private void OnFolderClick(object sender, RoutedEventArgs e) => CloseThenAsk(_main.AddFolder);
 

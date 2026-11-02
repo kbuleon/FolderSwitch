@@ -28,7 +28,7 @@
   "AddMenu.Url": "URL…",
   "AddMenu.UrlHint": "paste or type",
   "AddMenu.FolderTip": "Tip: call FolderSwitch from File Explorer: “Current folder” then appears at the top of this menu and adds the open folder in one click.",
-  "AddMenu.UrlTip": "Tip: call FolderSwitch from Firefox, Chrome or Edge: “Current URL” then appears at the top of this menu and adds the page shown in one click.",
+  "AddMenu.UrlTip": "Tip: call FolderSwitch from Firefox, Chrome or Edge: “Current URL” then appears at the top of this menu and offers the address of the page shown, to check before adding it.",
   "AddMenu.FromExplorer": "Called from File Explorer",
   "AddMenu.FromFileDialog": "Called from a file dialog",
   "AddMenu.FromBrowser": "Called from the browser: {0}",
