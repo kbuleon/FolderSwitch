@@ -13,6 +13,8 @@ One line per significant type or file: what it is for. A XAML view and its code-
 - `THIRD-PARTY-NOTICES.txt` — name, version, address, copyright and license of each distributed component; installed next to the executable.
 - `REUSE.toml` — copyright and license (GPL-3.0-or-later) of the files without a header: icon, screenshots, JSON, project files.
 - `CONTRIBUTING.md` — bug reports and suggestions welcome, code contributions not accepted.
+- `SECURITY.md` — security policy: latest version only, private reports through GitHub's vulnerability reporting, scope.
+- `.github/ISSUE_TEMPLATE/` — issue forms `bug_report.yml` (version, Windows, steps, expected and actual result, log) and `suggestion.yml`; `config.yml` turns blank issues off.
 - `Directory.Packages.props` — central package versions (xUnit and test SDK; CommunityToolkit.Mvvm, H.NotifyIcon.Wpf, CsWin32, Velopack).
 - `global.json` — pins the .NET 10 SDK (roll forward to the latest feature band).
 - `nuget.config` — nuget.org as the only package source.

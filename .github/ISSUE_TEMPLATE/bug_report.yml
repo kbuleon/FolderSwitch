@@ -1,0 +1,64 @@
+name: Bug report
+description: Something in FolderSwitch does not work as expected.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        Thank you for reporting a bug. A security vulnerability must not be reported here: see the
+        [security policy](https://github.com/kbuleon/FolderSwitch/security/policy).
+  - type: input
+    id: version
+    attributes:
+      label: FolderSwitch version
+      description: Shown in the title bar and in the About window.
+      placeholder: "1.7.0"
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      description: Press Win + R and run `winver`.
+      placeholder: "Windows 11 24H2"
+    validations:
+      required: true
+  - type: dropdown
+    id: installation
+    attributes:
+      label: How FolderSwitch runs
+      options:
+        - Installed with FolderSwitch-win-Setup.exe
+        - Built from source
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: What you did
+      description: The steps that lead to the problem, one per line.
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened
+      description: A screenshot helps; paste or drag it here.
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Debug log
+      description: 'Optional: the last lines of `%APPDATA%\FolderSwitch\logs\folderswitch.log`. Check first that they show nothing private, such as folder names.'
+      render: text

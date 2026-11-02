@@ -71,8 +71,8 @@ These images are drawn by the `--snapshot` diagnostic mode (see « Diagnostic mo
   policy, packaging and the testing strategy.
 - [CODEMAP.md](CODEMAP.md): the map of the code, one line per significant file or type, folder by folder.
 - [CHANGELOG.md](CHANGELOG.md): the history of changes, version by version.
-- [LICENSE](LICENSE), [THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt) and [CONTRIBUTING.md](CONTRIBUTING.md): see
-  « License » and « Contributing » below.
+- [LICENSE](LICENSE), [THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt), [CONTRIBUTING.md](CONTRIBUTING.md) and
+  [SECURITY.md](SECURITY.md): see « License » and « Contributing » below.
 
 ## Build and run from source
 
@@ -277,6 +277,7 @@ In the current version:
 ## Contributing
 
 Code contributions are not accepted; bug reports and suggestions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
+Security vulnerabilities are reported privately: see [SECURITY.md](SECURITY.md).
 
 ## License
 

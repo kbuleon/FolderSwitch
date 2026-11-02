@@ -1,0 +1,27 @@
+name: Suggestion
+description: An idea to make FolderSwitch better.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        FolderSwitch is a personal project: every suggestion is read and weighed, with no promise that it will be
+        implemented.
+  - type: textarea
+    id: need
+    attributes:
+      label: What you would like to do
+      description: The need or the situation, rather than a solution.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: How it could work
+      description: 'Optional: your idea of a solution, a sketch or a screenshot.'
+  - type: input
+    id: version
+    attributes:
+      label: FolderSwitch version
+      description: 'Optional: shown in the title bar and in the About window.'
+      placeholder: "1.7.0"

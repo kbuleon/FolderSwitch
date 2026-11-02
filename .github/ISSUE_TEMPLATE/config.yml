@@ -1,0 +1,3 @@
+# Only the forms of this folder: no blank issue. GitHub adds the « Report a security vulnerability » entry itself
+# when the repository has a security policy and private vulnerability reporting is enabled.
+blank_issues_enabled: false
