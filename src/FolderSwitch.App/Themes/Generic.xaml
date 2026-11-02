@@ -33,6 +33,10 @@
     <!-- Icon fonts of Windows 11, then Windows 10 (same code points). -->
     <FontFamily x:Key="Fs.IconFont">Segoe Fluent Icons, Segoe MDL2 Assets</FontFamily>
 
+    <!-- The icons of tabs and groups: the emoji font of Windows 10 and 11 (EmojiGlyphs.FontName), which WPF draws in
+         one color, the color of the text it goes with. -->
+    <FontFamily x:Key="Fs.EmojiFont">Segoe UI Emoji</FontFamily>
+
     <!-- A color value typed by the user (the custom background). -->
     <FontFamily x:Key="Fs.MonoFont">Cascadia Mono, Consolas</FontFamily>
 
@@ -338,6 +342,53 @@
                             <Setter TargetName="Dot" Property="RenderTransform">
                                 <Setter.Value>
                                     <ScaleTransform ScaleX="1.22" ScaleY="1.22" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- The icon before the name of a tab or a group, in Customize mode: the icon (Content, an emoji, drawn in
+         Fs.EmojiFont in the Foreground and FontSize set where it is used), or, without one (Content null), a discreet
+         dashed square in BorderBrush (the muted text color of what it sits on, set where it is used). Grows a little
+         under the mouse, like the color dot; no color of its own. -->
+    <Style x:Key="Fs.IconButton" TargetType="Button">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="FontFamily" Value="{StaticResource Fs.EmojiFont}" />
+        <!-- The icon keeps one weight, whatever the name's (the active tab is bold). -->
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="MinWidth" Value="14" />
+        <Setter Property="MinHeight" Value="14" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="Box" Background="Transparent" RenderTransformOrigin="0.5,0.5">
+                        <Rectangle x:Name="Slot"
+                                   Width="14"
+                                   Height="14"
+                                   Stroke="{TemplateBinding BorderBrush}"
+                                   StrokeThickness="1"
+                                   StrokeDashArray="2 2"
+                                   RadiusX="3"
+                                   RadiusY="3"
+                                   SnapsToDevicePixels="True"
+                                   Visibility="Collapsed" />
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="False" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Content" Value="{x:Null}">
+                            <Setter TargetName="Slot" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Slot" Property="Stroke" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Setter TargetName="Box" Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.15" ScaleY="1.15" />
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
@@ -902,6 +953,21 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Padding" Value="5,3,5,3" />
         <Setter Property="MaxLength" Value="9" />
+        <Setter Property="IsInactiveSelectionHighlightEnabled" Value="False" />
+        <Style.Triggers>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource Fs.Accent}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- The filter box of a menu (the icon picker): the whole width, framed in the accent color while it has the focus. -->
+    <Style x:Key="Fs.FilterBox" TargetType="TextBox" BasedOn="{StaticResource Fs.RenameBox}">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Fs.KeyCapBorder}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="6,4,6,4" />
+        <Setter Property="MinWidth" Value="0" />
         <Setter Property="IsInactiveSelectionHighlightEnabled" Value="False" />
         <Style.Triggers>
             <Trigger Property="IsKeyboardFocused" Value="True">

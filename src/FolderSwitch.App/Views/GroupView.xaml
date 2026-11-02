@@ -4,14 +4,16 @@
     Additional terms under GPLv3 section 7: see the License section of README.md.
 -->
 <!--
-    A group block, bound to a GroupViewModel: its header (chevron, name, item count while collapsed) and its items.
+    A group block, bound to a GroupViewModel: its header (chevron, icon, name, item count while collapsed) and its
+    items. The icon shows before the name, in the title's color, size and effect; without one, nothing takes its place.
     How it is drawn (colors, edges, frame, shadow) depends on the theme's group style and on the group's color: the
     code-behind puts those values in the block's own resources (Fs.Group.*, see GroupStyleSelector), read here with
     DynamicResource only. A click on the header collapses or expands the group.
-    Customize mode adds, in the header: the grip ⠿ the group is dragged by, the color dot that opens the palette and ✕;
+    Customize mode adds, in the header: the grip ⠿ the group is dragged by, in the icon's place a button that shows the
+    icon, or a discreet dashed square when there is none, the color dot that opens the palette and ✕;
     under the items, the whole width: « Add ▾ », which opens the Add menu (AddMenu). A double-click on the name renames
     it in place. The header is no button: its clicks, the grip's drag and the name's double-click are told apart by the
-    code-behind, and the dot and ✕ are buttons of their own inside it.
+    code-behind, and the icon, the dot and ✕ are buttons of their own inside it.
     Layers, back to front: the shadow (cast by a plain shape, so that the effect never touches the text), the ring of
     the selection, then, clipped to the rounded corners, the body, the frame and the colored edges.
 -->
@@ -102,28 +104,72 @@
                                 </Path.RenderTransform>
                             </Path>
 
-                            <!-- The name: only its text is the rename target, the rest of the header still collapses. -->
-                            <Grid Grid.Column="2" VerticalAlignment="Center">
-                                <layout:TextRoom x:Name="NameRoom"
-                                                 HorizontalAlignment="Left"
-                                                 VerticalAlignment="Center"
-                                                 Visibility="{Binding IsRenaming, Converter={StaticResource Fs.InverseBoolToVisibility}}">
-                                    <layout:FitText x:Name="NameText"
-                                                    Text="{Binding Title, ElementName=Root}"
-                                                    FontWeight="SemiBold"
-                                                    FontSize="{DynamicResource Fs.Group.TitleFontSize}"
-                                                    Foreground="{DynamicResource Fs.Group.HeaderText}"
-                                                    Effect="{DynamicResource Fs.Group.TitleEffect}"
-                                                    TextTrimming="CharacterEllipsis" />
-                                </layout:TextRoom>
-                                <TextBox x:Name="RenameBox"
-                                         Style="{StaticResource Fs.RenameBox}"
-                                         Margin="-4,-3,0,-3"
-                                         FontWeight="SemiBold"
-                                         FontSize="{DynamicResource Fs.Group.TitleFontSize}"
-                                         local:InlineRename.IsActive="{Binding IsRenaming, Mode=OneWay}"
-                                         Visibility="{Binding IsRenaming, Converter={StaticResource Fs.BoolToVisibility}}" />
-                            </Grid>
+                            <DockPanel Grid.Column="2" VerticalAlignment="Center">
+                                <!-- The icon, in the title's color, size and effect: in normal use only when there is one. -->
+                                <TextBlock DockPanel.Dock="Left"
+                                           Margin="0,0,6,0"
+                                           VerticalAlignment="Center"
+                                           FontFamily="{StaticResource Fs.EmojiFont}"
+                                           FontWeight="Normal"
+                                           FontSize="{DynamicResource Fs.Group.TitleFontSize}"
+                                           Foreground="{DynamicResource Fs.Group.HeaderText}"
+                                           Effect="{DynamicResource Fs.Group.TitleEffect}"
+                                           Text="{Binding Icon}">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                            <Style.Triggers>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding HasIcon}" Value="True" />
+                                                        <Condition Binding="{Binding IsCustomizing, ElementName=Root}" Value="False" />
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </MultiDataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+
+                                <!-- Customize mode: the icon, or an empty square, as a button of its own (like the color
+                                     dot, its press never reaches the header: no collapse, no selection, no drag). -->
+                                <Button x:Name="IconButton"
+                                        DockPanel.Dock="Left"
+                                        Margin="0,0,6,0"
+                                        Style="{StaticResource Fs.IconButton}"
+                                        Content="{Binding Icon}"
+                                        FontSize="{DynamicResource Fs.Group.TitleFontSize}"
+                                        Foreground="{DynamicResource Fs.Group.HeaderText}"
+                                        BorderBrush="{DynamicResource Fs.Group.HeaderGlyph}"
+                                        Effect="{DynamicResource Fs.Group.TitleEffect}"
+                                        ToolTip="{Binding Texts[Icon.Choose], RelativeSource={RelativeSource AncestorType=local:MainView}}"
+                                        AutomationProperties.Name="{Binding Texts[Icon.Choose], RelativeSource={RelativeSource AncestorType=local:MainView}}"
+                                        Visibility="{Binding CustomizeVisibility, ElementName=Root}"
+                                        Click="OnIconClick" />
+
+                                <!-- The name: only its text is the rename target, the rest of the header still collapses. -->
+                                <Grid VerticalAlignment="Center">
+                                    <layout:TextRoom x:Name="NameRoom"
+                                                     HorizontalAlignment="Left"
+                                                     VerticalAlignment="Center"
+                                                     Visibility="{Binding IsRenaming, Converter={StaticResource Fs.InverseBoolToVisibility}}">
+                                        <layout:FitText x:Name="NameText"
+                                                        Text="{Binding Title, ElementName=Root}"
+                                                        FontWeight="SemiBold"
+                                                        FontSize="{DynamicResource Fs.Group.TitleFontSize}"
+                                                        Foreground="{DynamicResource Fs.Group.HeaderText}"
+                                                        Effect="{DynamicResource Fs.Group.TitleEffect}"
+                                                        TextTrimming="CharacterEllipsis" />
+                                    </layout:TextRoom>
+                                    <TextBox x:Name="RenameBox"
+                                             Style="{StaticResource Fs.RenameBox}"
+                                             Margin="-4,-3,0,-3"
+                                             FontWeight="SemiBold"
+                                             FontSize="{DynamicResource Fs.Group.TitleFontSize}"
+                                             local:InlineRename.IsActive="{Binding IsRenaming, Mode=OneWay}"
+                                             Visibility="{Binding IsRenaming, Converter={StaticResource Fs.BoolToVisibility}}" />
+                                </Grid>
+                            </DockPanel>
 
                             <!-- The number of items: while collapsed, and always in Customize mode. -->
                             <Border Grid.Column="3"

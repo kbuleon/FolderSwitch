@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Security;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using FolderSwitch.Core.Icons;
 using FolderSwitch.Core.Localization;
 using FolderSwitch.Core.Model;
 using FolderSwitch.Core.Persistence;
@@ -35,6 +36,7 @@ public sealed partial class WizardViewModel : ObservableObject, IDisposable
     private readonly IAutostart _autostart;
     private readonly string _exePath;
     private readonly IConfigPersistence _persistence;
+    private readonly Lazy<IconFinder> _icons;
 
     private ThemeMode _mode = ThemeMode.Light;
     private string _theme = DefaultTheme;
@@ -45,6 +47,7 @@ public sealed partial class WizardViewModel : ObservableObject, IDisposable
     /// <param name="system">Gives the Windows display language, from which the language is preselected.</param>
     /// <param name="hotkeys">Used by the shortcut editor for the capture and to probe combinations.</param>
     /// <param name="exePath">The executable to start with Windows.</param>
+    /// <param name="icons">Gives the automatic icons of the tab and the group the wizard creates.</param>
     /// <param name="keyNames">The names the keyboard layout gives keys, for the shortcut editor (<c>null</c>: standard ones).</param>
     public WizardViewModel(
         Localizer localizer,
@@ -53,6 +56,7 @@ public sealed partial class WizardViewModel : ObservableObject, IDisposable
         IAutostart autostart,
         string exePath,
         IConfigPersistence persistence,
+        Lazy<IconFinder> icons,
         IKeyNames? keyNames = null)
     {
         ArgumentNullException.ThrowIfNull(localizer);
@@ -61,11 +65,13 @@ public sealed partial class WizardViewModel : ObservableObject, IDisposable
         ArgumentNullException.ThrowIfNull(autostart);
         ArgumentException.ThrowIfNullOrWhiteSpace(exePath);
         ArgumentNullException.ThrowIfNull(persistence);
+        ArgumentNullException.ThrowIfNull(icons);
 
         _localizer = localizer;
         _autostart = autostart;
         _exePath = exePath;
         _persistence = persistence;
+        _icons = icons;
 
         Languages = LanguageOption.ListFrom(localizer);
         var initial = LanguageRules.SelectInitial(system.UiCultureName, Languages.Select(language => language.Code).ToList());
@@ -194,7 +200,7 @@ public sealed partial class WizardViewModel : ObservableObject, IDisposable
 
     /// <summary>
     /// At the last step, once, and only with a shortcut without blocking problem: creates the configuration (a tab
-    /// named in the current language, with the sample group or empty) with every choice of the wizard and the first
+    /// named in the current language, with the sample group or empty, and their automatic icons) with every choice of the wizard and the first
     /// run marked as done, saves it, then sets FolderSwitch to start with Windows or not. A refused autostart does
     /// not stop the wizard: it is reported by <see cref="AutostartFailed"/>. Raises <see cref="Finished"/>.
     /// </summary>
@@ -213,7 +219,8 @@ public sealed partial class WizardViewModel : ObservableObject, IDisposable
         var config = DefaultConfigs.Create(
             StartContent,
             _localizer[sample ? "Default.SampleTab" : "Default.EmptyTab"],
-            _localizer["Default.SampleGroup"]);
+            _localizer["Default.SampleGroup"],
+            name => _icons.Value.Suggest(name, _localizer.Code));
         config.Settings.Language = Language;
         config.Settings.Hotkey = Hotkey.Current;
         config.Settings.StartWithWindows = StartWithWindows;

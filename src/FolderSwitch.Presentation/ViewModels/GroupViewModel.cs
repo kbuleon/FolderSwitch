@@ -4,6 +4,7 @@
 
 using System.Collections.ObjectModel;
 using FolderSwitch.Core.Editing;
+using FolderSwitch.Core.Icons;
 using FolderSwitch.Core.Localization;
 using FolderSwitch.Core.Model;
 using FolderSwitch.Core.SpecialFolders;
@@ -14,13 +15,15 @@ namespace FolderSwitch.Presentation.ViewModels;
 public sealed class GroupViewModel : RenamableViewModel
 {
     private readonly Localizer _localizer;
+    private readonly Lazy<IconFinder> _icons;
     private IReadOnlyList<SpecialFolderState>? _specialFolderStates;
 
-    internal GroupViewModel(Group model, ColumnViewModel column, Localizer localizer)
+    internal GroupViewModel(Group model, ColumnViewModel column, Localizer localizer, Lazy<IconFinder> icons)
     {
         Model = model;
         Column = column;
         _localizer = localizer;
+        _icons = icons;
         Items = new ObservableCollection<ItemViewModel>(model.Items.Select(item => new ItemViewModel(item, this, localizer)));
         Items.CollectionChanged += (_, _) => OnItemsChanged();
     }
@@ -29,6 +32,18 @@ public sealed class GroupViewModel : RenamableViewModel
     public ColumnViewModel Column { get; internal set; }
 
     public string Name => Model.Name;
+
+    /// <summary>
+    /// The emoji shown before the name: the one the model holds when the emoji font can draw it, otherwise
+    /// <c>null</c> (the model keeps it). Reads the emoji data only when the model has an icon.
+    /// </summary>
+    public string? Icon => Model.Icon is { } icon && _icons.Value.CanShow(icon) ? icon : null;
+
+    /// <summary>True when <see cref="Icon"/> is shown.</summary>
+    public bool HasIcon => Icon is not null;
+
+    /// <summary>True when the user chose the icon (an emoji, or none): a rename leaves it alone.</summary>
+    public bool IconChosen => Model.IconChosen;
 
     /// <summary>Header color, <c>#rrggbb</c>.</summary>
     public string Color => Model.Color;
@@ -53,6 +68,14 @@ public sealed class GroupViewModel : RenamableViewModel
     internal override string CurrentName => Name;
 
     internal override void NotifyRenamed() => OnPropertyChanged(nameof(Name));
+
+    /// <summary>The icon of the model changed: raises the change notifications of the icon.</summary>
+    internal void NotifyIcon()
+    {
+        OnPropertyChanged(nameof(Icon));
+        OnPropertyChanged(nameof(HasIcon));
+        OnPropertyChanged(nameof(IconChosen));
+    }
 
     internal void NotifyCollapsed() => OnPropertyChanged(nameof(IsCollapsed));
 

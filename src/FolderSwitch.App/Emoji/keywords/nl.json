@@ -1,0 +1,8603 @@
+{
+  "cldrVersion": "49",
+  "emoji": {
+    "😀": {
+      "name": "grijnzend gezicht",
+      "keywords": [
+        "blij",
+        "fijn",
+        "gezicht",
+        "glimlachen",
+        "grijns",
+        "grijnzend",
+        "lach",
+        "lachen",
+        "leuk",
+        "tanden",
+        "vrolijk"
+      ]
+    },
+    "😃": {
+      "name": "grijnzend gezicht met grote ogen",
+      "keywords": [
+        "blij",
+        "gaaf",
+        "gezicht",
+        "glimlachen",
+        "grijns",
+        "grijnzend",
+        "groot",
+        "joepie",
+        "lach",
+        "mond",
+        "ogen",
+        "open",
+        "tanden"
+      ]
+    },
+    "😄": {
+      "name": "grijnzend gezicht met lachende ogen",
+      "keywords": [
+        "blij",
+        "gezicht",
+        "glimlachen",
+        "grijns",
+        "grijnzend",
+        "lach",
+        "lachen",
+        "lol",
+        "mond",
+        "ogen",
+        "oog",
+        "open"
+      ]
+    },
+    "😁": {
+      "name": "stralend gezicht met lachende ogen",
+      "keywords": [
+        "blij",
+        "fijn",
+        "gezicht",
+        "glimlachen",
+        "grijns",
+        "grijnzend",
+        "lach",
+        "ogen",
+        "oog",
+        "stralend",
+        "tanden"
+      ]
+    },
+    "😆": {
+      "name": "grijnzend gezicht met dichtgeknepen ogen",
+      "keywords": [
+        "blij",
+        "gesloten",
+        "gezicht",
+        "glimlachen",
+        "grijnzend",
+        "haha",
+        "hahaha",
+        "lach",
+        "lachen",
+        "lol",
+        "mond",
+        "ogen",
+        "open",
+        "rofl",
+        "scheelzien"
+      ]
+    },
+    "😅": {
+      "name": "grijnzend gezicht met zweetdruppels",
+      "keywords": [
+        "gestrest",
+        "gezicht",
+        "glimlachen",
+        "grijnzend",
+        "koud",
+        "lach",
+        "mond",
+        "neerslachtig",
+        "nerveus",
+        "open",
+        "opgewonden",
+        "stress",
+        "zweet"
+      ]
+    },
+    "🤣": {
+      "name": "gezicht dat op de grond rolt van het lachen",
+      "keywords": [
+        "blij",
+        "gezicht",
+        "grappig",
+        "haha",
+        "hehe",
+        "hilarisch",
+        "huilen",
+        "lachen",
+        "lmao",
+        "lol",
+        "rofl",
+        "roflmao",
+        "rollen",
+        "traan",
+        "vloer",
+        "vreugde"
+      ]
+    },
+    "😂": {
+      "name": "gezicht met tranen van vreugde",
+      "keywords": [
+        "blij",
+        "gevoelens",
+        "gezicht",
+        "grappig",
+        "haha",
+        "hehe",
+        "hilarisch",
+        "huilen",
+        "lachen",
+        "lmao",
+        "lol",
+        "rofl",
+        "roflmao",
+        "traan",
+        "vreugde"
+      ]
+    },
+    "🙂": {
+      "name": "enigszins lachend gezicht",
+      "keywords": [
+        "blij",
+        "enigszins",
+        "gezicht",
+        "glimlachen",
+        "lach"
+      ]
+    },
+    "🙃": {
+      "name": "omgekeerd gezicht",
+      "keywords": [
+        "gezicht",
+        "glimlach",
+        "hehe",
+        "omgekeerd"
+      ]
+    },
+    "🫠": {
+      "name": "smeltend gezicht",
+      "keywords": [
+        "beschaamd",
+        "gezicht",
+        "haha",
+        "heet",
+        "lol",
+        "oplossen",
+        "sarcasme",
+        "sarcastisch",
+        "smelt",
+        "smelten",
+        "verdwijnen",
+        "vloeibaar",
+        "warm"
+      ]
+    },
+    "😉": {
+      "name": "knipogend gezicht",
+      "keywords": [
+        "flirten",
+        "gezicht",
+        "hartenbreker",
+        "knipogen",
+        "knipoog",
+        "knipoogt",
+        "plagerij",
+        "sexy",
+        "zwoel"
+      ]
+    },
+    "😊": {
+      "name": "lachend gezicht met lachende ogen",
+      "keywords": [
+        "blozen",
+        "gelukkig",
+        "gezicht",
+        "glimlach",
+        "glimlachen",
+        "ogen",
+        "oog",
+        "tevreden"
+      ]
+    },
+    "😇": {
+      "name": "lachend gezicht met halo",
+      "keywords": [
+        "blij",
+        "elfje",
+        "engel",
+        "engelachtig",
+        "engelen",
+        "fantasie",
+        "geest",
+        "gezegend",
+        "gezicht",
+        "glimlach",
+        "glimlachen",
+        "onschuldig",
+        "sprookje",
+        "stralenkrans",
+        "verhaal",
+        "vredig"
+      ]
+    },
+    "🥰": {
+      "name": "lachend gezicht met hartjes",
+      "keywords": [
+        "3",
+        "crush",
+        "dol",
+        "gezicht",
+        "glimlach",
+        "glimlachen",
+        "hart",
+        "hartjes",
+        "hou van jou",
+        "jou",
+        "liefde",
+        "romantiek"
+      ]
+    },
+    "😍": {
+      "name": "lachend gezicht met hartvormige ogen",
+      "keywords": [
+        "gevoelens",
+        "gezicht",
+        "hartjes",
+        "hartjesogen",
+        "kussen",
+        "lach",
+        "liefde",
+        "oog",
+        "romantiek",
+        "schatje"
+      ]
+    },
+    "🤩": {
+      "name": "sterren in de ogen",
+      "keywords": [
+        "gezicht",
+        "grijnzend",
+        "lach",
+        "ogen",
+        "opgewonden",
+        "ster",
+        "sterren als ogen",
+        "sterren in de ogen",
+        "wauw"
+      ]
+    },
+    "😘": {
+      "name": "gezicht dat kus toeblaast",
+      "keywords": [
+        "flirten",
+        "gezicht",
+        "gezicht dat kus toeblaast",
+        "hartje",
+        "kus",
+        "kusje blazen",
+        "kussen",
+        "romantiek",
+        "smiley",
+        "xoxo",
+        "zoen"
+      ]
+    },
+    "😗": {
+      "name": "kussend gezicht",
+      "keywords": [
+        "afspraakje",
+        "date",
+        "gezicht",
+        "hou van jou",
+        "hvj",
+        "kus",
+        "kussen",
+        "kussend gezicht",
+        "smiley",
+        "xoxo",
+        "zoen"
+      ]
+    },
+    "☺️": {
+      "name": "lachend gezicht",
+      "keywords": [
+        "blij",
+        "gezicht",
+        "lach",
+        "lachen",
+        "omtrek",
+        "ontspannen"
+      ]
+    },
+    "😚": {
+      "name": "kussend gezicht met gesloten ogen",
+      "keywords": [
+        "blosjes",
+        "blozen",
+        "gesloten",
+        "gesloten ogen",
+        "gezicht",
+        "kus",
+        "kussend gezicht met gesloten ogen",
+        "kussend gezicht met ogen dicht",
+        "oog",
+        "rode wangen",
+        "smiley",
+        "zoen"
+      ]
+    },
+    "😙": {
+      "name": "kussend gezicht met lachende ogen",
+      "keywords": [
+        "143",
+        "afspraakje",
+        "daten",
+        "flirten",
+        "gesloten",
+        "gezicht",
+        "ik hou van je",
+        "kus",
+        "kussen",
+        "lach",
+        "lachen",
+        "liefde",
+        "nacht",
+        "ogen",
+        "oog"
+      ]
+    },
+    "🥲": {
+      "name": "lachend gezicht met traan",
+      "keywords": [
+        "aangedaan",
+        "blij",
+        "dankbaar",
+        "enigszins lachend",
+        "gelukkig",
+        "lachend gezicht met traan",
+        "opgelucht",
+        "smiley",
+        "traan",
+        "trots"
+      ]
+    },
+    "😋": {
+      "name": "lachend gezicht dat lippen likt",
+      "keywords": [
+        "genieten",
+        "gezicht",
+        "glimlach",
+        "jammie",
+        "lachend gezicht",
+        "lachend gezicht dat lippen likt",
+        "lekker",
+        "mmm",
+        "smiley",
+        "smullen"
+      ]
+    },
+    "😛": {
+      "name": "gezicht met uitgestoken tong",
+      "keywords": [
+        "gezicht",
+        "gezicht met uitgestoken tong",
+        "gezicht met uitgestoken tong en open ogen",
+        "grapje",
+        "grappig",
+        "ontdeugend",
+        "smiley",
+        "tong",
+        "tong uitsteken",
+        "uitgesteken tong"
+      ]
+    },
+    "😜": {
+      "name": "knipoog met uitgestoken tong",
+      "keywords": [
+        "gezicht",
+        "gezicht met uitgestoken tong en knipoog",
+        "grap",
+        "grapjas",
+        "knipoog",
+        "knipoog met uitgestoken tong",
+        "oog",
+        "plagen",
+        "smiley",
+        "tong"
+      ]
+    },
+    "🤪": {
+      "name": "gek gezicht",
+      "keywords": [
+        "gek gezicht",
+        "gekke blik",
+        "gestoord",
+        "groot",
+        "klein",
+        "oog",
+        "smiley"
+      ]
+    },
+    "😝": {
+      "name": "gezicht met uitgestoken tong en dichtgeknepen ogen",
+      "keywords": [
+        "bah",
+        "dichte ogen",
+        "gezicht",
+        "gezicht met uitgestoken tong en dichtgeknepen ogen",
+        "oog",
+        "smaak",
+        "smerig",
+        "smiley",
+        "tong",
+        "uitgestoken tong",
+        "vies",
+        "vreselijk"
+      ]
+    },
+    "🤑": {
+      "name": "gezicht met geld in de mond",
+      "keywords": [
+        "betaald",
+        "geld",
+        "geldmond",
+        "gezicht",
+        "mond"
+      ]
+    },
+    "🤗": {
+      "name": "blij gezicht met uitgestoken handen",
+      "keywords": [
+        "blij",
+        "gezicht",
+        "handen",
+        "knuffel",
+        "knuffelen",
+        "uitgestoken"
+      ]
+    },
+    "🤫": {
+      "name": "gezicht dat tot stilte maant",
+      "keywords": [
+        "gezicht",
+        "manen",
+        "sst",
+        "stil",
+        "stilte"
+      ]
+    },
+    "🤔": {
+      "name": "nadenkend gezicht",
+      "keywords": [
+        "afvragen",
+        "denken",
+        "gezicht",
+        "hmm",
+        "kin",
+        "nadenken",
+        "nadenkend",
+        "overwegen"
+      ]
+    },
+    "🤐": {
+      "name": "gezicht met een rits als mond",
+      "keywords": [
+        "dicht",
+        "geheim",
+        "gezicht",
+        "houden",
+        "mond",
+        "rits",
+        "rits als mond",
+        "stil",
+        "zwijg"
+      ]
+    },
+    "🤨": {
+      "name": "gezicht met opgeheven wenkbrauw",
+      "keywords": [
+        "afkeurend",
+        "frons",
+        "gezicht met opgeheven wenkbrauw",
+        "gezicht met opgetrokken wenkbrauw",
+        "hmm",
+        "ongeloof",
+        "sceptisch",
+        "skeptisch",
+        "smiley",
+        "verrassing",
+        "wantrouwen",
+        "wantrouwend",
+        "wat"
+      ]
+    },
+    "😐": {
+      "name": "neutraal gezicht",
+      "keywords": [
+        "geen commentaar",
+        "gezicht",
+        "jaloers",
+        "neutraal",
+        "niet leuk",
+        "ongemakkelijk",
+        "pokerface",
+        "pokergezicht",
+        "uitdrukkingsloos",
+        "uitgestreken"
+      ]
+    },
+    "😑": {
+      "name": "uitdrukkingsloos gezicht",
+      "keywords": [
+        "dichtgeknepen",
+        "geen commentaar",
+        "geen uitdrukking",
+        "gezicht",
+        "jaloers",
+        "lame",
+        "omg",
+        "ontevreden",
+        "smiley",
+        "tegenzin",
+        "ugh",
+        "uitdrukkingsloos",
+        "vooruit",
+        "wtf"
+      ]
+    },
+    "😶": {
+      "name": "gezicht zonder mond",
+      "keywords": [
+        "geen mond",
+        "geheim",
+        "gezicht",
+        "gezicht zonder mond",
+        "mond",
+        "niets zeggen",
+        "persoon",
+        "rustig",
+        "smiley",
+        "sprakeloos",
+        "stil",
+        "zwijgen"
+      ]
+    },
+    "🫥": {
+      "name": "gezicht in stippellijn",
+      "keywords": [
+        "depressief",
+        "depri",
+        "gedeprimeerd",
+        "gezicht in stippellijn",
+        "introvert",
+        "onzichtbaar",
+        "smiley",
+        "verbergen",
+        "verdwijnen"
+      ]
+    },
+    "😏": {
+      "name": "gniffelend gezicht",
+      "keywords": [
+        "arrogant",
+        "flirten",
+        "gezicht",
+        "gezicht met grote grijns",
+        "gladjes",
+        "gniffelen",
+        "gniffelend gezicht",
+        "grijnzen",
+        "schuin",
+        "smiley",
+        "swag",
+        "vol van zichzelf",
+        "wenkbrauwen"
+      ]
+    },
+    "😒": {
+      "name": "chagrijnig gezicht",
+      "keywords": [
+        "boos",
+        "chagrijnig gezicht",
+        "ehm",
+        "gezicht",
+        "jaloers",
+        "niet blij",
+        "niet leuk",
+        "ongelukkig",
+        "smiley",
+        "ugh",
+        "uhh",
+        "verveeld",
+        "whatever"
+      ]
+    },
+    "🙄": {
+      "name": "gezicht met rollende ogen",
+      "keywords": [
+        "gezicht",
+        "ogen",
+        "rollen",
+        "rollen met de ogen",
+        "schaduw",
+        "ugh",
+        "wat dan ook"
+      ]
+    },
+    "😬": {
+      "name": "gezicht met grimas",
+      "keywords": [
+        "gezicht",
+        "gezicht met grimas",
+        "grimas",
+        "grimasgezicht",
+        "grinniken",
+        "niks",
+        "oeps",
+        "ongemakkelijk",
+        "smiley",
+        "tanden op elkaar"
+      ]
+    },
+    "🤥": {
+      "name": "liegend gezicht",
+      "keywords": [
+        "gezicht",
+        "leugen",
+        "leugenaar",
+        "liegen",
+        "pinokkio"
+      ]
+    },
+    "😌": {
+      "name": "opgelucht gezicht",
+      "keywords": [
+        "gezicht",
+        "kalmte",
+        "opgelucht",
+        "opluchting",
+        "vrede",
+        "zen"
+      ]
+    },
+    "😔": {
+      "name": "peinzend gezicht",
+      "keywords": [
+        "afgewezen",
+        "balen",
+        "gezicht",
+        "moedeloos",
+        "peinzend",
+        "smiley",
+        "teleurgesteld",
+        "terneergeslagen",
+        "triest",
+        "verdrietig",
+        "verloren"
+      ]
+    },
+    "😪": {
+      "name": "slaperig gezicht",
+      "keywords": [
+        "gezicht",
+        "huilen",
+        "slaap",
+        "slaperig gezicht",
+        "smiley",
+        "traan"
+      ]
+    },
+    "🤤": {
+      "name": "kwijlend gezicht",
+      "keywords": [
+        "gezicht",
+        "kwijlend"
+      ]
+    },
+    "😴": {
+      "name": "slapend gezicht",
+      "keywords": [
+        "bedtijd",
+        "dutje",
+        "gapen",
+        "gezicht",
+        "moe",
+        "slaap",
+        "slaap lekker",
+        "slapen",
+        "slapend gezicht",
+        "smiley",
+        "vermoeid",
+        "welterusten",
+        "zzz"
+      ]
+    },
+    "😷": {
+      "name": "gezicht met doktersmasker",
+      "keywords": [
+        "besmet",
+        "dokter",
+        "doktersmasker",
+        "gezicht",
+        "gezicht met doktersmasker",
+        "gezicht met masker",
+        "koud",
+        "masker",
+        "medicijn",
+        "medisch masker",
+        "smiley",
+        "virus",
+        "ziek"
+      ]
+    },
+    "🤒": {
+      "name": "gezicht met thermometer",
+      "keywords": [
+        "gezicht",
+        "gezicht met thermometer",
+        "niet lekker",
+        "thermometer",
+        "ziek"
+      ]
+    },
+    "🤕": {
+      "name": "gezicht met een verband om het hoofd",
+      "keywords": [
+        "gewond",
+        "gezicht",
+        "gezicht met hoofdverband",
+        "pijn",
+        "verband",
+        "verwonding"
+      ]
+    },
+    "🤢": {
+      "name": "misselijk gezicht",
+      "keywords": [
+        "gadver",
+        "gezicht",
+        "misselijk",
+        "overgeven",
+        "vies",
+        "ziek"
+      ]
+    },
+    "🤮": {
+      "name": "brakend gezicht",
+      "keywords": [
+        "braaksel",
+        "braken",
+        "brakend gezicht",
+        "misselijk",
+        "overgeven",
+        "spuwen",
+        "walgelijk",
+        "ziek"
+      ]
+    },
+    "🤧": {
+      "name": "niezend gezicht",
+      "keywords": [
+        "gezicht",
+        "gezondheid",
+        "griep",
+        "koorts",
+        "niezen",
+        "niezend",
+        "ziek"
+      ]
+    },
+    "🥵": {
+      "name": "heet gezicht",
+      "keywords": [
+        "beroerte",
+        "gezicht",
+        "heet",
+        "hijgen",
+        "hitte",
+        "koortsig",
+        "rood gezicht",
+        "sterven",
+        "tong",
+        "zweten"
+      ]
+    },
+    "🥶": {
+      "name": "koud gezicht",
+      "keywords": [
+        "bevriezen",
+        "bevriezing",
+        "blauw",
+        "gezicht",
+        "ijspegels",
+        "koud",
+        "onder nul",
+        "tanden"
+      ]
+    },
+    "🥴": {
+      "name": "wazig gezicht",
+      "keywords": [
+        "aangeschoten",
+        "beneveld",
+        "beschonken",
+        "dronken",
+        "duizelig",
+        "gezicht",
+        "mond",
+        "ogen",
+        "scheel",
+        "wazig"
+      ]
+    },
+    "😵": {
+      "name": "duizelig gezicht",
+      "keywords": [
+        "dood",
+        "duizelig",
+        "gezicht",
+        "gezicht met mond open en kruisjes als ogen",
+        "smiley",
+        "ziek"
+      ]
+    },
+    "🤯": {
+      "name": "ontploffend hoofd",
+      "keywords": [
+        "exploderen",
+        "geschokt",
+        "ondersteboven",
+        "onmogelijk",
+        "ontploffend hoofd",
+        "smiley",
+        "verbaasd",
+        "verbijsterd",
+        "verrast",
+        "wow"
+      ]
+    },
+    "🤠": {
+      "name": "gezicht met cowboyhoed",
+      "keywords": [
+        "cowboy",
+        "cowgirl",
+        "gezicht",
+        "hoed"
+      ]
+    },
+    "🥳": {
+      "name": "feestend gezicht",
+      "keywords": [
+        "feest",
+        "feesten",
+        "fuif",
+        "gelukkig",
+        "gezicht",
+        "hoed",
+        "hoera",
+        "opgewonden",
+        "roltong",
+        "verjaardag",
+        "vieren",
+        "viering"
+      ]
+    },
+    "😎": {
+      "name": "lachend gezicht met zonnebril",
+      "keywords": [
+        "bril",
+        "chillen",
+        "cool",
+        "gaaf",
+        "geweldig",
+        "gezicht",
+        "glimlach",
+        "ontspannen",
+        "stijl",
+        "stoer",
+        "strand",
+        "zonnebril"
+      ]
+    },
+    "🤓": {
+      "name": "nerdgezicht",
+      "keywords": [
+        "geek",
+        "gezicht",
+        "gezicht met bril en tanden",
+        "nerd",
+        "nerderig",
+        "nerdgezicht",
+        "smiley"
+      ]
+    },
+    "🧐": {
+      "name": "gezicht met monocle",
+      "keywords": [
+        "chic",
+        "gezicht",
+        "klasse",
+        "monocle",
+        "rijk",
+        "saai"
+      ]
+    },
+    "😕": {
+      "name": "verward gezicht",
+      "keywords": [
+        "gezicht",
+        "hmm",
+        "ik weet het niet",
+        "in de war",
+        "ontevreden",
+        "peinzend",
+        "smiley",
+        "teleurgesteld",
+        "uhm",
+        "verward"
+      ]
+    },
+    "🫤": {
+      "name": "gezicht met schuine mond",
+      "keywords": [
+        "gefrustreerd",
+        "gezicht met schuine mond",
+        "het zal wel",
+        "meh",
+        "onzeker",
+        "sceptisch",
+        "smiley",
+        "teleurgesteld"
+      ]
+    },
+    "😟": {
+      "name": "bezorgd gezicht",
+      "keywords": [
+        "bedroefd",
+        "bezorgd",
+        "gestresst",
+        "gezicht",
+        "nerveus",
+        "smiley",
+        "stress",
+        "triest",
+        "zenuwen",
+        "zorgen"
+      ]
+    },
+    "🙁": {
+      "name": "licht fronsend gezicht",
+      "keywords": [
+        "fronsen",
+        "fronsend",
+        "gezicht",
+        "licht",
+        "verdrietig"
+      ]
+    },
+    "☹️": {
+      "name": "fronsend gezicht",
+      "keywords": [
+        "fronsen",
+        "fronsend",
+        "gezicht",
+        "verdrietig"
+      ]
+    },
+    "😮": {
+      "name": "gezicht met open mond",
+      "keywords": [
+        "geschokt",
+        "geschrokken",
+        "mond",
+        "oeps",
+        "omg",
+        "ongelofelijk",
+        "ongelooflijk",
+        "open",
+        "sympathie",
+        "vergeten",
+        "wauw"
+      ]
+    },
+    "😯": {
+      "name": "verstomd gezicht",
+      "keywords": [
+        "geschokt",
+        "gezicht",
+        "omg",
+        "smiley",
+        "verbaasd",
+        "verrast",
+        "verstomd",
+        "wauw",
+        "wow"
+      ]
+    },
+    "😲": {
+      "name": "verbaasd gezicht",
+      "keywords": [
+        "geschokt",
+        "gezicht",
+        "kosten",
+        "nee",
+        "omg",
+        "totaal",
+        "verbaasd"
+      ]
+    },
+    "😳": {
+      "name": "blozend gezicht",
+      "keywords": [
+        "beschaamd",
+        "gek",
+        "gezicht",
+        "heet",
+        "hitte",
+        "jeetje",
+        "onder de indruk",
+        "ongeloof",
+        "ongemakkelijk",
+        "sjonge",
+        "verbaasd",
+        "verbijsterd",
+        "wat",
+        "wauw"
+      ]
+    },
+    "🥺": {
+      "name": "smekend gezicht",
+      "keywords": [
+        "alsjeblieft",
+        "genade",
+        "gezicht",
+        "grote ogen",
+        "smeken",
+        "smekend gezicht",
+        "smekende blik",
+        "smiley",
+        "verdrietig",
+        "waarom niet",
+        "zielig gezicht"
+      ]
+    },
+    "🥹": {
+      "name": "gezicht dat tranen tegenhoudt",
+      "keywords": [
+        "alsjeblieft",
+        "aww",
+        "beschaamd",
+        "bewondering",
+        "dankbaar",
+        "dankbaarheid",
+        "gevoelens",
+        "houden",
+        "huilen",
+        "tegen",
+        "tranen",
+        "trots",
+        "verdrietig",
+        "vreugde",
+        "weerstaan"
+      ]
+    },
+    "😦": {
+      "name": "fronsend gezicht met open mond",
+      "keywords": [
+        "bang",
+        "betrapt",
+        "eng",
+        "frons",
+        "fronsen",
+        "gezicht",
+        "hoede",
+        "mond",
+        "open",
+        "verrassing",
+        "wat",
+        "wauw"
+      ]
+    },
+    "😧": {
+      "name": "gekweld gezicht",
+      "keywords": [
+        "bang",
+        "gekweld gezicht",
+        "gezicht",
+        "lijden",
+        "lijdend",
+        "ontevreden",
+        "smiley",
+        "stress",
+        "verrast"
+      ]
+    },
+    "😨": {
+      "name": "bang gezicht",
+      "keywords": [
+        "angst",
+        "angstig",
+        "bang",
+        "bezorgd",
+        "gezicht",
+        "schuld"
+      ]
+    },
+    "😰": {
+      "name": "angstig gezicht met zweetdruppel",
+      "keywords": [
+        "angstzweet",
+        "blauw",
+        "blauw gezicht met angstzweet",
+        "gehaast",
+        "gezicht",
+        "gezicht met open mond en zweetdruppel",
+        "koud",
+        "nerveus",
+        "zweet",
+        "zweetdruppel"
+      ]
+    },
+    "😥": {
+      "name": "teleurgesteld maar opgelucht gezicht",
+      "keywords": [
+        "bijna",
+        "gezicht",
+        "ingewikkeld",
+        "oef",
+        "opgelucht",
+        "smiley",
+        "teleurgesteld",
+        "teleurgesteld maar opgelucht gezicht",
+        "zweetdruppel",
+        "zweten"
+      ]
+    },
+    "😢": {
+      "name": "huilend gezicht",
+      "keywords": [
+        "bedroefd",
+        "gevoelens",
+        "gezicht",
+        "huilen",
+        "huilend gezicht",
+        "smiley",
+        "traan",
+        "triest"
+      ]
+    },
+    "😭": {
+      "name": "hard huilend gezicht",
+      "keywords": [
+        "bedroefd",
+        "gezicht",
+        "hard huilen",
+        "hard huilend gezicht",
+        "huilen",
+        "ontroostbaar",
+        "smiley",
+        "snikken",
+        "traan",
+        "tranen",
+        "tranen met tuiten"
+      ]
+    },
+    "😱": {
+      "name": "angstig schreeuwend gezicht",
+      "keywords": [
+        "angst",
+        "angstig",
+        "angstig schreeuwend gezicht",
+        "bang",
+        "doodsbang",
+        "geschrokken",
+        "gezicht",
+        "gezicht dat schreeuwt van angst",
+        "munch",
+        "schreeuw",
+        "schreeuwend van angst",
+        "smiley"
+      ]
+    },
+    "😖": {
+      "name": "onthutst gezicht",
+      "keywords": [
+        "bah",
+        "boos",
+        "gefrustreerd",
+        "geïrriteerd",
+        "gezicht",
+        "onthutst",
+        "smiley",
+        "verdrietig",
+        "verwarring"
+      ]
+    },
+    "😣": {
+      "name": "volhardend gezicht",
+      "keywords": [
+        "concentratie",
+        "concentreren",
+        "focus",
+        "gezicht",
+        "hoofdpijn",
+        "volharden",
+        "volharding"
+      ]
+    },
+    "😞": {
+      "name": "teleurgesteld gezicht",
+      "keywords": [
+        "afgewezen",
+        "afwijzing",
+        "bedroefd",
+        "gezicht",
+        "niet blij",
+        "schuldig",
+        "smiley",
+        "teleurgesteld gezicht",
+        "teleurstelling",
+        "terneergeslagen",
+        "triest",
+        "verloren"
+      ]
+    },
+    "😓": {
+      "name": "neerslachtig gezicht met zweetdruppel",
+      "keywords": [
+        "angstzweet",
+        "bang",
+        "dichtgeknepen ogen",
+        "gezicht",
+        "gezicht met angstzweet",
+        "koud",
+        "neerslachtig gezicht met zweetdruppel",
+        "nerveus",
+        "smiley",
+        "zweet"
+      ]
+    },
+    "😩": {
+      "name": "moe gezicht",
+      "keywords": [
+        "aanstellen",
+        "gezicht",
+        "honger",
+        "moe",
+        "nee",
+        "ontevreden",
+        "smiley",
+        "tegenzin",
+        "vermoeid",
+        "zeuren"
+      ]
+    },
+    "😫": {
+      "name": "vermoeid gezicht",
+      "keywords": [
+        "bah",
+        "gezicht",
+        "jakkes",
+        "moe",
+        "niesen",
+        "niezen",
+        "smiley",
+        "vermoeid",
+        "vies"
+      ]
+    },
+    "😡": {
+      "name": "pruilend gezicht",
+      "keywords": [
+        "boos",
+        "gezicht",
+        "kwaad",
+        "pruilend",
+        "rood",
+        "smiley",
+        "woede",
+        "woedend"
+      ]
+    },
+    "😠": {
+      "name": "boos gezicht",
+      "keywords": [
+        "boos",
+        "fronsen",
+        "gefrustreerd",
+        "gezicht",
+        "kwaad",
+        "smiley",
+        "woedend"
+      ]
+    },
+    "😈": {
+      "name": "lachend gezicht met hoorns",
+      "keywords": [
+        "duivels",
+        "fantasie",
+        "gezicht",
+        "glimlach",
+        "hoorns",
+        "lach",
+        "lachend gezicht met hoorns",
+        "lachend paars gezicht met hoorns",
+        "ondeugend",
+        "smiley",
+        "sprookje"
+      ]
+    },
+    "👿": {
+      "name": "boos gezicht met hoorns",
+      "keywords": [
+        "boos duiveltje",
+        "boos gezicht met hoorns",
+        "demon",
+        "duivel",
+        "duivels",
+        "fantasie",
+        "gezicht",
+        "hoorns",
+        "kleine duivel",
+        "paars duivelsgezicht",
+        "smiley",
+        "sprookje"
+      ]
+    },
+    "💀": {
+      "name": "schedel",
+      "keywords": [
+        "dood",
+        "doodshoofd",
+        "gezicht",
+        "monster",
+        "schedel",
+        "skelet",
+        "sprookje"
+      ]
+    },
+    "☠️": {
+      "name": "doodshoofd met gekruiste beenderen",
+      "keywords": [
+        "bot",
+        "dood",
+        "doodshoofd",
+        "gekruiste botten",
+        "gezicht",
+        "monster",
+        "schedel"
+      ]
+    },
+    "💩": {
+      "name": "drol",
+      "keywords": [
+        "drol",
+        "grappig",
+        "monster",
+        "poep",
+        "poep met gezichtje",
+        "smiley",
+        "stinkt"
+      ]
+    },
+    "👻": {
+      "name": "spook",
+      "keywords": [
+        "boe",
+        "fantasie",
+        "geest",
+        "gezicht",
+        "halloween",
+        "monster",
+        "spook",
+        "spook met tong uit mond",
+        "sprookje",
+        "uitgestoken tong",
+        "wezen"
+      ]
+    },
+    "👽": {
+      "name": "buitenaards wezen",
+      "keywords": [
+        "alien",
+        "buitenaards",
+        "fantasie",
+        "gezicht",
+        "monster",
+        "ruimte",
+        "sprookje",
+        "ufo",
+        "wezen"
+      ]
+    },
+    "👾": {
+      "name": "buitenaards monster",
+      "keywords": [
+        "alien",
+        "buitenaards",
+        "game",
+        "gezicht",
+        "monster",
+        "pixels",
+        "ruimte",
+        "space invader",
+        "spel",
+        "ufo",
+        "videogame",
+        "wezen"
+      ]
+    },
+    "🤖": {
+      "name": "robot",
+      "keywords": [
+        "gezicht",
+        "monster",
+        "robot"
+      ]
+    },
+    "😺": {
+      "name": "grijnzende kat",
+      "keywords": [
+        "dier",
+        "gezicht",
+        "grijnzen",
+        "kat",
+        "lach",
+        "lachen",
+        "mond",
+        "open"
+      ]
+    },
+    "🙈": {
+      "name": "geen kwaad zien",
+      "keywords": [
+        "aap",
+        "beschaamd",
+        "dier",
+        "gebaar",
+        "geen",
+        "gezicht",
+        "kwaad",
+        "niet",
+        "niet kijken",
+        "schaamte",
+        "uit den boze",
+        "verboden",
+        "verlegen",
+        "wil niet zien",
+        "zie",
+        "zien"
+      ]
+    },
+    "🙉": {
+      "name": "geen kwaad horen",
+      "keywords": [
+        "aap",
+        "dier",
+        "gebaar",
+        "geen",
+        "geheim",
+        "gezicht",
+        "horen",
+        "kwaad",
+        "luisteren",
+        "niet",
+        "uit den boze",
+        "verboden",
+        "wil niet horen"
+      ]
+    },
+    "🙊": {
+      "name": "geen kwaad spreken",
+      "keywords": [
+        "aap",
+        "gebaar",
+        "geen",
+        "geheim",
+        "gezicht",
+        "kwaad",
+        "niet",
+        "oeps",
+        "spreken",
+        "stiekem",
+        "uit den boze",
+        "verboden"
+      ]
+    },
+    "💌": {
+      "name": "liefdesbrief",
+      "keywords": [
+        "brief",
+        "brief met hart",
+        "hart",
+        "liefde",
+        "liefdesbrief",
+        "post",
+        "romantiek",
+        "valentijn"
+      ]
+    },
+    "💘": {
+      "name": "hart met pijl",
+      "keywords": [
+        "afspraakje",
+        "cupido",
+        "date",
+        "hart",
+        "hart met pijl",
+        "hou van jou",
+        "hvj",
+        "liefde",
+        "pijl",
+        "pijl door hart",
+        "romantiek",
+        "valentijn"
+      ]
+    },
+    "💝": {
+      "name": "hart met strik",
+      "keywords": [
+        "emotie",
+        "hart",
+        "hart met strik",
+        "hou van jou",
+        "hvj",
+        "liefde",
+        "strik",
+        "valentijn",
+        "Valentijn",
+        "xoxo"
+      ]
+    },
+    "💖": {
+      "name": "fonkelend hart",
+      "keywords": [
+        "fonkelend",
+        "glinsterend",
+        "hart",
+        "hou van jou",
+        "hvj",
+        "spannend",
+        "sprankelend",
+        "xoxo"
+      ]
+    },
+    "💗": {
+      "name": "groeiend hart",
+      "keywords": [
+        "emotie",
+        "groeiend",
+        "hart",
+        "hartslag",
+        "hou van jou",
+        "hvj",
+        "kloppend hart",
+        "nerveus",
+        "spannend",
+        "xoxo"
+      ]
+    },
+    "💓": {
+      "name": "kloppend hart",
+      "keywords": [
+        "cardio",
+        "hart",
+        "hartslag",
+        "hou van jou",
+        "hvj",
+        "kloppen",
+        "kloppend hart",
+        "slaan"
+      ]
+    },
+    "💞": {
+      "name": "ronddraaiende harten",
+      "keywords": [
+        "draaien",
+        "draaiende harten",
+        "emotie",
+        "hart",
+        "harten",
+        "jubileum",
+        "ronddraaiende harten"
+      ]
+    },
+    "💕": {
+      "name": "twee harten",
+      "keywords": [
+        "hart",
+        "hou van jou",
+        "hvj",
+        "jubileum",
+        "liefde",
+        "twee harten",
+        "xoxo"
+      ]
+    },
+    "💟": {
+      "name": "decoratief hart",
+      "keywords": [
+        "decoratief hart",
+        "emotie",
+        "hart",
+        "hartdecoratie",
+        "paars hart",
+        "wit hart"
+      ]
+    },
+    "❣️": {
+      "name": "hart als uitroepteken",
+      "keywords": [
+        "hart met druppel eronder",
+        "interpunctie",
+        "leesteken",
+        "punctuatie",
+        "teken",
+        "uitroep",
+        "uitroepteken",
+        "uitroepteken met hart"
+      ]
+    },
+    "💔": {
+      "name": "gebroken hart",
+      "keywords": [
+        "alleen",
+        "breken",
+        "droevig",
+        "eenzaam",
+        "emotie",
+        "gebroken",
+        "gebroken hart",
+        "liefdesverdriet",
+        "verdrietig"
+      ]
+    },
+    "❤️": {
+      "name": "rood hart",
+      "keywords": [
+        "emotie",
+        "hart",
+        "liefde",
+        "rood hart"
+      ]
+    },
+    "🖤": {
+      "name": "zwart hart",
+      "keywords": [
+        "hart",
+        "kwaad",
+        "slecht",
+        "verdorven",
+        "zwart"
+      ]
+    },
+    "🤍": {
+      "name": "wit hart",
+      "keywords": [
+        "hart",
+        "liefde",
+        "symbool",
+        "wit"
+      ]
+    },
+    "💋": {
+      "name": "lipafdruk",
+      "keywords": [
+        "afdruk",
+        "daten",
+        "emotie",
+        "kus",
+        "kusafdruk",
+        "liefde",
+        "lipafdruk",
+        "lippen",
+        "romantiek",
+        "sexy",
+        "zoen"
+      ]
+    },
+    "💯": {
+      "name": "maximumscore",
+      "keywords": [
+        "100",
+        "100 punten",
+        "beste",
+        "cijfer",
+        "fantastisch",
+        "foutloos",
+        "getal",
+        "geweldig",
+        "maximumscore",
+        "score",
+        "top",
+        "zeker"
+      ]
+    },
+    "💢": {
+      "name": "woedesymbool",
+      "keywords": [
+        "boos",
+        "cartoonesk",
+        "kwaad",
+        "ontdaan",
+        "strip",
+        "symbool",
+        "teken",
+        "woede",
+        "woedesymbool"
+      ]
+    },
+    "💥": {
+      "name": "botsing",
+      "keywords": [
+        "boem",
+        "bom",
+        "botsen",
+        "botsing",
+        "ontploffen",
+        "strip"
+      ]
+    },
+    "💦": {
+      "name": "zweetdruppels",
+      "keywords": [
+        "druppels",
+        "spetteren",
+        "sporten",
+        "strip",
+        "water",
+        "work-out",
+        "zweet",
+        "zweetdruppels"
+      ]
+    },
+    "💨": {
+      "name": "wegrennen",
+      "keywords": [
+        "cartoonesk",
+        "moet gaan",
+        "rennen",
+        "rook",
+        "scheet",
+        "strip",
+        "vertrokken",
+        "weg",
+        "wegrennen",
+        "wind"
+      ]
+    },
+    "💬": {
+      "name": "spraakballon",
+      "keywords": [
+        "aan het typen",
+        "ballon",
+        "cartoonesk",
+        "dialoog",
+        "spraak",
+        "spraakballon",
+        "strip",
+        "tekstballon",
+        "tekstballon met puntjes"
+      ]
+    },
+    "💭": {
+      "name": "gedachteballon",
+      "keywords": [
+        "ballon",
+        "besef",
+        "cartoonesk",
+        "dagdromen",
+        "denkballon",
+        "denkwolkje",
+        "gedachteballon",
+        "gedachten",
+        "gedachtenballon",
+        "strip",
+        "uitvinden",
+        "uitvinding"
+      ]
+    },
+    "💤": {
+      "name": "slaapsymbool",
+      "keywords": [
+        "cartoonesk",
+        "goedenacht",
+        "moe",
+        "rust",
+        "saai",
+        "slaap",
+        "slaapwel",
+        "slapen",
+        "slaperig",
+        "strip",
+        "vermoeid",
+        "zzz"
+      ]
+    },
+    "👋": {
+      "name": "zwaaiende hand",
+      "keywords": [
+        "ben je er",
+        "doei",
+        "groet",
+        "groeten",
+        "hallo",
+        "hand",
+        "is daar iemand",
+        "moet gaan",
+        "spreek je later",
+        "tot later",
+        "tot ziens",
+        "ttyl",
+        "zwaai",
+        "zwaaien",
+        "zwaaiende hand"
+      ]
+    },
+    "🤚": {
+      "name": "achterkant van opgeheven hand",
+      "keywords": [
+        "achterkant van opgeheven hand",
+        "achterzijde opgestoken hand",
+        "hand",
+        "hand omhoog",
+        "handrug",
+        "opgestoken",
+        "rug van hand",
+        "vijf vingers"
+      ]
+    },
+    "🖐️": {
+      "name": "opgeheven hand met uitgestoken vingers",
+      "keywords": [
+        "hand",
+        "opgeheven",
+        "stop",
+        "uitgestoken",
+        "vinger",
+        "vingers"
+      ]
+    },
+    "✋": {
+      "name": "opgeheven hand",
+      "keywords": [
+        "5",
+        "hand",
+        "hoog",
+        "opgeheven",
+        "stop",
+        "vijf"
+      ]
+    },
+    "🖖": {
+      "name": "Vulcaanse groet",
+      "keywords": [
+        "hand",
+        "leef lang en voorspoedig",
+        "spock",
+        "star trek",
+        "vinger",
+        "vulcaanse groet",
+        "Vulcaanse groet",
+        "vulcan",
+        "vulcangroet"
+      ]
+    },
+    "🫱": {
+      "name": "hand naar rechts",
+      "keywords": [
+        "hand",
+        "handdruk",
+        "naar rechts",
+        "rechts",
+        "reiken",
+        "schudden",
+        "vasthouden"
+      ]
+    },
+    "🫲": {
+      "name": "hand naar links",
+      "keywords": [
+        "eens",
+        "hand",
+        "hand naar links",
+        "handdruk",
+        "links",
+        "naar links",
+        "uitgestoken hand"
+      ]
+    },
+    "👌": {
+      "name": "OK-handgebaar",
+      "keywords": [
+        "fantastisch",
+        "geweldig",
+        "goed",
+        "hand",
+        "oké",
+        "prima",
+        "top",
+        "vingers"
+      ]
+    },
+    "✌️": {
+      "name": "winnende hand",
+      "keywords": [
+        "hand",
+        "peace",
+        "twee vingers",
+        "v",
+        "vredesteken",
+        "winnende hand"
+      ]
+    },
+    "🤞": {
+      "name": "gekruiste vingers",
+      "keywords": [
+        "gekruist",
+        "geluk",
+        "hand",
+        "kruisen",
+        "vinger",
+        "vingers"
+      ]
+    },
+    "🤟": {
+      "name": "ik-hou-van-je-gebaar",
+      "keywords": [
+        "gebarentaal",
+        "hand",
+        "HVJ",
+        "Ik hou van jou-gebaar",
+        "ik-hou-van-je-gebaar",
+        "ILY"
+      ]
+    },
+    "🤘": {
+      "name": "duivelshorens",
+      "keywords": [
+        "hand",
+        "hoorns",
+        "rock on",
+        "teken",
+        "vinger"
+      ]
+    },
+    "🤙": {
+      "name": "bel me-gebaar",
+      "keywords": [
+        "bel me-gebaar",
+        "bel mij-gebaar",
+        "bellen",
+        "hand",
+        "handgebaar voor bellen"
+      ]
+    },
+    "👈": {
+      "name": "achterkant van hand met naar links wijzende wijsvinger",
+      "keywords": [
+        "achterkant",
+        "hand",
+        "links",
+        "vinger",
+        "wijs",
+        "wijsvinger",
+        "wijzen"
+      ]
+    },
+    "👉": {
+      "name": "achterkant van hand met naar rechts wijzende wijsvinger",
+      "keywords": [
+        "achterkant",
+        "hand",
+        "rechts",
+        "vinger",
+        "wijs",
+        "wijsvinger",
+        "wijzen"
+      ]
+    },
+    "👆": {
+      "name": "achterkant van hand met omhoog wijzende wijsvinger",
+      "keywords": [
+        "achterkant",
+        "hand",
+        "omhoog",
+        "vinger",
+        "wijs",
+        "wijsvinger",
+        "wijzen"
+      ]
+    },
+    "🖕": {
+      "name": "middelvinger",
+      "keywords": [
+        "hand",
+        "midden",
+        "vinger"
+      ]
+    },
+    "👇": {
+      "name": "achterkant van hand met omlaag wijzende wijsvinger",
+      "keywords": [
+        "achterkant",
+        "hand",
+        "omlaag",
+        "vinger",
+        "wijs",
+        "wijsvinger",
+        "wijzen"
+      ]
+    },
+    "☝️": {
+      "name": "omhoog wijzende wijsvinger",
+      "keywords": [
+        "dit",
+        "hand",
+        "omhoog",
+        "vinger",
+        "wijs",
+        "wijsvinger",
+        "wijzen"
+      ]
+    },
+    "🫵": {
+      "name": "wijsvinger die naar de kijker wijst",
+      "keywords": [
+        "aanwijzen",
+        "hand",
+        "jij",
+        "vinger",
+        "wijsvinger die naar de kijker wijst",
+        "wijzen"
+      ]
+    },
+    "👍": {
+      "name": "duim omhoog",
+      "keywords": [
+        "+1",
+        "duim",
+        "goed",
+        "hand",
+        "ja",
+        "leuk",
+        "omhoog"
+      ]
+    },
+    "👎": {
+      "name": "duim omlaag",
+      "keywords": [
+        "-1",
+        "duim",
+        "fout",
+        "hand",
+        "lichaam",
+        "niet goed",
+        "niet leuk",
+        "omlaag",
+        "slecht",
+        "stom"
+      ]
+    },
+    "✊": {
+      "name": "opgeheven vuist",
+      "keywords": [
+        "gebald",
+        "hand",
+        "opgeheven",
+        "solidariteit",
+        "stoot",
+        "vuist"
+      ]
+    },
+    "👊": {
+      "name": "stotende vuist",
+      "keywords": [
+        "boks",
+        "gebald",
+        "gebalde vuist",
+        "groet",
+        "hand",
+        "mee eens",
+        "stoot",
+        "stotende vuist",
+        "vuist"
+      ]
+    },
+    "👏": {
+      "name": "klappende handen",
+      "keywords": [
+        "applaudiseren",
+        "applaus",
+        "bidden",
+        "dankjewel",
+        "gefeliciteerd",
+        "goed gedaan",
+        "goedkeuring",
+        "hand",
+        "hoera",
+        "klappen",
+        "klappende handen"
+      ]
+    },
+    "🙌": {
+      "name": "juichend omhooggestoken handen",
+      "keywords": [
+        "feest",
+        "gebaar",
+        "hand",
+        "handen",
+        "hoera",
+        "lof",
+        "omhoog",
+        "omhooggestoken"
+      ]
+    },
+    "🫶": {
+      "name": "handen in de vorm van een hart",
+      "keywords": [
+        "<3",
+        "handen",
+        "hart",
+        "hou",
+        "jou"
+      ]
+    },
+    "👐": {
+      "name": "open handen",
+      "keywords": [
+        "hand",
+        "handen",
+        "jazz hands",
+        "open"
+      ]
+    },
+    "🤲": {
+      "name": "beide handpalmen omhoog",
+      "keywords": [
+        "beide handpalmen omhoog",
+        "bidden",
+        "gebed",
+        "hand",
+        "kommetje maken met handen",
+        "palmen bij elkaar"
+      ]
+    },
+    "🤝": {
+      "name": "handdruk",
+      "keywords": [
+        "deal",
+        "hand",
+        "handdruk",
+        "overeenkomst",
+        "schudden",
+        "vergadering"
+      ]
+    },
+    "🙏": {
+      "name": "gevouwen handen",
+      "keywords": [
+        "alsjeblieft",
+        "bedankt",
+        "bidden",
+        "buigen",
+        "dank",
+        "gebaar",
+        "gebed",
+        "geef me de vijf",
+        "gevouwen",
+        "gevouwen handen",
+        "gezegend",
+        "hand",
+        "handen tegen elkaar",
+        "high five",
+        "smeken",
+        "vragen"
+      ]
+    },
+    "✍️": {
+      "name": "schrijvende hand",
+      "keywords": [
+        "hand",
+        "schrijf",
+        "schrijven"
+      ]
+    },
+    "👂": {
+      "name": "oor",
+      "keywords": [
+        "geluid",
+        "horen",
+        "lichaam",
+        "luisteren",
+        "oor"
+      ]
+    },
+    "🦻": {
+      "name": "oor met gehoorapparaat",
+      "keywords": [
+        "doof",
+        "gehoorapparaat",
+        "oor met gehoorapparaat",
+        "oor met oorapparaat",
+        "oorapparaat",
+        "slechthorend",
+        "toegankelijkheid"
+      ]
+    },
+    "👃": {
+      "name": "neus",
+      "keywords": [
+        "geur",
+        "lichaam",
+        "neus",
+        "ruiken",
+        "stinkt"
+      ]
+    },
+    "🧠": {
+      "name": "brein",
+      "keywords": [
+        "hersenen",
+        "intelligent",
+        "slim"
+      ]
+    },
+    "🫀": {
+      "name": "hart",
+      "keywords": [
+        "anatomisch",
+        "cardiologie",
+        "echt",
+        "hart",
+        "hartslag",
+        "orgaan",
+        "polsslag",
+        "rood"
+      ]
+    },
+    "🫁": {
+      "name": "longen",
+      "keywords": [
+        "adem",
+        "ademhaling",
+        "inademen",
+        "lichaam",
+        "longen",
+        "lucht",
+        "orgaan",
+        "uitademen",
+        "zuurstof"
+      ]
+    },
+    "🦷": {
+      "name": "tand",
+      "keywords": [
+        "parelmoer",
+        "tand",
+        "tandarts",
+        "tanden",
+        "wit"
+      ]
+    },
+    "🦴": {
+      "name": "bot",
+      "keywords": [
+        "bot",
+        "botten",
+        "hond",
+        "skelet",
+        "vorkbeen"
+      ]
+    },
+    "👀": {
+      "name": "ogen",
+      "keywords": [
+        "gezicht",
+        "kijken",
+        "ogen",
+        "omg",
+        "ondeugend",
+        "oog",
+        "staren"
+      ]
+    },
+    "👁️": {
+      "name": "oog",
+      "keywords": [
+        "één oog",
+        "lichaam",
+        "oog",
+        "pupil"
+      ]
+    },
+    "👅": {
+      "name": "tong",
+      "keywords": [
+        "lichaam",
+        "lik",
+        "slurp",
+        "tong"
+      ]
+    },
+    "👄": {
+      "name": "mond",
+      "keywords": [
+        "kus",
+        "lippen",
+        "mond",
+        "open mond",
+        "roze lippen",
+        "zoen"
+      ]
+    },
+    "👶": {
+      "name": "baby",
+      "keywords": [
+        "baby",
+        "jong",
+        "kindje",
+        "pasgeboren",
+        "persoon"
+      ]
+    },
+    "🧑": {
+      "name": "volwassene",
+      "keywords": [
+        "persoon",
+        "volwassene"
+      ]
+    },
+    "👨": {
+      "name": "man",
+      "keywords": [
+        "man",
+        "volwassen",
+        "vriend"
+      ]
+    },
+    "👩": {
+      "name": "vrouw",
+      "keywords": [
+        "dame",
+        "volwassene",
+        "vrouw"
+      ]
+    },
+    "🚶": {
+      "name": "voetganger",
+      "keywords": [
+        "lopen",
+        "persoon",
+        "slenteren",
+        "stappen",
+        "struien",
+        "voetganger",
+        "wandelaar",
+        "wandelen"
+      ]
+    },
+    "🏃": {
+      "name": "hardloper",
+      "keywords": [
+        "hardlopen",
+        "hardloper",
+        "hollen",
+        "joggen",
+        "man",
+        "marathon",
+        "persoon",
+        "rennen",
+        "snel",
+        "sport"
+      ]
+    },
+    "⛷️": {
+      "name": "skiër",
+      "keywords": [
+        "ski",
+        "skiër",
+        "sneeuw"
+      ]
+    },
+    "🏄": {
+      "name": "surfer",
+      "keywords": [
+        "golf",
+        "golven",
+        "oceaan",
+        "sport",
+        "strand",
+        "surfen",
+        "surfende persoon",
+        "surfer",
+        "zee"
+      ]
+    },
+    "🏊": {
+      "name": "zwemmende persoon",
+      "keywords": [
+        "freestyle",
+        "persoon",
+        "sport",
+        "triatlon",
+        "zwemmen",
+        "zwemmer"
+      ]
+    },
+    "🏋️": {
+      "name": "gewichtheffer",
+      "keywords": [
+        "bodybuilder",
+        "gewicht",
+        "gewichtheffer",
+        "heffer",
+        "krachtsport",
+        "krachttraining",
+        "sport",
+        "sportschool",
+        "sterk",
+        "trainen",
+        "work-out"
+      ]
+    },
+    "🚴": {
+      "name": "fietsende persoon",
+      "keywords": [
+        "fiets",
+        "fietsen",
+        "fietser",
+        "persoon",
+        "sport",
+        "wielrennen"
+      ]
+    },
+    "🧘": {
+      "name": "persoon in lotushouding",
+      "keywords": [
+        "benen gekruist",
+        "kleermakerszit",
+        "meditatie",
+        "ontspannen",
+        "persoon in lotushouding",
+        "relax",
+        "yoga",
+        "zen"
+      ]
+    },
+    "🛀": {
+      "name": "persoon in badkuip",
+      "keywords": [
+        "bad",
+        "badkuip",
+        "badkuip met douche",
+        "persoon in bad",
+        "persoon in badkuip"
+      ]
+    },
+    "🛌": {
+      "name": "persoon in bed",
+      "keywords": [
+        "bed",
+        "deken",
+        "dutje",
+        "goedenacht",
+        "hotel",
+        "moe",
+        "persoon in bed",
+        "slaap",
+        "slaapwel",
+        "slapen",
+        "vermoeid",
+        "welterusten",
+        "zzz"
+      ]
+    },
+    "🗣️": {
+      "name": "silhouet van sprekend hoofd",
+      "keywords": [
+        "gezicht",
+        "hoofd",
+        "silhouet",
+        "spreek",
+        "spreken"
+      ]
+    },
+    "👤": {
+      "name": "silhouet van persoon",
+      "keywords": [
+        "buste",
+        "mysterieus",
+        "schaduw",
+        "silhouet"
+      ]
+    },
+    "👥": {
+      "name": "silhouet van twee personen",
+      "keywords": [
+        "bff",
+        "buste",
+        "bustes in silhouet",
+        "schaduw",
+        "silhouet",
+        "silhouet van twee personen",
+        "vrienden"
+      ]
+    },
+    "👪": {
+      "name": "gezin",
+      "keywords": [
+        "gezin",
+        "kind"
+      ]
+    },
+    "👣": {
+      "name": "voetafdrukken",
+      "keywords": [
+        "afdruk",
+        "blote voeten",
+        "kleding",
+        "lopen",
+        "onderweg",
+        "voetafdruk",
+        "voetafdrukken"
+      ]
+    },
+    "🫆": {
+      "name": "vingerafdruk",
+      "keywords": [
+        "forensisch",
+        "identiteit",
+        "veiligheid",
+        "vingerafdruk"
+      ]
+    },
+    "🐵": {
+      "name": "apengezicht",
+      "keywords": [
+        "aap",
+        "banaan",
+        "dier",
+        "gezicht"
+      ]
+    },
+    "🐒": {
+      "name": "aap",
+      "keywords": [
+        "aap",
+        "banaan",
+        "dier"
+      ]
+    },
+    "🦍": {
+      "name": "gorilla",
+      "keywords": [
+        "dier",
+        "gorilla"
+      ]
+    },
+    "🐶": {
+      "name": "hondengezicht",
+      "keywords": [
+        "dier",
+        "gezicht",
+        "hond",
+        "huisdier",
+        "puppy",
+        "puppy’s",
+        "schattig"
+      ]
+    },
+    "🐕": {
+      "name": "hond",
+      "keywords": [
+        "dier",
+        "dieren",
+        "hond",
+        "honden",
+        "huisdier"
+      ]
+    },
+    "🐩": {
+      "name": "poedel",
+      "keywords": [
+        "dier",
+        "hond",
+        "pluizig",
+        "poedel"
+      ]
+    },
+    "🐺": {
+      "name": "wolf",
+      "keywords": [
+        "dier",
+        "gezicht",
+        "wolf"
+      ]
+    },
+    "🦊": {
+      "name": "vos",
+      "keywords": [
+        "dier",
+        "gezicht",
+        "vos"
+      ]
+    },
+    "🦝": {
+      "name": "wasbeer",
+      "keywords": [
+        "dier",
+        "nieuwsgierig",
+        "sluw",
+        "wasbeer"
+      ]
+    },
+    "🐱": {
+      "name": "kattengezicht",
+      "keywords": [
+        "dier",
+        "gezicht",
+        "huisdier",
+        "kat",
+        "kitten"
+      ]
+    },
+    "🐈": {
+      "name": "kat",
+      "keywords": [
+        "dier",
+        "dieren",
+        "huisdier",
+        "kat",
+        "katten",
+        "kitten"
+      ]
+    },
+    "🦁": {
+      "name": "leeuw",
+      "keywords": [
+        "alfa",
+        "brul",
+        "dier",
+        "gezicht",
+        "leeuw",
+        "Leo",
+        "manen",
+        "orde",
+        "safari",
+        "sterk",
+        "sterrenbeeld"
+      ]
+    },
+    "🐯": {
+      "name": "tijgergezicht",
+      "keywords": [
+        "dier",
+        "gezicht",
+        "groot",
+        "kat",
+        "roofdier",
+        "tijger"
+      ]
+    },
+    "🐴": {
+      "name": "paardengezicht",
+      "keywords": [
+        "boerderij",
+        "dier",
+        "dressuur",
+        "gezicht",
+        "paard",
+        "paarden"
+      ]
+    },
+    "🐎": {
+      "name": "paard",
+      "keywords": [
+        "boerderij",
+        "dier",
+        "paard",
+        "racen",
+        "renpaard",
+        "ruitersport"
+      ]
+    },
+    "🦄": {
+      "name": "eenhoorn",
+      "keywords": [
+        "eenhoorn",
+        "gezicht"
+      ]
+    },
+    "🦓": {
+      "name": "zebra",
+      "keywords": [
+        "dier",
+        "streep",
+        "zebra"
+      ]
+    },
+    "🦌": {
+      "name": "hert",
+      "keywords": [
+        "dier",
+        "hert"
+      ]
+    },
+    "🦬": {
+      "name": "bizon",
+      "keywords": [
+        "bizon",
+        "buffel",
+        "dier",
+        "kudde",
+        "wisent"
+      ]
+    },
+    "🐮": {
+      "name": "koeiengezicht",
+      "keywords": [
+        "boe",
+        "boerderij",
+        "dier",
+        "gezicht",
+        "koe",
+        "melk"
+      ]
+    },
+    "🐄": {
+      "name": "koe",
+      "keywords": [
+        "boe",
+        "boerderij",
+        "dier",
+        "dieren",
+        "koe",
+        "melk"
+      ]
+    },
+    "🐷": {
+      "name": "varkensgezicht",
+      "keywords": [
+        "boerderij",
+        "dier",
+        "gezicht",
+        "spek",
+        "varken"
+      ]
+    },
+    "🐖": {
+      "name": "varken",
+      "keywords": [
+        "boerderij",
+        "dier",
+        "spek",
+        "varken",
+        "zeug"
+      ]
+    },
+    "🐗": {
+      "name": "zwijn",
+      "keywords": [
+        "dier",
+        "varken",
+        "zwijn"
+      ]
+    },
+    "🐑": {
+      "name": "ooi",
+      "keywords": [
+        "blaten",
+        "boerderij",
+        "dier",
+        "lam",
+        "ooi",
+        "schaap",
+        "vrouwelijk",
+        "wol",
+        "wollig"
+      ]
+    },
+    "🐐": {
+      "name": "geit",
+      "keywords": [
+        "boerderij",
+        "Capricorn",
+        "dier",
+        "geit",
+        "melk",
+        "sterrenbeeld"
+      ]
+    },
+    "🐪": {
+      "name": "dromedaris",
+      "keywords": [
+        "bult",
+        "dier",
+        "dromedaris",
+        "één",
+        "kameel",
+        "woestijn"
+      ]
+    },
+    "🦙": {
+      "name": "lama",
+      "keywords": [
+        "alpaca",
+        "dier",
+        "guanaco",
+        "lama",
+        "vicuña",
+        "wol"
+      ]
+    },
+    "🦒": {
+      "name": "giraffe",
+      "keywords": [
+        "dier",
+        "giraffe",
+        "vlekken"
+      ]
+    },
+    "🐘": {
+      "name": "olifant",
+      "keywords": [
+        "dier",
+        "olifant"
+      ]
+    },
+    "🦏": {
+      "name": "neushoorn",
+      "keywords": [
+        "dier",
+        "neushoorn"
+      ]
+    },
+    "🦛": {
+      "name": "nijlpaard",
+      "keywords": [
+        "dier",
+        "hippopotamus",
+        "nijlpaard"
+      ]
+    },
+    "🐭": {
+      "name": "muizengezicht",
+      "keywords": [
+        "dier",
+        "gezicht",
+        "muis"
+      ]
+    },
+    "🐹": {
+      "name": "hamster",
+      "keywords": [
+        "dier",
+        "gezicht",
+        "hamster",
+        "huisdier"
+      ]
+    },
+    "🐰": {
+      "name": "konijnengezicht",
+      "keywords": [
+        "dier",
+        "gezicht",
+        "huisdier",
+        "konijn"
+      ]
+    },
+    "🐇": {
+      "name": "konijn",
+      "keywords": [
+        "dier",
+        "huisdier",
+        "konijn",
+        "konijntje"
+      ]
+    },
+    "🐿️": {
+      "name": "eekhoorn",
+      "keywords": [
+        "dier",
+        "eekhoorn"
+      ]
+    },
+    "🦔": {
+      "name": "egel",
+      "keywords": [
+        "dier",
+        "egel",
+        "stekelig"
+      ]
+    },
+    "🦇": {
+      "name": "vleermuis",
+      "keywords": [
+        "dier",
+        "vampier",
+        "vleermuis"
+      ]
+    },
+    "🐻": {
+      "name": "beer",
+      "keywords": [
+        "beer",
+        "dier",
+        "gezicht",
+        "grizzly",
+        "grommen",
+        "honing"
+      ]
+    },
+    "🐨": {
+      "name": "koala",
+      "keywords": [
+        "australië",
+        "beer",
+        "buideldier",
+        "dier",
+        "down",
+        "gezicht",
+        "koala",
+        "under"
+      ]
+    },
+    "🐼": {
+      "name": "panda",
+      "keywords": [
+        "bamboe",
+        "dier",
+        "gezicht",
+        "panda"
+      ]
+    },
+    "🐾": {
+      "name": "pootafdrukken",
+      "keywords": [
+        "afdruk",
+        "poot",
+        "pootafdrukken",
+        "poten"
+      ]
+    },
+    "🦃": {
+      "name": "kalkoen",
+      "keywords": [
+        "dier",
+        "gevogelte",
+        "kalkoen"
+      ]
+    },
+    "🐔": {
+      "name": "kip",
+      "keywords": [
+        "dier",
+        "gevogelte",
+        "kip"
+      ]
+    },
+    "🐓": {
+      "name": "haan",
+      "keywords": [
+        "dier",
+        "haan",
+        "ornithologie",
+        "vogel"
+      ]
+    },
+    "🐣": {
+      "name": "kuiken uit ei",
+      "keywords": [
+        "baby",
+        "dier",
+        "ei",
+        "kuiken",
+        "uitkomen",
+        "vogel"
+      ]
+    },
+    "🐤": {
+      "name": "kuikentje",
+      "keywords": [
+        "baby",
+        "dier",
+        "gevogelte",
+        "kuiken",
+        "kuikentje",
+        "vogel"
+      ]
+    },
+    "🐦": {
+      "name": "vogel",
+      "keywords": [
+        "dier",
+        "duif",
+        "vogel"
+      ]
+    },
+    "🐧": {
+      "name": "pinguïn",
+      "keywords": [
+        "antarctica",
+        "dier",
+        "pinguïn",
+        "vogel"
+      ]
+    },
+    "🕊️": {
+      "name": "duif",
+      "keywords": [
+        "duif",
+        "ornithologie",
+        "vliegen",
+        "vogel",
+        "vrede"
+      ]
+    },
+    "🦅": {
+      "name": "adelaar",
+      "keywords": [
+        "adelaar",
+        "dier",
+        "ornithologie",
+        "vogel"
+      ]
+    },
+    "🦆": {
+      "name": "eend",
+      "keywords": [
+        "dier",
+        "eend",
+        "vogel",
+        "woerd"
+      ]
+    },
+    "🦢": {
+      "name": "zwaan",
+      "keywords": [
+        "dier",
+        "jonge zwaan",
+        "lelijk eendje",
+        "vogel",
+        "zwaan",
+        "zwanenjong"
+      ]
+    },
+    "🦉": {
+      "name": "uil",
+      "keywords": [
+        "dier",
+        "uil",
+        "vogel",
+        "wijs",
+        "wijsheid"
+      ]
+    },
+    "🪶": {
+      "name": "veer",
+      "keywords": [
+        "licht",
+        "veer",
+        "verenkleed",
+        "vlucht",
+        "vogel"
+      ]
+    },
+    "🦩": {
+      "name": "flamingo",
+      "keywords": [
+        "dier",
+        "flamboyant",
+        "flamingo",
+        "ornithologie",
+        "tropisch",
+        "vogel"
+      ]
+    },
+    "🦜": {
+      "name": "papegaai",
+      "keywords": [
+        "dier",
+        "lorre",
+        "napraten",
+        "papegaai",
+        "piraat",
+        "praten",
+        "vogel"
+      ]
+    },
+    "🪽": {
+      "name": "vleugel",
+      "keywords": [
+        "engelachtig",
+        "luchtvaart",
+        "mythologie",
+        "vleugel",
+        "vliegen",
+        "vogel"
+      ]
+    },
+    "🐸": {
+      "name": "kikker",
+      "keywords": [
+        "dier",
+        "gezicht",
+        "kikker"
+      ]
+    },
+    "🐊": {
+      "name": "krokodil",
+      "keywords": [
+        "dier",
+        "dierentuin",
+        "krokodil"
+      ]
+    },
+    "🐢": {
+      "name": "schildpad",
+      "keywords": [
+        "dier",
+        "schildpad",
+        "waterschildpad"
+      ]
+    },
+    "🦎": {
+      "name": "hagedis",
+      "keywords": [
+        "dier",
+        "hagedis",
+        "reptiel"
+      ]
+    },
+    "🐍": {
+      "name": "slang",
+      "keywords": [
+        "dier",
+        "dierenriem",
+        "drager",
+        "Ophiuchus",
+        "serpent",
+        "slang"
+      ]
+    },
+    "🐲": {
+      "name": "drakengezicht",
+      "keywords": [
+        "dier",
+        "draak",
+        "gezicht",
+        "sprookje"
+      ]
+    },
+    "🐉": {
+      "name": "draak",
+      "keywords": [
+        "dier",
+        "draak",
+        "ridders",
+        "sprookje"
+      ]
+    },
+    "🦕": {
+      "name": "sauropode",
+      "keywords": [
+        "brachiosaurus",
+        "brontosaurus",
+        "dinosaurus",
+        "diplodocus",
+        "sauropode"
+      ]
+    },
+    "🦖": {
+      "name": "T-Rex",
+      "keywords": [
+        "dinosaurus",
+        "Rex",
+        "T",
+        "T-Rex",
+        "Tyrannosaurus"
+      ]
+    },
+    "🐳": {
+      "name": "spuitende walvis",
+      "keywords": [
+        "dier",
+        "gezicht",
+        "oceaan",
+        "spuitend",
+        "strand",
+        "walvis"
+      ]
+    },
+    "🐬": {
+      "name": "dolfijn",
+      "keywords": [
+        "dier",
+        "dolfijn",
+        "flipper",
+        "oceaan",
+        "strand"
+      ]
+    },
+    "🫍": {
+      "name": "orka",
+      "keywords": [
+        "oceaan",
+        "walvis",
+        "zee"
+      ]
+    },
+    "🐟": {
+      "name": "vis",
+      "keywords": [
+        "dier",
+        "eten",
+        "Pisces",
+        "sterrenbeeld",
+        "vis",
+        "vissen"
+      ]
+    },
+    "🐠": {
+      "name": "tropische vis",
+      "keywords": [
+        "dier",
+        "tropisch",
+        "vis",
+        "vissen"
+      ]
+    },
+    "🐡": {
+      "name": "kogelvis",
+      "keywords": [
+        "dier",
+        "kogelvis",
+        "vis"
+      ]
+    },
+    "🦈": {
+      "name": "haai",
+      "keywords": [
+        "dier",
+        "haai",
+        "vis"
+      ]
+    },
+    "🐙": {
+      "name": "octopus",
+      "keywords": [
+        "dier",
+        "oceaan",
+        "octopus",
+        "wezen"
+      ]
+    },
+    "🐚": {
+      "name": "schelp",
+      "keywords": [
+        "dier",
+        "schelp",
+        "spiraal",
+        "strand",
+        "zee"
+      ]
+    },
+    "🪸": {
+      "name": "koraal",
+      "keywords": [
+        "klimaat",
+        "koraal",
+        "oceaan",
+        "rif",
+        "verandering",
+        "zee"
+      ]
+    },
+    "🪼": {
+      "name": "kwal",
+      "keywords": [
+        "aquarium",
+        "au",
+        "beet",
+        "branden",
+        "dier",
+        "gelei",
+        "leven",
+        "oceaan",
+        "ongewerveld",
+        "plankton",
+        "steek",
+        "tentakels",
+        "zee"
+      ]
+    },
+    "🦀": {
+      "name": "krab",
+      "keywords": [
+        "dierenriem",
+        "krab",
+        "kreeft"
+      ]
+    },
+    "🦞": {
+      "name": "kreeft",
+      "keywords": [
+        "bisque",
+        "dier",
+        "kreeft",
+        "scharen",
+        "zeevruchten"
+      ]
+    },
+    "🦐": {
+      "name": "garnaal",
+      "keywords": [
+        "garnaal",
+        "klein",
+        "schaaldier",
+        "voedsel"
+      ]
+    },
+    "🦑": {
+      "name": "inktvis",
+      "keywords": [
+        "dier",
+        "inktvis",
+        "voedsel",
+        "weekdier"
+      ]
+    },
+    "🐌": {
+      "name": "slak",
+      "keywords": [
+        "dier",
+        "escargot",
+        "naaktslak",
+        "natuur",
+        "slak",
+        "tuin"
+      ]
+    },
+    "🦋": {
+      "name": "vlinder",
+      "keywords": [
+        "insect",
+        "mooi",
+        "vlinder"
+      ]
+    },
+    "🐛": {
+      "name": "insect",
+      "keywords": [
+        "beestje",
+        "dier",
+        "insect",
+        "tuin"
+      ]
+    },
+    "🐜": {
+      "name": "mier",
+      "keywords": [
+        "dier",
+        "insect",
+        "mier",
+        "tuin"
+      ]
+    },
+    "🐝": {
+      "name": "honingbij",
+      "keywords": [
+        "bij",
+        "dier",
+        "hommel",
+        "honing",
+        "honingbij",
+        "insect",
+        "lente",
+        "natuur"
+      ]
+    },
+    "🪲": {
+      "name": "kever",
+      "keywords": [
+        "beestje",
+        "dier",
+        "insect",
+        "kever"
+      ]
+    },
+    "🐞": {
+      "name": "lieveheersbeestje",
+      "keywords": [
+        "dier",
+        "insect",
+        "kever",
+        "lieveheersbeest",
+        "lieveheersbeestje",
+        "natuur",
+        "tuin"
+      ]
+    },
+    "🕷️": {
+      "name": "spin",
+      "keywords": [
+        "dier",
+        "insect",
+        "spin"
+      ]
+    },
+    "🕸️": {
+      "name": "spinnenweb",
+      "keywords": [
+        "spin",
+        "spinnenweb",
+        "web"
+      ]
+    },
+    "🦂": {
+      "name": "schorpioen",
+      "keywords": [
+        "schorpioen",
+        "Scorpio",
+        "Scorpius",
+        "sterrenbeeld"
+      ]
+    },
+    "🦟": {
+      "name": "mug",
+      "keywords": [
+        "beet",
+        "insect",
+        "koorts",
+        "malaria",
+        "mug",
+        "ongedierte",
+        "virus",
+        "ziekte"
+      ]
+    },
+    "💐": {
+      "name": "boeket",
+      "keywords": [
+        "afspraakje",
+        "bedankt",
+        "beterschap",
+        "bloem",
+        "boeket",
+        "date",
+        "jubileum",
+        "romantiek",
+        "verjaardag"
+      ]
+    },
+    "🌸": {
+      "name": "kersenbloesem",
+      "keywords": [
+        "bloem",
+        "bloesem",
+        "kers",
+        "lente",
+        "plant",
+        "voorjaar"
+      ]
+    },
+    "🪷": {
+      "name": "lotus",
+      "keywords": [
+        "bloem",
+        "Boeddhisme",
+        "Hindoeïsme",
+        "lotus",
+        "puurheid",
+        "rust",
+        "schoonheid",
+        "sereen",
+        "vrede"
+      ]
+    },
+    "🏵️": {
+      "name": "rozet",
+      "keywords": [
+        "plant",
+        "rozet"
+      ]
+    },
+    "🌹": {
+      "name": "roos",
+      "keywords": [
+        "bloem",
+        "elegant",
+        "liefde",
+        "plant",
+        "rood",
+        "roos",
+        "schoonheid",
+        "valentijn"
+      ]
+    },
+    "🌺": {
+      "name": "hibiscus",
+      "keywords": [
+        "bloem",
+        "hibiscus",
+        "plant"
+      ]
+    },
+    "🌻": {
+      "name": "zonnebloem",
+      "keywords": [
+        "bloem",
+        "buiten",
+        "plant",
+        "zon",
+        "zonnebloem"
+      ]
+    },
+    "🌼": {
+      "name": "bloesem",
+      "keywords": [
+        "bloem",
+        "bloesem",
+        "boterbloem",
+        "paardenbloem",
+        "plant"
+      ]
+    },
+    "🌷": {
+      "name": "tulp",
+      "keywords": [
+        "bloem",
+        "bloesem",
+        "groei",
+        "plant",
+        "tulp"
+      ]
+    },
+    "🌱": {
+      "name": "zaailing",
+      "keywords": [
+        "jong",
+        "plant",
+        "spruit",
+        "stekje",
+        "zaailing"
+      ]
+    },
+    "🪴": {
+      "name": "potplant",
+      "keywords": [
+        "decor",
+        "groeien",
+        "huis",
+        "plant",
+        "pot",
+        "potplant",
+        "verzorgen"
+      ]
+    },
+    "🌲": {
+      "name": "naaldboom",
+      "keywords": [
+        "boom",
+        "bos",
+        "dennenboom",
+        "kerst",
+        "naaldboom"
+      ]
+    },
+    "🌳": {
+      "name": "loofboom",
+      "keywords": [
+        "boom",
+        "bos",
+        "groen",
+        "habitat",
+        "loofboom",
+        "verliezen"
+      ]
+    },
+    "🌴": {
+      "name": "palmboom",
+      "keywords": [
+        "boom",
+        "palm",
+        "plant",
+        "strand",
+        "tropisch"
+      ]
+    },
+    "🌵": {
+      "name": "cactus",
+      "keywords": [
+        "cactus",
+        "droogte",
+        "natuur",
+        "plant",
+        "woestijn"
+      ]
+    },
+    "🌾": {
+      "name": "rijstplant",
+      "keywords": [
+        "aar",
+        "graan",
+        "granen",
+        "plant",
+        "rijst",
+        "rijstaar"
+      ]
+    },
+    "🌿": {
+      "name": "kruid",
+      "keywords": [
+        "blad",
+        "kruid",
+        "plant"
+      ]
+    },
+    "☘️": {
+      "name": "klavertjedrie",
+      "keywords": [
+        "Iers",
+        "klavertjedrie",
+        "plant"
+      ]
+    },
+    "🍀": {
+      "name": "klavertjevier",
+      "keywords": [
+        "4",
+        "blad",
+        "geluk",
+        "Iers",
+        "klaver",
+        "klavertjevier",
+        "plant",
+        "vier"
+      ]
+    },
+    "🍁": {
+      "name": "esdoornblad",
+      "keywords": [
+        "blad",
+        "esdoorn",
+        "vallend"
+      ]
+    },
+    "🍂": {
+      "name": "vallende bladeren",
+      "keywords": [
+        "blad",
+        "gevallen",
+        "herfst",
+        "vallend"
+      ]
+    },
+    "🍃": {
+      "name": "blad in de wind",
+      "keywords": [
+        "blad",
+        "blazen",
+        "fladderen",
+        "wind"
+      ]
+    },
+    "🍄": {
+      "name": "paddenstoel",
+      "keywords": [
+        "paddenstoel",
+        "schimmel",
+        "zwam"
+      ]
+    },
+    "🪾": {
+      "name": "boom zonder bladeren",
+      "keywords": [
+        "boom",
+        "boomstam",
+        "dood",
+        "droogte",
+        "hout",
+        "kaal",
+        "leeg",
+        "takken",
+        "winter",
+        "zonder bladeren"
+      ]
+    },
+    "🍇": {
+      "name": "druiven",
+      "keywords": [
+        "Dionysus",
+        "druif",
+        "druiven",
+        "fruit"
+      ]
+    },
+    "🍉": {
+      "name": "watermeloen",
+      "keywords": [
+        "fruit",
+        "watermeloen"
+      ]
+    },
+    "🍋": {
+      "name": "citroen",
+      "keywords": [
+        "citroen",
+        "citrus",
+        "fruit",
+        "zuur"
+      ]
+    },
+    "🍌": {
+      "name": "banaan",
+      "keywords": [
+        "banaan",
+        "fruit",
+        "kalium"
+      ]
+    },
+    "🍎": {
+      "name": "rode appel",
+      "keywords": [
+        "appel",
+        "dieet",
+        "fruit",
+        "gezondheid",
+        "rijp",
+        "rood",
+        "voedsel"
+      ]
+    },
+    "🍐": {
+      "name": "peer",
+      "keywords": [
+        "fruit",
+        "peer"
+      ]
+    },
+    "🍑": {
+      "name": "perzik",
+      "keywords": [
+        "fruit",
+        "perzik"
+      ]
+    },
+    "🍒": {
+      "name": "kersen",
+      "keywords": [
+        "bessen",
+        "fruit",
+        "kers",
+        "kersen",
+        "rood"
+      ]
+    },
+    "🍓": {
+      "name": "aardbei",
+      "keywords": [
+        "aardbei",
+        "bes",
+        "fruit"
+      ]
+    },
+    "🍅": {
+      "name": "tomaat",
+      "keywords": [
+        "fruit",
+        "groente",
+        "tomaat",
+        "voedsel"
+      ]
+    },
+    "🥑": {
+      "name": "avocado",
+      "keywords": [
+        "avocado",
+        "fruit",
+        "voedsel"
+      ]
+    },
+    "🍆": {
+      "name": "aubergine",
+      "keywords": [
+        "aubergine",
+        "groente"
+      ]
+    },
+    "🥕": {
+      "name": "wortel",
+      "keywords": [
+        "groente",
+        "voedsel",
+        "wortel"
+      ]
+    },
+    "🌽": {
+      "name": "maïskolf",
+      "keywords": [
+        "boerderij",
+        "doolhof",
+        "gewassen",
+        "kolf",
+        "maïs"
+      ]
+    },
+    "🌶️": {
+      "name": "hete peper",
+      "keywords": [
+        "heet",
+        "peper"
+      ]
+    },
+    "🫑": {
+      "name": "paprika",
+      "keywords": [
+        "capsicum",
+        "groente",
+        "paprika",
+        "peper",
+        "voedsel"
+      ]
+    },
+    "🥦": {
+      "name": "broccoli",
+      "keywords": [
+        "broccoli",
+        "kool",
+        "wild"
+      ]
+    },
+    "🧄": {
+      "name": "knoflook",
+      "keywords": [
+        "knoflook",
+        "smaakmaker"
+      ]
+    },
+    "🥜": {
+      "name": "pinda’s",
+      "keywords": [
+        "eten",
+        "groente",
+        "noot",
+        "pinda",
+        "pinda’s"
+      ]
+    },
+    "🍞": {
+      "name": "brood",
+      "keywords": [
+        "brood",
+        "eten",
+        "koolhydraten",
+        "tarwe",
+        "voedsel"
+      ]
+    },
+    "🥐": {
+      "name": "croissant",
+      "keywords": [
+        "brood",
+        "croissant",
+        "eten",
+        "frans",
+        "ontbijt",
+        "voedsel"
+      ]
+    },
+    "🥖": {
+      "name": "stokbrood",
+      "keywords": [
+        "brood",
+        "eten",
+        "Frans",
+        "stokbrood"
+      ]
+    },
+    "🥨": {
+      "name": "pretzel",
+      "keywords": [
+        "gedraaid",
+        "krakeling",
+        "pretzel"
+      ]
+    },
+    "🥞": {
+      "name": "pannenkoeken",
+      "keywords": [
+        "crêpe",
+        "eten",
+        "flensje",
+        "ontbijt",
+        "pannenkoek",
+        "pannenkoeken"
+      ]
+    },
+    "🧇": {
+      "name": "wafel",
+      "keywords": [
+        "besluiteloos",
+        "ijzer",
+        "ontbijt",
+        "wafel"
+      ]
+    },
+    "🧀": {
+      "name": "stuk kaas",
+      "keywords": [
+        "kaas",
+        "plak"
+      ]
+    },
+    "🍖": {
+      "name": "vlees met bot",
+      "keywords": [
+        "bot",
+        "vlees"
+      ]
+    },
+    "🍗": {
+      "name": "kippenpoot",
+      "keywords": [
+        "bot",
+        "gevogelte",
+        "honger",
+        "kalkoen",
+        "kip",
+        "kippenpoot",
+        "poot"
+      ]
+    },
+    "🍔": {
+      "name": "hamburger",
+      "keywords": [
+        "burger",
+        "eten",
+        "fastfood",
+        "hamburger",
+        "honger"
+      ]
+    },
+    "🍟": {
+      "name": "patat",
+      "keywords": [
+        "eten",
+        "fastfood",
+        "frans",
+        "frietjes"
+      ]
+    },
+    "🍕": {
+      "name": "pizzapunt",
+      "keywords": [
+        "eten",
+        "honger",
+        "kaas",
+        "pepperoni",
+        "pizza",
+        "punt"
+      ]
+    },
+    "🌭": {
+      "name": "hotdog",
+      "keywords": [
+        "braadworst",
+        "frankfurter",
+        "hotdog",
+        "knakworst",
+        "worst"
+      ]
+    },
+    "🥪": {
+      "name": "boterham",
+      "keywords": [
+        "brood",
+        "sandwich"
+      ]
+    },
+    "🌮": {
+      "name": "taco",
+      "keywords": [
+        "mexicaans",
+        "taco"
+      ]
+    },
+    "🥚": {
+      "name": "ei",
+      "keywords": [
+        "ei",
+        "ontbijt",
+        "voedsel"
+      ]
+    },
+    "🍳": {
+      "name": "koken",
+      "keywords": [
+        "bakken",
+        "ei",
+        "gemakkelijk",
+        "koken",
+        "ontbijt",
+        "pan",
+        "restaurant",
+        "spiegelei"
+      ]
+    },
+    "🥣": {
+      "name": "kom met lepel",
+      "keywords": [
+        "cornflakes",
+        "eten",
+        "kom met lepel",
+        "muesli",
+        "ontbijt",
+        "ontbijtgranen",
+        "pap",
+        "soep",
+        "voedsel"
+      ]
+    },
+    "🥗": {
+      "name": "groene salade",
+      "keywords": [
+        "eten",
+        "groen",
+        "salade"
+      ]
+    },
+    "🍿": {
+      "name": "popcorn",
+      "keywords": [
+        "film",
+        "maïs",
+        "pop",
+        "popcorn"
+      ]
+    },
+    "🧂": {
+      "name": "zout",
+      "keywords": [
+        "gezouten",
+        "overstuur",
+        "smaak",
+        "specerij",
+        "zout",
+        "zoutvaatje"
+      ]
+    },
+    "🍙": {
+      "name": "rijstballetje",
+      "keywords": [
+        "balletje",
+        "eten",
+        "Japans",
+        "rijst"
+      ]
+    },
+    "🍚": {
+      "name": "gekookte rijst",
+      "keywords": [
+        "gekookt",
+        "rijst",
+        "voedsel"
+      ]
+    },
+    "🍜": {
+      "name": "dampende kom",
+      "keywords": [
+        "chopsticks",
+        "dampend",
+        "eten",
+        "kom",
+        "noedels",
+        "pho",
+        "ramen",
+        "soep"
+      ]
+    },
+    "🍝": {
+      "name": "spaghetti",
+      "keywords": [
+        "eten",
+        "gehaktballen",
+        "pasta",
+        "restaurant",
+        "spaghetti"
+      ]
+    },
+    "🥡": {
+      "name": "afhaalmaaltijd",
+      "keywords": [
+        "afhaalmaaltijd",
+        "bezorgen",
+        "doggybag",
+        "eten",
+        "oesteremmer",
+        "stokjes",
+        "voedsel"
+      ]
+    },
+    "🍦": {
+      "name": "softijs",
+      "keywords": [
+        "dessert",
+        "eten",
+        "ijs",
+        "restaurant",
+        "room",
+        "softijs",
+        "zoet"
+      ]
+    },
+    "🍩": {
+      "name": "donut",
+      "keywords": [
+        "dessert",
+        "donut",
+        "eten",
+        "voedsel",
+        "zoet"
+      ]
+    },
+    "🍪": {
+      "name": "koekje",
+      "keywords": [
+        "chip",
+        "chocolade",
+        "dessert",
+        "koekje",
+        "zoet"
+      ]
+    },
+    "🎂": {
+      "name": "verjaardagstaart",
+      "keywords": [
+        "dessert",
+        "gebak",
+        "gelukkig",
+        "taart",
+        "verjaardag",
+        "verjaardagstaart",
+        "viering",
+        "zoet"
+      ]
+    },
+    "🍰": {
+      "name": "cake",
+      "keywords": [
+        "cake",
+        "dessert",
+        "gebak",
+        "plak",
+        "zandgebak",
+        "zoet"
+      ]
+    },
+    "🧁": {
+      "name": "cupcake",
+      "keywords": [
+        "bakkerij",
+        "cupcake",
+        "dessert",
+        "hagelslag",
+        "suiker",
+        "traktatie",
+        "zoet"
+      ]
+    },
+    "🍫": {
+      "name": "chocoladereep",
+      "keywords": [
+        "chocolade",
+        "dessert",
+        "halloween",
+        "reep",
+        "snoep",
+        "zoetekauw"
+      ]
+    },
+    "🍭": {
+      "name": "lolly",
+      "keywords": [
+        "dessert",
+        "eten",
+        "lolly",
+        "snoep",
+        "voedsel",
+        "zoet"
+      ]
+    },
+    "🍼": {
+      "name": "babyflesje",
+      "keywords": [
+        "baby",
+        "babyfles",
+        "babyflesje",
+        "drinken",
+        "fles",
+        "flesje",
+        "flesvoeding",
+        "geboorte",
+        "melk"
+      ]
+    },
+    "🥛": {
+      "name": "glas melk",
+      "keywords": [
+        "drinken",
+        "glas",
+        "melk"
+      ]
+    },
+    "☕": {
+      "name": "warme drank",
+      "keywords": [
+        "café",
+        "cafeïne",
+        "chai",
+        "drank",
+        "drinken",
+        "koffie",
+        "ochtend",
+        "stomen",
+        "thee",
+        "warm"
+      ]
+    },
+    "🫖": {
+      "name": "theepot",
+      "keywords": [
+        "drinken",
+        "eten",
+        "pot",
+        "thee",
+        "theepot",
+        "zettten"
+      ]
+    },
+    "🍵": {
+      "name": "theekopje zonder oor",
+      "keywords": [
+        "drankje",
+        "drinken",
+        "kop",
+        "thee",
+        "theekopje",
+        "theekopje zonder oor"
+      ]
+    },
+    "🍾": {
+      "name": "fles met knallende kurk",
+      "keywords": [
+        "bar",
+        "drinken",
+        "fles",
+        "knallen",
+        "kurk"
+      ]
+    },
+    "🍷": {
+      "name": "wijnglas",
+      "keywords": [
+        "alcohol",
+        "bar",
+        "café",
+        "drankje",
+        "drinken",
+        "glas",
+        "restaurant",
+        "wijn",
+        "wijnglas"
+      ]
+    },
+    "🍸": {
+      "name": "cocktailglas",
+      "keywords": [
+        "alcohol",
+        "bar",
+        "café",
+        "cocktail",
+        "cocktailglas",
+        "drinken",
+        "glas",
+        "mad men",
+        "martini"
+      ]
+    },
+    "🍹": {
+      "name": "tropisch drankje",
+      "keywords": [
+        "alcohol",
+        "bar",
+        "club",
+        "drankjes",
+        "drinken",
+        "dronken",
+        "mai tai",
+        "mix",
+        "tropisch",
+        "tropisch drankje"
+      ]
+    },
+    "🍺": {
+      "name": "bierglas",
+      "keywords": [
+        "alcohol",
+        "bar",
+        "bier",
+        "bierglas",
+        "café",
+        "drinken",
+        "duitsland",
+        "glas",
+        "oktoberfest",
+        "pils",
+        "pint"
+      ]
+    },
+    "🥂": {
+      "name": "klinkende glazen",
+      "keywords": [
+        "drinken",
+        "glas",
+        "glazen",
+        "klinken",
+        "toosten",
+        "vieren"
+      ]
+    },
+    "🥤": {
+      "name": "beker met rietje",
+      "keywords": [
+        "beker met rietje",
+        "drinken",
+        "frisdrank",
+        "sap",
+        "water"
+      ]
+    },
+    "🧋": {
+      "name": "bubbelthee",
+      "keywords": [
+        "boba",
+        "bubbel",
+        "melk",
+        "parel",
+        "thee",
+        "voedsel"
+      ]
+    },
+    "🧊": {
+      "name": "ijsklontje",
+      "keywords": [
+        "ijs",
+        "ijsberg",
+        "klontje",
+        "koud"
+      ]
+    },
+    "🥢": {
+      "name": "chopsticks",
+      "keywords": [
+        "chopsticks",
+        "eetstokjes",
+        "eten",
+        "stokjes"
+      ]
+    },
+    "🍽️": {
+      "name": "mes en vork met bord",
+      "keywords": [
+        "bord",
+        "diner",
+        "eten",
+        "koken",
+        "mes",
+        "vork"
+      ]
+    },
+    "🍴": {
+      "name": "mes en vork",
+      "keywords": [
+        "bestek",
+        "eten",
+        "honger",
+        "koken",
+        "lekker",
+        "lunch",
+        "mes",
+        "mes en vork",
+        "ontbijt",
+        "restaurant",
+        "uit eten",
+        "vork",
+        "vork en mes"
+      ]
+    },
+    "🥄": {
+      "name": "lepel",
+      "keywords": [
+        "bestek",
+        "lepel",
+        "tafelgerei"
+      ]
+    },
+    "🔪": {
+      "name": "keukenmes",
+      "keywords": [
+        "keukenmes",
+        "koken",
+        "koksmes",
+        "mes",
+        "wapen"
+      ]
+    },
+    "🏺": {
+      "name": "amfora",
+      "keywords": [
+        "amfoor",
+        "amfora",
+        "drinken",
+        "horoscoop",
+        "koken",
+        "kruik",
+        "sterrenbeeld",
+        "waterman"
+      ]
+    },
+    "🌍": {
+      "name": "wereldbol met Europa-Afrika",
+      "keywords": [
+        "aarde",
+        "afrika",
+        "Afrika",
+        "europa",
+        "Europa",
+        "wereld",
+        "wereldbol",
+        "wereldbol met Europa-Afrika"
+      ]
+    },
+    "🌐": {
+      "name": "wereldbol met meridianen",
+      "keywords": [
+        "aarde",
+        "internet",
+        "meridianen",
+        "wereld",
+        "wereldbol",
+        "wereldbol met meridianen",
+        "www"
+      ]
+    },
+    "🗺️": {
+      "name": "wereldkaart",
+      "keywords": [
+        "kaart",
+        "wereld",
+        "wereldkaart"
+      ]
+    },
+    "🗾": {
+      "name": "kaart van Japan",
+      "keywords": [
+        "japan",
+        "Japan",
+        "kaart",
+        "kaart van japan",
+        "kaart van Japan"
+      ]
+    },
+    "🧭": {
+      "name": "kompas",
+      "keywords": [
+        "kompas",
+        "magnetisch",
+        "navigatie",
+        "oriëntatielopen",
+        "oriënteringslopen",
+        "richting"
+      ]
+    },
+    "🏔️": {
+      "name": "berg met besneeuwde toppen",
+      "keywords": [
+        "berg",
+        "berg met besneeuwde toppen",
+        "koud",
+        "sneeuw"
+      ]
+    },
+    "⛰️": {
+      "name": "berg",
+      "keywords": [
+        "berg"
+      ]
+    },
+    "🌋": {
+      "name": "vulkaan",
+      "keywords": [
+        "berg",
+        "lava",
+        "magma",
+        "natuur",
+        "vulkaan",
+        "vulkaanuitbarsting"
+      ]
+    },
+    "🗻": {
+      "name": "berg Fuji",
+      "keywords": [
+        "berg",
+        "fuji",
+        "Fuji",
+        "natuur",
+        "vulkaan"
+      ]
+    },
+    "🏕️": {
+      "name": "kamperen",
+      "keywords": [
+        "camping",
+        "kamperen",
+        "tent"
+      ]
+    },
+    "🏖️": {
+      "name": "strand met parasol",
+      "keywords": [
+        "parasol",
+        "strand",
+        "strand met parasol"
+      ]
+    },
+    "🏝️": {
+      "name": "onbewoond eiland",
+      "keywords": [
+        "eiland",
+        "onbewoond"
+      ]
+    },
+    "🏛️": {
+      "name": "klassiek gebouw",
+      "keywords": [
+        "gebouw",
+        "historisch gebouw",
+        "klassiek",
+        "klassieke oudheid",
+        "renaissance",
+        "rome",
+        "zuilen"
+      ]
+    },
+    "🏗️": {
+      "name": "woningbouw",
+      "keywords": [
+        "bouw",
+        "bouwen",
+        "haven",
+        "hijskraan",
+        "woningbouw"
+      ]
+    },
+    "🧱": {
+      "name": "baksteen",
+      "keywords": [
+        "baksteen",
+        "bakstenen",
+        "cement",
+        "gemetseld",
+        "klei",
+        "metselen",
+        "mortel",
+        "muur",
+        "steen"
+      ]
+    },
+    "🛖": {
+      "name": "hut",
+      "keywords": [
+        "huis",
+        "hut",
+        "joert",
+        "onderdak",
+        "ronde hut",
+        "strand",
+        "woning"
+      ]
+    },
+    "🏠": {
+      "name": "huis",
+      "keywords": [
+        "gebouw",
+        "huis",
+        "settelen",
+        "thuis",
+        "villa",
+        "voorstad",
+        "vrijstaande woning"
+      ]
+    },
+    "🏡": {
+      "name": "huis met tuin",
+      "keywords": [
+        "gebouw",
+        "huis",
+        "huis met tuin",
+        "huisje boompje beestje",
+        "settelen",
+        "thuis",
+        "tuin",
+        "voorstad",
+        "vrijstaande woning"
+      ]
+    },
+    "🏢": {
+      "name": "kantoorgebouw",
+      "keywords": [
+        "gebouw",
+        "kantoorbaan",
+        "kantoorgebouw",
+        "werk"
+      ]
+    },
+    "🏥": {
+      "name": "ziekenhuis",
+      "keywords": [
+        "dokter",
+        "gebouw",
+        "medicijnen",
+        "ziekenhuis"
+      ]
+    },
+    "🏦": {
+      "name": "bank",
+      "keywords": [
+        "bank",
+        "gebouw"
+      ]
+    },
+    "🏨": {
+      "name": "hotel",
+      "keywords": [
+        "gebouw",
+        "hotel"
+      ]
+    },
+    "🏪": {
+      "name": "supermarkt",
+      "keywords": [
+        "boodschappen",
+        "gebouw",
+        "supermarkt",
+        "winkel"
+      ]
+    },
+    "🏫": {
+      "name": "school",
+      "keywords": [
+        "gebouw",
+        "school"
+      ]
+    },
+    "🏭": {
+      "name": "fabriek",
+      "keywords": [
+        "fabriek",
+        "gebouw"
+      ]
+    },
+    "🏯": {
+      "name": "Japans kasteel",
+      "keywords": [
+        "gebouw",
+        "Japans",
+        "kasteel"
+      ]
+    },
+    "🏰": {
+      "name": "kasteel",
+      "keywords": [
+        "europees",
+        "gebouw",
+        "kasteel",
+        "middeleeuwen"
+      ]
+    },
+    "🗼": {
+      "name": "Tokio-toren",
+      "keywords": [
+        "tokio",
+        "Tokio",
+        "Tokio-toren",
+        "tokiotoren",
+        "toren"
+      ]
+    },
+    "🗽": {
+      "name": "vrijheidsbeeld",
+      "keywords": [
+        "beeld",
+        "new york",
+        "nyc",
+        "vrijheid",
+        "vrijheidsbeeld"
+      ]
+    },
+    "⛪": {
+      "name": "kerk",
+      "keywords": [
+        "christelijk",
+        "geloof",
+        "kapel",
+        "kerk",
+        "kruis",
+        "religie"
+      ]
+    },
+    "🕌": {
+      "name": "moskee",
+      "keywords": [
+        "geloof",
+        "islam",
+        "moskee",
+        "moslim",
+        "religie"
+      ]
+    },
+    "🛕": {
+      "name": "hindoetempel",
+      "keywords": [
+        "gebouw",
+        "geloof",
+        "goden",
+        "hindoe",
+        "hindoetempel",
+        "India",
+        "religie",
+        "tempel"
+      ]
+    },
+    "🕍": {
+      "name": "synagoge",
+      "keywords": [
+        "geloof",
+        "jodendom",
+        "jood",
+        "joods",
+        "religie",
+        "synagoge",
+        "tempel"
+      ]
+    },
+    "⛩️": {
+      "name": "shinto-tempel",
+      "keywords": [
+        "geloof",
+        "japans",
+        "poort",
+        "religie",
+        "shinto",
+        "shinto-tempel",
+        "tempel",
+        "torii"
+      ]
+    },
+    "🕋": {
+      "name": "kaäba",
+      "keywords": [
+        "bedevaart",
+        "geloof",
+        "islam",
+        "kaäba",
+        "mekka",
+        "moslim",
+        "religie"
+      ]
+    },
+    "⛲": {
+      "name": "fontein",
+      "keywords": [
+        "fontein"
+      ]
+    },
+    "⛺": {
+      "name": "tent",
+      "keywords": [
+        "kamperen",
+        "tent"
+      ]
+    },
+    "♨️": {
+      "name": "warmwaterbronnen",
+      "keywords": [
+        "bronnen",
+        "stomend",
+        "warm",
+        "warmwaterbronnen"
+      ]
+    },
+    "🎠": {
+      "name": "draaimolenpaard",
+      "keywords": [
+        "carrousel",
+        "draaimolen",
+        "draaimolenpaard",
+        "kermis",
+        "paard",
+        "pretpark"
+      ]
+    },
+    "🛝": {
+      "name": "glijbaan",
+      "keywords": [
+        "glijbaan",
+        "glijden",
+        "kind",
+        "kinderen",
+        "speeltuin",
+        "spelen"
+      ]
+    },
+    "🎡": {
+      "name": "reuzenrad",
+      "keywords": [
+        "kermis",
+        "pretpark",
+        "rad",
+        "reuzenrad"
+      ]
+    },
+    "🎢": {
+      "name": "achtbaan",
+      "keywords": [
+        "achtbaan",
+        "baan",
+        "pretpark"
+      ]
+    },
+    "💈": {
+      "name": "kapperspaal",
+      "keywords": [
+        "kapper",
+        "kapperspaal",
+        "kapsel",
+        "paal"
+      ]
+    },
+    "🎪": {
+      "name": "circustent",
+      "keywords": [
+        "circus",
+        "circustent",
+        "tent"
+      ]
+    },
+    "🚂": {
+      "name": "locomotief",
+      "keywords": [
+        "locomotief",
+        "reizen",
+        "spoor",
+        "spoorweg",
+        "stoom",
+        "stoomtrein",
+        "trein",
+        "vervoermiddel",
+        "voertuig"
+      ]
+    },
+    "🚃": {
+      "name": "treinwagon",
+      "keywords": [
+        "elektrisch",
+        "spoor",
+        "tram",
+        "trein",
+        "treinwagon",
+        "trolleybus",
+        "vervoermiddel",
+        "voertuig",
+        "wagon"
+      ]
+    },
+    "🚄": {
+      "name": "hogesnelheidstrein",
+      "keywords": [
+        "hogesnelheidstrein",
+        "hsl",
+        "shinkansen",
+        "snelheid",
+        "spoor",
+        "trein",
+        "ultrasnel",
+        "vervoermiddel",
+        "voertuig"
+      ]
+    },
+    "🚇": {
+      "name": "metro",
+      "keywords": [
+        "metro",
+        "ondergrondse",
+        "vervoermiddel",
+        "voertuig"
+      ]
+    },
+    "🚌": {
+      "name": "bus",
+      "keywords": [
+        "bus",
+        "schoolbus",
+        "vervoermiddel",
+        "voertuig"
+      ]
+    },
+    "🚑": {
+      "name": "ambulance",
+      "keywords": [
+        "ambulance",
+        "hulpdienst",
+        "spoed",
+        "vervoermiddel",
+        "voertuig"
+      ]
+    },
+    "🚒": {
+      "name": "brandweerauto",
+      "keywords": [
+        "auto",
+        "brand",
+        "brandweerauto",
+        "hulpdienst",
+        "spoed",
+        "vervoermiddel",
+        "voertuig"
+      ]
+    },
+    "🚕": {
+      "name": "taxi",
+      "keywords": [
+        "taxi",
+        "taxichauffeur",
+        "uber",
+        "vervoermiddel",
+        "voertuig"
+      ]
+    },
+    "🚗": {
+      "name": "auto",
+      "keywords": [
+        "auto",
+        "automobiel",
+        "rijden",
+        "vervoermiddel",
+        "voertuig"
+      ]
+    },
+    "🚙": {
+      "name": "SUV",
+      "keywords": [
+        "auto",
+        "kampeerauto",
+        "recreatie",
+        "rijden",
+        "suv",
+        "SUV",
+        "vervoermiddel",
+        "voertuig"
+      ]
+    },
+    "🛻": {
+      "name": "pick-up",
+      "keywords": [
+        "auto",
+        "bestelbak",
+        "laadbak",
+        "laadbakwagen",
+        "pick-up",
+        "transport",
+        "truck",
+        "vervoer",
+        "vracht",
+        "wagen"
+      ]
+    },
+    "🚚": {
+      "name": "bestelbus",
+      "keywords": [
+        "bestelbus",
+        "bestelwagen",
+        "bezorging",
+        "bus",
+        "levering",
+        "pakketdienst",
+        "truck",
+        "vervoermiddel",
+        "voertuig"
+      ]
+    },
+    "🚜": {
+      "name": "tractor",
+      "keywords": [
+        "tractor",
+        "trekker",
+        "vervoermiddel",
+        "voertuig"
+      ]
+    },
+    "🏎️": {
+      "name": "raceauto",
+      "keywords": [
+        "auto",
+        "formule 1",
+        "raceauto",
+        "racen",
+        "racewagen",
+        "vervoermiddel",
+        "voertuig",
+        "vroem"
+      ]
+    },
+    "🏍️": {
+      "name": "motor",
+      "keywords": [
+        "motor",
+        "racen",
+        "vervoermiddel",
+        "voertuig"
+      ]
+    },
+    "🛵": {
+      "name": "scooter",
+      "keywords": [
+        "brommer",
+        "motor",
+        "scooter",
+        "vervoermiddel",
+        "voertuig"
+      ]
+    },
+    "🚲": {
+      "name": "fiets",
+      "keywords": [
+        "fiets",
+        "fietsen",
+        "rijwiel",
+        "spinning",
+        "vervoermiddel",
+        "voertuig"
+      ]
+    },
+    "🛴": {
+      "name": "step",
+      "keywords": [
+        "autoped",
+        "step",
+        "steppen",
+        "vervoermiddel",
+        "voertuig"
+      ]
+    },
+    "🛹": {
+      "name": "skateboard",
+      "keywords": [
+        "board",
+        "deck",
+        "skate",
+        "skateboard",
+        "skaten",
+        "skater",
+        "wielen"
+      ]
+    },
+    "🛼": {
+      "name": "rolschaats",
+      "keywords": [
+        "hobby",
+        "rollerskate",
+        "rollerskates",
+        "rolschaats",
+        "rolschaatsen",
+        "schaats",
+        "skaten",
+        "sport",
+        "sporten"
+      ]
+    },
+    "🛢️": {
+      "name": "olievat",
+      "keywords": [
+        "olie",
+        "olievat",
+        "vat"
+      ]
+    },
+    "⛽": {
+      "name": "benzinestation",
+      "keywords": [
+        "benzine",
+        "benzinepomp",
+        "benzinestation",
+        "brandstof",
+        "pomp",
+        "station"
+      ]
+    },
+    "🛞": {
+      "name": "wiel",
+      "keywords": [
+        "auto",
+        "band",
+        "cirkel",
+        "draaien",
+        "velg",
+        "velgen",
+        "vervoer",
+        "voertuig",
+        "wiel"
+      ]
+    },
+    "🚨": {
+      "name": "zwaailicht van politieauto",
+      "keywords": [
+        "alarm",
+        "auto",
+        "baken",
+        "draaiend",
+        "licht",
+        "noodgeval",
+        "politie",
+        "sirene",
+        "waarschuwing"
+      ]
+    },
+    "🚦": {
+      "name": "verticaal verkeerslicht",
+      "keywords": [
+        "kruising",
+        "licht",
+        "stoplicht",
+        "verkeer",
+        "verkeerslicht",
+        "verkeerslichten",
+        "verticaal verkeerslicht"
+      ]
+    },
+    "🛑": {
+      "name": "stopteken",
+      "keywords": [
+        "achthoekig",
+        "bord",
+        "stop",
+        "stopteken",
+        "verkeersteken"
+      ]
+    },
+    "🚧": {
+      "name": "bouwwerkzaamheden",
+      "keywords": [
+        "barricade",
+        "bouwwerkzaamheden",
+        "werkzaamheden"
+      ]
+    },
+    "⚓": {
+      "name": "anker",
+      "keywords": [
+        "anker",
+        "hulpmiddel",
+        "schip"
+      ]
+    },
+    "🛟": {
+      "name": "reddingsboei",
+      "keywords": [
+        "boei",
+        "drijven",
+        "redden",
+        "reddingsboei",
+        "reddingsgordel",
+        "reddingsvest",
+        "veiligheid",
+        "verdrinken",
+        "zwemmen"
+      ]
+    },
+    "⛵": {
+      "name": "zeilboot",
+      "keywords": [
+        "boot",
+        "jacht",
+        "jachthaven",
+        "vaartuig",
+        "vervoermiddel",
+        "zee",
+        "zeilboot"
+      ]
+    },
+    "🚤": {
+      "name": "speedboot",
+      "keywords": [
+        "boot",
+        "jacht",
+        "luxe",
+        "miljonair",
+        "reizen",
+        "speedboot",
+        "vaartuig",
+        "zomer"
+      ]
+    },
+    "🛳️": {
+      "name": "passagiersschip",
+      "keywords": [
+        "passagier",
+        "passagiersschip",
+        "schip",
+        "veerboot",
+        "vervoermiddel",
+        "voertuig"
+      ]
+    },
+    "🚢": {
+      "name": "schip",
+      "keywords": [
+        "boot",
+        "passagier",
+        "passagiersschip",
+        "schip",
+        "titanic",
+        "vaartuig"
+      ]
+    },
+    "✈️": {
+      "name": "vliegtuig",
+      "keywords": [
+        "luchtvaartuig",
+        "reizen",
+        "vervoermiddel",
+        "vliegen",
+        "vliegmachine",
+        "vliegtuig"
+      ]
+    },
+    "💺": {
+      "name": "stoel",
+      "keywords": [
+        "stoel",
+        "treinstoel",
+        "vliegtuigstoel"
+      ]
+    },
+    "🚁": {
+      "name": "helikopter",
+      "keywords": [
+        "helikopter",
+        "roflcopter",
+        "roflkopter",
+        "vervoermiddel",
+        "voertuig"
+      ]
+    },
+    "🚀": {
+      "name": "raket",
+      "keywords": [
+        "lancering",
+        "raket",
+        "ruimte",
+        "ruimtereis",
+        "vervoermiddel",
+        "voertuig"
+      ]
+    },
+    "🛸": {
+      "name": "vliegende schotel",
+      "keywords": [
+        "aliens",
+        "buitenaards",
+        "buitenaardse wezens",
+        "science fiction",
+        "ufo",
+        "UFO",
+        "vervoermiddel",
+        "vliegende schotel",
+        "voertuig"
+      ]
+    },
+    "🛎️": {
+      "name": "piccolobel",
+      "keywords": [
+        "balie",
+        "baliebel",
+        "bel",
+        "hotel",
+        "piccolobel"
+      ]
+    },
+    "🧳": {
+      "name": "bagage",
+      "keywords": [
+        "bagage",
+        "inpakken",
+        "koffer",
+        "reis",
+        "reizen",
+        "rolkoffer",
+        "trolley"
+      ]
+    },
+    "⌛": {
+      "name": "zandloper",
+      "keywords": [
+        "tijd",
+        "timer",
+        "zand",
+        "zandloper"
+      ]
+    },
+    "⌚": {
+      "name": "horloge",
+      "keywords": [
+        "horloge",
+        "klok",
+        "polshorloge",
+        "tijd"
+      ]
+    },
+    "⏰": {
+      "name": "wekker",
+      "keywords": [
+        "alarm",
+        "klok",
+        "tijd",
+        "wekker"
+      ]
+    },
+    "⏱️": {
+      "name": "stopwatch",
+      "keywords": [
+        "klok",
+        "stopwatch",
+        "timer"
+      ]
+    },
+    "🕰️": {
+      "name": "klok",
+      "keywords": [
+        "klok",
+        "pendule",
+        "staande klok",
+        "tijd"
+      ]
+    },
+    "🕐": {
+      "name": "één uur",
+      "keywords": [
+        "00",
+        "01:00",
+        "1",
+        "1:00",
+        "13:00",
+        "één",
+        "klok",
+        "tijd",
+        "uur"
+      ]
+    },
+    "🌕": {
+      "name": "volle maan",
+      "keywords": [
+        "avond",
+        "maan",
+        "ruimte",
+        "vol",
+        "volle maan"
+      ]
+    },
+    "🌙": {
+      "name": "maansikkel",
+      "keywords": [
+        "avond",
+        "halvemaan",
+        "maan",
+        "maansikkel",
+        "ramadan",
+        "ruimte",
+        "sikkel",
+        "slapen"
+      ]
+    },
+    "🌡️": {
+      "name": "thermometer",
+      "keywords": [
+        "koorts",
+        "thermometer",
+        "weer"
+      ]
+    },
+    "☀️": {
+      "name": "zon",
+      "keywords": [
+        "felle zon",
+        "helder",
+        "stralen",
+        "weer",
+        "zon",
+        "zonnig"
+      ]
+    },
+    "🌞": {
+      "name": "zon met gezicht",
+      "keywords": [
+        "gezicht",
+        "helder",
+        "warm",
+        "weer",
+        "zon",
+        "zon met gezicht",
+        "zonneschijn"
+      ]
+    },
+    "🪐": {
+      "name": "planeet met ringen",
+      "keywords": [
+        "heelal",
+        "planeet",
+        "planeet met ringen",
+        "ringen",
+        "ruimte",
+        "Saturnus",
+        "zonnestelsel",
+        "zwaarmoedig"
+      ]
+    },
+    "⭐": {
+      "name": "witte middelgrote ster",
+      "keywords": [
+        "ster",
+        "witte middelgrote ster"
+      ]
+    },
+    "🌟": {
+      "name": "stralende ster",
+      "keywords": [
+        "fonkelen",
+        "fonkelend",
+        "schitteren",
+        "schitterend",
+        "schittering",
+        "ster",
+        "stralen",
+        "stralende ster"
+      ]
+    },
+    "☁️": {
+      "name": "wolk",
+      "keywords": [
+        "weer",
+        "wolk"
+      ]
+    },
+    "⛅": {
+      "name": "zon achter wolk",
+      "keywords": [
+        "weer",
+        "wolk",
+        "zon",
+        "zon achter wolk",
+        "zon achter wolken"
+      ]
+    },
+    "⛈️": {
+      "name": "wolk met bliksem en regen",
+      "keywords": [
+        "onweer",
+        "regen",
+        "weer",
+        "wolk",
+        "wolk met bliksem en regen"
+      ]
+    },
+    "🌧️": {
+      "name": "wolk met regen",
+      "keywords": [
+        "regen",
+        "weer",
+        "wolk",
+        "wolk met regen"
+      ]
+    },
+    "🌪️": {
+      "name": "tornado",
+      "keywords": [
+        "storm",
+        "tornado",
+        "weer",
+        "wervelwind",
+        "wolk"
+      ]
+    },
+    "🌀": {
+      "name": "cycloon",
+      "keywords": [
+        "cycloon",
+        "duizelig",
+        "spiraal",
+        "twister",
+        "tyfoon",
+        "weer"
+      ]
+    },
+    "🌈": {
+      "name": "regenboog",
+      "keywords": [
+        "genderqueer",
+        "glbt",
+        "homoseksueel",
+        "lesbisch",
+        "lgbt",
+        "lgbtq",
+        "lgtbqia",
+        "lhbt",
+        "natuur",
+        "pride",
+        "queer",
+        "regen",
+        "regenboog",
+        "transgender",
+        "weer"
+      ]
+    },
+    "🌂": {
+      "name": "ingevouwen paraplu",
+      "keywords": [
+        "dichte paraplu",
+        "ingevouwen paraplu",
+        "kleding",
+        "paraplu",
+        "regen",
+        "weer"
+      ]
+    },
+    "☂️": {
+      "name": "paraplu",
+      "keywords": [
+        "geopende paraplu",
+        "kleding",
+        "open paraplu",
+        "paraplu",
+        "regen",
+        "weer"
+      ]
+    },
+    "⚡": {
+      "name": "hoog voltage",
+      "keywords": [
+        "bliksem",
+        "donderslag",
+        "elektriciteit",
+        "elektrisch",
+        "gevaar",
+        "hoog voltage",
+        "schok",
+        "spanning",
+        "voltage"
+      ]
+    },
+    "❄️": {
+      "name": "sneeuwvlok",
+      "keywords": [
+        "koud",
+        "sneeuw",
+        "sneeuwvlok",
+        "weer"
+      ]
+    },
+    "⛄": {
+      "name": "sneeuwpop zonder sneeuwvlokken",
+      "keywords": [
+        "koud",
+        "sneeuw",
+        "sneeuwpop",
+        "sneeuwpop zonder sneeuwvlokken"
+      ]
+    },
+    "☄️": {
+      "name": "komeet",
+      "keywords": [
+        "komeet",
+        "ruimte",
+        "vuurbal"
+      ]
+    },
+    "🔥": {
+      "name": "vuur",
+      "keywords": [
+        "brand",
+        "heet",
+        "hulpmiddel",
+        "vlam",
+        "vuur"
+      ]
+    },
+    "💧": {
+      "name": "druppel",
+      "keywords": [
+        "bedroefd",
+        "druppel",
+        "koud",
+        "strip",
+        "water",
+        "weer",
+        "zweet"
+      ]
+    },
+    "🌊": {
+      "name": "golf",
+      "keywords": [
+        "golf",
+        "golfsurfen",
+        "golven",
+        "Japan",
+        "Kanagawa",
+        "oceaan",
+        "surfen",
+        "water",
+        "weer",
+        "zee"
+      ]
+    },
+    "🎃": {
+      "name": "halloweenlantaarn",
+      "keywords": [
+        "feest",
+        "halloween",
+        "halloweenlantaarn",
+        "lampion",
+        "lantaarn",
+        "pompoen",
+        "pompoenlantaarn",
+        "sint maarten"
+      ]
+    },
+    "🎄": {
+      "name": "kerstboom",
+      "keywords": [
+        "boom",
+        "feest",
+        "kerstboom",
+        "kerstmis",
+        "Kerstmis",
+        "viering"
+      ]
+    },
+    "✨": {
+      "name": "sterretjes",
+      "keywords": [
+        "*",
+        "glinsteren",
+        "glinsterende sterren",
+        "ster",
+        "sterretjes"
+      ]
+    },
+    "🎈": {
+      "name": "ballon",
+      "keywords": [
+        "ballon",
+        "feest",
+        "jarig",
+        "verjaardag",
+        "vieren",
+        "viering"
+      ]
+    },
+    "🎉": {
+      "name": "feestknaller",
+      "keywords": [
+        "confetti",
+        "feest",
+        "feestknaller",
+        "hoera",
+        "jarig",
+        "knaller",
+        "partypopper",
+        "verjaardag",
+        "viering"
+      ]
+    },
+    "🎀": {
+      "name": "strik",
+      "keywords": [
+        "feest",
+        "roze lint",
+        "strik",
+        "viering"
+      ]
+    },
+    "🎁": {
+      "name": "ingepakt cadeau",
+      "keywords": [
+        "cadeau",
+        "cadeautje",
+        "cadeauverpakking met strik",
+        "feest",
+        "ingepakt",
+        "verpakking"
+      ]
+    },
+    "🎫": {
+      "name": "ticket",
+      "keywords": [
+        "entree",
+        "entreekaartje",
+        "kaartje",
+        "ticket",
+        "toegang",
+        "toegangskaartje"
+      ]
+    },
+    "🏆": {
+      "name": "trofee",
+      "keywords": [
+        "beker",
+        "gewonnen",
+        "kampioen",
+        "overwinning",
+        "prijs",
+        "trofee",
+        "winnaar"
+      ]
+    },
+    "🥇": {
+      "name": "medaille 1e plaats",
+      "keywords": [
+        "eerste",
+        "gewonnen",
+        "goud",
+        "gouden",
+        "medaille",
+        "medaille 1e plaats",
+        "winnaar"
+      ]
+    },
+    "🥈": {
+      "name": "medaille 2e plaats",
+      "keywords": [
+        "medaille",
+        "medaille 2e plaats",
+        "tweede",
+        "tweede plaats",
+        "zilver"
+      ]
+    },
+    "🥉": {
+      "name": "medaille 3e plaats",
+      "keywords": [
+        "brons",
+        "bronzen",
+        "derde",
+        "derde plaats",
+        "medaille",
+        "medaille 3e plaats"
+      ]
+    },
+    "⚽": {
+      "name": "voetbal",
+      "keywords": [
+        "bal",
+        "futsal",
+        "messi",
+        "ronaldo",
+        "sport",
+        "voetbal"
+      ]
+    },
+    "⚾": {
+      "name": "honkbal",
+      "keywords": [
+        "bal",
+        "honkbal",
+        "sport"
+      ]
+    },
+    "🏀": {
+      "name": "basketbal",
+      "keywords": [
+        "bal",
+        "basket",
+        "basketbal",
+        "sport"
+      ]
+    },
+    "🏐": {
+      "name": "volleybal",
+      "keywords": [
+        "bal",
+        "volleybal",
+        "wedstrijd"
+      ]
+    },
+    "🏈": {
+      "name": "american football",
+      "keywords": [
+        "american football",
+        "amerikaans",
+        "bal",
+        "football",
+        "sport",
+        "super bowl"
+      ]
+    },
+    "🎾": {
+      "name": "tennis",
+      "keywords": [
+        "bal",
+        "sport",
+        "tennis",
+        "tennisbal",
+        "tennisracket"
+      ]
+    },
+    "🎳": {
+      "name": "bowlen",
+      "keywords": [
+        "bal",
+        "bowlen",
+        "spel",
+        "sport",
+        "strike"
+      ]
+    },
+    "🏓": {
+      "name": "pingpong",
+      "keywords": [
+        "bal",
+        "bat",
+        "batje",
+        "pingpong",
+        "sport",
+        "tafeltennis",
+        "wedstrijd"
+      ]
+    },
+    "🏸": {
+      "name": "badminton",
+      "keywords": [
+        "badminton",
+        "badmintonracket en shuttle",
+        "pluimbal",
+        "racket",
+        "shuttle",
+        "sport",
+        "wedstrijd"
+      ]
+    },
+    "🥊": {
+      "name": "bokshandschoen",
+      "keywords": [
+        "boksen",
+        "bokshandschoen",
+        "handschoen",
+        "sport"
+      ]
+    },
+    "🥅": {
+      "name": "doelnet",
+      "keywords": [
+        "doel",
+        "doelnet",
+        "goal",
+        "net",
+        "sport"
+      ]
+    },
+    "⛳": {
+      "name": "vlag in hole",
+      "keywords": [
+        "golf",
+        "hole",
+        "sport",
+        "vlag in hole"
+      ]
+    },
+    "⛸️": {
+      "name": "schaats",
+      "keywords": [
+        "ijs",
+        "kunstschaatsen",
+        "schaats",
+        "schaatsen",
+        "sport",
+        "witte schaats"
+      ]
+    },
+    "🤿": {
+      "name": "duikbril",
+      "keywords": [
+        "duikbril",
+        "duiken",
+        "duikmasker",
+        "onder water",
+        "scuba",
+        "scubaduiken",
+        "snorkelen",
+        "vis",
+        "zee"
+      ]
+    },
+    "🎯": {
+      "name": "directe treffer",
+      "keywords": [
+        "bull’s eye",
+        "bullseye",
+        "darts",
+        "directe treffer",
+        "doelwit",
+        "in de roos",
+        "spel",
+        "sport",
+        "treffer",
+        "voltreffer"
+      ]
+    },
+    "🔫": {
+      "name": "waterpistool",
+      "keywords": [
+        "gereedschap",
+        "pistool",
+        "revolver",
+        "vuurwapen",
+        "wapen",
+        "water",
+        "waterpistool"
+      ]
+    },
+    "🎱": {
+      "name": "biljart",
+      "keywords": [
+        "8",
+        "8 ball",
+        "8-ball",
+        "acht",
+        "bal",
+        "biljart",
+        "pool",
+        "spel"
+      ]
+    },
+    "🔮": {
+      "name": "kristallen bol",
+      "keywords": [
+        "bol",
+        "glazen bol",
+        "kristal",
+        "kristallen bol",
+        "magie",
+        "sprookje",
+        "toekomst voorspellen",
+        "waarzeggen",
+        "waarzeggerij"
+      ]
+    },
+    "🪄": {
+      "name": "toverstok",
+      "keywords": [
+        "goochelaar",
+        "goochelen",
+        "heks",
+        "magie",
+        "magiër",
+        "tovenaar",
+        "toveren",
+        "toverstok",
+        "tovertruc"
+      ]
+    },
+    "🎮": {
+      "name": "videogame",
+      "keywords": [
+        "controller",
+        "game",
+        "gamecontroller",
+        "playstation",
+        "spel",
+        "videogame",
+        "videospel",
+        "xbox"
+      ]
+    },
+    "🕹️": {
+      "name": "joystick",
+      "keywords": [
+        "game",
+        "joystick",
+        "videogame",
+        "videospel"
+      ]
+    },
+    "🎰": {
+      "name": "fruitautomaat",
+      "keywords": [
+        "casino",
+        "eenarmige bandiet",
+        "fruitautomaat",
+        "gokkast",
+        "gokken",
+        "spel"
+      ]
+    },
+    "🎲": {
+      "name": "dobbelsteen",
+      "keywords": [
+        "dobbelen",
+        "dobbelsteen",
+        "dobbelstenen",
+        "spel",
+        "yahtzee"
+      ]
+    },
+    "🧩": {
+      "name": "puzzelstukje",
+      "keywords": [
+        "aanwijzing",
+        "gekoppeld",
+        "legpuzzel",
+        "passen",
+        "passend",
+        "puzzel",
+        "puzzelstukje",
+        "schakel",
+        "stukje"
+      ]
+    },
+    "🧸": {
+      "name": "teddybeer",
+      "keywords": [
+        "beer",
+        "beertje",
+        "knuffel",
+        "knuffelbeer",
+        "knuffelbeest",
+        "pluche",
+        "speelgoed",
+        "speeltje",
+        "teddy beer",
+        "teddybeer"
+      ]
+    },
+    "🪩": {
+      "name": "spiegelbal",
+      "keywords": [
+        "dans",
+        "dansen",
+        "disco",
+        "discobal",
+        "feest",
+        "glitter",
+        "spiegelbal"
+      ]
+    },
+    "♠️": {
+      "name": "schoppen",
+      "keywords": [
+        "kaart",
+        "kaarten",
+        "schoppen",
+        "spel"
+      ]
+    },
+    "♥️": {
+      "name": "harten",
+      "keywords": [
+        "hart",
+        "harten",
+        "kaart",
+        "kaarten",
+        "spel"
+      ]
+    },
+    "♦️": {
+      "name": "ruiten",
+      "keywords": [
+        "kaart",
+        "kaarten",
+        "ruit",
+        "ruiten",
+        "spel",
+        "vorm"
+      ]
+    },
+    "♣️": {
+      "name": "klaveren",
+      "keywords": [
+        "kaart",
+        "kaarten",
+        "klaver",
+        "klaveren",
+        "spel"
+      ]
+    },
+    "♟️": {
+      "name": "pion",
+      "keywords": [
+        "pion",
+        "schaken",
+        "slachtoffer",
+        "waardeloos"
+      ]
+    },
+    "🎭": {
+      "name": "toneelkunsten",
+      "keywords": [
+        "kunst",
+        "masker",
+        "maskers",
+        "optreden",
+        "theater",
+        "toneel",
+        "toneelkunst",
+        "toneelkunsten",
+        "treurspel"
+      ]
+    },
+    "🖼️": {
+      "name": "lijst met afbeelding",
+      "keywords": [
+        "afbeelding",
+        "kunst",
+        "lijst",
+        "lijst met afbeelding",
+        "museum",
+        "schilderij"
+      ]
+    },
+    "🎨": {
+      "name": "schilderspalet",
+      "keywords": [
+        "creatief",
+        "kleurrijk",
+        "kunst",
+        "kunstzinnig",
+        "museum",
+        "palet",
+        "schilderen",
+        "schilderij",
+        "schilderspalet"
+      ]
+    },
+    "🧵": {
+      "name": "garen",
+      "keywords": [
+        "draad",
+        "garen",
+        "klos",
+        "naaien",
+        "naald"
+      ]
+    },
+    "🧶": {
+      "name": "wol",
+      "keywords": [
+        "bal",
+        "bol",
+        "breien",
+        "draad",
+        "haken",
+        "wol"
+      ]
+    },
+    "👓": {
+      "name": "bril",
+      "keywords": [
+        "bijziend",
+        "bril",
+        "brillen",
+        "kleding",
+        "oog",
+        "verziend",
+        "zien",
+        "zonnebril"
+      ]
+    },
+    "🕶️": {
+      "name": "zonnebril",
+      "keywords": [
+        "bril",
+        "brillen",
+        "donker",
+        "oog",
+        "zonnebril"
+      ]
+    },
+    "🥽": {
+      "name": "oogscherm",
+      "keywords": [
+        "bescherming",
+        "bril",
+        "duik",
+        "duiken",
+        "lassen",
+        "oog",
+        "zwemmen"
+      ]
+    },
+    "👕": {
+      "name": "T-shirt",
+      "keywords": [
+        "blauw shirt",
+        "kleding",
+        "kraag",
+        "poloshirt",
+        "shirt",
+        "T-shirt",
+        "vrijetijdskleding"
+      ]
+    },
+    "👖": {
+      "name": "spijkerbroek",
+      "keywords": [
+        "broek",
+        "jeans",
+        "kleding",
+        "spijkerbroek"
+      ]
+    },
+    "👗": {
+      "name": "jurk",
+      "keywords": [
+        "blauwe jurk",
+        "dansen",
+        "jurk",
+        "kleding",
+        "kledingstuk",
+        "sjiek",
+        "winkelen"
+      ]
+    },
+    "👜": {
+      "name": "handtas",
+      "keywords": [
+        "accessoire",
+        "handtas",
+        "kleding",
+        "modieuze tas",
+        "tas",
+        "winkelen"
+      ]
+    },
+    "🛍️": {
+      "name": "boodschappentassen",
+      "keywords": [
+        "boodschappentassen",
+        "hotel",
+        "tas",
+        "winkelen"
+      ]
+    },
+    "🎒": {
+      "name": "schooltas",
+      "keywords": [
+        "boekentas",
+        "rugzak",
+        "school",
+        "schooltas",
+        "tas"
+      ]
+    },
+    "👟": {
+      "name": "sportschoen",
+      "keywords": [
+        "atletiek",
+        "hardlopen",
+        "kleding",
+        "rennen",
+        "schoen",
+        "sneaker",
+        "sporten",
+        "sportschoen"
+      ]
+    },
+    "👠": {
+      "name": "schoen met hoge hak",
+      "keywords": [
+        "hak",
+        "hoge hak",
+        "kleding",
+        "naaldhak",
+        "pump",
+        "schoen",
+        "schoen met hoge hak",
+        "stiletto",
+        "vrouw"
+      ]
+    },
+    "👑": {
+      "name": "kroon",
+      "keywords": [
+        "adel",
+        "game of thrones",
+        "kleding",
+        "koning",
+        "koningin",
+        "koninklijk",
+        "kroon",
+        "middeleeuwen",
+        "vorst",
+        "vorstin"
+      ]
+    },
+    "🎩": {
+      "name": "hoge hoed",
+      "keywords": [
+        "fancy",
+        "formeel",
+        "goochelen",
+        "goochelhoed",
+        "hoed",
+        "hoge hoed",
+        "hoog",
+        "kleding"
+      ]
+    },
+    "🎓": {
+      "name": "academische baret",
+      "keywords": [
+        "afstuderen",
+        "baret",
+        "feest",
+        "hoed",
+        "kleding",
+        "opleiding",
+        "student"
+      ]
+    },
+    "🧢": {
+      "name": "pet",
+      "keywords": [
+        "baseballcap",
+        "hoofddeksel",
+        "pet"
+      ]
+    },
+    "💄": {
+      "name": "lippenstift",
+      "keywords": [
+        "afspraakje",
+        "cosmetica",
+        "date",
+        "lippenstift",
+        "make-up",
+        "opmaken"
+      ]
+    },
+    "💍": {
+      "name": "ring",
+      "keywords": [
+        "bruiloft",
+        "diamant",
+        "glinsteren",
+        "ring",
+        "romantiek",
+        "schitteren",
+        "trouwen",
+        "verloving"
+      ]
+    },
+    "💎": {
+      "name": "edelsteen",
+      "keywords": [
+        "bruiloft",
+        "diamant",
+        "edelsteen",
+        "juweel",
+        "romantiek",
+        "trouwen",
+        "verloving"
+      ]
+    },
+    "🔇": {
+      "name": "speaker uit",
+      "keywords": [
+        "dempen",
+        "geen geluid",
+        "geluid uit",
+        "luidspreker",
+        "mute",
+        "speaker",
+        "speaker uit",
+        "stil",
+        "volume"
+      ]
+    },
+    "🔈": {
+      "name": "speaker",
+      "keywords": [
+        "laag volume",
+        "luidspreker",
+        "speaker",
+        "volume",
+        "zacht"
+      ]
+    },
+    "🔉": {
+      "name": "speaker aan",
+      "keywords": [
+        "gemiddeld volume",
+        "luidspreker",
+        "speaker",
+        "speaker aan",
+        "volume"
+      ]
+    },
+    "🔊": {
+      "name": "speaker luid",
+      "keywords": [
+        "hard",
+        "hoog volume",
+        "luid",
+        "luidspreker",
+        "speaker",
+        "volume"
+      ]
+    },
+    "📢": {
+      "name": "luidspreker",
+      "keywords": [
+        "luid",
+        "luidspreker",
+        "megafoon",
+        "toespraak",
+        "toespreken"
+      ]
+    },
+    "📣": {
+      "name": "megafoon",
+      "keywords": [
+        "communicatie",
+        "geluid",
+        "gouden megafoon",
+        "juichen",
+        "megafoon",
+        "versterken"
+      ]
+    },
+    "🔔": {
+      "name": "bel",
+      "keywords": [
+        "bel",
+        "kerkklok",
+        "klok",
+        "luiden",
+        "pauze",
+        "rinkelen"
+      ]
+    },
+    "🔕": {
+      "name": "doorgestreepte bel",
+      "keywords": [
+        "bel",
+        "dempen",
+        "doorgestreepte bel",
+        "geen",
+        "geen geluid",
+        "geluid uit",
+        "niet toegestaan",
+        "stil",
+        "stilte"
+      ]
+    },
+    "🎼": {
+      "name": "notenschift",
+      "keywords": [
+        "g-sleutel",
+        "muziek",
+        "notenschift",
+        "partituur"
+      ]
+    },
+    "🎵": {
+      "name": "muzieknoot",
+      "keywords": [
+        "achtste noten",
+        "muziek",
+        "muzieknoot",
+        "noot"
+      ]
+    },
+    "🎶": {
+      "name": "muzieknoten",
+      "keywords": [
+        "achtste noten",
+        "geluid",
+        "muziek",
+        "muzieknoten",
+        "noot",
+        "noten"
+      ]
+    },
+    "🎙️": {
+      "name": "studiomicrofoon",
+      "keywords": [
+        "microfoon",
+        "muziek",
+        "studio",
+        "studiomicrofoon"
+      ]
+    },
+    "🎤": {
+      "name": "microfoon",
+      "keywords": [
+        "geluid",
+        "karaoke",
+        "microfoon",
+        "muziek",
+        "zingen"
+      ]
+    },
+    "🎧": {
+      "name": "hoofdtelefoon",
+      "keywords": [
+        "geluid",
+        "hoofdtelefoon",
+        "koptelefoon",
+        "oordopje"
+      ]
+    },
+    "📻": {
+      "name": "radio",
+      "keywords": [
+        "entertainment",
+        "muziek",
+        "radio"
+      ]
+    },
+    "🎷": {
+      "name": "saxofoon",
+      "keywords": [
+        "instrument",
+        "muziek",
+        "muziekinstrument",
+        "sax",
+        "saxofoon"
+      ]
+    },
+    "🎺": {
+      "name": "trompet",
+      "keywords": [
+        "instrument",
+        "muziek",
+        "muziekinstrument",
+        "trompet"
+      ]
+    },
+    "🎸": {
+      "name": "gitaar",
+      "keywords": [
+        "gitaar",
+        "instrument",
+        "muziek",
+        "muziekinstrument",
+        "strat",
+        "stratocaster"
+      ]
+    },
+    "🎹": {
+      "name": "piano",
+      "keywords": [
+        "instrument",
+        "keyboard",
+        "muziek",
+        "muziekinstrument",
+        "piano"
+      ]
+    },
+    "🎻": {
+      "name": "viool",
+      "keywords": [
+        "instrument",
+        "muziek",
+        "muziekinstrument",
+        "stradivarius",
+        "viool"
+      ]
+    },
+    "📱": {
+      "name": "mobiele telefoon",
+      "keywords": [
+        "bellen",
+        "communicatie",
+        "mobiel",
+        "mobiele telefoon",
+        "smartphone",
+        "telefoon"
+      ]
+    },
+    "☎️": {
+      "name": "telefoon",
+      "keywords": [
+        "rode telefoon met hoorn",
+        "telefoon",
+        "vaste telefoon"
+      ]
+    },
+    "📞": {
+      "name": "telefoonhoorn",
+      "keywords": [
+        "bellen",
+        "hoorn",
+        "telefoon",
+        "telefoonhoorn"
+      ]
+    },
+    "📠": {
+      "name": "fax",
+      "keywords": [
+        "communicatie",
+        "fax",
+        "faxapparaat"
+      ]
+    },
+    "🔋": {
+      "name": "batterij",
+      "keywords": [
+        "batterij"
+      ]
+    },
+    "🪫": {
+      "name": "batterij bijna leeg",
+      "keywords": [
+        "accu",
+        "batterij",
+        "batterij bijna leeg",
+        "electronisch",
+        "lege batterij",
+        "weinig batterijlading"
+      ]
+    },
+    "🔌": {
+      "name": "stekker",
+      "keywords": [
+        "elektriciteit",
+        "elektrisch",
+        "stekker"
+      ]
+    },
+    "💻": {
+      "name": "laptop",
+      "keywords": [
+        "computer",
+        "laptop",
+        "notebook",
+        "pc",
+        "personal computer"
+      ]
+    },
+    "🖥️": {
+      "name": "desktop",
+      "keywords": [
+        "beeldscherm",
+        "computer",
+        "desktop",
+        "monitor"
+      ]
+    },
+    "🖨️": {
+      "name": "printer",
+      "keywords": [
+        "afdrukken",
+        "computer",
+        "printer"
+      ]
+    },
+    "⌨️": {
+      "name": "toetsenbord",
+      "keywords": [
+        "computer",
+        "toetsenbord"
+      ]
+    },
+    "🖱️": {
+      "name": "computermuis",
+      "keywords": [
+        "computer",
+        "computermuis",
+        "muis"
+      ]
+    },
+    "💾": {
+      "name": "floppydisk",
+      "keywords": [
+        "computer",
+        "disk",
+        "diskette",
+        "floppy",
+        "floppydisk",
+        "opslaan"
+      ]
+    },
+    "💿": {
+      "name": "optische schijf",
+      "keywords": [
+        "blu-ray",
+        "cd",
+        "cd-rom",
+        "computer",
+        "dvd",
+        "optisch",
+        "optische schijf",
+        "schijf"
+      ]
+    },
+    "🧮": {
+      "name": "abacus",
+      "keywords": [
+        "abacus",
+        "berekenen",
+        "optellen",
+        "rekenen",
+        "rekenmachine",
+        "tellen",
+        "telraam"
+      ]
+    },
+    "🎥": {
+      "name": "filmcamera",
+      "keywords": [
+        "bioscoop",
+        "bollywood",
+        "camera",
+        "film",
+        "filmcamera",
+        "hollywood",
+        "opnemen"
+      ]
+    },
+    "🎞️": {
+      "name": "filmframes",
+      "keywords": [
+        "bioscoop",
+        "film",
+        "filmframes",
+        "filmrol",
+        "films",
+        "frames"
+      ]
+    },
+    "🎬": {
+      "name": "klapbord",
+      "keywords": [
+        "actie",
+        "entertainment",
+        "film",
+        "filmklapper",
+        "filmset",
+        "klapbord",
+        "klapper",
+        "opnames"
+      ]
+    },
+    "📺": {
+      "name": "tv",
+      "keywords": [
+        "beeld",
+        "beeldbuis",
+        "televisie",
+        "tv"
+      ]
+    },
+    "📷": {
+      "name": "camera",
+      "keywords": [
+        "camera",
+        "fotocamera",
+        "fotograferen",
+        "selfie",
+        "snap",
+        "video"
+      ]
+    },
+    "📹": {
+      "name": "videocamera",
+      "keywords": [
+        "camcorder",
+        "camera",
+        "video",
+        "videocamera"
+      ]
+    },
+    "📼": {
+      "name": "videoband",
+      "keywords": [
+        "band",
+        "film",
+        "vhs",
+        "video",
+        "videoband"
+      ]
+    },
+    "🔍": {
+      "name": "vergrootglas naar links gericht",
+      "keywords": [
+        "gereedschap",
+        "glas",
+        "vergrootglas",
+        "vergrootglas naar links gericht",
+        "vergroten",
+        "zoeken"
+      ]
+    },
+    "🕯️": {
+      "name": "kaars",
+      "keywords": [
+        "kaars",
+        "kaarslicht",
+        "licht"
+      ]
+    },
+    "💡": {
+      "name": "gloeilamp",
+      "keywords": [
+        "elektrisch",
+        "gloeilamp",
+        "idee",
+        "lamp",
+        "licht",
+        "peertje",
+        "strip"
+      ]
+    },
+    "🔦": {
+      "name": "zaklamp",
+      "keywords": [
+        "elektrisch",
+        "lamp",
+        "licht",
+        "zaklamp",
+        "zaklantaarn"
+      ]
+    },
+    "📕": {
+      "name": "gesloten boek",
+      "keywords": [
+        "bibliotheek",
+        "boek",
+        "educatie",
+        "gesloten",
+        "lezen",
+        "onderwijs"
+      ]
+    },
+    "📖": {
+      "name": "geopend boek",
+      "keywords": [
+        "boek",
+        "geopend",
+        "open"
+      ]
+    },
+    "📚": {
+      "name": "boeken",
+      "keywords": [
+        "boek",
+        "boeken",
+        "educatie",
+        "kennis",
+        "lezen",
+        "onderwijs",
+        "opleiding",
+        "school"
+      ]
+    },
+    "📓": {
+      "name": "schrift",
+      "keywords": [
+        "notitieboek",
+        "schrift"
+      ]
+    },
+    "📜": {
+      "name": "rol",
+      "keywords": [
+        "papier",
+        "papierrol",
+        "perkament",
+        "perkamentpapier",
+        "rol"
+      ]
+    },
+    "📄": {
+      "name": "pagina met bovenzijde omhoog",
+      "keywords": [
+        "bladzijde",
+        "document",
+        "pagina",
+        "pagina met bovenzijde omhoog"
+      ]
+    },
+    "📰": {
+      "name": "krant",
+      "keywords": [
+        "dagblad",
+        "krant",
+        "nieuws",
+        "nieuwsblad",
+        "voorpagina",
+        "weekblad"
+      ]
+    },
+    "📑": {
+      "name": "bladwijzertabs",
+      "keywords": [
+        "bladwijzer",
+        "bladwijzers",
+        "bladwijzertabs",
+        "markering",
+        "tabbladen",
+        "tabs"
+      ]
+    },
+    "🔖": {
+      "name": "bladwijzer",
+      "keywords": [
+        "bladwijzer",
+        "markering"
+      ]
+    },
+    "🏷️": {
+      "name": "label",
+      "keywords": [
+        "label"
+      ]
+    },
+    "💰": {
+      "name": "zak met geld",
+      "keywords": [
+        "dollar",
+        "geld",
+        "geldzak",
+        "rijk",
+        "zak",
+        "zak met geld"
+      ]
+    },
+    "💵": {
+      "name": "dollarbiljet",
+      "keywords": [
+        "bankbiljet",
+        "biljet",
+        "briefgeld",
+        "briefje",
+        "dollar",
+        "dollarbiljet",
+        "geld",
+        "valuta"
+      ]
+    },
+    "💳": {
+      "name": "creditcard",
+      "keywords": [
+        "bank",
+        "betaalkaart",
+        "creditcard",
+        "geld",
+        "kaart",
+        "krediet",
+        "pinpas"
+      ]
+    },
+    "🧾": {
+      "name": "kassabon",
+      "keywords": [
+        "administratie",
+        "bewijs",
+        "boekhouden",
+        "boekhouding",
+        "bonnetje",
+        "factuur",
+        "kassabon",
+        "kwitantie",
+        "rekening"
+      ]
+    },
+    "✉️": {
+      "name": "envelop",
+      "keywords": [
+        "brief",
+        "e-mail",
+        "envelop",
+        "mail"
+      ]
+    },
+    "📧": {
+      "name": "e-mail",
+      "keywords": [
+        "brief",
+        "e-mail",
+        "mail",
+        "post"
+      ]
+    },
+    "📤": {
+      "name": "postvak uit",
+      "keywords": [
+        "brief",
+        "mail",
+        "post",
+        "postvak",
+        "postvak uit",
+        "uitgaand",
+        "verzonden"
+      ]
+    },
+    "📥": {
+      "name": "postvak in",
+      "keywords": [
+        "brief",
+        "inkomend",
+        "mail",
+        "ontvangen",
+        "post",
+        "postvak",
+        "postvak in"
+      ]
+    },
+    "📦": {
+      "name": "pakket",
+      "keywords": [
+        "bezorging",
+        "dichtgeplakte doos",
+        "doos",
+        "pakket",
+        "pakketje"
+      ]
+    },
+    "📫": {
+      "name": "gesloten brievenbus met vlaggetje omhoog",
+      "keywords": [
+        "brievenbus",
+        "gesloten",
+        "gesloten brievenbus met vlaggetje omhoog",
+        "post",
+        "postbus"
+      ]
+    },
+    "✏️": {
+      "name": "potlood",
+      "keywords": [
+        "potlood"
+      ]
+    },
+    "✒️": {
+      "name": "kroontjespen met zwarte punt",
+      "keywords": [
+        "kroontjespen met zwarte punt",
+        "pen",
+        "punt",
+        "vulpen"
+      ]
+    },
+    "🖌️": {
+      "name": "kwast",
+      "keywords": [
+        "kwast",
+        "penseel",
+        "schilderen",
+        "schilderkwast",
+        "verven"
+      ]
+    },
+    "📝": {
+      "name": "memo",
+      "keywords": [
+        "aantekeningen",
+        "memo",
+        "opmerkingen",
+        "papier",
+        "potlood"
+      ]
+    },
+    "💼": {
+      "name": "aktentas",
+      "keywords": [
+        "aktentas",
+        "aktetas",
+        "boekentas",
+        "handtas",
+        "kantoor"
+      ]
+    },
+    "📁": {
+      "name": "bestandsmap",
+      "keywords": [
+        "bestand",
+        "bestandsmap",
+        "map"
+      ]
+    },
+    "📂": {
+      "name": "geopende map",
+      "keywords": [
+        "bestand",
+        "geopende bestandsmap",
+        "geopende map",
+        "map",
+        "open"
+      ]
+    },
+    "🗂️": {
+      "name": "tabbladen",
+      "keywords": [
+        "index",
+        "kaart",
+        "kaarten",
+        "tabbladen"
+      ]
+    },
+    "📅": {
+      "name": "kalender",
+      "keywords": [
+        "datum",
+        "kalender"
+      ]
+    },
+    "📈": {
+      "name": "stijgende trend",
+      "keywords": [
+        "diagram",
+        "grafiek",
+        "grafiek met stijgende trend",
+        "groei",
+        "positief",
+        "stijgend",
+        "stijgende trend"
+      ]
+    },
+    "📉": {
+      "name": "dalende trend",
+      "keywords": [
+        "dalend",
+        "dalende trend",
+        "daling",
+        "diagram",
+        "grafiek",
+        "grafiek met dalende trend",
+        "negatief"
+      ]
+    },
+    "📊": {
+      "name": "staafdiagram",
+      "keywords": [
+        "diagram",
+        "grafiek",
+        "staaf",
+        "staafdiagram",
+        "staafgrafiek"
+      ]
+    },
+    "📋": {
+      "name": "klembord",
+      "keywords": [
+        "klembord",
+        "notities",
+        "to-dolijst"
+      ]
+    },
+    "📌": {
+      "name": "punaise",
+      "keywords": [
+        "punaise",
+        "speld"
+      ]
+    },
+    "📍": {
+      "name": "ronde speld",
+      "keywords": [
+        "kaart",
+        "kopspeld",
+        "locatie",
+        "ronde speld",
+        "speld"
+      ]
+    },
+    "📎": {
+      "name": "paperclip",
+      "keywords": [
+        "clip",
+        "paperclip"
+      ]
+    },
+    "📏": {
+      "name": "liniaal",
+      "keywords": [
+        "liniaal",
+        "meetinstrument",
+        "meten",
+        "rechte lijn",
+        "wiskunde"
+      ]
+    },
+    "📐": {
+      "name": "geodriehoek",
+      "keywords": [
+        "driehoek",
+        "geo",
+        "geodriehoek",
+        "liniaal",
+        "meetinstrument",
+        "meten",
+        "wiskunde"
+      ]
+    },
+    "✂️": {
+      "name": "schaar",
+      "keywords": [
+        "gereedschap",
+        "knippen",
+        "schaar"
+      ]
+    },
+    "🗄️": {
+      "name": "archiefkast",
+      "keywords": [
+        "archief",
+        "archiefkast",
+        "archiveren",
+        "kast"
+      ]
+    },
+    "🗑️": {
+      "name": "prullenmand",
+      "keywords": [
+        "prullenbak",
+        "prullenmand",
+        "recyclen"
+      ]
+    },
+    "🔒": {
+      "name": "slot",
+      "keywords": [
+        "gesloten slot",
+        "privé",
+        "slot"
+      ]
+    },
+    "🔓": {
+      "name": "geopend hangslot",
+      "keywords": [
+        "gekraakt slot",
+        "geopend",
+        "hangslot",
+        "open",
+        "open slot",
+        "openen"
+      ]
+    },
+    "🔑": {
+      "name": "sleutel",
+      "keywords": [
+        "beveiligd",
+        "op slot",
+        "openen",
+        "sleutel",
+        "wachtwoord"
+      ]
+    },
+    "🔨": {
+      "name": "hamer",
+      "keywords": [
+        "gereedschap",
+        "hamer",
+        "timmeren"
+      ]
+    },
+    "🪓": {
+      "name": "bijl",
+      "keywords": [
+        "bijl",
+        "gereedschap",
+        "hakken",
+        "hout",
+        "houthakker",
+        "splijten"
+      ]
+    },
+    "⛏️": {
+      "name": "pikhouweel",
+      "keywords": [
+        "gereedschap",
+        "mijnbouw",
+        "pikhouweel"
+      ]
+    },
+    "🛠️": {
+      "name": "hamer en moersleutel",
+      "keywords": [
+        "gereedschap",
+        "hamer",
+        "hamer en moersleutel",
+        "klussen",
+        "moersleutel"
+      ]
+    },
+    "💣": {
+      "name": "bom",
+      "keywords": [
+        "bom",
+        "cartoonbom",
+        "explosie",
+        "gevaarlijk",
+        "ontploffing",
+        "strip"
+      ]
+    },
+    "🛡️": {
+      "name": "schild",
+      "keywords": [
+        "bescherming",
+        "middeleeuwen",
+        "schild",
+        "wapen"
+      ]
+    },
+    "🔧": {
+      "name": "moersleutel",
+      "keywords": [
+        "engelse sleutel",
+        "gereedschap",
+        "moersleutel",
+        "schroefsleutel"
+      ]
+    },
+    "🪛": {
+      "name": "schroevendraaier",
+      "keywords": [
+        "gereedschap",
+        "klussen",
+        "repareren",
+        "schroef",
+        "schroevendraaier"
+      ]
+    },
+    "🔩": {
+      "name": "bout en moer",
+      "keywords": [
+        "bout",
+        "bout en moer",
+        "gereedschap",
+        "moer"
+      ]
+    },
+    "⚙️": {
+      "name": "tandwiel",
+      "keywords": [
+        "gereedschap",
+        "instellingen",
+        "radertje",
+        "tandrad",
+        "tandwiel"
+      ]
+    },
+    "⚖️": {
+      "name": "weegschaal",
+      "keywords": [
+        "balans",
+        "dierenriem",
+        "gerechtigheid",
+        "gewichten",
+        "horoscoop",
+        "Libra",
+        "recht",
+        "sterrenbeeld",
+        "weegschaal",
+        "weegschaal in balans"
+      ]
+    },
+    "🔗": {
+      "name": "schakels",
+      "keywords": [
+        "schakels",
+        "twee ringen"
+      ]
+    },
+    "🧰": {
+      "name": "gereedschapskist",
+      "keywords": [
+        "doos",
+        "gereedschap",
+        "gereedschapskist",
+        "kist",
+        "monteur",
+        "rode kist"
+      ]
+    },
+    "🧲": {
+      "name": "magneet",
+      "keywords": [
+        "aantrekking",
+        "aantrekkingskracht",
+        "hoefijzer",
+        "magneet",
+        "magnetisch",
+        "positief negatief",
+        "uvormig"
+      ]
+    },
+    "🪜": {
+      "name": "ladder",
+      "keywords": [
+        "klimmen",
+        "ladder",
+        "omhoog",
+        "omlaag",
+        "sport",
+        "trede",
+        "voorwerp"
+      ]
+    },
+    "🧪": {
+      "name": "reageerbuis",
+      "keywords": [
+        "chemicus",
+        "experiment",
+        "lab",
+        "laboratorium",
+        "reageerbuis",
+        "scheikunde",
+        "scheikundige",
+        "wetenschap"
+      ]
+    },
+    "🧬": {
+      "name": "DNA",
+      "keywords": [
+        "biologe",
+        "bioloog",
+        "dna",
+        "DNA",
+        "evolutie",
+        "gen",
+        "genetica",
+        "genetisch",
+        "leven"
+      ]
+    },
+    "🔬": {
+      "name": "microscoop",
+      "keywords": [
+        "experiment",
+        "gereedschap",
+        "instrument",
+        "laboratorium",
+        "microscoop",
+        "onderzoek",
+        "wetenschap"
+      ]
+    },
+    "🔭": {
+      "name": "telescoop",
+      "keywords": [
+        "buitenaards leven",
+        "gereedschap",
+        "heelal",
+        "instrument",
+        "sterrenkijker",
+        "telescoop",
+        "wetenschap"
+      ]
+    },
+    "📡": {
+      "name": "satellietschotel",
+      "keywords": [
+        "antenne",
+        "communicatie",
+        "satelliet",
+        "satellietschotel",
+        "schotel"
+      ]
+    },
+    "💉": {
+      "name": "injectiespuit",
+      "keywords": [
+        "dokter",
+        "gereedschap",
+        "griep",
+        "injectie",
+        "medicijn",
+        "naald",
+        "spuit",
+        "vaccinatie",
+        "ziek"
+      ]
+    },
+    "💊": {
+      "name": "pil",
+      "keywords": [
+        "dokter",
+        "geneeskunde",
+        "medicatie",
+        "medicijn",
+        "pil",
+        "vitamine",
+        "ziek"
+      ]
+    },
+    "🩹": {
+      "name": "pleister",
+      "keywords": [
+        "bloed",
+        "pijn",
+        "pleister",
+        "snee",
+        "verband",
+        "wond",
+        "ziekenhuis"
+      ]
+    },
+    "🩺": {
+      "name": "stethoscoop",
+      "keywords": [
+        "arts",
+        "dokter",
+        "geneeskunde",
+        "hart",
+        "medicijnen",
+        "stethoscoop",
+        "ziekenhuis"
+      ]
+    },
+    "🚪": {
+      "name": "deur",
+      "keywords": [
+        "achterdeur",
+        "deur",
+        "gesloten deur",
+        "voordeur"
+      ]
+    },
+    "🛏️": {
+      "name": "bed",
+      "keywords": [
+        "bed",
+        "hotel",
+        "slapen"
+      ]
+    },
+    "🛋️": {
+      "name": "bank en lamp",
+      "keywords": [
+        "bank",
+        "bank en lamp",
+        "hotel",
+        "lamp",
+        "sofa"
+      ]
+    },
+    "🪑": {
+      "name": "hoge stoel",
+      "keywords": [
+        "hoge stoel",
+        "meubels",
+        "meubelstuk",
+        "stoel",
+        "zetel",
+        "zitten"
+      ]
+    },
+    "🚽": {
+      "name": "toilet",
+      "keywords": [
+        "toilet",
+        "wc"
+      ]
+    },
+    "🛁": {
+      "name": "badkuip",
+      "keywords": [
+        "bad",
+        "badkuip",
+        "badkuip met douche"
+      ]
+    },
+    "🧴": {
+      "name": "lotionfles",
+      "keywords": [
+        "crème",
+        "huidcrème",
+        "hydraterende lotion",
+        "lotion",
+        "lotion flacon",
+        "lotionfles",
+        "moisturizer",
+        "shampoo",
+        "zonnebrandcrème",
+        "zonnebrandolie"
+      ]
+    },
+    "🧹": {
+      "name": "bezem",
+      "keywords": [
+        "bezem",
+        "bezemsteel",
+        "heks",
+        "schoonmaken",
+        "vegen"
+      ]
+    },
+    "🧺": {
+      "name": "mand",
+      "keywords": [
+        "boeren",
+        "landbouw",
+        "mand",
+        "oogsten",
+        "picknick",
+        "wasgoed",
+        "wasmand"
+      ]
+    },
+    "🧻": {
+      "name": "rol papier",
+      "keywords": [
+        "closetrol",
+        "keukenrol",
+        "papieren handdoek",
+        "rol papier",
+        "toiletpapier",
+        "toiletrol",
+        "wc-papier",
+        "wc-rol"
+      ]
+    },
+    "🪣": {
+      "name": "emmer",
+      "keywords": [
+        "aker",
+        "dweil",
+        "dweilen",
+        "emmer",
+        "poetsen",
+        "putemmer",
+        "schoonmaken",
+        "vat",
+        "voorwerp",
+        "water"
+      ]
+    },
+    "🪥": {
+      "name": "tandenborstel",
+      "keywords": [
+        "badkamer",
+        "borstel",
+        "hygiëne",
+        "poetsen",
+        "tanden",
+        "tandenborstel",
+        "tandheelkunde",
+        "toiletartikelen"
+      ]
+    },
+    "🧽": {
+      "name": "spons",
+      "keywords": [
+        "absorberen",
+        "absorberend",
+        "baden",
+        "poreus",
+        "schoonmaken",
+        "schrobben",
+        "spons"
+      ]
+    },
+    "🧯": {
+      "name": "brandblusapparaat",
+      "keywords": [
+        "blusapparaat",
+        "blussen",
+        "blusser",
+        "brandblusapparaat",
+        "brandblusser",
+        "doven",
+        "vuur"
+      ]
+    },
+    "🛒": {
+      "name": "winkelwagen",
+      "keywords": [
+        "boodschappen",
+        "shoppen",
+        "wagen",
+        "wagentje",
+        "winkelen",
+        "winkelwagen"
+      ]
+    },
+    "🪪": {
+      "name": "legitimatiebewijs",
+      "keywords": [
+        "beveiliging",
+        "ID",
+        "ID-kaart",
+        "identificatie",
+        "identiteitskaart",
+        "legitimatiebewijs",
+        "overheid",
+        "vergunning"
+      ]
+    },
+    "🏧": {
+      "name": "pinautomaat",
+      "keywords": [
+        "ATM",
+        "bank",
+        "contant",
+        "geautomatiseerd",
+        "geld",
+        "pinnen",
+        "teken"
+      ]
+    },
+    "♿": {
+      "name": "rolstoelsymbool",
+      "keywords": [
+        "handicap",
+        "rolstoel",
+        "symbool",
+        "toegang"
+      ]
+    },
+    "🚹": {
+      "name": "herentoilet",
+      "keywords": [
+        "heren",
+        "man",
+        "plee",
+        "toilet",
+        "urinoir",
+        "wc"
+      ]
+    },
+    "🚺": {
+      "name": "damestoilet",
+      "keywords": [
+        "dames",
+        "plee",
+        "toilet",
+        "vrouw",
+        "wc"
+      ]
+    },
+    "🚻": {
+      "name": "toiletten",
+      "keywords": [
+        "plee",
+        "toilet",
+        "wc"
+      ]
+    },
+    "🚾": {
+      "name": "wc",
+      "keywords": [
+        "toilet",
+        "wasgelegenheid",
+        "water",
+        "wc"
+      ]
+    },
+    "⚠️": {
+      "name": "waarschuwing",
+      "keywords": [
+        "voorzichtig",
+        "waarschuwing"
+      ]
+    },
+    "⛔": {
+      "name": "geen toegang",
+      "keywords": [
+        "belemmerd",
+        "doorgang",
+        "geen",
+        "ingang",
+        "mislukt",
+        "niet",
+        "toegang",
+        "verboden",
+        "verkeer"
+      ]
+    },
+    "🚫": {
+      "name": "verboden",
+      "keywords": [
+        "nee",
+        "niet",
+        "roken",
+        "toegang",
+        "verboden"
+      ]
+    },
+    "☢️": {
+      "name": "radioactief",
+      "keywords": [
+        "radioactief",
+        "teken"
+      ]
+    },
+    "☣️": {
+      "name": "biologisch gevaar",
+      "keywords": [
+        "biologisch gevaar",
+        "teken"
+      ]
+    },
+    "⬆️": {
+      "name": "pijl omhoog",
+      "keywords": [
+        "noord",
+        "omhoog",
+        "pijl",
+        "richting",
+        "windrichting"
+      ]
+    },
+    "↗️": {
+      "name": "pijl rechtsomhoog",
+      "keywords": [
+        "noordoost",
+        "pijl",
+        "rechtsboven",
+        "richting",
+        "windrichting"
+      ]
+    },
+    "➡️": {
+      "name": "pijl naar rechts",
+      "keywords": [
+        "oost",
+        "pijl",
+        "rechts",
+        "richting",
+        "windrichting"
+      ]
+    },
+    "↘️": {
+      "name": "pijl rechtsomlaag",
+      "keywords": [
+        "pijl",
+        "rechtsonder",
+        "richting",
+        "windrichting",
+        "zuidoost"
+      ]
+    },
+    "⬇️": {
+      "name": "pijl omlaag",
+      "keywords": [
+        "omlaag",
+        "pijl",
+        "richting",
+        "windrichting",
+        "zuid"
+      ]
+    },
+    "↙️": {
+      "name": "pijl linksomlaag",
+      "keywords": [
+        "linksonder",
+        "pijl",
+        "richting",
+        "windrichting",
+        "zuidwest"
+      ]
+    },
+    "⬅️": {
+      "name": "pijl naar links",
+      "keywords": [
+        "links",
+        "pijl",
+        "richting",
+        "west",
+        "windrichting"
+      ]
+    },
+    "↖️": {
+      "name": "pijl linksomhoog",
+      "keywords": [
+        "linksboven",
+        "noordwest",
+        "pijl",
+        "richting",
+        "windrichting"
+      ]
+    },
+    "↕️": {
+      "name": "pijl omhoog en omlaag",
+      "keywords": [
+        "omhoog en omlaag",
+        "pijl"
+      ]
+    },
+    "↔️": {
+      "name": "pijl naar links en rechts",
+      "keywords": [
+        "pijl",
+        "pijl naar links en rechts"
+      ]
+    },
+    "↩️": {
+      "name": "pijl naar rechts die naar links draait",
+      "keywords": [
+        "gebogen",
+        "links",
+        "pijl",
+        "rechts"
+      ]
+    },
+    "↪️": {
+      "name": "pijl naar links die naar rechts draait",
+      "keywords": [
+        "gebogen",
+        "links",
+        "pijl",
+        "rechts"
+      ]
+    },
+    "⤴️": {
+      "name": "pijl naar rechts die omhoog draait",
+      "keywords": [
+        "omhoog",
+        "pijl",
+        "pijl naar rechts die omhoog draait",
+        "rechts"
+      ]
+    },
+    "⤵️": {
+      "name": "pijl naar rechts die omlaag draait",
+      "keywords": [
+        "gebogen",
+        "omlaag",
+        "pijl",
+        "rechts"
+      ]
+    },
+    "🔃": {
+      "name": "verticale pijlen met de klok mee",
+      "keywords": [
+        "met de klok mee",
+        "opnieuw laden",
+        "pijl",
+        "pijlen",
+        "verticaal",
+        "verversen"
+      ]
+    },
+    "🔄": {
+      "name": "pijlen tegen de klok in",
+      "keywords": [
+        "déjà",
+        "knop",
+        "linksom",
+        "pijl",
+        "pijlen",
+        "tegen de klok in",
+        "vernieuwen",
+        "vu",
+        "weer"
+      ]
+    },
+    "⚛️": {
+      "name": "atoomsymbool",
+      "keywords": [
+        "atheïst",
+        "atoom",
+        "symbool"
+      ]
+    },
+    "🕉️": {
+      "name": "om-symbool",
+      "keywords": [
+        "hindoeïsme",
+        "om",
+        "religie"
+      ]
+    },
+    "✡️": {
+      "name": "davidster",
+      "keywords": [
+        "David",
+        "Jodendom",
+        "Jood",
+        "Joods",
+        "religie",
+        "ster"
+      ]
+    },
+    "☸️": {
+      "name": "wiel van dharma",
+      "keywords": [
+        "Boeddhistisch",
+        "dharma",
+        "religie",
+        "wiel"
+      ]
+    },
+    "☯️": {
+      "name": "yin en yang",
+      "keywords": [
+        "leven",
+        "moeilijk",
+        "religie",
+        "tao",
+        "taoist",
+        "totaal",
+        "yang",
+        "yin",
+        "yin en yang"
+      ]
+    },
+    "✝️": {
+      "name": "christelijk kruis",
+      "keywords": [
+        "christelijk",
+        "christus",
+        "kruis",
+        "Latijns",
+        "religie"
+      ]
+    },
+    "☦️": {
+      "name": "russisch kruis",
+      "keywords": [
+        "Christelijk",
+        "kruis",
+        "orthodox",
+        "religie"
+      ]
+    },
+    "☪️": {
+      "name": "wassende maan en ster",
+      "keywords": [
+        "islam",
+        "moslim",
+        "ramadan",
+        "religie",
+        "ster",
+        "wassende maan"
+      ]
+    },
+    "☮️": {
+      "name": "vredessymbool",
+      "keywords": [
+        "helend",
+        "symbool",
+        "vrede",
+        "vredig"
+      ]
+    },
+    "🕎": {
+      "name": "menora",
+      "keywords": [
+        "hannuka",
+        "jodendom",
+        "joods",
+        "kandelaar",
+        "menora",
+        "religie"
+      ]
+    },
+    "🔀": {
+      "name": "knop voor shuffle",
+      "keywords": [
+        "gekruist",
+        "knop",
+        "nummers",
+        "pijl",
+        "shuffle"
+      ]
+    },
+    "🔁": {
+      "name": "knop voor herhalen",
+      "keywords": [
+        "herhalen",
+        "knop",
+        "met de klok mee",
+        "pijl"
+      ]
+    },
+    "▶️": {
+      "name": "knop voor afspelen",
+      "keywords": [
+        "afspelen",
+        "driehoek",
+        "knop",
+        "pijl",
+        "rechts"
+      ]
+    },
+    "⏩": {
+      "name": "knop voor snel vooruitspoelen",
+      "keywords": [
+        "dubbel",
+        "knop",
+        "pijl",
+        "snel",
+        "vooruit"
+      ]
+    },
+    "⏭️": {
+      "name": "knop voor volgende nummer",
+      "keywords": [
+        "driehoek",
+        "knop",
+        "nummer",
+        "pijl",
+        "scène",
+        "volgende"
+      ]
+    },
+    "⏯️": {
+      "name": "knop voor afspelen of pauzeren",
+      "keywords": [
+        "driehoek",
+        "knop",
+        "pauzeren",
+        "pijl",
+        "rechts",
+        "spelen"
+      ]
+    },
+    "◀️": {
+      "name": "knop voor terugspoelen",
+      "keywords": [
+        "achteruit",
+        "driehoek",
+        "knop",
+        "links",
+        "pijl"
+      ]
+    },
+    "⏪": {
+      "name": "knop voor versneld terugspoelen",
+      "keywords": [
+        "dubbele pijl links",
+        "knop voor versneld terugspoelen",
+        "links",
+        "pijl",
+        "terugspoelen"
+      ]
+    },
+    "⏮️": {
+      "name": "knop voor vorige nummer",
+      "keywords": [
+        "driehoek",
+        "knop",
+        "laatste",
+        "nummer",
+        "pijl",
+        "scène",
+        "vorige"
+      ]
+    },
+    "🔼": {
+      "name": "knop voor omhoog",
+      "keywords": [
+        "knop",
+        "omhoog",
+        "pijl",
+        "rood"
+      ]
+    },
+    "🔽": {
+      "name": "knop voor omlaag",
+      "keywords": [
+        "beneden",
+        "knop",
+        "omlaag",
+        "pijl",
+        "rood"
+      ]
+    },
+    "⏸️": {
+      "name": "pauzeknop",
+      "keywords": [
+        "dubbel",
+        "knop",
+        "pauze",
+        "streep",
+        "verticaal"
+      ]
+    },
+    "⏹️": {
+      "name": "knop voor stoppen",
+      "keywords": [
+        "knop voor stoppen",
+        "stoppen",
+        "vierkant"
+      ]
+    },
+    "⏺️": {
+      "name": "knop voor opnemen",
+      "keywords": [
+        "knop",
+        "opnemen",
+        "rondje"
+      ]
+    },
+    "⏏️": {
+      "name": "knop voor uitwerpen",
+      "keywords": [
+        "knop voor uitwerpen",
+        "uitwerpen"
+      ]
+    },
+    "🔅": {
+      "name": "knop voor lagere helderheid",
+      "keywords": [
+        "dimmen",
+        "helderheid",
+        "knop voor lagere helderheid",
+        "laag"
+      ]
+    },
+    "📶": {
+      "name": "mobiel signaal",
+      "keywords": [
+        "antenne",
+        "communicatie",
+        "mobiel",
+        "signaal",
+        "streep",
+        "streepjes",
+        "telefoon"
+      ]
+    },
+    "🛜": {
+      "name": "draadloos",
+      "keywords": [
+        "computer",
+        "draadloos",
+        "internet",
+        "netwerk"
+      ]
+    },
+    "♀️": {
+      "name": "vrouwelijkheidssymbool",
+      "keywords": [
+        "vrouw",
+        "vrouwelijkheidssymbool"
+      ]
+    },
+    "♂️": {
+      "name": "mannelijkheidssymbool",
+      "keywords": [
+        "man",
+        "mannelijkheidssymbool"
+      ]
+    },
+    "✖️": {
+      "name": "vermenigvuldigen",
+      "keywords": [
+        "×",
+        "annuleren",
+        "teken",
+        "vermenigvuldigen",
+        "x"
+      ]
+    },
+    "➕": {
+      "name": "plus",
+      "keywords": [
+        "+",
+        "plus"
+      ]
+    },
+    "➖": {
+      "name": "min",
+      "keywords": [
+        "-",
+        "−",
+        "dikgedrukt",
+        "min",
+        "teken",
+        "wiskunde"
+      ]
+    },
+    "➗": {
+      "name": "delen",
+      "keywords": [
+        "÷",
+        "delen",
+        "deling",
+        "dikgedrukt",
+        "teken",
+        "wiskunde"
+      ]
+    },
+    "🟰": {
+      "name": "vetgedrukt gelijkteken",
+      "keywords": [
+        "dikgedrukt",
+        "gelijk",
+        "gelijkheid",
+        "is gelijk aan",
+        "teken",
+        "uitkomst",
+        "wiskunde"
+      ]
+    },
+    "♾️": {
+      "name": "oneindig",
+      "keywords": [
+        "eeuwig",
+        "grenzeloos",
+        "oneindig",
+        "universeel"
+      ]
+    },
+    "‼️": {
+      "name": "dubbel uitroepteken",
+      "keywords": [
+        "!",
+        "!!",
+        "dubbel",
+        "dubbel uitroepteken",
+        "interpunctie",
+        "teken",
+        "uitroep"
+      ]
+    },
+    "⁉️": {
+      "name": "uitroepteken en vraagteken",
+      "keywords": [
+        "!",
+        "!?",
+        "?",
+        "interpunctie",
+        "teken",
+        "uitroep",
+        "vraag",
+        "vraagteken-uitroepteken"
+      ]
+    },
+    "❓": {
+      "name": "rood vraagteken",
+      "keywords": [
+        "?",
+        "interpunctie",
+        "rood",
+        "teken",
+        "vraag"
+      ]
+    },
+    "❗": {
+      "name": "rood uitroepteken",
+      "keywords": [
+        "!",
+        "interpunctie",
+        "rood",
+        "teken",
+        "uitroep"
+      ]
+    },
+    "💲": {
+      "name": "vetgedrukt dollarteken",
+      "keywords": [
+        "betalen",
+        "dikgedrukt dollarteken",
+        "dollar",
+        "dollarteken",
+        "geld",
+        "munteenheid",
+        "valuta"
+      ]
+    },
+    "⚕️": {
+      "name": "esculaap",
+      "keywords": [
+        "esculaap",
+        "medicijnen",
+        "medisch",
+        "staf",
+        "symbool"
+      ]
+    },
+    "♻️": {
+      "name": "recycling-symbool",
+      "keywords": [
+        "recycle",
+        "recycling",
+        "symbool"
+      ]
+    },
+    "⚜️": {
+      "name": "fleur de lis",
+      "keywords": [
+        "fleur-de-lis",
+        "ridders"
+      ]
+    },
+    "🔱": {
+      "name": "drietand-symbool",
+      "keywords": [
+        "anker",
+        "drietand",
+        "embleem",
+        "gereedschap",
+        "poseidon",
+        "schip"
+      ]
+    },
+    "⭕": {
+      "name": "lege rode cirkel",
+      "keywords": [
+        "cirkel",
+        "groot",
+        "hol",
+        "o",
+        "rood",
+        "vet"
+      ]
+    },
+    "✅": {
+      "name": "knop voor vinkje",
+      "keywords": [
+        "✓",
+        "afgevinkt",
+        "check",
+        "gedaan",
+        "klaar",
+        "knop",
+        "markeren",
+        "vink",
+        "vinkje",
+        "voltooid"
+      ]
+    },
+    "✔️": {
+      "name": "vinkje",
+      "keywords": [
+        "✓",
+        "afgevinkt",
+        "check",
+        "dikgedrukt",
+        "klaar",
+        "teken",
+        "vinkje"
+      ]
+    },
+    "❌": {
+      "name": "kruisteken",
+      "keywords": [
+        "×",
+        "annuleren",
+        "kruis",
+        "teken",
+        "vermenigvuldigen",
+        "vermenigvuldiging",
+        "x"
+      ]
+    },
+    "©️": {
+      "name": "copyright",
+      "keywords": [
+        "C",
+        "copyright"
+      ]
+    },
+    "®️": {
+      "name": "gedeponeerd",
+      "keywords": [
+        "gedeponeerd",
+        "R"
+      ]
+    },
+    "™️": {
+      "name": "handelsmerksymbool",
+      "keywords": [
+        "handel",
+        "handelsmerk",
+        "merk",
+        "tm"
+      ]
+    },
+    "🔟": {
+      "name": "toets: 10",
+      "keywords": [
+        "toets"
+      ]
+    },
+    "🆗": {
+      "name": "OK-knop",
+      "keywords": [
+        "knop",
+        "OK",
+        "oké"
+      ]
+    },
+    "🅿️": {
+      "name": "P-knop",
+      "keywords": [
+        "knop",
+        "P",
+        "parkeren"
+      ]
+    },
+    "🆘": {
+      "name": "SOS-knop",
+      "keywords": [
+        "help",
+        "knop",
+        "SOS"
+      ]
+    },
+    "⚫": {
+      "name": "zwarte cirkel",
+      "keywords": [
+        "cirkel",
+        "geometrisch",
+        "zwart"
+      ]
+    },
+    "⚪": {
+      "name": "witte cirkel",
+      "keywords": [
+        "cirkel",
+        "geometrisch",
+        "wit"
+      ]
+    },
+    "⬛": {
+      "name": "groot zwart vierkant",
+      "keywords": [
+        "geometrisch",
+        "groot",
+        "vierkant",
+        "zwart"
+      ]
+    },
+    "⬜": {
+      "name": "groot wit vierkant",
+      "keywords": [
+        "geometrisch",
+        "groot",
+        "vierkant",
+        "wit"
+      ]
+    },
+    "🔺": {
+      "name": "rode omhoogwijzende driehoek",
+      "keywords": [
+        "driehoek",
+        "geometrisch",
+        "omhoog",
+        "rood",
+        "wijzend"
+      ]
+    },
+    "🔻": {
+      "name": "rode omlaagwijzende driehoek",
+      "keywords": [
+        "driehoek",
+        "geometrisch",
+        "omlaag",
+        "rood",
+        "wijzend"
+      ]
+    }
+  }
+}

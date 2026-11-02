@@ -550,6 +550,54 @@ public class BoardEditorTests
         Assert.Equal("Clients", item.Name);
     }
 
+    // ----- Icons -----
+
+    [Fact]
+    public void SetIcon_on_tab_and_group()
+    {
+        var config = ConfigWithTabs("Tab");
+        var tab = config.Tabs[0];
+        var group = BoardEditor.AddGroup(tab.Columns[0], "Group", Blue);
+
+        Assert.True(BoardEditor.SetIcon(config, tab.Id, "💼", true).Ok);
+        Assert.True(BoardEditor.SetIcon(config, group.Id, "❤\uFE0F", false).Ok);
+
+        Assert.Equal("💼", tab.Icon);
+        Assert.True(tab.IconChosen);
+        Assert.Equal("❤\uFE0F", group.Icon);
+        Assert.False(group.IconChosen);
+
+        // "No icon" is a deliberate choice: no icon, but chosen.
+        Assert.True(BoardEditor.SetIcon(config, tab.Id, null, true).Ok);
+        Assert.Null(tab.Icon);
+        Assert.True(tab.IconChosen);
+    }
+
+    [Fact]
+    public void SetIcon_on_item_is_not_found()
+    {
+        var config = ConfigWithTabs("Tab");
+        var group = BoardEditor.AddGroup(config.Tabs[0].Columns[0], "Group", Blue);
+        var item = BoardEditor.AddItem(group, FolderItem(@"D:\X"));
+
+        Assert.Equal(EditError.NotFound, BoardEditor.SetIcon(config, item.Id, "💼", true).Error);
+        Assert.Equal(EditError.NotFound, BoardEditor.SetIcon(config, Guid.NewGuid(), "💼", true).Error);
+    }
+
+    [Fact]
+    public void SetIcon_refuses_implausible_icon()
+    {
+        var config = ConfigWithTabs("Tab");
+        var tab = config.Tabs[0];
+        BoardEditor.SetIcon(config, tab.Id, "💼", false);
+
+        var result = BoardEditor.SetIcon(config, tab.Id, "abc", true);
+
+        Assert.Equal(EditError.InvalidIcon, result.Error);
+        Assert.Equal("💼", tab.Icon);
+        Assert.False(tab.IconChosen);
+    }
+
     // ----- Unknown ids -----
 
     [Fact]

@@ -11,5 +11,14 @@ public sealed class Tab
 
     public string Name { get; set; } = string.Empty;
 
+    /// <summary>
+    /// The emoji shown before the name. <see langword="null"/> with <see cref="IconChosen"/> false is the
+    /// automatic, empty icon; <see langword="null"/> with <see cref="IconChosen"/> true is "no icon" chosen.
+    /// </summary>
+    public string? Icon { get; set; }
+
+    /// <summary>True once the user picked the icon (or "no icon"): renaming then never changes it.</summary>
+    public bool IconChosen { get; set; }
+
     public List<Column> Columns { get; set; } = new();
 }

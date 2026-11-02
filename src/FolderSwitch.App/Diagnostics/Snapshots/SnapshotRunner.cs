@@ -37,15 +37,17 @@ namespace FolderSwitch.App.Diagnostics.Snapshots;
 /// Drawn at 96 and at 144 DPI (<c>…-144dpi.png</c>), in the language of <c>--snapshot-language &lt;code&gt;</c>
 /// (French by default): every theme in both variants, in normal use (<c>&lt;theme&gt;-&lt;variant&gt;.png</c>); then
 /// Customize mode with an empty column (<c>…-customize.png</c>), called from Explorer, the menu of a folder, of a file
-/// and of a site (<c>…-itemmenu.png</c>, <c>…-itemmenu-file.png</c>, <c>…-itemmenu-site.png</c>), long names in narrow columns
-/// (<c>…-narrow.png</c>), a board larger than the work area (<c>…-overflow.png</c>) and twelve tabs that wrap in a
+/// and of a site (<c>…-itemmenu.png</c>, <c>…-itemmenu-file.png</c>, <c>…-itemmenu-site.png</c>), the Edit menu of an
+/// item and of a group (<c>…-editmenu.png</c>, <c>…-editmenu-group.png</c>), long names in narrow columns
+/// (<c>…-narrow.png</c>) with the icon picker of a group whose icon was chosen (<c>…-iconpicker-chosen.png</c>), a board larger than the work area (<c>…-overflow.png</c>) and twelve tabs that wrap in a
 /// narrow work area, in normal use and in Customize mode (<c>…-manytabs.png</c>, <c>…-manytabs-customize.png</c>). Another language than French adds its code to every name (<c>…-de.png</c>).
 /// </para>
 /// <para>
 /// The interactions of Customize mode, in Fluent light and dark and in Cards dark (Fluent light only at 144 DPI): the
 /// settings window on each of its pages (<c>…-settings-general</c>, <c>…-settings-hotkey</c> with a combination not
 /// applied yet, <c>…-settings-hotkey-applied</c> with the shortcut in effect, <c>…-settings-appearance</c>,
-/// <c>…-settings-configuration</c>), the About window (<c>…-about</c>), the palette (<c>…-palette</c>), a rename
+/// <c>…-settings-configuration</c>), the About window (<c>…-about</c>), the palette (<c>…-palette</c>), the icon picker
+/// of a group (<c>…-iconpicker</c>) and filtered on « chat » (<c>…-iconpicker-filter</c>), a rename
 /// in progress (<c>…-rename</c>), the insertion line of an item being dragged (<c>…-drag</c>), a confirmation
 /// (<c>…-confirm</c>), and in Fluent light a column being resized (<c>…-resize</c>) and a column dragged by its grip to
 /// the front (<c>…-column-drag</c>). Menus are drawn where their popup
@@ -154,9 +156,9 @@ internal static class SnapshotRunner
             using var fileTypes = new FileTypeIcons();
             var icons = new ItemIcons(fileTypes);
             var config = SnapshotSample.Create();
-            var main = new MainViewModel(config, services, services, services, services, services, services, localizer);
-            var narrow = new MainViewModel(SnapshotSample.CreateNarrow(), services, services, services, services, services, services, localizer);
-            var manyTabs = new MainViewModel(SnapshotSample.CreateManyTabs(), services, services, services, services, services, services, localizer);
+            var main = new MainViewModel(config, services, services, services, services, services, services, localizer, services.Icons);
+            var narrow = new MainViewModel(SnapshotSample.CreateNarrow(), services, services, services, services, services, services, localizer, services.Icons);
+            var manyTabs = new MainViewModel(SnapshotSample.CreateManyTabs(), services, services, services, services, services, services, localizer, services.Icons);
             using var appearance = new AppearanceViewModel(config, services, services);
             using var applier = new ThemeApplier(appearance, application.Resources);
 
@@ -257,13 +259,30 @@ internal static class SnapshotRunner
                 scene.View.OpenEditMenu((ItemViewModel)renamed.DataContext, renamed.MenuAnchor);
                 scene.Save(Path.Combine(directory, FileName("fluent", Variant.Light, "editmenu", scale, suffix)), Variant.Light);
                 scene.View.CloseFlyout();
+
+                // The menu of a group: « Rename » and « Icon… ».
+                var outils = scene.Group("Outils");
+                scene.View.OpenEditMenu((GroupViewModel)outils.DataContext, outils.HeaderAnchor);
+                scene.Save(Path.Combine(directory, FileName("fluent", Variant.Light, "editmenu-group", scale, suffix)), Variant.Light);
+                scene.View.CloseFlyout();
                 main.ToggleCustomize();
-                written++;
+                written += 2;
 
                 scene.View.DataContext = narrow;
                 scene.Save(Path.Combine(directory, FileName("fluent", Variant.Light, "narrow", scale, suffix)), Variant.Light);
+
+                // The icon picker of a group whose icon was chosen (« Outils », the same 🧰): marked in the grid.
+                narrow.ToggleCustomize();
+                var tools = scene.Group("Outils");
+                narrow.SetChosenIcon((GroupViewModel)tools.DataContext, "🧰");
+                scene.View.OpenIconPicker((GroupViewModel)tools.DataContext, tools.IconAnchor);
+                scene.Layout();
+                (scene.View.OpenFlyoutContent as IconPicker)?.ShowCurrent();
+                scene.Save(Path.Combine(directory, FileName("fluent", Variant.Light, "iconpicker-chosen", scale, suffix)), Variant.Light);
+                scene.View.CloseFlyout();
+                narrow.ToggleCustomize();
                 scene.View.DataContext = main;
-                written++;
+                written += 2;
 
                 // Past the screen's work area, the board scrolls.
                 scene.Bound(new Size(480, 300));
@@ -342,6 +361,23 @@ internal static class SnapshotRunner
         scene.Save(File("palette"), variant);
         view.CloseFlyout();
         written++;
+
+        // The icon picker of « Finance » (automatic icon), then filtered on « chat ». How long it takes to open and lay
+        // out is logged (the first look pays for the code's first use too).
+        var finance = scene.Group("Finance");
+        var clock = Stopwatch.StartNew();
+        view.OpenIconPicker((GroupViewModel)finance.DataContext, finance.IconAnchor);
+        var picker = view.OpenFlyoutContent as IconPicker ?? throw new InvalidOperationException("The icon picker did not open.");
+        scene.Layout();
+        DebugLog.Info(FormattableString.Invariant($"Snapshot: icon picker opened and laid out in {clock.Elapsed.TotalMilliseconds:F0} ms ({theme} {Name(variant)}, scale {scale})"));
+        scene.Save(File("iconpicker"), variant);
+        clock.Restart();
+        picker.Filter("chat");
+        scene.Layout();
+        DebugLog.Info(FormattableString.Invariant($"Snapshot: icon picker filtered and laid out in {clock.Elapsed.TotalMilliseconds:F0} ms"));
+        scene.Save(File("iconpicker-filter"), variant);
+        view.CloseFlyout();
+        written += 2;
 
         // A rename in progress: « Clients », the whole name selected.
         var clients = (GroupViewModel)scene.Group("Clients").DataContext;
@@ -501,7 +537,7 @@ internal static class SnapshotRunner
     /// <summary>The first-run wizard's scenes at one scale; returns the number of files written.</summary>
     private static int SaveWizard(Localizer localizer, string code, SnapshotServices services, ViewTexts texts, string directory, double scale, string suffix)
     {
-        using var wizard = new WizardViewModel(localizer, services, services, services, ExePath, services);
+        using var wizard = new WizardViewModel(localizer, services, services, services, ExePath, services, services.Icons);
         var view = new WizardView();
         view.Attach(wizard, texts, windowsLanguage: code);
 

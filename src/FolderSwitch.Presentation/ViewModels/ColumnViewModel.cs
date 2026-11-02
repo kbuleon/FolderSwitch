@@ -4,6 +4,7 @@
 
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using FolderSwitch.Core.Icons;
 using FolderSwitch.Core.Localization;
 using FolderSwitch.Core.Model;
 
@@ -12,11 +13,11 @@ namespace FolderSwitch.Presentation.ViewModels;
 /// <summary>A vertical stack of groups in a tab. A projection of its <see cref="Column"/>.</summary>
 public sealed class ColumnViewModel : ObservableObject
 {
-    internal ColumnViewModel(Column model, TabViewModel tab, Localizer localizer)
+    internal ColumnViewModel(Column model, TabViewModel tab, Localizer localizer, Lazy<IconFinder> icons)
     {
         Model = model;
         Tab = tab;
-        Groups = new ObservableCollection<GroupViewModel>(model.Groups.Select(group => new GroupViewModel(group, this, localizer)));
+        Groups = new ObservableCollection<GroupViewModel>(model.Groups.Select(group => new GroupViewModel(group, this, localizer, icons)));
         Groups.CollectionChanged += (_, _) =>
         {
             OnPropertyChanged(nameof(IsEmpty));

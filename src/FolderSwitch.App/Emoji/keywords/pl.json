@@ -1,0 +1,8631 @@
+{
+  "cldrVersion": "49",
+  "emoji": {
+    "😀": {
+      "name": "szeroko uśmiechnięta twarz",
+      "keywords": [
+        "haha",
+        "hehe",
+        "roześmiana buźka",
+        "śmiech",
+        "szeroko uśmiechnięta twarz",
+        "uśmiech"
+      ]
+    },
+    "😃": {
+      "name": "uśmiechnięta twarz z otwartymi ustami",
+      "keywords": [
+        "buźka",
+        "haha",
+        "hehe",
+        "radosny",
+        "śmiech",
+        "szczęśliwy",
+        "uśmiech",
+        "uśmiechnięta twarz z otwartymi ustami",
+        "wesoły"
+      ]
+    },
+    "😄": {
+      "name": "uśmiechnięta twarz z otwartymi ustami i roześmianymi oczami",
+      "keywords": [
+        "buźka",
+        "haha",
+        "hehe",
+        "śmiech",
+        "uśmiech",
+        "uśmiechnięta twarz z otwartymi ustami i roześmianymi oczami",
+        "wesoły",
+        "zadowolenia"
+      ]
+    },
+    "😁": {
+      "name": "szeroko uśmiechnięta twarz o roześmianych oczach",
+      "keywords": [
+        "buźka",
+        "haha",
+        "hehe",
+        "śmiech",
+        "szeroko uśmiechnięta twarz o roześmianych oczach",
+        "uśmiech",
+        "wyszczerzone",
+        "zęby"
+      ]
+    },
+    "😆": {
+      "name": "uśmiechnięta twarz z przymrużonymi oczami",
+      "keywords": [
+        "buźka",
+        "haha",
+        "hahaha",
+        "hehe",
+        "lol",
+        "rozbawienie",
+        "satysfakcja",
+        "śmiech",
+        "uśmiech",
+        "uśmiechnięta twarz z przymrużonymi oczami",
+        "wesoły"
+      ]
+    },
+    "😅": {
+      "name": "uśmiechnięta twarz z otwartymi ustami, oblana zimnym potem",
+      "keywords": [
+        "buźka",
+        "gafa",
+        "haha",
+        "hehe",
+        "kropla potu",
+        "oblana zimnym potem",
+        "pot",
+        "śmiech",
+        "uśmiech",
+        "uśmiechnięta twarz z otwartymi ustami",
+        "uśmiechnięta twarz z otwartymi ustami, oblana zimnym potem",
+        "wesoły",
+        "zawstydzony"
+      ]
+    },
+    "🤣": {
+      "name": "tarza się ze śmiechu",
+      "keywords": [
+        "buźka",
+        "haha",
+        "hehe",
+        "kulać się",
+        "lol",
+        "łza",
+        "łzy",
+        "płakać",
+        "płakać ze śmiechu",
+        "śmiech",
+        "śmieszne",
+        "tarza się ze śmiechu",
+        "wesoły"
+      ]
+    },
+    "😂": {
+      "name": "twarz ze łzami radości",
+      "keywords": [
+        "absurd",
+        "buźka",
+        "haha",
+        "hehe",
+        "lol",
+        "łza",
+        "łzy",
+        "łzy radości",
+        "płacz",
+        "śmiech",
+        "śmieszne",
+        "twarz ze łzami radości",
+        "wesoły"
+      ]
+    },
+    "🙂": {
+      "name": "lekko uśmiechnięta twarz",
+      "keywords": [
+        "buźka",
+        "haha",
+        "hehe",
+        "lekko uśmiechnięta twarz",
+        "miły",
+        "śmiech",
+        "uśmiech",
+        "wesoły"
+      ]
+    },
+    "🙃": {
+      "name": "odwrócona twarz",
+      "keywords": [
+        "buźka",
+        "do góry nogami",
+        "haha",
+        "hehe",
+        "odwrócona twarz",
+        "śmiech",
+        "uśmiech",
+        "wesoły"
+      ]
+    },
+    "🫠": {
+      "name": "roztapiająca się twarz",
+      "keywords": [
+        "gorąco",
+        "płynna twarz",
+        "rozpuszczająca się twarz",
+        "rozpuszczanie się",
+        "roztapiająca się twarz",
+        "roztapianie się",
+        "sarkazm",
+        "zawstydzenie",
+        "znikająca twarz"
+      ]
+    },
+    "😉": {
+      "name": "twarz puszczająca oko",
+      "keywords": [
+        "buźka",
+        "mrugnięcie",
+        "oczko",
+        "puszczać oko",
+        "puszczenie oka",
+        "twarz puszczająca oko",
+        "zaczepka"
+      ]
+    },
+    "😊": {
+      "name": "uśmiechnięta twarz o roześmianych oczach",
+      "keywords": [
+        "buźka",
+        "haha",
+        "hehe",
+        "przyjazny",
+        "serdeczny",
+        "śmiech",
+        "uśmiech",
+        "uśmiechnięta twarz o roześmianych oczach"
+      ]
+    },
+    "😇": {
+      "name": "uśmiechnięta twarz z aureolą",
+      "keywords": [
+        "buźka",
+        "haha",
+        "hehe",
+        "nic nie zrobiłem",
+        "niewinny",
+        "niewinny uśmiech",
+        "śmiech",
+        "świętoszek",
+        "uśmiechnięta twarz z aureolą",
+        "wesoły"
+      ]
+    },
+    "🥰": {
+      "name": "uśmiechnięta buźka z sercami",
+      "keywords": [
+        "buźka",
+        "kochać",
+        "kocham cię",
+        "miłość",
+        "romans",
+        "serca",
+        "serce",
+        "twarz",
+        "uśmiech",
+        "uśmiechnięta buźka z sercami",
+        "uśmiechnięta twarz",
+        "uśmiechnięta twarz z sercami",
+        "uwielbiać",
+        "uwielbienie",
+        "zadurzenie",
+        "zakochać się",
+        "zakochana",
+        "zakochane",
+        "zakochany"
+      ]
+    },
+    "😍": {
+      "name": "uśmiechnięta twarz z oczami w kształcie serca",
+      "keywords": [
+        "buźka",
+        "kocham",
+        "miłość",
+        "serca",
+        "uśmiech",
+        "uśmiechnięta twarz z oczami w kształcie serca",
+        "zachwyt",
+        "zakochany"
+      ]
+    },
+    "🤩": {
+      "name": "zafascynowany",
+      "keywords": [
+        "buźka",
+        "fascynacja",
+        "głowa",
+        "gwiazdy",
+        "haha",
+        "hehe",
+        "śmiech",
+        "szczęście",
+        "twarz",
+        "uśmiech",
+        "zabawa",
+        "zafascynowany"
+      ]
+    },
+    "😘": {
+      "name": "twarz przesyłająca całusa",
+      "keywords": [
+        "buzi",
+        "buźka",
+        "całuję",
+        "całus",
+        "kocham",
+        "miłość",
+        "serce",
+        "ślę całusa",
+        "twarz przesyłająca całusa"
+      ]
+    },
+    "😗": {
+      "name": "całująca twarz",
+      "keywords": [
+        "buzi",
+        "buźka",
+        "całująca twarz",
+        "całus",
+        "pocałunek",
+        "ślę całusa"
+      ]
+    },
+    "☺️": {
+      "name": "uśmiechnięta twarz",
+      "keywords": [
+        "buźka",
+        "marzę",
+        "marzenie",
+        "rumieniec",
+        "serdeczny",
+        "uśmiech",
+        "uśmiechnięta twarz",
+        "wypieki",
+        "zrelaksowany"
+      ]
+    },
+    "😚": {
+      "name": "całująca twarz z zamkniętymi oczami",
+      "keywords": [
+        "buzi",
+        "buźka",
+        "całująca twarz z zamkniętymi oczami",
+        "całus",
+        "rumieniec",
+        "ślę całusa"
+      ]
+    },
+    "😙": {
+      "name": "całująca twarz o roześmianych oczach",
+      "keywords": [
+        "buzi",
+        "buźka",
+        "całująca twarz o roześmianych oczach",
+        "całus",
+        "pocałunek",
+        "ślę całusa"
+      ]
+    },
+    "🥲": {
+      "name": "uśmiechnięta buźka ze łzą",
+      "keywords": [
+        "buźka",
+        "dumny",
+        "łza",
+        "ulga",
+        "uśmiechnięta buźka ze łzą",
+        "uśmiechnięty",
+        "wdzięczność",
+        "wdzięczny",
+        "wzruszenie",
+        "wzruszony"
+      ]
+    },
+    "😋": {
+      "name": "twarz delektująca się pysznym jedzeniem",
+      "keywords": [
+        "buźka",
+        "jedzenie",
+        "mniam",
+        "oblizywać się",
+        "smaczne",
+        "twarz delektująca się pysznym jedzeniem",
+        "uśmiech"
+      ]
+    },
+    "😛": {
+      "name": "twarz wystawiająca język",
+      "keywords": [
+        "buźka",
+        "buźka pokazująca język",
+        "język",
+        "pokazany język",
+        "pokazywać język",
+        "twarz wystawiająca język",
+        "uśmiech"
+      ]
+    },
+    "😜": {
+      "name": "twarz wystawiająca język i puszczająca oko",
+      "keywords": [
+        "buźka",
+        "haha",
+        "hehe",
+        "język",
+        "mrugnięcie",
+        "pokazuję język",
+        "śmiech",
+        "twarz wystawiająca język i puszczająca oko",
+        "żart"
+      ]
+    },
+    "🤪": {
+      "name": "szalona twarz",
+      "keywords": [
+        "buźka",
+        "crazy",
+        "duże",
+        "głowa",
+        "haha",
+        "hehe",
+        "małe",
+        "oko",
+        "oszaleć",
+        "śmiech",
+        "szał",
+        "szalona twarz",
+        "szalony",
+        "twarz"
+      ]
+    },
+    "😝": {
+      "name": "twarz ze zmrużonymi oczami wystawiająca język",
+      "keywords": [
+        "ble",
+        "buźka",
+        "haha",
+        "hehe",
+        "język",
+        "niesmaczne",
+        "okropne",
+        "pokazywać język",
+        "smak",
+        "twarz ze zmrużonymi oczami wystawiająca język",
+        "zamknięte oczy"
+      ]
+    },
+    "🤑": {
+      "name": "twarz z pieniędzmi na ustach",
+      "keywords": [
+        "bogaty",
+        "buźka",
+        "hajs",
+        "kasa",
+        "pieniądze",
+        "twarz",
+        "twarz z pieniędzmi na ustach"
+      ]
+    },
+    "🤗": {
+      "name": "twarz z gestem przytulania",
+      "keywords": [
+        "buźka",
+        "przytulać",
+        "przytulanie",
+        "ręka",
+        "ściskam",
+        "twarz z gestem przytulania",
+        "uśmiech"
+      ]
+    },
+    "🤫": {
+      "name": "uciszająca twarz",
+      "keywords": [
+        "buźka",
+        "cicho",
+        "cii",
+        "cisza",
+        "głowa",
+        "sza",
+        "twarz",
+        "uciszać",
+        "uciszająca twarz"
+      ]
+    },
+    "🤔": {
+      "name": "myśląca twarz",
+      "keywords": [
+        "buźka",
+        "hm",
+        "hmm",
+        "myśląca twarz",
+        "myślę",
+        "zamyślony",
+        "zastanawiam się",
+        "zastanowienie"
+      ]
+    },
+    "🤐": {
+      "name": "twarz z zamkiem błyskawicznym na ustach",
+      "keywords": [
+        "buzia na kłódkę",
+        "buźka",
+        "nic nie powiem",
+        "tajemnica",
+        "twarz z zamkiem błyskawicznym na ustach"
+      ]
+    },
+    "🤨": {
+      "name": "twarz z podniesioną brwią",
+      "keywords": [
+        "brew",
+        "buźka",
+        "dziwne",
+        "głowa",
+        "hę",
+        "hmm",
+        "nie wierzę",
+        "sceptyczny",
+        "twarz",
+        "twarz z podniesioną brwią",
+        "zdziwiony",
+        "że co"
+      ]
+    },
+    "😐": {
+      "name": "neutralna twarz",
+      "keywords": [
+        "buźka",
+        "buźka bez wyrazu",
+        "hm",
+        "neutralna twarz",
+        "nic",
+        "nie mam zdania",
+        "nie obchodzi mnie",
+        "wtf"
+      ]
+    },
+    "😑": {
+      "name": "twarz bez wyrazu",
+      "keywords": [
+        "brak emocji",
+        "buźka",
+        "nic",
+        "nie",
+        "nie mam zdania",
+        "nie obchodzi mnie",
+        "twarz bez wyrazu",
+        "wtf"
+      ]
+    },
+    "😶": {
+      "name": "twarz bez ust",
+      "keywords": [
+        "buźka",
+        "buźka bez ust",
+        "cisza",
+        "nic nie mówię",
+        "oczy",
+        "twarz bez ust"
+      ]
+    },
+    "🫥": {
+      "name": "twarz otoczona linią przerywaną",
+      "keywords": [
+        "chowanie się",
+        "introwertyk",
+        "niechęć",
+        "niewidzialna twarz",
+        "niewidzialność",
+        "przygnębiona twarz",
+        "smutek",
+        "twarz otoczona linią przerywaną",
+        "ukryta twarz",
+        "znikająca twarz",
+        "znikanie"
+      ]
+    },
+    "😏": {
+      "name": "twarz z uśmieszkiem",
+      "keywords": [
+        "buźka",
+        "cyniczny",
+        "haha",
+        "hehe",
+        "półuśmieszek",
+        "twarz z uśmieszkiem",
+        "uśmieszek"
+      ]
+    },
+    "😒": {
+      "name": "niezadowolona twarz",
+      "keywords": [
+        "nah",
+        "nie",
+        "niezadowolenie",
+        "niezadowolona buźka",
+        "niezadowolona twarz",
+        "obrzydzenie",
+        "smutek",
+        "wtf"
+      ]
+    },
+    "🙄": {
+      "name": "twarz przewracająca oczami",
+      "keywords": [
+        "buźka",
+        "irytacja",
+        "obojętność",
+        "oczy",
+        "pff",
+        "przewracam oczami",
+        "twarz przewracająca oczami",
+        "wszystko jedno",
+        "zniecierpliwienie",
+        "znudzenie"
+      ]
+    },
+    "😬": {
+      "name": "twarz z grymasem",
+      "keywords": [
+        "buźka",
+        "grymas",
+        "grymaśna buźka",
+        "twarz z grymasem",
+        "wyszczerz",
+        "zęby"
+      ]
+    },
+    "🤥": {
+      "name": "twarz kłamcy",
+      "keywords": [
+        "buźka",
+        "długi nos",
+        "kłamać",
+        "kłamca",
+        "pinokio",
+        "twarz kłamcy"
+      ]
+    },
+    "😌": {
+      "name": "twarz z wyrazem ulgi",
+      "keywords": [
+        "błogość",
+        "buźka",
+        "odprężenie",
+        "odprężona buźka",
+        "twarz z wyrazem ulgi",
+        "uf",
+        "ulga",
+        "uśmiech"
+      ]
+    },
+    "😔": {
+      "name": "zamyślona twarz",
+      "keywords": [
+        "buźka",
+        "smutek",
+        "zamyślenie",
+        "zamyślona buźka",
+        "zamyślona twarz"
+      ]
+    },
+    "😪": {
+      "name": "senna twarz",
+      "keywords": [
+        "buźka",
+        "sen",
+        "senna twarz",
+        "senność",
+        "spać",
+        "śpiąca buźka"
+      ]
+    },
+    "🤤": {
+      "name": "śliniąca się twarz",
+      "keywords": [
+        "buźka",
+        "cieknie mi ślinka",
+        "głodny",
+        "mniam",
+        "ślina",
+        "śliniąca się twarz",
+        "ślinka"
+      ]
+    },
+    "😴": {
+      "name": "śpiąca twarz",
+      "keywords": [
+        "buźka",
+        "chrapanie",
+        "dobranoc",
+        "drzemka",
+        "noc",
+        "nuda",
+        "sen",
+        "spać",
+        "spanie",
+        "śpiąca twarz",
+        "śpiący",
+        "twarz",
+        "ziew",
+        "zmęczenie",
+        "zzz"
+      ]
+    },
+    "😷": {
+      "name": "twarz w masce medycznej",
+      "keywords": [
+        "buźka",
+        "choroba",
+        "lekarz",
+        "maska",
+        "operacja",
+        "pielęgniarka",
+        "twarz",
+        "twarz w masce medycznej"
+      ]
+    },
+    "🤒": {
+      "name": "twarz z termometrem",
+      "keywords": [
+        "buźka",
+        "choroba",
+        "gorączka",
+        "smutek",
+        "temperatura",
+        "termometr",
+        "twarz z termometrem"
+      ]
+    },
+    "🤕": {
+      "name": "twarz z bandażem",
+      "keywords": [
+        "bandaż",
+        "buźka",
+        "czoło",
+        "głowa",
+        "rana",
+        "skaleczenie",
+        "smutny",
+        "twarz z bandażem"
+      ]
+    },
+    "🤢": {
+      "name": "twarz z mdłościami",
+      "keywords": [
+        "buźka",
+        "choroba",
+        "chory",
+        "mdłości",
+        "obrzydliwe",
+        "twarz z mdłościami",
+        "wymiotować",
+        "zielony"
+      ]
+    },
+    "🤮": {
+      "name": "wymiotująca twarz",
+      "keywords": [
+        "ble",
+        "buźka",
+        "choroba",
+        "chory",
+        "fuj",
+        "głowa",
+        "obrzydliwe",
+        "rzygać",
+        "twarz",
+        "wymiotować",
+        "wymiotująca twarz",
+        "wymioty"
+      ]
+    },
+    "🤧": {
+      "name": "kichająca twarz",
+      "keywords": [
+        "buźka",
+        "choroba",
+        "chory",
+        "katar",
+        "kichać",
+        "kichająca twarz",
+        "kicham",
+        "na zdrowie",
+        "smarkanie"
+      ]
+    },
+    "🥵": {
+      "name": "rozgrzana twarz",
+      "keywords": [
+        "choroba",
+        "czerwona buźka",
+        "czerwona twarz",
+        "duszno",
+        "dyszeć",
+        "gorąco",
+        "gorączka",
+        "pocenie",
+        "pot",
+        "rozgrzana buźka",
+        "rozgrzana twarz",
+        "rozpalony",
+        "spocony",
+        "udar cieplny",
+        "udar słoneczny",
+        "upał"
+      ]
+    },
+    "🥶": {
+      "name": "zmarznięta twarz",
+      "keywords": [
+        "blada twarz",
+        "buźka",
+        "mróz",
+        "mroźno",
+        "niebieska",
+        "odmrożenia",
+        "odmrożenie",
+        "poniżej zera",
+        "sina",
+        "siny",
+        "sopel lodu",
+        "sople",
+        "szczękać zębami",
+        "trzęsę się",
+        "twarz",
+        "zimna twarz",
+        "zimno",
+        "zmarznięta",
+        "zmarznięty"
+      ]
+    },
+    "🥴": {
+      "name": "zamroczona twarz",
+      "keywords": [
+        "alkohol",
+        "buźka",
+        "faliste usta",
+        "krzywe usta",
+        "na gazie",
+        "nierówne oczy",
+        "niewyraźna twarz",
+        "odurzony",
+        "pijana",
+        "pijane",
+        "pijani",
+        "pijany",
+        "pod wpływem",
+        "podchmielenie",
+        "podchmielony",
+        "rozbiegane oczy",
+        "twarz",
+        "wstawiony",
+        "zamroczona twarz",
+        "zawroty głowy"
+      ]
+    },
+    "😵": {
+      "name": "oszołomiona twarz",
+      "keywords": [
+        "buźka",
+        "chory",
+        "knock out",
+        "nokaut",
+        "oszołomiona twarz",
+        "oszołomiony",
+        "zawrót głowy"
+      ]
+    },
+    "🤯": {
+      "name": "eksplodująca głowa",
+      "keywords": [
+        "buźka",
+        "eksplodująca głowa",
+        "eksplozja",
+        "głowa",
+        "nie wiedzieć",
+        "niemożliwe",
+        "szok",
+        "wybuch"
+      ]
+    },
+    "🤠": {
+      "name": "głowa w kapeluszu kowbojskim",
+      "keywords": [
+        "buźka",
+        "głowa w kapeluszu kowbojskim",
+        "haha",
+        "hehe",
+        "kapelusz",
+        "kowboj",
+        "kowbojka",
+        "wesoły"
+      ]
+    },
+    "🥳": {
+      "name": "świętująca twarz",
+      "keywords": [
+        "buźka",
+        "czapeczka",
+        "ekscytacja",
+        "hura",
+        "impreza",
+        "piszczałka",
+        "przyjęcie",
+        "święto",
+        "świętować",
+        "świętowanie",
+        "świętująca buźka",
+        "świętująca twarz",
+        "trąbka",
+        "urodziny",
+        "życzenia"
+      ]
+    },
+    "😎": {
+      "name": "uśmiechnięta twarz w okularach przeciwsłonecznych",
+      "keywords": [
+        "buźka",
+        "cool",
+        "haha",
+        "hehe",
+        "lato",
+        "luzak",
+        "na luzie",
+        "okulary",
+        "szpaner",
+        "uśmiech",
+        "uśmiechnięta twarz w okularach przeciwsłonecznych",
+        "zadowolony"
+      ]
+    },
+    "🤓": {
+      "name": "kujon",
+      "keywords": [
+        "buźka",
+        "buźka w okularach",
+        "bystry",
+        "inteligent",
+        "kujon",
+        "mózgowiec",
+        "nerd",
+        "okulary",
+        "uśmiech",
+        "utalentowany"
+      ]
+    },
+    "🧐": {
+      "name": "twarz z monoklem",
+      "keywords": [
+        "buźka",
+        "głowa",
+        "haha",
+        "hehe",
+        "mądry",
+        "staromodny",
+        "twarz",
+        "twarz z monoklem",
+        "wesoły",
+        "wyniosły"
+      ]
+    },
+    "😕": {
+      "name": "zdezorientowana twarz",
+      "keywords": [
+        "buźka",
+        "smutek",
+        "zakłopotana buźka",
+        "zakłopotanie",
+        "zastanowienie",
+        "zdezorientowana twarz"
+      ]
+    },
+    "🫤": {
+      "name": "twarz z ukośnymi ustami",
+      "keywords": [
+        "do kitu",
+        "frustracja",
+        "niepewna twarz",
+        "rozczarowana twarz",
+        "sceptyczna twarz",
+        "twarz z ukośnymi ustami",
+        "wątpienie",
+        "zmieszanie"
+      ]
+    },
+    "😟": {
+      "name": "zmartwiona twarz",
+      "keywords": [
+        "buźka",
+        "martwić się",
+        "ojej",
+        "smutek",
+        "zmartwienie",
+        "zmartwiona buźka",
+        "zmartwiona twarz"
+      ]
+    },
+    "🙁": {
+      "name": "lekko zachmurzona twarz",
+      "keywords": [
+        "buźka",
+        "ech",
+        "grymas",
+        "lekko zachmurzona twarz",
+        "meh",
+        "niezadowolenie",
+        "niezadowolony",
+        "smutek",
+        "smutny"
+      ]
+    },
+    "☹️": {
+      "name": "zachmurzona twarz",
+      "keywords": [
+        "buźka",
+        "grymas",
+        "niezadowolenie",
+        "smutek",
+        "smutny",
+        "zachmurzona twarz"
+      ]
+    },
+    "😮": {
+      "name": "twarz z otwartymi ustami",
+      "keywords": [
+        "buźka",
+        "o",
+        "och",
+        "szok",
+        "twarz z otwartymi ustami",
+        "zaskoczenie",
+        "zaskoczona buźka"
+      ]
+    },
+    "😯": {
+      "name": "zdumiona twarz",
+      "keywords": [
+        "buźka",
+        "o",
+        "zaskoczenie",
+        "zaskoczona buźka",
+        "zdumienie",
+        "zdumiona twarz",
+        "zdziwienie"
+      ]
+    },
+    "😲": {
+      "name": "zadziwiona twarz",
+      "keywords": [
+        "buźka",
+        "och!",
+        "zadziwiona twarz",
+        "zaskoczenie",
+        "zaskoczona buźka",
+        "zdziwienie"
+      ]
+    },
+    "😳": {
+      "name": "twarz z rumieńcami",
+      "keywords": [
+        "buźka",
+        "rumieńce",
+        "twarz z rumieńcami",
+        "twarz z wypiekami",
+        "wow",
+        "wstyd",
+        "wypieki",
+        "zaskoczenie",
+        "zdziwienie"
+      ]
+    },
+    "🥺": {
+      "name": "błagająca twarz",
+      "keywords": [
+        "błagać",
+        "błagająca twarz",
+        "błaganie",
+        "buźka",
+        "duże oczy",
+        "ładnie prosić",
+        "litość",
+        "oczy",
+        "poprosić",
+        "prosić",
+        "proszę",
+        "słodkie oczy",
+        "smutek",
+        "smutna",
+        "smutne",
+        "smutny",
+        "twarz",
+        "żebrać",
+        "żebranie"
+      ]
+    },
+    "🥹": {
+      "name": "twarz powstrzymująca łzy",
+      "keywords": [
+        "duma",
+        "łzy",
+        "łzy szczęścia",
+        "łzy wzruszenia",
+        "opór",
+        "płacz",
+        "podziw",
+        "proszę",
+        "smutek",
+        "smutna twarz",
+        "twarz powstrzymująca łzy",
+        "uczucia",
+        "wdzięczność",
+        "wzruszenie",
+        "zawstydzenie",
+        "zdenerwowanie"
+      ]
+    },
+    "😦": {
+      "name": "zachmurzona twarz z otwartymi ustami",
+      "keywords": [
+        "buźka",
+        "co?",
+        "nie wierzę",
+        "opadła mi szczęka",
+        "opadła szczena",
+        "rozzłoszczona buźka",
+        "zachmurzona twarz z otwartymi ustami",
+        "zawód",
+        "zdziwienie"
+      ]
+    },
+    "😧": {
+      "name": "udręczona twarz",
+      "keywords": [
+        "ból",
+        "buźka",
+        "niedowierzanie",
+        "udręczona twarz",
+        "zawód",
+        "zdziwienie",
+        "złość"
+      ]
+    },
+    "😨": {
+      "name": "przestraszona twarz",
+      "keywords": [
+        "buźka",
+        "przestraszona twarz",
+        "strach",
+        "wystraszona buźka"
+      ]
+    },
+    "😰": {
+      "name": "zaniepokojona twarz oblana potem",
+      "keywords": [
+        "buźka",
+        "nerwy",
+        "oj",
+        "pot",
+        "strach",
+        "zaniepokojona twarz oblana potem",
+        "zmęczenie",
+        "zziajana buźka",
+        "zziajanie"
+      ]
+    },
+    "😥": {
+      "name": "smutna twarz z wyrazem ulgi",
+      "keywords": [
+        "buźka",
+        "łza",
+        "płacz",
+        "smutek",
+        "smutna twarz z wyrazem ulgi",
+        "smutna ulga"
+      ]
+    },
+    "😢": {
+      "name": "płacząca twarz",
+      "keywords": [
+        "buźka",
+        "buźka ze łzą w oku",
+        "łezka",
+        "płacz",
+        "płacząca twarz",
+        "przykro mi",
+        "smutek"
+      ]
+    },
+    "😭": {
+      "name": "głośno płacząca twarz",
+      "keywords": [
+        "buźka",
+        "głośno płacząca twarz",
+        "głośny płacz",
+        "łzy",
+        "płacz",
+        "smutny",
+        "zapłakana buźka",
+        "zapłakany"
+      ]
+    },
+    "😱": {
+      "name": "twarz krzycząca ze strachu",
+      "keywords": [
+        "buźka",
+        "głowa",
+        "krzycząca buźka",
+        "krzyk",
+        "och",
+        "przestrach",
+        "strach",
+        "twarz krzycząca ze strachu"
+      ]
+    },
+    "😖": {
+      "name": "zakłopotana twarz",
+      "keywords": [
+        "buźka",
+        "irytacja",
+        "zakłopotana twarz",
+        "zirytowana buźka",
+        "złość",
+        "zły"
+      ]
+    },
+    "😣": {
+      "name": "uparta twarz",
+      "keywords": [
+        "ból",
+        "buźka",
+        "napięcie",
+        "skupienie",
+        "uparta twarz",
+        "upór",
+        "zacięta twarz"
+      ]
+    },
+    "😞": {
+      "name": "rozczarowana twarz",
+      "keywords": [
+        "buźka",
+        "przykro mi",
+        "rozczarowana buźka",
+        "rozczarowana twarz",
+        "rozczarowanie",
+        "smutek"
+      ]
+    },
+    "😓": {
+      "name": "twarz ze spuszczonymi oczami oblana potem",
+      "keywords": [
+        "beznadziejny",
+        "buźka",
+        "kropla potu",
+        "nerwy",
+        "pot",
+        "spocony",
+        "twarz ze spuszczonymi oczami oblana potem",
+        "zimny pot"
+      ]
+    },
+    "😩": {
+      "name": "znużona twarz",
+      "keywords": [
+        "buźka",
+        "cierpienie",
+        "rezygnacja",
+        "zmęczenie",
+        "zmęczona buźka",
+        "znużona twarz"
+      ]
+    },
+    "😫": {
+      "name": "zmęczona twarz",
+      "keywords": [
+        "buźka",
+        "kichać",
+        "nie",
+        "płacz",
+        "rozpacz",
+        "smutek",
+        "smutny",
+        "ziewanie",
+        "zmęczenie",
+        "zmęczona buźka",
+        "zmęczona twarz"
+      ]
+    },
+    "😡": {
+      "name": "nadąsana twarz",
+      "keywords": [
+        "buźka",
+        "czerwony",
+        "dąsy",
+        "nadąsana twarz",
+        "twarz",
+        "wściekłość",
+        "złość"
+      ]
+    },
+    "😠": {
+      "name": "zagniewana twarz",
+      "keywords": [
+        "buźka",
+        "gniew",
+        "rozgniewana buźka",
+        "zagniewana twarz",
+        "złość"
+      ]
+    },
+    "😈": {
+      "name": "uśmiechnięta twarz z rogami",
+      "keywords": [
+        "buźka",
+        "diabełek",
+        "fantasy",
+        "rogi",
+        "różki",
+        "uśmiechnięta twarz z rogami",
+        "wesoły",
+        "złośliwy"
+      ]
+    },
+    "👿": {
+      "name": "zagniewana twarz z rogami",
+      "keywords": [
+        "buźka",
+        "diabełek",
+        "fantasy",
+        "rogi",
+        "różki",
+        "smutny",
+        "zagniewana twarz z rogami",
+        "zły"
+      ]
+    },
+    "💀": {
+      "name": "czaszka",
+      "keywords": [
+        "czaszka",
+        "duch",
+        "kościotrup",
+        "potwór",
+        "śmierć",
+        "szkielet",
+        "trupia czaszka"
+      ]
+    },
+    "☠️": {
+      "name": "czaszka z piszczelami",
+      "keywords": [
+        "czaszka",
+        "czaszka z piszczelami",
+        "duch",
+        "kościotrup",
+        "piraci",
+        "piszczele",
+        "potwór",
+        "śmierć",
+        "szkielet",
+        "toksyczne",
+        "trupia czaszka"
+      ]
+    },
+    "💩": {
+      "name": "kupa",
+      "keywords": [
+        "buźka",
+        "gnój",
+        "kupa",
+        "obornik",
+        "odchody",
+        "poo",
+        "poop",
+        "potwór",
+        "smród",
+        "twarz"
+      ]
+    },
+    "👻": {
+      "name": "duch",
+      "keywords": [
+        "biały",
+        "buźka",
+        "duch",
+        "duszek",
+        "halloween",
+        "język",
+        "potwór",
+        "wesoły duch"
+      ]
+    },
+    "👽": {
+      "name": "ufoludek",
+      "keywords": [
+        "bajka",
+        "buźka",
+        "fantasy",
+        "kosmita",
+        "kosmos",
+        "obcy",
+        "pozaziemski",
+        "sci-fi",
+        "szarak",
+        "twarz",
+        "ufo",
+        "ufoludek"
+      ]
+    },
+    "👾": {
+      "name": "kosmiczny potwór",
+      "keywords": [
+        "fantasy",
+        "kosmiczny potwór",
+        "kosmita",
+        "kosmos",
+        "obcy",
+        "potwór",
+        "pozaziemski",
+        "sci-fi",
+        "szarak",
+        "twarz",
+        "ufo",
+        "ufoludek"
+      ]
+    },
+    "🤖": {
+      "name": "głowa robota",
+      "keywords": [
+        "głowa robota",
+        "monstrum",
+        "potwór",
+        "robot",
+        "twarz"
+      ]
+    },
+    "😺": {
+      "name": "uśmiechnięty kot",
+      "keywords": [
+        "głowa",
+        "haha",
+        "hehe",
+        "kot",
+        "uśmiech",
+        "uśmiechnięty kot",
+        "uśmiechnięty kot z otwartym pyszczkiem",
+        "wesoły",
+        "zęby",
+        "zwierzę"
+      ]
+    },
+    "🙈": {
+      "name": "małpa zasłaniająca oczy",
+      "keywords": [
+        "gest",
+        "małpa",
+        "małpa zasłaniająca oczy",
+        "małpka",
+        "nie",
+        "nie widzę",
+        "nie widzieć",
+        "niedobre",
+        "zabronione",
+        "zakrywam oczy",
+        "zwierzę"
+      ]
+    },
+    "🙉": {
+      "name": "małpa zasłaniająca uszy",
+      "keywords": [
+        "buźka",
+        "gest",
+        "głowa",
+        "głuchy",
+        "małpa",
+        "małpa zasłaniająca uszy",
+        "małpka",
+        "nie",
+        "nie słyszę",
+        "nie słyszeć",
+        "niedobre",
+        "zabronione",
+        "zakrywam uszy",
+        "zwierzę"
+      ]
+    },
+    "🙊": {
+      "name": "małpa zasłaniająca pyszczek",
+      "keywords": [
+        "buźka",
+        "co ja mówię",
+        "gest",
+        "głowa",
+        "małpa",
+        "małpa zasłaniająca pyszczek",
+        "małpka",
+        "nie",
+        "nie mówić",
+        "nie mówię",
+        "niedobre",
+        "zabronione",
+        "zakrywam usta",
+        "zwierzę"
+      ]
+    },
+    "💌": {
+      "name": "list miłosny",
+      "keywords": [
+        "kocham",
+        "liścik",
+        "list",
+        "list miłosny",
+        "miłość",
+        "serce",
+        "wiadomość"
+      ]
+    },
+    "💘": {
+      "name": "serce przebite strzałą",
+      "keywords": [
+        "kocham",
+        "przebite serce",
+        "przebite strzałą",
+        "serce",
+        "serce przebite strzałą",
+        "serce ze strzałą"
+      ]
+    },
+    "💝": {
+      "name": "serce ze wstążką",
+      "keywords": [
+        "kocham",
+        "różowe",
+        "serce",
+        "serce ze wstążką",
+        "walentynki",
+        "wstążka"
+      ]
+    },
+    "💖": {
+      "name": "migoczące serce",
+      "keywords": [
+        "błyszczące serce",
+        "kocham",
+        "lśniące serce",
+        "migoczące serce",
+        "miłość",
+        "serce"
+      ]
+    },
+    "💗": {
+      "name": "rosnące serce",
+      "keywords": [
+        "bicie serca",
+        "kocham",
+        "puls",
+        "rosnące serce",
+        "serce",
+        "serce rośnie",
+        "tętno",
+        "zdenerwowany"
+      ]
+    },
+    "💓": {
+      "name": "bijące serce",
+      "keywords": [
+        "bijące serce",
+        "kocham",
+        "kocham cię",
+        "miłość",
+        "serce"
+      ]
+    },
+    "💞": {
+      "name": "wirujące serca",
+      "keywords": [
+        "kocham",
+        "miłość",
+        "para",
+        "serca dwa",
+        "tańczące serca",
+        "wirujące serca"
+      ]
+    },
+    "💕": {
+      "name": "dwa serca",
+      "keywords": [
+        "dwa serca",
+        "kocham",
+        "miłość",
+        "serca"
+      ]
+    },
+    "💟": {
+      "name": "dekoracja z sercem",
+      "keywords": [
+        "dekoracja",
+        "dekoracja z sercem",
+        "kocham",
+        "ozdoba",
+        "serce"
+      ]
+    },
+    "❣️": {
+      "name": "wykrzyknik w kształcie serca",
+      "keywords": [
+        "czerwony wykrzyknik",
+        "kocham",
+        "serce",
+        "wykrzyknik",
+        "wykrzyknik w kształcie serca",
+        "znak interpunkcyjny"
+      ]
+    },
+    "💔": {
+      "name": "złamane serce",
+      "keywords": [
+        "kocham",
+        "pęknięte",
+        "serce",
+        "złamane serce"
+      ]
+    },
+    "❤️": {
+      "name": "czerwone serce",
+      "keywords": [
+        "czerwone",
+        "kocham",
+        "miłość",
+        "serce"
+      ]
+    },
+    "🖤": {
+      "name": "czarne serce",
+      "keywords": [
+        "czarne serce",
+        "czarny",
+        "kocham",
+        "miłość",
+        "serce",
+        "zło"
+      ]
+    },
+    "🤍": {
+      "name": "białe serce",
+      "keywords": [
+        "białe",
+        "serce"
+      ]
+    },
+    "💋": {
+      "name": "ślad po pocałunku",
+      "keywords": [
+        "odcisk ust",
+        "pocałunek",
+        "ślad po pocałunku",
+        "usta"
+      ]
+    },
+    "💯": {
+      "name": "sto punktów",
+      "keywords": [
+        "100",
+        "setka",
+        "sto",
+        "sto punktów",
+        "stówa",
+        "stówka"
+      ]
+    },
+    "💢": {
+      "name": "symbol gniewu",
+      "keywords": [
+        "gniew",
+        "komiks",
+        "symbol gniewu",
+        "złość"
+      ]
+    },
+    "💥": {
+      "name": "kolizja",
+      "keywords": [
+        "kolizja",
+        "komiks",
+        "wybuch",
+        "zderzenie"
+      ]
+    },
+    "💦": {
+      "name": "krople potu",
+      "keywords": [
+        "deszcz",
+        "krople",
+        "krople potu",
+        "pot",
+        "wilgoć",
+        "woda"
+      ]
+    },
+    "💨": {
+      "name": "szybkie poruszanie się",
+      "keywords": [
+        "pęd",
+        "pędzić",
+        "podmuch wiatru",
+        "pogoda",
+        "szybkie poruszanie się",
+        "szybkość",
+        "wiatr",
+        "wieje",
+        "wietrznie"
+      ]
+    },
+    "💬": {
+      "name": "dymek",
+      "keywords": [
+        "dialog",
+        "dymek",
+        "rozmowa"
+      ]
+    },
+    "💭": {
+      "name": "dymek myśli",
+      "keywords": [
+        "chmurka",
+        "dymek",
+        "dymek myśli",
+        "myśl",
+        "myśleć"
+      ]
+    },
+    "💤": {
+      "name": "chrapanie",
+      "keywords": [
+        "chrapanie",
+        "dobranoc",
+        "komiks",
+        "nuda",
+        "sen",
+        "senny",
+        "spanie",
+        "śpiący",
+        "zabawny",
+        "żartobliwy",
+        "zmęczenie",
+        "znudzenie",
+        "zzz"
+      ]
+    },
+    "👋": {
+      "name": "machająca dłoń",
+      "keywords": [
+        "cześć",
+        "dłoń",
+        "halo",
+        "hej",
+        "machać",
+        "machająca dłoń",
+        "pa",
+        "papa",
+        "powitanie",
+        "pożegnanie",
+        "ręka",
+        "witaj"
+      ]
+    },
+    "🤚": {
+      "name": "wzniesiony grzbiet dłoni",
+      "keywords": [
+        "cześć",
+        "powitanie",
+        "pozdrowienie",
+        "pożegnanie",
+        "stop",
+        "uniesiona dłoń",
+        "wzniesiony grzbiet dłoni"
+      ]
+    },
+    "🖐️": {
+      "name": "uniesiona otwarta dłoń",
+      "keywords": [
+        "cześć",
+        "dłoń",
+        "hej",
+        "machać",
+        "otwarta dłoń wszystkie palce",
+        "palce",
+        "ręka",
+        "rozpostarte palce",
+        "uniesiona otwarta dłoń"
+      ]
+    },
+    "✋": {
+      "name": "wzniesiona dłoń",
+      "keywords": [
+        "dłoń",
+        "ręka",
+        "stop",
+        "uwaga",
+        "wzniesiona dłoń"
+      ]
+    },
+    "🖖": {
+      "name": "salut wolkański",
+      "keywords": [
+        "dłoń",
+        "palce",
+        "pozdrowienie",
+        "ręka",
+        "salut",
+        "V",
+        "wolkan",
+        "wolkański",
+        "wolkańskie",
+        "żyj długo i pomyślnie"
+      ]
+    },
+    "🫱": {
+      "name": "dłoń skierowana w prawo",
+      "keywords": [
+        "dłoń",
+        "dłoń skierowana w prawo",
+        "prawa",
+        "uścisk dłoni",
+        "w prawo",
+        "wyciągnięta dłoń"
+      ]
+    },
+    "🫲": {
+      "name": "dłoń skierowana w lewo",
+      "keywords": [
+        "dłoń",
+        "dłoń skierowana w lewo",
+        "lewa",
+        "uścisk dłoni",
+        "w lewo",
+        "wyciągnięta dłoń"
+      ]
+    },
+    "👌": {
+      "name": "dłoń z gestem OK",
+      "keywords": [
+        "dłoń",
+        "dłoń z gestem OK",
+        "dobre",
+        "idealnie",
+        "ok",
+        "okej",
+        "potwierdzenie",
+        "racja",
+        "ręka",
+        "super",
+        "tak",
+        "w porządku",
+        "zgoda",
+        "znak OK"
+      ]
+    },
+    "✌️": {
+      "name": "gest V",
+      "keywords": [
+        "gest",
+        "pokój",
+        "pokoju",
+        "ręka",
+        "V",
+        "victoria",
+        "victorii",
+        "znak",
+        "zwycięstwa",
+        "zwycięstwo"
+      ]
+    },
+    "🤞": {
+      "name": "skrzyżowane palce",
+      "keywords": [
+        "kciuki",
+        "powodzenia",
+        "ręka",
+        "skrzyżowane palce",
+        "trzymać",
+        "trzymam kciuki"
+      ]
+    },
+    "🤟": {
+      "name": "gest Kocham cię",
+      "keywords": [
+        "dłoń",
+        "gest",
+        "kocham",
+        "miłość",
+        "miłości",
+        "palce",
+        "ręka",
+        "rogi",
+        "znak"
+      ]
+    },
+    "🤘": {
+      "name": "gest rogów",
+      "keywords": [
+        "dłoń",
+        "gest",
+        "heavy metal",
+        "mano cornuta",
+        "metal",
+        "ręka",
+        "rock",
+        "rock and roll",
+        "rocker",
+        "rogi",
+        "rogów",
+        "znak"
+      ]
+    },
+    "🤙": {
+      "name": "dłoń w geście „Zadzwoń do mnie”",
+      "keywords": [
+        "dłoń w geście Zadzwoń do mnie",
+        "dzwonić",
+        "essa",
+        "luz",
+        "ręka",
+        "telefonować",
+        "zadzwoń do mnie"
+      ]
+    },
+    "👈": {
+      "name": "dłoń z palcem wskazującym w lewo",
+      "keywords": [
+        "dłoń z palcem wskazującym w lewo",
+        "lewa strona",
+        "palec",
+        "palec w lewo",
+        "ręka",
+        "tam",
+        "w lewo",
+        "wskazujący"
+      ]
+    },
+    "👉": {
+      "name": "dłoń z palcem wskazującym w prawo",
+      "keywords": [
+        "dłoń z palcem wskazującym w prawo",
+        "palec",
+        "palec w prawo",
+        "prawa strona",
+        "ręka",
+        "tam",
+        "w prawo",
+        "wskazujący"
+      ]
+    },
+    "👆": {
+      "name": "dłoń z palcem wskazującym w górę",
+      "keywords": [
+        "dłoń z palcem wskazującym w górę",
+        "do góry",
+        "góra",
+        "palec",
+        "palec w górę",
+        "ręka",
+        "w górę",
+        "wskazujący"
+      ]
+    },
+    "🖕": {
+      "name": "środkowy palec",
+      "keywords": [
+        "gest",
+        "palec",
+        "ręka",
+        "środkowy palec",
+        "wulgarny gest"
+      ]
+    },
+    "👇": {
+      "name": "dłoń z palcem wskazującym w dół",
+      "keywords": [
+        "dłoń z palcem wskazującym w dół",
+        "dół",
+        "na dół",
+        "palec",
+        "palec w dół",
+        "ręka",
+        "w dół",
+        "wskazujący"
+      ]
+    },
+    "☝️": {
+      "name": "palec wskazujący w górę",
+      "keywords": [
+        "do góry",
+        "góra",
+        "palec",
+        "palec wskazujący w górę",
+        "ręka",
+        "w górę",
+        "wskazujący"
+      ]
+    },
+    "🫵": {
+      "name": "palec wskazujący skierowany na patrzącego",
+      "keywords": [
+        "palec wskazujący skierowany na patrzącego",
+        "ty",
+        "wskazywanie"
+      ]
+    },
+    "👍": {
+      "name": "kciuk w górę",
+      "keywords": [
+        "brawo",
+        "kciuk",
+        "kciuk w górę",
+        "lubię",
+        "lubię to",
+        "OK",
+        "okej",
+        "podoba mi się",
+        "ręka",
+        "tak",
+        "w porządku",
+        "zgoda"
+      ]
+    },
+    "👎": {
+      "name": "kciuk w dół",
+      "keywords": [
+        "brzydkie",
+        "kciuk w dół",
+        "nie",
+        "nie lubię",
+        "nie podoba mi się",
+        "ręka"
+      ]
+    },
+    "✊": {
+      "name": "wzniesiona pięść",
+      "keywords": [
+        "pięść",
+        "ręka",
+        "uniesiona",
+        "wzniesiona pięść",
+        "zaciśnięta"
+      ]
+    },
+    "👊": {
+      "name": "pięść od przodu",
+      "keywords": [
+        "cios",
+        "cios pięścią",
+        "dłoń",
+        "pięść",
+        "pięść od przodu",
+        "prawy prosty",
+        "ręka",
+        "sierpowy",
+        "zaciśnięta pięść"
+      ]
+    },
+    "👏": {
+      "name": "klaskanie",
+      "keywords": [
+        "brawa",
+        "brawo",
+        "klaskać",
+        "klaskanie",
+        "oklaski",
+        "ręce",
+        "ręka"
+      ]
+    },
+    "🙌": {
+      "name": "wzniesione ręce",
+      "keywords": [
+        "dłonie",
+        "hura",
+        "hurra",
+        "ręce",
+        "super",
+        "wzniesione"
+      ]
+    },
+    "🫶": {
+      "name": "dłonie tworzące serce",
+      "keywords": [
+        "<3",
+        "dłonie tworzące serce",
+        "miłość",
+        "serce"
+      ]
+    },
+    "👐": {
+      "name": "otwarte dłonie",
+      "keywords": [
+        "otwarte dłonie",
+        "puste ręce",
+        "ręce",
+        "ręka",
+        "złapać"
+      ]
+    },
+    "🤲": {
+      "name": "dłonie do góry razem",
+      "keywords": [
+        "dawać",
+        "dłonie",
+        "dłonie do góry razem",
+        "modlić się",
+        "modlitwa",
+        "ręce",
+        "ręka"
+      ]
+    },
+    "🤝": {
+      "name": "uścisk dłoni",
+      "keywords": [
+        "cześć",
+        "dłonie",
+        "powitanie",
+        "ręce",
+        "ręka",
+        "spotkanie",
+        "tak",
+        "uścisk",
+        "uścisk dłoni",
+        "zgoda"
+      ]
+    },
+    "🙏": {
+      "name": "złożone ręce",
+      "keywords": [
+        "dziękuję",
+        "modlitwa",
+        "prosić",
+        "ręka",
+        "złożone ręce"
+      ]
+    },
+    "✍️": {
+      "name": "pisząca dłoń",
+      "keywords": [
+        "dłoń",
+        "długopis",
+        "pisać",
+        "pisać odręcznie",
+        "pisząca dłoń",
+        "piszę",
+        "ręka"
+      ]
+    },
+    "👂": {
+      "name": "ucho",
+      "keywords": [
+        "ciało",
+        "słyszeć",
+        "ucho"
+      ]
+    },
+    "🦻": {
+      "name": "ucho z aparatem słuchowym",
+      "keywords": [
+        "aparat słuchowy",
+        "dostępność",
+        "niedosłuch",
+        "niedosłyszący",
+        "ucho",
+        "z aparatem słuchowym"
+      ]
+    },
+    "👃": {
+      "name": "nos",
+      "keywords": [
+        "ciało",
+        "nos"
+      ]
+    },
+    "🧠": {
+      "name": "mózg",
+      "keywords": [
+        "inteligentny",
+        "mózg",
+        "myśleć"
+      ]
+    },
+    "🫀": {
+      "name": "serce",
+      "keywords": [
+        "anatomia",
+        "bicie serca",
+        "kardiologia",
+        "mięsień sercowy",
+        "narząd",
+        "organ",
+        "puls",
+        "serce"
+      ]
+    },
+    "🫁": {
+      "name": "płuca",
+      "keywords": [
+        "klatka piersiowa",
+        "narząd",
+        "oddech",
+        "oddychanie",
+        "organ",
+        "płuca",
+        "układ oddechowy",
+        "wdech",
+        "wydech"
+      ]
+    },
+    "🦷": {
+      "name": "ząb",
+      "keywords": [
+        "białe",
+        "dentysta",
+        "stomatolog",
+        "ząb",
+        "zęby"
+      ]
+    },
+    "🦴": {
+      "name": "kość",
+      "keywords": [
+        "kość",
+        "kości",
+        "pies",
+        "szkielet"
+      ]
+    },
+    "👀": {
+      "name": "oczy",
+      "keywords": [
+        "obserwacja",
+        "obserwowanie",
+        "oczy",
+        "oko",
+        "twarz",
+        "wow"
+      ]
+    },
+    "👁️": {
+      "name": "oko",
+      "keywords": [
+        "ciało",
+        "oko"
+      ]
+    },
+    "👅": {
+      "name": "język",
+      "keywords": [
+        "ciało",
+        "język",
+        "mniam"
+      ]
+    },
+    "👄": {
+      "name": "usta",
+      "keywords": [
+        "ciało",
+        "usta",
+        "wargi"
+      ]
+    },
+    "👶": {
+      "name": "niemowlę",
+      "keywords": [
+        "bobas",
+        "dziecko",
+        "głowa",
+        "niemowlę"
+      ]
+    },
+    "🧑": {
+      "name": "dorosły",
+      "keywords": [
+        "człowiek",
+        "dorosły",
+        "głowa",
+        "osoba",
+        "płeć neutralna",
+        "twarz"
+      ]
+    },
+    "👨": {
+      "name": "mężczyzna",
+      "keywords": [
+        "głowa",
+        "mężczyzna"
+      ]
+    },
+    "👩": {
+      "name": "kobieta",
+      "keywords": [
+        "głowa",
+        "kobieta"
+      ]
+    },
+    "🚶": {
+      "name": "idąca osoba",
+      "keywords": [
+        "chodzenie",
+        "idąca",
+        "iść",
+        "na piechotę",
+        "osoba",
+        "piechur",
+        "pieszo",
+        "spacer"
+      ]
+    },
+    "🏃": {
+      "name": "biegnąca osoba",
+      "keywords": [
+        "bieg",
+        "biegacz",
+        "biegaczka",
+        "bieganie",
+        "biegnąca",
+        "maraton",
+        "osoba",
+        "pośpiech",
+        "sport",
+        "szybko",
+        "w ruchu"
+      ]
+    },
+    "⛷️": {
+      "name": "narciarz",
+      "keywords": [
+        "narciarz",
+        "narty",
+        "śnieg",
+        "sport",
+        "stok",
+        "zawody",
+        "zima"
+      ]
+    },
+    "🏄": {
+      "name": "surfująca osoba",
+      "keywords": [
+        "deska",
+        "fala",
+        "morze",
+        "ocean",
+        "osoba",
+        "sport",
+        "surfer",
+        "surferka",
+        "surfing",
+        "surfująca"
+      ]
+    },
+    "🏊": {
+      "name": "pływająca osoba",
+      "keywords": [
+        "basen",
+        "kraulem",
+        "na basenie",
+        "osoba",
+        "pływająca osoba",
+        "pływak",
+        "pływanie",
+        "sport",
+        "triathlon",
+        "woda",
+        "zawody"
+      ]
+    },
+    "🏋️": {
+      "name": "osoba podnosząca ciężary",
+      "keywords": [
+        "atleta",
+        "atletka",
+        "ciężarów",
+        "ciężarowiec",
+        "osoba",
+        "podnosząca ciężary",
+        "podnoszenie",
+        "siłowy",
+        "sport",
+        "sztanga",
+        "trening",
+        "zawody"
+      ]
+    },
+    "🚴": {
+      "name": "osoba na rowerze",
+      "keywords": [
+        "kolarka",
+        "kolarz",
+        "na rowerze",
+        "osoba",
+        "rower",
+        "rowerzysta",
+        "rowerzystka",
+        "sport",
+        "wyścig"
+      ]
+    },
+    "🧘": {
+      "name": "osoba w pozycji lotosu",
+      "keywords": [
+        "joga",
+        "medytacja",
+        "osoba",
+        "relaks",
+        "siedząca",
+        "siedzący",
+        "siedzieć",
+        "spokój",
+        "w pozycji lotosu",
+        "zen"
+      ]
+    },
+    "🛀": {
+      "name": "osoba biorąca kąpiel",
+      "keywords": [
+        "biorąca kąpiel",
+        "kąpiel",
+        "osoba",
+        "w wannie",
+        "wanna"
+      ]
+    },
+    "🛌": {
+      "name": "osoba w łóżku",
+      "keywords": [
+        "dobranoc",
+        "drzemka",
+        "hotel",
+        "łóżko",
+        "nocleg",
+        "nocowanie",
+        "osoba",
+        "pensjonat",
+        "posłanie",
+        "sen",
+        "spać",
+        "w łóżku",
+        "zzz"
+      ]
+    },
+    "🗣️": {
+      "name": "mówiąca głowa",
+      "keywords": [
+        "głos",
+        "mówiąca głowa",
+        "mówić",
+        "powiedzieć",
+        "profil",
+        "sylwetka"
+      ]
+    },
+    "👤": {
+      "name": "sylwetka popiersia",
+      "keywords": [
+        "osoba",
+        "sylwetka",
+        "sylwetka popiersia"
+      ]
+    },
+    "👥": {
+      "name": "sylwetki popiersi",
+      "keywords": [
+        "osoby",
+        "sylwetki",
+        "sylwetki popiersi"
+      ]
+    },
+    "👪": {
+      "name": "rodzina",
+      "keywords": [
+        "dziecko",
+        "mama",
+        "matka",
+        "ojciec",
+        "rodzice",
+        "rodzina",
+        "tata"
+      ]
+    },
+    "👣": {
+      "name": "ślady stóp",
+      "keywords": [
+        "odciski stóp",
+        "ślady",
+        "ślady stóp",
+        "stopy"
+      ]
+    },
+    "🫆": {
+      "name": "odcisk palca",
+      "keywords": [
+        "bezpieczeństwo",
+        "odcisk palca",
+        "tożsamość"
+      ]
+    },
+    "🐵": {
+      "name": "głowa małpy",
+      "keywords": [
+        "buźka",
+        "głowa",
+        "głowa małpy",
+        "małpka",
+        "zwierzę"
+      ]
+    },
+    "🐒": {
+      "name": "małpa",
+      "keywords": [
+        "małpa",
+        "małpka",
+        "zwierzę"
+      ]
+    },
+    "🦍": {
+      "name": "goryl",
+      "keywords": [
+        "goryl",
+        "zwierzę"
+      ]
+    },
+    "🐶": {
+      "name": "głowa psa",
+      "keywords": [
+        "buźka",
+        "głowa",
+        "głowa psa",
+        "pies",
+        "piesek",
+        "psiaczek",
+        "pysk",
+        "pyszczek",
+        "szczeniaczek",
+        "zwierzę"
+      ]
+    },
+    "🐕": {
+      "name": "pies",
+      "keywords": [
+        "pies",
+        "piesek",
+        "psiaczek",
+        "psinka",
+        "zwierzę"
+      ]
+    },
+    "🐩": {
+      "name": "pudel",
+      "keywords": [
+        "biały",
+        "ostrzyżony",
+        "pies",
+        "piesek",
+        "pudel",
+        "pudelek",
+        "zwierzę"
+      ]
+    },
+    "🐺": {
+      "name": "głowa wilka",
+      "keywords": [
+        "buźka",
+        "dziki",
+        "głowa",
+        "las",
+        "pysk",
+        "wilk",
+        "wilka",
+        "zwierzę"
+      ]
+    },
+    "🦊": {
+      "name": "głowa lisa",
+      "keywords": [
+        "buźka",
+        "chytrość",
+        "chytry",
+        "głowa",
+        "lis",
+        "lisa",
+        "przebiegły",
+        "rudy",
+        "zwierzę"
+      ]
+    },
+    "🦝": {
+      "name": "szop",
+      "keywords": [
+        "buźka",
+        "ciekawość",
+        "ciekawski",
+        "pracz",
+        "szop",
+        "zwierzę"
+      ]
+    },
+    "🐱": {
+      "name": "głowa kota",
+      "keywords": [
+        "buźka",
+        "głowa",
+        "kicia",
+        "kot",
+        "kota",
+        "kotek",
+        "pyszczek",
+        "zwierzę"
+      ]
+    },
+    "🐈": {
+      "name": "kot",
+      "keywords": [
+        "kot",
+        "kotek",
+        "zwierzę"
+      ]
+    },
+    "🦁": {
+      "name": "głowa lwa",
+      "keywords": [
+        "buźka",
+        "dziki",
+        "głowa",
+        "grzywa",
+        "kot",
+        "lew",
+        "lwa",
+        "pysk",
+        "zodiak",
+        "zwierzę"
+      ]
+    },
+    "🐯": {
+      "name": "głowa tygrysa",
+      "keywords": [
+        "buźka",
+        "głowa",
+        "kot",
+        "paski",
+        "pyszczek",
+        "tygrys",
+        "tygrysa",
+        "tygrysek",
+        "zwierzę"
+      ]
+    },
+    "🐴": {
+      "name": "głowa konia",
+      "keywords": [
+        "głowa",
+        "koń",
+        "konia",
+        "konik",
+        "końska",
+        "koński",
+        "łeb",
+        "zwierzę"
+      ]
+    },
+    "🐎": {
+      "name": "koń",
+      "keywords": [
+        "koń",
+        "konne",
+        "wierzchowiec",
+        "wyścigi",
+        "wyścigowy",
+        "zwierzę"
+      ]
+    },
+    "🦄": {
+      "name": "głowa jednorożca",
+      "keywords": [
+        "głowa",
+        "jednorożca",
+        "jednorożec",
+        "kucyk",
+        "magia",
+        "różowy",
+        "zwierzę"
+      ]
+    },
+    "🦓": {
+      "name": "zebra",
+      "keywords": [
+        "koń",
+        "paski",
+        "sawanna",
+        "zebra",
+        "zwierzę"
+      ]
+    },
+    "🦌": {
+      "name": "jeleń",
+      "keywords": [
+        "jeleń",
+        "rogacz",
+        "rogi",
+        "zwierzę"
+      ]
+    },
+    "🦬": {
+      "name": "żubr",
+      "keywords": [
+        "bizon",
+        "puszcza",
+        "stado",
+        "wół",
+        "żubr",
+        "zwierzę"
+      ]
+    },
+    "🐮": {
+      "name": "głowa krowy",
+      "keywords": [
+        "buźka",
+        "głowa",
+        "krowa",
+        "krówka",
+        "krowy",
+        "łaty",
+        "mleko",
+        "zwierzę"
+      ]
+    },
+    "🐄": {
+      "name": "krowa",
+      "keywords": [
+        "krowa",
+        "krówka",
+        "łaty",
+        "mleko",
+        "zwierzę"
+      ]
+    },
+    "🐷": {
+      "name": "głowa świni",
+      "keywords": [
+        "buźka",
+        "głowa",
+        "ryjek",
+        "świni",
+        "świnia",
+        "świnka",
+        "zwierzę"
+      ]
+    },
+    "🐖": {
+      "name": "świnia",
+      "keywords": [
+        "świnia",
+        "świnka",
+        "zwierzę"
+      ]
+    },
+    "🐗": {
+      "name": "dzik",
+      "keywords": [
+        "dzik",
+        "dzika",
+        "głowa",
+        "knur",
+        "las",
+        "świnia",
+        "zwierzę"
+      ]
+    },
+    "🐑": {
+      "name": "owca",
+      "keywords": [
+        "baran",
+        "baranek",
+        "biały",
+        "owca",
+        "owieczka",
+        "rogaty",
+        "rogi",
+        "Wielkanoc",
+        "zwierzę"
+      ]
+    },
+    "🐐": {
+      "name": "koza",
+      "keywords": [
+        "koza",
+        "koziorożec",
+        "kózka",
+        "rogi",
+        "zodiak",
+        "zwierzę"
+      ]
+    },
+    "🐪": {
+      "name": "wielbłąd",
+      "keywords": [
+        "dromader",
+        "garb",
+        "jednogarbny",
+        "pustynia",
+        "wielbłąd",
+        "zwierzę"
+      ]
+    },
+    "🦙": {
+      "name": "lama",
+      "keywords": [
+        "alpaka",
+        "gwanako",
+        "lama",
+        "wełna",
+        "wikunia",
+        "zwierzę"
+      ]
+    },
+    "🦒": {
+      "name": "żyrafa",
+      "keywords": [
+        "głowa",
+        "sawanna",
+        "zwierzę",
+        "żyrafa"
+      ]
+    },
+    "🐘": {
+      "name": "słoń",
+      "keywords": [
+        "słoń",
+        "trąba",
+        "zwierzę"
+      ]
+    },
+    "🦏": {
+      "name": "nosorożec",
+      "keywords": [
+        "nosorożec",
+        "róg",
+        "zwierzę"
+      ]
+    },
+    "🦛": {
+      "name": "hipopotam",
+      "keywords": [
+        "hipcio",
+        "hipopotam",
+        "zwierzę"
+      ]
+    },
+    "🐭": {
+      "name": "głowa myszy",
+      "keywords": [
+        "buźka",
+        "głowa",
+        "głowa myszy",
+        "mysz",
+        "myszka",
+        "zwierzę"
+      ]
+    },
+    "🐹": {
+      "name": "głowa chomika",
+      "keywords": [
+        "buźka",
+        "chomik",
+        "chomika",
+        "głowa",
+        "gryzoń",
+        "mysz",
+        "zwierzę"
+      ]
+    },
+    "🐰": {
+      "name": "głowa królika",
+      "keywords": [
+        "buźka",
+        "futrzak",
+        "głowa",
+        "króliczek",
+        "królik",
+        "królika",
+        "zając",
+        "zająca",
+        "zwierzę"
+      ]
+    },
+    "🐇": {
+      "name": "królik",
+      "keywords": [
+        "króliczek",
+        "królik",
+        "zając",
+        "zwierzę"
+      ]
+    },
+    "🐿️": {
+      "name": "pręgowiec",
+      "keywords": [
+        "gryzoń",
+        "orzeszki",
+        "pręgowiec",
+        "wiewiórka",
+        "zwierzę"
+      ]
+    },
+    "🦔": {
+      "name": "jeż",
+      "keywords": [
+        "jeż",
+        "jeżyk",
+        "kolce",
+        "zwierzę"
+      ]
+    },
+    "🦇": {
+      "name": "nietoperz",
+      "keywords": [
+        "nietoperz",
+        "wampir",
+        "zwierzę"
+      ]
+    },
+    "🐻": {
+      "name": "głowa niedźwiedzia",
+      "keywords": [
+        "buźka",
+        "głowa",
+        "miś",
+        "niedźwiedź",
+        "niedźwiedzia",
+        "zwierzę"
+      ]
+    },
+    "🐨": {
+      "name": "koala",
+      "keywords": [
+        "australia",
+        "buźka",
+        "eukaliptus",
+        "głowa",
+        "koala",
+        "miś",
+        "zwierzę"
+      ]
+    },
+    "🐼": {
+      "name": "głowa pandy",
+      "keywords": [
+        "buźka",
+        "głowa",
+        "miś",
+        "panda",
+        "pandy",
+        "zwierzę"
+      ]
+    },
+    "🐾": {
+      "name": "ślady łap",
+      "keywords": [
+        "łapki",
+        "łapy",
+        "odciski",
+        "ślady",
+        "ślady łap",
+        "tropy"
+      ]
+    },
+    "🦃": {
+      "name": "indyk",
+      "keywords": [
+        "indyk",
+        "ptak",
+        "zwierzę"
+      ]
+    },
+    "🐔": {
+      "name": "kura",
+      "keywords": [
+        "głowa",
+        "kogut",
+        "kura",
+        "kurczak",
+        "ptak",
+        "zwierzę"
+      ]
+    },
+    "🐓": {
+      "name": "kogut",
+      "keywords": [
+        "kogut",
+        "ornitologia",
+        "ptak",
+        "zwierzę"
+      ]
+    },
+    "🐣": {
+      "name": "wykluwające się kurczątko",
+      "keywords": [
+        "kura",
+        "kurczaczek",
+        "kurczak",
+        "kurczątko",
+        "pisklak",
+        "ptak",
+        "wykluwać się",
+        "wykluwające się kurczątko",
+        "zwierzę"
+      ]
+    },
+    "🐤": {
+      "name": "kurczątko",
+      "keywords": [
+        "kura",
+        "kurczaczek",
+        "kurczak",
+        "kurczątko",
+        "pisklak",
+        "ptak",
+        "zwierzę"
+      ]
+    },
+    "🐦": {
+      "name": "ptak",
+      "keywords": [
+        "ornitologia",
+        "ptak",
+        "zwierzę"
+      ]
+    },
+    "🐧": {
+      "name": "pingwin",
+      "keywords": [
+        "antarktyda",
+        "pingwin",
+        "ptak",
+        "zwierzę"
+      ]
+    },
+    "🕊️": {
+      "name": "gołąb",
+      "keywords": [
+        "biały",
+        "gołąb",
+        "gołąbek",
+        "miłość",
+        "pokój",
+        "ptak",
+        "skrzydła",
+        "ślub",
+        "zwierzę"
+      ]
+    },
+    "🦅": {
+      "name": "orzeł",
+      "keywords": [
+        "Bielik",
+        "orzeł",
+        "ptak",
+        "zwierzę"
+      ]
+    },
+    "🦆": {
+      "name": "kaczka",
+      "keywords": [
+        "kaczka",
+        "kaczor",
+        "ptak",
+        "woda",
+        "zwierzę"
+      ]
+    },
+    "🦢": {
+      "name": "łabędź",
+      "keywords": [
+        "biały",
+        "brzydkie kaczątko",
+        "łabędź",
+        "łabędziątko",
+        "ptak",
+        "zwierzę"
+      ]
+    },
+    "🦉": {
+      "name": "sowa",
+      "keywords": [
+        "mądrość",
+        "mądry",
+        "noc",
+        "oczy",
+        "ptak",
+        "sowa",
+        "sówka",
+        "zwierzę"
+      ]
+    },
+    "🪶": {
+      "name": "pióro",
+      "keywords": [
+        "fruwać",
+        "latanie",
+        "lekkość",
+        "pierze",
+        "pióra",
+        "pióro",
+        "pióro do pisania",
+        "upierzenie"
+      ]
+    },
+    "🦩": {
+      "name": "flaming",
+      "keywords": [
+        "ekstrawagancja",
+        "flaming",
+        "tropikalny",
+        "zwierzę"
+      ]
+    },
+    "🦜": {
+      "name": "papuga",
+      "keywords": [
+        "gadająca",
+        "mowa",
+        "mówić",
+        "papuga",
+        "pirat",
+        "ptak",
+        "zwierzę"
+      ]
+    },
+    "🪽": {
+      "name": "skrzydło",
+      "keywords": [
+        "anielskie",
+        "latający",
+        "latanie",
+        "lotnictwo",
+        "mitologia",
+        "niebiańskie",
+        "ptak",
+        "skrzydło",
+        "wznosić się"
+      ]
+    },
+    "🐸": {
+      "name": "głowa żaby",
+      "keywords": [
+        "buźka",
+        "głowa",
+        "głowa żaby",
+        "płaz",
+        "ropucha",
+        "traszka",
+        "żaba",
+        "żabka",
+        "zwierzę"
+      ]
+    },
+    "🐊": {
+      "name": "krokodyl",
+      "keywords": [
+        "aligator",
+        "gad",
+        "jaszczur",
+        "krokodyl",
+        "zwierzę"
+      ]
+    },
+    "🐢": {
+      "name": "żółw",
+      "keywords": [
+        "powolny",
+        "skorupa",
+        "żółw",
+        "zwierzę"
+      ]
+    },
+    "🦎": {
+      "name": "jaszczurka",
+      "keywords": [
+        "gad",
+        "jaszczurka",
+        "zwierzę"
+      ]
+    },
+    "🐍": {
+      "name": "wąż",
+      "keywords": [
+        "dusiciel",
+        "jadowity",
+        "wąż",
+        "żmija",
+        "zwierzę"
+      ]
+    },
+    "🐲": {
+      "name": "głowa smoka",
+      "keywords": [
+        "bajka",
+        "baśń",
+        "fantasy",
+        "głowa",
+        "magia",
+        "smok",
+        "smoka",
+        "zwierzę"
+      ]
+    },
+    "🐉": {
+      "name": "smok",
+      "keywords": [
+        "bajka",
+        "baśń",
+        "fantasy",
+        "legenda",
+        "smok",
+        "zwierzę"
+      ]
+    },
+    "🦕": {
+      "name": "zauropod",
+      "keywords": [
+        "dinozaur",
+        "głowa",
+        "zauropod",
+        "zwierzę"
+      ]
+    },
+    "🦖": {
+      "name": "t-rex",
+      "keywords": [
+        "dinozaur",
+        "głowa",
+        "t-rex",
+        "tyranozaur",
+        "zwierzę"
+      ]
+    },
+    "🐳": {
+      "name": "wieloryb tryskający wodą",
+      "keywords": [
+        "fontanna",
+        "morze",
+        "ocean",
+        "strumień",
+        "tryskający wodą",
+        "wieloryb",
+        "woda",
+        "wody",
+        "zwierzę"
+      ]
+    },
+    "🐬": {
+      "name": "delfin",
+      "keywords": [
+        "delfin",
+        "morze",
+        "ocean",
+        "zwierzę"
+      ]
+    },
+    "🫍": {
+      "name": "orka",
+      "keywords": [
+        "morski",
+        "ocean",
+        "wieloryb"
+      ]
+    },
+    "🐟": {
+      "name": "ryba",
+      "keywords": [
+        "morze",
+        "ocean",
+        "ryba",
+        "rybka",
+        "ryby",
+        "woda",
+        "zodiak",
+        "zwierzę"
+      ]
+    },
+    "🐠": {
+      "name": "ryba tropikalna",
+      "keywords": [
+        "morze",
+        "ryba",
+        "rybka",
+        "tropikalna",
+        "tropiki",
+        "woda",
+        "zwierzę"
+      ]
+    },
+    "🐡": {
+      "name": "ryba rozdymka",
+      "keywords": [
+        "morze",
+        "ocean",
+        "rozdymka",
+        "ryba",
+        "zwierzę"
+      ]
+    },
+    "🦈": {
+      "name": "rekin",
+      "keywords": [
+        "morze",
+        "ocean",
+        "rekin",
+        "ryba",
+        "zwierzę"
+      ]
+    },
+    "🐙": {
+      "name": "ośmiornica",
+      "keywords": [
+        "macki",
+        "morze",
+        "ocean",
+        "osiem",
+        "ośmiornica",
+        "zwierzę"
+      ]
+    },
+    "🐚": {
+      "name": "muszla spiralna",
+      "keywords": [
+        "morze",
+        "muszelka",
+        "muszla",
+        "muszla spiralna",
+        "plaża",
+        "spirala",
+        "zwierzę"
+      ]
+    },
+    "🪸": {
+      "name": "koralowiec",
+      "keywords": [
+        "koralowa",
+        "koralowiec",
+        "ocean",
+        "rafa"
+      ]
+    },
+    "🪼": {
+      "name": "meduza",
+      "keywords": [
+        "akwarium",
+        "bezkręgowiec",
+        "galareta",
+        "macki",
+        "meduza",
+        "morski",
+        "morskie",
+        "morze",
+        "ocean",
+        "parzyć",
+        "plankton",
+        "zwierzę"
+      ]
+    },
+    "🦀": {
+      "name": "krab",
+      "keywords": [
+        "krab",
+        "morze",
+        "ocean",
+        "plaża",
+        "rak",
+        "zodiak",
+        "zwierzę"
+      ]
+    },
+    "🦞": {
+      "name": "homar",
+      "keywords": [
+        "czerwony",
+        "homar",
+        "owoce morza",
+        "rak",
+        "szczypce",
+        "zwierzę"
+      ]
+    },
+    "🦐": {
+      "name": "krewetka",
+      "keywords": [
+        "jedzenie",
+        "krewetka",
+        "morze",
+        "ocean",
+        "owoce morza",
+        "zwierzę"
+      ]
+    },
+    "🦑": {
+      "name": "kałamarnica",
+      "keywords": [
+        "atrament",
+        "jedzenie",
+        "kałamarnica",
+        "mątwa",
+        "mięczak",
+        "morze",
+        "ocean",
+        "ośmiornica",
+        "owoce morza",
+        "sepia",
+        "tusz",
+        "zwierzę"
+      ]
+    },
+    "🐌": {
+      "name": "ślimak",
+      "keywords": [
+        "mięczak",
+        "muszla",
+        "powolny",
+        "ślimak",
+        "wolny",
+        "zwierzę"
+      ]
+    },
+    "🦋": {
+      "name": "motyl",
+      "keywords": [
+        "kolorowy",
+        "motyl",
+        "owad",
+        "zwierzę"
+      ]
+    },
+    "🐛": {
+      "name": "gąsienica",
+      "keywords": [
+        "gąsienica",
+        "owad",
+        "robak",
+        "zwierzę"
+      ]
+    },
+    "🐜": {
+      "name": "mrówka",
+      "keywords": [
+        "mrówka",
+        "owad",
+        "zwierzę"
+      ]
+    },
+    "🐝": {
+      "name": "pszczoła",
+      "keywords": [
+        "owad",
+        "pszczoła",
+        "pszczółka",
+        "wiosna",
+        "zwierzę"
+      ]
+    },
+    "🪲": {
+      "name": "chrząszcz",
+      "keywords": [
+        "chrabąszcz",
+        "chrząszcz",
+        "owad",
+        "żuk",
+        "zwierzę"
+      ]
+    },
+    "🐞": {
+      "name": "biedronka",
+      "keywords": [
+        "biedronka",
+        "chrabąszcz",
+        "chrząszcz",
+        "kropki",
+        "owad",
+        "w kropki",
+        "żuk",
+        "zwierzę"
+      ]
+    },
+    "🕷️": {
+      "name": "pająk",
+      "keywords": [
+        "czarna wdowa",
+        "owad",
+        "pajączek",
+        "pająk",
+        "pajęczak",
+        "zwierzę"
+      ]
+    },
+    "🕸️": {
+      "name": "pajęczyna",
+      "keywords": [
+        "pajęczyna",
+        "sieć",
+        "sieć pająka"
+      ]
+    },
+    "🦂": {
+      "name": "brązowy skorpion",
+      "keywords": [
+        "brązowy skorpion",
+        "pajęczak",
+        "skorpion",
+        "trucizna",
+        "zodiak",
+        "zwierzę"
+      ]
+    },
+    "🦟": {
+      "name": "komar",
+      "keywords": [
+        "choroba",
+        "gorączka",
+        "insekt",
+        "komar",
+        "malaria",
+        "owad",
+        "ugryzienie",
+        "wirus",
+        "zwierzę"
+      ]
+    },
+    "💐": {
+      "name": "bukiet kwiatów",
+      "keywords": [
+        "bukiet",
+        "bukiet kwiatów",
+        "kwiaty",
+        "miłość",
+        "roślina"
+      ]
+    },
+    "🌸": {
+      "name": "kwiat wiśni",
+      "keywords": [
+        "kwiat",
+        "kwiat wiśni",
+        "kwiatek",
+        "kwitnąca wiśnia",
+        "sakura",
+        "wiśnia"
+      ]
+    },
+    "🪷": {
+      "name": "lotos",
+      "keywords": [
+        "buddyzm",
+        "czystość",
+        "hinduizm",
+        "kwiat",
+        "lotos",
+        "lotosu",
+        "piękno",
+        "spokój"
+      ]
+    },
+    "🏵️": {
+      "name": "rozeta",
+      "keywords": [
+        "kwiat",
+        "roślina",
+        "rozeta"
+      ]
+    },
+    "🌹": {
+      "name": "róża",
+      "keywords": [
+        "czerwony",
+        "kwiat",
+        "miłość",
+        "roślina",
+        "róża"
+      ]
+    },
+    "🌺": {
+      "name": "kwiat hibiskusa",
+      "keywords": [
+        "hibiskus",
+        "hibiskusa",
+        "kwiat",
+        "roślina"
+      ]
+    },
+    "🌻": {
+      "name": "słonecznik",
+      "keywords": [
+        "kwiat",
+        "roślina",
+        "słońce",
+        "słonecznik"
+      ]
+    },
+    "🌼": {
+      "name": "kwiat",
+      "keywords": [
+        "kwiat",
+        "kwiatek",
+        "kwitnie",
+        "roślina"
+      ]
+    },
+    "🌷": {
+      "name": "tulipan",
+      "keywords": [
+        "kwiat",
+        "pąk",
+        "roślina",
+        "tulipan"
+      ]
+    },
+    "🌱": {
+      "name": "sadzonka",
+      "keywords": [
+        "kiełek",
+        "młoda",
+        "pęd",
+        "roślina",
+        "roślinka",
+        "sadzonka"
+      ]
+    },
+    "🪴": {
+      "name": "roślina doniczkowa",
+      "keywords": [
+        "doniczka",
+        "doniczkowa",
+        "doniczkowy",
+        "kwiat",
+        "roślina"
+      ]
+    },
+    "🌲": {
+      "name": "wiecznie zielone drzewo",
+      "keywords": [
+        "choinka",
+        "drzewo",
+        "iglaste",
+        "igły",
+        "las",
+        "roślina",
+        "wiecznie zielone"
+      ]
+    },
+    "🌳": {
+      "name": "drzewo liściaste",
+      "keywords": [
+        "drzewo",
+        "liściaste",
+        "roślina"
+      ]
+    },
+    "🌴": {
+      "name": "palma",
+      "keywords": [
+        "drzewo",
+        "palma",
+        "roślina",
+        "tropiki",
+        "wyspa"
+      ]
+    },
+    "🌵": {
+      "name": "kaktus",
+      "keywords": [
+        "kaktus",
+        "kłuje",
+        "kolce",
+        "pustynia",
+        "roślina"
+      ]
+    },
+    "🌾": {
+      "name": "pędy ryżu",
+      "keywords": [
+        "pędy ryżu",
+        "roślina",
+        "ryż",
+        "ziarno",
+        "żniwa"
+      ]
+    },
+    "🌿": {
+      "name": "zioło",
+      "keywords": [
+        "liście",
+        "roślina",
+        "zioła",
+        "zioło"
+      ]
+    },
+    "☘️": {
+      "name": "koniczyna",
+      "keywords": [
+        "Irlandia",
+        "koniczyna",
+        "koniczynka",
+        "roślina"
+      ]
+    },
+    "🍀": {
+      "name": "czterolistna koniczyna",
+      "keywords": [
+        "czterolistna",
+        "koniczyna",
+        "koniczynka",
+        "roślina",
+        "szczęście"
+      ]
+    },
+    "🍁": {
+      "name": "liść klonowy",
+      "keywords": [
+        "jesień",
+        "jesienny",
+        "klon",
+        "klonowy",
+        "klonu",
+        "liść"
+      ]
+    },
+    "🍂": {
+      "name": "spadające liście",
+      "keywords": [
+        "jesień",
+        "jesienne",
+        "liście",
+        "roślina",
+        "spadające"
+      ]
+    },
+    "🍃": {
+      "name": "liście na wietrze",
+      "keywords": [
+        "liście",
+        "na wietrze",
+        "podmuch",
+        "roślina",
+        "wiatr",
+        "wicher"
+      ]
+    },
+    "🍄": {
+      "name": "grzyb",
+      "keywords": [
+        "grzyb",
+        "muchomor",
+        "muchomorek",
+        "trujący"
+      ]
+    },
+    "🪾": {
+      "name": "drzewo bez liści",
+      "keywords": [
+        "bez liści",
+        "drzewo",
+        "susza",
+        "zima"
+      ]
+    },
+    "🍇": {
+      "name": "winogrona",
+      "keywords": [
+        "jedzenie",
+        "owoce",
+        "winogrona"
+      ]
+    },
+    "🍉": {
+      "name": "arbuz",
+      "keywords": [
+        "arbuz",
+        "arbuza",
+        "jedzenie",
+        "kawałek",
+        "lato",
+        "owoc"
+      ]
+    },
+    "🍋": {
+      "name": "cytryna",
+      "keywords": [
+        "cytrus",
+        "cytryna",
+        "jedzenie",
+        "kwaśny",
+        "owoc",
+        "żółty"
+      ]
+    },
+    "🍌": {
+      "name": "banan",
+      "keywords": [
+        "banan",
+        "egzotyczny",
+        "jedzenie",
+        "owoc"
+      ]
+    },
+    "🍎": {
+      "name": "czerwone jabłko",
+      "keywords": [
+        "czerwone",
+        "jabłko",
+        "jedzenie",
+        "owoc",
+        "słodkie"
+      ]
+    },
+    "🍐": {
+      "name": "gruszka",
+      "keywords": [
+        "gruszka",
+        "jedzenie",
+        "owoc"
+      ]
+    },
+    "🍑": {
+      "name": "brzoskwinia",
+      "keywords": [
+        "brzoskwinia",
+        "jedzenie",
+        "owoc"
+      ]
+    },
+    "🍒": {
+      "name": "wiśnie",
+      "keywords": [
+        "czereśnie",
+        "jedzenie",
+        "owoce",
+        "wiśnie"
+      ]
+    },
+    "🍓": {
+      "name": "truskawka",
+      "keywords": [
+        "jedzenie",
+        "owoc",
+        "truskawka"
+      ]
+    },
+    "🍅": {
+      "name": "pomidor",
+      "keywords": [
+        "jedzenie",
+        "pomidor",
+        "szklarniowe",
+        "warzywo"
+      ]
+    },
+    "🥑": {
+      "name": "awokado",
+      "keywords": [
+        "awokado",
+        "jedzenie",
+        "owoc",
+        "roślina"
+      ]
+    },
+    "🍆": {
+      "name": "bakłażan",
+      "keywords": [
+        "bakłażan",
+        "jedzenie",
+        "oberżyna",
+        "warzywo"
+      ]
+    },
+    "🥕": {
+      "name": "marchew",
+      "keywords": [
+        "jedzenie",
+        "marchew",
+        "marchewka",
+        "warzywo"
+      ]
+    },
+    "🌽": {
+      "name": "kolba kukurydzy",
+      "keywords": [
+        "jedzenie",
+        "kolba",
+        "kukurydza",
+        "kukurydzy",
+        "warzywo"
+      ]
+    },
+    "🌶️": {
+      "name": "ostra papryka",
+      "keywords": [
+        "chili",
+        "jedzenie",
+        "ostra",
+        "ostry",
+        "papryczka",
+        "papryka",
+        "przyprawa",
+        "roślina"
+      ]
+    },
+    "🫑": {
+      "name": "papryka",
+      "keywords": [
+        "papryka",
+        "paprykowy",
+        "roślina",
+        "słodka",
+        "warzywo",
+        "witaminy",
+        "zielona"
+      ]
+    },
+    "🥦": {
+      "name": "brokuł",
+      "keywords": [
+        "brokuł",
+        "jedzenie",
+        "warzywo",
+        "zielone"
+      ]
+    },
+    "🧄": {
+      "name": "czosnek",
+      "keywords": [
+        "aromatyczny",
+        "czosnek",
+        "jedzenie",
+        "warzywo"
+      ]
+    },
+    "🥜": {
+      "name": "orzeszki ziemne",
+      "keywords": [
+        "fistaszki",
+        "jedzenie",
+        "orzech",
+        "orzeszki",
+        "orzeszki ziemne"
+      ]
+    },
+    "🍞": {
+      "name": "chleb",
+      "keywords": [
+        "bochenek",
+        "chleb",
+        "chleba",
+        "jedzenie",
+        "kawałek",
+        "pieczywo"
+      ]
+    },
+    "🥐": {
+      "name": "rogalik",
+      "keywords": [
+        "croissant",
+        "francuski",
+        "jedzenie",
+        "pieczywo",
+        "rogal",
+        "rogalik"
+      ]
+    },
+    "🥖": {
+      "name": "bagietka",
+      "keywords": [
+        "bagietka",
+        "bułka",
+        "chleb",
+        "jedzenie",
+        "pieczywo"
+      ]
+    },
+    "🥨": {
+      "name": "precel",
+      "keywords": [
+        "ciastko",
+        "jedzenie",
+        "precel"
+      ]
+    },
+    "🥞": {
+      "name": "naleśniki",
+      "keywords": [
+        "jedzenie",
+        "naleśniki",
+        "placki"
+      ]
+    },
+    "🧇": {
+      "name": "gofr",
+      "keywords": [
+        "gofr",
+        "gofrownica",
+        "jedzenie",
+        "śniadanie"
+      ]
+    },
+    "🧀": {
+      "name": "kawałek sera",
+      "keywords": [
+        "jedzenie",
+        "kawałek sera",
+        "ser",
+        "szwajcarski",
+        "z dziurami",
+        "żółty"
+      ]
+    },
+    "🍖": {
+      "name": "mięso z kością",
+      "keywords": [
+        "jedzenie",
+        "kość",
+        "mięso",
+        "mięso z kością"
+      ]
+    },
+    "🍗": {
+      "name": "udko kurczaka",
+      "keywords": [
+        "jedzenie",
+        "kurczak",
+        "mięso",
+        "nóżka",
+        "udko",
+        "udko kurczaka"
+      ]
+    },
+    "🍔": {
+      "name": "hamburger",
+      "keywords": [
+        "bułka",
+        "burger",
+        "fast food",
+        "hamburger",
+        "jedzenie"
+      ]
+    },
+    "🍟": {
+      "name": "frytki",
+      "keywords": [
+        "fast food",
+        "frytki",
+        "jedzenie"
+      ]
+    },
+    "🍕": {
+      "name": "pizza",
+      "keywords": [
+        "fast food",
+        "jedzenie",
+        "kawałek",
+        "pizza",
+        "pizzy"
+      ]
+    },
+    "🌭": {
+      "name": "hot dog",
+      "keywords": [
+        "frankfurterka",
+        "hot dog",
+        "hotdog",
+        "parówka"
+      ]
+    },
+    "🥪": {
+      "name": "kanapka",
+      "keywords": [
+        "jedzenie",
+        "kanapka",
+        "śniadanie"
+      ]
+    },
+    "🌮": {
+      "name": "taco",
+      "keywords": [
+        "jedzenie",
+        "meksykańskie",
+        "taco"
+      ]
+    },
+    "🥚": {
+      "name": "jajko",
+      "keywords": [
+        "jajko",
+        "jajo",
+        "jedzenie",
+        "kura",
+        "kurczak",
+        "nabiał"
+      ]
+    },
+    "🍳": {
+      "name": "gotowanie",
+      "keywords": [
+        "gotowanie",
+        "jajko",
+        "jedzenie",
+        "patelnia",
+        "smażyć"
+      ]
+    },
+    "🥣": {
+      "name": "miska z łyżką",
+      "keywords": [
+        "jedzenie",
+        "miska",
+        "miska z łyżką",
+        "zupa"
+      ]
+    },
+    "🥗": {
+      "name": "sałatka",
+      "keywords": [
+        "jedzenie",
+        "sałata",
+        "sałatka",
+        "surówka"
+      ]
+    },
+    "🍿": {
+      "name": "popcorn",
+      "keywords": [
+        "jedzenie",
+        "kino",
+        "kukurydza",
+        "popcorn"
+      ]
+    },
+    "🧂": {
+      "name": "sól",
+      "keywords": [
+        "przyprawa",
+        "słona",
+        "słone",
+        "słony",
+        "smak",
+        "sól",
+        "solniczka"
+      ]
+    },
+    "🍙": {
+      "name": "kulka ryżowa",
+      "keywords": [
+        "jedzenie",
+        "kulka",
+        "onigiri",
+        "ryż",
+        "ryżowa"
+      ]
+    },
+    "🍚": {
+      "name": "gotowany ryż",
+      "keywords": [
+        "gotowany",
+        "jedzenie",
+        "miseczka",
+        "ryż",
+        "z ryżem"
+      ]
+    },
+    "🍜": {
+      "name": "miska parującego jedzenia",
+      "keywords": [
+        "jedzenie",
+        "kluski",
+        "miska",
+        "parująca",
+        "parujące",
+        "pho",
+        "ramen",
+        "zupa"
+      ]
+    },
+    "🍝": {
+      "name": "spaghetti",
+      "keywords": [
+        "jedzenie",
+        "kluski",
+        "makaron",
+        "pasta",
+        "spagetti",
+        "spaghetti"
+      ]
+    },
+    "🥡": {
+      "name": "pudełko na wynos",
+      "keywords": [
+        "jedzenie",
+        "na wynos",
+        "pałeczki",
+        "pudełko",
+        "ryż"
+      ]
+    },
+    "🍦": {
+      "name": "lody włoskie",
+      "keywords": [
+        "jedzenie",
+        "lody",
+        "śmietankowe",
+        "świderek",
+        "w kubku",
+        "włoskie"
+      ]
+    },
+    "🍩": {
+      "name": "pączek z dziurką",
+      "keywords": [
+        "ciasto",
+        "deser",
+        "jedzenie",
+        "pączek",
+        "słodki",
+        "z dziurką"
+      ]
+    },
+    "🍪": {
+      "name": "ciastko",
+      "keywords": [
+        "ciastko",
+        "deser",
+        "jedzenie",
+        "słodki",
+        "słodkie"
+      ]
+    },
+    "🎂": {
+      "name": "tort urodzinowy",
+      "keywords": [
+        "ciasto",
+        "jedzenie",
+        "przyjęcie",
+        "słodki",
+        "słodkie",
+        "świeczki",
+        "święto",
+        "świętowanie",
+        "tort",
+        "urodzinowy",
+        "urodziny",
+        "zdmuchnąć"
+      ]
+    },
+    "🍰": {
+      "name": "tort",
+      "keywords": [
+        "ciasto",
+        "deser",
+        "jedzenie",
+        "przyjęcie",
+        "słodycze",
+        "tort"
+      ]
+    },
+    "🧁": {
+      "name": "babeczka",
+      "keywords": [
+        "babeczka",
+        "ciastko",
+        "cukier",
+        "cukiernia",
+        "deser",
+        "jedzenie",
+        "piekarnia",
+        "podjadać",
+        "posypka",
+        "słodycze"
+      ]
+    },
+    "🍫": {
+      "name": "tabliczka czekolady",
+      "keywords": [
+        "czekolada",
+        "deser",
+        "jedzenie",
+        "słodycze",
+        "tabliczka czekolady"
+      ]
+    },
+    "🍭": {
+      "name": "lizak",
+      "keywords": [
+        "deser",
+        "jedzenie",
+        "lizak",
+        "słodki",
+        "słodycze"
+      ]
+    },
+    "🍼": {
+      "name": "butelka ze smoczkiem",
+      "keywords": [
+        "bobas",
+        "butelka",
+        "dzidziuś",
+        "mleko",
+        "napój",
+        "niemowlęca",
+        "smoczek",
+        "ze smoczkiem"
+      ]
+    },
+    "🥛": {
+      "name": "szklanka mleka",
+      "keywords": [
+        "biały",
+        "jedzenie",
+        "mleka",
+        "mleko",
+        "napój",
+        "szklanka"
+      ]
+    },
+    "☕": {
+      "name": "gorący napój",
+      "keywords": [
+        "filiżanka",
+        "gorąca",
+        "gorący",
+        "herbata",
+        "kawa",
+        "napój",
+        "parująca",
+        "picie"
+      ]
+    },
+    "🫖": {
+      "name": "czajniczek",
+      "keywords": [
+        "czajniczek",
+        "czajnik",
+        "dzbanek",
+        "herbata",
+        "imbryk",
+        "na herbatę",
+        "napój",
+        "picie"
+      ]
+    },
+    "🍵": {
+      "name": "filiżanka bez uszka",
+      "keywords": [
+        "bez uszka",
+        "filiżanka",
+        "herbata",
+        "miseczka",
+        "spodek"
+      ]
+    },
+    "🍾": {
+      "name": "butelka z wystrzelającym korkiem",
+      "keywords": [
+        "alkohol",
+        "bar",
+        "butelka",
+        "impreza",
+        "korek",
+        "nowy rok",
+        "przyjecie",
+        "strzelający korek",
+        "sylwester",
+        "szampan",
+        "toast"
+      ]
+    },
+    "🍷": {
+      "name": "kieliszek wina",
+      "keywords": [
+        "alkohol",
+        "kieliszek",
+        "restauracja",
+        "wina",
+        "wino"
+      ]
+    },
+    "🍸": {
+      "name": "kieliszek z koktajlem",
+      "keywords": [
+        "alkohol",
+        "bar",
+        "drink",
+        "impreza",
+        "kieliszek",
+        "koktajl",
+        "z koktajlem"
+      ]
+    },
+    "🍹": {
+      "name": "drink tropikalny",
+      "keywords": [
+        "alkohol",
+        "bar",
+        "drink",
+        "impreza",
+        "palemka",
+        "tropikalny",
+        "wakacje",
+        "z palemką"
+      ]
+    },
+    "🍺": {
+      "name": "kufel piwa",
+      "keywords": [
+        "alkohol",
+        "bar",
+        "impreza",
+        "kufel",
+        "piwa",
+        "piwo",
+        "pub",
+        "z piwem"
+      ]
+    },
+    "🥂": {
+      "name": "stukające się kieliszki",
+      "keywords": [
+        "alkohol",
+        "impreza",
+        "kieliszki",
+        "na zdrowie",
+        "nowy rok",
+        "przyjęcie",
+        "stukające się kieliszki",
+        "świętowanie",
+        "sylwester",
+        "toast"
+      ]
+    },
+    "🥤": {
+      "name": "szklanka ze słomką",
+      "keywords": [
+        "drink",
+        "napój",
+        "oranżada",
+        "picie",
+        "słomka",
+        "soda",
+        "szklanka ze słomką"
+      ]
+    },
+    "🧋": {
+      "name": "napój bubble tea",
+      "keywords": [
+        "bubble tea",
+        "herbata",
+        "herbata bąbelkowa",
+        "kuleczka",
+        "kulki tapioki",
+        "mleko",
+        "na słodko",
+        "tapioka",
+        "z tapioką"
+      ]
+    },
+    "🧊": {
+      "name": "kostka lodu",
+      "keywords": [
+        "kostka",
+        "lód",
+        "lodu",
+        "zimno",
+        "zimny"
+      ]
+    },
+    "🥢": {
+      "name": "pałeczki",
+      "keywords": [
+        "pałeczki"
+      ]
+    },
+    "🍽️": {
+      "name": "talerz z nożem i widelcem",
+      "keywords": [
+        "gotowanie",
+        "jedzenie",
+        "kolacja",
+        "naczynia",
+        "nóż",
+        "obiad",
+        "sztućce",
+        "talerz",
+        "widelec",
+        "z nożem i widelcem"
+      ]
+    },
+    "🍴": {
+      "name": "widelec i nóż",
+      "keywords": [
+        "gotowanie",
+        "jedzenie",
+        "kolacja",
+        "nóż",
+        "obiad",
+        "posiłek",
+        "restauracja",
+        "śniadanie",
+        "sztućce",
+        "widelec"
+      ]
+    },
+    "🥄": {
+      "name": "łyżka",
+      "keywords": [
+        "łyżeczka",
+        "łyżka",
+        "sztućce"
+      ]
+    },
+    "🔪": {
+      "name": "nóż kuchenny",
+      "keywords": [
+        "broń",
+        "gotowanie",
+        "kuchenny",
+        "kuchnia",
+        "narzędzie",
+        "nóż"
+      ]
+    },
+    "🏺": {
+      "name": "amfora",
+      "keywords": [
+        "amfora",
+        "dzban",
+        "puchar",
+        "stągiew",
+        "waza",
+        "wodnik",
+        "zodiak"
+      ]
+    },
+    "🌍": {
+      "name": "kula ziemska przedstawiająca Europę i Afrykę",
+      "keywords": [
+        "Afryka",
+        "Europa",
+        "kula ziemska",
+        "kula ziemska przedstawiająca Europę i Afrykę",
+        "planeta",
+        "świat",
+        "Ziemia"
+      ]
+    },
+    "🌐": {
+      "name": "kula ziemska z południkami",
+      "keywords": [
+        "glob",
+        "globus",
+        "kula ziemska z meridianami",
+        "kula ziemska z południkami",
+        "południki",
+        "równoleżniki",
+        "ziemia"
+      ]
+    },
+    "🗺️": {
+      "name": "mapa świata",
+      "keywords": [
+        "mapa",
+        "mapa świata",
+        "świat"
+      ]
+    },
+    "🗾": {
+      "name": "mapa Japonii",
+      "keywords": [
+        "japonia",
+        "mapa",
+        "mapa Japonii"
+      ]
+    },
+    "🧭": {
+      "name": "kompas",
+      "keywords": [
+        "kierunek",
+        "kompas",
+        "magnetyczny",
+        "magnetyzm",
+        "nawigacja",
+        "orientacja",
+        "orientacja w terenie",
+        "strony świata"
+      ]
+    },
+    "🏔️": {
+      "name": "góra z czapą lodową",
+      "keywords": [
+        "góra",
+        "góry",
+        "śnieg",
+        "wycieczka",
+        "z czapą lodową",
+        "zima"
+      ]
+    },
+    "⛰️": {
+      "name": "góra",
+      "keywords": [
+        "góra",
+        "góry",
+        "wycieczka"
+      ]
+    },
+    "🌋": {
+      "name": "wulkan",
+      "keywords": [
+        "erupcja",
+        "góra",
+        "lawa",
+        "wulkan"
+      ]
+    },
+    "🗻": {
+      "name": "góra Fudżi",
+      "keywords": [
+        "Fudżi",
+        "góra",
+        "natura"
+      ]
+    },
+    "🏕️": {
+      "name": "kemping",
+      "keywords": [
+        "kamping",
+        "kemping",
+        "namiot",
+        "obóz",
+        "wakacje"
+      ]
+    },
+    "🏖️": {
+      "name": "parasol na plaży",
+      "keywords": [
+        "lato",
+        "morze",
+        "parasol",
+        "parasol na plaży",
+        "piasek",
+        "plaża",
+        "wakacje"
+      ]
+    },
+    "🏝️": {
+      "name": "bezludna wyspa",
+      "keywords": [
+        "bezludna",
+        "palma",
+        "pusta",
+        "pustynia",
+        "samotna",
+        "tropiki",
+        "wyspa"
+      ]
+    },
+    "🏛️": {
+      "name": "klasyczna budowla",
+      "keywords": [
+        "budowla",
+        "budynek",
+        "klasyczna budowla",
+        "klasyczny",
+        "klasyka",
+        "świątynia"
+      ]
+    },
+    "🏗️": {
+      "name": "dźwig budowlany",
+      "keywords": [
+        "budowa",
+        "dźwig",
+        "dźwig budowlany",
+        "roboty budowlane"
+      ]
+    },
+    "🧱": {
+      "name": "cegła",
+      "keywords": [
+        "beton",
+        "cegła",
+        "cegły",
+        "cement",
+        "glina",
+        "mur",
+        "murek",
+        "płot",
+        "ściana",
+        "zaprawa"
+      ]
+    },
+    "🛖": {
+      "name": "chata",
+      "keywords": [
+        "chata",
+        "chatka",
+        "dom",
+        "domek",
+        "jurta",
+        "okrągły",
+        "przytulny",
+        "schronienie",
+        "strzecha"
+      ]
+    },
+    "🏠": {
+      "name": "dom",
+      "keywords": [
+        "budynek",
+        "dom",
+        "mieszkalny"
+      ]
+    },
+    "🏡": {
+      "name": "dom z ogrodem",
+      "keywords": [
+        "budynek",
+        "dom",
+        "dom z ogrodem",
+        "drzewo",
+        "ogród"
+      ]
+    },
+    "🏢": {
+      "name": "biurowiec",
+      "keywords": [
+        "biurowiec",
+        "blok",
+        "budynek"
+      ]
+    },
+    "🏥": {
+      "name": "szpital",
+      "keywords": [
+        "budynek",
+        "lecznica",
+        "lekarz",
+        "medycyna",
+        "szpital"
+      ]
+    },
+    "🏦": {
+      "name": "bank",
+      "keywords": [
+        "bank",
+        "budynek"
+      ]
+    },
+    "🏨": {
+      "name": "hotel",
+      "keywords": [
+        "budynek",
+        "hotel"
+      ]
+    },
+    "🏪": {
+      "name": "sklep całodobowy",
+      "keywords": [
+        "budynek",
+        "sklep",
+        "sklep całodobowy"
+      ]
+    },
+    "🏫": {
+      "name": "szkoła",
+      "keywords": [
+        "budynek",
+        "szkoła",
+        "zegar"
+      ]
+    },
+    "🏭": {
+      "name": "fabryka",
+      "keywords": [
+        "budynek",
+        "fabryka",
+        "produkcyjny",
+        "zakład pracy"
+      ]
+    },
+    "🏯": {
+      "name": "japoński zamek",
+      "keywords": [
+        "budynek",
+        "japoński",
+        "zamek"
+      ]
+    },
+    "🏰": {
+      "name": "zamek",
+      "keywords": [
+        "budynek",
+        "europejski",
+        "średniowiecze",
+        "zamek"
+      ]
+    },
+    "🗼": {
+      "name": "Tokyo Tower",
+      "keywords": [
+        "tokio",
+        "tokyo",
+        "Tokyo Tower",
+        "wieża"
+      ]
+    },
+    "🗽": {
+      "name": "Statua Wolności",
+      "keywords": [
+        "Stany Zjednoczone",
+        "statua",
+        "USA",
+        "wolności"
+      ]
+    },
+    "⛪": {
+      "name": "kościół",
+      "keywords": [
+        "chrześcijański",
+        "kościół",
+        "krzyż",
+        "religia",
+        "świątynia"
+      ]
+    },
+    "🕌": {
+      "name": "meczet",
+      "keywords": [
+        "islam",
+        "meczet",
+        "muzułmanin",
+        "religia",
+        "świątynia"
+      ]
+    },
+    "🛕": {
+      "name": "świątynia hinduistyczna",
+      "keywords": [
+        "hinduizm",
+        "świątynia",
+        "świątynia hinduistyczna"
+      ]
+    },
+    "🕍": {
+      "name": "synagoga",
+      "keywords": [
+        "religia",
+        "świątynia",
+        "synagoga",
+        "żyd",
+        "żydowski"
+      ]
+    },
+    "⛩️": {
+      "name": "świątynia shinto",
+      "keywords": [
+        "japońska",
+        "religia",
+        "shinto",
+        "świątynia"
+      ]
+    },
+    "🕋": {
+      "name": "kaaba",
+      "keywords": [
+        "islam",
+        "kaaba",
+        "muzułmanin",
+        "religia"
+      ]
+    },
+    "⛲": {
+      "name": "fontanna",
+      "keywords": [
+        "fontanna"
+      ]
+    },
+    "⛺": {
+      "name": "namiot",
+      "keywords": [
+        "kemping",
+        "namiot",
+        "obóz",
+        "pole namiotowe"
+      ]
+    },
+    "♨️": {
+      "name": "gorące źródła",
+      "keywords": [
+        "gorące",
+        "gorące źródła",
+        "para",
+        "woda",
+        "źródło"
+      ]
+    },
+    "🎠": {
+      "name": "koń z karuzeli",
+      "keywords": [
+        "karuzela",
+        "koń z karuzeli",
+        "konik"
+      ]
+    },
+    "🛝": {
+      "name": "zjeżdżalnia",
+      "keywords": [
+        "park rozrywki",
+        "plac zabaw",
+        "ślizgawka",
+        "wesołe miasteczko",
+        "zabawa",
+        "zjeżdżalnia"
+      ]
+    },
+    "🎡": {
+      "name": "diabelski młyn",
+      "keywords": [
+        "diabelski",
+        "karuzela",
+        "młyn",
+        "park rozrywki",
+        "wesołe miasteczko"
+      ]
+    },
+    "🎢": {
+      "name": "kolejka górska",
+      "keywords": [
+        "kolejka górska",
+        "park rozrywki",
+        "rollercoaster",
+        "wesołe miasteczko"
+      ]
+    },
+    "💈": {
+      "name": "słup fryzjerski",
+      "keywords": [
+        "fryzjer",
+        "słup fryzjerski"
+      ]
+    },
+    "🎪": {
+      "name": "namiot cyrkowy",
+      "keywords": [
+        "cyrk",
+        "namiot",
+        "namiot cyrkowy"
+      ]
+    },
+    "🚂": {
+      "name": "lokomotywa",
+      "keywords": [
+        "ciuchcia",
+        "kolej",
+        "lokomotywa",
+        "pociąg",
+        "podróż",
+        "pojazd",
+        "stara lokomotywa"
+      ]
+    },
+    "🚃": {
+      "name": "wagon kolejowy",
+      "keywords": [
+        "elektryczny",
+        "kolejowy",
+        "pociąg",
+        "pojazd",
+        "szynowy",
+        "tramwaj",
+        "wagon"
+      ]
+    },
+    "🚄": {
+      "name": "szybki pociąg",
+      "keywords": [
+        "kolej",
+        "pendolino",
+        "pociąg",
+        "pojazd",
+        "shinkansen",
+        "szybki",
+        "szynowy"
+      ]
+    },
+    "🚇": {
+      "name": "metro",
+      "keywords": [
+        "kolejka",
+        "metro",
+        "pociąg",
+        "pojazd",
+        "tunel"
+      ]
+    },
+    "🚌": {
+      "name": "autobus",
+      "keywords": [
+        "autobus",
+        "autokar",
+        "pojazd"
+      ]
+    },
+    "🚑": {
+      "name": "karetka pogotowia",
+      "keywords": [
+        "ambulans",
+        "auto",
+        "erka",
+        "karetka",
+        "karetka pogotowia",
+        "pogotowie",
+        "pojazd",
+        "samochód"
+      ]
+    },
+    "🚒": {
+      "name": "samochód strażacki",
+      "keywords": [
+        "auto",
+        "pojazd",
+        "pożar",
+        "samochód",
+        "samochód strażacki",
+        "straż pożarna",
+        "wóz strażacki"
+      ]
+    },
+    "🚕": {
+      "name": "taksówka",
+      "keywords": [
+        "auto",
+        "pojazd",
+        "samochód",
+        "taksówka",
+        "taryfa",
+        "taxi",
+        "żółta",
+        "żółty"
+      ]
+    },
+    "🚗": {
+      "name": "samochód",
+      "keywords": [
+        "auto",
+        "pojazd",
+        "samochód"
+      ]
+    },
+    "🚙": {
+      "name": "samochód SUV",
+      "keywords": [
+        "auto",
+        "pojazd",
+        "samochód",
+        "sport",
+        "SUV",
+        "wypoczynkowy"
+      ]
+    },
+    "🛻": {
+      "name": "pick-up",
+      "keywords": [
+        "auto",
+        "furgonetka",
+        "pick-up",
+        "pikap",
+        "półciężarówka",
+        "półtonówka",
+        "przewozić",
+        "samochód"
+      ]
+    },
+    "🚚": {
+      "name": "samochód dostawczy",
+      "keywords": [
+        "auto",
+        "ciężarówka",
+        "dostawa",
+        "dostawczy",
+        "pojazd",
+        "samochód"
+      ]
+    },
+    "🚜": {
+      "name": "ciągnik",
+      "keywords": [
+        "ciągnik",
+        "pojazd",
+        "rolniczy",
+        "rolnik",
+        "traktor"
+      ]
+    },
+    "🏎️": {
+      "name": "samochód wyścigowy",
+      "keywords": [
+        "auto",
+        "formuła 1",
+        "pojazd",
+        "samochód",
+        "samochód wyścigowy",
+        "wyścigi"
+      ]
+    },
+    "🏍️": {
+      "name": "motocykl",
+      "keywords": [
+        "motocykl",
+        "motor",
+        "wyścigi"
+      ]
+    },
+    "🛵": {
+      "name": "skuter",
+      "keywords": [
+        "motor",
+        "pojazd",
+        "skuter"
+      ]
+    },
+    "🚲": {
+      "name": "rower",
+      "keywords": [
+        "pojazd",
+        "rower",
+        "rowerek"
+      ]
+    },
+    "🛴": {
+      "name": "hulajnoga",
+      "keywords": [
+        "hulajnoga",
+        "pojazd"
+      ]
+    },
+    "🛹": {
+      "name": "deskorolka",
+      "keywords": [
+        "deska",
+        "deskorolka",
+        "kółka",
+        "skate",
+        "skateboard",
+        "skater"
+      ]
+    },
+    "🛼": {
+      "name": "wrotka",
+      "keywords": [
+        "jazda na rolkach",
+        "łyżworolki",
+        "rolki",
+        "sport",
+        "wrotka",
+        "wrotkarstwo",
+        "wrotki"
+      ]
+    },
+    "🛢️": {
+      "name": "beczka oleju",
+      "keywords": [
+        "beczka",
+        "beczka oleju",
+        "olej"
+      ]
+    },
+    "⛽": {
+      "name": "dystrybutor paliwa",
+      "keywords": [
+        "benzyna",
+        "dystrybutor",
+        "dystrybutor paliwa",
+        "stacja benzynowa",
+        "stacja paliw",
+        "tankować"
+      ]
+    },
+    "🛞": {
+      "name": "koło pojazdu",
+      "keywords": [
+        "koło",
+        "koło pojazdu",
+        "kręcić",
+        "opona",
+        "samochód"
+      ]
+    },
+    "🚨": {
+      "name": "kogut policyjny",
+      "keywords": [
+        "kogut",
+        "lampa obrotowa",
+        "policja",
+        "policyjny",
+        "sygnalizator świetlny"
+      ]
+    },
+    "🚦": {
+      "name": "pionowa sygnalizacja uliczna",
+      "keywords": [
+        "drogowe",
+        "pionowa",
+        "światła",
+        "świetlna",
+        "sygnalizacja",
+        "uliczna"
+      ]
+    },
+    "🛑": {
+      "name": "znak stopu",
+      "keywords": [
+        "stop",
+        "znak",
+        "znak drogowy",
+        "znak stopu"
+      ]
+    },
+    "🚧": {
+      "name": "prace drogowe",
+      "keywords": [
+        "bariera",
+        "prace drogowe",
+        "znak drogowy"
+      ]
+    },
+    "⚓": {
+      "name": "kotwica",
+      "keywords": [
+        "kotwica",
+        "morze",
+        "ocean",
+        "okręt",
+        "przyrząd",
+        "statek"
+      ]
+    },
+    "🛟": {
+      "name": "koło ratunkowe",
+      "keywords": [
+        "bezpieczeństwo",
+        "koło ratunkowe",
+        "pływak",
+        "pływanie",
+        "ratunek"
+      ]
+    },
+    "⛵": {
+      "name": "żaglówka",
+      "keywords": [
+        "jacht",
+        "łódka",
+        "łódź",
+        "morze",
+        "statek",
+        "wakacje",
+        "żaglówka"
+      ]
+    },
+    "🚤": {
+      "name": "ścigacz wodny",
+      "keywords": [
+        "łódka",
+        "łódź",
+        "motorówka",
+        "ścigacz",
+        "wodny"
+      ]
+    },
+    "🛳️": {
+      "name": "statek pasażerski",
+      "keywords": [
+        "łódka",
+        "łódź",
+        "pasażerski",
+        "statek"
+      ]
+    },
+    "🚢": {
+      "name": "statek",
+      "keywords": [
+        "łódka",
+        "łódź",
+        "pasażerski",
+        "statek"
+      ]
+    },
+    "✈️": {
+      "name": "samolot",
+      "keywords": [
+        "podróż",
+        "pojazd",
+        "samolot"
+      ]
+    },
+    "💺": {
+      "name": "fotel",
+      "keywords": [
+        "fotel",
+        "krzesło",
+        "samolot",
+        "siedzenie"
+      ]
+    },
+    "🚁": {
+      "name": "helikopter",
+      "keywords": [
+        "helikopter",
+        "pojazd",
+        "śmigłowiec"
+      ]
+    },
+    "🚀": {
+      "name": "rakieta",
+      "keywords": [
+        "kosmiczny",
+        "kosmos",
+        "pojazd",
+        "rakieta",
+        "statek"
+      ]
+    },
+    "🛸": {
+      "name": "latający talerz",
+      "keywords": [
+        "fantastyka",
+        "kosmici",
+        "kosmita",
+        "latający",
+        "sci-fi",
+        "sf",
+        "spodek",
+        "talerz",
+        "ufo"
+      ]
+    },
+    "🛎️": {
+      "name": "dzwonek w recepcji",
+      "keywords": [
+        "dzwonek",
+        "dzwonek w recepcji",
+        "hotel",
+        "przywołać",
+        "recepcja"
+      ]
+    },
+    "🧳": {
+      "name": "bagaż",
+      "keywords": [
+        "bagaż",
+        "na kółkach",
+        "pakować się",
+        "pakowanie",
+        "podróż",
+        "wakacje",
+        "walizka"
+      ]
+    },
+    "⌛": {
+      "name": "klepsydra",
+      "keywords": [
+        "czas",
+        "klepsydra",
+        "odmierzać",
+        "piasek"
+      ]
+    },
+    "⌚": {
+      "name": "zegarek",
+      "keywords": [
+        "godzina",
+        "zegarek"
+      ]
+    },
+    "⏰": {
+      "name": "budzik",
+      "keywords": [
+        "budzik",
+        "zegar"
+      ]
+    },
+    "⏱️": {
+      "name": "stoper",
+      "keywords": [
+        "czasomierz",
+        "stoper"
+      ]
+    },
+    "🕰️": {
+      "name": "zegar kominkowy",
+      "keywords": [
+        "czas",
+        "czasomierz",
+        "kominkowy",
+        "zegar"
+      ]
+    },
+    "🕐": {
+      "name": "godzina 1:00",
+      "keywords": [
+        "00",
+        "1",
+        "1:00",
+        "czas",
+        "godzina",
+        "pierwsza",
+        "trzynasta",
+        "zegar"
+      ]
+    },
+    "🌕": {
+      "name": "pełnia",
+      "keywords": [
+        "jasny księżyc",
+        "księżyc",
+        "noc",
+        "pełnia",
+        "pełny księżyc"
+      ]
+    },
+    "🌙": {
+      "name": "półksiężyc",
+      "keywords": [
+        "księżyc",
+        "noc",
+        "półksiężyc",
+        "sierp",
+        "sierp księżyca"
+      ]
+    },
+    "🌡️": {
+      "name": "termometr",
+      "keywords": [
+        "pogoda",
+        "temperatura",
+        "termometr"
+      ]
+    },
+    "☀️": {
+      "name": "słońce",
+      "keywords": [
+        "jasne",
+        "kosmos",
+        "pogoda",
+        "promienie",
+        "słońce",
+        "słonecznie"
+      ]
+    },
+    "🌞": {
+      "name": "słońce z twarzą",
+      "keywords": [
+        "bajka",
+        "baśń",
+        "ciepło",
+        "głowa",
+        "magia",
+        "promienny",
+        "słońce",
+        "słońce z twarzą",
+        "twarz",
+        "uśmiech"
+      ]
+    },
+    "🪐": {
+      "name": "planeta z pierścieniami",
+      "keywords": [
+        "pierścienie",
+        "planeta",
+        "planeta z pierścieniami",
+        "saturn",
+        "saturnowy"
+      ]
+    },
+    "⭐": {
+      "name": "gwiazda",
+      "keywords": [
+        "gwiazda",
+        "gwiazdka",
+        "noc"
+      ]
+    },
+    "🌟": {
+      "name": "błyszcząca gwiazda",
+      "keywords": [
+        "błyszcząca",
+        "gwiazda",
+        "gwiazdka",
+        "lśniąca",
+        "świecąca gwiazdka"
+      ]
+    },
+    "☁️": {
+      "name": "chmura",
+      "keywords": [
+        "chmura",
+        "pogoda",
+        "zachmurzenie"
+      ]
+    },
+    "⛅": {
+      "name": "słońce zza chmury",
+      "keywords": [
+        "chmura",
+        "pogoda",
+        "słońce",
+        "słońce zza chmury"
+      ]
+    },
+    "⛈️": {
+      "name": "chmura z piorunem i deszczem",
+      "keywords": [
+        "błyskawica",
+        "burza",
+        "chmura",
+        "deszcz",
+        "piorun",
+        "pogoda",
+        "z piorunem i deszczem"
+      ]
+    },
+    "🌧️": {
+      "name": "chmura i deszcz",
+      "keywords": [
+        "chmura",
+        "chmura i deszcz",
+        "deszcz",
+        "pogoda"
+      ]
+    },
+    "🌪️": {
+      "name": "tornado",
+      "keywords": [
+        "chmura",
+        "lej",
+        "pogoda",
+        "tornado",
+        "wir powietrzny"
+      ]
+    },
+    "🌀": {
+      "name": "cyklon",
+      "keywords": [
+        "cyklon",
+        "pogoda",
+        "spirala",
+        "tajfun"
+      ]
+    },
+    "🌈": {
+      "name": "tęcza",
+      "keywords": [
+        "deszcz",
+        "gej",
+        "geje",
+        "kolory",
+        "les",
+        "lesbijki",
+        "lgbt",
+        "lgbtq",
+        "lgbtqia",
+        "nadzieja",
+        "pogoda",
+        "pride",
+        "słońce",
+        "tęcza",
+        "transpłciowość"
+      ]
+    },
+    "🌂": {
+      "name": "złożony parasol",
+      "keywords": [
+        "deszcz",
+        "parasolka",
+        "pogoda",
+        "złożona",
+        "złożony parasol"
+      ]
+    },
+    "☂️": {
+      "name": "parasol",
+      "keywords": [
+        "deszcz",
+        "opady",
+        "pada",
+        "parasol",
+        "pogoda"
+      ]
+    },
+    "⚡": {
+      "name": "wysokie napięcie",
+      "keywords": [
+        "błysk",
+        "błyskawica",
+        "elektryczność",
+        "napięcie",
+        "niebezpieczeństwo",
+        "piorun",
+        "prąd",
+        "wysokie napięcie"
+      ]
+    },
+    "❄️": {
+      "name": "płatek śniegu",
+      "keywords": [
+        "płatek śniegu",
+        "pogoda",
+        "śnieg",
+        "śnieżynka",
+        "zima",
+        "zimno"
+      ]
+    },
+    "⛄": {
+      "name": "bałwanek bez śniegu",
+      "keywords": [
+        "bałwan",
+        "bałwan bez śniegu",
+        "bałwanek",
+        "bałwanek bez śniegu",
+        "pogoda",
+        "śnieg",
+        "zabawa na śniegu",
+        "zimno"
+      ]
+    },
+    "☄️": {
+      "name": "kometa",
+      "keywords": [
+        "kometa",
+        "kosmos",
+        "meteoryt",
+        "ogon"
+      ]
+    },
+    "🔥": {
+      "name": "ogień",
+      "keywords": [
+        "ogień",
+        "płomień",
+        "pożar"
+      ]
+    },
+    "💧": {
+      "name": "kropla",
+      "keywords": [
+        "kropelka",
+        "kropla",
+        "łza",
+        "pot",
+        "woda"
+      ]
+    },
+    "🌊": {
+      "name": "fala",
+      "keywords": [
+        "fala",
+        "fale",
+        "hokusai",
+        "kanagawa",
+        "morze",
+        "obraz",
+        "ocean",
+        "tsunami",
+        "wielka fala"
+      ]
+    },
+    "🎃": {
+      "name": "dynia na halloween",
+      "keywords": [
+        "dynia",
+        "dynia na halloween",
+        "halloween"
+      ]
+    },
+    "🎄": {
+      "name": "choinka bożonarodzeniowa",
+      "keywords": [
+        "bombki",
+        "boże narodzenie",
+        "choinka",
+        "choinka bożonarodzeniowa",
+        "drzewko",
+        "święta"
+      ]
+    },
+    "✨": {
+      "name": "gwiazdki",
+      "keywords": [
+        "*",
+        "błysk",
+        "gwiazda",
+        "gwiazdki",
+        "gwiazdy",
+        "iskry",
+        "noc",
+        "świecący",
+        "świeci"
+      ]
+    },
+    "🎈": {
+      "name": "balon",
+      "keywords": [
+        "balon",
+        "balonik",
+        "impreza",
+        "uroczystość",
+        "urodziny"
+      ]
+    },
+    "🎉": {
+      "name": "tuba z konfetti",
+      "keywords": [
+        "bal",
+        "impreza",
+        "konfetti",
+        "tuba z konfetti",
+        "uroczystość"
+      ]
+    },
+    "🎀": {
+      "name": "wstążka",
+      "keywords": [
+        "kokarda",
+        "kokardka",
+        "ozdoba",
+        "podarunek",
+        "prezent",
+        "wstążka"
+      ]
+    },
+    "🎁": {
+      "name": "zapakowany prezent",
+      "keywords": [
+        "kokarda",
+        "kokardka",
+        "paczka",
+        "podarunek",
+        "prezent",
+        "zapakowany prezent"
+      ]
+    },
+    "🎫": {
+      "name": "bilet",
+      "keywords": [
+        "bilet",
+        "wstęp"
+      ]
+    },
+    "🏆": {
+      "name": "puchar",
+      "keywords": [
+        "nagroda",
+        "puchar",
+        "sport",
+        "trofeum",
+        "zwycięstwo"
+      ]
+    },
+    "🥇": {
+      "name": "medal za 1. miejsce",
+      "keywords": [
+        "medal",
+        "medal za 1. miejsce",
+        "pierwsze miejsce",
+        "sport",
+        "zawody",
+        "złoto",
+        "złoty medal",
+        "zwycięstwo"
+      ]
+    },
+    "🥈": {
+      "name": "medal za 2. miejsce",
+      "keywords": [
+        "drugie miejsce",
+        "medal",
+        "medal za 2. miejsce",
+        "sport",
+        "srebrny medal",
+        "srebro",
+        "zawody"
+      ]
+    },
+    "🥉": {
+      "name": "medal za 3. miejsce",
+      "keywords": [
+        "brąz",
+        "brązowy medal",
+        "medal",
+        "medal za 3. miejsce",
+        "sport",
+        "trzecie miejsce",
+        "zawody"
+      ]
+    },
+    "⚽": {
+      "name": "piłka nożna",
+      "keywords": [
+        "futbolówka",
+        "mecz",
+        "nożna",
+        "piłka",
+        "sport"
+      ]
+    },
+    "⚾": {
+      "name": "baseball",
+      "keywords": [
+        "baseball",
+        "mecz",
+        "piłka",
+        "sport"
+      ]
+    },
+    "🏀": {
+      "name": "koszykówka",
+      "keywords": [
+        "do kosza",
+        "do koszykówki",
+        "kosz",
+        "koszykowa",
+        "koszykówka",
+        "piłka",
+        "sport"
+      ]
+    },
+    "🏐": {
+      "name": "siatkówka",
+      "keywords": [
+        "do siatki",
+        "do siatkówki",
+        "piłka",
+        "siatka",
+        "siatkowa",
+        "siatkówka",
+        "sport"
+      ]
+    },
+    "🏈": {
+      "name": "futbol amerykański",
+      "keywords": [
+        "amerykański",
+        "do futbolu amerykańskiego",
+        "futbol",
+        "piłka",
+        "sport"
+      ]
+    },
+    "🎾": {
+      "name": "tenis",
+      "keywords": [
+        "do tenisa",
+        "piłka",
+        "rakieta",
+        "sport",
+        "tenis",
+        "tenisowa"
+      ]
+    },
+    "🎳": {
+      "name": "kręgle",
+      "keywords": [
+        "bowling",
+        "kręgle",
+        "kula",
+        "sport"
+      ]
+    },
+    "🏓": {
+      "name": "tenis stołowy",
+      "keywords": [
+        "paletka",
+        "piłeczka",
+        "ping",
+        "pingpong",
+        "pong",
+        "rakietka",
+        "sport",
+        "stołowy",
+        "tenis"
+      ]
+    },
+    "🏸": {
+      "name": "badminton",
+      "keywords": [
+        "badminton",
+        "gra",
+        "lotka",
+        "paletki",
+        "rakieta",
+        "sport",
+        "zabawa"
+      ]
+    },
+    "🥊": {
+      "name": "rękawica bokserska",
+      "keywords": [
+        "boks",
+        "rękawica",
+        "rękawica bokserska",
+        "sport",
+        "zawody"
+      ]
+    },
+    "🥅": {
+      "name": "bramka",
+      "keywords": [
+        "bramka",
+        "gol",
+        "mecz",
+        "sport",
+        "zawody"
+      ]
+    },
+    "⛳": {
+      "name": "flaga w dołku",
+      "keywords": [
+        "flaga w dołku",
+        "golf",
+        "otwór",
+        "pole golfowe",
+        "sport"
+      ]
+    },
+    "⛸️": {
+      "name": "but z łyżwą",
+      "keywords": [
+        "but z łyżwą",
+        "figurówki",
+        "lód",
+        "lodowisko",
+        "łyżwa",
+        "łyżwiarstwo",
+        "sport",
+        "zawody"
+      ]
+    },
+    "🤿": {
+      "name": "maska do nurkowania",
+      "keywords": [
+        "akwalung",
+        "do nurkowania",
+        "maska",
+        "nurkowanie",
+        "snorkeling",
+        "snurkowanie",
+        "sport",
+        "z rurką"
+      ]
+    },
+    "🎯": {
+      "name": "strzał w 10",
+      "keywords": [
+        "cel",
+        "dziesiątka",
+        "gra",
+        "lotki",
+        "strzał",
+        "trafienie",
+        "w 10",
+        "w dziesiątkę",
+        "zabawa"
+      ]
+    },
+    "🔫": {
+      "name": "pistolet na wodę",
+      "keywords": [
+        "broń",
+        "broń palna",
+        "pistolet",
+        "pistolet na wodę",
+        "rewolwer"
+      ]
+    },
+    "🎱": {
+      "name": "bila 8",
+      "keywords": [
+        "8",
+        "bila",
+        "bilard",
+        "gra",
+        "kula",
+        "kula bilardowa"
+      ]
+    },
+    "🔮": {
+      "name": "kryształowa kula",
+      "keywords": [
+        "fortuna",
+        "kryształowa",
+        "kula",
+        "przepowiadać",
+        "wróżka",
+        "wróżyć"
+      ]
+    },
+    "🪄": {
+      "name": "czarodziejska różdżka",
+      "keywords": [
+        "abrakadabra",
+        "czarodziej",
+        "czarodziejka",
+        "czarodziejska",
+        "czary",
+        "czary-mary",
+        "hokus-pokus",
+        "magia",
+        "magik",
+        "różdżka",
+        "zaklęcie"
+      ]
+    },
+    "🎮": {
+      "name": "gra wideo",
+      "keywords": [
+        "do gier",
+        "gamepad",
+        "gra",
+        "gra wideo",
+        "konsola",
+        "kontroler",
+        "pad"
+      ]
+    },
+    "🕹️": {
+      "name": "dżojstik",
+      "keywords": [
+        "dżojstik",
+        "gra",
+        "gra komputerowa",
+        "gra wideo",
+        "joystick"
+      ]
+    },
+    "🎰": {
+      "name": "automat do gier",
+      "keywords": [
+        "automat do gier",
+        "automat do gry",
+        "gra",
+        "hazard",
+        "jednoręki bandyta",
+        "kasyno"
+      ]
+    },
+    "🎲": {
+      "name": "kostka do gry",
+      "keywords": [
+        "gra",
+        "hazard",
+        "kości",
+        "kostka",
+        "kostka do gry",
+        "w kości"
+      ]
+    },
+    "🧩": {
+      "name": "element układanki",
+      "keywords": [
+        "element",
+        "element układanki",
+        "łączenie",
+        "łamigłówka",
+        "puzzle",
+        "rebus",
+        "układanka"
+      ]
+    },
+    "🧸": {
+      "name": "miś pluszowy",
+      "keywords": [
+        "miś",
+        "niedźwiadek",
+        "niedźwiedź",
+        "plusz",
+        "pluszak",
+        "pluszowa",
+        "pluszowy",
+        "przytulanka",
+        "wypchana",
+        "wypchany",
+        "zabawka"
+      ]
+    },
+    "🪩": {
+      "name": "kula dyskotekowa",
+      "keywords": [
+        "dyskoteka",
+        "kula dyskotekowa",
+        "migotanie",
+        "przyjęcie",
+        "taniec"
+      ]
+    },
+    "♠️": {
+      "name": "pik",
+      "keywords": [
+        "gra",
+        "karta",
+        "pik",
+        "talia"
+      ]
+    },
+    "♥️": {
+      "name": "kier",
+      "keywords": [
+        "gra",
+        "karta",
+        "kier",
+        "kocham",
+        "talia"
+      ]
+    },
+    "♦️": {
+      "name": "karo",
+      "keywords": [
+        "gra",
+        "karo",
+        "karta",
+        "talia"
+      ]
+    },
+    "♣️": {
+      "name": "trefl",
+      "keywords": [
+        "gra",
+        "karta",
+        "talia",
+        "trefl"
+      ]
+    },
+    "♟️": {
+      "name": "pionek",
+      "keywords": [
+        "pionek",
+        "szachy"
+      ]
+    },
+    "🎭": {
+      "name": "maski teatralne",
+      "keywords": [
+        "maski",
+        "teatr",
+        "teatralne",
+        "występ",
+        "występować"
+      ]
+    },
+    "🖼️": {
+      "name": "obrazek w ramce",
+      "keywords": [
+        "malarstwo",
+        "muzeum",
+        "obraz",
+        "obrazek",
+        "ramka",
+        "sztuka",
+        "w ramce"
+      ]
+    },
+    "🎨": {
+      "name": "paleta malarska",
+      "keywords": [
+        "farby",
+        "kolory",
+        "malarska",
+        "malarz",
+        "muzeum",
+        "paleta",
+        "sztuka"
+      ]
+    },
+    "🧵": {
+      "name": "nić",
+      "keywords": [
+        "dratwa",
+        "igła",
+        "nawlekać",
+        "nić",
+        "nitka",
+        "szpulka",
+        "szyć",
+        "szycie"
+      ]
+    },
+    "🧶": {
+      "name": "włóczka",
+      "keywords": [
+        "dziergać",
+        "dzierganie",
+        "kłębek",
+        "na drutach",
+        "przędza",
+        "robótki",
+        "szydełkować",
+        "szydełkowanie",
+        "wełna",
+        "włóczka"
+      ]
+    },
+    "👓": {
+      "name": "okulary",
+      "keywords": [
+        "oczy",
+        "okulary",
+        "szkła"
+      ]
+    },
+    "🕶️": {
+      "name": "okulary słoneczne",
+      "keywords": [
+        "ciemne okulary",
+        "oczy",
+        "okulary",
+        "przeciwsłoneczne",
+        "słoneczne"
+      ]
+    },
+    "🥽": {
+      "name": "okulary ochronne",
+      "keywords": [
+        "gogle",
+        "narciarstwo",
+        "narty",
+        "nurkowanie",
+        "ochronne",
+        "okulary",
+        "pływanie",
+        "snorkeling",
+        "snorkling",
+        "snowboard",
+        "spawanie",
+        "zjazd"
+      ]
+    },
+    "👕": {
+      "name": "koszulka",
+      "keywords": [
+        "koszulka",
+        "krótkie rękawy",
+        "męska",
+        "t-shirt",
+        "z krótkimi rękawami"
+      ]
+    },
+    "👖": {
+      "name": "dżinsy",
+      "keywords": [
+        "dżinsy",
+        "jeansy",
+        "spodnie",
+        "ubiór",
+        "ubranie"
+      ]
+    },
+    "👗": {
+      "name": "sukienka",
+      "keywords": [
+        "lato",
+        "sukienka",
+        "suknia",
+        "ubiór",
+        "ubranie"
+      ]
+    },
+    "👜": {
+      "name": "torebka",
+      "keywords": [
+        "bagaż",
+        "damska",
+        "torba",
+        "torebka"
+      ]
+    },
+    "🛍️": {
+      "name": "torby na zakupy",
+      "keywords": [
+        "na zakupy",
+        "torby",
+        "torebki",
+        "zakupy"
+      ]
+    },
+    "🎒": {
+      "name": "tornister",
+      "keywords": [
+        "edukacja",
+        "plecak",
+        "szkoła",
+        "tornister"
+      ]
+    },
+    "👟": {
+      "name": "but do biegania",
+      "keywords": [
+        "bieganie",
+        "but",
+        "but do biegania",
+        "sport",
+        "trampek"
+      ]
+    },
+    "👠": {
+      "name": "but na wysokim obcasie",
+      "keywords": [
+        "but",
+        "buty",
+        "na obcasie",
+        "na szpilkach",
+        "na wysokim obcasie",
+        "obcas",
+        "obcasy",
+        "obuwie",
+        "odzież",
+        "szpilka",
+        "wysoki",
+        "wysokie"
+      ]
+    },
+    "👑": {
+      "name": "korona",
+      "keywords": [
+        "korona",
+        "król",
+        "królowa"
+      ]
+    },
+    "🎩": {
+      "name": "cylinder",
+      "keywords": [
+        "cylinder",
+        "kapelusz",
+        "męskie nakrycie głowy"
+      ]
+    },
+    "🎓": {
+      "name": "biret",
+      "keywords": [
+        "absolwenta",
+        "biret",
+        "czapka",
+        "edukacja",
+        "nakrycie głowy",
+        "studia",
+        "ubiór",
+        "uczony",
+        "uniwersytet",
+        "uroczystość"
+      ]
+    },
+    "🧢": {
+      "name": "bejsbolówka",
+      "keywords": [
+        "bejsbolówka",
+        "czapeczka",
+        "czapka",
+        "czapka z daszkiem"
+      ]
+    },
+    "💄": {
+      "name": "szminka",
+      "keywords": [
+        "kosmetyki",
+        "makijaż",
+        "malować usta",
+        "pomadka",
+        "szminka"
+      ]
+    },
+    "💍": {
+      "name": "pierścionek",
+      "keywords": [
+        "diament",
+        "miłość",
+        "pierścionek",
+        "zaręczyny"
+      ]
+    },
+    "💎": {
+      "name": "kamień szlachetny",
+      "keywords": [
+        "diament",
+        "kamień",
+        "klejnot",
+        "miłość",
+        "szlachetny"
+      ]
+    },
+    "🔇": {
+      "name": "wyciszony głośnik",
+      "keywords": [
+        "cicho",
+        "cisza",
+        "głośnik",
+        "głośność",
+        "wyciszony głośnik",
+        "wyciszyć"
+      ]
+    },
+    "🔈": {
+      "name": "niska głośność głośnika",
+      "keywords": [
+        "dźwięk",
+        "głośnik",
+        "głośność",
+        "niska głośność",
+        "niska głośność głośnika"
+      ]
+    },
+    "🔉": {
+      "name": "średnia głośność głośnika",
+      "keywords": [
+        "dźwięk",
+        "głośnik",
+        "głośność",
+        "mała głośność",
+        "średnia głośność",
+        "średnia głośność głośnika"
+      ]
+    },
+    "🔊": {
+      "name": "wysoka głośność głośnika",
+      "keywords": [
+        "duża głośność",
+        "dźwięk",
+        "głośnik",
+        "głośność",
+        "wysoka głośność",
+        "wysoka głośność głośnika"
+      ]
+    },
+    "📢": {
+      "name": "głośnik",
+      "keywords": [
+        "głośnik",
+        "głośno",
+        "komunikat",
+        "komunikaty publiczne",
+        "tuba głośnikowa"
+      ]
+    },
+    "📣": {
+      "name": "megafon",
+      "keywords": [
+        "kibicować",
+        "megafon"
+      ]
+    },
+    "🔔": {
+      "name": "dzwonek",
+      "keywords": [
+        "dzwon",
+        "dzwonek"
+      ]
+    },
+    "🔕": {
+      "name": "przekreślony dzwonek",
+      "keywords": [
+        "cicho",
+        "cisza",
+        "dzwonek",
+        "nie wolno",
+        "przekreślony dzwonek",
+        "zabroniony",
+        "zakazany"
+      ]
+    },
+    "🎼": {
+      "name": "partytura",
+      "keywords": [
+        "klucz",
+        "muzyka",
+        "nuty",
+        "partytura",
+        "pięciolinia",
+        "wiolinowy"
+      ]
+    },
+    "🎵": {
+      "name": "nuta",
+      "keywords": [
+        "muzyka",
+        "nuta"
+      ]
+    },
+    "🎶": {
+      "name": "nuty",
+      "keywords": [
+        "muzyka",
+        "nuta",
+        "nuty"
+      ]
+    },
+    "🎙️": {
+      "name": "mikrofon studyjny",
+      "keywords": [
+        "mikrofon",
+        "muzyka",
+        "nagrywać",
+        "studio",
+        "studyjny"
+      ]
+    },
+    "🎤": {
+      "name": "mikrofon",
+      "keywords": [
+        "karaoke",
+        "mikrofon",
+        "muzyka",
+        "śpiewać"
+      ]
+    },
+    "🎧": {
+      "name": "słuchawki",
+      "keywords": [
+        "muzyka",
+        "słuchawka",
+        "słuchawki"
+      ]
+    },
+    "📻": {
+      "name": "radio",
+      "keywords": [
+        "odbiornik",
+        "radio",
+        "radioodbiornik",
+        "radiowy"
+      ]
+    },
+    "🎷": {
+      "name": "saksofon",
+      "keywords": [
+        "instrument",
+        "muzyka",
+        "orkiestra",
+        "saksofon"
+      ]
+    },
+    "🎺": {
+      "name": "trąbka",
+      "keywords": [
+        "grać",
+        "instrument",
+        "muzyka",
+        "orkiestra",
+        "trąbka"
+      ]
+    },
+    "🎸": {
+      "name": "gitara",
+      "keywords": [
+        "gitara",
+        "instrument",
+        "muzyka"
+      ]
+    },
+    "🎹": {
+      "name": "klawisze",
+      "keywords": [
+        "fortepian",
+        "instrument",
+        "keyboard",
+        "klawiatura",
+        "klawisze",
+        "muzyka",
+        "pianino"
+      ]
+    },
+    "🎻": {
+      "name": "skrzypce",
+      "keywords": [
+        "altówka",
+        "grać",
+        "instrument",
+        "muzyczny",
+        "muzyk",
+        "muzyka",
+        "orkiestra",
+        "skrzypce",
+        "smyczek",
+        "strunowy"
+      ]
+    },
+    "📱": {
+      "name": "telefon komórkowy",
+      "keywords": [
+        "komóra",
+        "komórka",
+        "smartfon",
+        "telefon",
+        "telefon komórkowy"
+      ]
+    },
+    "☎️": {
+      "name": "telefon",
+      "keywords": [
+        "aparat telefoniczny",
+        "telefon"
+      ]
+    },
+    "📞": {
+      "name": "słuchawka telefoniczna",
+      "keywords": [
+        "rozmawiać",
+        "słuchawka",
+        "telefon",
+        "telefoniczna"
+      ]
+    },
+    "📠": {
+      "name": "faks",
+      "keywords": [
+        "biuro",
+        "faks"
+      ]
+    },
+    "🔋": {
+      "name": "bateria",
+      "keywords": [
+        "akumulator",
+        "akumulatorek",
+        "bateria",
+        "energia"
+      ]
+    },
+    "🪫": {
+      "name": "słaba bateria",
+      "keywords": [
+        "bateria",
+        "elektronika",
+        "niski",
+        "poziom energii",
+        "słaba"
+      ]
+    },
+    "🔌": {
+      "name": "wtyczka elektryczna",
+      "keywords": [
+        "elektryczna",
+        "podłączyć",
+        "prąd",
+        "wtyczka"
+      ]
+    },
+    "💻": {
+      "name": "laptop",
+      "keywords": [
+        "komputer",
+        "laptop",
+        "notebook",
+        "osobisty",
+        "wyświetlacz"
+      ]
+    },
+    "🖥️": {
+      "name": "komputer",
+      "keywords": [
+        "biurkowy",
+        "ekran",
+        "komputer",
+        "monitor",
+        "stacjonarny",
+        "wyświetlacz"
+      ]
+    },
+    "🖨️": {
+      "name": "drukarka",
+      "keywords": [
+        "drukarka",
+        "komputer"
+      ]
+    },
+    "⌨️": {
+      "name": "klawiatura",
+      "keywords": [
+        "klawiatura",
+        "komputer",
+        "pisać"
+      ]
+    },
+    "🖱️": {
+      "name": "mysz komputerowa",
+      "keywords": [
+        "komputer",
+        "komputerowa",
+        "mysz",
+        "myszka",
+        "trójprzyciskowa",
+        "trzyprzyciskowa"
+      ]
+    },
+    "💾": {
+      "name": "dyskietka",
+      "keywords": [
+        "dysk",
+        "dyskietka",
+        "komputer"
+      ]
+    },
+    "💿": {
+      "name": "dysk optyczny",
+      "keywords": [
+        "Blu-ray",
+        "CD",
+        "DVD",
+        "dysk",
+        "dysk optyczny",
+        "komputer",
+        "płyta"
+      ]
+    },
+    "🧮": {
+      "name": "liczydło",
+      "keywords": [
+        "abakus",
+        "kalkulator",
+        "liczyć",
+        "liczydło",
+        "obliczać",
+        "obliczanie",
+        "obliczenia"
+      ]
+    },
+    "🎥": {
+      "name": "kamera filmowa",
+      "keywords": [
+        "film",
+        "kamera",
+        "kamera filmowa",
+        "kinematografia",
+        "kino"
+      ]
+    },
+    "🎞️": {
+      "name": "taśma filmowa",
+      "keywords": [
+        "film",
+        "filmowa",
+        "kino",
+        "klatki",
+        "taśma"
+      ]
+    },
+    "🎬": {
+      "name": "klaps",
+      "keywords": [
+        "film",
+        "kino",
+        "klaps"
+      ]
+    },
+    "📺": {
+      "name": "telewizja",
+      "keywords": [
+        "kineskop",
+        "kineskopowy",
+        "odbiornik",
+        "stary telewizor",
+        "telewizja",
+        "telewizor",
+        "z anteną"
+      ]
+    },
+    "📷": {
+      "name": "aparat fotograficzny",
+      "keywords": [
+        "aparat",
+        "fotografia",
+        "fotograficzny",
+        "robić zdjęcie",
+        "wideo",
+        "zdjęcie"
+      ]
+    },
+    "📹": {
+      "name": "kamera wideo",
+      "keywords": [
+        "kamera",
+        "nagrywać",
+        "wideo"
+      ]
+    },
+    "📼": {
+      "name": "kaseta wideo",
+      "keywords": [
+        "kaseta wideo",
+        "taśma",
+        "VHS"
+      ]
+    },
+    "🔍": {
+      "name": "lupa pochylona w lewo",
+      "keywords": [
+        "detektyw",
+        "lupa",
+        "pochylona",
+        "skierowana",
+        "szukaj",
+        "w lewo"
+      ]
+    },
+    "🕯️": {
+      "name": "świeca",
+      "keywords": [
+        "płomień",
+        "światło",
+        "świeca",
+        "świeczka"
+      ]
+    },
+    "💡": {
+      "name": "żarówka",
+      "keywords": [
+        "idea",
+        "pomysł",
+        "prąd",
+        "światło",
+        "żarówka"
+      ]
+    },
+    "🔦": {
+      "name": "latarka",
+      "keywords": [
+        "elektryczna",
+        "lampka",
+        "latarka",
+        "światło"
+      ]
+    },
+    "📕": {
+      "name": "zamknięta książka",
+      "keywords": [
+        "książka",
+        "zamknięta"
+      ]
+    },
+    "📖": {
+      "name": "otwarta książka",
+      "keywords": [
+        "czytać",
+        "książka",
+        "nauka",
+        "otwarta",
+        "uczyć się"
+      ]
+    },
+    "📚": {
+      "name": "książki",
+      "keywords": [
+        "biblioteka",
+        "czytać",
+        "książka",
+        "książki",
+        "nauka"
+      ]
+    },
+    "📓": {
+      "name": "notes",
+      "keywords": [
+        "notatnik",
+        "notes",
+        "szary",
+        "zeszyt"
+      ]
+    },
+    "📜": {
+      "name": "zwój",
+      "keywords": [
+        "edykt",
+        "papier",
+        "pergamin",
+        "pismo",
+        "zwój"
+      ]
+    },
+    "📄": {
+      "name": "strona",
+      "keywords": [
+        "dokument",
+        "kartka",
+        "maszynopis",
+        "pismo",
+        "strona"
+      ]
+    },
+    "📰": {
+      "name": "gazeta",
+      "keywords": [
+        "gazeta",
+        "wiadomości"
+      ]
+    },
+    "📑": {
+      "name": "karty zakładek",
+      "keywords": [
+        "dokument",
+        "indeksujące",
+        "karta",
+        "karty",
+        "przekładka",
+        "przekładki",
+        "zakładek",
+        "zakładka",
+        "zakładki"
+      ]
+    },
+    "🔖": {
+      "name": "zakładka",
+      "keywords": [
+        "zakładka",
+        "zaznaczenie"
+      ]
+    },
+    "🏷️": {
+      "name": "przywieszka do kluczy",
+      "keywords": [
+        "breloczek",
+        "etykieta",
+        "plakietka",
+        "przywieszka"
+      ]
+    },
+    "💰": {
+      "name": "worek z pieniędzmi",
+      "keywords": [
+        "bogaty",
+        "dolary",
+        "kasa",
+        "pieniądze",
+        "pieniędzy",
+        "worek",
+        "z pieniędzmi"
+      ]
+    },
+    "💵": {
+      "name": "banknot dolara",
+      "keywords": [
+        "bank",
+        "banknot",
+        "banknot dolara",
+        "dolary",
+        "pieniądze",
+        "płacić",
+        "rachunek",
+        "waluta"
+      ]
+    },
+    "💳": {
+      "name": "karta kredytowa",
+      "keywords": [
+        "bank",
+        "karta",
+        "karta kredytowa",
+        "kredyt",
+        "pieniądze"
+      ]
+    },
+    "🧾": {
+      "name": "paragon",
+      "keywords": [
+        "dowód",
+        "faktura",
+        "księgowość",
+        "kwitek",
+        "paragon",
+        "pokwitowanie",
+        "rachunek",
+        "rachunkowość"
+      ]
+    },
+    "✉️": {
+      "name": "koperta",
+      "keywords": [
+        "e-mail",
+        "email",
+        "koperta",
+        "list",
+        "mail",
+        "wiadomość"
+      ]
+    },
+    "📧": {
+      "name": "e-mail",
+      "keywords": [
+        "e-mail",
+        "email",
+        "list",
+        "mail",
+        "poczta elektroniczna"
+      ]
+    },
+    "📤": {
+      "name": "skrzynka nadawcza",
+      "keywords": [
+        "e-mail",
+        "email",
+        "list",
+        "mail",
+        "na listy",
+        "nadawać",
+        "nadawcza",
+        "pocztowa",
+        "skrzynka",
+        "wysyłać",
+        "ze strzałką"
+      ]
+    },
+    "📥": {
+      "name": "skrzynka odbiorcza",
+      "keywords": [
+        "e-mail",
+        "email",
+        "list",
+        "mail",
+        "na listy",
+        "odbierać",
+        "odbiorcza",
+        "otrzymywać",
+        "pocztowa",
+        "skrzynka",
+        "ze strzałką"
+      ]
+    },
+    "📦": {
+      "name": "paczka",
+      "keywords": [
+        "paczka",
+        "pakunek",
+        "przesyłka",
+        "pudełko"
+      ]
+    },
+    "📫": {
+      "name": "zamknięta skrzynka pocztowa z podniesioną flagą",
+      "keywords": [
+        "listy",
+        "poczta",
+        "pocztowa",
+        "skrzynka",
+        "z podniesioną flagą",
+        "zamknięta"
+      ]
+    },
+    "✏️": {
+      "name": "ołówek",
+      "keywords": [
+        "ołówek",
+        "pisak",
+        "rysować"
+      ]
+    },
+    "✒️": {
+      "name": "pióro z czarną stalówką",
+      "keywords": [
+        "pióro",
+        "pisać",
+        "stalówka",
+        "z czarną stalówką",
+        "ze stalówką"
+      ]
+    },
+    "🖌️": {
+      "name": "pędzel",
+      "keywords": [
+        "malarstwo",
+        "malować",
+        "pędzel"
+      ]
+    },
+    "📝": {
+      "name": "notatka",
+      "keywords": [
+        "kartka",
+        "notatka",
+        "notatki",
+        "ołówek",
+        "papier",
+        "pisać",
+        "zapiski"
+      ]
+    },
+    "💼": {
+      "name": "teczka",
+      "keywords": [
+        "aktówka",
+        "biuro",
+        "neseser",
+        "teczka"
+      ]
+    },
+    "📁": {
+      "name": "folder",
+      "keywords": [
+        "dokumenty",
+        "folder",
+        "katalog",
+        "teczka"
+      ]
+    },
+    "📂": {
+      "name": "otwarty folder",
+      "keywords": [
+        "dokumenty",
+        "folder",
+        "katalog",
+        "otwarty",
+        "teczka"
+      ]
+    },
+    "🗂️": {
+      "name": "rozdzielacze kartoteki",
+      "keywords": [
+        "dokumenty",
+        "kartoteka",
+        "kartoteki",
+        "karty",
+        "podział",
+        "rozdzielacze",
+        "teczki"
+      ]
+    },
+    "📅": {
+      "name": "kalendarz",
+      "keywords": [
+        "data",
+        "kalendarz"
+      ]
+    },
+    "📈": {
+      "name": "wykres wzrostu",
+      "keywords": [
+        "akcje",
+        "hossa",
+        "rosnący",
+        "rynek byka",
+        "tendencja",
+        "trend",
+        "wykres",
+        "wzrost",
+        "wzrostowa",
+        "wzrostu",
+        "zwyżkowa",
+        "zwyżkowy"
+      ]
+    },
+    "📉": {
+      "name": "wykres spadku",
+      "keywords": [
+        "akcje",
+        "bessa",
+        "malejący",
+        "rynek niedźwiedzia",
+        "spadek",
+        "spadkowa",
+        "spadku",
+        "strata",
+        "tendencja",
+        "trend",
+        "wykres",
+        "zniżkowa",
+        "zniżkowy"
+      ]
+    },
+    "📊": {
+      "name": "wykres słupkowy",
+      "keywords": [
+        "diagram",
+        "słupek",
+        "słupkowy",
+        "wykres"
+      ]
+    },
+    "📋": {
+      "name": "podkładka do pisania",
+      "keywords": [
+        "do pisania",
+        "kartka",
+        "notes",
+        "pisać",
+        "pisanie",
+        "podkładka",
+        "referat"
+      ]
+    },
+    "📌": {
+      "name": "pinezka",
+      "keywords": [
+        "pinezka",
+        "przypiąć"
+      ]
+    },
+    "📍": {
+      "name": "okrągła pinezka",
+      "keywords": [
+        "miejsce",
+        "pinezka",
+        "przypiąć",
+        "szpilka",
+        "z główką"
+      ]
+    },
+    "📎": {
+      "name": "spinacz",
+      "keywords": [
+        "biuro",
+        "do papieru",
+        "druciany",
+        "spinać",
+        "spinacz"
+      ]
+    },
+    "📏": {
+      "name": "linijka",
+      "keywords": [
+        "krawędź",
+        "linia",
+        "linijka",
+        "prosta"
+      ]
+    },
+    "📐": {
+      "name": "ekierka",
+      "keywords": [
+        "ekierka",
+        "linia",
+        "linijka",
+        "prosta",
+        "trójkąt"
+      ]
+    },
+    "✂️": {
+      "name": "nożyczki",
+      "keywords": [
+        "ciąć",
+        "narzędzie",
+        "nożyczki",
+        "ostre",
+        "przeciąć"
+      ]
+    },
+    "🗄️": {
+      "name": "szafka-kartoteka",
+      "keywords": [
+        "dokumenty",
+        "indeks",
+        "kartoteka",
+        "karty",
+        "szafka",
+        "szafka-kartoteka",
+        "szuflady"
+      ]
+    },
+    "🗑️": {
+      "name": "kosz na śmieci",
+      "keywords": [
+        "kosz",
+        "na śmieci",
+        "odpadki",
+        "śmieci",
+        "śmietnik"
+      ]
+    },
+    "🔒": {
+      "name": "zamknięta kłódka",
+      "keywords": [
+        "kłódka",
+        "zablokowane",
+        "zamknięta",
+        "zamknięte"
+      ]
+    },
+    "🔓": {
+      "name": "otwarta kłódka",
+      "keywords": [
+        "kłódka",
+        "odblokować",
+        "otwarta"
+      ]
+    },
+    "🔑": {
+      "name": "klucz",
+      "keywords": [
+        "hasło",
+        "klucz",
+        "zamek",
+        "zamknąć"
+      ]
+    },
+    "🔨": {
+      "name": "młotek",
+      "keywords": [
+        "młot",
+        "młotek",
+        "naprawa",
+        "narzędzia",
+        "narzędzie"
+      ]
+    },
+    "🪓": {
+      "name": "siekiera",
+      "keywords": [
+        "drewno",
+        "rąbać",
+        "rozłupywać",
+        "siekiera",
+        "topór"
+      ]
+    },
+    "⛏️": {
+      "name": "kilof",
+      "keywords": [
+        "górnicze",
+        "górnik",
+        "kilof",
+        "narzędzia",
+        "narzędzie"
+      ]
+    },
+    "🛠️": {
+      "name": "młot i klucz",
+      "keywords": [
+        "klucz",
+        "młot",
+        "młot i klucz",
+        "młotek",
+        "narzędzia",
+        "warsztat",
+        "warsztatowy"
+      ]
+    },
+    "💣": {
+      "name": "bomba",
+      "keywords": [
+        "bomba",
+        "bum",
+        "eksplozja",
+        "komiks",
+        "niebezpieczeństwo",
+        "wybuch"
+      ]
+    },
+    "🛡️": {
+      "name": "tarcza",
+      "keywords": [
+        "ochrona",
+        "osłona",
+        "tarcza"
+      ]
+    },
+    "🔧": {
+      "name": "klucz warsztatowy",
+      "keywords": [
+        "klucz",
+        "klucz warsztatowy",
+        "mechanik",
+        "narzędzia",
+        "narzędzie",
+        "warsztat"
+      ]
+    },
+    "🪛": {
+      "name": "śrubokręt",
+      "keywords": [
+        "narzędzie",
+        "śruba",
+        "śrubokręt",
+        "wkręt",
+        "wkrętak"
+      ]
+    },
+    "🔩": {
+      "name": "śruba i nakrętka",
+      "keywords": [
+        "gwint",
+        "mocowanie",
+        "nakrętka",
+        "narzędzia",
+        "śruba",
+        "śruba i nakrętka"
+      ]
+    },
+    "⚙️": {
+      "name": "koło zębate",
+      "keywords": [
+        "kółko",
+        "koło zębate",
+        "skrzynia biegów",
+        "zębate",
+        "zębatka"
+      ]
+    },
+    "⚖️": {
+      "name": "waga szalkowa",
+      "keywords": [
+        "ciężar",
+        "narzędzie",
+        "równowaga",
+        "sprawiedliwość",
+        "szalki",
+        "waga",
+        "waga szalkowa",
+        "ważyć",
+        "zodiak"
+      ]
+    },
+    "🔗": {
+      "name": "ogniwa",
+      "keywords": [
+        "hiperłącze",
+        "link",
+        "ogniwa",
+        "ogniwo",
+        "połączenie"
+      ]
+    },
+    "🧰": {
+      "name": "skrzynka na narzędzia",
+      "keywords": [
+        "czerwona",
+        "klucze",
+        "kombinerki",
+        "mechanik",
+        "na narzędzia",
+        "narzędzia",
+        "narzędzie",
+        "skrzynka",
+        "z narzędziami"
+      ]
+    },
+    "🧲": {
+      "name": "magnes",
+      "keywords": [
+        "kształt u",
+        "magnes",
+        "magnetyczny",
+        "magnetyzm",
+        "odpychanie",
+        "podkowa",
+        "przyciąganie"
+      ]
+    },
+    "🪜": {
+      "name": "drabina",
+      "keywords": [
+        "do góry",
+        "drabina",
+        "hierarchia",
+        "ranking",
+        "stopnie",
+        "szczebel",
+        "wspinać się"
+      ]
+    },
+    "🧪": {
+      "name": "probówka",
+      "keywords": [
+        "chemia",
+        "chemik",
+        "eksperyment",
+        "laboratorium",
+        "nauka",
+        "probówka"
+      ]
+    },
+    "🧬": {
+      "name": "dna",
+      "keywords": [
+        "biolog",
+        "dna",
+        "ewolucja",
+        "gen",
+        "genetyka",
+        "geny",
+        "życie"
+      ]
+    },
+    "🔬": {
+      "name": "mikroskop",
+      "keywords": [
+        "laboratorium",
+        "mikroskop",
+        "nauka",
+        "obserwacja",
+        "powiększenie"
+      ]
+    },
+    "🔭": {
+      "name": "teleskop",
+      "keywords": [
+        "luneta",
+        "obserwacja",
+        "powiększenie",
+        "teleskop"
+      ]
+    },
+    "📡": {
+      "name": "antena satelitarna",
+      "keywords": [
+        "antena",
+        "antena satelitarna",
+        "czasza",
+        "kosmici",
+        "nauka",
+        "obcy",
+        "satelita",
+        "talerz"
+      ]
+    },
+    "💉": {
+      "name": "strzykawka",
+      "keywords": [
+        "chory",
+        "doktor",
+        "lekarstwo",
+        "lekarz",
+        "pielęgniarka",
+        "strzykawka",
+        "szczepienie",
+        "szczepionka",
+        "zastrzyk"
+      ]
+    },
+    "💊": {
+      "name": "kapsułka",
+      "keywords": [
+        "kapsułka",
+        "lek",
+        "lekarstwo",
+        "pigułka",
+        "tabletka"
+      ]
+    },
+    "🩹": {
+      "name": "plaster",
+      "keywords": [
+        "opatrunek",
+        "plaster"
+      ]
+    },
+    "🩺": {
+      "name": "stetoskop",
+      "keywords": [
+        "lekarz",
+        "medycyna",
+        "praca",
+        "serce",
+        "stetoskop"
+      ]
+    },
+    "🚪": {
+      "name": "drzwi",
+      "keywords": [
+        "drzwi"
+      ]
+    },
+    "🛏️": {
+      "name": "łóżko",
+      "keywords": [
+        "hotel",
+        "łóżko",
+        "nocleg",
+        "sen",
+        "spać"
+      ]
+    },
+    "🛋️": {
+      "name": "kanapa i lampa",
+      "keywords": [
+        "hotel",
+        "kanapa",
+        "lampa",
+        "wypoczynek"
+      ]
+    },
+    "🪑": {
+      "name": "krzesło",
+      "keywords": [
+        "krzesło",
+        "siadać",
+        "siedzenie"
+      ]
+    },
+    "🚽": {
+      "name": "muszla klozetowa",
+      "keywords": [
+        "dolnopłuk",
+        "muszla klozetowa",
+        "sedes",
+        "toaleta",
+        "ubikacja"
+      ]
+    },
+    "🛁": {
+      "name": "wanna",
+      "keywords": [
+        "kąpiel",
+        "wanna"
+      ]
+    },
+    "🧴": {
+      "name": "butelka z płynem",
+      "keywords": [
+        "balsam",
+        "butelka",
+        "butelka z płynem",
+        "krem do opalania",
+        "mleczko",
+        "szampon"
+      ]
+    },
+    "🧹": {
+      "name": "miotła",
+      "keywords": [
+        "czarownica",
+        "miotła",
+        "sprzątać",
+        "sprzątanie",
+        "wiedźma",
+        "zamiatać",
+        "zamiatanie"
+      ]
+    },
+    "🧺": {
+      "name": "kosz",
+      "keywords": [
+        "grzybobranie",
+        "grzyby",
+        "kosz",
+        "koszyk",
+        "ogród",
+        "piknik",
+        "pranie",
+        "rolnictwo",
+        "wiklina"
+      ]
+    },
+    "🧻": {
+      "name": "rolka papieru",
+      "keywords": [
+        "papier toaletowy",
+        "ręczniki papierowe",
+        "rolka papieru",
+        "toaleta",
+        "ubikacja"
+      ]
+    },
+    "🪣": {
+      "name": "wiadro",
+      "keywords": [
+        "ceber",
+        "czerpak",
+        "kubeł",
+        "nabierać wodę",
+        "naczynie na ciecz",
+        "pojemnik",
+        "skopek",
+        "sprzątanie",
+        "wiaderko",
+        "wiadro"
+      ]
+    },
+    "🪥": {
+      "name": "szczoteczka do zębów",
+      "keywords": [
+        "czyszczenie",
+        "do zębów",
+        "higiena",
+        "jama ustna",
+        "łazienka",
+        "myć zęby",
+        "mycie zębów",
+        "szczoteczka",
+        "szczotka",
+        "zębów",
+        "zęby"
+      ]
+    },
+    "🧽": {
+      "name": "gąbka",
+      "keywords": [
+        "gąbka",
+        "myć",
+        "myć się",
+        "mycie",
+        "porowata",
+        "porowaty",
+        "sprzątać",
+        "sprzątanie",
+        "wchłanianie",
+        "wsiąka",
+        "wsiąkać"
+      ]
+    },
+    "🧯": {
+      "name": "gaśnica",
+      "keywords": [
+        "gasić",
+        "gaśnica",
+        "ogień",
+        "pożar",
+        "ugasić",
+        "zgasić"
+      ]
+    },
+    "🛒": {
+      "name": "wózek sklepowy",
+      "keywords": [
+        "koszyk",
+        "sklep",
+        "wózek",
+        "wózek sklepowy",
+        "zakupy"
+      ]
+    },
+    "🪪": {
+      "name": "dowód tożsamości",
+      "keywords": [
+        "bezpieczeństwo",
+        "dane osobowe",
+        "dokument",
+        "dowód osobisty",
+        "dowód tożsamości",
+        "identyfikator",
+        "prawo jazdy"
+      ]
+    },
+    "🏧": {
+      "name": "znak bankomatu",
+      "keywords": [
+        "ATM",
+        "bankomat",
+        "pieniądze",
+        "znak bankomatu"
+      ]
+    },
+    "♿": {
+      "name": "symbol wózka inwalidzkiego",
+      "keywords": [
+        "dostępność",
+        "inwalida",
+        "inwalidzki",
+        "inwalidzkiego",
+        "na wózku",
+        "niepełnosprawność",
+        "niepełnosprawny",
+        "symbol",
+        "wózek",
+        "wózka",
+        "znak"
+      ]
+    },
+    "🚹": {
+      "name": "toaleta męska",
+      "keywords": [
+        "dla mężczyzn",
+        "męska",
+        "męski",
+        "szalet",
+        "toaleta",
+        "ubikacja",
+        "ustęp",
+        "WC"
+      ]
+    },
+    "🚺": {
+      "name": "toaleta damska",
+      "keywords": [
+        "damska",
+        "damski",
+        "dla kobiet",
+        "szalet",
+        "toaleta",
+        "ubikacja",
+        "ustęp",
+        "WC"
+      ]
+    },
+    "🚻": {
+      "name": "toalety",
+      "keywords": [
+        "łazienka",
+        "szalet",
+        "toaleta",
+        "toalety",
+        "ubikacja",
+        "WC"
+      ]
+    },
+    "🚾": {
+      "name": "WC",
+      "keywords": [
+        "szalet",
+        "toaleta",
+        "ubikacja",
+        "ustęp",
+        "WC"
+      ]
+    },
+    "⚠️": {
+      "name": "ostrzeżenie",
+      "keywords": [
+        "ostrzeżenie",
+        "uwaga",
+        "wykrzyknik",
+        "znak ostrzegawczy"
+      ]
+    },
+    "⛔": {
+      "name": "zakaz wjazdu",
+      "keywords": [
+        "wejście",
+        "wstęp",
+        "zabroniony",
+        "zakaz",
+        "zakaz wjazdu"
+      ]
+    },
+    "🚫": {
+      "name": "zakaz",
+      "keywords": [
+        "brak przejścia",
+        "wejście",
+        "zabronione",
+        "zakaz",
+        "znak"
+      ]
+    },
+    "☢️": {
+      "name": "promieniowanie radioaktywne",
+      "keywords": [
+        "ostrzeżenie",
+        "promieniowanie",
+        "radiacja",
+        "radioaktywne"
+      ]
+    },
+    "☣️": {
+      "name": "zagrożenie ze strony organizmów żywych",
+      "keywords": [
+        "biozagrożenie",
+        "niebezpieczeństwo",
+        "organizm",
+        "zagrożenie",
+        "zagrożenie ze strony organizmów żywych",
+        "żywy"
+      ]
+    },
+    "⬆️": {
+      "name": "strzałka w górę",
+      "keywords": [
+        "kierunek",
+        "północ",
+        "strzałka",
+        "strzałka do góry",
+        "strzałka w górę"
+      ]
+    },
+    "↗️": {
+      "name": "strzałka w górę w prawo",
+      "keywords": [
+        "kierunek",
+        "północny wschód",
+        "strzałka",
+        "strzałka do góry w prawo",
+        "strzałka w górę w prawo"
+      ]
+    },
+    "➡️": {
+      "name": "strzałka w prawo",
+      "keywords": [
+        "kierunek",
+        "strzałka",
+        "strzałka w prawo",
+        "wschód"
+      ]
+    },
+    "↘️": {
+      "name": "strzałka w dół w prawo",
+      "keywords": [
+        "kierunek",
+        "południowy wschód",
+        "strzałka",
+        "strzałka w dół w prawo"
+      ]
+    },
+    "⬇️": {
+      "name": "strzałka w dół",
+      "keywords": [
+        "kierunek",
+        "południe",
+        "strzałka",
+        "strzałka na dół",
+        "strzałka w dół"
+      ]
+    },
+    "↙️": {
+      "name": "strzałka w dół w lewo",
+      "keywords": [
+        "kierunek",
+        "południowy zachód",
+        "strzałka",
+        "strzałka na dół w lewo",
+        "strzałka w dół w lewo"
+      ]
+    },
+    "⬅️": {
+      "name": "strzałka w lewo",
+      "keywords": [
+        "kierunek",
+        "strzałka",
+        "strzałka w lewo",
+        "zachód"
+      ]
+    },
+    "↖️": {
+      "name": "strzałka w górę w lewo",
+      "keywords": [
+        "kierunek",
+        "północny zachód",
+        "strzałka",
+        "strzałka do góry w lewo",
+        "strzałka w górę w lewo"
+      ]
+    },
+    "↕️": {
+      "name": "strzałka w górę i w dół",
+      "keywords": [
+        "dwukierunkowa",
+        "góra-dół",
+        "strzałka"
+      ]
+    },
+    "↔️": {
+      "name": "strzałka w lewo i w prawo",
+      "keywords": [
+        "dwukierunkowa",
+        "lewo-prawo",
+        "na boki",
+        "strzałka"
+      ]
+    },
+    "↩️": {
+      "name": "strzałka zakręcona w lewo",
+      "keywords": [
+        "strzałka",
+        "strzałka zakręcona w lewo",
+        "zakręt",
+        "zawróć"
+      ]
+    },
+    "↪️": {
+      "name": "strzałka zakręcona w prawo",
+      "keywords": [
+        "strzałka",
+        "strzałka zakręcona w prawo",
+        "zakręt",
+        "zawróć"
+      ]
+    },
+    "⤴️": {
+      "name": "strzałka w prawo skręcająca w górę",
+      "keywords": [
+        "strzałka",
+        "strzałka w prawo skręcająca w górę",
+        "w górę",
+        "zakręt"
+      ]
+    },
+    "⤵️": {
+      "name": "strzałka w prawo skręcająca w dół",
+      "keywords": [
+        "strzałka",
+        "strzałka w prawo skręcająca dół",
+        "strzałka w prawo skręcająca w dół",
+        "w dół",
+        "zakręt"
+      ]
+    },
+    "🔃": {
+      "name": "pionowe strzałki zgodne z ruchem wskazówek zegara",
+      "keywords": [
+        "odśwież",
+        "okrężny",
+        "pionowe strzałki zgodne z ruchem wskazówek zegara",
+        "pionowe strzałki zgodnie z ruchem wskazówek zegara",
+        "strzałka"
+      ]
+    },
+    "🔄": {
+      "name": "przycisk ze strzałkami przeciwnie do ruchu wskazówek zegara",
+      "keywords": [
+        "dookoła",
+        "okrężny",
+        "przycisk ze strzałkami przeciwnie do ruchu wskazówek zegara",
+        "przycisk ze strzałkami w kierunku przeciwnym do ruchu wskazówek zegara",
+        "strzałka"
+      ]
+    },
+    "⚛️": {
+      "name": "symbol atomu",
+      "keywords": [
+        "atom",
+        "symbol atomu"
+      ]
+    },
+    "🕉️": {
+      "name": "om",
+      "keywords": [
+        "hinduizm",
+        "om",
+        "religia"
+      ]
+    },
+    "✡️": {
+      "name": "gwiazda Dawida",
+      "keywords": [
+        "Dawid",
+        "gwiazda",
+        "gwiazda Dawida",
+        "gwiazda dawidowa",
+        "judaizm",
+        "religia",
+        "żyd",
+        "żydowska"
+      ]
+    },
+    "☸️": {
+      "name": "koło dharmy",
+      "keywords": [
+        "buddysta",
+        "buddyzm",
+        "dharma",
+        "koło",
+        "koło dharmy",
+        "religia"
+      ]
+    },
+    "☯️": {
+      "name": "yin-yang",
+      "keywords": [
+        "religia",
+        "tao",
+        "taoizm",
+        "yang",
+        "yin",
+        "yin-yang"
+      ]
+    },
+    "✝️": {
+      "name": "krzyż łaciński",
+      "keywords": [
+        "chrześcijaństwo",
+        "krzyż",
+        "krzyż łaciński",
+        "krzyżyk",
+        "religia"
+      ]
+    },
+    "☦️": {
+      "name": "krzyż prawosławny",
+      "keywords": [
+        "chrześcijaństwo",
+        "krzyż",
+        "krzyż prawosławny",
+        "krzyżyk",
+        "ortodoksyjny",
+        "religia"
+      ]
+    },
+    "☪️": {
+      "name": "gwiazda i półksiężyc",
+      "keywords": [
+        "gwiazda i półksiężyc",
+        "islam",
+        "muzułmanin",
+        "religia"
+      ]
+    },
+    "☮️": {
+      "name": "symbol pokoju",
+      "keywords": [
+        "pacyfa",
+        "pacyfizm",
+        "pacyfka",
+        "pokój",
+        "symbol pokoju",
+        "znak"
+      ]
+    },
+    "🕎": {
+      "name": "menora",
+      "keywords": [
+        "Chanuka",
+        "Chanukija",
+        "judaizm",
+        "kandelabr",
+        "menora",
+        "religia",
+        "świecznik",
+        "żydowska"
+      ]
+    },
+    "🔀": {
+      "name": "przycisk losowego odtwarzania utworów",
+      "keywords": [
+        "krzyżujące się",
+        "losowe",
+        "losowego",
+        "losowo",
+        "mieszanie",
+        "odtwarzania",
+        "odtwarzanie",
+        "przecinające się",
+        "przycisk",
+        "skrzyżowane",
+        "strzałki",
+        "utworów"
+      ]
+    },
+    "🔁": {
+      "name": "przycisk powtarzania",
+      "keywords": [
+        "dookoła",
+        "okrężny",
+        "ponów",
+        "powtórz",
+        "przycisk powtarzania",
+        "strzałki",
+        "w prawo"
+      ]
+    },
+    "▶️": {
+      "name": "odtwórz",
+      "keywords": [
+        "odtwarzaj",
+        "odtwarzanie",
+        "odtwórz",
+        "przycisk",
+        "strzałka",
+        "trójkąt",
+        "w prawo"
+      ]
+    },
+    "⏩": {
+      "name": "przycisk szybkiego przewijania do przodu",
+      "keywords": [
+        "do przodu",
+        "podwójna",
+        "przewiń",
+        "przycisk szybkiego przewijania do przodu",
+        "strzałka",
+        "szybkie przewijanie",
+        "trójkąt"
+      ]
+    },
+    "⏭️": {
+      "name": "następny utwór",
+      "keywords": [
+        "następny",
+        "następny utwór",
+        "strzałka",
+        "trójkąt"
+      ]
+    },
+    "⏯️": {
+      "name": "odtwórz lub wstrzymaj",
+      "keywords": [
+        "odtwarzaj",
+        "odtwarzanie",
+        "odtwórz",
+        "pauza",
+        "przycisk",
+        "strzałka",
+        "trójkąt",
+        "w prawo",
+        "wstrzymaj",
+        "wstrzymanie"
+      ]
+    },
+    "◀️": {
+      "name": "wstecz",
+      "keywords": [
+        "strzałka",
+        "trójkąt",
+        "w lewo",
+        "wstecz"
+      ]
+    },
+    "⏪": {
+      "name": "przycisk szybkiego przewijania do tyłu",
+      "keywords": [
+        "do tyłu",
+        "podwójna",
+        "przewiń",
+        "przycisk szybkiego przewijania do tyłu",
+        "strzałka",
+        "szybkie przewijanie",
+        "trójkąt",
+        "w lewo",
+        "wstecz"
+      ]
+    },
+    "⏮️": {
+      "name": "poprzedni utwór",
+      "keywords": [
+        "poprzedni",
+        "poprzedni utwór",
+        "strzałka",
+        "trójkąt"
+      ]
+    },
+    "🔼": {
+      "name": "przycisk „w górę”",
+      "keywords": [
+        "do góry",
+        "przycisk „w górę”",
+        "strzałka",
+        "trójkąt",
+        "w górę"
+      ]
+    },
+    "🔽": {
+      "name": "przycisk „w dół”",
+      "keywords": [
+        "na dół",
+        "przycisk „w dół”",
+        "strzałka",
+        "trójkąt",
+        "w dół"
+      ]
+    },
+    "⏸️": {
+      "name": "pauza",
+      "keywords": [
+        "dwie",
+        "pauza",
+        "pionowe kreski",
+        "przycisk",
+        "wstrzymaj"
+      ]
+    },
+    "⏹️": {
+      "name": "zatrzymaj",
+      "keywords": [
+        "kwadrat",
+        "przycisk",
+        "stop",
+        "zatrzymaj"
+      ]
+    },
+    "⏺️": {
+      "name": "nagraj",
+      "keywords": [
+        "kółko",
+        "nagraj",
+        "nagrywanie",
+        "przycisk"
+      ]
+    },
+    "⏏️": {
+      "name": "wysuń",
+      "keywords": [
+        "kreska",
+        "trójkąt",
+        "wysuń"
+      ]
+    },
+    "🔅": {
+      "name": "przycisk małej jasności",
+      "keywords": [
+        "jasność",
+        "mała",
+        "niska",
+        "przyciemnić",
+        "przycisk małej jasności",
+        "słońce"
+      ]
+    },
+    "📶": {
+      "name": "siła sygnału",
+      "keywords": [
+        "sieć komórkowa",
+        "siła sygnału",
+        "zasięg"
+      ]
+    },
+    "🛜": {
+      "name": "bezprzewodowy",
+      "keywords": [
+        "bezprzewodowe",
+        "bezprzewodowy",
+        "hotspot",
+        "internet",
+        "komputer",
+        "łączność",
+        "router",
+        "sieć",
+        "szerokopasmowe",
+        "wi-fi",
+        "wifi",
+        "wlan"
+      ]
+    },
+    "♀️": {
+      "name": "znak kobiety",
+      "keywords": [
+        "kobieta",
+        "żeński",
+        "znak",
+        "znak kobiety"
+      ]
+    },
+    "♂️": {
+      "name": "znak mężczyzny",
+      "keywords": [
+        "męski",
+        "mężczyzna",
+        "znak",
+        "znak mężczyzny"
+      ]
+    },
+    "✖️": {
+      "name": "znak mnożenia",
+      "keywords": [
+        "×",
+        "anuluj",
+        "iks",
+        "matematyka",
+        "mnożenie",
+        "x",
+        "znak",
+        "znak mnożenia"
+      ]
+    },
+    "➕": {
+      "name": "znak plus",
+      "keywords": [
+        "+",
+        "dodać",
+        "dodawać",
+        "dodawanie",
+        "matematyka",
+        "plus",
+        "znak"
+      ]
+    },
+    "➖": {
+      "name": "znak minus",
+      "keywords": [
+        "-",
+        "−",
+        "matematyka",
+        "minus",
+        "odejmowanie",
+        "odjąć",
+        "znak"
+      ]
+    },
+    "➗": {
+      "name": "znak dzielenia",
+      "keywords": [
+        "÷",
+        "dzielenie",
+        "matematyka",
+        "znak",
+        "znak dzielenia"
+      ]
+    },
+    "🟰": {
+      "name": "gruby znak równości",
+      "keywords": [
+        "gruby znak równości",
+        "matematyka",
+        "równa się",
+        "równość",
+        "znak równości"
+      ]
+    },
+    "♾️": {
+      "name": "nieskończoność",
+      "keywords": [
+        "bezgraniczność",
+        "nieskończoność",
+        "wieczność"
+      ]
+    },
+    "‼️": {
+      "name": "podwójny wykrzyknik",
+      "keywords": [
+        "!",
+        "!!",
+        "krzyk",
+        "okrzyk",
+        "podwójny wykrzyknik",
+        "wykrzykniki"
+      ]
+    },
+    "⁉️": {
+      "name": "wykrzyknik ze znakiem zapytania",
+      "keywords": [
+        "!",
+        "!?",
+        "?",
+        "nie rozumiem",
+        "pytajnik",
+        "pytanie",
+        "wykrzyknik",
+        "wykrzyknik ze znakiem zapytania",
+        "zaskoczenie",
+        "znak zapytania"
+      ]
+    },
+    "❓": {
+      "name": "czerwony znak zapytania",
+      "keywords": [
+        "?",
+        "co?",
+        "czerwony znak zapytania",
+        "o co chodzi",
+        "o co chodzi?",
+        "pytajnik",
+        "pytanie",
+        "znak zapytania"
+      ]
+    },
+    "❗": {
+      "name": "czerwony wykrzyknik",
+      "keywords": [
+        "!",
+        "czerwony wykrzyknik",
+        "krzyk",
+        "okrzyk",
+        "wykrzyknik"
+      ]
+    },
+    "💲": {
+      "name": "gruby symbol dolara",
+      "keywords": [
+        "dolar",
+        "dolary",
+        "gruby symbol dolara",
+        "pieniądze",
+        "usd",
+        "waluta"
+      ]
+    },
+    "⚕️": {
+      "name": "symbol medycyny",
+      "keywords": [
+        "eskulap",
+        "laska",
+        "medycyna",
+        "symbol",
+        "symbol medycyny"
+      ]
+    },
+    "♻️": {
+      "name": "recykling",
+      "keywords": [
+        "odpady",
+        "recykling",
+        "surowce wtórne"
+      ]
+    },
+    "⚜️": {
+      "name": "lilijka",
+      "keywords": [
+        "fleur-de-lis",
+        "harcerze",
+        "lilijka",
+        "rycerz"
+      ]
+    },
+    "🔱": {
+      "name": "emblemat z trójzębem",
+      "keywords": [
+        "emblemat",
+        "kotwica",
+        "okręt",
+        "posejdon",
+        "statek",
+        "trójząb",
+        "tryton",
+        "z trójzębem"
+      ]
+    },
+    "⭕": {
+      "name": "gruby czerwony okrąg",
+      "keywords": [
+        "czerwone",
+        "gruby czerwony okrąg",
+        "kółko",
+        "koło",
+        "o",
+        "okrąg"
+      ]
+    },
+    "✅": {
+      "name": "przycisk ze znacznikiem wyboru",
+      "keywords": [
+        "parafka",
+        "przycisk ze znacznikiem wyboru",
+        "ptaszek",
+        "tak",
+        "zaznaczenie",
+        "znacznik wyboru"
+      ]
+    },
+    "✔️": {
+      "name": "znacznik wyboru",
+      "keywords": [
+        "gruby znacznik wyboru",
+        "haczyk",
+        "parafka",
+        "ptaszek",
+        "tak",
+        "zaznaczenie",
+        "znacznik wyboru"
+      ]
+    },
+    "❌": {
+      "name": "znak krzyżyka",
+      "keywords": [
+        "×",
+        "anuluj",
+        "czerwony",
+        "krzyżyk",
+        "mnożenie",
+        "x",
+        "znak",
+        "znak krzyżyka",
+        "znak mnożenia"
+      ]
+    },
+    "©️": {
+      "name": "znak praw autorskich",
+      "keywords": [
+        "C",
+        "copyright",
+        "prawa autorskie",
+        "znak",
+        "znak praw autorskich"
+      ]
+    },
+    "®️": {
+      "name": "zarejestrowany znak towarowy",
+      "keywords": [
+        "R",
+        "towarowy",
+        "zarejestrowany",
+        "zarejestrowany znak towarowy",
+        "Zarejestrowany znak towarowy"
+      ]
+    },
+    "™️": {
+      "name": "znak towarowy",
+      "keywords": [
+        "TM",
+        "zastrzeżony znak towarowy",
+        "znak towarowy"
+      ]
+    },
+    "🔟": {
+      "name": "klawisz: 10",
+      "keywords": [
+        "klawisz"
+      ]
+    },
+    "🆗": {
+      "name": "przycisk OK",
+      "keywords": [
+        "dobrze",
+        "OK",
+        "przycisk",
+        "tak",
+        "w porządku",
+        "zgoda"
+      ]
+    },
+    "🅿️": {
+      "name": "parking",
+      "keywords": [
+        "parking",
+        "postój",
+        "znak"
+      ]
+    },
+    "🆘": {
+      "name": "przycisk SOS",
+      "keywords": [
+        "na pomoc",
+        "przycisk",
+        "ratunek",
+        "ratunku",
+        "SOS"
+      ]
+    },
+    "⚫": {
+      "name": "czarne koło",
+      "keywords": [
+        "czarne",
+        "figura geometryczna",
+        "kółko",
+        "koło"
+      ]
+    },
+    "⚪": {
+      "name": "białe koło",
+      "keywords": [
+        "białe",
+        "figura geometryczna",
+        "kółko",
+        "koło"
+      ]
+    },
+    "⬛": {
+      "name": "duży czarny kwadrat",
+      "keywords": [
+        "czarny",
+        "duży",
+        "figura geometryczna",
+        "kwadrat",
+        "średni"
+      ]
+    },
+    "⬜": {
+      "name": "duży biały kwadrat",
+      "keywords": [
+        "biały",
+        "duży",
+        "figura geometryczna",
+        "kwadrat"
+      ]
+    },
+    "🔺": {
+      "name": "czerwony trójkąt skierowany w górę",
+      "keywords": [
+        "czerwony",
+        "czerwony trójkąt skierowany w górę",
+        "do góry",
+        "figura geometryczna",
+        "trójkąt",
+        "w górę",
+        "wierzchołkiem"
+      ]
+    },
+    "🔻": {
+      "name": "czerwony trójkąt skierowany w dół",
+      "keywords": [
+        "czerwony",
+        "czerwony trójkąt skierowany w dół",
+        "figura geometryczna",
+        "na dół",
+        "trójkąt",
+        "w dół",
+        "wierzchołkiem"
+      ]
+    }
+  }
+}

@@ -12,4 +12,5 @@ public enum EditError
     LastTabCannotBeRemoved,
     ColumnNotEmpty,
     LastColumnCannotBeRemoved,
+    InvalidIcon,
 }

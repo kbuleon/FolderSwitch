@@ -44,6 +44,33 @@ public class DefaultConfigsTests
     }
 
     [Fact]
+    public void Sample_gets_suggested_icons()
+    {
+        var config = DefaultConfigs.Create(
+            StartContent.SampleTab, "Principal", "Windows", name => name == "Windows" ? "🪟" : null);
+
+        var tab = Assert.Single(config.Tabs);
+        Assert.Null(tab.Icon);
+        Assert.False(tab.IconChosen);
+        var group = Assert.Single(tab.Columns[0].Groups);
+        Assert.Equal("🪟", group.Icon);
+        Assert.False(group.IconChosen);
+    }
+
+    [Fact]
+    public void Sample_has_no_icon_without_a_suggestion()
+    {
+        var config = DefaultConfigs.Create(StartContent.SampleTab, "Principal", "Windows");
+
+        var tab = Assert.Single(config.Tabs);
+        Assert.Null(tab.Icon);
+        Assert.False(tab.IconChosen);
+        var group = Assert.Single(tab.Columns[0].Groups);
+        Assert.Null(group.Icon);
+        Assert.False(group.IconChosen);
+    }
+
+    [Fact]
     public void Empty_tab_has_two_empty_columns()
     {
         var config = DefaultConfigs.Create(StartContent.EmptyTab, "Principal", "Windows");

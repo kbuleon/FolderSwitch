@@ -5,6 +5,8 @@
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
+using FolderSwitch.Core.Icons;
 using FolderSwitch.Core.Model;
 using FolderSwitch.Core.Web;
 
@@ -13,7 +15,7 @@ namespace FolderSwitch.Core.Persistence;
 /// <summary>
 /// Converts an <see cref="AppConfig"/> to and from its JSON text: indented, camelCase properties,
 /// enumerations as camelCase strings. Reading is strict about structure (see <see cref="Deserialize"/>)
-/// and tolerant about content (colors, items without a target, null lists and names).
+/// and tolerant about content (colors, icons, items without a target, null lists and names).
 /// </summary>
 public static class ConfigSerializer
 {
@@ -31,7 +33,54 @@ public static class ConfigSerializer
         // The file is hand-editable and never embedded in HTML: keep accents and punctuation readable.
         Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
         Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) },
+        TypeInfoResolver = new DefaultJsonTypeInfoResolver { Modifiers = { UseReadableIcons } },
     };
+
+    /// <summary>
+    /// The encoder always escapes characters outside the Basic Multilingual Plane (<c>💼</c>), which
+    /// is where most emojis live: the <c>icon</c> of a tab or a group gets a converter that writes it as is.
+    /// </summary>
+    private static void UseReadableIcons(JsonTypeInfo typeInfo)
+    {
+        if (typeInfo.Type != typeof(Tab) && typeInfo.Type != typeof(Group))
+        {
+            return;
+        }
+
+        foreach (var property in typeInfo.Properties.Where(property => property.Name == "icon"))
+        {
+            property.CustomConverter = IconConverter.Instance;
+        }
+    }
+
+    /// <summary>Reads a string; writes a plausible icon without escaping it (anything else is escaped as usual).</summary>
+    private sealed class IconConverter : JsonConverter<string?>
+    {
+        public static readonly IconConverter Instance = new();
+
+        public override string? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            if (reader.TokenType != JsonTokenType.String)
+            {
+                throw new JsonException("An icon must be a string.");
+            }
+
+            return reader.GetString();
+        }
+
+        public override void Write(Utf8JsonWriter writer, string? value, JsonSerializerOptions options)
+        {
+            // A plausible icon holds no quote, backslash or control character: it is safe to write verbatim.
+            if (IconText.IsPlausible(value))
+            {
+                writer.WriteRawValue("\"" + value + "\"");
+            }
+            else
+            {
+                writer.WriteStringValue(value);
+            }
+        }
+    }
 
     public static string Serialize(AppConfig config)
     {
@@ -120,6 +169,7 @@ public static class ConfigSerializer
         foreach (var tab in config.Tabs)
         {
             tab.Name ??= string.Empty;
+            tab.Icon = IconText.IsPlausible(tab.Icon) ? tab.Icon : null;
             tab.Columns ??= new List<Column>();
             tab.Columns.RemoveAll(column => column is null);
             if (tab.Columns.Count == 0)
@@ -136,6 +186,7 @@ public static class ConfigSerializer
                 foreach (var group in column.Groups)
                 {
                     group.Name ??= string.Empty;
+                    group.Icon = IconText.IsPlausible(group.Icon) ? group.Icon : null;
                     if (!IsHexColor(group.Color))
                     {
                         group.Color = DefaultGroupColor;

@@ -3,6 +3,7 @@
 // Additional terms under GPLv3 section 7: see the License section of README.md.
 
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
@@ -16,6 +17,7 @@ using FolderSwitch.App.Tray;
 using FolderSwitch.App.Views;
 using FolderSwitch.Core.Activation;
 using FolderSwitch.Core.Hotkeys;
+using FolderSwitch.Core.Icons;
 using FolderSwitch.Core.Localization;
 using FolderSwitch.Core.Model;
 using FolderSwitch.Core.Persistence;
@@ -31,9 +33,9 @@ using LanguageRules = FolderSwitch.Core.Localization.Languages;
 namespace FolderSwitch.App.Startup;
 
 /// <summary>
-/// Builds the resident application, in order: system information, localizer, configuration, services, first run,
-/// shortcut, view models, the theme's resources (<see cref="ThemeApplier"/>), the main window (once), the notification
-/// icon, then the wiring of the user's triggers.
+/// Builds the resident application, in order: system information, localizer, the emoji data of the icons (loaded in the
+/// background), configuration, services, first run, shortcut, view models, the theme's resources
+/// (<see cref="ThemeApplier"/>), the main window (once), the notification icon, then the wiring of the user's triggers.
 /// Owns all of it, and releases it in <see cref="Dispose"/>.
 /// </summary>
 /// <remarks>
@@ -67,6 +69,9 @@ internal sealed class Composition : IDisposable
     private BrowserAddressReader? _browserReader;
     private SocketsHttpHandler? _faviconHandler;
     private FileTypeIcons? _fileTypeIcons;
+    private Lazy<EmojiLibrary>? _emojiLibrary;
+    private Lazy<IconFinder>? _icons;
+    private string? _iconsLanguage;
     private MainViewModel? _main;
     private AppearanceViewModel? _appearance;
     private HotkeyEditorViewModel? _hotkeyEditor;
@@ -128,8 +133,12 @@ internal sealed class Composition : IDisposable
         _system = new SystemInfo(ui);
         Localizer = LoadLocalizer(_system);
 
+        // Before the configuration: a new one is given the automatic icons of its names.
+        var icons = CreateIcons(Localizer.Code);
+
         var (store, config, readOnly) = LoadConfiguration(Localizer);
         ApplyConfiguredLanguage(Localizer, config);
+        PrepareKeywords(Localizer.Code);
 
         Prompts = new UserPrompts(Localizer, () => _window, silent: _options.SelfTest);
         var prompts = Prompts;
@@ -161,7 +170,7 @@ internal sealed class Composition : IDisposable
             }
             else
             {
-                var created = RunFirstRunWizard(persistence, autostart, exePath, foreground, texts);
+                var created = RunFirstRunWizard(persistence, icons, autostart, exePath, foreground, texts);
 
                 // Closed without finishing (nothing saved), or released meanwhile (the Windows session ending).
                 if (created is null || _disposed)
@@ -189,7 +198,7 @@ internal sealed class Composition : IDisposable
         }
 
         _controller = new WindowController(_contexts, foreground, prompts);
-        _main = new MainViewModel(config, new FocusReturningActivator(activation, _controller), persistence, prompts, _controller, _browserReader, favicons, Localizer);
+        _main = new MainViewModel(config, new FocusReturningActivator(activation, _controller), persistence, prompts, _controller, _browserReader, favicons, Localizer, icons);
         _appearance = new AppearanceViewModel(config, _system, persistence);
 
         // Before the window: its views read the theme's resources from the first layout on.
@@ -352,6 +361,64 @@ internal sealed class Composition : IDisposable
         return new Favicons(new FaviconCache(Path.Combine(_options.ConfigDirectory, "favicons")), fetcher, DebugLog.Info);
     }
 
+    /// <summary>
+    /// The emoji data of the icons of tabs and groups, read from the <c>Emoji</c> folder beside the
+    /// executable: loaded, and checked against the emoji font, by a background task started at once, with the keywords
+    /// of <paramref name="languageCode"/> and of English, so that it is ready when the window is pre-rendered or the
+    /// wizard creates its configuration. A thread that needs it sooner waits for that task (or loads it, if it comes
+    /// first); a failure of the task is logged, nothing more.
+    /// </summary>
+    private Lazy<IconFinder> CreateIcons(string languageCode)
+    {
+        var directory = Path.Combine(AppContext.BaseDirectory, "Emoji");
+        var library = new Lazy<EmojiLibrary>(() => EmojiLibrary.LoadFromDirectory(directory), LazyThreadSafetyMode.ExecutionAndPublication);
+        var icons = new Lazy<IconFinder>(() => new IconFinder(library.Value, new EmojiGlyphs()), LazyThreadSafetyMode.ExecutionAndPublication);
+        _emojiLibrary = library;
+        _icons = icons;
+        _iconsLanguage = languageCode;
+
+        PrepareInBackground("emoji data", () =>
+        {
+            var finder = icons.Value;
+            var drawable = finder.Drawable.Count;
+            library.Value.Keywords(languageCode);
+            library.Value.Keywords("en");
+            return $"{drawable} of {library.Value.Catalog.All.Count} emojis drawable, keywords {languageCode} and en";
+        });
+        return icons;
+    }
+
+    /// <summary>The configured language is not the one the emoji data was prepared for: its keywords are read in the background too.</summary>
+    private void PrepareKeywords(string languageCode)
+    {
+        if (_emojiLibrary is not { } library || string.Equals(languageCode, _iconsLanguage, StringComparison.OrdinalIgnoreCase))
+        {
+            return;
+        }
+
+        PrepareInBackground($"keywords {languageCode}", () =>
+        {
+            library.Value.Keywords(languageCode);
+            return languageCode;
+        });
+    }
+
+    /// <summary>Runs <paramref name="prepare"/> on the thread pool, logs how long it took (and what it returns) or why it failed.</summary>
+    private static void PrepareInBackground(string what, Func<string> prepare) =>
+        _ = Task.Run(() =>
+        {
+            var clock = Stopwatch.StartNew();
+            try
+            {
+                var outcome = prepare();
+                DebugLog.Info(FormattableString.Invariant($"Icons: {what} ready in {clock.Elapsed.TotalMilliseconds:F0} ms ({outcome})"));
+            }
+            catch (Exception e) when (!ExceptionPolicy.IsCritical(e))
+            {
+                DebugLog.Error($"Icons: the {what} could not be prepared", e);
+            }
+        });
+
     /// <summary>The version of the assembly (the build metadata after a <c>+</c> left out), as the settings show it.</summary>
     private static string ProductVersion()
     {
@@ -408,9 +475,14 @@ internal sealed class Composition : IDisposable
     /// <summary>
     /// What a configuration starts from before the first run is completed: one empty tab named in the current language.
     /// </summary>
-    private static AppConfig NewConfiguration(Localizer localizer)
+    private AppConfig NewConfiguration(Localizer localizer)
     {
-        var config = DefaultConfigs.Create(StartContent.EmptyTab, localizer["Default.EmptyTab"], localizer["Default.SampleGroup"]);
+        var icons = _icons;
+        var config = DefaultConfigs.Create(
+            StartContent.EmptyTab,
+            localizer["Default.EmptyTab"],
+            localizer["Default.SampleGroup"],
+            icons is null ? null : name => icons.Value.Suggest(name, localizer.Code));
         config.Settings.FirstRunCompleted = false;
         return config;
     }
@@ -476,10 +548,10 @@ internal sealed class Composition : IDisposable
     /// front). Returns the configuration it created, already saved, or <c>null</c> when it was closed without finishing
     /// (nothing saved). Its look, the shortcut of its test zone and its own handlers are gone when this returns.
     /// </summary>
-    private AppConfig? RunFirstRunWizard(ConfigPersistence persistence, Autostart autostart, string exePath, ForegroundActivator foreground, ViewTexts texts)
+    private AppConfig? RunFirstRunWizard(ConfigPersistence persistence, Lazy<IconFinder> icons, Autostart autostart, string exePath, ForegroundActivator foreground, ViewTexts texts)
     {
         using var wizard = new FirstRunWizard(
-            Localizer!, _system!, _hotkeys!, autostart, exePath, persistence, foreground, texts, Application.Current.Resources);
+            Localizer!, _system!, _hotkeys!, autostart, exePath, persistence, icons, foreground, texts, Application.Current.Resources);
         _wizard = wizard;
         _options.Instance.ActivationRequested += OnWizardOpenRequested;
         try

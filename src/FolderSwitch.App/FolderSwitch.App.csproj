@@ -26,6 +26,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Emoji data for the icons of tabs and groups, loaded at run time from Emoji\ next to the executable: the catalog and the keyword files (made by tools/FolderSwitch.EmojiData) and the synonyms (written by hand). -->
+    <Content Include="Emoji\**\*.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
     <!-- The license and the third-party notices, next to the executable: shipped by the installer, opened by the About window. -->
     <Content Include="..\..\LICENSE" Link="LICENSE.txt" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="..\..\THIRD-PARTY-NOTICES.txt" Link="THIRD-PARTY-NOTICES.txt" CopyToOutputDirectory="PreserveNewest" />

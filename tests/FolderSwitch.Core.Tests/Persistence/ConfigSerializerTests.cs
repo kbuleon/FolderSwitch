@@ -86,6 +86,73 @@ public class ConfigSerializerTests
         Assert.True(copy.Settings.Hotkey.IsModifierOnly);
     }
 
+    // ----- Icons -----
+
+    [Fact]
+    public void Icons_round_trip()
+    {
+        var original = TestConfigs.Rich();
+
+        var json = ConfigSerializer.Serialize(original);
+        var copy = ConfigSerializer.Deserialize(json);
+
+        Assert.Contains("\"icon\": \"💼\"", json);
+        Assert.Contains("\"iconChosen\": true", json);
+        Assert.Contains("\"schemaVersion\": 2", json);
+        TestConfigs.AssertEquivalent(original, copy);
+        Assert.Equal("💼", copy.Tabs[0].Icon);
+        Assert.True(copy.Tabs[0].IconChosen);
+        var group = copy.Tabs[0].Columns[0].Groups[0];
+        Assert.Equal("💵", group.Icon);
+        Assert.False(group.IconChosen);
+        Assert.Equal(2, copy.SchemaVersion);
+    }
+
+    [Fact]
+    public void Config_without_icons_reads_as_automatic_empty()
+    {
+        var json = """
+            { "schemaVersion": 2, "tabs": [ { "name": "A", "columns": [ { "groups": [
+              { "name": "G", "color": "#3b82f6", "items": [] } ] } ] } ] }
+            """;
+
+        var config = ConfigSerializer.Deserialize(json);
+
+        var tab = config.Tabs[0];
+        Assert.Null(tab.Icon);
+        Assert.False(tab.IconChosen);
+        var group = tab.Columns[0].Groups[0];
+        Assert.Null(group.Icon);
+        Assert.False(group.IconChosen);
+    }
+
+    [Theory]
+    [InlineData("abc")]
+    [InlineData("")]
+    [InlineData("💵💵💵")]
+    public void Implausible_icon_is_dropped_and_choice_kept(string icon)
+    {
+        var json = """{ "schemaVersion": 2, "tabs": [ { "name": "A", "icon": "__ICON__", "iconChosen": true, "columns": [ { "groups": [ { "name": "G", "color": "#3b82f6", "icon": "__ICON__", "iconChosen": true } ] } ] } ] }"""
+            .Replace("__ICON__", icon);
+
+        var config = ConfigSerializer.Deserialize(json);
+
+        var tab = config.Tabs[0];
+        Assert.Null(tab.Icon);
+        Assert.True(tab.IconChosen);
+        var group = tab.Columns[0].Groups[0];
+        Assert.Null(group.Icon);
+        Assert.True(group.IconChosen);
+    }
+
+    [Theory]
+    [InlineData("""{ "schemaVersion": 2, "tabs": [ { "name": "A", "icon": 42 } ] }""")]
+    [InlineData("""{ "schemaVersion": 2, "tabs": [ { "name": "A", "columns": [ { "groups": [ { "name": "G", "icon": 42 } ] } ] } ] }""")]
+    public void Icon_of_wrong_type_is_a_format_error(string json)
+    {
+        Assert.Throws<ConfigFormatException>(() => ConfigSerializer.Deserialize(json));
+    }
+
     // ----- Hard failures -----
 
     [Fact]

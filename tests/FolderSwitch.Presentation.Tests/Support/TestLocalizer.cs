@@ -47,6 +47,14 @@ internal static class TestLocalizer
                 ["Default.SampleTab"] = "Example",
                 ["Default.SampleGroup"] = "Windows",
                 ["Default.EmptyTab"] = "My folders",
+                ["Icon.Category.SmileysEmotion"] = "Smileys & emotion",
+                ["Icon.Category.PeopleBody"] = "People",
+                ["Icon.Category.AnimalsNature"] = "Animals & nature",
+                ["Icon.Category.FoodDrink"] = "Food & drink",
+                ["Icon.Category.TravelPlaces"] = "Travel & places",
+                ["Icon.Category.Activities"] = "Activities",
+                ["Icon.Category.Objects"] = "Objects",
+                ["Icon.Category.Symbols"] = "Symbols",
             });
             Write(directory, "fr", new Dictionary<string, string>
             {
@@ -65,6 +73,10 @@ internal static class TestLocalizer
                 ["Hotkey.Issue.ReservedByWindows"] = "Ce raccourci est réservé par Windows.",
                 ["Default.SampleTab"] = "Exemple",
                 ["Default.EmptyTab"] = "Mes dossiers",
+                ["Icon.Category.SmileysEmotion"] = "Smileys et émotions",
+                ["Icon.Category.AnimalsNature"] = "Animaux et nature",
+                ["Icon.Category.TravelPlaces"] = "Voyages et lieux",
+                ["Icon.Category.Objects"] = "Objets",
             });
 
             // The localizer keeps every text in memory: the files are no longer needed once it is loaded.

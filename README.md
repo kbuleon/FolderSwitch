@@ -14,12 +14,17 @@ C# on .NET 10 with WPF, for Windows 10 and 11 (the installer is x64). Installed 
 
 The board, as the shortcut shows it (Fluent theme, light):
 
-![The FolderSwitch window: three tabs, three columns of coloured groups of folders and files](assets/screenshots/board.png)
+![The FolderSwitch window: three tabs and three columns of coloured groups of folders and files, with an emoji icon left of most tab and group names](assets/screenshots/board.png)
 
 Edit mode, where tabs, columns, groups and items are added, renamed, recoloured and moved by drag and drop (Cards
 theme, dark):
 
-![Edit mode: grips, colour and delete buttons on every group, an « Add ▾ » button under each group, « + Group » and « + Column » buttons](assets/screenshots/edit-mode.png)
+![Edit mode: grips, colour and delete buttons on every group, an « Add ▾ » button under each group, an empty slot where the group Clients has no icon, « + Group » and « + Column » buttons](assets/screenshots/edit-mode.png)
+
+The icon picker, opened from the icon of the Finance group in Edit mode: a filter, « Automatic » (the icon the group's name
+gives), « No icon », the categories, and the emojis the machine's font can draw:
+
+![The icon picker of the Finance group: the filter box, Automatic and No icon, a row of eight categories and the grid of smileys](assets/screenshots/icon-picker.png)
 
 The « Add ▾ » menu of a group, called from Firefox: the page shown by the browser comes first, then the folder picker,
 the special folders, the file picker and the address prompt. Called from Explorer, « Current folder » comes first:
@@ -50,8 +55,16 @@ These images are drawn by the `--snapshot` diagnostic mode (see « Diagnostic mo
   trimmed (of a session id, say) before it is added. It goes on with « Folder… », « Special folders »,
   « File… » and « URL… » (an address typed or pasted; the clipboard's is offered). A column, group or item held over another tab for a
   moment shows that tab, where it can be dropped. A right-click on a tab, a group's header or an item offers « Rename »
-  (F2). Every change is saved at once. The window keeps the width of its widest tab: the tabs stay in place when you
+  (F2) (and « Icon… » for a tab or a group). Every change is saved at once. The window keeps the width of its widest tab: the tabs stay in place when you
   switch.
+- **Emoji icons for tabs and groups**, left of the name, drawn in one colour, the text's, with the Windows font
+  `Segoe UI Emoji`. The icon comes from the name as it is typed, when a tab or a group is created or renamed (« Finance »
+  gets a banknote, « Photos » a camera, a name that means nothing to FolderSwitch gets none): first from FolderSwitch's own
+  table of common folder and site words, in the nine languages, then from the Unicode keywords of the language in use,
+  then of English. In Edit mode, a click on the icon (or on the empty slot) or « Icon… » in the right-click menu opens a
+  picker: type the start of a word to filter, choose a category or « Automatic » (the icon the name gives) or « No icon »; Enter
+  takes the first result, Escape closes. An icon chosen by hand is never changed by a rename. Tabs and groups that already
+  exist get no icon until they are renamed or given one.
 - **Icons that say what an item is**: a file shows the icon Windows gives its type, found without touching the file; a
   site shows its favicon, fetched once in the background when the site is added (and tried once more per session when
   the cache has none), and a globe until then or when it has none.
@@ -94,6 +107,10 @@ declared in `REUSE.toml`.
 dotnet build FolderSwitch.slnx -c Release
 dotnet run --project src/FolderSwitch.App -c Release
 ```
+
+The emoji data of the icons (`src/FolderSwitch.App/Emoji/`, copied next to the executable) is made from the Unicode files by
+the maintainer's tool `tools/FolderSwitch.EmojiData`, which is not part of the build and whose output is committed; its own
+`README.md` says how to run it.
 
 A second copy never starts: it asks the running one to show itself, so quit an installed copy before running one from
 source. A copy that Velopack did not install never checks for updates. A copy run from source uses the real
@@ -150,7 +167,7 @@ application id and the installed version in its query string) and, when the user
 No identifier, no telemetry.
 
 **Source code.** The GPL requires each published binary to come with a way to get its source (section 6). Tag the
-commit of each published version `v<version>` (`git tag v1.7.0`, then `git push origin v1.7.0`), and link the download
+commit of each published version `v<version>` (`git tag v1.8.0`, then `git push origin v1.8.0`), and link the download
 page to the repository and to that tag.
 
 **Signing.** `-SignParams` hands the parameters of `signtool.exe` to `vpk`, which runs its own copy of it to sign the
@@ -221,6 +238,7 @@ FolderSwitch.exe --snapshot <directory> [--snapshot-language <code>]
 | Backups | `%APPDATA%\FolderSwitch\backups\config-<yyyyMMdd-HHmmss>.json`: one at each start and one before an import replaces the configuration; the 10 most recent are kept. |
 | Invalid configuration | `%APPDATA%\FolderSwitch\config.invalid-<timestamp>.json`: a damaged `config.json` is kept aside, then replaced by the latest valid backup (or by a new configuration), and the user is told. |
 | Favicons | `%APPDATA%\FolderSwitch\favicons\`: one image per host (`morningstar.fr.png`, the host in lower-case punycode), outside the configuration and its export; deleting the folder is harmless, the icons are fetched again. |
+| Emoji data | `Emoji\` next to `FolderSwitch.exe`: `catalog.json`, `synonyms.json` and `keywords\<language>.json`. Shipped with the program, read when it starts, never downloaded; not in `%APPDATA%`. |
 | Debug log | `%APPDATA%\FolderSwitch\logs\folderswitch.log`, rolling to `folderswitch.1.log` at 512 KiB. Local only. |
 | Start with Windows | The `FolderSwitch` value of `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`. |
 | Installed program | `%LocalAppData%\FolderSwitch`, owned by Velopack. Uninstalling removes it and the `Run` value, and keeps `%APPDATA%\FolderSwitch`. |
@@ -238,6 +256,8 @@ on the machine. It makes two kinds of network request, and no other:
   itself, up to 5 redirects, with no cookie and the single header `User-Agent: FolderSwitch/<version>`; it gives up after
   5 s in all, and reads 256 KiB at most from any response. Nothing from the board or the configuration is in a request.
   Reading the address of the page a browser shows (for « Current URL ») stays on the machine.
+
+The emoji data of the icons is shipped with the program: nothing is downloaded for it.
 
 Without a configured feed and without a site on the board, FolderSwitch never connects.
 
@@ -262,7 +282,8 @@ In the current version:
 - Only the `http` and `https` schemes are accepted for a site. A favicon that is neither an ICO nor a bitmap (PNG, GIF,
   JPEG, BMP), such as an SVG, shows the globe.
 - Going back to an earlier version of FolderSwitch loses the changes made since the update: it does not read a version 2
-  configuration, sets it aside and starts again from the latest backup it can read.
+  configuration, sets it aside and starts again from the latest backup it can read. A 1.7.0 reads a configuration that has
+  icons, ignores them and drops them when it saves; nothing else is lost.
 - From a file dialog only folders can be used: a file or a site is greyed out, and a file no longer moves the dialog to
   its folder. Edit mode is not affected.
 - Only genuine file dialogs are driven, and only to folders such a dialog can show (This PC, libraries and network
@@ -272,6 +293,14 @@ In the current version:
   FolderSwitch still knows the kind of window but « Current folder » is unavailable for that call. It is unavailable
   too for search results, which are a query rather than a place.
 - The OneDrive special folder resolves only when the OneDrive client has set its environment variable.
+- Emoji icons are drawn in one colour, and some are less readable that way than others. The list leaves out flags, skin tone
+  variants and composed emojis (families, professions), which WPF cannot assemble, and the few emojis that do not read well in
+  one colour.
+- The emojis offered, and shown, are those the machine's `Segoe UI Emoji` can draw: Windows 10's font has fewer than
+  Windows 11's, so an icon chosen on 11 is hidden on 10 (it stays in the configuration and comes back where the font has it).
+  The drawing on Windows 10 has not been tried on a real machine.
+- An icon is suggested only from the words of the table and the Unicode keywords: a proper name or a rare word gets none, and the
+  suggestion is made once, when the name is validated (it does not follow a later change of language).
 - File Explorer is the only supported file manager; items are folders, files and web sites; languages written left to right only.
 
 ## Contributing
@@ -311,6 +340,7 @@ term 2.
 FolderSwitch is distributed with components under their own licenses, all compatible with the GPLv3: H.NotifyIcon,
 Velopack (with the `Setup.exe` and `Update.exe` programs), CommunityToolkit.Mvvm, the code generated by CsWin32, and
 the .NET and Windows Desktop runtimes, under the MIT license; the Rust crates of `Setup.exe` and `Update.exe` are under
-permissive licenses and the MPL-2.0. Their notices are in
+permissive licenses and the MPL-2.0. The emoji data of the icons comes from Unicode files (the Unicode Emoji list and the CLDR
+annotations) and is under the Unicode License v3, also compatible with the GPLv3. Their notices are in
 [THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt), installed next to `FolderSwitch.exe` with the license
 (`LICENSE.txt`); the About window links to both.

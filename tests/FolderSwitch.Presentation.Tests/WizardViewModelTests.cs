@@ -3,6 +3,7 @@
 // Additional terms under GPLv3 section 7: see the License section of README.md.
 
 using FolderSwitch.Core.Hotkeys;
+using FolderSwitch.Core.Icons;
 using FolderSwitch.Core.Localization;
 using FolderSwitch.Core.Model;
 using FolderSwitch.Core.Persistence;
@@ -24,7 +25,14 @@ public class WizardViewModelTests
     private readonly FakeAutostart _autostart = new();
     private readonly FakeConfigPersistence _persistence = new();
 
-    private WizardViewModel Create() => new(_localizer, _system, _hotkeys, _autostart, ExePath, _persistence);
+    // The names the wizard gives the sample tab and group (the wizard starts in French here).
+    private static readonly SynonymConcept[] SampleNames =
+    [
+        TestIcons.Concept("🐱", ("fr", ["exemple"])),
+        TestIcons.Concept("🏖", ("fr", ["windows"])),
+    ];
+
+    private WizardViewModel Create() => new(_localizer, _system, _hotkeys, _autostart, ExePath, _persistence, TestIcons.Lazy(extra: SampleNames));
 
     private static void GoToStep(WizardViewModel vm, int step)
     {
@@ -332,5 +340,31 @@ public class WizardViewModelTests
 
         Assert.Equal("fluent", vm.Theme);
         Assert.Equal(ThemeMode.Light, vm.Mode);
+    }
+
+    [Fact]
+    public void Sample_tab_gets_automatic_icons()
+    {
+        using var vm = Create();
+
+        var config = FinishAndCapture(vm);
+
+        var tab = Assert.Single(config.Tabs);
+        Assert.Equal("🐱", tab.Icon);
+        Assert.False(tab.IconChosen);
+        var group = Assert.Single(tab.Columns[0].Groups);
+        Assert.Equal("🏖", group.Icon);
+        Assert.False(group.IconChosen);
+    }
+
+    [Fact]
+    public void Empty_tab_whose_name_matches_nothing_gets_no_icon()
+    {
+        using var vm = Create();
+        vm.StartContent = StartContent.EmptyTab;
+
+        var config = FinishAndCapture(vm);
+
+        Assert.Null(Assert.Single(config.Tabs).Icon);
     }
 }

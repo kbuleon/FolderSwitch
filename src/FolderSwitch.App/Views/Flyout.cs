@@ -15,7 +15,7 @@ namespace FolderSwitch.App.Views;
 /// <summary>Which edge of its anchor a flyout lines up with.</summary>
 internal enum FlyoutAlignment
 {
-    /// <summary>Its left edge under the anchor's left edge (« Add ▾ »).</summary>
+    /// <summary>Its left edge under the anchor's left edge (« Add ▾ », the icon picker).</summary>
     Left,
 
     /// <summary>Its right edge under the anchor's right edge (the palette).</summary>
@@ -23,7 +23,7 @@ internal enum FlyoutAlignment
 }
 
 /// <summary>
-/// The menus, one at a time: in Customize mode the « Add ▾ » menu and the palette, the Edit menu; an item's menu. Each is shown below its anchor
+/// The menus, one at a time: in Customize mode the « Add ▾ » menu and the palette, the Edit menu, the icon picker; an item's menu. Each is shown below its anchor
 /// in a frame of the theme (<see cref="ThemeKeys.Menu"/>, rounded, with a shadow), in a popup that closes on a click outside it; the window also closes it on Escape, when it
 /// loses the focus or hides, and when Customize mode ends (see <see cref="MainView"/>).
 /// </summary>

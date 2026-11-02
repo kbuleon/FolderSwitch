@@ -1,0 +1,3129 @@
+{
+  "unicodeVersion": "18.0",
+  "emoji": [
+    {
+      "e": "😀",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😃",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😄",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😁",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😆",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😅",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤣",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😂",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🙂",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🙃",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🫠",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😉",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😊",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😇",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🥰",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😍",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤩",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😘",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😗",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "☺️",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😚",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😙",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🥲",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😋",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😛",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😜",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤪",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😝",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤑",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤗",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤫",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤔",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤐",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤨",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😐",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😑",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😶",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🫥",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😏",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😒",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🙄",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😬",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤥",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😌",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😔",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😪",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤤",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😴",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😷",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤒",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤕",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤢",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤮",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤧",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🥵",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🥶",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🥴",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😵",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤯",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤠",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🥳",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😎",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤓",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🧐",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😕",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🫤",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😟",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🙁",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "☹️",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😮",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😯",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😲",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😳",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🥺",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🥹",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😦",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😧",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😨",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😰",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😥",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😢",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😭",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😱",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😖",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😣",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😞",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😓",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😩",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😫",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😡",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😠",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😈",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "👿",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💀",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "☠️",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💩",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "👻",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "👽",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "👾",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤖",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "😺",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🙈",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🙉",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🙊",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💌",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💘",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💝",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💖",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💗",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💓",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💞",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💕",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💟",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "❣️",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💔",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "❤️",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🖤",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "🤍",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💋",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💯",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💢",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💥",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💦",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💨",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💬",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💭",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "💤",
+      "c": "smileysEmotion"
+    },
+    {
+      "e": "👋",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🤚",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🖐️",
+      "c": "peopleBody"
+    },
+    {
+      "e": "✋",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🖖",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🫱",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🫲",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👌",
+      "c": "peopleBody"
+    },
+    {
+      "e": "✌️",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🤞",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🤟",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🤘",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🤙",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👈",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👉",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👆",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🖕",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👇",
+      "c": "peopleBody"
+    },
+    {
+      "e": "☝️",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🫵",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👍",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👎",
+      "c": "peopleBody"
+    },
+    {
+      "e": "✊",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👊",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👏",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🙌",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🫶",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👐",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🤲",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🤝",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🙏",
+      "c": "peopleBody"
+    },
+    {
+      "e": "✍️",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👂",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🦻",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👃",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🧠",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🫀",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🫁",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🦷",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🦴",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👀",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👁️",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👅",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👄",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👶",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🧑",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👨",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👩",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🚶",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🏃",
+      "c": "peopleBody"
+    },
+    {
+      "e": "⛷️",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🏄",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🏊",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🏋️",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🚴",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🧘",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🛀",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🛌",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🗣️",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👤",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👥",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👪",
+      "c": "peopleBody"
+    },
+    {
+      "e": "👣",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🫆",
+      "c": "peopleBody"
+    },
+    {
+      "e": "🐵",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐒",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦍",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐶",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐕",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐩",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐺",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦊",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦝",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐱",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐈",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦁",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐯",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐴",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐎",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦄",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦓",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦌",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦬",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐮",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐄",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐷",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐖",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐗",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐑",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐐",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐪",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦙",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦒",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐘",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦏",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦛",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐭",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐹",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐰",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐇",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐿️",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦔",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦇",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐻",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐨",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐼",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐾",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦃",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐔",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐓",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐣",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐤",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐦",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐧",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🕊️",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦅",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦆",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦢",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦉",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🪶",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦩",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦜",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🪽",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐸",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐊",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐢",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦎",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐍",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐲",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐉",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦕",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦖",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐳",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐬",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🫍",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐟",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐠",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐡",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦈",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐙",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐚",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🪸",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🪼",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦀",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦞",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦐",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦑",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐌",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦋",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐛",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐜",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐝",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🪲",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🐞",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🕷️",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🕸️",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦂",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🦟",
+      "c": "animalsNature"
+    },
+    {
+      "e": "💐",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🌸",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🪷",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🏵️",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🌹",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🌺",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🌻",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🌼",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🌷",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🌱",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🪴",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🌲",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🌳",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🌴",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🌵",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🌾",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🌿",
+      "c": "animalsNature"
+    },
+    {
+      "e": "☘️",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🍀",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🍁",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🍂",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🍃",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🍄",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🪾",
+      "c": "animalsNature"
+    },
+    {
+      "e": "🍇",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍉",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍋",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍌",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍎",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍐",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍑",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍒",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍓",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍅",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🥑",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍆",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🥕",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🌽",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🌶️",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🫑",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🥦",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🧄",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🥜",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍞",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🥐",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🥖",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🥨",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🥞",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🧇",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🧀",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍖",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍗",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍔",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍟",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍕",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🌭",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🥪",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🌮",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🥚",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍳",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🥣",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🥗",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍿",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🧂",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍙",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍚",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍜",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍝",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🥡",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍦",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍩",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍪",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🎂",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍰",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🧁",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍫",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍭",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍼",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🥛",
+      "c": "foodDrink"
+    },
+    {
+      "e": "☕",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🫖",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍵",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍾",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍷",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍸",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍹",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍺",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🥂",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🥤",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🧋",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🧊",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🥢",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍽️",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🍴",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🥄",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🔪",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🏺",
+      "c": "foodDrink"
+    },
+    {
+      "e": "🌍",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🌐",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🗺️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🗾",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🧭",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏔️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "⛰️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🌋",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🗻",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏕️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏖️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏝️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏛️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏗️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🧱",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🛖",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏠",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏡",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏢",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏥",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏦",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏨",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏪",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏫",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏭",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏯",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏰",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🗼",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🗽",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "⛪",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🕌",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🛕",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🕍",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "⛩️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🕋",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "⛲",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "⛺",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "♨️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🎠",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🛝",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🎡",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🎢",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "💈",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🎪",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚂",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚃",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚄",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚇",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚌",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚑",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚒",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚕",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚗",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚙",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🛻",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚚",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚜",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏎️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🏍️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🛵",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚲",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🛴",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🛹",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🛼",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🛢️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "⛽",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🛞",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚨",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚦",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🛑",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚧",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "⚓",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🛟",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "⛵",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚤",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🛳️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚢",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "✈️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "💺",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚁",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🚀",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🛸",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🛎️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🧳",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "⌛",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "⌚",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "⏰",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "⏱️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🕰️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🕐",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🌕",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🌙",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🌡️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "☀️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🌞",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🪐",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "⭐",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🌟",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "☁️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "⛅",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "⛈️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🌧️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🌪️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🌀",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🌈",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🌂",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "☂️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "⚡",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "❄️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "⛄",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "☄️",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🔥",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "💧",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🌊",
+      "c": "travelPlaces"
+    },
+    {
+      "e": "🎃",
+      "c": "activities"
+    },
+    {
+      "e": "🎄",
+      "c": "activities"
+    },
+    {
+      "e": "✨",
+      "c": "activities"
+    },
+    {
+      "e": "🎈",
+      "c": "activities"
+    },
+    {
+      "e": "🎉",
+      "c": "activities"
+    },
+    {
+      "e": "🎀",
+      "c": "activities"
+    },
+    {
+      "e": "🎁",
+      "c": "activities"
+    },
+    {
+      "e": "🎫",
+      "c": "activities"
+    },
+    {
+      "e": "🏆",
+      "c": "activities"
+    },
+    {
+      "e": "🥇",
+      "c": "activities"
+    },
+    {
+      "e": "🥈",
+      "c": "activities"
+    },
+    {
+      "e": "🥉",
+      "c": "activities"
+    },
+    {
+      "e": "⚽",
+      "c": "activities"
+    },
+    {
+      "e": "⚾",
+      "c": "activities"
+    },
+    {
+      "e": "🏀",
+      "c": "activities"
+    },
+    {
+      "e": "🏐",
+      "c": "activities"
+    },
+    {
+      "e": "🏈",
+      "c": "activities"
+    },
+    {
+      "e": "🎾",
+      "c": "activities"
+    },
+    {
+      "e": "🎳",
+      "c": "activities"
+    },
+    {
+      "e": "🏓",
+      "c": "activities"
+    },
+    {
+      "e": "🏸",
+      "c": "activities"
+    },
+    {
+      "e": "🥊",
+      "c": "activities"
+    },
+    {
+      "e": "🥅",
+      "c": "activities"
+    },
+    {
+      "e": "⛳",
+      "c": "activities"
+    },
+    {
+      "e": "⛸️",
+      "c": "activities"
+    },
+    {
+      "e": "🤿",
+      "c": "activities"
+    },
+    {
+      "e": "🎯",
+      "c": "activities"
+    },
+    {
+      "e": "🔫",
+      "c": "activities"
+    },
+    {
+      "e": "🎱",
+      "c": "activities"
+    },
+    {
+      "e": "🔮",
+      "c": "activities"
+    },
+    {
+      "e": "🪄",
+      "c": "activities"
+    },
+    {
+      "e": "🎮",
+      "c": "activities"
+    },
+    {
+      "e": "🕹️",
+      "c": "activities"
+    },
+    {
+      "e": "🎰",
+      "c": "activities"
+    },
+    {
+      "e": "🎲",
+      "c": "activities"
+    },
+    {
+      "e": "🧩",
+      "c": "activities"
+    },
+    {
+      "e": "🧸",
+      "c": "activities"
+    },
+    {
+      "e": "🪩",
+      "c": "activities"
+    },
+    {
+      "e": "♠️",
+      "c": "activities"
+    },
+    {
+      "e": "♥️",
+      "c": "activities"
+    },
+    {
+      "e": "♦️",
+      "c": "activities"
+    },
+    {
+      "e": "♣️",
+      "c": "activities"
+    },
+    {
+      "e": "♟️",
+      "c": "activities"
+    },
+    {
+      "e": "🎭",
+      "c": "activities"
+    },
+    {
+      "e": "🖼️",
+      "c": "activities"
+    },
+    {
+      "e": "🎨",
+      "c": "activities"
+    },
+    {
+      "e": "🧵",
+      "c": "activities"
+    },
+    {
+      "e": "🧶",
+      "c": "activities"
+    },
+    {
+      "e": "👓",
+      "c": "objects"
+    },
+    {
+      "e": "🕶️",
+      "c": "objects"
+    },
+    {
+      "e": "🥽",
+      "c": "objects"
+    },
+    {
+      "e": "👕",
+      "c": "objects"
+    },
+    {
+      "e": "👖",
+      "c": "objects"
+    },
+    {
+      "e": "👗",
+      "c": "objects"
+    },
+    {
+      "e": "👜",
+      "c": "objects"
+    },
+    {
+      "e": "🛍️",
+      "c": "objects"
+    },
+    {
+      "e": "🎒",
+      "c": "objects"
+    },
+    {
+      "e": "👟",
+      "c": "objects"
+    },
+    {
+      "e": "👠",
+      "c": "objects"
+    },
+    {
+      "e": "👑",
+      "c": "objects"
+    },
+    {
+      "e": "🎩",
+      "c": "objects"
+    },
+    {
+      "e": "🎓",
+      "c": "objects"
+    },
+    {
+      "e": "🧢",
+      "c": "objects"
+    },
+    {
+      "e": "💄",
+      "c": "objects"
+    },
+    {
+      "e": "💍",
+      "c": "objects"
+    },
+    {
+      "e": "💎",
+      "c": "objects"
+    },
+    {
+      "e": "🔇",
+      "c": "objects"
+    },
+    {
+      "e": "🔈",
+      "c": "objects"
+    },
+    {
+      "e": "🔉",
+      "c": "objects"
+    },
+    {
+      "e": "🔊",
+      "c": "objects"
+    },
+    {
+      "e": "📢",
+      "c": "objects"
+    },
+    {
+      "e": "📣",
+      "c": "objects"
+    },
+    {
+      "e": "🔔",
+      "c": "objects"
+    },
+    {
+      "e": "🔕",
+      "c": "objects"
+    },
+    {
+      "e": "🎼",
+      "c": "objects"
+    },
+    {
+      "e": "🎵",
+      "c": "objects"
+    },
+    {
+      "e": "🎶",
+      "c": "objects"
+    },
+    {
+      "e": "🎙️",
+      "c": "objects"
+    },
+    {
+      "e": "🎤",
+      "c": "objects"
+    },
+    {
+      "e": "🎧",
+      "c": "objects"
+    },
+    {
+      "e": "📻",
+      "c": "objects"
+    },
+    {
+      "e": "🎷",
+      "c": "objects"
+    },
+    {
+      "e": "🎺",
+      "c": "objects"
+    },
+    {
+      "e": "🎸",
+      "c": "objects"
+    },
+    {
+      "e": "🎹",
+      "c": "objects"
+    },
+    {
+      "e": "🎻",
+      "c": "objects"
+    },
+    {
+      "e": "📱",
+      "c": "objects"
+    },
+    {
+      "e": "☎️",
+      "c": "objects"
+    },
+    {
+      "e": "📞",
+      "c": "objects"
+    },
+    {
+      "e": "📠",
+      "c": "objects"
+    },
+    {
+      "e": "🔋",
+      "c": "objects"
+    },
+    {
+      "e": "🪫",
+      "c": "objects"
+    },
+    {
+      "e": "🔌",
+      "c": "objects"
+    },
+    {
+      "e": "💻",
+      "c": "objects"
+    },
+    {
+      "e": "🖥️",
+      "c": "objects"
+    },
+    {
+      "e": "🖨️",
+      "c": "objects"
+    },
+    {
+      "e": "⌨️",
+      "c": "objects"
+    },
+    {
+      "e": "🖱️",
+      "c": "objects"
+    },
+    {
+      "e": "💾",
+      "c": "objects"
+    },
+    {
+      "e": "💿",
+      "c": "objects"
+    },
+    {
+      "e": "🧮",
+      "c": "objects"
+    },
+    {
+      "e": "🎥",
+      "c": "objects"
+    },
+    {
+      "e": "🎞️",
+      "c": "objects"
+    },
+    {
+      "e": "🎬",
+      "c": "objects"
+    },
+    {
+      "e": "📺",
+      "c": "objects"
+    },
+    {
+      "e": "📷",
+      "c": "objects"
+    },
+    {
+      "e": "📹",
+      "c": "objects"
+    },
+    {
+      "e": "📼",
+      "c": "objects"
+    },
+    {
+      "e": "🔍",
+      "c": "objects"
+    },
+    {
+      "e": "🕯️",
+      "c": "objects"
+    },
+    {
+      "e": "💡",
+      "c": "objects"
+    },
+    {
+      "e": "🔦",
+      "c": "objects"
+    },
+    {
+      "e": "📕",
+      "c": "objects"
+    },
+    {
+      "e": "📖",
+      "c": "objects"
+    },
+    {
+      "e": "📚",
+      "c": "objects"
+    },
+    {
+      "e": "📓",
+      "c": "objects"
+    },
+    {
+      "e": "📜",
+      "c": "objects"
+    },
+    {
+      "e": "📄",
+      "c": "objects"
+    },
+    {
+      "e": "📰",
+      "c": "objects"
+    },
+    {
+      "e": "📑",
+      "c": "objects"
+    },
+    {
+      "e": "🔖",
+      "c": "objects"
+    },
+    {
+      "e": "🏷️",
+      "c": "objects"
+    },
+    {
+      "e": "💰",
+      "c": "objects"
+    },
+    {
+      "e": "💵",
+      "c": "objects"
+    },
+    {
+      "e": "💳",
+      "c": "objects"
+    },
+    {
+      "e": "🧾",
+      "c": "objects"
+    },
+    {
+      "e": "✉️",
+      "c": "objects"
+    },
+    {
+      "e": "📧",
+      "c": "objects"
+    },
+    {
+      "e": "📤",
+      "c": "objects"
+    },
+    {
+      "e": "📥",
+      "c": "objects"
+    },
+    {
+      "e": "📦",
+      "c": "objects"
+    },
+    {
+      "e": "📫",
+      "c": "objects"
+    },
+    {
+      "e": "✏️",
+      "c": "objects"
+    },
+    {
+      "e": "✒️",
+      "c": "objects"
+    },
+    {
+      "e": "🖌️",
+      "c": "objects"
+    },
+    {
+      "e": "📝",
+      "c": "objects"
+    },
+    {
+      "e": "💼",
+      "c": "objects"
+    },
+    {
+      "e": "📁",
+      "c": "objects"
+    },
+    {
+      "e": "📂",
+      "c": "objects"
+    },
+    {
+      "e": "🗂️",
+      "c": "objects"
+    },
+    {
+      "e": "📅",
+      "c": "objects"
+    },
+    {
+      "e": "📈",
+      "c": "objects"
+    },
+    {
+      "e": "📉",
+      "c": "objects"
+    },
+    {
+      "e": "📊",
+      "c": "objects"
+    },
+    {
+      "e": "📋",
+      "c": "objects"
+    },
+    {
+      "e": "📌",
+      "c": "objects"
+    },
+    {
+      "e": "📍",
+      "c": "objects"
+    },
+    {
+      "e": "📎",
+      "c": "objects"
+    },
+    {
+      "e": "📏",
+      "c": "objects"
+    },
+    {
+      "e": "📐",
+      "c": "objects"
+    },
+    {
+      "e": "✂️",
+      "c": "objects"
+    },
+    {
+      "e": "🗄️",
+      "c": "objects"
+    },
+    {
+      "e": "🗑️",
+      "c": "objects"
+    },
+    {
+      "e": "🔒",
+      "c": "objects"
+    },
+    {
+      "e": "🔓",
+      "c": "objects"
+    },
+    {
+      "e": "🔑",
+      "c": "objects"
+    },
+    {
+      "e": "🔨",
+      "c": "objects"
+    },
+    {
+      "e": "🪓",
+      "c": "objects"
+    },
+    {
+      "e": "⛏️",
+      "c": "objects"
+    },
+    {
+      "e": "🛠️",
+      "c": "objects"
+    },
+    {
+      "e": "💣",
+      "c": "objects"
+    },
+    {
+      "e": "🛡️",
+      "c": "objects"
+    },
+    {
+      "e": "🔧",
+      "c": "objects"
+    },
+    {
+      "e": "🪛",
+      "c": "objects"
+    },
+    {
+      "e": "🔩",
+      "c": "objects"
+    },
+    {
+      "e": "⚙️",
+      "c": "objects"
+    },
+    {
+      "e": "⚖️",
+      "c": "objects"
+    },
+    {
+      "e": "🔗",
+      "c": "objects"
+    },
+    {
+      "e": "🧰",
+      "c": "objects"
+    },
+    {
+      "e": "🧲",
+      "c": "objects"
+    },
+    {
+      "e": "🪜",
+      "c": "objects"
+    },
+    {
+      "e": "🧪",
+      "c": "objects"
+    },
+    {
+      "e": "🧬",
+      "c": "objects"
+    },
+    {
+      "e": "🔬",
+      "c": "objects"
+    },
+    {
+      "e": "🔭",
+      "c": "objects"
+    },
+    {
+      "e": "📡",
+      "c": "objects"
+    },
+    {
+      "e": "💉",
+      "c": "objects"
+    },
+    {
+      "e": "💊",
+      "c": "objects"
+    },
+    {
+      "e": "🩹",
+      "c": "objects"
+    },
+    {
+      "e": "🩺",
+      "c": "objects"
+    },
+    {
+      "e": "🚪",
+      "c": "objects"
+    },
+    {
+      "e": "🛏️",
+      "c": "objects"
+    },
+    {
+      "e": "🛋️",
+      "c": "objects"
+    },
+    {
+      "e": "🪑",
+      "c": "objects"
+    },
+    {
+      "e": "🚽",
+      "c": "objects"
+    },
+    {
+      "e": "🛁",
+      "c": "objects"
+    },
+    {
+      "e": "🧴",
+      "c": "objects"
+    },
+    {
+      "e": "🧹",
+      "c": "objects"
+    },
+    {
+      "e": "🧺",
+      "c": "objects"
+    },
+    {
+      "e": "🧻",
+      "c": "objects"
+    },
+    {
+      "e": "🪣",
+      "c": "objects"
+    },
+    {
+      "e": "🪥",
+      "c": "objects"
+    },
+    {
+      "e": "🧽",
+      "c": "objects"
+    },
+    {
+      "e": "🧯",
+      "c": "objects"
+    },
+    {
+      "e": "🛒",
+      "c": "objects"
+    },
+    {
+      "e": "🪪",
+      "c": "objects"
+    },
+    {
+      "e": "🏧",
+      "c": "symbols"
+    },
+    {
+      "e": "♿",
+      "c": "symbols"
+    },
+    {
+      "e": "🚹",
+      "c": "symbols"
+    },
+    {
+      "e": "🚺",
+      "c": "symbols"
+    },
+    {
+      "e": "🚻",
+      "c": "symbols"
+    },
+    {
+      "e": "🚾",
+      "c": "symbols"
+    },
+    {
+      "e": "⚠️",
+      "c": "symbols"
+    },
+    {
+      "e": "⛔",
+      "c": "symbols"
+    },
+    {
+      "e": "🚫",
+      "c": "symbols"
+    },
+    {
+      "e": "☢️",
+      "c": "symbols"
+    },
+    {
+      "e": "☣️",
+      "c": "symbols"
+    },
+    {
+      "e": "⬆️",
+      "c": "symbols"
+    },
+    {
+      "e": "↗️",
+      "c": "symbols"
+    },
+    {
+      "e": "➡️",
+      "c": "symbols"
+    },
+    {
+      "e": "↘️",
+      "c": "symbols"
+    },
+    {
+      "e": "⬇️",
+      "c": "symbols"
+    },
+    {
+      "e": "↙️",
+      "c": "symbols"
+    },
+    {
+      "e": "⬅️",
+      "c": "symbols"
+    },
+    {
+      "e": "↖️",
+      "c": "symbols"
+    },
+    {
+      "e": "↕️",
+      "c": "symbols"
+    },
+    {
+      "e": "↔️",
+      "c": "symbols"
+    },
+    {
+      "e": "↩️",
+      "c": "symbols"
+    },
+    {
+      "e": "↪️",
+      "c": "symbols"
+    },
+    {
+      "e": "⤴️",
+      "c": "symbols"
+    },
+    {
+      "e": "⤵️",
+      "c": "symbols"
+    },
+    {
+      "e": "🔃",
+      "c": "symbols"
+    },
+    {
+      "e": "🔄",
+      "c": "symbols"
+    },
+    {
+      "e": "⚛️",
+      "c": "symbols"
+    },
+    {
+      "e": "🕉️",
+      "c": "symbols"
+    },
+    {
+      "e": "✡️",
+      "c": "symbols"
+    },
+    {
+      "e": "☸️",
+      "c": "symbols"
+    },
+    {
+      "e": "☯️",
+      "c": "symbols"
+    },
+    {
+      "e": "✝️",
+      "c": "symbols"
+    },
+    {
+      "e": "☦️",
+      "c": "symbols"
+    },
+    {
+      "e": "☪️",
+      "c": "symbols"
+    },
+    {
+      "e": "☮️",
+      "c": "symbols"
+    },
+    {
+      "e": "🕎",
+      "c": "symbols"
+    },
+    {
+      "e": "🔀",
+      "c": "symbols"
+    },
+    {
+      "e": "🔁",
+      "c": "symbols"
+    },
+    {
+      "e": "▶️",
+      "c": "symbols"
+    },
+    {
+      "e": "⏩",
+      "c": "symbols"
+    },
+    {
+      "e": "⏭️",
+      "c": "symbols"
+    },
+    {
+      "e": "⏯️",
+      "c": "symbols"
+    },
+    {
+      "e": "◀️",
+      "c": "symbols"
+    },
+    {
+      "e": "⏪",
+      "c": "symbols"
+    },
+    {
+      "e": "⏮️",
+      "c": "symbols"
+    },
+    {
+      "e": "🔼",
+      "c": "symbols"
+    },
+    {
+      "e": "🔽",
+      "c": "symbols"
+    },
+    {
+      "e": "⏸️",
+      "c": "symbols"
+    },
+    {
+      "e": "⏹️",
+      "c": "symbols"
+    },
+    {
+      "e": "⏺️",
+      "c": "symbols"
+    },
+    {
+      "e": "⏏️",
+      "c": "symbols"
+    },
+    {
+      "e": "🔅",
+      "c": "symbols"
+    },
+    {
+      "e": "📶",
+      "c": "symbols"
+    },
+    {
+      "e": "🛜",
+      "c": "symbols"
+    },
+    {
+      "e": "♀️",
+      "c": "symbols"
+    },
+    {
+      "e": "♂️",
+      "c": "symbols"
+    },
+    {
+      "e": "✖️",
+      "c": "symbols"
+    },
+    {
+      "e": "➕",
+      "c": "symbols"
+    },
+    {
+      "e": "➖",
+      "c": "symbols"
+    },
+    {
+      "e": "➗",
+      "c": "symbols"
+    },
+    {
+      "e": "🟰",
+      "c": "symbols"
+    },
+    {
+      "e": "♾️",
+      "c": "symbols"
+    },
+    {
+      "e": "‼️",
+      "c": "symbols"
+    },
+    {
+      "e": "⁉️",
+      "c": "symbols"
+    },
+    {
+      "e": "❓",
+      "c": "symbols"
+    },
+    {
+      "e": "❗",
+      "c": "symbols"
+    },
+    {
+      "e": "💲",
+      "c": "symbols"
+    },
+    {
+      "e": "⚕️",
+      "c": "symbols"
+    },
+    {
+      "e": "♻️",
+      "c": "symbols"
+    },
+    {
+      "e": "⚜️",
+      "c": "symbols"
+    },
+    {
+      "e": "🔱",
+      "c": "symbols"
+    },
+    {
+      "e": "⭕",
+      "c": "symbols"
+    },
+    {
+      "e": "✅",
+      "c": "symbols"
+    },
+    {
+      "e": "✔️",
+      "c": "symbols"
+    },
+    {
+      "e": "❌",
+      "c": "symbols"
+    },
+    {
+      "e": "©️",
+      "c": "symbols"
+    },
+    {
+      "e": "®️",
+      "c": "symbols"
+    },
+    {
+      "e": "™️",
+      "c": "symbols"
+    },
+    {
+      "e": "🔟",
+      "c": "symbols"
+    },
+    {
+      "e": "🆗",
+      "c": "symbols"
+    },
+    {
+      "e": "🅿️",
+      "c": "symbols"
+    },
+    {
+      "e": "🆘",
+      "c": "symbols"
+    },
+    {
+      "e": "⚫",
+      "c": "symbols"
+    },
+    {
+      "e": "⚪",
+      "c": "symbols"
+    },
+    {
+      "e": "⬛",
+      "c": "symbols"
+    },
+    {
+      "e": "⬜",
+      "c": "symbols"
+    },
+    {
+      "e": "🔺",
+      "c": "symbols"
+    },
+    {
+      "e": "🔻",
+      "c": "symbols"
+    }
+  ]
+}

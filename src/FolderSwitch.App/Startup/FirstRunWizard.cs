@@ -10,6 +10,7 @@ using FolderSwitch.App.Services;
 using FolderSwitch.App.Themes;
 using FolderSwitch.App.Views;
 using FolderSwitch.Core.Hotkeys;
+using FolderSwitch.Core.Icons;
 using FolderSwitch.Core.Localization;
 using FolderSwitch.Core.Model;
 using FolderSwitch.Core.Services;
@@ -52,6 +53,7 @@ internal sealed class FirstRunWizard : IDisposable
     private bool _ran;
     private bool _disposed;
 
+    /// <param name="icons">Gives the automatic icons of the tab and the group the wizard creates.</param>
     /// <param name="resources">Where the wizard's look goes while it is open: the application's resources.</param>
     public FirstRunWizard(
         Localizer localizer,
@@ -60,6 +62,7 @@ internal sealed class FirstRunWizard : IDisposable
         IAutostart autostart,
         string exePath,
         IConfigPersistence persistence,
+        Lazy<IconFinder> icons,
         IForegroundActivator foreground,
         ViewTexts texts,
         ResourceDictionary resources)
@@ -80,7 +83,7 @@ internal sealed class FirstRunWizard : IDisposable
         _theme = new WizardTheme(resources, system);
         try
         {
-            _viewModel = new WizardViewModel(localizer, system, hotkeys, autostart, exePath, persistence, KeyNames.Instance);
+            _viewModel = new WizardViewModel(localizer, system, hotkeys, autostart, exePath, persistence, icons, KeyNames.Instance);
         }
         catch
         {

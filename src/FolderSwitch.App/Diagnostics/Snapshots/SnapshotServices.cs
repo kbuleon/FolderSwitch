@@ -2,8 +2,11 @@
 // Copyright (C) 2026 Karl BULEON
 // Additional terms under GPLv3 section 7: see the License section of README.md.
 
+using System.IO;
+using FolderSwitch.App.Views;
 using FolderSwitch.Core.Activation;
 using FolderSwitch.Core.Hotkeys;
+using FolderSwitch.Core.Icons;
 using FolderSwitch.Core.Model;
 using FolderSwitch.Core.Services;
 using FolderSwitch.Core.Web;
@@ -15,6 +18,7 @@ namespace FolderSwitch.App.Diagnostics.Snapshots;
 /// The services the view models of a snapshot are built with: they do nothing, save nothing, show nothing and open
 /// nothing. A snapshot never touches the user's configuration, windows, files, keyboard, startup programs or the
 /// network. A browser « shows » <see cref="BrowserPage"/>, and the favicon cache holds one file, made by the snapshot.
+/// The icons of tabs and groups are the application's own (<see cref="Icons"/>).
 /// </summary>
 internal sealed class SnapshotServices : IItemActivator, IConfigPersistence, IUserPrompts, IWindowHost, IBrowserAddressReader, IFavicons, ISystemInfo, IHotkeyService, IAutostart
 {
@@ -25,6 +29,14 @@ internal sealed class SnapshotServices : IItemActivator, IConfigPersistence, IUs
     }
 
     public WindowsGeneration Generation => WindowsGeneration.Windows11;
+
+    /// <summary>
+    /// The emoji data of the icons, as the application has it: the files of the <c>Emoji</c> folder beside the
+    /// executable, checked against the machine's emoji font. Loaded on first use, once for every view model.
+    /// </summary>
+    public Lazy<IconFinder> Icons { get; } = new(
+        () => new IconFinder(EmojiLibrary.LoadFromDirectory(Path.Combine(AppContext.BaseDirectory, "Emoji")), new EmojiGlyphs()),
+        LazyThreadSafetyMode.ExecutionAndPublication);
 
     public string UiCultureName => "fr-FR";
 

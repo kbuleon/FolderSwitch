@@ -8,6 +8,8 @@
     Tab and Shift+Tab are handled by the window.
     Customize mode: a click also selects the tab (F2 renames it), a double-click on it renames it in place, it can be
     dragged along the bar (an insertion line shows where it goes), ✕ deletes it and « + » at the end adds one.
+    A tab's icon shows before its name, in the tab's color and size; without one, nothing takes its place. In Customize
+    mode a button stands there instead, which shows the icon, or a discreet dashed square when there is none.
     Tabs that do not fit in the width of the window (bounded by the screen's work area) wrap onto further lines, and
     « + » follows them (beside the last line when there is room, else under it): every tab and « + » stay in reach.
     The bar's hairline lies under the tabs, in the same cell: the active tab's underline, drawn at the bottom of the tab,
@@ -47,6 +49,39 @@
                     <DataTemplate>
                         <ContentControl Style="{StaticResource Fs.TabSurface}" Loaded="OnTabLoaded">
                             <StackPanel Orientation="Horizontal">
+                                <!-- The icon, in the tab's color and size: in normal use only when there is one. -->
+                                <TextBlock Margin="0,0,6,0"
+                                           VerticalAlignment="Center"
+                                           FontFamily="{StaticResource Fs.EmojiFont}"
+                                           FontWeight="Normal"
+                                           Text="{Binding Icon}">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                            <Style.Triggers>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding HasIcon}" Value="True" />
+                                                        <Condition Binding="{Binding DataContext.IsCustomizing, RelativeSource={RelativeSource AncestorType=local:MainView}}" Value="False" />
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </MultiDataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <!-- Customize mode: the icon, or an empty square, as a button of its own (its press
+                                     never reaches the tab's gesture: no activation, no drag). -->
+                                <Button x:Name="IconButton"
+                                        Style="{StaticResource Fs.IconButton}"
+                                        Margin="0,0,6,0"
+                                        Content="{Binding Icon}"
+                                        Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ContentControl}}"
+                                        BorderBrush="{DynamicResource Fs.OnBackgroundMuted}"
+                                        ToolTip="{Binding Texts[Icon.Choose], RelativeSource={RelativeSource AncestorType=local:MainView}}"
+                                        AutomationProperties.Name="{Binding Texts[Icon.Choose], RelativeSource={RelativeSource AncestorType=local:MainView}}"
+                                        Visibility="{Binding DataContext.IsCustomizing, RelativeSource={RelativeSource AncestorType=local:MainView}, Converter={StaticResource Fs.BoolToVisibility}}"
+                                        Click="OnIconClick" />
                                 <Grid VerticalAlignment="Center">
                                     <layout:TextRoom MaxWidth="220"
                                                      Visibility="{Binding IsRenaming, Converter={StaticResource Fs.InverseBoolToVisibility}}">

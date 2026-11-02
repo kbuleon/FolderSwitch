@@ -2,6 +2,7 @@
 // Copyright (C) 2026 Karl BULEON
 // Additional terms under GPLv3 section 7: see the License section of README.md.
 
+using FolderSwitch.Core.Icons;
 using FolderSwitch.Core.Model;
 using FolderSwitch.Core.Web;
 
@@ -244,6 +245,38 @@ public static class BoardEditor
         else if (FindItem(c, id) is { } item)
         {
             item.Item.Name = name;
+        }
+        else
+        {
+            return Fail(EditError.NotFound);
+        }
+
+        return Success;
+    }
+
+    // ----- Icons -----
+
+    /// <summary>
+    /// Sets the icon of a tab or a group. <paramref name="icon"/> is <see langword="null"/> for "no icon"
+    /// or an emoji that passes <see cref="IconText.IsPlausible"/>, otherwise <see cref="EditError.InvalidIcon"/>.
+    /// <paramref name="chosen"/> tells whether the user picked it (a chosen icon survives a rename).
+    /// </summary>
+    public static EditResult SetIcon(AppConfig c, Guid id, string? icon, bool chosen)
+    {
+        if (icon is not null && !IconText.IsPlausible(icon))
+        {
+            return Fail(EditError.InvalidIcon);
+        }
+
+        if (c.Tabs.Find(t => t.Id == id) is { } tab)
+        {
+            tab.Icon = icon;
+            tab.IconChosen = chosen;
+        }
+        else if (FindGroup(c, id) is { } group)
+        {
+            group.Group.Icon = icon;
+            group.Group.IconChosen = chosen;
         }
         else
         {

@@ -2131,4 +2131,243 @@ public class MainViewModelTests
         Assert.Equal(@"C:\fav\a.fr.png", after.FaviconPath);
         Assert.Single(h.Favicons.Fetches);
     }
+
+    // ----- Icons -----
+
+    private static GroupViewModel NewGroup(Harness h)
+    {
+        h.Vm.AddGroup(h.ColumnVm("Work", 1));
+        return h.ColumnVm("Work", 1).Groups[^1];
+    }
+
+    private static void Rename(MainViewModel vm, RenamableViewModel target, string name)
+    {
+        vm.BeginRename(target);
+        vm.CommitRename(target, name);
+    }
+
+    [Fact]
+    public void Renaming_a_new_group_sets_its_automatic_icon()
+    {
+        var h = new Harness();
+        h.Customizing();
+        var group = NewGroup(h);
+        var changes = RecordChanges(group);
+        h.Persistence.Saved.Clear();
+
+        h.Vm.CommitRename(group, "Finance");
+
+        Assert.Equal("💵", group.Icon);
+        Assert.True(group.HasIcon);
+        Assert.False(group.IconChosen);
+        Assert.Equal("💵", h.WorkRight.Groups[0].Icon);
+        Assert.Contains(nameof(GroupViewModel.Icon), changes);
+        Assert.Contains(nameof(GroupViewModel.HasIcon), changes);
+        Assert.Same(h.Config, Assert.Single(h.Persistence.Saved));
+    }
+
+    [Fact]
+    public void Keeping_the_default_name_sets_no_icon()
+    {
+        var h = new Harness();
+        h.Customizing();
+        var group = NewGroup(h);
+        h.Vm.CommitRename(group, "New group");
+        h.Vm.AddTab();
+        var tab = h.Vm.Tabs[^1];
+        h.Vm.CancelRename(tab);
+
+        Assert.Null(group.Icon);
+        Assert.False(group.HasIcon);
+        Assert.Null(h.WorkRight.Groups[0].Icon);
+        Assert.Null(tab.Icon);
+        Assert.False(tab.HasIcon);
+        Assert.Null(h.Config.Tabs[^1].Icon);
+    }
+
+    [Fact]
+    public void Renaming_recomputes_an_automatic_icon()
+    {
+        var h = new Harness();
+        h.Customizing();
+        var group = NewGroup(h);
+
+        h.Vm.CommitRename(group, "Finance");
+        Assert.Equal("💵", group.Icon);
+
+        Rename(h.Vm, group, "Vacances");
+        Assert.Equal("🏖", group.Icon);
+        Assert.False(group.IconChosen);
+
+        Rename(h.Vm, group, "Acme");
+        Assert.Null(group.Icon);
+        Assert.Null(h.WorkRight.Groups[0].Icon);
+        Assert.False(group.IconChosen);
+    }
+
+    [Fact]
+    public void Renaming_keeps_a_chosen_icon()
+    {
+        var h = new Harness();
+        h.Customizing();
+        var group = NewGroup(h);
+
+        h.Vm.SetChosenIcon(group, "🐱");
+        Rename(h.Vm, group, "Vacances");
+        Assert.Equal("🐱", group.Icon);
+        Assert.True(group.IconChosen);
+
+        h.Vm.SetNoIcon(group);
+        Rename(h.Vm, group, "Finance");
+
+        Assert.Null(group.Icon);
+        Assert.Null(h.WorkRight.Groups[0].Icon);
+        Assert.True(group.IconChosen);
+    }
+
+    [Fact]
+    public void Automatic_brings_back_the_suggestion()
+    {
+        var h = new Harness();
+        h.Customizing();
+        var group = NewGroup(h);
+        h.Vm.CommitRename(group, "Finance");
+        h.Vm.SetChosenIcon(group, "🐱");
+        h.Persistence.Saved.Clear();
+
+        h.Vm.SetAutomaticIcon(group);
+
+        Assert.Equal("💵", group.Icon);
+        Assert.False(group.IconChosen);
+        Assert.False(h.WorkRight.Groups[0].IconChosen);
+        Assert.Same(h.Config, Assert.Single(h.Persistence.Saved));
+    }
+
+    [Fact]
+    public void Automatic_icon_is_the_suggestion_for_the_current_name_and_nothing_for_an_item()
+    {
+        var h = new Harness();
+        h.Customizing();
+
+        Assert.Null(h.Vm.AutomaticIcon(h.GroupVm("Projects")));
+        Rename(h.Vm, h.GroupVm("Projects"), "Finance");
+        Assert.Equal("💵", h.Vm.AutomaticIcon(h.GroupVm("Finance")));
+        Assert.Null(h.Vm.AutomaticIcon(h.GroupVm("Inbox")));
+        Assert.Null(h.Vm.AutomaticIcon(h.ItemVm("Acme")));
+    }
+
+    [Fact]
+    public void Tabs_behave_like_groups()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        var tab = h.TabVm("Work");
+
+        Rename(vm, tab, "Finance");
+        Assert.Equal("💵", tab.Icon);
+        Assert.False(tab.IconChosen);
+
+        Rename(vm, tab, "Vacances");
+        Assert.Equal("🏖", tab.Icon);
+
+        vm.SetChosenIcon(tab, "🐱");
+        Rename(vm, tab, "Finance");
+        Assert.Equal("🐱", tab.Icon);
+        Assert.True(tab.IconChosen);
+
+        vm.SetNoIcon(tab);
+        Assert.Null(tab.Icon);
+        Assert.True(tab.IconChosen);
+
+        vm.SetAutomaticIcon(tab);
+        Assert.Equal("💵", tab.Icon);
+        Assert.False(tab.IconChosen);
+        Assert.Equal("💵", h.Work.Icon);
+    }
+
+    [Fact]
+    public void Icon_the_font_cannot_draw_is_not_shown()
+    {
+        var h = new Harness(h => h.Media.Icon = "💵");
+        h.Glyphs.Refused.Add("💵");
+
+        var media = h.GroupVm("Media");
+
+        Assert.Null(media.Icon);
+        Assert.False(media.HasIcon);
+        Assert.Equal("💵", h.Media.Icon);
+    }
+
+    [Fact]
+    public void Language_change_keeps_icons()
+    {
+        var h = new Harness(h =>
+        {
+            h.Media.Icon = "💵";
+            h.Work.Icon = "🏖";
+            h.Work.IconChosen = true;
+        });
+
+        h.Localizer.SetLanguage("fr");
+
+        Assert.Equal("💵", h.GroupVm("Media").Icon);
+        Assert.Equal("🏖", h.TabVm("Work").Icon);
+        Assert.True(h.TabVm("Work").IconChosen);
+        Assert.Equal("💵", h.Media.Icon);
+        Assert.Equal(0, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void Icon_commands_do_nothing_outside_customize_mode()
+    {
+        var h = new Harness(h => h.Media.Icon = "💵");
+        var media = h.GroupVm("Media");
+        var tab = h.TabVm("Work");
+
+        h.Vm.SetChosenIcon(media, "🐱");
+        h.Vm.SetNoIcon(media);
+        h.Vm.SetAutomaticIcon(tab);
+        h.Vm.SetChosenIcon(tab, "🐱");
+
+        Assert.Null(h.Vm.OpenIconPicker(media));
+        Assert.Equal("💵", h.Media.Icon);
+        Assert.False(h.Media.IconChosen);
+        Assert.Null(h.Work.Icon);
+        Assert.Equal(0, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void Icon_commands_do_nothing_for_an_item_or_a_view_model_from_before_a_reload()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        var item = h.ItemVm("Acme");
+        var old = h.GroupVm("Projects");
+        vm.Reload(h.Config);
+
+        vm.SetChosenIcon(item, "🐱");
+        vm.SetChosenIcon(old, "🐱");
+        vm.SetNoIcon(old);
+        vm.SetAutomaticIcon(old);
+
+        Assert.Null(vm.OpenIconPicker(item));
+        Assert.Null(vm.OpenIconPicker(old));
+        Assert.Null(h.Projects.Icon);
+        Assert.False(h.Projects.IconChosen);
+        Assert.Equal(0, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void Refused_icon_changes_nothing_and_saves_nothing()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        var group = h.GroupVm("Inbox");
+
+        vm.SetChosenIcon(group, "not an emoji at all");
+
+        Assert.Null(group.Icon);
+        Assert.False(group.IconChosen);
+        Assert.Equal(0, h.Persistence.SaveCount);
+    }
 }

@@ -1,0 +1,1989 @@
+{
+  "stopWords": {
+    "en": ["the", "and", "for", "to", "of", "in", "on", "at", "by", "with", "without", "from", "my", "our", "your", "his", "her", "their", "its", "this", "that", "these", "those", "all", "etc", "vs", "new", "tab", "tabs", "group", "groups", "other", "others", "track", "tracks"],
+    "de": ["der", "die", "das", "den", "dem", "des", "ein", "eine", "einer", "einen", "eines", "und", "oder", "für", "von", "vom", "zu", "zum", "zur", "mit", "ohne", "im", "in", "am", "an", "auf", "aus", "bei", "nach", "über", "mein", "meine", "meinen", "unser", "unsere", "dein", "deine", "ihr", "ihre", "sein", "seine", "alle", "neu", "neue", "neuer", "neues", "neuen", "registerkarte", "registerkarten", "gruppe", "gruppen", "andere", "anderen"],
+    "es": ["el", "la", "los", "las", "un", "una", "unos", "unas", "de", "del", "al", "lo", "en", "con", "sin", "para", "por", "mi", "mis", "tu", "tus", "su", "sus", "nuestro", "nuestra", "nuestros", "nuestras", "otro", "otra", "otros", "otras", "nuevo", "nueva", "nuevos", "nuevas", "pestaña", "pestañas", "grupo", "grupos"],
+    "fr": ["le", "la", "les", "un", "une", "des", "de", "du", "et", "ou", "en", "au", "aux", "pour", "par", "sur", "sous", "dans", "avec", "sans", "mon", "ma", "mes", "ton", "ta", "tes", "son", "sa", "ses", "notre", "nos", "votre", "vos", "leur", "leurs", "ce", "cet", "cette", "ces", "chez", "vers", "entre", "etc", "vs", "nouveau", "nouvel", "nouvelle", "nouveaux", "nouvelles", "onglet", "onglets", "groupe", "groupes", "autre", "autres"],
+    "it": ["il", "lo", "la", "gli", "le", "un", "uno", "una", "di", "del", "dello", "della", "dei", "degli", "delle", "ed", "in", "con", "per", "su", "da", "dal", "dalla", "al", "alla", "ai", "mio", "mia", "miei", "mie", "tuo", "tua", "suo", "sua", "nostro", "nostra", "nostri", "nostre", "altro", "altra", "altri", "altre", "nuovo", "nuova", "nuovi", "nuove", "scheda", "schede", "gruppo", "gruppi"],
+    "nl": ["de", "het", "een", "en", "of", "van", "voor", "met", "zonder", "in", "op", "aan", "bij", "naar", "mijn", "onze", "ons", "jouw", "je", "uw", "zijn", "haar", "hun", "andere", "nieuw", "nieuwe", "tabblad", "tabbladen", "groep", "groepen"],
+    "pl": ["na", "do", "dla", "od", "oraz", "lub", "ze", "we", "po", "przez", "bez", "moje", "mój", "moja", "moi", "nasze", "nasz", "nasza", "twoje", "twój", "inne", "inny", "inna", "nowa", "nowy", "nowe", "nowi", "karta", "karty", "grupa", "grupy"],
+    "pt-BR": ["os", "as", "um", "uma", "uns", "umas", "de", "do", "da", "dos", "das", "em", "no", "na", "nos", "nas", "com", "sem", "para", "por", "meu", "minha", "meus", "minhas", "seu", "sua", "seus", "suas", "nosso", "nossa", "nossos", "nossas", "outro", "outra", "outros", "outras", "novo", "nova", "novos", "novas", "guia", "guias", "grupo", "grupos"],
+    "pt-PT": ["os", "as", "um", "uma", "uns", "umas", "de", "do", "da", "dos", "das", "em", "no", "na", "nos", "nas", "com", "sem", "para", "por", "meu", "minha", "meus", "minhas", "seu", "sua", "seus", "suas", "nosso", "nossa", "nossos", "nossas", "outro", "outra", "outros", "outras", "novo", "nova", "novos", "novas", "separador", "separadores", "grupo", "grupos"]
+  },
+  "concepts": [
+    {
+      "emoji": "💼",
+      "words": {
+        "en": ["work", "job", "jobs", "pro", "professional", "career", "business"],
+        "de": ["arbeit", "job", "jobs", "beruf", "beruflich", "pro", "karriere"],
+        "es": ["trabajo", "empleo", "pro", "profesional", "laboral", "carrera"],
+        "fr": ["travail", "boulot", "job", "jobs", "pro", "professionnel", "professionnelle", "taf", "emploi", "carrière"],
+        "it": ["lavoro", "impiego", "pro", "professionale", "carriera"],
+        "nl": ["werk", "baan", "job", "pro", "zakelijk", "carrière"],
+        "pl": ["praca", "pro", "zawodowe", "zawodowy", "służbowe", "kariera"],
+        "pt-BR": ["trabalho", "emprego", "pro", "profissional", "carreira"],
+        "pt-PT": ["trabalho", "emprego", "pro", "profissional", "carreira"]
+      }
+    },
+    {
+      "emoji": "🏢",
+      "words": {
+        "en": ["office", "company", "corporate", "firm", "headquarters"],
+        "de": ["büro", "firma", "unternehmen", "konzern"],
+        "es": ["oficina", "empresa", "compañía", "sede"],
+        "fr": ["entreprise", "société", "agence", "siège"],
+        "it": ["ufficio", "azienda", "società", "sede"],
+        "nl": ["kantoor", "bedrijf", "firma", "onderneming"],
+        "pl": ["biuro", "firma", "przedsiębiorstwo", "spółka"],
+        "pt-BR": ["escritório", "empresa", "companhia", "sede"],
+        "pt-PT": ["escritório", "empresa", "companhia", "sede"]
+      }
+    },
+    {
+      "emoji": "🖥️",
+      "words": {
+        "en": ["computer", "computers", "desktop", "pc", "windows", "it", "server", "servers", "srv", "nas", "hosting", "datacenter", "laptop"],
+        "de": ["computer", "rechner", "desktop", "pc", "windows", "it", "edv", "informatik", "server", "srv", "nas", "hosting", "rechenzentrum", "laptop"],
+        "es": ["ordenador", "ordenadores", "computadora", "escritorio", "pc", "windows", "informática", "servidor", "servidores", "nas", "hosting", "portátil"],
+        "fr": ["bureau", "ordinateur", "ordinateurs", "ordi", "pc", "windows", "informatique", "serveur", "serveurs", "srv", "nas", "hébergement", "datacenter", "laptop"],
+        "it": ["computer", "desktop", "pc", "windows", "informatica", "server", "nas", "hosting", "portatile"],
+        "nl": ["computer", "computers", "bureaublad", "pc", "windows", "it", "ict", "informatica", "server", "servers", "nas", "hosting", "laptop"],
+        "pl": ["komputer", "komputery", "pulpit", "pc", "windows", "it", "informatyka", "serwer", "serwery", "nas", "hosting", "laptop"],
+        "pt-BR": ["computador", "computadores", "desktop", "pc", "windows", "informática", "servidor", "servidores", "hosting", "ti", "notebook"],
+        "pt-PT": ["computador", "computadores", "desktop", "pc", "windows", "informática", "servidor", "servidores", "hosting", "portátil"]
+      }
+    },
+    {
+      "emoji": "🚀",
+      "words": {
+        "en": ["project", "projects", "proj", "prj", "startup", "startups"],
+        "de": ["projekt", "projekte", "startup"],
+        "es": ["proyecto", "proyectos", "startup"],
+        "fr": ["projet", "projets", "proj", "prj", "startup"],
+        "it": ["progetto", "progetti", "startup"],
+        "nl": ["project", "projecten", "startup"],
+        "pl": ["projekt", "projekty", "startup"],
+        "pt-BR": ["projeto", "projetos", "startup"],
+        "pt-PT": ["projeto", "projetos", "startup", "projecto", "projectos"]
+      }
+    },
+    {
+      "emoji": "👥",
+      "words": {
+        "en": ["client", "clients", "customer", "customers"],
+        "de": ["kunde", "kunden", "mandant", "mandanten"],
+        "es": ["cliente", "clientes"],
+        "fr": ["client", "clients", "clientèle"],
+        "it": ["cliente", "clienti"],
+        "nl": ["klant", "klanten", "cliënt", "cliënten"],
+        "pl": ["klient", "klienci", "klientów"],
+        "pt-BR": ["cliente", "clientes"],
+        "pt-PT": ["cliente", "clientes"]
+      }
+    },
+    {
+      "emoji": "🏭",
+      "words": {
+        "en": ["supplier", "suppliers", "vendor", "vendors", "industry", "factory", "production", "manufacturing"],
+        "de": ["lieferant", "lieferanten", "industrie", "fabrik", "produktion", "herstellung"],
+        "es": ["proveedor", "proveedores", "industria", "fábrica", "producción", "fabricación"],
+        "fr": ["fournisseur", "fournisseurs", "usine", "industrie", "production", "fabrication", "prod"],
+        "it": ["fornitore", "fornitori", "industria", "fabbrica", "produzione"],
+        "nl": ["leverancier", "leveranciers", "industrie", "fabriek", "productie"],
+        "pl": ["dostawca", "dostawcy", "przemysł", "fabryka", "produkcja"],
+        "pt-BR": ["fornecedor", "fornecedores", "indústria", "fábrica", "produção"],
+        "pt-PT": ["fornecedor", "fornecedores", "indústria", "fábrica", "produção"]
+      }
+    },
+    {
+      "emoji": "🤝",
+      "words": {
+        "en": ["team", "teams", "staff", "hr", "colleagues", "partner", "partners", "partnership", "recruitment", "hiring", "candidates"],
+        "de": ["team", "teams", "personal", "hr", "kollegen", "mitarbeiter", "partner", "partnerschaft", "bewerbungen", "recruiting"],
+        "es": ["equipo", "equipos", "rrhh", "colegas", "socio", "socios", "partner", "colaboradores", "contratación", "candidatos"],
+        "fr": ["équipe", "équipes", "rh", "collègues", "collaborateurs", "partenaire", "partenaires", "partenariat", "recrutement", "candidatures", "embauche", "salariés"],
+        "it": ["team", "squadra", "hr", "colleghi", "collaboratori", "partner", "partnership", "assunzioni", "candidature"],
+        "nl": ["team", "teams", "hr", "collega", "personeel", "partner", "partners", "werving", "sollicitaties"],
+        "pl": ["zespół", "zespoły", "hr", "kadry", "współpracownicy", "partner", "partnerzy", "rekrutacja"],
+        "pt-BR": ["equipe", "equipa", "rh", "colegas", "parceiro", "parceiros", "parceria", "colaboradores", "recrutamento", "candidaturas"],
+        "pt-PT": ["equipe", "equipa", "rh", "colegas", "parceiro", "parceiros", "parceria", "colaboradores", "recrutamento", "candidaturas"]
+      }
+    },
+    {
+      "emoji": "💵",
+      "words": {
+        "en": ["finance", "finances", "financial", "money", "cash", "treasury"],
+        "de": ["finanzen", "finanz", "finanziell", "geld", "bargeld"],
+        "es": ["finanzas", "finanza", "financiero", "dinero", "efectivo", "tesorería"],
+        "fr": ["finance", "finances", "financier", "financière", "argent", "fric", "trésorerie"],
+        "it": ["finanza", "finanze", "finanziario", "soldi", "denaro", "contanti", "tesoreria"],
+        "nl": ["financiën", "financieel", "geld", "kas"],
+        "pl": ["finanse", "finansowe", "pieniądze", "kasa", "gotówka"],
+        "pt-BR": ["finanças", "financeiro", "dinheiro", "tesouraria"],
+        "pt-PT": ["finanças", "financeiro", "dinheiro", "tesouraria"]
+      }
+    },
+    {
+      "emoji": "🏦",
+      "words": {
+        "en": ["bank", "banks", "banking"],
+        "de": ["bank", "banken", "konto", "konten"],
+        "es": ["banco", "bancos", "bancario"],
+        "fr": ["banque", "banques", "bancaire"],
+        "it": ["banca", "banche", "bancario"],
+        "nl": ["bank", "banken", "rekening"],
+        "pl": ["bank", "banki", "bankowe", "konto"],
+        "pt-BR": ["banco", "bancos", "bancário", "conta"],
+        "pt-PT": ["banco", "bancos", "bancário", "conta"]
+      }
+    },
+    {
+      "emoji": "🏛️",
+      "words": {
+        "en": ["tax", "taxes", "taxation", "irs", "vat", "government"],
+        "de": ["steuer", "steuern", "steuererklärung", "finanzamt", "mwst", "behörde", "behörden", "amt"],
+        "es": ["impuesto", "impuestos", "hacienda", "iva", "fiscal", "gobierno", "ayuntamiento"],
+        "fr": ["impôt", "impôts", "fiscal", "fiscalité", "taxe", "taxes", "tva", "urssaf", "gouvernement", "mairie", "préfecture"],
+        "it": ["tassa", "tasse", "imposte", "imposta", "fisco", "fiscale", "iva", "governo", "comune"],
+        "nl": ["belasting", "belastingen", "btw", "fiscaal", "overheid", "gemeente"],
+        "pl": ["podatek", "podatki", "podatkowe", "vat", "urząd", "urzędy"],
+        "pt-BR": ["imposto", "impostos", "fiscal", "governo", "prefeitura"],
+        "pt-PT": ["imposto", "impostos", "fiscal", "governo", "iva", "irs", "câmara"]
+      }
+    },
+    {
+      "emoji": "🧾",
+      "words": {
+        "en": ["invoice", "invoices", "invoicing", "bill", "bills", "billing", "receipt", "receipts"],
+        "de": ["rechnung", "rechnungen", "quittung", "quittungen", "beleg", "belege"],
+        "es": ["factura", "facturas", "facturación", "recibo", "recibos"],
+        "fr": ["facture", "factures", "facturation", "reçu", "reçus"],
+        "it": ["fattura", "fatture", "fatturazione", "ricevuta", "ricevute"],
+        "nl": ["factuur", "facturen", "facturatie", "kwitantie", "bonnetjes"],
+        "pl": ["faktura", "faktury", "rachunek", "rachunki", "paragon", "paragony"],
+        "pt-BR": ["fatura", "faturas", "recibo", "recibos"],
+        "pt-PT": ["fatura", "faturas", "recibo", "recibos", "factura", "facturas", "faturação"]
+      }
+    },
+    {
+      "emoji": "🧮",
+      "words": {
+        "en": ["accounting", "accountant", "bookkeeping", "ledger", "budget", "budgets", "expense", "expenses", "spending"],
+        "de": ["buchhaltung", "buchführung", "bilanz", "steuerberater", "budget", "ausgaben", "haushaltsbuch"],
+        "es": ["contabilidad", "contable", "balance", "presupuesto", "presupuestos", "gasto", "gastos"],
+        "fr": ["comptabilité", "compta", "comptable", "bilan", "budget", "budgets", "dépense", "dépenses"],
+        "it": ["contabilità", "contabile", "bilancio", "budget", "spese"],
+        "nl": ["boekhouding", "balans", "budget", "begroting", "uitgaven"],
+        "pl": ["księgowość", "księgowe", "bilans", "budżet", "wydatki"],
+        "pt-BR": ["contabilidade", "orçamento", "orçamentos", "despesas", "gastos", "contábil"],
+        "pt-PT": ["contabilidade", "orçamento", "orçamentos", "despesas", "gastos", "balanço"]
+      }
+    },
+    {
+      "emoji": "📊",
+      "words": {
+        "en": ["report", "reports", "reporting", "statistics", "stats", "analytics", "kpi", "dashboard", "dashboards", "metrics"],
+        "de": ["bericht", "berichte", "reporting", "statistik", "statistiken", "auswertung", "auswertungen", "analyse", "kennzahlen", "dashboard"],
+        "es": ["informe", "informes", "reporte", "reportes", "estadísticas", "análisis", "kpi", "indicadores"],
+        "fr": ["rapport", "rapports", "reporting", "statistiques", "stats", "analyse", "analyses", "kpi", "dashboard", "indicateurs"],
+        "it": ["rapporto", "report", "statistiche", "analisi", "kpi", "indicatori", "cruscotto"],
+        "nl": ["rapport", "rapporten", "rapportage", "statistieken", "analyse", "kpi", "dashboard"],
+        "pl": ["raport", "raporty", "statystyki", "analiza", "analizy", "kpi", "wskaźniki"],
+        "pt-BR": ["relatório", "relatórios", "estatísticas", "análise", "análises", "kpi", "indicadores", "dashboard"],
+        "pt-PT": ["relatório", "relatórios", "estatísticas", "análise", "análises", "kpi", "indicadores", "dashboard"]
+      }
+    },
+    {
+      "emoji": "📈",
+      "words": {
+        "en": ["investment", "investments", "investing", "stocks", "portfolio", "crypto", "savings"],
+        "de": ["investitionen", "geldanlage", "aktien", "börse", "depot", "krypto", "sparen"],
+        "es": ["inversión", "inversiones", "bolsa", "cripto", "ahorro", "ahorros"],
+        "fr": ["investissement", "investissements", "placement", "placements", "bourse", "crypto", "épargne"],
+        "it": ["investimento", "investimenti", "borsa", "cripto", "risparmio", "risparmi"],
+        "nl": ["beleggingen", "investeringen", "aandelen", "beurs", "crypto", "sparen"],
+        "pl": ["inwestycje", "inwestycja", "akcje", "giełda", "krypto", "oszczędności"],
+        "pt-BR": ["investimento", "investimentos", "bolsa", "cripto", "poupança"],
+        "pt-PT": ["investimento", "investimentos", "bolsa", "cripto", "poupanças"]
+      }
+    },
+    {
+      "emoji": "💰",
+      "words": {
+        "en": ["salary", "payroll", "payslip", "payslips", "wages", "pension", "retirement"],
+        "de": ["gehalt", "lohn", "gehaltsabrechnung", "lohnabrechnung", "rente"],
+        "es": ["salario", "nómina", "nóminas", "sueldo", "pensión", "jubilación"],
+        "fr": ["salaire", "salaires", "paie", "paye", "retraite"],
+        "it": ["stipendio", "stipendi", "paga", "pensione"],
+        "nl": ["salaris", "loon", "loonstrook", "loonstroken", "pensioen"],
+        "pl": ["wynagrodzenie", "pensja", "wypłata", "emerytura"],
+        "pt-BR": ["salário", "salários", "aposentadoria", "holerite"],
+        "pt-PT": ["salário", "salários", "aposentadoria", "vencimento", "reforma"]
+      }
+    },
+    {
+      "emoji": "💳",
+      "words": {
+        "en": ["credit", "loan", "loans", "debt", "payment", "payments"],
+        "de": ["kredit", "kredite", "darlehen", "schulden", "zahlung", "zahlungen", "kreditkarte"],
+        "es": ["crédito", "créditos", "préstamo", "préstamos", "deuda", "deudas", "pago", "pagos", "tarjeta", "tarjetas"],
+        "fr": ["crédit", "crédits", "prêt", "prêts", "emprunt", "emprunts", "dette", "dettes", "paiement", "paiements"],
+        "it": ["credito", "prestito", "prestiti", "debiti", "pagamento", "pagamenti"],
+        "nl": ["krediet", "lening", "leningen", "schulden", "betaling", "betalingen", "creditcard"],
+        "pl": ["kredyt", "kredyty", "pożyczka", "pożyczki", "długi", "płatność", "płatności"],
+        "pt-BR": ["crédito", "empréstimo", "empréstimos", "dívida", "dívidas", "pagamento", "pagamentos", "cartão", "cartões"],
+        "pt-PT": ["crédito", "empréstimo", "empréstimos", "dívida", "dívidas", "pagamento", "pagamentos", "cartão", "cartões"]
+      }
+    },
+    {
+      "emoji": "🔁",
+      "words": {
+        "en": ["subscription", "subscriptions", "subs"],
+        "de": ["abo", "abos", "abonnement", "abonnements"],
+        "es": ["suscripción", "suscripciones"],
+        "fr": ["abonnement", "abonnements", "abo", "abos"],
+        "it": ["abbonamento", "abbonamenti"],
+        "nl": ["abonnement", "abonnementen"],
+        "pl": ["subskrypcje", "subskrypcja", "abonament", "abonamenty"],
+        "pt-BR": ["assinaturas", "assinatura"],
+        "pt-PT": ["assinaturas", "subscrições"]
+      }
+    },
+    {
+      "emoji": "🛡️",
+      "words": {
+        "en": ["insurance", "insurances"],
+        "de": ["versicherung", "versicherungen"],
+        "es": ["seguro", "seguros", "póliza"],
+        "fr": ["assurance", "assurances", "mutuelle"],
+        "it": ["assicurazione", "assicurazioni", "polizza"],
+        "nl": ["verzekering", "verzekeringen", "polis"],
+        "pl": ["ubezpieczenie", "ubezpieczenia", "polisa"],
+        "pt-BR": ["seguro", "seguros", "apólice"],
+        "pt-PT": ["seguro", "seguros", "apólice"]
+      }
+    },
+    {
+      "emoji": "✒️",
+      "words": {
+        "en": ["contract", "contracts", "agreement", "agreements", "signature", "signatures"],
+        "de": ["vertrag", "verträge", "vereinbarung", "unterschrift"],
+        "es": ["contrato", "contratos", "acuerdo", "acuerdos"],
+        "fr": ["contrat", "contrats", "signature", "signatures", "avenant", "avenants"],
+        "it": ["contratto", "contratti", "accordo", "accordi", "firma"],
+        "nl": ["contract", "contracten", "overeenkomst", "overeenkomsten", "handtekening"],
+        "pl": ["umowa", "umowy", "kontrakt", "podpis"],
+        "pt-BR": ["contrato", "contratos", "acordo", "acordos"],
+        "pt-PT": ["contrato", "contratos", "acordo", "acordos"]
+      }
+    },
+    {
+      "emoji": "⚖️",
+      "words": {
+        "en": ["legal", "law", "lawyer", "attorney", "justice", "lawsuit"],
+        "de": ["recht", "rechtliches", "juristisch", "anwalt", "jura", "gericht", "notar"],
+        "es": ["legal", "jurídico", "abogado", "derecho", "justicia", "notario"],
+        "fr": ["juridique", "légal", "avocat", "droit", "justice", "procès", "litige", "litiges", "notaire"],
+        "it": ["legale", "giuridico", "avvocato", "diritto", "giustizia", "notaio"],
+        "nl": ["juridisch", "advocaat", "recht", "justitie", "notaris"],
+        "pl": ["prawo", "prawne", "prawnik", "sąd", "notariusz"],
+        "pt-BR": ["jurídico", "advogado", "direito", "justiça", "cartório"],
+        "pt-PT": ["jurídico", "advogado", "direito", "justiça", "notário"]
+      }
+    },
+    {
+      "emoji": "🗂️",
+      "words": {
+        "en": ["admin", "administration", "administrative", "paperwork"],
+        "de": ["admin", "verwaltung", "papierkram", "bürokratie"],
+        "es": ["admin", "administración", "trámites", "papeleo"],
+        "fr": ["admin", "administratif", "administrative", "administration", "paperasse", "papiers", "démarches"],
+        "it": ["admin", "amministrazione", "pratiche", "burocrazia"],
+        "nl": ["admin", "administratie", "papierwerk"],
+        "pl": ["admin", "administracja", "urzędowe", "biurokracja"],
+        "pt-BR": ["admin", "burocracia", "papelada", "administração"],
+        "pt-PT": ["admin", "burocracia", "papelada", "administração"]
+      }
+    },
+    {
+      "emoji": "📄",
+      "words": {
+        "en": ["document", "documents", "doc", "docs", "cv"],
+        "de": ["dokument", "dokumente", "doc", "docs", "unterlagen", "lebenslauf"],
+        "es": ["documento", "documentos", "doc", "docs", "cv"],
+        "fr": ["document", "documents", "doc", "docs", "cv"],
+        "it": ["documento", "documenti", "doc", "docs", "cv"],
+        "nl": ["document", "documenten", "doc", "docs", "cv"],
+        "pl": ["dokument", "dokumenty", "doc", "docs", "cv"],
+        "pt-BR": ["documento", "documentos", "doc", "docs", "cv", "currículo"],
+        "pt-PT": ["documento", "documentos", "doc", "docs", "cv", "currículo"]
+      }
+    },
+    {
+      "emoji": "📖",
+      "words": {
+        "en": ["documentation", "manual", "manuals", "guide", "guides", "tutorial", "tutorials", "wiki", "howto"],
+        "de": ["dokumentation", "doku", "handbuch", "anleitung", "anleitungen", "tutorial", "wiki"],
+        "es": ["documentación", "manual", "manuales", "guía", "guías", "tutorial", "tutoriales", "wiki"],
+        "fr": ["documentation", "manuel", "manuels", "guide", "guides", "tuto", "tutos", "tutoriel", "tutoriels", "wiki"],
+        "it": ["documentazione", "manuale", "manuali", "guida", "guide", "tutorial", "wiki"],
+        "nl": ["documentatie", "handleiding", "handleidingen", "tutorial", "wiki"],
+        "pl": ["dokumentacja", "instrukcja", "instrukcje", "poradnik", "poradniki", "wiki"],
+        "pt-BR": ["documentação", "manual", "manuais", "tutorial", "tutoriais", "wiki"],
+        "pt-PT": ["documentação", "manual", "manuais", "tutorial", "tutoriais", "wiki", "guia"]
+      }
+    },
+    {
+      "emoji": "🗄️",
+      "words": {
+        "en": ["archive", "archives", "archived"],
+        "de": ["archiv", "archive", "archiviert", "ablage"],
+        "es": ["archivo", "archivos", "archivado", "histórico"],
+        "fr": ["archive", "archives", "archivé", "archivés", "historique"],
+        "it": ["archivio", "archivi", "archiviato", "storico"],
+        "nl": ["archief", "archieven", "gearchiveerd"],
+        "pl": ["archiwum", "archiwa", "archiwalne"],
+        "pt-BR": ["arquivo", "arquivos", "arquivado", "histórico"],
+        "pt-PT": ["arquivo", "arquivos", "arquivado", "histórico"]
+      }
+    },
+    {
+      "emoji": "📁",
+      "words": {
+        "en": ["folder", "folders", "file", "files", "directory", "dir"],
+        "de": ["ordner", "datei", "dateien", "verzeichnis"],
+        "es": ["carpeta", "carpetas", "fichero", "ficheros", "directorio"],
+        "fr": ["dossier", "dossiers", "fichier", "fichiers", "répertoire", "répertoires"],
+        "it": ["cartella", "cartelle", "directory"],
+        "nl": ["map", "mappen", "bestand", "bestanden"],
+        "pl": ["folder", "foldery", "plik", "pliki"],
+        "pt-BR": ["pasta", "pastas", "diretório"],
+        "pt-PT": ["pasta", "pastas", "diretório", "ficheiro", "ficheiros"]
+      }
+    },
+    {
+      "emoji": "📥",
+      "words": {
+        "en": ["download", "downloads", "dl"],
+        "de": ["download", "downloads", "heruntergeladen"],
+        "es": ["descarga", "descargas"],
+        "fr": ["téléchargement", "téléchargements", "dl"],
+        "it": ["download", "scaricati"],
+        "nl": ["download", "downloads"],
+        "pl": ["pobrane", "pobieranie"],
+        "pt-BR": ["download", "downloads"],
+        "pt-PT": ["download", "downloads", "transferências"]
+      }
+    },
+    {
+      "emoji": "📤",
+      "words": {
+        "en": ["share", "shared", "sharing", "upload", "uploads"],
+        "de": ["freigabe", "freigegeben", "geteilt", "upload"],
+        "es": ["compartido", "compartidos", "compartir", "subidas"],
+        "fr": ["partage", "partagé", "partagés", "upload", "envoi", "envois"],
+        "it": ["condiviso", "condivisi", "condivisione", "upload"],
+        "nl": ["gedeeld", "delen", "upload"],
+        "pl": ["udostępnione", "wspólne", "udostępnianie"],
+        "pt-BR": ["upload", "compartilhado", "compartilhados"],
+        "pt-PT": ["upload", "partilhado", "partilhados", "partilha"]
+      }
+    },
+    {
+      "emoji": "📧",
+      "words": {
+        "en": ["email", "emails", "mail", "inbox", "mailbox"],
+        "de": ["mail", "mails", "email", "posteingang"],
+        "es": ["correo", "email", "emails", "mail", "buzón"],
+        "fr": ["mail", "mails", "email", "emails", "courriel", "courriels", "messagerie", "inbox"],
+        "it": ["email", "mail", "posta"],
+        "nl": ["mail", "email", "inbox"],
+        "pl": ["poczta", "mail", "email"],
+        "pt-BR": ["email", "emails", "mail", "correio"],
+        "pt-PT": ["email", "emails", "mail", "correio"]
+      }
+    },
+    {
+      "emoji": "✉️",
+      "words": {
+        "en": ["letter", "letters", "correspondence", "postal"],
+        "de": ["brief", "briefe", "korrespondenz", "post"],
+        "es": ["carta", "cartas", "correspondencia"],
+        "fr": ["courrier", "courriers", "lettre", "lettres", "correspondance"],
+        "it": ["lettera", "lettere", "corrispondenza"],
+        "nl": ["brief", "brieven", "correspondentie", "post"],
+        "pl": ["list", "listy", "korespondencja"],
+        "pt-BR": ["carta", "cartas", "correspondência"],
+        "pt-PT": ["carta", "cartas", "correspondência"]
+      }
+    },
+    {
+      "emoji": "📅",
+      "words": {
+        "en": ["calendar", "agenda", "schedule", "planning", "appointment", "appointments", "meeting", "meetings"],
+        "de": ["kalender", "agenda", "termin", "termine", "planung", "besprechung", "besprechungen", "meeting", "meetings", "sitzung"],
+        "es": ["calendario", "agenda", "cita", "citas", "planificación", "reunión", "reuniones"],
+        "fr": ["agenda", "calendrier", "planning", "rdv", "réunion", "réunions", "rendezvous"],
+        "it": ["calendario", "agenda", "appuntamento", "appuntamenti", "pianificazione", "riunione", "riunioni"],
+        "nl": ["agenda", "kalender", "afspraak", "afspraken", "planning", "vergadering", "vergaderingen"],
+        "pl": ["kalendarz", "terminarz", "harmonogram", "spotkanie", "spotkania"],
+        "pt-BR": ["calendário", "agenda", "compromissos", "reunião", "reuniões", "planejamento"],
+        "pt-PT": ["calendário", "agenda", "compromissos", "reunião", "reuniões", "planeamento"]
+      }
+    },
+    {
+      "emoji": "📝",
+      "words": {
+        "en": ["note", "notes", "memo", "memos", "draft", "drafts"],
+        "de": ["notiz", "notizen", "memo", "entwurf", "entwürfe"],
+        "es": ["nota", "notas", "apuntes", "borrador", "borradores"],
+        "fr": ["note", "notes", "mémo", "mémos", "brouillon", "brouillons"],
+        "it": ["nota", "note", "appunti", "bozza", "bozze", "memo"],
+        "nl": ["notitie", "notities", "aantekeningen", "kladblok"],
+        "pl": ["notatka", "notatki", "notes", "szkic", "szkice"],
+        "pt-BR": ["nota", "notas", "anotações", "rascunho", "rascunhos"],
+        "pt-PT": ["nota", "notas", "anotações", "rascunho", "rascunhos", "apontamentos"]
+      }
+    },
+    {
+      "emoji": "💡",
+      "words": {
+        "en": ["idea", "ideas", "inspiration", "brainstorm", "brainstorming"],
+        "de": ["idee", "ideen", "inspiration", "brainstorming"],
+        "es": ["idea", "ideas", "inspiración"],
+        "fr": ["idée", "idées", "inspiration", "brainstorming"],
+        "it": ["idea", "idee", "ispirazione"],
+        "nl": ["idee", "ideeën", "inspiratie"],
+        "pl": ["pomysł", "pomysły", "inspiracja", "inspiracje"],
+        "pt-BR": ["ideia", "ideias", "inspiração"],
+        "pt-PT": ["ideia", "ideias", "inspiração"]
+      }
+    },
+    {
+      "emoji": "✅",
+      "words": {
+        "en": ["todo", "todos", "task", "tasks", "checklist", "checklists", "list", "lists"],
+        "de": ["todo", "aufgabe", "aufgaben", "checkliste", "liste", "listen"],
+        "es": ["tarea", "tareas", "pendientes", "lista", "listas", "checklist"],
+        "fr": ["todo", "tâche", "tâches", "checklist", "liste", "listes", "afaire"],
+        "it": ["todo", "attività", "lista", "liste", "checklist"],
+        "nl": ["todo", "taak", "taken", "takenlijst", "lijst", "lijsten", "checklist"],
+        "pl": ["zadanie", "zadania", "lista", "todo"],
+        "pt-BR": ["tarefa", "tarefas", "lista", "listas", "pendências", "checklist"],
+        "pt-PT": ["tarefa", "tarefas", "lista", "listas", "pendências", "checklist"]
+      }
+    },
+    {
+      "emoji": "🔑",
+      "words": {
+        "en": ["password", "passwords", "credentials", "key", "keys", "login", "logins"],
+        "de": ["passwort", "passwörter", "kennwort", "zugangsdaten", "schlüssel", "login"],
+        "es": ["contraseña", "contraseñas", "clave", "claves", "credenciales", "accesos", "login"],
+        "fr": ["mdp", "identifiant", "identifiants", "clé", "clés", "clef", "clefs", "accès", "login", "logins"],
+        "it": ["password", "credenziali", "chiave", "chiavi", "accessi", "login"],
+        "nl": ["wachtwoord", "wachtwoorden", "sleutel", "sleutels", "inloggegevens", "login"],
+        "pl": ["hasło", "hasła", "klucz", "klucze", "dostęp", "login", "loginy"],
+        "pt-BR": ["senha", "senhas", "chave", "chaves", "credenciais", "acessos", "login"],
+        "pt-PT": ["senha", "senhas", "chave", "chaves", "credenciais", "acessos", "login"]
+      }
+    },
+    {
+      "emoji": "🔒",
+      "words": {
+        "en": ["security", "secure", "confidential", "secret", "secrets", "vault"],
+        "de": ["sicherheit", "vertraulich", "geheim", "tresor"],
+        "es": ["seguridad", "confidencial", "secreto", "secretos"],
+        "fr": ["sécurité", "sécurisé", "confidentiel", "confidentielle", "secret", "secrets", "coffre"],
+        "it": ["sicurezza", "riservato", "segreto", "segreti", "cassaforte"],
+        "nl": ["beveiliging", "veiligheid", "vertrouwelijk", "geheim", "kluis"],
+        "pl": ["bezpieczeństwo", "poufne", "tajne", "sejf"],
+        "pt-BR": ["segurança", "confidencial", "secreto", "cofre"],
+        "pt-PT": ["segurança", "confidencial", "secreto", "cofre"]
+      }
+    },
+    {
+      "emoji": "❤️",
+      "words": {
+        "en": ["personal", "private", "me", "mine"],
+        "de": ["persönlich", "privat", "privates"],
+        "es": ["personal", "privado"],
+        "fr": ["perso", "personnel", "personnelle", "privé", "privée", "moi"],
+        "it": ["personale", "privato"],
+        "nl": ["persoonlijk", "privé", "eigen"],
+        "pl": ["osobiste", "osobisty", "prywatne", "prywatny"],
+        "pt-BR": ["pessoal", "privado", "particular"],
+        "pt-PT": ["pessoal", "privado", "particular"]
+      }
+    },
+    {
+      "emoji": "⚙️",
+      "words": {
+        "en": ["system", "sys", "config", "configuration", "settings", "preferences", "prefs", "sysadmin", "appdata"],
+        "de": ["system", "sys", "config", "konfiguration", "einstellungen"],
+        "es": ["sistema", "config", "configuración", "ajustes"],
+        "fr": ["système", "sys", "config", "configuration", "paramètres", "réglages"],
+        "it": ["sistema", "config", "configurazione", "impostazioni"],
+        "nl": ["systeem", "config", "configuratie", "instellingen"],
+        "pl": ["system", "config", "konfiguracja", "ustawienia"],
+        "pt-BR": ["sistema", "config", "configuração", "configurações", "ajustes"],
+        "pt-PT": ["sistema", "config", "configuração", "configurações", "ajustes", "definições"]
+      }
+    },
+    {
+      "emoji": "🌐",
+      "words": {
+        "en": ["network", "networking", "internet", "web", "website", "websites", "site", "sites", "lan", "wifi", "vpn"],
+        "de": ["netzwerk", "netz", "internet", "web", "webseite", "webseiten", "website", "lan", "wlan", "wifi", "vpn"],
+        "es": ["redes", "internet", "web", "sitio", "sitios", "wifi", "vpn"],
+        "fr": ["réseau", "réseaux", "internet", "web", "site", "sites", "siteweb", "lan", "wifi", "vpn"],
+        "it": ["rete", "reti", "internet", "web", "sito", "siti", "wifi", "vpn"],
+        "nl": ["netwerk", "internet", "web", "website", "websites", "site", "wifi", "vpn"],
+        "pl": ["sieć", "sieci", "internet", "strona", "strony", "wifi", "vpn"],
+        "pt-BR": ["rede", "redes", "internet", "web", "site", "sites", "wifi", "vpn"],
+        "pt-PT": ["rede", "redes", "internet", "web", "site", "sites", "wifi", "vpn"]
+      }
+    },
+    {
+      "emoji": "☁️",
+      "words": {
+        "en": ["cloud", "clouds"],
+        "de": ["cloud", "wolke"],
+        "es": ["nube", "cloud"],
+        "fr": ["cloud", "nuage"],
+        "it": ["cloud", "nuvola"],
+        "nl": ["cloud", "wolk"],
+        "pl": ["chmura", "cloud"],
+        "pt-BR": ["nuvem", "cloud"],
+        "pt-PT": ["nuvem", "cloud"]
+      }
+    },
+    {
+      "emoji": "💾",
+      "words": {
+        "en": ["backup", "backups", "save", "saves", "storage", "disk", "disks", "usb"],
+        "de": ["sicherung", "sicherungen", "backup", "backups", "datensicherung", "speicher", "festplatte", "usb"],
+        "es": ["copia", "copias", "backup", "respaldo", "respaldos", "almacenamiento", "disco", "usb"],
+        "fr": ["sauvegarde", "sauvegardes", "backup", "backups", "stockage", "disque", "disques", "usb"],
+        "it": ["backup", "salvataggio", "salvataggi", "copia", "archiviazione", "disco", "usb"],
+        "nl": ["backup", "backups", "reservekopie", "opslag", "schijf", "usb"],
+        "pl": ["kopia", "kopie", "backup", "magazyn", "dysk", "usb"],
+        "pt-BR": ["backup", "backups", "cópia", "cópias", "armazenamento", "disco", "usb"],
+        "pt-PT": ["backup", "backups", "cópia", "cópias", "armazenamento", "disco", "usb"]
+      }
+    },
+    {
+      "emoji": "🛢️",
+      "words": {
+        "en": ["database", "databases", "db", "sql", "data", "dataset", "datasets"],
+        "de": ["datenbank", "datenbanken", "db", "sql", "daten"],
+        "es": ["datos", "sql", "database"],
+        "fr": ["bdd", "db", "sql", "données", "database"],
+        "it": ["database", "db", "sql", "dati"],
+        "nl": ["database", "databases", "db", "sql", "data", "gegevens"],
+        "pl": ["baza", "bazy", "dane", "sql"],
+        "pt-BR": ["dados", "sql", "database"],
+        "pt-PT": ["dados", "sql", "database"]
+      }
+    },
+    {
+      "emoji": "💻",
+      "words": {
+        "en": ["code", "dev", "development", "developer", "programming", "coding", "src", "source", "sources", "repo", "repos", "git", "api"],
+        "de": ["code", "dev", "entwicklung", "programmierung", "quellcode", "git", "api"],
+        "es": ["código", "dev", "desarrollo", "programación", "fuentes", "git", "api"],
+        "fr": ["code", "dev", "développement", "programmation", "prog", "src", "source", "sources", "git", "api", "repo"],
+        "it": ["codice", "dev", "sviluppo", "programmazione", "sorgenti", "git", "api"],
+        "nl": ["code", "dev", "ontwikkeling", "programmeren", "broncode", "git", "api"],
+        "pl": ["kod", "dev", "rozwój", "programowanie", "źródła", "git", "api"],
+        "pt-BR": ["código", "dev", "desenvolvimento", "programação", "git", "api"],
+        "pt-PT": ["código", "dev", "desenvolvimento", "programação", "git", "api"]
+      }
+    },
+    {
+      "emoji": "💿",
+      "words": {
+        "en": ["software", "apps", "app", "application", "applications", "program", "programs", "installers", "setup", "install"],
+        "de": ["software", "programme", "programm", "anwendungen", "anwendung", "apps", "app", "installation", "setup"],
+        "es": ["software", "aplicaciones", "aplicación", "programas", "apps", "app", "instaladores"],
+        "fr": ["logiciel", "logiciels", "applications", "application", "appli", "applis", "app", "apps", "programme", "programmes", "installation", "setup"],
+        "it": ["software", "applicazioni", "applicazione", "programmi", "app", "installazione"],
+        "nl": ["software", "applicaties", "programma", "programmas", "apps", "app", "installatie"],
+        "pl": ["oprogramowanie", "aplikacje", "aplikacja", "programy", "instalki"],
+        "pt-BR": ["software", "programas", "apps", "app", "instaladores", "aplicativos", "aplicativo"],
+        "pt-PT": ["software", "programas", "apps", "app", "instaladores", "aplicações", "aplicação"]
+      }
+    },
+    {
+      "emoji": "📱",
+      "words": {
+        "en": ["phone", "phones", "mobile", "smartphone", "cellphone"],
+        "de": ["handy", "telefon", "smartphone", "mobil"],
+        "es": ["teléfono", "móvil", "celular", "smartphone"],
+        "fr": ["téléphone", "téléphones", "mobile", "portable", "smartphone"],
+        "it": ["telefono", "cellulare", "smartphone"],
+        "nl": ["telefoon", "mobiel", "smartphone", "gsm"],
+        "pl": ["telefon", "komórka", "smartfon"],
+        "pt-BR": ["telefone", "smartphone", "celular"],
+        "pt-PT": ["telefone", "smartphone", "telemóvel"]
+      }
+    },
+    {
+      "emoji": "📜",
+      "words": {
+        "en": ["script", "scripts", "automation", "macro", "macros", "batch", "shell", "bash", "powershell"],
+        "de": ["skript", "skripte", "script", "scripts", "automatisierung", "makro", "makros", "batch", "powershell"],
+        "es": ["script", "scripts", "automatización", "macro", "macros", "batch", "powershell"],
+        "fr": ["script", "scripts", "automatisation", "macro", "macros", "batch", "bash", "powershell"],
+        "it": ["script", "automazione", "macro", "batch", "powershell"],
+        "nl": ["script", "scripts", "automatisering", "macro", "macros", "batch", "powershell"],
+        "pl": ["skrypt", "skrypty", "automatyzacja", "makro", "makra", "powershell"],
+        "pt-BR": ["script", "scripts", "macro", "macros", "batch", "powershell", "automação"],
+        "pt-PT": ["script", "scripts", "macro", "macros", "batch", "powershell", "automatização"]
+      }
+    },
+    {
+      "emoji": "📋",
+      "words": {
+        "en": ["log", "logs", "logging", "trace", "traces"],
+        "de": ["log", "logs", "protokoll", "protokolle"],
+        "es": ["log", "logs", "registro", "registros", "trazas"],
+        "fr": ["log", "logs", "trace", "traces", "journalisation"],
+        "it": ["log", "registro", "registri"],
+        "nl": ["log", "logs", "logboek", "logbestanden"],
+        "pl": ["log", "logi", "dziennik", "dzienniki"],
+        "pt-BR": ["log", "logs", "registros", "registro"],
+        "pt-PT": ["log", "logs", "registros", "registo", "registos"]
+      }
+    },
+    {
+      "emoji": "🧪",
+      "words": {
+        "en": ["test", "tests", "testing", "qa", "lab", "sandbox", "experiment", "experiments"],
+        "de": ["test", "tests", "labor", "experiment", "experimente", "sandbox"],
+        "es": ["prueba", "pruebas", "test", "tests", "laboratorio", "experimento", "experimentos"],
+        "fr": ["test", "tests", "essai", "essais", "qa", "labo", "sandbox", "expérimentation", "expérimentations"],
+        "it": ["test", "prova", "prove", "laboratorio", "sperimentazione", "sandbox"],
+        "nl": ["test", "testen", "tests", "lab", "experiment", "experimenten"],
+        "pl": ["test", "testy", "testowanie", "laboratorium", "eksperymenty"],
+        "pt-BR": ["teste", "testes", "laboratório", "experimento", "experimentos"],
+        "pt-PT": ["teste", "testes", "laboratório"]
+      }
+    },
+    {
+      "emoji": "🔬",
+      "words": {
+        "en": ["research", "science", "sciences", "chemistry", "physics", "biology"],
+        "de": ["forschung", "wissenschaft", "chemie", "physik", "biologie"],
+        "es": ["investigación", "ciencia", "ciencias", "química", "física", "biología"],
+        "fr": ["recherche", "recherches", "science", "sciences", "chimie", "physique", "biologie"],
+        "it": ["ricerca", "scienza", "scienze", "chimica", "fisica", "biologia"],
+        "nl": ["onderzoek", "wetenschap", "scheikunde", "natuurkunde", "biologie"],
+        "pl": ["badania", "nauki", "chemia", "fizyka", "biologia"],
+        "pt-BR": ["pesquisa", "ciência", "ciências", "química", "física", "biologia"],
+        "pt-PT": ["pesquisa", "ciência", "ciências", "química", "física", "biologia", "investigação"]
+      }
+    },
+    {
+      "emoji": "🐛",
+      "words": {
+        "en": ["bug", "bugs", "issue", "issues", "incident", "incidents", "defect", "defects"],
+        "de": ["bug", "bugs", "fehler", "störung", "störungen"],
+        "es": ["bug", "bugs", "error", "errores", "fallo", "fallos", "incidencia", "incidencias"],
+        "fr": ["bug", "bugs", "bogue", "bogues", "anomalie", "anomalies", "incident", "incidents"],
+        "it": ["bug", "errore", "errori", "anomalia", "anomalie", "segnalazioni"],
+        "nl": ["bug", "bugs", "fout", "fouten", "storing", "storingen", "meldingen"],
+        "pl": ["bug", "bugi", "błąd", "błędy", "usterki", "zgłoszenia"],
+        "pt-BR": ["bug", "bugs", "erro", "erros", "incidente", "incidentes", "chamados"],
+        "pt-PT": ["bug", "bugs", "erro", "erros", "incidente", "incidentes"]
+      }
+    },
+    {
+      "emoji": "🛟",
+      "words": {
+        "en": ["support", "helpdesk", "help", "assistance", "servicedesk"],
+        "de": ["support", "hilfe", "kundendienst", "helpdesk"],
+        "es": ["soporte", "asistencia", "ayuda", "helpdesk"],
+        "fr": ["support", "assistance", "hotline", "sav", "helpdesk", "dépannage", "aide"],
+        "it": ["supporto", "assistenza", "aiuto", "helpdesk"],
+        "nl": ["ondersteuning", "support", "helpdesk", "hulp", "klantenservice"],
+        "pl": ["wsparcie", "pomoc", "serwis", "helpdesk"],
+        "pt-BR": ["suporte", "assistência", "ajuda", "helpdesk", "atendimento"],
+        "pt-PT": ["suporte", "assistência", "ajuda", "helpdesk", "atendimento"]
+      }
+    },
+    {
+      "emoji": "🎨",
+      "words": {
+        "en": ["design", "designs", "graphics", "mockup", "mockups", "ui", "ux", "wireframes", "branding", "logo", "logos"],
+        "de": ["design", "grafik", "grafiken", "mockup", "mockups", "gestaltung", "ui", "ux", "logo", "logos"],
+        "es": ["diseño", "diseños", "maqueta", "maquetas", "ui", "ux", "logo", "logos"],
+        "fr": ["design", "graphisme", "maquette", "maquettes", "création", "créations", "ui", "ux", "logo", "logos", "charte"],
+        "it": ["design", "grafica", "grafiche", "mockup", "ui", "ux", "logo", "loghi"],
+        "nl": ["ontwerp", "ontwerpen", "vormgeving", "design", "ui", "ux", "logo", "logos"],
+        "pl": ["grafika", "projektowanie", "makieta", "makiety", "ui", "ux", "logo", "design"],
+        "pt-BR": ["design", "layout", "layouts", "ui", "ux", "logo", "logos", "criação", "criações", "maquete"],
+        "pt-PT": ["design", "layout", "layouts", "ui", "ux", "logo", "logos", "criação", "criações", "maqueta"]
+      }
+    },
+    {
+      "emoji": "🖌️",
+      "words": {
+        "en": ["art", "arts", "painting", "paintings", "drawing", "drawings", "illustration", "illustrations", "artwork"],
+        "de": ["kunst", "malerei", "zeichnung", "zeichnungen", "illustration", "illustrationen"],
+        "es": ["arte", "pintura", "pinturas", "dibujo", "dibujos", "ilustración", "ilustraciones"],
+        "fr": ["art", "arts", "peinture", "peintures", "dessin", "dessins", "illustration", "illustrations"],
+        "it": ["arte", "pittura", "disegno", "disegni", "illustrazione", "illustrazioni"],
+        "nl": ["kunst", "schilderij", "schilderijen", "tekening", "tekeningen", "illustratie"],
+        "pl": ["sztuka", "malarstwo", "rysunek", "rysunki", "ilustracje"],
+        "pt-BR": ["arte", "pintura", "desenho", "desenhos", "ilustração", "ilustrações"],
+        "pt-PT": ["arte", "pintura", "desenho", "desenhos", "ilustração", "ilustrações"]
+      }
+    },
+    {
+      "emoji": "🖼️",
+      "words": {
+        "en": ["image", "images", "img", "picture", "pictures", "pic", "pics", "wallpaper", "wallpapers", "screenshot", "screenshots"],
+        "de": ["bild", "bilder", "screenshot", "screenshots", "bildschirmfotos", "hintergrundbilder"],
+        "es": ["imagen", "imágenes", "img", "capturas", "fondos"],
+        "fr": ["image", "images", "img", "capture", "captures", "wallpaper", "wallpapers"],
+        "it": ["immagine", "immagini", "sfondo", "sfondi", "screenshot"],
+        "nl": ["afbeelding", "afbeeldingen", "plaatjes", "schermafbeeldingen", "achtergronden"],
+        "pl": ["obraz", "obrazy", "obrazki", "tapety", "zrzuty"],
+        "pt-BR": ["imagem", "imagens", "capturas", "wallpapers"],
+        "pt-PT": ["imagem", "imagens", "capturas", "wallpapers"]
+      }
+    },
+    {
+      "emoji": "📷",
+      "words": {
+        "en": ["photo", "photos", "photography"],
+        "de": ["foto", "fotos", "photos", "fotografie"],
+        "es": ["foto", "fotos", "fotografía", "fotografías"],
+        "fr": ["photo", "photos", "photographie", "photographies"],
+        "it": ["foto", "fotografia", "fotografie"],
+        "nl": ["foto", "fotos", "fotografie"],
+        "pl": ["zdjęcie", "zdjęcia", "fotografia", "foto", "fotki"],
+        "pt-BR": ["foto", "fotos", "fotografia", "fotografias"],
+        "pt-PT": ["foto", "fotos", "fotografia", "fotografias"]
+      }
+    },
+    {
+      "emoji": "📹",
+      "words": {
+        "en": ["video", "videos", "clip", "clips", "footage", "recordings"],
+        "de": ["video", "videos", "clips", "aufnahmen"],
+        "es": ["vídeo", "vídeos", "clip", "clips", "grabaciones"],
+        "fr": ["vidéo", "vidéos", "clip", "clips", "tournage", "tournages"],
+        "it": ["video", "clip", "filmati", "registrazioni"],
+        "nl": ["video", "videos", "clips", "opnames"],
+        "pl": ["wideo", "klipy", "nagrania"],
+        "pt-BR": ["vídeo", "vídeos", "clipe", "clipes", "gravações"],
+        "pt-PT": ["vídeo", "vídeos", "clipe", "clipes", "gravações"]
+      }
+    },
+    {
+      "emoji": "🎬",
+      "words": {
+        "en": ["movie", "movies", "film", "films", "cinema"],
+        "de": ["film", "filme", "kino"],
+        "es": ["película", "películas", "peli", "pelis", "cine"],
+        "fr": ["film", "films", "cinéma", "ciné"],
+        "it": ["film", "cinema"],
+        "nl": ["film", "films", "bioscoop"],
+        "pl": ["film", "filmy", "kino"],
+        "pt-BR": ["filme", "filmes", "cinema"],
+        "pt-PT": ["filme", "filmes", "cinema"]
+      }
+    },
+    {
+      "emoji": "📺",
+      "words": {
+        "en": ["series", "show", "shows", "tv", "television", "episodes"],
+        "de": ["serie", "serien", "fernsehen", "tv", "sendungen"],
+        "es": ["serie", "series", "tele", "televisión", "tv"],
+        "fr": ["série", "séries", "tv", "télé", "télévision", "émission", "émissions", "replay"],
+        "it": ["serie", "tv", "televisione", "telefilm"],
+        "nl": ["serie", "series", "televisie", "tv"],
+        "pl": ["serial", "seriale", "telewizja", "tv"],
+        "pt-BR": ["série", "séries", "tv", "televisão", "novelas"],
+        "pt-PT": ["série", "séries", "tv", "televisão", "novelas"]
+      }
+    },
+    {
+      "emoji": "🎵",
+      "words": {
+        "en": ["music", "songs", "song", "mp3", "playlist", "playlists", "album", "albums"],
+        "de": ["musik", "lieder", "songs", "mp3", "playlist", "playlists", "alben"],
+        "es": ["música", "canción", "canciones", "mp3", "playlist", "álbumes"],
+        "fr": ["musique", "musiques", "chanson", "chansons", "mp3", "playlist", "playlists", "album", "albums"],
+        "it": ["musica", "canzone", "canzoni", "brani", "mp3", "playlist", "album"],
+        "nl": ["muziek", "liedjes", "mp3", "playlist", "afspeellijst"],
+        "pl": ["muzyka", "piosenki", "utwory", "mp3", "playlista"],
+        "pt-BR": ["música", "músicas", "mp3", "playlist", "álbuns", "canções"],
+        "pt-PT": ["música", "músicas", "mp3", "playlist", "álbuns", "canções"]
+      }
+    },
+    {
+      "emoji": "🎧",
+      "words": {
+        "en": ["podcast", "podcasts", "audio", "audiobooks", "sound", "sounds"],
+        "de": ["podcast", "podcasts", "audio", "hörbücher", "hörbuch"],
+        "es": ["podcast", "podcasts", "audio", "audios", "audiolibros"],
+        "fr": ["podcast", "podcasts", "audio", "audios"],
+        "it": ["podcast", "audio", "audiolibri"],
+        "nl": ["podcast", "podcasts", "audio", "luisterboeken"],
+        "pl": ["podcast", "podcasty", "audio", "audiobooki"],
+        "pt-BR": ["podcast", "podcasts", "áudio", "áudios", "audiolivros"],
+        "pt-PT": ["podcast", "podcasts", "áudio", "áudios", "audiolivros"]
+      }
+    },
+    {
+      "emoji": "🎮",
+      "words": {
+        "en": ["game", "games", "gaming"],
+        "de": ["spiel", "spiele", "games", "gaming"],
+        "es": ["juego", "juegos", "gaming"],
+        "fr": ["jeu", "jeux", "gaming", "jv"],
+        "it": ["gioco", "giochi", "videogiochi", "gaming"],
+        "nl": ["spel", "spellen", "games", "gaming"],
+        "pl": ["gra", "gry", "gaming"],
+        "pt-BR": ["jogo", "jogos", "games"],
+        "pt-PT": ["jogo", "jogos", "games"]
+      }
+    },
+    {
+      "emoji": "📚",
+      "words": {
+        "en": ["book", "books", "ebook", "ebooks", "reading", "library", "novels"],
+        "de": ["buch", "bücher", "bibliothek", "ebook", "ebooks", "lektüre", "romane"],
+        "es": ["libro", "libros", "lectura", "biblioteca", "ebooks", "novelas"],
+        "fr": ["livre", "livres", "lecture", "lectures", "bibliothèque", "ebook", "ebooks", "bd", "roman", "romans"],
+        "it": ["libro", "libri", "lettura", "biblioteca", "ebook", "romanzi"],
+        "nl": ["boek", "boeken", "bibliotheek", "ebooks", "romans"],
+        "pl": ["książka", "książki", "biblioteka", "ebooki", "lektury"],
+        "pt-BR": ["livro", "livros", "leitura", "biblioteca", "ebooks"],
+        "pt-PT": ["livro", "livros", "leitura", "biblioteca", "ebooks", "romances"]
+      }
+    },
+    {
+      "emoji": "🏫",
+      "words": {
+        "en": ["school", "schools", "homework"],
+        "de": ["schule", "schulen", "hausaufgaben"],
+        "es": ["escuela", "colegio", "escolar", "deberes"],
+        "fr": ["école", "écoles", "scolaire", "collège", "lycée", "devoirs", "maternelle"],
+        "it": ["scuola", "scuole", "scolastico", "liceo", "compiti"],
+        "nl": ["school", "scholen", "huiswerk", "basisschool"],
+        "pl": ["szkoła", "szkoły", "szkolne", "liceum"],
+        "pt-BR": ["escola", "escolas", "colégio", "escolar"],
+        "pt-PT": ["escola", "escolas", "colégio", "escolar"]
+      }
+    },
+    {
+      "emoji": "🎓",
+      "words": {
+        "en": ["course", "courses", "training", "study", "studies", "university", "uni", "learning", "lesson", "lessons", "exam", "exams", "education", "college"],
+        "de": ["kurs", "kurse", "schulung", "schulungen", "studium", "uni", "universität", "weiterbildung", "lernen", "prüfungen"],
+        "es": ["curso", "cursos", "formación", "estudios", "universidad", "uni", "aprendizaje", "clases", "exámenes"],
+        "fr": ["cours", "formation", "formations", "étude", "études", "université", "fac", "apprentissage", "révisions", "examen", "examens"],
+        "it": ["corso", "corsi", "formazione", "studio", "studi", "università", "uni", "esami", "lezioni"],
+        "nl": ["cursus", "cursussen", "opleiding", "opleidingen", "studie", "universiteit", "uni", "tentamens"],
+        "pl": ["kurs", "kursy", "szkolenie", "szkolenia", "studia", "uczelnia", "nauka", "egzaminy"],
+        "pt-BR": ["curso", "cursos", "formação", "estudos", "universidade", "aulas", "faculdade", "treinamento"],
+        "pt-PT": ["curso", "cursos", "formação", "estudos", "universidade", "aulas", "faculdade"]
+      }
+    },
+    {
+      "emoji": "🩺",
+      "words": {
+        "en": ["health", "medical", "doctor", "doctors", "healthcare", "hospital", "dentist"],
+        "de": ["gesundheit", "arzt", "ärzte", "medizin", "medizinisch", "krankenhaus", "befunde", "zahnarzt"],
+        "es": ["salud", "médico", "médicos", "hospital", "dentista"],
+        "fr": ["santé", "médical", "médicale", "médecin", "médecins", "docteur", "hôpital", "soins", "dentiste"],
+        "it": ["salute", "medico", "medici", "ospedale", "sanità", "dentista"],
+        "nl": ["gezondheid", "medisch", "dokter", "huisarts", "ziekenhuis", "zorg", "tandarts"],
+        "pl": ["zdrowie", "lekarz", "lekarze", "medyczne", "szpital", "dentysta"],
+        "pt-BR": ["saúde", "médico", "médicos", "hospital", "dentista", "exames"],
+        "pt-PT": ["saúde", "médico", "médicos", "hospital", "dentista", "exames"]
+      }
+    },
+    {
+      "emoji": "💊",
+      "words": {
+        "en": ["pharmacy", "medicine", "medicines", "medication", "prescriptions"],
+        "de": ["apotheke", "medikamente", "medikament"],
+        "es": ["farmacia", "medicamento", "medicamentos"],
+        "fr": ["pharmacie", "médicament", "médicaments", "ordonnance", "ordonnances"],
+        "it": ["farmacia", "farmaci", "farmaco", "medicinali"],
+        "nl": ["apotheek", "medicijnen", "medicatie"],
+        "pl": ["apteka", "leki", "lek", "recepty"],
+        "pt-BR": ["farmácia", "medicamento", "medicamentos", "remédios"],
+        "pt-PT": ["farmácia", "medicamento", "medicamentos", "remédios"]
+      }
+    },
+    {
+      "emoji": "⚽",
+      "words": {
+        "en": ["sport", "sports", "fitness", "gym", "workout", "football"],
+        "de": ["sport", "training", "fitness", "fußball", "gym"],
+        "es": ["deporte", "deportes", "gimnasio", "gym", "fitness", "entrenamiento", "fútbol"],
+        "fr": ["sport", "sports", "sportif", "entraînement", "muscu", "musculation", "fitness", "gym", "foot", "football"],
+        "it": ["sport", "palestra", "allenamento", "fitness", "calcio"],
+        "nl": ["sport", "sporten", "fitness", "training", "gym", "voetbal"],
+        "pl": ["sport", "siłownia", "trening", "fitness", "piłka"],
+        "pt-BR": ["fitness", "futebol", "treino", "esporte", "esportes", "academia"],
+        "pt-PT": ["fitness", "futebol", "treino", "desporto", "desportos", "ginásio"]
+      }
+    },
+    {
+      "emoji": "✈️",
+      "words": {
+        "en": ["travel", "travels", "trip", "trips", "flight", "flights", "journey"],
+        "de": ["reise", "reisen", "flug", "flüge", "dienstreise"],
+        "es": ["viaje", "viajes", "vuelo", "vuelos"],
+        "fr": ["voyage", "voyages", "déplacement", "déplacements"],
+        "it": ["viaggio", "viaggi", "volo", "voli", "trasferta"],
+        "nl": ["reis", "reizen", "vlucht", "vluchten"],
+        "pl": ["podróż", "podróże", "wyjazd", "wyjazdy", "loty"],
+        "pt-BR": ["viagem", "viagens", "voo", "voos"],
+        "pt-PT": ["viagem", "viagens", "voo", "voos"]
+      }
+    },
+    {
+      "emoji": "🏖️",
+      "words": {
+        "en": ["vacation", "vacations", "holiday", "holidays", "beach"],
+        "de": ["urlaub", "ferien", "strand"],
+        "es": ["vacaciones", "playa"],
+        "fr": ["vacances", "congés", "séjour", "séjours", "plage"],
+        "it": ["vacanza", "vacanze", "ferie", "spiaggia"],
+        "nl": ["vakantie", "vakanties", "strand"],
+        "pl": ["wakacje", "urlop", "plaża"],
+        "pt-BR": ["férias", "praia"],
+        "pt-PT": ["férias", "praia"]
+      }
+    },
+    {
+      "emoji": "🗺️",
+      "words": {
+        "en": ["map", "maps", "geo", "gps", "geography"],
+        "de": ["karte", "karten", "landkarte", "landkarten", "geo", "gps"],
+        "es": ["mapa", "mapas", "geografía", "gps"],
+        "fr": ["géo", "géographie", "cartographie", "gps"],
+        "it": ["mappa", "mappe", "cartina", "geografia", "gps"],
+        "nl": ["kaart", "kaarten", "landkaart", "plattegrond", "gps"],
+        "pl": ["mapa", "mapy", "geografia", "gps"],
+        "pt-BR": ["mapa", "mapas", "geografia", "gps"],
+        "pt-PT": ["mapa", "mapas", "geografia", "gps"]
+      }
+    },
+    {
+      "emoji": "🏨",
+      "words": {
+        "en": ["hotel", "hotels", "accommodation", "booking", "bookings"],
+        "de": ["hotel", "hotels", "unterkunft", "buchung", "buchungen"],
+        "es": ["hotel", "hoteles", "alojamiento", "reservas"],
+        "fr": ["hôtel", "hôtels", "réservation", "réservations"],
+        "it": ["hotel", "albergo", "alberghi", "prenotazione", "prenotazioni"],
+        "nl": ["hotel", "hotels", "accommodatie", "boeking", "boekingen"],
+        "pl": ["hotel", "hotele", "noclegi", "rezerwacje"],
+        "pt-BR": ["hotel", "hotéis", "reservas", "hospedagem"],
+        "pt-PT": ["hotel", "hotéis", "reservas", "alojamento"]
+      }
+    },
+    {
+      "emoji": "🍳",
+      "words": {
+        "en": ["cooking", "cook", "kitchen", "recipe", "recipes", "cuisine"],
+        "de": ["kochen", "küche", "rezept", "rezepte", "kochbuch"],
+        "es": ["cocina", "cocinar", "receta", "recetas"],
+        "fr": ["cuisine", "cuisiner", "recette", "recettes", "plat", "plats"],
+        "it": ["cucina", "cucinare", "ricetta", "ricette"],
+        "nl": ["koken", "keuken", "recept", "recepten", "kookboek"],
+        "pl": ["gotowanie", "kuchnia", "przepis", "przepisy"],
+        "pt-BR": ["cozinha", "culinária", "receita", "receitas"],
+        "pt-PT": ["cozinha", "culinária", "receita", "receitas"]
+      }
+    },
+    {
+      "emoji": "🍽️",
+      "words": {
+        "en": ["food", "restaurant", "restaurants", "meal", "meals", "dining", "nutrition"],
+        "de": ["essen", "restaurant", "restaurants", "lebensmittel", "ernährung"],
+        "es": ["comida", "comidas", "restaurante", "restaurantes", "alimentación", "nutrición"],
+        "fr": ["restaurant", "restaurants", "resto", "restos", "repas", "nourriture", "bouffe", "alimentation", "nutrition", "régime"],
+        "it": ["cibo", "ristorante", "ristoranti", "pasti", "alimentazione", "nutrizione"],
+        "nl": ["eten", "restaurant", "restaurants", "maaltijden", "voeding"],
+        "pl": ["jedzenie", "restauracja", "restauracje", "posiłki", "dieta"],
+        "pt-BR": ["comida", "restaurante", "restaurantes", "refeições", "alimentação"],
+        "pt-PT": ["comida", "restaurante", "restaurantes", "refeições", "alimentação"]
+      }
+    },
+    {
+      "emoji": "🍷",
+      "words": {
+        "en": ["wine", "wines", "drinks", "cellar", "beer"],
+        "de": ["wein", "weine", "getränke", "weinkeller", "bier"],
+        "es": ["vino", "vinos", "bebidas", "bodega", "cerveza"],
+        "fr": ["vin", "vins", "cave", "boissons", "apéro", "bière", "bières"],
+        "it": ["vino", "vini", "bevande", "cantina", "birra"],
+        "nl": ["wijn", "wijnen", "dranken", "bier"],
+        "pl": ["wino", "wina", "napoje", "piwo"],
+        "pt-BR": ["vinho", "vinhos", "bebidas", "adega", "cerveja"],
+        "pt-PT": ["vinho", "vinhos", "bebidas", "adega", "cerveja"]
+      }
+    },
+    {
+      "emoji": "🛒",
+      "words": {
+        "en": ["shopping", "purchase", "purchases", "groceries", "order", "orders", "cart", "buy"],
+        "de": ["einkauf", "einkäufe", "einkaufen", "bestellung", "bestellungen", "shopping"],
+        "es": ["compra", "compras", "pedido", "pedidos", "shopping"],
+        "fr": ["courses", "achat", "achats", "shopping", "commande", "commandes"],
+        "it": ["acquisto", "acquisti", "spesa", "ordini", "shopping"],
+        "nl": ["boodschappen", "aankopen", "inkoop", "bestelling", "bestellingen", "shopping"],
+        "pl": ["zakupy", "zamówienie", "zamówienia"],
+        "pt-BR": ["compra", "compras", "pedido", "pedidos", "shopping"],
+        "pt-PT": ["compra", "compras", "pedido", "pedidos", "shopping", "encomendas"]
+      }
+    },
+    {
+      "emoji": "🏷️",
+      "words": {
+        "en": ["sales", "sale", "selling", "commercial", "crm", "leads", "quotes", "pricing", "prices"],
+        "de": ["vertrieb", "verkauf", "angebot", "angebote", "crm", "preise", "preisliste"],
+        "es": ["venta", "ventas", "comercial", "crm", "cotizaciones", "precios", "tarifas"],
+        "fr": ["vente", "ventes", "commercial", "commerciale", "devis", "prospects", "prospection", "crm", "tarif", "tarifs", "prix"],
+        "it": ["vendita", "vendite", "commerciale", "crm", "preventivo", "preventivi", "prezzi", "tariffe", "listino"],
+        "nl": ["verkoop", "sales", "offerte", "offertes", "crm", "prijzen", "tarieven", "prijslijst"],
+        "pl": ["sprzedaż", "handel", "oferta", "oferty", "crm", "ceny", "cennik"],
+        "pt-BR": ["venda", "vendas", "comercial", "crm", "preços", "tarifas", "cotações"],
+        "pt-PT": ["venda", "vendas", "comercial", "crm", "preços", "tarifas", "cotações"]
+      }
+    },
+    {
+      "emoji": "🛍️",
+      "words": {
+        "en": ["shop", "shops", "store", "stores", "eshop", "ecommerce", "webshop"],
+        "de": ["shop", "shops", "laden", "onlineshop", "ecommerce"],
+        "es": ["tienda", "tiendas", "ecommerce"],
+        "fr": ["boutique", "boutiques", "magasin", "magasins", "eshop", "ecommerce"],
+        "it": ["negozio", "negozi", "ecommerce"],
+        "nl": ["winkel", "winkels", "webshop", "webwinkel"],
+        "pl": ["sklep", "sklepy", "ecommerce"],
+        "pt-BR": ["loja", "lojas", "ecommerce"],
+        "pt-PT": ["loja", "lojas", "ecommerce"]
+      }
+    },
+    {
+      "emoji": "📣",
+      "words": {
+        "en": ["marketing", "communication", "communications", "comms", "ads", "advertising", "campaign", "campaigns"],
+        "de": ["marketing", "kommunikation", "werbung", "kampagne", "kampagnen"],
+        "es": ["marketing", "comunicación", "publicidad", "campaña", "campañas"],
+        "fr": ["marketing", "communication", "pub", "publicité", "campagne", "campagnes", "comm"],
+        "it": ["marketing", "comunicazione", "pubblicità", "campagna", "campagne"],
+        "nl": ["marketing", "communicatie", "reclame", "campagne", "campagnes"],
+        "pl": ["marketing", "komunikacja", "reklama", "reklamy", "kampania", "kampanie"],
+        "pt-BR": ["marketing", "comunicação", "publicidade", "campanha", "campanhas"],
+        "pt-PT": ["marketing", "comunicação", "publicidade", "campanha", "campanhas"]
+      }
+    },
+    {
+      "emoji": "👪",
+      "words": {
+        "en": ["family", "families", "genealogy", "relatives", "parents"],
+        "de": ["familie", "familien", "verwandte", "eltern", "genealogie"],
+        "es": ["familia", "familiar", "padres", "genealogía"],
+        "fr": ["famille", "familial", "familiale", "parents", "généalogie"],
+        "it": ["famiglia", "parenti", "genitori", "genealogia"],
+        "nl": ["familie", "gezin", "ouders", "genealogie"],
+        "pl": ["rodzina", "rodzinne", "rodzice", "genealogia"],
+        "pt-BR": ["família", "pais", "genealogia"],
+        "pt-PT": ["família", "pais", "genealogia"]
+      }
+    },
+    {
+      "emoji": "🧸",
+      "words": {
+        "en": ["kids", "kid", "children", "child", "toys"],
+        "de": ["kinder", "kind", "spielzeug"],
+        "es": ["niño", "niños", "hijos", "hijo", "hija", "hijas", "juguetes"],
+        "fr": ["enfant", "enfants", "gamins", "gosses", "jouet", "jouets"],
+        "it": ["bambini", "bambino", "figli", "figlio", "giocattoli"],
+        "nl": ["kinderen", "kind", "kids", "speelgoed"],
+        "pl": ["dzieci", "dziecko", "zabawki"],
+        "pt-BR": ["filhos", "filho", "filha", "brinquedos", "crianças", "criança"],
+        "pt-PT": ["filhos", "filho", "filha", "brinquedos", "crianças", "criança", "miúdos"]
+      }
+    },
+    {
+      "emoji": "👶",
+      "words": {
+        "en": ["baby", "babies", "pregnancy", "newborn"],
+        "de": ["baby", "schwangerschaft", "geburt"],
+        "es": ["bebé", "embarazo", "nacimiento"],
+        "fr": ["bébé", "bébés", "naissance", "grossesse"],
+        "it": ["bebè", "neonato", "gravidanza", "nascita"],
+        "nl": ["baby", "zwangerschap", "geboorte"],
+        "pl": ["niemowlę", "ciąża", "narodziny"],
+        "pt-BR": ["gravidez", "nascimento", "bebê"],
+        "pt-PT": ["gravidez", "nascimento", "bebé"]
+      }
+    },
+    {
+      "emoji": "🏠",
+      "words": {
+        "en": ["home", "house", "household", "apartment"],
+        "de": ["haus", "zuhause", "wohnung", "haushalt", "heim"],
+        "es": ["casa", "hogar", "vivienda", "apartamento"],
+        "fr": ["maison", "domicile", "foyer", "logement", "appart", "appartement"],
+        "it": ["casa", "abitazione", "appartamento"],
+        "nl": ["huis", "thuis", "woning", "appartement", "huishouden"],
+        "pl": ["dom", "mieszkanie", "domowe"],
+        "pt-BR": ["casa", "lar", "residência", "apartamento"],
+        "pt-PT": ["casa", "lar", "residência", "apartamento", "moradia"]
+      }
+    },
+    {
+      "emoji": "🏡",
+      "words": {
+        "en": ["property", "rent", "mortgage", "lease", "realestate", "landlord"],
+        "de": ["immobilien", "miete", "mietvertrag", "hypothek", "eigentum"],
+        "es": ["inmobiliaria", "alquiler", "hipoteca", "inmueble", "propiedad"],
+        "fr": ["immobilier", "immo", "loyer", "loyers", "bail", "propriétaire", "hypothèque"],
+        "it": ["immobili", "immobiliare", "affitto", "mutuo", "proprietà"],
+        "nl": ["vastgoed", "huur", "hypotheek", "makelaar"],
+        "pl": ["nieruchomości", "czynsz", "najem", "hipoteka"],
+        "pt-BR": ["imóveis", "imóvel", "hipoteca", "aluguel"],
+        "pt-PT": ["imóveis", "imóvel", "hipoteca", "arrendamento", "renda"]
+      }
+    },
+    {
+      "emoji": "🔨",
+      "words": {
+        "en": ["diy", "renovation", "repairs", "repair"],
+        "de": ["heimwerken", "renovierung", "reparatur", "reparaturen"],
+        "es": ["bricolaje", "reformas", "reparaciones", "obras"],
+        "fr": ["bricolage", "travaux", "rénovation", "réparation", "réparations", "déco", "décoration"],
+        "it": ["bricolage", "ristrutturazione", "riparazioni"],
+        "nl": ["klussen", "verbouwing", "renovatie", "reparaties"],
+        "pl": ["remont", "majsterkowanie", "naprawy"],
+        "pt-BR": ["obras", "reparações", "reformas", "reparos", "bricolagem"],
+        "pt-PT": ["obras", "reparações", "bricolagem"]
+      }
+    },
+    {
+      "emoji": "🚧",
+      "words": {
+        "en": ["wip", "construction"],
+        "de": ["wip", "baustelle"],
+        "es": ["wip", "construcción"],
+        "fr": ["wip", "chantier", "chantiers"],
+        "it": ["wip", "cantiere"],
+        "nl": ["wip", "bouw"],
+        "pl": ["wip", "budowa"],
+        "pt-BR": ["wip", "construção"],
+        "pt-PT": ["wip", "construção"]
+      }
+    },
+    {
+      "emoji": "🌱",
+      "words": {
+        "en": ["garden", "gardening", "plant", "plants", "yard"],
+        "de": ["garten", "gartenarbeit", "pflanzen"],
+        "es": ["jardín", "jardinería", "plantas", "huerto"],
+        "fr": ["jardin", "jardinage", "potager", "plante", "plantes"],
+        "it": ["giardino", "giardinaggio", "piante", "orto"],
+        "nl": ["tuin", "tuinieren", "planten", "moestuin"],
+        "pl": ["ogród", "ogródek", "rośliny", "działka"],
+        "pt-BR": ["jardim", "jardinagem", "plantas", "horta"],
+        "pt-PT": ["jardim", "jardinagem", "plantas", "horta"]
+      }
+    },
+    {
+      "emoji": "🚗",
+      "words": {
+        "en": ["car", "cars", "auto", "vehicle", "vehicles", "automotive"],
+        "de": ["auto", "autos", "fahrzeug", "fahrzeuge", "wagen", "kfz"],
+        "es": ["coche", "coches", "auto", "carro", "vehículo", "vehículos"],
+        "fr": ["voiture", "voitures", "auto", "autos", "automobile", "véhicule", "véhicules", "garage"],
+        "it": ["auto", "macchina", "automobile", "veicolo", "veicoli"],
+        "nl": ["auto", "autos", "wagen", "voertuig"],
+        "pl": ["samochód", "samochody", "auto", "pojazd"],
+        "pt-BR": ["carro", "carros", "automóvel", "veículo", "veículos", "auto"],
+        "pt-PT": ["carro", "carros", "automóvel", "veículo", "veículos", "auto"]
+      }
+    },
+    {
+      "emoji": "🚲",
+      "words": {
+        "en": ["bike", "bikes", "bicycle", "cycling"],
+        "de": ["fahrrad", "rad", "radfahren"],
+        "es": ["bici", "bicicleta", "ciclismo"],
+        "fr": ["vélo", "vélos", "cyclisme", "vtt"],
+        "it": ["bici", "bicicletta", "ciclismo"],
+        "nl": ["fiets", "fietsen", "wielrennen"],
+        "pl": ["rower", "rowery", "kolarstwo"],
+        "pt-BR": ["bicicleta", "bike", "ciclismo"],
+        "pt-PT": ["bicicleta", "bike", "ciclismo"]
+      }
+    },
+    {
+      "emoji": "🏍️",
+      "words": {
+        "en": ["motorcycle", "motorbike", "moto"],
+        "de": ["motorrad"],
+        "es": ["moto", "motos"],
+        "fr": ["moto", "motos"],
+        "it": ["moto"],
+        "nl": ["motorfiets"],
+        "pl": ["motocykl"],
+        "pt-BR": ["moto", "motos"],
+        "pt-PT": ["moto", "motos", "mota"]
+      }
+    },
+    {
+      "emoji": "🚄",
+      "words": {
+        "en": ["transport", "transportation", "commute", "train", "trains", "transit"],
+        "de": ["transport", "bahn", "zug", "verkehr"],
+        "es": ["transporte", "tren", "trenes", "metro"],
+        "fr": ["transport", "transports", "métro", "train", "trains"],
+        "it": ["trasporti", "treno", "treni", "metro"],
+        "nl": ["vervoer", "trein", "treinen"],
+        "pl": ["transport", "pociąg", "pociągi"],
+        "pt-BR": ["transporte", "transportes", "metrô", "metro", "trem"],
+        "pt-PT": ["transporte", "transportes", "metrô", "metro", "comboio"]
+      }
+    },
+    {
+      "emoji": "🚚",
+      "words": {
+        "en": ["delivery", "deliveries", "shipping", "logistics", "parcels", "shipments", "moving", "relocation"],
+        "de": ["lieferung", "lieferungen", "versand", "logistik", "pakete", "umzug"],
+        "es": ["envíos", "entregas", "logística", "paquetes", "mudanza"],
+        "fr": ["livraison", "livraisons", "colis", "expédition", "expéditions", "logistique", "déménagement"],
+        "it": ["spedizioni", "consegne", "logistica", "pacchi", "trasloco"],
+        "nl": ["levering", "leveringen", "verzending", "logistiek", "pakketten", "verhuizing"],
+        "pl": ["dostawy", "wysyłka", "przesyłki", "logistyka", "paczki", "przeprowadzka"],
+        "pt-BR": ["entregas", "envios", "logística", "pacotes", "mudança"],
+        "pt-PT": ["entregas", "envios", "logística", "pacotes", "mudança"]
+      }
+    },
+    {
+      "emoji": "⚡",
+      "words": {
+        "en": ["energy", "electricity"],
+        "de": ["energie", "strom"],
+        "es": ["energía", "electricidad"],
+        "fr": ["énergie", "électricité"],
+        "it": ["energia", "elettricità"],
+        "nl": ["energie", "stroom", "elektriciteit"],
+        "pl": ["energia", "prąd"],
+        "pt-BR": ["energia", "eletricidade"],
+        "pt-PT": ["energia", "electricidade"]
+      }
+    },
+    {
+      "emoji": "🧰",
+      "words": {
+        "en": ["tool", "tools", "utility", "utilities", "toolbox", "toolkit"],
+        "de": ["werkzeug", "werkzeuge", "tools", "hilfsmittel"],
+        "es": ["herramienta", "herramientas", "utilidades"],
+        "fr": ["outil", "outils", "utilitaire", "utilitaires"],
+        "it": ["strumento", "strumenti", "utilità", "attrezzi", "tool"],
+        "nl": ["gereedschap", "tools", "hulpmiddelen"],
+        "pl": ["narzędzie", "narzędzia"],
+        "pt-BR": ["ferramenta", "ferramentas", "utilitários"],
+        "pt-PT": ["ferramenta", "ferramentas", "utilitários"]
+      }
+    },
+    {
+      "emoji": "🔧",
+      "words": {
+        "en": ["maintenance", "troubleshooting", "hotfix", "fixes"],
+        "de": ["wartung", "instandhaltung"],
+        "es": ["mantenimiento"],
+        "fr": ["maintenance", "entretien"],
+        "it": ["manutenzione"],
+        "nl": ["onderhoud"],
+        "pl": ["konserwacja"],
+        "pt-BR": ["manutenção"],
+        "pt-PT": ["manutenção"]
+      }
+    },
+    {
+      "emoji": "⭐",
+      "words": {
+        "en": ["favorites", "favourites", "favorite", "favourite", "starred"],
+        "de": ["favoriten", "favorit"],
+        "es": ["favoritos", "favorito"],
+        "fr": ["favori", "favoris", "préféré", "préférés"],
+        "it": ["preferiti", "preferito"],
+        "nl": ["favorieten", "favoriet"],
+        "pl": ["ulubione", "ulubiony"],
+        "pt-BR": ["favoritos", "favorito"],
+        "pt-PT": ["favoritos", "favorito"]
+      }
+    },
+    {
+      "emoji": "🔗",
+      "words": {
+        "en": ["link", "links", "bookmark", "bookmarks", "shortcut", "shortcuts", "url", "urls"],
+        "de": ["link", "links", "lesezeichen", "verknüpfung", "verknüpfungen", "url"],
+        "es": ["enlace", "enlaces", "marcadores", "atajos", "url"],
+        "fr": ["lien", "liens", "signet", "signets", "raccourci", "raccourcis", "url", "urls"],
+        "it": ["link", "collegamento", "collegamenti", "segnalibri", "url"],
+        "nl": ["links", "koppelingen", "snelkoppelingen", "bladwijzers", "url"],
+        "pl": ["link", "linki", "zakładki", "skróty", "url"],
+        "pt-BR": ["link", "links", "atalhos", "url", "marcadores"],
+        "pt-PT": ["link", "links", "atalhos", "url", "marcadores"]
+      }
+    },
+    {
+      "emoji": "🧺",
+      "words": {
+        "en": ["misc", "miscellaneous", "various", "stuff", "random", "unsorted"],
+        "de": ["sonstiges", "verschiedenes", "diverses", "kram", "misc"],
+        "es": ["varios", "misceláneo", "cosas", "misc"],
+        "fr": ["divers", "misc", "vrac", "bazar", "trier", "tri"],
+        "it": ["varie", "vari", "misc"],
+        "nl": ["diversen", "overig", "overige", "divers", "misc"],
+        "pl": ["różne", "misc"],
+        "pt-BR": ["diversos", "vários", "variados", "coisas", "misc"],
+        "pt-PT": ["diversos", "vários", "variados", "coisas", "misc"]
+      }
+    },
+    {
+      "emoji": "🗑️",
+      "words": {
+        "en": ["trash", "temp", "tmp", "temporary", "junk", "recycle"],
+        "de": ["papierkorb", "müll", "temp", "tmp", "temporär"],
+        "es": ["papelera", "basura", "temp", "tmp", "temporal"],
+        "fr": ["corbeille", "poubelle", "temp", "tmp", "temporaire", "temporaires"],
+        "it": ["cestino", "spazzatura", "temp", "tmp", "temporanei", "temporaneo"],
+        "nl": ["prullenbak", "temp", "tmp", "tijdelijk"],
+        "pl": ["kosz", "śmieci", "temp", "tmp", "tymczasowe"],
+        "pt-BR": ["lixo", "temp", "tmp", "lixeira", "temporário", "temporários"],
+        "pt-PT": ["lixo", "temp", "tmp", "reciclagem", "temporário", "temporários"]
+      }
+    },
+    {
+      "emoji": "📐",
+      "words": {
+        "en": ["template", "templates", "boilerplate"],
+        "de": ["vorlage", "vorlagen", "template", "templates"],
+        "es": ["plantilla", "plantillas", "modelos", "template"],
+        "fr": ["modèle", "modèles", "template", "templates", "gabarit", "gabarits"],
+        "it": ["modello", "modelli", "template"],
+        "nl": ["sjabloon", "sjablonen", "template", "templates"],
+        "pl": ["szablon", "szablony", "wzory", "template"],
+        "pt-BR": ["modelo", "modelos", "template", "templates"],
+        "pt-PT": ["modelo", "modelos", "template", "templates"]
+      }
+    },
+    {
+      "emoji": "🎤",
+      "words": {
+        "en": ["presentation", "presentations", "slides", "deck", "decks", "pitch", "talks", "conference", "conferences"],
+        "de": ["präsentation", "präsentationen", "folien", "vortrag", "vorträge", "konferenz"],
+        "es": ["presentación", "presentaciones", "diapositivas", "conferencia", "conferencias"],
+        "fr": ["présentation", "présentations", "slides", "diapo", "diapos", "diaporama", "conférence", "conférences"],
+        "it": ["presentazione", "presentazioni", "slide", "conferenza", "conferenze"],
+        "nl": ["presentatie", "presentaties", "dias", "congres"],
+        "pl": ["prezentacja", "prezentacje", "slajdy", "konferencja"],
+        "pt-BR": ["apresentação", "apresentações", "slides", "palestra", "palestras"],
+        "pt-PT": ["apresentação", "apresentações", "slides", "conferência", "conferências"]
+      }
+    },
+    {
+      "emoji": "🎉",
+      "words": {
+        "en": ["event", "events", "party", "parties", "celebration"],
+        "de": ["veranstaltung", "veranstaltungen", "events", "party", "feier", "feiern"],
+        "es": ["evento", "eventos", "fiesta", "fiestas", "celebración"],
+        "fr": ["événement", "événements", "évènement", "évènements", "fête", "fêtes", "soirée", "soirées"],
+        "it": ["evento", "eventi", "festa", "feste"],
+        "nl": ["evenement", "evenementen", "feest", "feesten"],
+        "pl": ["wydarzenie", "wydarzenia", "impreza", "imprezy"],
+        "pt-BR": ["evento", "eventos", "festa", "festas"],
+        "pt-PT": ["evento", "eventos", "festa", "festas"]
+      }
+    },
+    {
+      "emoji": "🎂",
+      "words": {
+        "en": ["birthday", "birthdays", "bday"],
+        "de": ["geburtstag", "geburtstage"],
+        "es": ["cumpleaños", "cumple"],
+        "fr": ["anniversaire", "anniversaires", "anniv"],
+        "it": ["compleanno", "compleanni"],
+        "nl": ["verjaardag", "verjaardagen"],
+        "pl": ["urodziny"],
+        "pt-BR": ["aniversário", "aniversários"],
+        "pt-PT": ["aniversário", "aniversários"]
+      }
+    },
+    {
+      "emoji": "🎁",
+      "words": {
+        "en": ["gift", "gifts", "presents"],
+        "de": ["geschenk", "geschenke"],
+        "es": ["regalo", "regalos"],
+        "fr": ["cadeau", "cadeaux"],
+        "it": ["regalo", "regali"],
+        "nl": ["cadeau", "cadeaus"],
+        "pl": ["prezent", "prezenty"],
+        "pt-BR": ["presente", "presentes"],
+        "pt-PT": ["presente", "presentes", "prenda", "prendas"]
+      }
+    },
+    {
+      "emoji": "🎄",
+      "words": {
+        "en": ["christmas", "xmas"],
+        "de": ["weihnachten"],
+        "es": ["navidad"],
+        "fr": ["noël"],
+        "it": ["natale"],
+        "nl": ["kerst", "kerstmis"],
+        "pl": ["święta"],
+        "pt-BR": ["natal"],
+        "pt-PT": ["natal"]
+      }
+    },
+    {
+      "emoji": "💍",
+      "words": {
+        "en": ["wedding", "weddings", "marriage"],
+        "de": ["hochzeit"],
+        "es": ["boda", "bodas", "matrimonio"],
+        "fr": ["mariage", "mariages", "noces"],
+        "it": ["matrimonio", "nozze"],
+        "nl": ["bruiloft", "huwelijk"],
+        "pl": ["ślub", "wesele"],
+        "pt-BR": ["casamento"],
+        "pt-PT": ["casamento"]
+      }
+    },
+    {
+      "emoji": "🫶",
+      "words": {
+        "en": ["friend", "friends", "buddies"],
+        "de": ["freund", "freunde", "freundin"],
+        "es": ["amigo", "amigos", "amigas"],
+        "fr": ["ami", "amis", "copains", "copines", "potes"],
+        "it": ["amico", "amici", "amiche"],
+        "nl": ["vriend", "vrienden", "vriendin"],
+        "pl": ["przyjaciele", "znajomi"],
+        "pt-BR": ["amigo", "amigos", "amigas"],
+        "pt-PT": ["amigo", "amigos", "amigas"]
+      }
+    },
+    {
+      "emoji": "👤",
+      "words": {
+        "en": ["contact", "contacts", "addressbook", "user", "users", "profile", "profiles", "account", "accounts"],
+        "de": ["kontakt", "kontakte", "adressbuch", "adressen", "benutzer", "nutzer", "profil", "profile"],
+        "es": ["contacto", "contactos", "usuario", "usuarios", "perfil", "perfiles"],
+        "fr": ["contact", "contacts", "annuaire", "utilisateur", "utilisateurs", "profil", "profils"],
+        "it": ["contatto", "contatti", "rubrica", "indirizzi", "utente", "utenti", "profilo", "profili", "account"],
+        "nl": ["contact", "contacten", "adresboek", "adressen", "gebruiker", "gebruikers", "profiel", "profielen", "accounts"],
+        "pl": ["kontakt", "kontakty", "adresy", "użytkownik", "użytkownicy", "profil", "profile", "konta"],
+        "pt-BR": ["contatos", "perfil", "perfis", "contato", "usuário", "usuários"],
+        "pt-PT": ["contatos", "perfil", "perfis", "contacto", "contactos", "utilizador", "utilizadores"]
+      }
+    },
+    {
+      "emoji": "🪪",
+      "words": {
+        "en": ["identity", "id", "passport", "passports"],
+        "de": ["ausweis", "personalausweis", "reisepass", "führerschein"],
+        "es": ["identidad", "pasaporte", "pasaportes", "dni"],
+        "fr": ["identité", "passeport", "passeports", "permis"],
+        "it": ["identità", "passaporto", "patente"],
+        "nl": ["identiteit", "paspoort", "rijbewijs"],
+        "pl": ["tożsamość", "paszport", "dowód"],
+        "pt-BR": ["identidade", "passaporte", "rg", "cnh"],
+        "pt-PT": ["identidade", "passaporte", "cidadão"]
+      }
+    },
+    {
+      "emoji": "🔌",
+      "words": {
+        "en": ["hardware", "electronics", "iot"],
+        "de": ["hardware", "elektronik"],
+        "es": ["hardware", "electrónica"],
+        "fr": ["matériel", "hardware", "électronique"],
+        "it": ["hardware", "elettronica"],
+        "nl": ["hardware", "elektronica"],
+        "pl": ["sprzęt", "hardware", "elektronika"],
+        "pt-BR": ["hardware", "eletrônica"],
+        "pt-PT": ["hardware", "electrónica"]
+      }
+    },
+    {
+      "emoji": "🤖",
+      "words": {
+        "en": ["ai", "ml", "llm", "chatbot", "bot", "bots", "robot", "robots"],
+        "de": ["ki", "bot", "bots", "roboter", "chatbot"],
+        "es": ["ia", "bot", "bots", "robot", "robots", "chatbot"],
+        "fr": ["ia", "bot", "bots", "robot", "robots", "chatbot"],
+        "it": ["ia", "bot", "robot", "chatbot"],
+        "nl": ["ai", "bot", "bots", "robot", "robots", "chatbot"],
+        "pl": ["ai", "bot", "boty", "robot", "roboty", "chatbot"],
+        "pt-BR": ["ia", "bot", "bots", "robô", "robôs", "chatbot"],
+        "pt-PT": ["ia", "bot", "bots", "robô", "robôs", "chatbot"]
+      }
+    },
+    {
+      "emoji": "🖨️",
+      "words": {
+        "en": ["print", "printing", "prints", "scan", "scans", "scanned"],
+        "de": ["drucken", "druck", "ausdrucke", "scan", "scans"],
+        "es": ["impresión", "imprimir", "escaneos", "escaneados"],
+        "fr": ["impression", "impressions", "imprimer", "scan", "scans", "numérisation"],
+        "it": ["stampe", "scansione", "scansioni"],
+        "nl": ["printen", "afdrukken", "scan", "scans"],
+        "pl": ["wydruki", "drukowanie", "skan", "skany"],
+        "pt-BR": ["imprimir", "scans", "digitalizações", "digitalizados", "impressão"],
+        "pt-PT": ["imprimir", "scans", "digitalizações", "digitalizados", "impressão"]
+      }
+    },
+    {
+      "emoji": "🎯",
+      "words": {
+        "en": ["strategy", "goal", "goals", "objectives", "roadmap", "okr", "okrs", "targets"],
+        "de": ["strategie", "ziel", "ziele", "roadmap", "okr"],
+        "es": ["estrategia", "objetivo", "objetivos", "metas", "roadmap"],
+        "fr": ["stratégie", "objectif", "objectifs", "roadmap", "okr", "vision"],
+        "it": ["strategia", "obiettivo", "obiettivi", "roadmap"],
+        "nl": ["strategie", "doel", "doelen", "doelstellingen", "roadmap"],
+        "pl": ["strategia", "cele", "roadmap"],
+        "pt-BR": ["estratégia", "objetivo", "objetivos", "metas", "roadmap"],
+        "pt-PT": ["estratégia", "objetivo", "objetivos", "metas", "roadmap"]
+      }
+    },
+    {
+      "emoji": "🧭",
+      "words": {
+        "en": ["management", "leadership", "board", "executive", "governance"],
+        "de": ["management", "geschäftsführung", "leitung", "vorstand"],
+        "es": ["dirección", "gerencia", "gestión"],
+        "fr": ["direction", "management", "gestion", "pilotage", "codir", "comex"],
+        "it": ["direzione", "gestione", "management"],
+        "nl": ["directie", "management", "bestuur"],
+        "pl": ["zarząd", "zarządzanie", "kierownictwo"],
+        "pt-BR": ["gestão", "gerência", "direção", "diretoria"],
+        "pt-PT": ["gestão", "gerência", "direcção"]
+      }
+    },
+    {
+      "emoji": "🔍",
+      "words": {
+        "en": ["quality", "audit", "audits", "compliance", "certification", "iso"],
+        "de": ["qualität", "audit", "audits", "compliance", "zertifizierung", "iso"],
+        "es": ["calidad", "auditoría", "cumplimiento", "certificación", "iso"],
+        "fr": ["qualité", "audit", "audits", "certification", "conformité", "iso"],
+        "it": ["qualità", "audit", "conformità", "certificazione", "iso"],
+        "nl": ["kwaliteit", "audit", "audits", "certificering", "compliance", "iso"],
+        "pl": ["jakość", "audyt", "audyty", "certyfikacja", "zgodność", "iso"],
+        "pt-BR": ["qualidade", "auditoria", "conformidade", "certificação", "iso"],
+        "pt-PT": ["qualidade", "auditoria", "conformidade", "certificação", "iso"]
+      }
+    },
+    {
+      "emoji": "🏆",
+      "words": {
+        "en": ["diplomas", "diploma", "certificates", "awards", "achievements"],
+        "de": ["zeugnis", "zeugnisse", "zertifikat", "zertifikate", "urkunden", "diplome"],
+        "es": ["diploma", "diplomas", "certificado", "certificados", "premios", "títulos"],
+        "fr": ["diplôme", "diplômes", "certificat", "certificats", "récompenses"],
+        "it": ["diploma", "diplomi", "certificato", "certificati", "attestati", "premi"],
+        "nl": ["diploma", "diplomas", "certificaat", "certificaten"],
+        "pl": ["dyplom", "dyplomy", "certyfikat", "certyfikaty", "świadectwa", "nagrody"],
+        "pt-BR": ["diploma", "diplomas", "certificado", "certificados", "prêmios"],
+        "pt-PT": ["diploma", "diplomas", "certificado", "certificados", "prémios"]
+      }
+    },
+    {
+      "emoji": "🌳",
+      "words": {
+        "en": ["nature", "forest", "outdoors"],
+        "de": ["natur", "wald"],
+        "es": ["naturaleza", "bosque"],
+        "fr": ["nature", "forêt"],
+        "it": ["natura", "bosco", "foresta"],
+        "nl": ["natuur", "bos"],
+        "pl": ["natura", "las", "przyroda"],
+        "pt-BR": ["natureza", "floresta"],
+        "pt-PT": ["natureza", "floresta"]
+      }
+    },
+    {
+      "emoji": "♻️",
+      "words": {
+        "en": ["ecology", "environment", "recycling", "sustainability"],
+        "de": ["ökologie", "umwelt", "recycling", "nachhaltigkeit"],
+        "es": ["ecología", "medioambiente", "reciclaje", "sostenibilidad"],
+        "fr": ["écologie", "environnement", "recyclage"],
+        "it": ["ecologia", "ambiente", "riciclo", "sostenibilità"],
+        "nl": ["ecologie", "milieu", "recycling", "duurzaamheid"],
+        "pl": ["ekologia", "środowisko", "recykling"],
+        "pt-BR": ["ecologia", "ambiente", "sustentabilidade", "reciclagem"],
+        "pt-PT": ["ecologia", "ambiente", "sustentabilidade", "sustentável"]
+      }
+    },
+    {
+      "emoji": "🏔️",
+      "words": {
+        "en": ["mountain", "mountains", "hiking", "ski", "skiing", "climbing"],
+        "de": ["berg", "berge", "wandern", "ski", "skifahren", "klettern"],
+        "es": ["montaña", "montañas", "senderismo", "esquí", "escalada"],
+        "fr": ["montagne", "montagnes", "randonnée", "randonnées", "rando", "ski", "escalade"],
+        "it": ["montagna", "montagne", "escursioni", "sci", "arrampicata"],
+        "nl": ["berg", "bergen", "wandelen", "skiën", "klimmen"],
+        "pl": ["góry", "góra", "wędrówki", "narty", "wspinaczka"],
+        "pt-BR": ["montanha", "montanhas", "trilhas", "esqui", "escalada"],
+        "pt-PT": ["montanha", "montanhas", "trilhas", "esqui", "escalada", "caminhadas"]
+      }
+    },
+    {
+      "emoji": "🐾",
+      "words": {
+        "en": ["pet", "pets", "animal", "animals", "dog", "dogs", "cat", "cats", "vet"],
+        "de": ["tier", "tiere", "haustier", "haustiere", "hund", "hunde", "katze", "katzen", "tierarzt"],
+        "es": ["mascota", "mascotas", "animal", "animales", "perro", "perros", "gato", "gatos", "veterinario"],
+        "fr": ["animal", "animaux", "chien", "chiens", "chat", "chats", "véto", "vétérinaire"],
+        "it": ["animale", "animali", "cane", "cani", "gatto", "gatti", "veterinario"],
+        "nl": ["huisdier", "huisdieren", "dier", "dieren", "hond", "honden", "kat", "katten", "dierenarts"],
+        "pl": ["zwierzęta", "zwierzę", "pies", "psy", "kot", "koty", "weterynarz"],
+        "pt-BR": ["animal", "animais", "cachorro", "cão", "cães", "gato", "gatos", "veterinário"],
+        "pt-PT": ["animal", "animais", "cachorro", "cão", "cães", "gato", "gatos", "veterinário"]
+      }
+    },
+    {
+      "emoji": "🎲",
+      "words": {
+        "en": ["hobby", "hobbies", "leisure", "fun"],
+        "de": ["hobby", "hobbys", "freizeit"],
+        "es": ["ocio", "aficiones", "hobbies", "pasatiempos"],
+        "fr": ["loisir", "loisirs", "hobby", "hobbies"],
+        "it": ["hobby", "passatempi", "svago"],
+        "nl": ["hobby", "hobbys", "vrijetijd"],
+        "pl": ["hobby", "rozrywka"],
+        "pt-BR": ["lazer", "hobbies", "passatempos"],
+        "pt-PT": ["lazer", "hobbies", "passatempos"]
+      }
+    },
+    {
+      "emoji": "🧶",
+      "words": {
+        "en": ["knitting", "sewing", "crochet", "craft", "crafts"],
+        "de": ["stricken", "nähen", "häkeln", "basteln"],
+        "es": ["costura", "ganchillo", "manualidades"],
+        "fr": ["tricot", "couture", "crochet"],
+        "it": ["maglia", "cucito", "uncinetto"],
+        "nl": ["breien", "naaien", "knutselen"],
+        "pl": ["szycie", "robótki", "rękodzieło"],
+        "pt-BR": ["costura", "tricô", "crochê", "artesanato"],
+        "pt-PT": ["costura", "tricô", "crochê", "artesanato"]
+      }
+    },
+    {
+      "emoji": "🎭",
+      "words": {
+        "en": ["theater", "theatre", "culture", "performances", "concert", "concerts"],
+        "de": ["theater", "kultur", "konzert", "konzerte"],
+        "es": ["teatro", "cultura", "espectáculos", "conciertos"],
+        "fr": ["théâtre", "culture", "spectacle", "spectacles", "concert", "concerts"],
+        "it": ["teatro", "cultura", "spettacoli", "concerti"],
+        "nl": ["theater", "cultuur", "voorstellingen", "concert", "concerten"],
+        "pl": ["teatr", "kultura", "spektakle", "koncerty"],
+        "pt-BR": ["teatro", "cultura", "concertos", "espetáculos", "shows"],
+        "pt-PT": ["teatro", "cultura", "concertos", "espectáculos"]
+      }
+    },
+    {
+      "emoji": "✏️",
+      "words": {
+        "en": ["writing", "writings", "text", "texts", "blog", "article", "articles", "posts"],
+        "de": ["schreiben", "text", "texte", "blog", "artikel"],
+        "es": ["escritura", "texto", "textos", "blog", "artículo", "artículos", "redacción"],
+        "fr": ["écriture", "écrits", "rédaction", "texte", "textes", "blog", "article", "articles"],
+        "it": ["scrittura", "testo", "testi", "blog", "articolo", "articoli"],
+        "nl": ["schrijven", "tekst", "teksten", "blog", "artikel", "artikelen"],
+        "pl": ["pisanie", "tekst", "teksty", "blog", "artykuł", "artykuły"],
+        "pt-BR": ["escrita", "texto", "textos", "blog", "artigo", "artigos", "redação"],
+        "pt-PT": ["escrita", "texto", "textos", "blog", "artigo", "artigos", "redacção"]
+      }
+    },
+    {
+      "emoji": "🌍",
+      "words": {
+        "en": ["language", "languages", "translation", "translations", "localization", "i18n", "international", "world"],
+        "de": ["sprache", "sprachen", "übersetzung", "übersetzungen", "international", "welt"],
+        "es": ["idioma", "idiomas", "traducción", "traducciones", "internacional", "mundo"],
+        "fr": ["langue", "langues", "traduction", "traductions", "international", "monde"],
+        "it": ["lingua", "lingue", "traduzione", "traduzioni", "internazionale", "mondo"],
+        "nl": ["taal", "talen", "vertaling", "vertalingen", "internationaal", "wereld"],
+        "pl": ["język", "języki", "tłumaczenie", "tłumaczenia", "międzynarodowe", "świat"],
+        "pt-BR": ["idioma", "idiomas", "tradução", "traduções", "internacional", "mundo"],
+        "pt-PT": ["idioma", "idiomas", "tradução", "traduções", "internacional", "mundo"]
+      }
+    },
+    {
+      "emoji": "➗",
+      "words": {
+        "en": ["math", "maths", "mathematics"],
+        "de": ["mathe", "mathematik"],
+        "es": ["matemáticas", "mates"],
+        "fr": ["math", "maths", "mathématiques"],
+        "it": ["matematica"],
+        "nl": ["wiskunde"],
+        "pl": ["matematyka", "matma"],
+        "pt-BR": ["matemática"],
+        "pt-PT": ["matemática"]
+      }
+    },
+    {
+      "emoji": "🪷",
+      "words": {
+        "en": ["meditation", "yoga", "wellness", "mindfulness", "zen"],
+        "de": ["meditation", "yoga", "wellness", "achtsamkeit", "entspannung"],
+        "es": ["meditación", "yoga", "bienestar", "relajación"],
+        "fr": ["méditation", "yoga", "zen", "relaxation"],
+        "it": ["meditazione", "yoga", "benessere", "relax"],
+        "nl": ["meditatie", "yoga", "ontspanning", "welzijn"],
+        "pl": ["medytacja", "joga", "relaks"],
+        "pt-BR": ["meditação", "yoga", "ioga", "relaxamento"],
+        "pt-PT": ["meditação", "yoga", "ioga", "relaxamento"]
+      }
+    },
+    {
+      "emoji": "💄",
+      "words": {
+        "en": ["beauty", "makeup", "cosmetics", "skincare"],
+        "de": ["schönheit", "kosmetik", "makeup"],
+        "es": ["belleza", "maquillaje", "cosmética"],
+        "fr": ["beauté", "maquillage", "cosmétiques"],
+        "it": ["bellezza", "trucco", "cosmetici"],
+        "nl": ["schoonheid", "makeup", "cosmetica"],
+        "pl": ["uroda", "makijaż", "kosmetyki"],
+        "pt-BR": ["beleza", "cosméticos", "maquiagem"],
+        "pt-PT": ["beleza", "cosméticos", "maquilhagem"]
+      }
+    },
+    {
+      "emoji": "👗",
+      "words": {
+        "en": ["clothes", "clothing", "fashion", "wardrobe", "outfits"],
+        "de": ["kleidung", "mode", "klamotten"],
+        "es": ["ropa", "moda"],
+        "fr": ["vêtements", "mode", "habits", "fringues"],
+        "it": ["vestiti", "abbigliamento", "moda"],
+        "nl": ["kleding", "kleren", "mode"],
+        "pl": ["ubrania", "moda", "odzież"],
+        "pt-BR": ["roupa", "roupas", "moda"],
+        "pt-PT": ["roupa", "roupas", "moda"]
+      }
+    },
+    {
+      "emoji": "⏱️",
+      "words": {
+        "en": ["timesheet", "timesheets", "timetracking", "hours"],
+        "de": ["zeiterfassung", "stundenzettel", "arbeitszeit", "stunden"],
+        "es": ["horarios", "fichajes", "horas"],
+        "fr": ["horaires", "pointage", "heures", "chrono"],
+        "it": ["orari", "presenze", "timesheet", "ore"],
+        "nl": ["uren", "urenregistratie", "tijdregistratie"],
+        "pl": ["godziny", "ewidencja"],
+        "pt-BR": ["horários", "horas"],
+        "pt-PT": ["horários", "horas"]
+      }
+    },
+    {
+      "emoji": "❗",
+      "words": {
+        "en": ["urgent", "important", "priority", "asap"],
+        "de": ["dringend", "wichtig", "priorität"],
+        "es": ["urgente", "importante", "prioridad"],
+        "fr": ["urgent", "urgente", "urgents", "important", "importante", "prioritaire", "priorité"],
+        "it": ["urgente", "importante", "priorità"],
+        "nl": ["dringend", "urgent", "belangrijk", "prioriteit"],
+        "pl": ["pilne", "ważne", "priorytet"],
+        "pt-BR": ["urgente", "importante", "prioridade"],
+        "pt-PT": ["urgente", "importante", "prioridade"]
+      }
+    },
+    {
+      "emoji": "✔️",
+      "words": {
+        "en": ["done", "finished", "completed", "closed"],
+        "de": ["erledigt", "fertig", "abgeschlossen"],
+        "es": ["terminado", "terminados", "hecho", "cerrado", "cerrados"],
+        "fr": ["terminé", "terminés", "fini", "finis", "clos", "clôturé"],
+        "it": ["fatto", "completati", "finito", "chiusi"],
+        "nl": ["klaar", "afgerond", "gedaan", "gesloten"],
+        "pl": ["zrobione", "gotowe", "zakończone"],
+        "pt-BR": ["concluído", "concluídos", "feito", "terminado", "fechado"],
+        "pt-PT": ["concluído", "concluídos", "feito", "terminado", "fechado"]
+      }
+    },
+    {
+      "emoji": "⌛",
+      "words": {
+        "en": ["pending", "waiting", "queue", "onhold"],
+        "de": ["wartend", "ausstehend", "warteschlange"],
+        "es": ["espera"],
+        "fr": ["attente"],
+        "it": ["attesa", "sospeso", "sospesi"],
+        "nl": ["wachtend", "wachtrij"],
+        "pl": ["oczekujące", "kolejka"],
+        "pt-BR": ["pendente", "pendentes", "espera", "aguardando"],
+        "pt-PT": ["pendente", "pendentes", "espera", "aguardando"]
+      }
+    },
+    {
+      "emoji": "📦",
+      "words": {
+        "en": ["build", "builds", "release", "releases", "package", "packages", "deliverables", "deploy", "deployment", "artifacts", "versions"],
+        "de": ["build", "builds", "release", "releases", "deployment", "auslieferung", "versionen"],
+        "es": ["compilaciones", "versiones", "entregables", "despliegue", "releases"],
+        "fr": ["build", "builds", "release", "releases", "livrable", "livrables", "paquet", "paquets", "packages", "déploiement", "version", "versions"],
+        "it": ["build", "rilasci", "versioni", "deploy", "pacchetti"],
+        "nl": ["builds", "releases", "deployment", "uitrol", "opleveringen", "versies"],
+        "pl": ["wydania", "buildy", "wdrożenia", "wersje"],
+        "pt-BR": ["builds", "versões", "releases", "entregáveis", "implantação"],
+        "pt-PT": ["builds", "versões", "releases", "implementação"]
+      }
+    },
+    {
+      "emoji": "💬",
+      "words": {
+        "en": ["chat", "chats", "message", "messages", "discussion", "discussions", "forum", "forums"],
+        "de": ["chat", "chats", "diskussion", "diskussionen", "forum", "foren"],
+        "es": ["chat", "mensaje", "mensajes", "foro", "foros"],
+        "fr": ["messages", "message", "discussion", "discussions", "forum", "forums", "tchat"],
+        "it": ["chat", "messaggi", "messaggio", "forum", "discussioni"],
+        "nl": ["chat", "chats", "berichten", "forum", "discussie"],
+        "pl": ["czat", "czaty", "wiadomości", "forum", "dyskusje"],
+        "pt-BR": ["chat", "mensagem", "mensagens", "fórum"],
+        "pt-PT": ["chat", "mensagem", "mensagens", "fórum"]
+      }
+    },
+    {
+      "emoji": "📰",
+      "words": {
+        "en": ["news", "newspaper", "press", "magazine", "magazines", "newsletter"],
+        "de": ["nachrichten", "zeitung", "presse", "news", "magazin", "newsletter"],
+        "es": ["noticias", "prensa", "periódico", "revista", "revistas"],
+        "fr": ["actualités", "actus", "news", "journal", "journaux", "presse", "veille", "magazine", "magazines"],
+        "it": ["notizie", "giornale", "giornali", "stampa", "rivista", "riviste"],
+        "nl": ["nieuws", "krant", "kranten", "pers", "tijdschrift"],
+        "pl": ["aktualności", "prasa", "gazeta", "gazety"],
+        "pt-BR": ["notícias", "jornal", "jornais", "imprensa", "revista", "revistas"],
+        "pt-PT": ["notícias", "jornal", "jornais", "imprensa", "revista", "revistas"]
+      }
+    },
+    {
+      "emoji": "⛅",
+      "words": {
+        "en": ["weather", "forecast"],
+        "de": ["wetter"],
+        "es": ["clima", "meteorología"],
+        "fr": ["météo"],
+        "it": ["meteo"],
+        "nl": ["weerbericht"],
+        "pl": ["pogoda"],
+        "pt-BR": ["clima", "meteorologia"],
+        "pt-PT": ["clima", "meteorologia"]
+      }
+    },
+    {
+      "emoji": "⛵",
+      "words": {
+        "en": ["boat", "boats", "sailing"],
+        "de": ["boot", "segeln"],
+        "es": ["barco", "barcos", "náutica"],
+        "fr": ["bateau", "bateaux", "voile", "nautisme"],
+        "it": ["barca", "nautica"],
+        "nl": ["boot", "zeilen"],
+        "pl": ["łódź", "żeglarstwo"],
+        "pt-BR": ["barco", "barcos", "náutica"],
+        "pt-PT": ["barco", "barcos", "náutica"]
+      }
+    },
+    {
+      "emoji": "🧹",
+      "words": {
+        "en": ["cleaning", "chores", "housework"],
+        "de": ["putzen", "reinigung"],
+        "es": ["limpieza"],
+        "fr": ["ménage", "nettoyage"],
+        "it": ["pulizie", "pulizia"],
+        "nl": ["schoonmaak", "schoonmaken"],
+        "pl": ["sprzątanie"],
+        "pt-BR": ["limpeza", "faxina"],
+        "pt-PT": ["limpeza"]
+      }
+    },
+    {
+      "emoji": "🍰",
+      "words": {
+        "en": ["dessert", "desserts", "baking", "cakes", "pastry"],
+        "de": ["backen", "kuchen", "desserts", "torten"],
+        "es": ["repostería", "postres", "pasteles"],
+        "fr": ["pâtisserie", "dessert", "desserts", "gâteau", "gâteaux"],
+        "it": ["dolci", "pasticceria", "torte"],
+        "nl": ["bakken", "taarten", "desserts", "gebak"],
+        "pl": ["wypieki", "desery", "ciasta"],
+        "pt-BR": ["sobremesas", "bolos", "confeitaria"],
+        "pt-PT": ["sobremesas", "bolos", "pastelaria"]
+      }
+    },
+    {
+      "emoji": "🔔",
+      "words": {
+        "en": ["reminder", "reminders", "notification", "notifications", "alerts"],
+        "de": ["erinnerung", "erinnerungen", "benachrichtigungen"],
+        "es": ["recordatorio", "recordatorios", "notificaciones", "alertas"],
+        "fr": ["rappel", "rappels", "notification", "notifications", "alerte", "alertes"],
+        "it": ["promemoria", "notifiche", "avvisi"],
+        "nl": ["herinnering", "herinneringen", "notificaties"],
+        "pl": ["przypomnienia", "powiadomienia"],
+        "pt-BR": ["lembrete", "lembretes", "alertas", "notificações"],
+        "pt-PT": ["lembrete", "lembretes", "alertas", "notificações"]
+      }
+    },
+    {
+      "emoji": "🔖",
+      "words": {
+        "en": ["tag", "tags", "label", "labels"],
+        "de": ["tags", "etikett", "etiketten", "label", "labels"],
+        "es": ["etiqueta", "etiquetas", "tags"],
+        "fr": ["tag", "tags", "étiquette", "étiquettes", "label", "labels"],
+        "it": ["etichetta", "etichette", "tag"],
+        "nl": ["label", "labels", "tags"],
+        "pl": ["tagi", "etykiety"],
+        "pt-BR": ["etiqueta", "etiquetas", "tags"],
+        "pt-PT": ["etiqueta", "etiquetas", "tags"]
+      }
+    },
+    {
+      "emoji": "🧩",
+      "words": {
+        "en": ["plugin", "plugins", "extension", "extensions", "addon", "addons", "module", "modules"],
+        "de": ["plugin", "plugins", "erweiterung", "erweiterungen", "modul", "module", "addons"],
+        "es": ["plugin", "plugins", "extensiones", "complementos", "módulos"],
+        "fr": ["plugin", "plugins", "extension", "extensions", "module", "modules", "addons"],
+        "it": ["plugin", "estensioni", "moduli"],
+        "nl": ["plugin", "plugins", "extensies", "modules"],
+        "pl": ["wtyczki", "rozszerzenia", "moduły"],
+        "pt-BR": ["plugin", "plugins", "complementos", "módulos", "extensões"],
+        "pt-PT": ["plugin", "plugins", "complementos", "módulos", "extensões"]
+      }
+    }
+  ]
+}

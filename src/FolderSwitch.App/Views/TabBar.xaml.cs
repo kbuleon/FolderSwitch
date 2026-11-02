@@ -14,7 +14,8 @@ namespace FolderSwitch.App.Views;
 /// The tab bar, bound to <see cref="MainViewModel"/>: a click shows a tab; in Customize mode it also selects it, a
 /// double-click renames it, a right-click shows it and opens its <see cref="EditMenu"/>, and a drag moves it along the bar (<see cref="BoardDragDrop"/>), across its lines when the
 /// tabs wrap. A column, group or item dragged onto another tab, and resting there for <see cref="SwitchDelay"/>,
-/// shows that tab, so that the drag can end in it; nothing is dropped on the bar itself.
+/// shows that tab, so that the drag can end in it; nothing is dropped on the bar itself. The icon button (which opens
+/// the icon picker) and ✕ of Customize mode are buttons of their own: a press on them neither shows the tab nor drags it.
 /// </summary>
 public partial class TabBar : UserControl
 {
@@ -78,6 +79,15 @@ public partial class TabBar : UserControl
         viewModel.Selected = tab;
         view.OpenEditMenu(tab, surface);
         return true;
+    }
+
+    /// <summary>Customize mode: the icon button of a tab opens its icon picker, under it (the tab shown stays).</summary>
+    private void OnIconClick(object sender, RoutedEventArgs e)
+    {
+        if (sender is FrameworkElement { DataContext: TabViewModel tab } button)
+        {
+            MainView.Of(this)?.OpenIconPicker(tab, button);
+        }
     }
 
     private bool OnTabDoubleClick(FrameworkElement surface)

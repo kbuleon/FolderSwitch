@@ -8,3 +8,12 @@ path = "**"
 precedence = "closest"
 SPDX-FileCopyrightText = "2026 Karl BULEON"
 SPDX-License-Identifier = "GPL-3.0-or-later"
+
+# Emoji data derived from Unicode files (Unicode Emoji, CLDR): the Unicode License v3, not the GPL. The synonyms
+# (src/FolderSwitch.App/Emoji/synonyms.json) are the project's own and stay under the annotation above. The last
+# annotation that matches a file wins.
+[[annotations]]
+path = ["src/FolderSwitch.App/Emoji/catalog.json", "src/FolderSwitch.App/Emoji/keywords/*.json"]
+precedence = "closest"
+SPDX-FileCopyrightText = "Unicode, Inc."
+SPDX-License-Identifier = "Unicode-3.0"

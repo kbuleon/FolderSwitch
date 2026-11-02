@@ -10,8 +10,9 @@ namespace FolderSwitch.App.Diagnostics.Snapshots;
 /// The configuration the snapshots are drawn with: the board of the mockups (tab « Travail », three columns: Projets,
 /// Clients / Personnel, Archives collapsed, Finance / Outils, Réseau collapsed; then « Maison » and « Admin »). Finance
 /// holds one item of each kind: a folder, two files of types Windows has icons for, a site whose favicon is in the
-/// snapshot's cache (<see cref="FaviconHost"/>) and one without. Names, paths and addresses are examples, in French like
-/// the mockups: they are the user's content, never translated.
+/// snapshot's cache (<see cref="FaviconHost"/>) and one without. The tabs and groups have icons, except « Clients »
+/// (beside « Projets », which has one) and a few of the twelve tabs. Names, icons, paths and addresses are examples,
+/// in French like the mockups: they are the user's content, never translated.
 /// </summary>
 internal static class SnapshotSample
 {
@@ -31,9 +32,9 @@ internal static class SnapshotSample
     /// <summary>The mockups' board, on « Travail », every column automatic.</summary>
     public static AppConfig Create()
     {
-        var work = Tab("Travail",
+        var work = Tab("Travail", "💼",
             Column(
-                Group("Projets", Blue, false,
+                Group("Projets", "📁", Blue, false,
                     Folder(@"C:\Claude Projects\FolderSwitch"),
                     Folder(@"D:\Clients\Acme\site-web", "Site Acme"),
                     Folder(@"D:\Design\Maquettes"),
@@ -43,48 +44,48 @@ internal static class SnapshotSample
                     Folder(@"D:\Clients\Durand", "Durand & Fils"),
                     Folder(@"D:\Compta\Factures\2026", "Factures 2026"))),
             Column(
-                Group("Personnel", Amber, false,
+                Group("Personnel", "👤", Amber, false,
                     Special(SpecialFolderKey.Downloads),
                     Special(SpecialFolderKey.Documents),
                     Special(SpecialFolderKey.Desktop),
                     File(@"%USERPROFILE%\Documents\Notes de réunion.md")),
-                Group("Archives", Slate, true,
+                Group("Archives", "🗄️", Slate, true,
                     Folder(@"E:\Archives\2024"),
                     Folder(@"E:\Archives\2025")),
-                Group("Finance", Red, false,
+                Group("Finance", "💵", Red, false,
                     Folder(@"D:\Finance\Relevés"),
                     File(@"D:\Finance\Budget 2026.xlsx"),
                     File(@"D:\Finance\Avis d'imposition 2025.pdf"),
                     Site("https://" + FaviconHost + "/fr/", "Morningstar"),
                     Site("https://www.boursorama.com/bourse/"))),
             Column(
-                Group("Outils", Violet, false,
+                Group("Outils", "🧰", Violet, false,
                     Folder(@"C:\Outils\Scripts"),
                     Folder(@"C:\ProgramData\MonApp\logs", "Logs"),
                     File(@"C:\Windows\System32\drivers\etc\hosts")),
-                Group("Réseau", Green, true,
+                Group("Réseau", "🌐", Green, true,
                     Folder(@"\\nas\partage", "Partage NAS"),
                     Folder(@"\\nas\photos", "Photos"))));
 
-        var home = Tab("Maison",
-            Column(Group("Papiers", Orange, false,
+        var home = Tab("Maison", "🏠",
+            Column(Group("Papiers", "🧾", Orange, false,
                 Folder(@"D:\Perso\Maison\Factures", "Factures maison"),
                 Folder(@"D:\Perso\Assurances"),
                 File(@"D:\Perso\Maison\Plan travaux.pdf"))),
-            Column(Group("Photos", Pink, false,
+            Column(Group("Photos", "📷", Pink, false,
                 Folder(@"D:\Photos\2025"),
                 Folder(@"D:\Photos\2026"),
                 Folder(@"D:\Photos\Albums"))),
-            Column(Group("Loisirs", Green, true,
+            Column(Group("Loisirs", "🎮", Green, true,
                 Special(SpecialFolderKey.Music),
                 Folder(@"%USERPROFILE%\Saved Games", "Sauvegardes jeux"))));
 
-        var admin = Tab("Admin",
-            Column(Group("Système", Slate, false,
+        var admin = Tab("Admin", "⚙️",
+            Column(Group("Système", "💻", Slate, false,
                 Special(SpecialFolderKey.ProgramFiles),
                 Special(SpecialFolderKey.RoamingAppData),
                 File(@"C:\Windows\System32\drivers\etc\hosts"))),
-            Column(Group("Partages", Cyan, false,
+            Column(Group("Partages", "🌐", Cyan, false,
                 Folder(@"\\nas\partage", "NAS partage"),
                 Folder(@"\\nas\backup", "NAS sauvegardes"))));
 
@@ -96,16 +97,16 @@ internal static class SnapshotSample
     /// </summary>
     public static AppConfig CreateNarrow()
     {
-        var tab = Tab("Un onglet au nom vraiment très long pour la barre",
+        var tab = Tab("Un onglet au nom vraiment très long pour la barre", "📄",
             Column(150,
-                Group("Un groupe au nom bien trop long pour sa colonne", Blue, false,
+                Group("Un groupe au nom bien trop long pour sa colonne", "📦", Blue, false,
                     Folder(@"D:\Clients\Acme\Documents contractuels et annexes signées", "Documents contractuels et annexes signées"),
                     Folder(@"D:\Clients\Acme"),
                     File(@"D:\Clients\Acme\Cahier des charges version définitive.docx")),
                 Group("Replié", Slate, true,
                     Folder(@"E:\Archives\2024"))),
             Column(160,
-                Group("Outils", Violet, false,
+                Group("Outils", "🧰", Violet, false,
                     Folder(@"C:\Outils\Scripts"),
                     File(@"C:\Windows\System32\drivers\etc\hosts"))));
 
@@ -124,7 +125,14 @@ internal static class SnapshotSample
             "Archives", "Photos", "Musique", "Développement", "Réseau", "Téléchargements",
         ];
 
-        var tabs = names.Select(name => Tab(name,
+        // Some of them without an icon.
+        var icons = new Dictionary<string, string>
+        {
+            ["Travail"] = "💼", ["Maison"] = "🏠", ["Admin"] = "⚙️", ["Photos"] = "📷", ["Musique"] = "🎵",
+            ["Développement"] = "💻", ["Téléchargements"] = "📥",
+        };
+
+        var tabs = names.Select(name => Tab(name, icons.GetValueOrDefault(name),
             Column(Group("Dossiers", Blue, false,
                 Folder(@"D:\" + name, name),
                 Special(SpecialFolderKey.Documents))),
@@ -144,7 +152,7 @@ internal static class SnapshotSample
         return config;
     }
 
-    private static Tab Tab(string name, params Column[] columns) => new() { Name = name, Columns = columns.ToList() };
+    private static Tab Tab(string name, string? icon, params Column[] columns) => new() { Name = name, Icon = icon, Columns = columns.ToList() };
 
     private static Column Column(params Group[] groups) => new() { Groups = groups.ToList() };
 
@@ -152,6 +160,9 @@ internal static class SnapshotSample
 
     private static Group Group(string name, string color, bool collapsed, params Item[] items) =>
         new() { Name = name, Color = color, Collapsed = collapsed, Items = items.ToList() };
+
+    private static Group Group(string name, string icon, string color, bool collapsed, params Item[] items) =>
+        new() { Name = name, Icon = icon, Color = color, Collapsed = collapsed, Items = items.ToList() };
 
     private static Item Folder(string path, string? name = null) => new() { Kind = ItemKind.Folder, Path = path, Name = name };
 

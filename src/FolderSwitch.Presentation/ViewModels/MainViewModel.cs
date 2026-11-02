@@ -9,6 +9,7 @@ using CommunityToolkit.Mvvm.Input;
 using FolderSwitch.Core.Activation;
 using FolderSwitch.Core.Diagnostics;
 using FolderSwitch.Core.Editing;
+using FolderSwitch.Core.Icons;
 using FolderSwitch.Core.Localization;
 using FolderSwitch.Core.Model;
 using FolderSwitch.Core.Services;
@@ -43,6 +44,7 @@ public sealed partial class MainViewModel : ObservableObject
     private readonly IBrowserAddressReader _browserReader;
     private readonly IFavicons _favicons;
     private readonly Localizer _localizer;
+    private readonly Lazy<IconFinder> _icons;
     private readonly TimeProvider _time;
     private readonly SynchronizationContext? _ui = SynchronizationContext.Current;
 
@@ -72,6 +74,7 @@ public sealed partial class MainViewModel : ObservableObject
         IBrowserAddressReader browserReader,
         IFavicons favicons,
         Localizer localizer,
+        Lazy<IconFinder> icons,
         TimeProvider? time = null)
     {
         ArgumentNullException.ThrowIfNull(activator);
@@ -81,6 +84,7 @@ public sealed partial class MainViewModel : ObservableObject
         ArgumentNullException.ThrowIfNull(browserReader);
         ArgumentNullException.ThrowIfNull(favicons);
         ArgumentNullException.ThrowIfNull(localizer);
+        ArgumentNullException.ThrowIfNull(icons);
         RequireTabs(config);
 
         _activator = activator;
@@ -90,6 +94,7 @@ public sealed partial class MainViewModel : ObservableObject
         _browserReader = browserReader;
         _favicons = favicons;
         _localizer = localizer;
+        _icons = icons;
         _time = time ?? TimeProvider.System;
 
         Load(config);
@@ -326,7 +331,7 @@ public sealed partial class MainViewModel : ObservableObject
             return;
         }
 
-        var tab = new TabViewModel(BoardEditor.AddTab(_config, _localizer["Tab.New"]), _localizer);
+        var tab = new TabViewModel(BoardEditor.AddTab(_config, _localizer["Tab.New"]), _localizer, _icons);
         Tabs.Add(tab);
         MakeActive(tab);
         StartRename(tab);
@@ -391,7 +396,7 @@ public sealed partial class MainViewModel : ObservableObject
         }
 
         var tab = _activeTab;
-        tab.Columns.Add(new ColumnViewModel(BoardEditor.AddColumn(tab.Model), tab, _localizer));
+        tab.Columns.Add(new ColumnViewModel(BoardEditor.AddColumn(tab.Model), tab, _localizer, _icons));
         Save();
     }
 
@@ -470,7 +475,7 @@ public sealed partial class MainViewModel : ObservableObject
         }
 
         var model = BoardEditor.AddGroup(column.Model, _localizer["Group.New"], NextGroupColor(column.Tab));
-        var group = new GroupViewModel(model, column, _localizer);
+        var group = new GroupViewModel(model, column, _localizer, _icons);
         column.Groups.Add(group);
         StartRename(group);
         Save();
@@ -749,7 +754,8 @@ public sealed partial class MainViewModel : ObservableObject
     /// Ends the rename of <paramref name="target"/> with <paramref name="text"/> (trimmed). A blank name is refused:
     /// the old name stays. The name shown, committed unchanged, edits and saves nothing: an item keeps its default
     /// name, which follows the language for a special folder. Does nothing when <paramref name="target"/> is not
-    /// being renamed.
+    /// being renamed. A tab or a group whose icon is automatic gets the icon of its new name (see
+    /// <see cref="AutomaticIcon"/>); a chosen icon is left alone.
     /// </summary>
     public void CommitRename(object target, string text)
     {
@@ -773,6 +779,7 @@ public sealed partial class MainViewModel : ObservableObject
         }
 
         renamable.NotifyRenamed();
+        RenewAutomaticIcon(renamable);
         Save();
     }
 
@@ -789,6 +796,101 @@ public sealed partial class MainViewModel : ObservableObject
     /// <summary>F2: renames the selected tab, group or item; without a selection, the tab shown.</summary>
     [RelayCommand(CanExecute = nameof(CanCustomize))]
     public void RenameSelected() => BeginRename(Selected ?? _activeTab);
+
+    // ----- Customize mode: icons -----
+
+    /// <summary>
+    /// The emoji the name of a tab or group suggests, in the current language; <c>null</c> when no word of the name leads
+    /// to one, and for an item (which has no icon).
+    /// </summary>
+    public string? AutomaticIcon(RenamableViewModel target)
+    {
+        ArgumentNullException.ThrowIfNull(target);
+
+        return target is TabViewModel or GroupViewModel ? _icons.Value.Suggest(target.CurrentName, _localizer.Code) : null;
+    }
+
+    /// <summary>Gives a tab or group a chosen emoji, which renaming no longer changes.</summary>
+    public void SetChosenIcon(RenamableViewModel target, string emoji)
+    {
+        ArgumentNullException.ThrowIfNull(emoji);
+
+        ChangeIcon(target, emoji, chosen: true);
+    }
+
+    /// <summary>Gives a tab or group no icon, by choice: renaming no longer changes that.</summary>
+    public void SetNoIcon(RenamableViewModel target) => ChangeIcon(target, null, chosen: true);
+
+    /// <summary>Makes the icon of a tab or group automatic again: it takes the emoji its current name suggests, if any.</summary>
+    public void SetAutomaticIcon(RenamableViewModel target)
+    {
+        if (CanChangeIcon(target))
+        {
+            ChangeIcon(target, AutomaticIcon(target), chosen: false);
+        }
+    }
+
+    /// <summary>
+    /// The icon picker of a tab or group; <c>null</c> outside Customize mode, for an item and for a view model that is
+    /// no longer on the board. The picker's choices are this view model's icon commands.
+    /// </summary>
+    public IconPickerViewModel? OpenIconPicker(RenamableViewModel target)
+    {
+        if (!CanChangeIcon(target))
+        {
+            return null;
+        }
+
+        var (icon, chosen) = target switch
+        {
+            TabViewModel tab => (tab.Model.Icon, tab.Model.IconChosen),
+            GroupViewModel group => (group.Model.Icon, group.Model.IconChosen),
+            _ => ((string?)null, false),
+        };
+        var current = !chosen ? IconChoice.Automatic : icon is null ? IconChoice.None : IconChoice.Emoji;
+        return new IconPickerViewModel(this, target, _icons.Value, _localizer, current, icon);
+    }
+
+    private bool CanChangeIcon(RenamableViewModel target) =>
+        IsCustomizing && target is TabViewModel or GroupViewModel && IsLive(target);
+
+    /// <summary>Sets the icon of a tab or group, shows it and saves; nothing when it is not possible or refused.</summary>
+    private void ChangeIcon(RenamableViewModel target, string? icon, bool chosen)
+    {
+        if (CanChangeIcon(target) && Succeeded(BoardEditor.SetIcon(_config, target.Id, icon, chosen)))
+        {
+            NotifyIcon(target);
+            Save();
+        }
+    }
+
+    /// <summary>After a rename: a tab or group whose icon is automatic takes the icon its new name suggests (the caller saves).</summary>
+    private void RenewAutomaticIcon(RenamableViewModel target)
+    {
+        var chosen = target switch
+        {
+            TabViewModel tab => tab.Model.IconChosen,
+            GroupViewModel group => group.Model.IconChosen,
+            _ => true,
+        };
+        if (!chosen && Succeeded(BoardEditor.SetIcon(_config, target.Id, AutomaticIcon(target), chosen: false)))
+        {
+            NotifyIcon(target);
+        }
+    }
+
+    private static void NotifyIcon(RenamableViewModel target)
+    {
+        switch (target)
+        {
+            case TabViewModel tab:
+                tab.NotifyIcon();
+                break;
+            case GroupViewModel group:
+                group.NotifyIcon();
+                break;
+        }
+    }
 
     // ----- Internals -----
 
@@ -869,7 +971,7 @@ public sealed partial class MainViewModel : ObservableObject
             Tabs.Clear();
             foreach (var tab in config.Tabs)
             {
-                Tabs.Add(new TabViewModel(tab, _localizer));
+                Tabs.Add(new TabViewModel(tab, _localizer, _icons));
             }
 
             _activeTab = ResolveActiveTab();

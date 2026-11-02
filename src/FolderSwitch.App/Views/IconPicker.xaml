@@ -1,0 +1,180 @@
+<!--
+    SPDX-License-Identifier: GPL-3.0-or-later
+    Copyright (C) 2026 Karl BULEON
+    Additional terms under GPLv3 section 7: see the License section of README.md.
+-->
+<!--
+    The icon picker of a tab or a group (Customize mode), bound to an IconPickerViewModel. From top to bottom: the
+    filter box, which has the focus, with its hint while empty; « Automatic », with the emoji the name gives (if any),
+    and « No icon »; the row of the categories, whose click scrolls the grid to the category (the one at the top of the
+    grid is underlined); the grid of the emojis, by category, under their titles. While the filter has words, the grid
+    shows the results only, under their number (or a line that says there is none), without the categories. The choice
+    in force is marked (Selection): « Automatic », « No icon » or its emoji. An emoji's tooltip is its name. The cells of
+    the grid are built by the code-behind. Shown in a Flyout under the icon; a choice closes it.
+-->
+<UserControl x:Class="FolderSwitch.App.Views.IconPicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:FolderSwitch.App.Views"
+             x:Name="Root"
+             Width="332">
+    <UserControl.Resources>
+        <!-- An emoji of the grid (a Border around a TextBlock, built by the code-behind): highlighted under the mouse,
+             framed when it is the icon in force. -->
+        <Style x:Key="Cell" TargetType="Border">
+            <Setter Property="Width" Value="32" />
+            <Setter Property="Height" Value="32" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource Fs.MenuHover}" />
+                </Trigger>
+                <Trigger Property="local:Selection.IsSelected" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource Fs.MenuSelected}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource Fs.MenuSelectedBorder}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- The emoji of a cell, in the menu's text color. -->
+        <Style x:Key="CellText" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource Fs.EmojiFont}" />
+            <Setter Property="FontSize" Value="19" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <!-- The title of a category in the grid. -->
+        <Style x:Key="SectionTitle" TargetType="TextBlock" BasedOn="{StaticResource Fs.MenuLabel}">
+            <Setter Property="Margin" Value="4,8,4,3" />
+        </Style>
+
+        <!-- A category of the row: its emoji, muted, underlined in the accent color while its category is at the top of
+             the grid. -->
+        <Style x:Key="CategoryButton" TargetType="Button">
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="FontFamily" Value="{StaticResource Fs.EmojiFont}" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="{DynamicResource Fs.MenuMuted}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Height" Value="32" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="Transparent">
+                            <Border Margin="2,1,2,3" CornerRadius="6" Background="{TemplateBinding Background}" />
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,2" RecognizesAccessKey="False" />
+                            <Border Height="2"
+                                    Margin="7,0,7,0"
+                                    VerticalAlignment="Bottom"
+                                    CornerRadius="1"
+                                    Background="{TemplateBinding BorderBrush}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource Fs.MenuHover}" />
+                    <Setter Property="Foreground" Value="{DynamicResource Fs.MenuText}" />
+                </Trigger>
+                <Trigger Property="local:Selection.IsSelected" Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource Fs.MenuText}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource Fs.Accent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- « No icon »: a circle struck through, on the 24 × 24 grid. -->
+        <Geometry x:Key="NoIconGeometry">M12 3a9 9 0 1 1 0 18a9 9 0 1 1 0-18z M5.7 5.7l12.6 12.6</Geometry>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <!-- The filter: its hint while it is empty. -->
+        <Grid Margin="0,0,0,7">
+            <TextBox x:Name="FilterBox"
+                     Style="{StaticResource Fs.FilterBox}"
+                     Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
+                     AutomationProperties.Name="{Binding Texts[Icon.Filter], ElementName=Root}" />
+            <TextBlock Margin="9,0,9,0"
+                       VerticalAlignment="Center"
+                       IsHitTestVisible="False"
+                       Foreground="{DynamicResource Fs.MenuMuted}"
+                       Text="{Binding Texts[Icon.Filter], ElementName=Root}"
+                       TextTrimming="CharacterEllipsis"
+                       Visibility="{Binding Text.IsEmpty, ElementName=FilterBox, Converter={StaticResource Fs.BoolToVisibility}}" />
+        </Grid>
+
+        <!-- « Automatic » and « No icon ». -->
+        <UniformGrid Columns="2" Margin="0,0,0,4">
+            <Button x:Name="AutomaticChoice"
+                    Style="{StaticResource Fs.TileButton}"
+                    Margin="0,0,3,0"
+                    Padding="8,4,8,5"
+                    FontSize="12.4"
+                    Click="OnAutomaticClick">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="0,0,6,0"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource Fs.EmojiFont}"
+                               FontWeight="Normal"
+                               FontSize="15"
+                               Text="{Binding AutomaticIcon}"
+                               Visibility="{Binding AutomaticIcon, Converter={StaticResource Fs.NullToCollapsed}}" />
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Texts[Icon.Automatic], ElementName=Root}" TextTrimming="CharacterEllipsis" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="NoneChoice"
+                    Style="{StaticResource Fs.TileButton}"
+                    Margin="3,0,0,0"
+                    Padding="8,4,8,5"
+                    FontSize="12.4"
+                    Click="OnNoneClick">
+                <StackPanel Orientation="Horizontal">
+                    <Viewbox Width="15" Height="15" Margin="0,0,6,0" VerticalAlignment="Center">
+                        <Canvas Width="24" Height="24">
+                            <Path Style="{StaticResource Fs.OutlineIcon}" Data="{StaticResource NoIconGeometry}" Stroke="{DynamicResource Fs.MenuMuted}" />
+                        </Canvas>
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Texts[Icon.None], ElementName=Root}" TextTrimming="CharacterEllipsis" />
+                </StackPanel>
+            </Button>
+        </UniformGrid>
+
+        <!-- The categories (built by the code-behind), or while filtering the number of results. -->
+        <Grid>
+            <UniformGrid x:Name="CategoryRow" Rows="1" Margin="0,2,0,0" />
+            <TextBlock x:Name="ResultsLabel"
+                       Margin="5,9,5,8"
+                       VerticalAlignment="Center"
+                       FontSize="11.8"
+                       Foreground="{DynamicResource Fs.MenuMuted}"
+                       TextTrimming="CharacterEllipsis"
+                       Visibility="Collapsed" />
+        </Grid>
+        <Border Height="1" Margin="2,0,2,2" Background="{DynamicResource Fs.Border}" />
+
+        <!-- The grid: the categories one under the other, or the results (both built by the code-behind). -->
+        <ScrollViewer x:Name="Scroller"
+                      Height="296"
+                      Template="{StaticResource Fs.ThinScrollViewer}"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled"
+                      Focusable="False"
+                      ScrollChanged="OnScrollChanged">
+            <Grid x:Name="GridHost"
+                  Background="Transparent"
+                  MouseLeftButtonDown="OnGridMouseDown"
+                  MouseLeftButtonUp="OnGridMouseUp">
+                <StackPanel x:Name="SectionsPanel" />
+                <WrapPanel x:Name="ResultsPanel" Margin="0,4,0,0" Visibility="Collapsed" />
+            </Grid>
+        </ScrollViewer>
+    </StackPanel>
+</UserControl>

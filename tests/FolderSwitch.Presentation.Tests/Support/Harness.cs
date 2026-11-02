@@ -44,7 +44,7 @@ internal sealed class Harness
         arrange?.Invoke(this);
 
         Localizer = TestLocalizer.Create();
-        Vm = new MainViewModel(Config, Activator, Persistence, Prompts, Host, Browser, Favicons, Localizer, Time);
+        Vm = new MainViewModel(Config, Activator, Persistence, Prompts, Host, Browser, Favicons, Localizer, TestIcons.Lazy(Glyphs), Time);
     }
 
     public AppConfig Config { get; }
@@ -90,6 +90,9 @@ internal sealed class Harness
     public FakeFavicons Favicons { get; } = new();
 
     public ManualTimeProvider Time { get; } = new();
+
+    /// <summary>The font the icons are drawn with; refuse an emoji here to simulate a machine that cannot draw it.</summary>
+    public FakeEmojiGlyphs Glyphs { get; } = new();
 
     public Localizer Localizer { get; }
 

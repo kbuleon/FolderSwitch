@@ -25,7 +25,8 @@ namespace FolderSwitch.App.Views;
 /// selects the group (F2), except that a click on the name's text only selects it: the second click of a
 /// double-click there renames the group in place, and a first click that had collapsed it would leave it collapsed
 /// under the rename. The grip ⠿ starts a drag of the group (<see cref="BoardDragDrop"/>) past the system's threshold
-/// and never collapses it; the color dot opens the palette and ✕ deletes the group, both buttons of their own. A
+/// and never collapses it; the icon button (which opens the icon picker), the color dot (which opens the palette) and
+/// ✕ (which deletes the group) are buttons of their own, whose presses never reach the header. A
 /// right-click on the header opens the group's <see cref="EditMenu"/> in Customize mode.
 /// </para>
 /// <para>
@@ -122,6 +123,12 @@ public partial class GroupView : UserControl
 
     /// <summary>The color dot: the anchor of the palette.</summary>
     internal FrameworkElement ColorDotAnchor => ColorDot;
+
+    /// <summary>The header: the anchor of the group's Edit menu.</summary>
+    internal FrameworkElement HeaderAnchor => Header;
+
+    /// <summary>The icon button of Customize mode: the anchor of the icon picker.</summary>
+    internal FrameworkElement IconAnchor => IconButton;
 
     /// <summary>The group's color, <c>#rrggbb</c> (bound to the view model).</summary>
     public string? GroupColor
@@ -318,6 +325,14 @@ public partial class GroupView : UserControl
         if (DataContext is GroupViewModel group)
         {
             MainView.Of(this)?.OpenPalette(group, ColorDot);
+        }
+    }
+
+    private void OnIconClick(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is GroupViewModel group)
+        {
+            MainView.Of(this)?.OpenIconPicker(group, IconButton);
         }
     }
 

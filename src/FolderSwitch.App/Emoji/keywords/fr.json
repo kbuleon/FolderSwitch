@@ -1,0 +1,8681 @@
+{
+  "cldrVersion": "49",
+  "emoji": {
+    "😀": {
+      "name": "visage rieur",
+      "keywords": [
+        "content",
+        "dents",
+        "émoticône",
+        "grand sourire",
+        "heureux",
+        "joyeux",
+        "rire",
+        "sourire",
+        "super",
+        "visage",
+        "visage rieur",
+        "visage très souriant"
+      ]
+    },
+    "😃": {
+      "name": "visage souriant avec de grands yeux",
+      "keywords": [
+        "content",
+        "dents",
+        "émoticône",
+        "formidable",
+        "grand sourire",
+        "heureux",
+        "sourire",
+        "super",
+        "visage souriant avec de grands yeux",
+        "visage très souriant avec la bouche ouverte"
+      ]
+    },
+    "😄": {
+      "name": "visage très souriant aux yeux rieurs",
+      "keywords": [
+        "content",
+        "émoticône",
+        "grand sourire",
+        "heureux",
+        "joyeux",
+        "lol",
+        "mdr",
+        "rire",
+        "sourire",
+        "sourire mignon",
+        "visage avec la bouche ouverte et les yeux souriants",
+        "visage très souriant aux yeux rieurs"
+      ]
+    },
+    "😁": {
+      "name": "visage souriant aux yeux rieurs",
+      "keywords": [
+        "content",
+        "dents",
+        "émoticône",
+        "grand sourire",
+        "heureux",
+        "sourire",
+        "sourire de toutes ses dents",
+        "super",
+        "visage",
+        "visage souriant aux yeux rieurs",
+        "visage souriant avec yeux souriants",
+        "yeux souriants"
+      ]
+    },
+    "😆": {
+      "name": "visage souriant avec yeux plissés",
+      "keywords": [
+        "ahah",
+        "bouche",
+        "content",
+        "émoticône",
+        "lol",
+        "mdr",
+        "rire",
+        "sourire",
+        "visage",
+        "visage souriant avec bouche ouverte et yeux fermés",
+        "visage souriant avec yeux plissés"
+      ]
+    },
+    "😅": {
+      "name": "visage souriant avec une goutte de sueur",
+      "keywords": [
+        "émoticône",
+        "excité",
+        "froid",
+        "goutte",
+        "sourire",
+        "sourire nerveux",
+        "stressé",
+        "sueur",
+        "sueurs froides",
+        "visage souriant avec une goutte de sueur"
+      ]
+    },
+    "🤣": {
+      "name": "se rouler par terre de rire",
+      "keywords": [
+        "content",
+        "drôle",
+        "émoticône",
+        "hilare",
+        "joyeux",
+        "larmes",
+        "lol",
+        "mdr",
+        "pleurer de rire",
+        "rire",
+        "rire aux larmes",
+        "se rouler par terre",
+        "se rouler par terre de rire",
+        "se tordre de rire",
+        "visage",
+        "visage qui rit aux larmes"
+      ]
+    },
+    "😂": {
+      "name": "visage riant aux larmes",
+      "keywords": [
+        "content",
+        "émoticône",
+        "heureux",
+        "joie",
+        "larmes",
+        "lol",
+        "mdr",
+        "pleurer de joie",
+        "pleurer de rire",
+        "rire aux larmes",
+        "sourire",
+        "visage riant aux larmes"
+      ]
+    },
+    "🙂": {
+      "name": "visage avec un léger sourire",
+      "keywords": [
+        "content",
+        "émoticône",
+        "heureux",
+        "léger sourire",
+        "sourire",
+        "visage avec un léger sourire",
+        "visage souriant"
+      ]
+    },
+    "🙃": {
+      "name": "tête à l’envers",
+      "keywords": [
+        "émoticône",
+        "incroyable",
+        "renversée",
+        "tête",
+        "tête à l’envers",
+        "visage"
+      ]
+    },
+    "🫠": {
+      "name": "visage qui fond",
+      "keywords": [
+        "disparaître",
+        "fondre",
+        "gêne",
+        "liquéfié",
+        "liquide",
+        "sarcasme",
+        "se dissoudre",
+        "visage qui fond"
+      ]
+    },
+    "😉": {
+      "name": "visage faisant un clin d’œil",
+      "keywords": [
+        "blague",
+        "clin d’œil",
+        "émoticône",
+        "flirter",
+        "plaisanter",
+        "sexy",
+        "visage",
+        "visage faisant un clin d’œil"
+      ]
+    },
+    "😊": {
+      "name": "visage souriant avec yeux rieurs",
+      "keywords": [
+        "content",
+        "émoticône",
+        "heureux",
+        "œil",
+        "rougir",
+        "satisfait",
+        "sourire",
+        "visage",
+        "visage qui rougit",
+        "visage souriant avec yeux rieurs",
+        "visage souriant avec yeux souriants",
+        "yeux"
+      ]
+    },
+    "😇": {
+      "name": "visage souriant avec auréole",
+      "keywords": [
+        "ange",
+        "angélique",
+        "auréole",
+        "béni",
+        "Bible",
+        "émoticône",
+        "heureux",
+        "innocent",
+        "paix",
+        "sourire",
+        "spirituel",
+        "visage souriant avec auréole"
+      ]
+    },
+    "🥰": {
+      "name": "visage souriant avec cœurs",
+      "keywords": [
+        "adorer",
+        "aimer",
+        "amour",
+        "béguin",
+        "coeur",
+        "cœurs",
+        "j’adore",
+        "Je t’aime",
+        "smiley avec 3 coeurs",
+        "sourire",
+        "visage souriant avec cœurs"
+      ]
+    },
+    "😍": {
+      "name": "visage souriant avec yeux en forme de cœur",
+      "keywords": [
+        "amour",
+        "amoureux",
+        "cœur",
+        "émoticône",
+        "œil",
+        "romantique",
+        "sourire",
+        "visage",
+        "visage souriant avec yeux en forme de cœur",
+        "yeux"
+      ]
+    },
+    "🤩": {
+      "name": "visage avec des étoiles à la place des yeux",
+      "keywords": [
+        "étoile",
+        "étoiles dans les yeux",
+        "grand sourire",
+        "heureux",
+        "pressé",
+        "surexcité",
+        "tête avec étoiles",
+        "visage",
+        "visage avec des étoiles à la place des yeux",
+        "wow",
+        "yeux"
+      ]
+    },
+    "😘": {
+      "name": "visage envoyant un bisou",
+      "keywords": [
+        "amour",
+        "baiser",
+        "bise",
+        "bisou et cœur",
+        "bonjour",
+        "bonne nuit",
+        "cœur",
+        "embrasser",
+        "émoticône",
+        "je t’aime",
+        "visage envoyant un bisou",
+        "visage qui fait une bise avec un cœur"
+      ]
+    },
+    "😗": {
+      "name": "visage faisant un bisou",
+      "keywords": [
+        "amour",
+        "baiser",
+        "bise",
+        "bisou",
+        "embrasser",
+        "émoticône",
+        "je t’aime",
+        "petit bisou",
+        "visage faisant un bisou",
+        "visage qui fait une bise"
+      ]
+    },
+    "☺️": {
+      "name": "visage souriant",
+      "keywords": [
+        "content",
+        "décontracté",
+        "détendu",
+        "émoticône",
+        "heureux",
+        "sourire",
+        "visage souriant",
+        "visage souriant avec les yeux fermés"
+      ]
+    },
+    "😚": {
+      "name": "visage faisant un bisou avec les yeux fermés",
+      "keywords": [
+        "baiser",
+        "bise",
+        "bisou",
+        "bisou les yeux fermés",
+        "embrasser",
+        "émoticône",
+        "rougir",
+        "visage faisant un bisou avec les yeux fermés",
+        "visage qui fait une bise avec les yeux fermés",
+        "visage rougissant",
+        "yeux fermés"
+      ]
+    },
+    "😙": {
+      "name": "visage aux yeux rieurs faisant un bisou",
+      "keywords": [
+        "amour",
+        "baiser",
+        "bise",
+        "bisou",
+        "embrasser",
+        "émoticône",
+        "gros bisou",
+        "je t’aime",
+        "sourire",
+        "visage aux yeux rieurs faisant un bisou",
+        "visage aux yeux souriants qui fait une bise",
+        "yeux fermés"
+      ]
+    },
+    "🥲": {
+      "name": "visage souriant avec une larme",
+      "keywords": [
+        "ému",
+        "fier",
+        "heureux",
+        "larme",
+        "reconnaissant",
+        "smiley",
+        "soulagé",
+        "souriant",
+        "touché",
+        "visage souriant avec une larme"
+      ]
+    },
+    "😋": {
+      "name": "miam",
+      "keywords": [
+        "bon",
+        "content",
+        "délicieux",
+        "émoticône",
+        "faim",
+        "heureux",
+        "langue",
+        "manger",
+        "miam",
+        "savourer",
+        "sourire",
+        "visage souriant qui tire la langue"
+      ]
+    },
+    "😛": {
+      "name": "visage qui tire la langue",
+      "keywords": [
+        "cool",
+        "émoticône",
+        "génial",
+        "langue",
+        "super",
+        "visage",
+        "visage qui tire la langue"
+      ]
+    },
+    "😜": {
+      "name": "visage qui tire la langue et fait un clin d’œil",
+      "keywords": [
+        "amusant",
+        "blague",
+        "clin d’œil",
+        "émoticône",
+        "fou",
+        "langue",
+        "loufoque",
+        "marrant",
+        "œil",
+        "rigolo",
+        "visage",
+        "visage qui tire la langue et fait un clin d’œil"
+      ]
+    },
+    "🤪": {
+      "name": "tête de fou",
+      "keywords": [
+        "grand",
+        "large",
+        "oeil",
+        "œil",
+        "petit",
+        "tête de fou",
+        "tête folle",
+        "yeux",
+        "yeux fous"
+      ]
+    },
+    "😝": {
+      "name": "visage qui tire la langue les yeux plissés",
+      "keywords": [
+        "dégoûtant",
+        "émoticône",
+        "goût",
+        "horrible",
+        "langue",
+        "œil",
+        "omd",
+        "on ne vit qu’une fois",
+        "peu importe",
+        "visage qui tire la langue et ferme les yeux",
+        "visage qui tire la langue les yeux plissés",
+        "yeux fermés"
+      ]
+    },
+    "🤑": {
+      "name": "argent dans les yeux et la bouche",
+      "keywords": [
+        "argent",
+        "argent dans les yeux et la bouche",
+        "bouche",
+        "dollars",
+        "émoticône",
+        "yeux"
+      ]
+    },
+    "🤗": {
+      "name": "visage qui fait un câlin",
+      "keywords": [
+        "câlin",
+        "émoticône",
+        "gentil",
+        "mains",
+        "visage",
+        "visage qui fait un câlin"
+      ]
+    },
+    "🤫": {
+      "name": "visage avec un doigt sur la bouche",
+      "keywords": [
+        "chut",
+        "pas un bruit",
+        "silence",
+        "tête qui dit chut",
+        "visage avec un doigt sur la bouche"
+      ]
+    },
+    "🤔": {
+      "name": "visage en pleine réflexion",
+      "keywords": [
+        "émoticône",
+        "hum",
+        "méditer",
+        "penser",
+        "réfléchir",
+        "réflexion",
+        "visage",
+        "visage en pleine réflexion"
+      ]
+    },
+    "🤐": {
+      "name": "visage avec bouche fermeture éclair",
+      "keywords": [
+        "bouche",
+        "bouche cousue",
+        "émoticône",
+        "fermeture éclair",
+        "motus",
+        "se taire",
+        "secret",
+        "visage",
+        "visage avec bouche cousue",
+        "visage avec bouche fermeture éclair"
+      ]
+    },
+    "🤨": {
+      "name": "visage avec les sourcils relevés",
+      "keywords": [
+        "euh",
+        "hein",
+        "incrédule",
+        "méfiant",
+        "pas vrai",
+        "quoi",
+        "sceptique",
+        "surprise",
+        "tête avec sourcil levé",
+        "visage avec les sourcils relevés"
+      ]
+    },
+    "😐": {
+      "name": "visage neutre",
+      "keywords": [
+        "émoticône",
+        "gêné",
+        "neutre",
+        "ni chaud ni froid",
+        "pas drôle",
+        "peu importe",
+        "rester de marbre",
+        "sans commentaires",
+        "sans rire",
+        "visage neutre",
+        "visage sans expression"
+      ]
+    },
+    "😑": {
+      "name": "visage sans expression",
+      "keywords": [
+        "émoticône",
+        "inexpressif",
+        "mécontent",
+        "neutre",
+        "peu importe",
+        "sans expression",
+        "visage",
+        "visage sans expression"
+      ]
+    },
+    "😶": {
+      "name": "visage sans bouche",
+      "keywords": [
+        "émoticône",
+        "muet",
+        "ne rien dire",
+        "neutre",
+        "sans commentaires",
+        "sans expression",
+        "sans voix",
+        "se taire",
+        "secret",
+        "silence",
+        "sourdine",
+        "visage sans bouche"
+      ]
+    },
+    "🫥": {
+      "name": "visage en pointillés",
+      "keywords": [
+        "déprimé",
+        "disparaître",
+        "introverti",
+        "invisible",
+        "se cacher",
+        "visage en pointillés"
+      ]
+    },
+    "😏": {
+      "name": "visage avec un sourire malin",
+      "keywords": [
+        "arrogant",
+        "charmeur",
+        "émoticône",
+        "malin",
+        "ricaner",
+        "rusé",
+        "séducteur",
+        "sourire",
+        "sourire suffisant",
+        "suspicieux",
+        "visage avec un sourire malin",
+        "visage avec un sourire suffisant"
+      ]
+    },
+    "😒": {
+      "name": "visage blasé",
+      "keywords": [
+        "bizarre",
+        "blasé",
+        "émoticône",
+        "énervé",
+        "fâché",
+        "jaloux",
+        "pas content",
+        "peu importe",
+        "visage",
+        "visage qui s’ennuie"
+      ]
+    },
+    "🙄": {
+      "name": "visage roulant des yeux",
+      "keywords": [
+        "agacé",
+        "émoticône",
+        "excédé",
+        "incrédulité",
+        "roulement",
+        "visage qui lève les yeux au ciel",
+        "visage qui roule des yeux",
+        "visage roulant des yeux",
+        "yeux"
+      ]
+    },
+    "😬": {
+      "name": "visage grimaçant",
+      "keywords": [
+        "dents",
+        "émoticône",
+        "gêné",
+        "grimace",
+        "rien",
+        "sourire",
+        "visage",
+        "visage grimaçant"
+      ]
+    },
+    "🤥": {
+      "name": "visage de menteur",
+      "keywords": [
+        "émoticône",
+        "mensonge",
+        "menteur",
+        "pinocchio",
+        "visage",
+        "visage de menteur",
+        "visage dont le nez s’allonge"
+      ]
+    },
+    "😌": {
+      "name": "visage soulagé",
+      "keywords": [
+        "calme",
+        "émoticône",
+        "sérénité",
+        "soulagement",
+        "visage",
+        "visage soulagé",
+        "zen"
+      ]
+    },
+    "😔": {
+      "name": "visage pensif",
+      "keywords": [
+        "abattu",
+        "déçu",
+        "émoticône",
+        "horrible",
+        "mort",
+        "pensif",
+        "perdu",
+        "triste",
+        "visage"
+      ]
+    },
+    "😪": {
+      "name": "visage endormi",
+      "keywords": [
+        "émoticône",
+        "fatigué",
+        "larme",
+        "pleurer",
+        "sommeil",
+        "triste",
+        "visage",
+        "visage endormi"
+      ]
+    },
+    "🤤": {
+      "name": "visage qui bave",
+      "keywords": [
+        "baver",
+        "délicieux",
+        "émoticône",
+        "mmh",
+        "visage",
+        "visage qui bave"
+      ]
+    },
+    "😴": {
+      "name": "visage somnolent",
+      "keywords": [
+        "bonne nuit",
+        "coucher",
+        "dormir",
+        "émoticône",
+        "endormi",
+        "fatigué",
+        "sieste",
+        "sommeil",
+        "visage",
+        "visage somnolent",
+        "zzz"
+      ]
+    },
+    "😷": {
+      "name": "visage avec masque",
+      "keywords": [
+        "bactéries",
+        "dentiste",
+        "docteur",
+        "émoticône",
+        "germes",
+        "malade",
+        "masque",
+        "masque chirurgical",
+        "médecin",
+        "rhume",
+        "visage avec masque"
+      ]
+    },
+    "🤒": {
+      "name": "visage avec thermomètre",
+      "keywords": [
+        "indisposé",
+        "malade",
+        "thermomètre",
+        "visage",
+        "visage avec thermomètre"
+      ]
+    },
+    "🤕": {
+      "name": "visage avec bandage autour de la tête",
+      "keywords": [
+        "aïe",
+        "bandage",
+        "blessure",
+        "bobo",
+        "émoticône",
+        "pansement",
+        "tête",
+        "tête avec un bandage",
+        "visage",
+        "visage avec bandage autour de la tête"
+      ]
+    },
+    "🤢": {
+      "name": "visage nauséeux",
+      "keywords": [
+        "dégoûtant",
+        "écœuré",
+        "émoticône",
+        "malade",
+        "nausée",
+        "visage",
+        "visage nauséeux",
+        "visage vert qui a la nausée",
+        "vomir"
+      ]
+    },
+    "🤮": {
+      "name": "visage qui vomit",
+      "keywords": [
+        "gerbe",
+        "gerber",
+        "malade",
+        "tête qui vomit",
+        "visage qui vomit",
+        "vomi",
+        "vomissure"
+      ]
+    },
+    "🤧": {
+      "name": "visage qui éternue",
+      "keywords": [
+        "à tes souhaits",
+        "atchoum",
+        "émoticône",
+        "éternuement",
+        "éternuer",
+        "fièvre",
+        "grippe",
+        "malade",
+        "mouchoir",
+        "rhume",
+        "se moucher",
+        "visage qui éternue"
+      ]
+    },
+    "🥵": {
+      "name": "visage rouge et chaud",
+      "keywords": [
+        "chaleur",
+        "chaud",
+        "coup de chaleur",
+        "coup de chaud",
+        "fièvre",
+        "sue",
+        "suer",
+        "toute rouge",
+        "transpiration",
+        "trop chaud",
+        "visage rouge et chaud",
+        "visage tout rouge"
+      ]
+    },
+    "🥶": {
+      "name": "visage bleu et froid",
+      "keywords": [
+        "bleu",
+        "ça caille",
+        "froid",
+        "gel",
+        "gelé",
+        "gelure",
+        "glacé",
+        "glacial",
+        "glaçon",
+        "visage bleu",
+        "visage bleu et froid"
+      ]
+    },
+    "🥴": {
+      "name": "visage éméché",
+      "keywords": [
+        "bouche ondulée",
+        "bourré",
+        "bourrée",
+        "dans les vapes",
+        "hébété",
+        "pas clair",
+        "pompette",
+        "rond",
+        "saoul",
+        "souler",
+        "tête qui tourne",
+        "visage éméché"
+      ]
+    },
+    "😵": {
+      "name": "visage étourdi",
+      "keywords": [
+        "émoticône",
+        "fatigué",
+        "malade",
+        "mort",
+        "tournis",
+        "visage",
+        "visage avec le tournis",
+        "visage étourdi"
+      ]
+    },
+    "🤯": {
+      "name": "tête qui explose",
+      "keywords": [
+        "choc",
+        "choqué",
+        "surpris",
+        "surprise",
+        "tête choquée",
+        "tête qui explose"
+      ]
+    },
+    "🤠": {
+      "name": "visage avec chapeau de cowboy",
+      "keywords": [
+        "chapeau",
+        "cowboy",
+        "visage",
+        "visage avec chapeau de cowboy"
+      ]
+    },
+    "🥳": {
+      "name": "visage festif",
+      "keywords": [
+        "anniversaire",
+        "célébration",
+        "chapeau pointu",
+        "émoticône",
+        "fête",
+        "heureux",
+        "hourra",
+        "joyeux anniversaire",
+        "sifflet",
+        "visage de fête",
+        "visage festif",
+        "youpi"
+      ]
+    },
+    "😎": {
+      "name": "visage avec lunettes de soleil",
+      "keywords": [
+        "cool",
+        "lunettes de soleil",
+        "posé",
+        "tranquille",
+        "visage avec lunettes de soleil"
+      ]
+    },
+    "🤓": {
+      "name": "visage de geek",
+      "keywords": [
+        "doué",
+        "futé",
+        "geek",
+        "idiot",
+        "intelligent",
+        "lunettes",
+        "personne",
+        "premier de la classe",
+        "ringard",
+        "surdoué",
+        "tronche",
+        "visage de geek"
+      ]
+    },
+    "🧐": {
+      "name": "visage avec un monocle",
+      "keywords": [
+        "classe",
+        "collet monté",
+        "fortune",
+        "monocle",
+        "riche",
+        "tête avec monocle",
+        "vieux jeu",
+        "visage avec un monocle"
+      ]
+    },
+    "😕": {
+      "name": "visage confus",
+      "keywords": [
+        "confus",
+        "désolé",
+        "émoticône",
+        "ennuyé",
+        "je ne sais pas",
+        "triste",
+        "visage"
+      ]
+    },
+    "🫤": {
+      "name": "visage avec bouche en diagonale",
+      "keywords": [
+        "bof",
+        "confus",
+        "déçu",
+        "euh",
+        "frustration",
+        "incertain",
+        "sceptique",
+        "visage avec bouche en diagonale"
+      ]
+    },
+    "😟": {
+      "name": "visage inquiet",
+      "keywords": [
+        "anxieux",
+        "émoticône",
+        "inquiet",
+        "préoccupé",
+        "stressé",
+        "surpris",
+        "triste",
+        "visage"
+      ]
+    },
+    "🙁": {
+      "name": "visage légèrement mécontent",
+      "keywords": [
+        "émoticône",
+        "mécontent",
+        "triste",
+        "visage",
+        "visage légèrement mécontent"
+      ]
+    },
+    "☹️": {
+      "name": "visage mécontent",
+      "keywords": [
+        "émoticône",
+        "malheureux",
+        "mécontent",
+        "triste",
+        "visage"
+      ]
+    },
+    "😮": {
+      "name": "visage avec bouche ouverte",
+      "keywords": [
+        "bouche bée",
+        "bouche ouverte",
+        "choqué",
+        "émoticône",
+        "épaté",
+        "incroyable",
+        "omd",
+        "oubli",
+        "surpris",
+        "visage avec bouche ouverte",
+        "visage avec la bouche ouverte",
+        "visage étonné"
+      ]
+    },
+    "😯": {
+      "name": "visage ébahi",
+      "keywords": [
+        "émoticône",
+        "incroyable",
+        "omd",
+        "sans voix",
+        "stupéfait",
+        "stupeur",
+        "surpris",
+        "visage",
+        "visage à la bouche ouverte",
+        "visage ébahi",
+        "visage sans voix"
+      ]
+    },
+    "😲": {
+      "name": "visage stupéfait",
+      "keywords": [
+        "choc",
+        "choqué",
+        "émoticône",
+        "étonné",
+        "impossible",
+        "incroyable",
+        "omd",
+        "stupéfait",
+        "visage"
+      ]
+    },
+    "😳": {
+      "name": "visage qui rougit",
+      "keywords": [
+        "chaud",
+        "comment",
+        "ébahi",
+        "émoticône",
+        "étonné",
+        "gêné",
+        "impressionné",
+        "incrédule",
+        "incroyable",
+        "quoi",
+        "rouge",
+        "visage qui rougit"
+      ]
+    },
+    "🥺": {
+      "name": "visage implorant",
+      "keywords": [
+        "embarrassé",
+        "excuse",
+        "gros yeux",
+        "pardon",
+        "pitié",
+        "s’il te plaît",
+        "supplication",
+        "supplie",
+        "visage implorant",
+        "yeux de chiens battus"
+      ]
+    },
+    "🥹": {
+      "name": "visage retenant ses larmes",
+      "keywords": [
+        "admiration",
+        "ému",
+        "fierté",
+        "gratitude",
+        "larmes de joie",
+        "pleurs",
+        "retenir ses larmes",
+        "triste",
+        "visage retenant ses larmes"
+      ]
+    },
+    "😦": {
+      "name": "visage mécontent avec bouche ouverte",
+      "keywords": [
+        "bouche",
+        "déçu",
+        "effrayé",
+        "émoticône",
+        "ouverte",
+        "peur",
+        "pris au dépourvu",
+        "surpris",
+        "visage",
+        "visage déçu avec bouche ouverte",
+        "visage mécontent avec bouche ouverte"
+      ]
+    },
+    "😧": {
+      "name": "visage angoissé",
+      "keywords": [
+        "angoisse",
+        "comment",
+        "émoticône",
+        "hein",
+        "mécontent",
+        "oubli",
+        "peur",
+        "quoi",
+        "stressé",
+        "surpris",
+        "terrifié",
+        "visage angoissé"
+      ]
+    },
+    "😨": {
+      "name": "visage effrayé",
+      "keywords": [
+        "anxieux",
+        "apeuré",
+        "blême",
+        "effrayé",
+        "émoticône",
+        "inquiet",
+        "peur",
+        "terrifié",
+        "visage"
+      ]
+    },
+    "😰": {
+      "name": "visage anxieux avec goutte de sueur",
+      "keywords": [
+        "aah",
+        "bleu",
+        "bouche bée",
+        "effrayé",
+        "émoticône",
+        "froid",
+        "mince",
+        "nerveux",
+        "peur bleue",
+        "sueurs froides",
+        "terrifié",
+        "visage anxieux avec goutte de sueur",
+        "visage en sueur bouche ouverte"
+      ]
+    },
+    "😥": {
+      "name": "visage triste mais soulagé",
+      "keywords": [
+        "déçu",
+        "émoticône",
+        "ouf",
+        "pfiou",
+        "soulagé",
+        "sueur",
+        "triste",
+        "visage déçu mais soulagé",
+        "visage triste mais soulagé"
+      ]
+    },
+    "😢": {
+      "name": "visage qui pleure",
+      "keywords": [
+        "émoticône",
+        "horrible",
+        "larme",
+        "larmes",
+        "malheureux",
+        "pleurer",
+        "triste",
+        "visage qui pleure"
+      ]
+    },
+    "😭": {
+      "name": "visage qui pleure à chaudes larmes",
+      "keywords": [
+        "émoticône",
+        "larme",
+        "larmes",
+        "malheureux",
+        "pleurer",
+        "pleurs",
+        "sangloter",
+        "triste",
+        "visage",
+        "visage qui pleure à chaudes larmes"
+      ]
+    },
+    "😱": {
+      "name": "visage qui hurle de peur",
+      "keywords": [
+        "choqué",
+        "cri",
+        "effrayé",
+        "Munch",
+        "omd",
+        "peur",
+        "surpris",
+        "terreur",
+        "visage",
+        "visage qui hurle de peur"
+      ]
+    },
+    "😖": {
+      "name": "visage déconcerté",
+      "keywords": [
+        "confus",
+        "déconcerté",
+        "émoticône",
+        "fâché",
+        "frustré",
+        "irrité",
+        "triste",
+        "visage",
+        "yeux fermés"
+      ]
+    },
+    "😣": {
+      "name": "visage persévérant",
+      "keywords": [
+        "concentré",
+        "émoticône",
+        "mal de tête",
+        "migraine",
+        "persévérant",
+        "visage"
+      ]
+    },
+    "😞": {
+      "name": "visage déçu",
+      "keywords": [
+        "abattu",
+        "affreux",
+        "découragé",
+        "déçu",
+        "émoticône",
+        "malheureux",
+        "tort",
+        "triste",
+        "visage"
+      ]
+    },
+    "😓": {
+      "name": "visage démoralisé avec goutte de sueur",
+      "keywords": [
+        "émoticône",
+        "froide",
+        "mal de tête",
+        "migraine",
+        "mince",
+        "ouf",
+        "peur",
+        "sueur",
+        "triste",
+        "visage",
+        "visage démoralisé avec goutte de sueur",
+        "visage et sueurs froides"
+      ]
+    },
+    "😩": {
+      "name": "visage épuisé",
+      "keywords": [
+        "échec",
+        "émoticône",
+        "épuisé",
+        "faim",
+        "fatigué",
+        "mécontent",
+        "non",
+        "pleurer",
+        "sommeil",
+        "triste",
+        "visage",
+        "visage las"
+      ]
+    },
+    "😫": {
+      "name": "visage fatigué",
+      "keywords": [
+        "contrarié",
+        "émoticône",
+        "fatigue",
+        "mécontent",
+        "triste",
+        "visage",
+        "visage fatigué"
+      ]
+    },
+    "😡": {
+      "name": "visage boudeur",
+      "keywords": [
+        "colère",
+        "émoticône",
+        "énervé",
+        "exaspéré",
+        "fâché",
+        "furieux",
+        "mécontent",
+        "rageur",
+        "rouge",
+        "rouge de colère",
+        "sourcils froncés",
+        "visage boudeur"
+      ]
+    },
+    "😠": {
+      "name": "visage en colère",
+      "keywords": [
+        "colère",
+        "émoticône",
+        "exaspéré",
+        "fâché",
+        "frustré",
+        "mécontent",
+        "rageur",
+        "sourcils froncés",
+        "visage en colère"
+      ]
+    },
+    "😈": {
+      "name": "visage souriant avec des cornes",
+      "keywords": [
+        "cornes",
+        "émoticône",
+        "fâché",
+        "fantastique",
+        "sourire",
+        "visage",
+        "visage souriant avec des cornes"
+      ]
+    },
+    "👿": {
+      "name": "visage en colère avec des cornes",
+      "keywords": [
+        "démon",
+        "diable",
+        "diablotin",
+        "émoticône",
+        "fantastique",
+        "malicieux",
+        "mauvais",
+        "visage",
+        "visage en colère avec des cornes"
+      ]
+    },
+    "💀": {
+      "name": "crâne",
+      "keywords": [
+        "corps",
+        "crâne",
+        "dead",
+        "fantastique",
+        "je suis mort",
+        "mort",
+        "squelette",
+        "tête de mort",
+        "visage",
+        "yolo"
+      ]
+    },
+    "☠️": {
+      "name": "tête de mort",
+      "keywords": [
+        "crâne",
+        "mort",
+        "os",
+        "tête",
+        "tête de mort"
+      ]
+    },
+    "💩": {
+      "name": "tas de crotte",
+      "keywords": [
+        "bande dessinée",
+        "BD",
+        "caca",
+        "crotte",
+        "dessin",
+        "excrément",
+        "odeur",
+        "popo",
+        "puer",
+        "sentir mauvais",
+        "tas de crotte",
+        "visage"
+      ]
+    },
+    "👻": {
+      "name": "fantôme",
+      "keywords": [
+        "blague",
+        "bouh",
+        "créature",
+        "effrayant",
+        "fantastique",
+        "fantôme",
+        "Halloween",
+        "hanter",
+        "monstre",
+        "peur",
+        "visage",
+        "visage de fantôme"
+      ]
+    },
+    "👽": {
+      "name": "alien",
+      "keywords": [
+        "alien",
+        "créature",
+        "émoticône",
+        "espace",
+        "extraterrestre",
+        "monstre",
+        "ovni",
+        "science-fiction",
+        "visage"
+      ]
+    },
+    "👾": {
+      "name": "monstre de l’espace",
+      "keywords": [
+        "alien",
+        "créature",
+        "envahisseur",
+        "espace",
+        "extraterrestre",
+        "fantastique",
+        "jeu vidéo",
+        "monstre",
+        "monstre de l’espace",
+        "ovni",
+        "pixels"
+      ]
+    },
+    "🤖": {
+      "name": "robot",
+      "keywords": [
+        "androïde",
+        "automate",
+        "machine",
+        "monstre",
+        "robot",
+        "visage",
+        "visage de robot"
+      ]
+    },
+    "😺": {
+      "name": "chat qui sourit",
+      "keywords": [
+        "animal",
+        "bouche ouverte",
+        "chat",
+        "chat qui sourit",
+        "sourire",
+        "visage"
+      ]
+    },
+    "🙈": {
+      "name": "singe ne rien voir",
+      "keywords": [
+        "animal",
+        "caché",
+        "effrayé",
+        "embarras",
+        "gêne",
+        "geste",
+        "interdit",
+        "ne pas voir",
+        "non",
+        "omd",
+        "oubli",
+        "peur",
+        "rien vu rien entendu",
+        "secret",
+        "singe",
+        "visage",
+        "voir",
+        "yeux"
+      ]
+    },
+    "🙉": {
+      "name": "singe ne rien entendre",
+      "keywords": [
+        "animal",
+        "écouter",
+        "geste",
+        "interdit",
+        "ne pas entendre",
+        "non",
+        "oreilles",
+        "rien vu rien entendu",
+        "secret",
+        "singe",
+        "singe ne rien entendre",
+        "sourd",
+        "visage"
+      ]
+    },
+    "🙊": {
+      "name": "singe ne rien dire",
+      "keywords": [
+        "animal",
+        "bouche cousue",
+        "chut",
+        "geste",
+        "interdit",
+        "motus",
+        "muet",
+        "non",
+        "parler",
+        "se taire",
+        "secret",
+        "silence",
+        "singe",
+        "singe ne rien dire",
+        "visage"
+      ]
+    },
+    "💌": {
+      "name": "lettre d’amour",
+      "keywords": [
+        "amour",
+        "cœur",
+        "lettre",
+        "lettre d’amour",
+        "Saint-Valentin"
+      ]
+    },
+    "💘": {
+      "name": "cœur et flèche",
+      "keywords": [
+        "amour",
+        "cœur",
+        "cœur et flèche",
+        "coeur transpercé",
+        "Cupidon",
+        "flèche",
+        "sentiment"
+      ]
+    },
+    "💝": {
+      "name": "cœur avec ruban",
+      "keywords": [
+        "amour",
+        "anniversaire",
+        "cœur",
+        "cœur avec ruban",
+        "ruban",
+        "Saint-Valentin",
+        "sentiment"
+      ]
+    },
+    "💖": {
+      "name": "cœur étincelant",
+      "keywords": [
+        "amour",
+        "cœur",
+        "cœur étincelant",
+        "étincelles",
+        "sentiment"
+      ]
+    },
+    "💗": {
+      "name": "cœur grandissant",
+      "keywords": [
+        "amour",
+        "cœur",
+        "cœur battant",
+        "cœur grandissant",
+        "cœur qui bat",
+        "pulsations",
+        "sentiment"
+      ]
+    },
+    "💓": {
+      "name": "cœur battant",
+      "keywords": [
+        "amour",
+        "cardio",
+        "cœur",
+        "cœur battant",
+        "cœur qui bat",
+        "pulsations",
+        "sentiment"
+      ]
+    },
+    "💞": {
+      "name": "cœurs qui tournent",
+      "keywords": [
+        "amour",
+        "anniversaire",
+        "cœurs",
+        "cœurs qui tournent",
+        "deux cœurs",
+        "sentiment",
+        "tourbillon"
+      ]
+    },
+    "💕": {
+      "name": "deux cœurs",
+      "keywords": [
+        "amour",
+        "anniversaire",
+        "cœurs",
+        "deux cœurs",
+        "deux cœurs roses",
+        "petits cœurs",
+        "rendez-vous",
+        "sentiment"
+      ]
+    },
+    "💟": {
+      "name": "décoration avec cœur",
+      "keywords": [
+        "amour",
+        "cœur",
+        "cœur blanc",
+        "cœur décoré",
+        "cœur violet",
+        "décoration avec cœur",
+        "sentiment"
+      ]
+    },
+    "❣️": {
+      "name": "cœur point d’exclamation",
+      "keywords": [
+        "amour",
+        "cœur",
+        "cœur point d’exclamation",
+        "exclamation",
+        "ponctuation"
+      ]
+    },
+    "💔": {
+      "name": "cœur brisé",
+      "keywords": [
+        "amour",
+        "cœur",
+        "cœur brisé",
+        "malheureux",
+        "sentiment",
+        "séparé",
+        "triste"
+      ]
+    },
+    "❤️": {
+      "name": "cœur rouge",
+      "keywords": [
+        "amour",
+        "cœur",
+        "cœur rouge",
+        "sentiment"
+      ]
+    },
+    "🖤": {
+      "name": "cœur noir",
+      "keywords": [
+        "cœur",
+        "noir"
+      ]
+    },
+    "🤍": {
+      "name": "cœur blanc",
+      "keywords": [
+        "blanc",
+        "cœur"
+      ]
+    },
+    "💋": {
+      "name": "trace de rouge à lèvres",
+      "keywords": [
+        "baiser",
+        "bise",
+        "bisou",
+        "bouche",
+        "embrasser",
+        "lèvres",
+        "rendez-vous",
+        "rouge",
+        "sexy",
+        "trace de rouge à lèvres"
+      ]
+    },
+    "💯": {
+      "name": "cent points",
+      "keywords": [
+        "100",
+        "cent",
+        "cent points",
+        "score"
+      ]
+    },
+    "💢": {
+      "name": "symbole de colère",
+      "keywords": [
+        "bande dessinée",
+        "BD",
+        "colère",
+        "dessin",
+        "furieux",
+        "symbole de colère"
+      ]
+    },
+    "💥": {
+      "name": "explosion",
+      "keywords": [
+        "bande dessinée",
+        "BD",
+        "bombe",
+        "boum",
+        "collision",
+        "détonation",
+        "étincelles",
+        "explosion"
+      ]
+    },
+    "💦": {
+      "name": "gouttes de sueur",
+      "keywords": [
+        "bande dessinée",
+        "BD",
+        "eau",
+        "éclabousser",
+        "éclaboussures",
+        "effort",
+        "entraînement",
+        "gouttes",
+        "gouttes de sueur",
+        "sueur"
+      ]
+    },
+    "💨": {
+      "name": "décamper",
+      "keywords": [
+        "bande dessinée",
+        "BD",
+        "décamper",
+        "déguerpir",
+        "détaler",
+        "filer",
+        "fumée",
+        "nuage",
+        "partir en courant",
+        "pet",
+        "vent",
+        "vite"
+      ]
+    },
+    "💬": {
+      "name": "bulle de parole",
+      "keywords": [
+        "bande dessinée",
+        "BD",
+        "bulle",
+        "bulle de parole",
+        "dialogue",
+        "écrire",
+        "message",
+        "SMS"
+      ]
+    },
+    "💭": {
+      "name": "bulle de pensée",
+      "keywords": [
+        "bande dessinée",
+        "BD",
+        "bulle",
+        "bulle de pensée",
+        "idée",
+        "imaginer",
+        "inventer",
+        "invention",
+        "pensée",
+        "penser",
+        "rêve",
+        "rêver"
+      ]
+    },
+    "💤": {
+      "name": "endormi",
+      "keywords": [
+        "bande dessinée",
+        "BD",
+        "bonne nuit",
+        "dormir",
+        "endormi",
+        "fatigué",
+        "ronfler",
+        "zzz"
+      ]
+    },
+    "👋": {
+      "name": "signe de la main",
+      "keywords": [
+        "à bientôt",
+        "à plus tard",
+        "au revoir",
+        "bonjour",
+        "bye",
+        "coucou",
+        "hello",
+        "il y a quelqu’un ?",
+        "main",
+        "main qui salue",
+        "salut",
+        "signe",
+        "signe de la main"
+      ]
+    },
+    "🤚": {
+      "name": "dos de main levée",
+      "keywords": [
+        "dos de main levée",
+        "levée",
+        "main"
+      ]
+    },
+    "🖐️": {
+      "name": "main levée doigts écartés",
+      "keywords": [
+        "doigts",
+        "main",
+        "main levée doigts écartés",
+        "paume",
+        "stop"
+      ]
+    },
+    "✋": {
+      "name": "main levée",
+      "keywords": [
+        "feuille",
+        "main",
+        "main levée",
+        "paume de la main",
+        "stop",
+        "tope là"
+      ]
+    },
+    "🖖": {
+      "name": "salut vulcain",
+      "keywords": [
+        "doigts",
+        "main",
+        "salut vulcain",
+        "Spock",
+        "Star Trek",
+        "vulcain"
+      ]
+    },
+    "🫱": {
+      "name": "main vers la droite",
+      "keywords": [
+        "droite",
+        "main vers la droite",
+        "serrer la main",
+        "tenir la main",
+        "vers la droite"
+      ]
+    },
+    "🫲": {
+      "name": "main vers la gauche",
+      "keywords": [
+        "gauche",
+        "main vers la gauche",
+        "serrer la main",
+        "tenir la main",
+        "vers la gauche"
+      ]
+    },
+    "👌": {
+      "name": "ok",
+      "keywords": [
+        "compris",
+        "d’accord",
+        "geste",
+        "main",
+        "nickel",
+        "ok",
+        "OK",
+        "parfait",
+        "super",
+        "tout va bien"
+      ]
+    },
+    "✌️": {
+      "name": "V de la victoire",
+      "keywords": [
+        "ciseaux",
+        "doigts",
+        "main",
+        "paix et amour",
+        "peace and love",
+        "V de la victoire",
+        "victoire"
+      ]
+    },
+    "🤞": {
+      "name": "doigts croisés",
+      "keywords": [
+        "bonne chance",
+        "chance",
+        "croisés",
+        "doigts",
+        "main"
+      ]
+    },
+    "🤟": {
+      "name": "signe je t’aime",
+      "keywords": [
+        "amour",
+        "geste pour je t’aime",
+        "ILY",
+        "je t’aime",
+        "main",
+        "signe je t’aime",
+        "trois doigts"
+      ]
+    },
+    "🤘": {
+      "name": "cornes avec les doigts",
+      "keywords": [
+        "cornes",
+        "cornes avec les doigts",
+        "cornes du diable",
+        "doigts",
+        "main",
+        "rock",
+        "rock’n roll",
+        "yeah"
+      ]
+    },
+    "🤙": {
+      "name": "signe appel téléphonique avec les doigts",
+      "keywords": [
+        "appel",
+        "main",
+        "signe",
+        "signe appel téléphonique avec les doigts",
+        "téléphone"
+      ]
+    },
+    "👈": {
+      "name": "main avec index pointant à gauche",
+      "keywords": [
+        "doigt",
+        "gauche",
+        "index",
+        "index pointé vers la gauche",
+        "main",
+        "main avec index pointant à gauche"
+      ]
+    },
+    "👉": {
+      "name": "main avec index pointant à droite",
+      "keywords": [
+        "doigt",
+        "droite",
+        "index",
+        "index pointé vers la droite",
+        "main",
+        "main avec index pointant à droite"
+      ]
+    },
+    "👆": {
+      "name": "main avec index pointant vers le haut",
+      "keywords": [
+        "doigt",
+        "haut",
+        "index",
+        "index vers le haut",
+        "main",
+        "main avec index pointant vers le haut",
+        "montrer"
+      ]
+    },
+    "🖕": {
+      "name": "doigt d’honneur",
+      "keywords": [
+        "doigt",
+        "doigt d’honneur",
+        "main",
+        "majeur"
+      ]
+    },
+    "👇": {
+      "name": "main avec index pointant vers le bas",
+      "keywords": [
+        "bas",
+        "doigt",
+        "index",
+        "index vers le bas",
+        "main",
+        "main avec index pointant vers le bas",
+        "montrer"
+      ]
+    },
+    "☝️": {
+      "name": "index pointant vers le haut",
+      "keywords": [
+        "doigt",
+        "haut",
+        "index",
+        "index pointant vers le haut",
+        "index pointé vers le haut",
+        "main",
+        "moi"
+      ]
+    },
+    "🫵": {
+      "name": "index pointant vers l’utilisateur",
+      "keywords": [
+        "index pointant vers l’utilisateur",
+        "pointer",
+        "toi"
+      ]
+    },
+    "👍": {
+      "name": "pouce vers le haut",
+      "keywords": [
+        "+1",
+        "bien",
+        "compris",
+        "d’accord",
+        "génial",
+        "haut",
+        "OK",
+        "oui",
+        "super"
+      ]
+    },
+    "👎": {
+      "name": "pouce vers le bas",
+      "keywords": [
+        "bas",
+        "main",
+        "mauvais",
+        "non",
+        "nul",
+        "pouce",
+        "pouce baissé",
+        "pouce vers le bas"
+      ]
+    },
+    "✊": {
+      "name": "poing levé",
+      "keywords": [
+        "main",
+        "pierre",
+        "poing",
+        "poing levé",
+        "poing serré",
+        "solidarité"
+      ]
+    },
+    "👊": {
+      "name": "poing de face",
+      "keywords": [
+        "absolument",
+        "battre",
+        "boum",
+        "correct",
+        "coup de poing",
+        "d’accord",
+        "main",
+        "mon pote",
+        "poing",
+        "poing de face",
+        "serrer"
+      ]
+    },
+    "👏": {
+      "name": "applaudissements",
+      "keywords": [
+        "applaudissements",
+        "bien joué",
+        "bon travail",
+        "bravo",
+        "félicitations",
+        "formidable",
+        "geste",
+        "mains",
+        "mains qui applaudissent",
+        "super"
+      ]
+    },
+    "🙌": {
+      "name": "mains levées",
+      "keywords": [
+        "air",
+        "geste",
+        "hourra",
+        "mains",
+        "mains en l’air",
+        "mains levées",
+        "youpi"
+      ]
+    },
+    "🫶": {
+      "name": "mains qui forment un cœur",
+      "keywords": [
+        "amour",
+        "cœur",
+        "mains qui forment un cœur"
+      ]
+    },
+    "👐": {
+      "name": "mains ouvertes",
+      "keywords": [
+        "main",
+        "mains écartées",
+        "mains ouvertes",
+        "ouvert"
+      ]
+    },
+    "🤲": {
+      "name": "paume contre paume doigts vers le haut",
+      "keywords": [
+        "espérer",
+        "mains",
+        "paume contre paume doigts vers le haut",
+        "paumes des mains ensemble",
+        "prier",
+        "prière"
+      ]
+    },
+    "🤝": {
+      "name": "poignée de main",
+      "keywords": [
+        "d’accord",
+        "main",
+        "mains",
+        "marché conclu",
+        "poignée",
+        "poignée de main",
+        "présentation",
+        "rencontre",
+        "serrer la main"
+      ]
+    },
+    "🙏": {
+      "name": "mains en prière",
+      "keywords": [
+        "demander",
+        "félicitations",
+        "mains",
+        "mains en prière",
+        "mains l’une contre l’autre",
+        "merci",
+        "prier",
+        "prière",
+        "s’il te plaît",
+        "s’il vous plaît",
+        "salut",
+        "se taper dans la main",
+        "tope là"
+      ]
+    },
+    "✍️": {
+      "name": "main qui écrit",
+      "keywords": [
+        "écrire",
+        "main",
+        "main qui écrit"
+      ]
+    },
+    "👂": {
+      "name": "oreille",
+      "keywords": [
+        "corps",
+        "écouter",
+        "entendre",
+        "oreille",
+        "ouïe",
+        "son"
+      ]
+    },
+    "🦻": {
+      "name": "oreille appareillée",
+      "keywords": [
+        "accessibilité",
+        "handicap",
+        "malentendant",
+        "oreille appareillée",
+        "prothèse auditive",
+        "sonotone",
+        "sourd",
+        "surdité"
+      ]
+    },
+    "👃": {
+      "name": "nez",
+      "keywords": [
+        "corps",
+        "narines",
+        "nez",
+        "odeur",
+        "sentir"
+      ]
+    },
+    "🧠": {
+      "name": "cerveau",
+      "keywords": [
+        "cerveau",
+        "intelligent",
+        "intelligente"
+      ]
+    },
+    "🫀": {
+      "name": "cœur",
+      "keywords": [
+        "anatomie",
+        "battement de coeur",
+        "battements",
+        "cardiologie",
+        "cœur",
+        "organe",
+        "pouls",
+        "pulsation"
+      ]
+    },
+    "🫁": {
+      "name": "poumons",
+      "keywords": [
+        "anatomie",
+        "expiration",
+        "inspiration",
+        "organe",
+        "poumons",
+        "respiration",
+        "respirer",
+        "souffle"
+      ]
+    },
+    "🦷": {
+      "name": "dent",
+      "keywords": [
+        "carie",
+        "dent",
+        "dentiste",
+        "émail diamant"
+      ]
+    },
+    "🦴": {
+      "name": "os",
+      "keywords": [
+        "chien",
+        "halloween",
+        "os",
+        "squelette"
+      ]
+    },
+    "👀": {
+      "name": "yeux",
+      "keywords": [
+        "chercher",
+        "corps",
+        "coup d’œil",
+        "œil",
+        "regarder",
+        "visage",
+        "voir",
+        "yeux"
+      ]
+    },
+    "👁️": {
+      "name": "œil",
+      "keywords": [
+        "corps",
+        "œil"
+      ]
+    },
+    "👅": {
+      "name": "langue",
+      "keywords": [
+        "corps",
+        "langue",
+        "lécher"
+      ]
+    },
+    "👄": {
+      "name": "bouche",
+      "keywords": [
+        "baiser",
+        "beauté",
+        "bise",
+        "bisou",
+        "bouche",
+        "corps",
+        "embrasser",
+        "lèvres",
+        "rouge à lèvres"
+      ]
+    },
+    "👶": {
+      "name": "bébé",
+      "keywords": [
+        "bébé",
+        "émoticône",
+        "enceinte",
+        "enfant",
+        "nouveau-né",
+        "petit"
+      ]
+    },
+    "🧑": {
+      "name": "adulte",
+      "keywords": [
+        "adulte",
+        "genre neutre",
+        "non-genré"
+      ]
+    },
+    "👨": {
+      "name": "homme",
+      "keywords": [
+        "ami",
+        "garçon",
+        "homme",
+        "personne",
+        "petit ami",
+        "pote"
+      ]
+    },
+    "👩": {
+      "name": "femme",
+      "keywords": [
+        "blonde",
+        "coupe de cheveux",
+        "femme",
+        "personne"
+      ]
+    },
+    "🚶": {
+      "name": "personne qui marche",
+      "keywords": [
+        "balade",
+        "en route",
+        "flâner",
+        "homme",
+        "marche",
+        "marcher",
+        "nonchalant",
+        "personne",
+        "personne qui marche",
+        "piéton",
+        "promenade",
+        "se balader"
+      ]
+    },
+    "🏃": {
+      "name": "personne qui court",
+      "keywords": [
+        "arriver",
+        "coureur",
+        "courir",
+        "course à pied",
+        "homme qui court",
+        "jogging",
+        "marathon",
+        "marathonien",
+        "personne qui court",
+        "pressé",
+        "rapide",
+        "sportif",
+        "vite"
+      ]
+    },
+    "⛷️": {
+      "name": "skieur",
+      "keywords": [
+        "neige",
+        "ski",
+        "skieur",
+        "sport"
+      ]
+    },
+    "🏄": {
+      "name": "personne faisant du surf",
+      "keywords": [
+        "glisse",
+        "homme",
+        "mer",
+        "océan",
+        "personne",
+        "personne faisant du surf",
+        "plage",
+        "planche",
+        "sport",
+        "surf",
+        "vagues"
+      ]
+    },
+    "🏊": {
+      "name": "personne nageant",
+      "keywords": [
+        "crawl",
+        "eau",
+        "exercice",
+        "homme",
+        "nage",
+        "nageur",
+        "natation",
+        "personne",
+        "personne nageant",
+        "piscine",
+        "sport"
+      ]
+    },
+    "🏋️": {
+      "name": "haltérophile",
+      "keywords": [
+        "bodybuilding",
+        "entraînement",
+        "force",
+        "haltérophile",
+        "haltérophilie",
+        "homme",
+        "lever des poids",
+        "muscles",
+        "personne",
+        "poids",
+        "sport"
+      ]
+    },
+    "🚴": {
+      "name": "cycliste",
+      "keywords": [
+        "course",
+        "cycliste",
+        "guidon",
+        "homme",
+        "pédaler",
+        "personne",
+        "rouler",
+        "sport",
+        "tour de france",
+        "vélo"
+      ]
+    },
+    "🧘": {
+      "name": "personne dans la posture du lotus",
+      "keywords": [
+        "détendu",
+        "femme",
+        "lotus",
+        "méditation",
+        "personne assise en position du lotus",
+        "personne dans la posture du lotus",
+        "position du lotus",
+        "relax",
+        "relaxation",
+        "tailleur",
+        "yoga",
+        "zen"
+      ]
+    },
+    "🛀": {
+      "name": "personne prenant un bain",
+      "keywords": [
+        "baignoire",
+        "bain",
+        "personne prenant un bain",
+        "personne qui prend un bain"
+      ]
+    },
+    "🛌": {
+      "name": "personne au lit",
+      "keywords": [
+        "auberge",
+        "bonne nuit",
+        "coucher",
+        "dodo",
+        "dormir",
+        "fatigué",
+        "hôtel",
+        "lit",
+        "personne au lit",
+        "sieste"
+      ]
+    },
+    "🗣️": {
+      "name": "tête qui parle",
+      "keywords": [
+        "parler",
+        "silhouette",
+        "tête qui parle"
+      ]
+    },
+    "👤": {
+      "name": "silhouette de buste",
+      "keywords": [
+        "buste",
+        "mystère",
+        "ombre",
+        "silhouette de buste"
+      ]
+    },
+    "👥": {
+      "name": "silhouettes de bustes",
+      "keywords": [
+        "amis",
+        "bff",
+        "bustes",
+        "gens",
+        "meilleur ami",
+        "meilleure amie",
+        "meilleures amies",
+        "meilleurs amis",
+        "personnes",
+        "silhouettes",
+        "silhouettes de bustes",
+        "tout le monde"
+      ]
+    },
+    "👪": {
+      "name": "famille",
+      "keywords": [
+        "enfant",
+        "famille",
+        "famille avec un père, une mère et un fils",
+        "femme",
+        "fils",
+        "garçon",
+        "homme",
+        "mère",
+        "père"
+      ]
+    },
+    "👣": {
+      "name": "traces de pas",
+      "keywords": [
+        "empreintes",
+        "pied",
+        "pieds",
+        "pieds nus",
+        "traces de pas"
+      ]
+    },
+    "🫆": {
+      "name": "empreinte digitale",
+      "keywords": [
+        "dermatoglyphe",
+        "données biométriques",
+        "empreinte digitale",
+        "identité",
+        "sécurité"
+      ]
+    },
+    "🐵": {
+      "name": "tête de singe",
+      "keywords": [
+        "animal",
+        "Georges le petit curieux",
+        "singe",
+        "sourire",
+        "tête de singe",
+        "visage"
+      ]
+    },
+    "🐒": {
+      "name": "singe",
+      "keywords": [
+        "animal",
+        "primate",
+        "singe"
+      ]
+    },
+    "🦍": {
+      "name": "gorille",
+      "keywords": [
+        "animal",
+        "gorille",
+        "primate"
+      ]
+    },
+    "🐶": {
+      "name": "tête de chien",
+      "keywords": [
+        "animal",
+        "animal domestique",
+        "chien",
+        "chiot",
+        "tête de chien",
+        "visage"
+      ]
+    },
+    "🐕": {
+      "name": "chien",
+      "keywords": [
+        "aboyer",
+        "animal",
+        "animal domestique",
+        "chien"
+      ]
+    },
+    "🐩": {
+      "name": "caniche",
+      "keywords": [
+        "animal",
+        "caniche",
+        "chien"
+      ]
+    },
+    "🐺": {
+      "name": "loup",
+      "keywords": [
+        "animal",
+        "loup",
+        "louve",
+        "tête",
+        "tête de loup"
+      ]
+    },
+    "🦊": {
+      "name": "renard",
+      "keywords": [
+        "animal",
+        "nature",
+        "renard",
+        "tête",
+        "visage"
+      ]
+    },
+    "🦝": {
+      "name": "raton laveur",
+      "keywords": [
+        "animal",
+        "curieux",
+        "raton laveur",
+        "sournois"
+      ]
+    },
+    "🐱": {
+      "name": "tête de chat",
+      "keywords": [
+        "animal",
+        "chat",
+        "chaton",
+        "miaou",
+        "minou",
+        "tête de chat"
+      ]
+    },
+    "🐈": {
+      "name": "chat",
+      "keywords": [
+        "animal",
+        "animal domestique",
+        "chat",
+        "chaton",
+        "miaou",
+        "miauler"
+      ]
+    },
+    "🦁": {
+      "name": "tête de lion",
+      "keywords": [
+        "animal",
+        "astrologie",
+        "crinière",
+        "fort",
+        "horoscope",
+        "lion",
+        "roi",
+        "rugissement",
+        "safari",
+        "savane",
+        "tête de lion",
+        "visage",
+        "zodiaque"
+      ]
+    },
+    "🐯": {
+      "name": "tête de tigre",
+      "keywords": [
+        "animal",
+        "félin",
+        "prédateur",
+        "tête de tigre",
+        "tigre",
+        "visage"
+      ]
+    },
+    "🐴": {
+      "name": "tête de cheval",
+      "keywords": [
+        "animal",
+        "cheval",
+        "dressage",
+        "équitation",
+        "ferme",
+        "jument",
+        "tête de cheval"
+      ]
+    },
+    "🐎": {
+      "name": "cheval",
+      "keywords": [
+        "animal",
+        "cheval",
+        "course hippique",
+        "hippodrome",
+        "tiercé"
+      ]
+    },
+    "🦄": {
+      "name": "licorne",
+      "keywords": [
+        "animal",
+        "licorne",
+        "licrone",
+        "tête",
+        "tête de licorne"
+      ]
+    },
+    "🦓": {
+      "name": "zèbre",
+      "keywords": [
+        "animal",
+        "noir et blanc",
+        "rayure",
+        "rayures",
+        "zèbre",
+        "zébrure"
+      ]
+    },
+    "🦌": {
+      "name": "cerf",
+      "keywords": [
+        "animal",
+        "bois",
+        "cerf"
+      ]
+    },
+    "🦬": {
+      "name": "bison",
+      "keywords": [
+        "animal",
+        "bison",
+        "buffle",
+        "cornes",
+        "herbivore",
+        "nature",
+        "troupeau"
+      ]
+    },
+    "🐮": {
+      "name": "tête de vache",
+      "keywords": [
+        "animal",
+        "lait",
+        "meuh",
+        "tête de vache",
+        "vache",
+        "visage"
+      ]
+    },
+    "🐄": {
+      "name": "vache",
+      "keywords": [
+        "animal",
+        "ferme",
+        "lait",
+        "meuh",
+        "vache"
+      ]
+    },
+    "🐷": {
+      "name": "tête de cochon",
+      "keywords": [
+        "animal",
+        "cochon",
+        "ferme",
+        "porc",
+        "tête de cochon",
+        "visage"
+      ]
+    },
+    "🐖": {
+      "name": "cochon",
+      "keywords": [
+        "animal",
+        "cochon",
+        "ferme",
+        "gros",
+        "jambon",
+        "porc",
+        "truie"
+      ]
+    },
+    "🐗": {
+      "name": "sanglier",
+      "keywords": [
+        "animal",
+        "Game of Thrones",
+        "sanglier"
+      ]
+    },
+    "🐑": {
+      "name": "mouton",
+      "keywords": [
+        "animal",
+        "bêler",
+        "brebis",
+        "doux",
+        "ferme",
+        "laine",
+        "lait",
+        "mouton"
+      ]
+    },
+    "🐐": {
+      "name": "chèvre",
+      "keywords": [
+        "animal",
+        "astrologie",
+        "Capricorne",
+        "chèvre",
+        "ferme",
+        "fromage",
+        "horoscope",
+        "lait",
+        "zodiaque"
+      ]
+    },
+    "🐪": {
+      "name": "dromadaire",
+      "keywords": [
+        "animal",
+        "bosse",
+        "désert",
+        "dromadaire",
+        "une bosse"
+      ]
+    },
+    "🦙": {
+      "name": "lama",
+      "keywords": [
+        "alpaca",
+        "alpaga",
+        "animal",
+        "guanaco",
+        "laine",
+        "lama",
+        "llama",
+        "pérou",
+        "vicuña",
+        "vigogne"
+      ]
+    },
+    "🦒": {
+      "name": "girafe",
+      "keywords": [
+        "animal",
+        "cou",
+        "girafe",
+        "taches"
+      ]
+    },
+    "🐘": {
+      "name": "éléphant",
+      "keywords": [
+        "animal",
+        "éléphant",
+        "pachyderme",
+        "trompe"
+      ]
+    },
+    "🦏": {
+      "name": "rhinocéros",
+      "keywords": [
+        "animal",
+        "corne",
+        "rhinocéros"
+      ]
+    },
+    "🦛": {
+      "name": "hippopotame",
+      "keywords": [
+        "animal",
+        "hippo",
+        "hippopotame"
+      ]
+    },
+    "🐭": {
+      "name": "tête de souris",
+      "keywords": [
+        "animal",
+        "souris",
+        "tête de souris",
+        "visage"
+      ]
+    },
+    "🐹": {
+      "name": "hamster",
+      "keywords": [
+        "animal",
+        "animal domestique",
+        "hamster",
+        "tête",
+        "tête de hamster",
+        "visage"
+      ]
+    },
+    "🐰": {
+      "name": "tête de lapin",
+      "keywords": [
+        "animal",
+        "animal domestique",
+        "dents",
+        "lapin",
+        "tête de lapin"
+      ]
+    },
+    "🐇": {
+      "name": "lapin",
+      "keywords": [
+        "animal",
+        "animal domestique",
+        "lapin"
+      ]
+    },
+    "🐿️": {
+      "name": "écureuil",
+      "keywords": [
+        "animal",
+        "écureuil",
+        "noisettes"
+      ]
+    },
+    "🦔": {
+      "name": "hérisson",
+      "keywords": [
+        "animal",
+        "épines",
+        "épineux",
+        "hérisson",
+        "piquant",
+        "porc-épic"
+      ]
+    },
+    "🦇": {
+      "name": "chauve-souris",
+      "keywords": [
+        "animal",
+        "chauve-souris",
+        "vampire"
+      ]
+    },
+    "🐻": {
+      "name": "ours",
+      "keywords": [
+        "animal",
+        "miel",
+        "nounours",
+        "ours",
+        "ours brun",
+        "teddy",
+        "tête",
+        "visage"
+      ]
+    },
+    "🐨": {
+      "name": "koala",
+      "keywords": [
+        "animal",
+        "Australie",
+        "koala"
+      ]
+    },
+    "🐼": {
+      "name": "panda",
+      "keywords": [
+        "animal",
+        "panda",
+        "tête",
+        "tête de panda",
+        "visage"
+      ]
+    },
+    "🐾": {
+      "name": "empreintes d’animaux",
+      "keywords": [
+        "empreintes",
+        "empreintes d’animaux",
+        "empreintes de pattes",
+        "pattes"
+      ]
+    },
+    "🦃": {
+      "name": "dindon",
+      "keywords": [
+        "action de grâces",
+        "animal",
+        "dinde",
+        "dindon",
+        "oiseau",
+        "thanksgiving",
+        "volaille"
+      ]
+    },
+    "🐔": {
+      "name": "poule",
+      "keywords": [
+        "animal",
+        "coq",
+        "ferme",
+        "oiseau",
+        "poule",
+        "poulet",
+        "volaille"
+      ]
+    },
+    "🐓": {
+      "name": "coq",
+      "keywords": [
+        "animal",
+        "coq",
+        "oiseau",
+        "volaille"
+      ]
+    },
+    "🐣": {
+      "name": "poussin qui éclôt",
+      "keywords": [
+        "animal",
+        "bébé",
+        "éclosion",
+        "naissance",
+        "naître",
+        "nouveau-né",
+        "œuf",
+        "oiseau",
+        "poussin",
+        "poussin qui éclôt"
+      ]
+    },
+    "🐤": {
+      "name": "poussin",
+      "keywords": [
+        "animal",
+        "oiseau",
+        "poussin",
+        "tête de poussin"
+      ]
+    },
+    "🐦": {
+      "name": "oiseau",
+      "keywords": [
+        "animal",
+        "oiseau",
+        "ornithologie"
+      ]
+    },
+    "🐧": {
+      "name": "pingouin",
+      "keywords": [
+        "animal",
+        "Antarctique",
+        "banquise",
+        "manchot",
+        "oiseau",
+        "pingouin"
+      ]
+    },
+    "🕊️": {
+      "name": "colombe",
+      "keywords": [
+        "animal",
+        "colombe",
+        "oiseau",
+        "paix",
+        "rameau",
+        "voler"
+      ]
+    },
+    "🦅": {
+      "name": "aigle",
+      "keywords": [
+        "aigle",
+        "animal",
+        "oiseau",
+        "rapace"
+      ]
+    },
+    "🦆": {
+      "name": "canard",
+      "keywords": [
+        "animal",
+        "canard",
+        "coin-coin",
+        "oiseau"
+      ]
+    },
+    "🦢": {
+      "name": "cygne",
+      "keywords": [
+        "animal",
+        "cygne",
+        "jeune cygne",
+        "oiseau",
+        "vilain petit canard"
+      ]
+    },
+    "🦉": {
+      "name": "chouette",
+      "keywords": [
+        "animal",
+        "chouette",
+        "hibou",
+        "oiseau",
+        "sage"
+      ]
+    },
+    "🪶": {
+      "name": "plume",
+      "keywords": [
+        "écrire",
+        "écrivain",
+        "léger",
+        "oiseau",
+        "plumage",
+        "plume",
+        "voler"
+      ]
+    },
+    "🦩": {
+      "name": "flamant",
+      "keywords": [
+        "animal",
+        "flamant",
+        "oiseau",
+        "rose",
+        "tropical"
+      ]
+    },
+    "🦜": {
+      "name": "perroquet",
+      "keywords": [
+        "animal",
+        "oiseau",
+        "parle",
+        "perroquet",
+        "pirate",
+        "répète"
+      ]
+    },
+    "🪽": {
+      "name": "aile",
+      "keywords": [
+        "aile",
+        "angélique",
+        "aviation",
+        "céleste",
+        "mythologie",
+        "oiseau",
+        "s’élever",
+        "s’envoler",
+        "voler"
+      ]
+    },
+    "🐸": {
+      "name": "grenouille",
+      "keywords": [
+        "animal",
+        "crapaud",
+        "grenouille",
+        "tête",
+        "tête de grenouille"
+      ]
+    },
+    "🐊": {
+      "name": "crocodile",
+      "keywords": [
+        "alligator",
+        "animal",
+        "caïman",
+        "crocodile",
+        "reptile",
+        "zoo"
+      ]
+    },
+    "🐢": {
+      "name": "tortue",
+      "keywords": [
+        "animal",
+        "carapace",
+        "lentement",
+        "reptile",
+        "tortue"
+      ]
+    },
+    "🦎": {
+      "name": "lézard",
+      "keywords": [
+        "animal",
+        "lézard",
+        "reptile"
+      ]
+    },
+    "🐍": {
+      "name": "serpent",
+      "keywords": [
+        "animal",
+        "reptile",
+        "serpent",
+        "serpent à sonnette",
+        "venin"
+      ]
+    },
+    "🐲": {
+      "name": "tête de dragon",
+      "keywords": [
+        "animal",
+        "dragon",
+        "mythe",
+        "tête de dragon",
+        "tradition"
+      ]
+    },
+    "🐉": {
+      "name": "dragon",
+      "keywords": [
+        "animal",
+        "Chine",
+        "chinois",
+        "dragon",
+        "Game of Thrones",
+        "mythe",
+        "tradition"
+      ]
+    },
+    "🦕": {
+      "name": "sauropode",
+      "keywords": [
+        "animal",
+        "brachiosaure",
+        "brontosaure",
+        "dinosaure",
+        "diplodocus",
+        "sauropode"
+      ]
+    },
+    "🦖": {
+      "name": "T-Rex",
+      "keywords": [
+        "animal",
+        "dinosaure",
+        "T-Rex",
+        "T. rex",
+        "tyrannosaure",
+        "Tyrannosaurus rex",
+        "Tyrannosaurus Rex"
+      ]
+    },
+    "🐳": {
+      "name": "baleine soufflant par son évent",
+      "keywords": [
+        "animal",
+        "baleine",
+        "baleine avec évent",
+        "baleine soufflant par son évent",
+        "mer",
+        "océan",
+        "plage",
+        "souffle"
+      ]
+    },
+    "🐬": {
+      "name": "dauphin",
+      "keywords": [
+        "animal",
+        "dauphin",
+        "Flipper",
+        "mer",
+        "océan",
+        "plage"
+      ]
+    },
+    "🫍": {
+      "name": "orque",
+      "keywords": [
+        "baleine",
+        "marin",
+        "océan"
+      ]
+    },
+    "🐟": {
+      "name": "poisson",
+      "keywords": [
+        "alimentation",
+        "animal",
+        "astrologie",
+        "horoscope",
+        "manger",
+        "nourriture",
+        "poisson",
+        "poissons",
+        "Poissons",
+        "repas",
+        "zodiaque"
+      ]
+    },
+    "🐠": {
+      "name": "poisson tropical",
+      "keywords": [
+        "animal",
+        "poisson",
+        "poisson tropical"
+      ]
+    },
+    "🐡": {
+      "name": "poisson-lune",
+      "keywords": [
+        "animal",
+        "poisson",
+        "poisson-lune"
+      ]
+    },
+    "🦈": {
+      "name": "requin",
+      "keywords": [
+        "animal",
+        "Dents de la mer",
+        "poisson",
+        "requin"
+      ]
+    },
+    "🐙": {
+      "name": "pieuvre",
+      "keywords": [
+        "animal",
+        "créature",
+        "mer",
+        "mollusque",
+        "océan",
+        "pieuvre",
+        "poulpe"
+      ]
+    },
+    "🐚": {
+      "name": "coquille en spirale",
+      "keywords": [
+        "animal",
+        "conque",
+        "coquillage",
+        "coquille",
+        "coquille en spirale",
+        "mer",
+        "plage",
+        "spirale"
+      ]
+    },
+    "🪸": {
+      "name": "corail",
+      "keywords": [
+        "corail",
+        "océan",
+        "réchauffement climatique",
+        "récif"
+      ]
+    },
+    "🪼": {
+      "name": "méduse",
+      "keywords": [
+        "aïe",
+        "animal",
+        "aquarium",
+        "brûlure",
+        "gélatineux",
+        "invertébré",
+        "marin",
+        "méduse",
+        "mer",
+        "mou",
+        "océan",
+        "piqûre",
+        "plancton",
+        "tentacules",
+        "vie marine"
+      ]
+    },
+    "🦀": {
+      "name": "crabe",
+      "keywords": [
+        "animal",
+        "astrologie",
+        "Cancer",
+        "crabe",
+        "horoscope",
+        "mer",
+        "pinces",
+        "plage",
+        "zodiaque"
+      ]
+    },
+    "🦞": {
+      "name": "homard",
+      "keywords": [
+        "animal",
+        "bisque",
+        "fruit de mer",
+        "fruits de mer",
+        "homard",
+        "pinces"
+      ]
+    },
+    "🦐": {
+      "name": "crevette",
+      "keywords": [
+        "aliment",
+        "crevette",
+        "crustacé",
+        "fruits de mer",
+        "nourriture"
+      ]
+    },
+    "🦑": {
+      "name": "calamar",
+      "keywords": [
+        "aliment",
+        "animal",
+        "calamar",
+        "encornet",
+        "mollusque",
+        "nourriture"
+      ]
+    },
+    "🐌": {
+      "name": "escargot",
+      "keywords": [
+        "animal",
+        "escargot",
+        "jardin",
+        "lentement",
+        "nature"
+      ]
+    },
+    "🦋": {
+      "name": "papillon",
+      "keywords": [
+        "animal",
+        "insecte",
+        "mignon",
+        "papillon",
+        "printemps"
+      ]
+    },
+    "🐛": {
+      "name": "chenille",
+      "keywords": [
+        "animal",
+        "chenille",
+        "insecte",
+        "jardin"
+      ]
+    },
+    "🐜": {
+      "name": "fourmi",
+      "keywords": [
+        "animal",
+        "fourmi",
+        "insecte",
+        "jardin"
+      ]
+    },
+    "🐝": {
+      "name": "abeille",
+      "keywords": [
+        "abeille",
+        "animal",
+        "bourdon",
+        "guêpe",
+        "insecte",
+        "miel",
+        "nature",
+        "printemps"
+      ]
+    },
+    "🪲": {
+      "name": "scarabée",
+      "keywords": [
+        "animal",
+        "insecte",
+        "scarabée"
+      ]
+    },
+    "🐞": {
+      "name": "coccinelle",
+      "keywords": [
+        "animal",
+        "bête",
+        "coccinelle",
+        "insecte",
+        "jardin",
+        "nature"
+      ]
+    },
+    "🕷️": {
+      "name": "araignée",
+      "keywords": [
+        "animal",
+        "araignée",
+        "insecte"
+      ]
+    },
+    "🕸️": {
+      "name": "toile d’araignée",
+      "keywords": [
+        "araignée",
+        "toile",
+        "toile d’araignée"
+      ]
+    },
+    "🦂": {
+      "name": "scorpion",
+      "keywords": [
+        "animal",
+        "astrologie",
+        "désert",
+        "horoscope",
+        "scorpion",
+        "zodiaque"
+      ]
+    },
+    "🦟": {
+      "name": "moustique",
+      "keywords": [
+        "fièvre",
+        "infection",
+        "insecte",
+        "maladie",
+        "malaria",
+        "moustique",
+        "piqûre",
+        "virus"
+      ]
+    },
+    "💐": {
+      "name": "bouquet",
+      "keywords": [
+        "amoureux",
+        "anniversaire",
+        "bouquet",
+        "fleur",
+        "fleurs",
+        "plante",
+        "rendez-vous",
+        "roses"
+      ]
+    },
+    "🌸": {
+      "name": "fleur de cerisier",
+      "keywords": [
+        "bourgeon",
+        "fleur",
+        "fleur de cerisier",
+        "plante",
+        "printemps"
+      ]
+    },
+    "🪷": {
+      "name": "lotus",
+      "keywords": [
+        "beauté",
+        "bouddhisme",
+        "calme",
+        "fleur",
+        "hindouisme",
+        "lotus",
+        "pureté",
+        "sérénité"
+      ]
+    },
+    "🏵️": {
+      "name": "rosette",
+      "keywords": [
+        "plante",
+        "rosette"
+      ]
+    },
+    "🌹": {
+      "name": "rose",
+      "keywords": [
+        "amour",
+        "beauté",
+        "fleur",
+        "plante",
+        "rose",
+        "rouge",
+        "Saint-Valentin"
+      ]
+    },
+    "🌺": {
+      "name": "hibiscus",
+      "keywords": [
+        "fleur",
+        "hibiscus",
+        "plante"
+      ]
+    },
+    "🌻": {
+      "name": "tournesol",
+      "keywords": [
+        "champs",
+        "fleur",
+        "plante",
+        "soleil",
+        "tournesol"
+      ]
+    },
+    "🌼": {
+      "name": "bourgeon",
+      "keywords": [
+        "bourgeon",
+        "bouton d’or",
+        "dent-de-lion",
+        "fleur",
+        "pissenlit",
+        "plante",
+        "printemps"
+      ]
+    },
+    "🌷": {
+      "name": "tulipe",
+      "keywords": [
+        "bourgeon",
+        "fleur",
+        "plante",
+        "printemps",
+        "tulipe"
+      ]
+    },
+    "🌱": {
+      "name": "jeune pousse",
+      "keywords": [
+        "germe",
+        "jeune plant",
+        "jeune pousse",
+        "plante",
+        "plantule",
+        "pousser",
+        "printemps",
+        "semis"
+      ]
+    },
+    "🪴": {
+      "name": "plante en pot",
+      "keywords": [
+        "décoration",
+        "ennuyeux",
+        "faire pousser",
+        "intérieur",
+        "nature",
+        "plante",
+        "plante en pot",
+        "pousser",
+        "prendre soin"
+      ]
+    },
+    "🌲": {
+      "name": "conifère",
+      "keywords": [
+        "arbre",
+        "conifère",
+        "feuilles persistantes",
+        "forêt",
+        "pin",
+        "plante",
+        "sapin",
+        "sapin de Noël"
+      ]
+    },
+    "🌳": {
+      "name": "arbre à feuilles caduques",
+      "keywords": [
+        "arbre",
+        "arbre à feuilles caduques",
+        "feuilles caduques",
+        "feuillu",
+        "forêt",
+        "nature",
+        "plante"
+      ]
+    },
+    "🌴": {
+      "name": "palmier",
+      "keywords": [
+        "arbre",
+        "cocotier",
+        "palmier",
+        "plage",
+        "plante",
+        "tropical",
+        "tropiques"
+      ]
+    },
+    "🌵": {
+      "name": "cactus",
+      "keywords": [
+        "cactus",
+        "désert",
+        "épines",
+        "nature",
+        "piquant",
+        "plante",
+        "sécheresse"
+      ]
+    },
+    "🌾": {
+      "name": "plant de riz",
+      "keywords": [
+        "grain",
+        "plant de riz",
+        "plante",
+        "riz"
+      ]
+    },
+    "🌿": {
+      "name": "feuille",
+      "keywords": [
+        "arbre",
+        "feuille",
+        "feuilles",
+        "plante"
+      ]
+    },
+    "☘️": {
+      "name": "trèfle",
+      "keywords": [
+        "Irlande",
+        "plante",
+        "trèfle"
+      ]
+    },
+    "🍀": {
+      "name": "trèfle à quatre feuilles",
+      "keywords": [
+        "4",
+        "chance",
+        "feuilles",
+        "Irlande",
+        "plante",
+        "porte-bonheur",
+        "quatre",
+        "trèfle",
+        "trèfle à quatre feuilles"
+      ]
+    },
+    "🍁": {
+      "name": "feuille d’érable",
+      "keywords": [
+        "automne",
+        "érable",
+        "feuille",
+        "feuille d’érable",
+        "feuille morte",
+        "tomber"
+      ]
+    },
+    "🍂": {
+      "name": "feuille morte",
+      "keywords": [
+        "automne",
+        "feuille",
+        "feuille morte",
+        "feuilles mortes",
+        "tomber"
+      ]
+    },
+    "🍃": {
+      "name": "feuille virevoltante",
+      "keywords": [
+        "bourrasque",
+        "feuille",
+        "feuille virevoltante",
+        "souffle",
+        "tourbillon de feuilles",
+        "vent",
+        "virevolter"
+      ]
+    },
+    "🍄": {
+      "name": "champignon",
+      "keywords": [
+        "champignon",
+        "champignon vénéneux",
+        "Mario",
+        "plante"
+      ]
+    },
+    "🪾": {
+      "name": "arbre sans feuille",
+      "keywords": [
+        "arbre sans feuille",
+        "aride",
+        "hiver",
+        "sécheresse"
+      ]
+    },
+    "🍇": {
+      "name": "raisin",
+      "keywords": [
+        "fruit",
+        "nourriture",
+        "raisin"
+      ]
+    },
+    "🍉": {
+      "name": "pastèque",
+      "keywords": [
+        "fruit",
+        "pastèque"
+      ]
+    },
+    "🍋": {
+      "name": "citron",
+      "keywords": [
+        "acide",
+        "agrume",
+        "citron",
+        "fruit",
+        "nourriture",
+        "zeste"
+      ]
+    },
+    "🍌": {
+      "name": "banane",
+      "keywords": [
+        "banane",
+        "fruit",
+        "nourriture",
+        "potassium"
+      ]
+    },
+    "🍎": {
+      "name": "pomme rouge",
+      "keywords": [
+        "fruit",
+        "nourriture",
+        "pomme",
+        "pomme rouge"
+      ]
+    },
+    "🍐": {
+      "name": "poire",
+      "keywords": [
+        "fruit",
+        "nourriture",
+        "poire"
+      ]
+    },
+    "🍑": {
+      "name": "pêche",
+      "keywords": [
+        "fruit",
+        "nourriture",
+        "pêche"
+      ]
+    },
+    "🍒": {
+      "name": "cerises",
+      "keywords": [
+        "cerise",
+        "cerises",
+        "fruit",
+        "nourriture"
+      ]
+    },
+    "🍓": {
+      "name": "fraise",
+      "keywords": [
+        "fraise",
+        "fruit",
+        "nourriture"
+      ]
+    },
+    "🍅": {
+      "name": "tomate",
+      "keywords": [
+        "fruit",
+        "légume",
+        "nourriture",
+        "plante",
+        "tomate"
+      ]
+    },
+    "🥑": {
+      "name": "avocat",
+      "keywords": [
+        "avocat",
+        "fruit",
+        "nourriture"
+      ]
+    },
+    "🍆": {
+      "name": "aubergine",
+      "keywords": [
+        "aubergine",
+        "légume",
+        "nourriture"
+      ]
+    },
+    "🥕": {
+      "name": "carotte",
+      "keywords": [
+        "carotte",
+        "légume",
+        "nourriture"
+      ]
+    },
+    "🌽": {
+      "name": "épi de maïs",
+      "keywords": [
+        "épi",
+        "épi de maïs",
+        "ferme",
+        "maïs",
+        "nourriture"
+      ]
+    },
+    "🌶️": {
+      "name": "piment rouge",
+      "keywords": [
+        "nourriture",
+        "piment",
+        "piment rouge",
+        "piquant"
+      ]
+    },
+    "🫑": {
+      "name": "poivron",
+      "keywords": [
+        "légume",
+        "piment",
+        "poivron",
+        "poivron rouge",
+        "poivron vert"
+      ]
+    },
+    "🥦": {
+      "name": "brocoli",
+      "keywords": [
+        "broccoli",
+        "brocoli",
+        "chou",
+        "chou sauvage",
+        "légume"
+      ]
+    },
+    "🧄": {
+      "name": "ail",
+      "keywords": [
+        "ail",
+        "aromate",
+        "assaisonnement",
+        "condiment",
+        "légume",
+        "vampire"
+      ]
+    },
+    "🥜": {
+      "name": "cacahuètes",
+      "keywords": [
+        "arachide",
+        "cacahuète",
+        "cacahuètes",
+        "noisette",
+        "nourriture"
+      ]
+    },
+    "🍞": {
+      "name": "pain",
+      "keywords": [
+        "miche",
+        "nourriture",
+        "pain",
+        "pain de mie"
+      ]
+    },
+    "🥐": {
+      "name": "croissant",
+      "keywords": [
+        "croissant",
+        "nourriture",
+        "pain",
+        "petit-déjeuner",
+        "viennoiserie"
+      ]
+    },
+    "🥖": {
+      "name": "baguette",
+      "keywords": [
+        "baguette",
+        "nourriture",
+        "pain"
+      ]
+    },
+    "🥨": {
+      "name": "bretzel",
+      "keywords": [
+        "bretzel",
+        "nourriture",
+        "torsade"
+      ]
+    },
+    "🥞": {
+      "name": "pancakes",
+      "keywords": [
+        "crêpe",
+        "goûter",
+        "nourriture",
+        "pancake",
+        "pancakes",
+        "petit-déjeuner"
+      ]
+    },
+    "🧇": {
+      "name": "gaufre",
+      "keywords": [
+        "brunch",
+        "gaufre",
+        "gourmandise",
+        "goûter",
+        "moule",
+        "pâtisserie",
+        "petit déjeuner",
+        "petit-déjeuner"
+      ]
+    },
+    "🧀": {
+      "name": "part de fromage",
+      "keywords": [
+        "fromage",
+        "nourriture",
+        "part de fromage"
+      ]
+    },
+    "🍖": {
+      "name": "viande sur un os",
+      "keywords": [
+        "nourriture",
+        "os",
+        "viande",
+        "viande sur un os"
+      ]
+    },
+    "🍗": {
+      "name": "cuisse de poulet",
+      "keywords": [
+        "cuisse",
+        "cuisse de poulet",
+        "dinde",
+        "nourriture",
+        "os",
+        "poulet",
+        "volaille"
+      ]
+    },
+    "🍔": {
+      "name": "hamburger",
+      "keywords": [
+        "burger",
+        "cheeseburger",
+        "fast food",
+        "hamburger",
+        "nourriture"
+      ]
+    },
+    "🍟": {
+      "name": "frites",
+      "keywords": [
+        "fast food",
+        "frites",
+        "potatoes",
+        "potatœs"
+      ]
+    },
+    "🍕": {
+      "name": "pizza",
+      "keywords": [
+        "fromage",
+        "nourriture",
+        "part",
+        "pepperoni",
+        "pizza",
+        "tranche"
+      ]
+    },
+    "🌭": {
+      "name": "hot dog",
+      "keywords": [
+        "hot dog",
+        "nourriture",
+        "saucisse",
+        "saucisse de Francfort"
+      ]
+    },
+    "🥪": {
+      "name": "sandwich",
+      "keywords": [
+        "nourriture",
+        "pain",
+        "pain de mie",
+        "pique-nique",
+        "sandwich"
+      ]
+    },
+    "🌮": {
+      "name": "taco",
+      "keywords": [
+        "mexicain",
+        "nourriture",
+        "taco"
+      ]
+    },
+    "🥚": {
+      "name": "œuf",
+      "keywords": [
+        "nourriture",
+        "œuf"
+      ]
+    },
+    "🍳": {
+      "name": "œuf au plat",
+      "keywords": [
+        "cuisine",
+        "friture",
+        "nourriture",
+        "œuf",
+        "œuf au plat",
+        "petit-déjeuner",
+        "poêle",
+        "poêle à frire",
+        "se faire cuire un œuf"
+      ]
+    },
+    "🥣": {
+      "name": "bol avec cuillère",
+      "keywords": [
+        "bol avec cuillère",
+        "bol avec une cuillère",
+        "céréales",
+        "congee",
+        "déjeuner",
+        "petit déjeuner",
+        "soupe"
+      ]
+    },
+    "🥗": {
+      "name": "salade verte",
+      "keywords": [
+        "nourriture",
+        "salade",
+        "verte"
+      ]
+    },
+    "🍿": {
+      "name": "pop-corn",
+      "keywords": [
+        "cinéma",
+        "nourriture",
+        "pop-corn"
+      ]
+    },
+    "🧂": {
+      "name": "sel",
+      "keywords": [
+        "condiment",
+        "salé",
+        "salière",
+        "saveur",
+        "sel"
+      ]
+    },
+    "🍙": {
+      "name": "boulette de riz",
+      "keywords": [
+        "boulette de riz",
+        "japonais",
+        "nourriture",
+        "onigiri",
+        "plat",
+        "riz"
+      ]
+    },
+    "🍚": {
+      "name": "bol de riz",
+      "keywords": [
+        "bol de riz",
+        "nourriture",
+        "riz"
+      ]
+    },
+    "🍜": {
+      "name": "bol fumant",
+      "keywords": [
+        "bol",
+        "bol fumant",
+        "nouilles",
+        "nourriture",
+        "ramen",
+        "vapeur"
+      ]
+    },
+    "🍝": {
+      "name": "spaghetti",
+      "keywords": [
+        "italien",
+        "nourriture",
+        "pâtes",
+        "restaurant",
+        "sauce bolognaise",
+        "spaghetti"
+      ]
+    },
+    "🥡": {
+      "name": "boîte à emporter",
+      "keywords": [
+        "baguettes",
+        "boîte à emporter",
+        "carton",
+        "chinois",
+        "nourriture à emporter"
+      ]
+    },
+    "🍦": {
+      "name": "glace italienne",
+      "keywords": [
+        "cornet de glace",
+        "dessert",
+        "glace",
+        "glace italienne",
+        "nourriture",
+        "sucré"
+      ]
+    },
+    "🍩": {
+      "name": "doughnut",
+      "keywords": [
+        "dessert",
+        "donut",
+        "doughnut",
+        "goûter",
+        "nourriture",
+        "sucré",
+        "sucrerie"
+      ]
+    },
+    "🍪": {
+      "name": "cookie",
+      "keywords": [
+        "biscuit",
+        "cookie",
+        "dessert",
+        "gâteau",
+        "goûter",
+        "nourriture",
+        "pépites de chocolat",
+        "sucré"
+      ]
+    },
+    "🎂": {
+      "name": "gâteau d’anniversaire",
+      "keywords": [
+        "anniversaire",
+        "bougies",
+        "dessert",
+        "fête",
+        "gâteau",
+        "gâteau d’anniversaire",
+        "goûter",
+        "joyeux anniversaire",
+        "nourriture",
+        "pâtisserie"
+      ]
+    },
+    "🍰": {
+      "name": "gâteau sablé",
+      "keywords": [
+        "dessert",
+        "gâteau",
+        "gâteau sablé",
+        "goûter",
+        "nourriture",
+        "pâtisserie",
+        "sucré"
+      ]
+    },
+    "🧁": {
+      "name": "cupcake",
+      "keywords": [
+        "cupcake",
+        "dessert",
+        "muffin",
+        "pâtisserie",
+        "sucre",
+        "sucrerie"
+      ]
+    },
+    "🍫": {
+      "name": "barre chocolatée",
+      "keywords": [
+        "barre",
+        "barre chocolatée",
+        "chocolat",
+        "dessert",
+        "goûter",
+        "nourriture",
+        "sucré"
+      ]
+    },
+    "🍭": {
+      "name": "sucette",
+      "keywords": [
+        "dessert",
+        "goûter",
+        "nourriture",
+        "sucette",
+        "sucré",
+        "sucrerie"
+      ]
+    },
+    "🍼": {
+      "name": "biberon",
+      "keywords": [
+        "bébé",
+        "biberon",
+        "boisson",
+        "lait",
+        "naissance",
+        "nouveau-né",
+        "tétine"
+      ]
+    },
+    "🥛": {
+      "name": "verre de lait",
+      "keywords": [
+        "boisson",
+        "lait",
+        "verre",
+        "verre de lait"
+      ]
+    },
+    "☕": {
+      "name": "boisson chaude",
+      "keywords": [
+        "boisson",
+        "boisson chaude",
+        "café",
+        "caféine",
+        "matin",
+        "thé"
+      ]
+    },
+    "🫖": {
+      "name": "théière",
+      "keywords": [
+        "boisson",
+        "boisson chaude",
+        "infusion",
+        "thé",
+        "théière"
+      ]
+    },
+    "🍵": {
+      "name": "tasse",
+      "keywords": [
+        "boisson",
+        "tasse",
+        "tasse de thé sans anse",
+        "thé"
+      ]
+    },
+    "🍾": {
+      "name": "bouteille de champagne",
+      "keywords": [
+        "alcool",
+        "boisson",
+        "bouchon",
+        "bouteille",
+        "bouteille de champagne",
+        "champagne",
+        "félicitations",
+        "fête",
+        "pop"
+      ]
+    },
+    "🍷": {
+      "name": "verre de vin",
+      "keywords": [
+        "alcool",
+        "bar",
+        "boisson",
+        "club",
+        "restaurant",
+        "verre",
+        "verre à vin",
+        "verre de vin",
+        "vin"
+      ]
+    },
+    "🍸": {
+      "name": "cocktail",
+      "keywords": [
+        "alcool",
+        "bar",
+        "boisson",
+        "club",
+        "cocktail",
+        "martini",
+        "verre",
+        "verre à cocktail",
+        "verre à pied"
+      ]
+    },
+    "🍹": {
+      "name": "cocktail tropical",
+      "keywords": [
+        "alcool",
+        "bar",
+        "boîte",
+        "cocktail",
+        "cocktail tropical",
+        "fête",
+        "tequila sunrise",
+        "verre"
+      ]
+    },
+    "🍺": {
+      "name": "chope",
+      "keywords": [
+        "alcool",
+        "bar",
+        "bière",
+        "boisson",
+        "chope",
+        "chope de bière",
+        "oktoberfest",
+        "picoler",
+        "pinte",
+        "santé"
+      ]
+    },
+    "🥂": {
+      "name": "trinquer",
+      "keywords": [
+        "alcool",
+        "célébrer",
+        "champagne",
+        "fêter",
+        "santé",
+        "tchin",
+        "trinquer",
+        "verre",
+        "verres"
+      ]
+    },
+    "🥤": {
+      "name": "gobelet avec paille",
+      "keywords": [
+        "boisson",
+        "eau",
+        "gobelet avec paille",
+        "jus de fruit",
+        "jus de fruits",
+        "soda",
+        "verre avec une paille"
+      ]
+    },
+    "🧋": {
+      "name": "thé aux perles",
+      "keywords": [
+        "boba",
+        "boisson",
+        "bubble tea",
+        "bulle",
+        "lait",
+        "paille",
+        "perle",
+        "thé aux bulles",
+        "thé aux perles",
+        "thé froid",
+        "zenzou"
+      ]
+    },
+    "🧊": {
+      "name": "glaçon",
+      "keywords": [
+        "cube",
+        "froid",
+        "glace",
+        "glaçon",
+        "iceberg"
+      ]
+    },
+    "🥢": {
+      "name": "baguettes",
+      "keywords": [
+        "baguettes",
+        "hashi"
+      ]
+    },
+    "🍽️": {
+      "name": "fourchette et couteau avec assiette",
+      "keywords": [
+        "assiette",
+        "assiette et couverts",
+        "couteau",
+        "cuisine",
+        "fourchette",
+        "fourchette et couteau avec assiette",
+        "restaurant",
+        "table"
+      ]
+    },
+    "🍴": {
+      "name": "fourchette et couteau",
+      "keywords": [
+        "couteau et fourchette",
+        "couverts",
+        "faim",
+        "fourchette et couteau",
+        "manger",
+        "nourriture",
+        "repas",
+        "restaurant"
+      ]
+    },
+    "🥄": {
+      "name": "cuillère",
+      "keywords": [
+        "couvert",
+        "cuillère",
+        "manger"
+      ]
+    },
+    "🔪": {
+      "name": "couteau de cuisine",
+      "keywords": [
+        "arme",
+        "chef",
+        "couteau",
+        "couteau de cuisine",
+        "cuisine",
+        "outil"
+      ]
+    },
+    "🏺": {
+      "name": "amphore",
+      "keywords": [
+        "amphore",
+        "astrologie",
+        "cuisine",
+        "grec",
+        "Grèce",
+        "horoscope",
+        "vase",
+        "Verseau",
+        "zodiaque"
+      ]
+    },
+    "🌍": {
+      "name": "globe tourné sur l’Afrique et l’Europe",
+      "keywords": [
+        "afrique",
+        "Afrique",
+        "espace",
+        "europe",
+        "Europe",
+        "globe",
+        "globe présentant l’Europe et l’Afrique",
+        "globe tourné sur l’Afrique et l’Europe",
+        "monde",
+        "planète",
+        "Terre"
+      ]
+    },
+    "🌐": {
+      "name": "globe avec méridiens",
+      "keywords": [
+        "globe avec méridiens",
+        "globe terrestre",
+        "Internet",
+        "méridiens",
+        "monde",
+        "net",
+        "toile"
+      ]
+    },
+    "🗺️": {
+      "name": "carte du monde",
+      "keywords": [
+        "carte",
+        "carte du monde",
+        "monde",
+        "planisphère",
+        "voyage"
+      ]
+    },
+    "🗾": {
+      "name": "carte du Japon",
+      "keywords": [
+        "carte",
+        "carte du Japon",
+        "japon",
+        "voyage"
+      ]
+    },
+    "🧭": {
+      "name": "boussole",
+      "keywords": [
+        "boussole",
+        "compas",
+        "direction",
+        "magnétique",
+        "navigation",
+        "orientation"
+      ]
+    },
+    "🏔️": {
+      "name": "montagne enneigée",
+      "keywords": [
+        "froid",
+        "montagne",
+        "montagne enneigée",
+        "neige",
+        "sommet",
+        "voyage"
+      ]
+    },
+    "⛰️": {
+      "name": "montagne",
+      "keywords": [
+        "montagne",
+        "nature",
+        "sommet",
+        "voyage"
+      ]
+    },
+    "🌋": {
+      "name": "volcan",
+      "keywords": [
+        "éruption",
+        "lave",
+        "nature",
+        "volcan"
+      ]
+    },
+    "🗻": {
+      "name": "mont Fuji",
+      "keywords": [
+        "mont Fuji",
+        "montagne",
+        "nature",
+        "sommet",
+        "voyage"
+      ]
+    },
+    "🏕️": {
+      "name": "camping",
+      "keywords": [
+        "camping",
+        "nature",
+        "tente avec un sapin",
+        "voyage"
+      ]
+    },
+    "🏖️": {
+      "name": "plage avec parasol",
+      "keywords": [
+        "parasol",
+        "plage",
+        "plage avec parasol",
+        "voyage"
+      ]
+    },
+    "🏝️": {
+      "name": "île déserte",
+      "keywords": [
+        "cocotier",
+        "île",
+        "île déserte",
+        "palmier",
+        "voyage"
+      ]
+    },
+    "🏛️": {
+      "name": "monument classique",
+      "keywords": [
+        "colonnes",
+        "monument",
+        "monument classique",
+        "voyage"
+      ]
+    },
+    "🏗️": {
+      "name": "construction d’un bâtiment",
+      "keywords": [
+        "chantier",
+        "construction",
+        "construction d’un bâtiment",
+        "grue"
+      ]
+    },
+    "🧱": {
+      "name": "brique",
+      "keywords": [
+        "argile",
+        "brique",
+        "briques",
+        "mortier",
+        "mur",
+        "mur de briques",
+        "the wall",
+        "voie 9 3/4"
+      ]
+    },
+    "🛖": {
+      "name": "hutte",
+      "keywords": [
+        "abri",
+        "case",
+        "hutte",
+        "maison",
+        "maisonnette",
+        "yourte"
+      ]
+    },
+    "🏠": {
+      "name": "maison",
+      "keywords": [
+        "bâtiment",
+        "foyer",
+        "maison",
+        "maison simple",
+        "pavillon",
+        "résidentiel"
+      ]
+    },
+    "🏡": {
+      "name": "maison avec jardin",
+      "keywords": [
+        "foyer",
+        "jardin",
+        "maison",
+        "maison avec jardin",
+        "pavillon",
+        "résidentiel"
+      ]
+    },
+    "🏢": {
+      "name": "immeuble de bureaux",
+      "keywords": [
+        "bureaux",
+        "immeuble",
+        "immeuble de bureaux",
+        "ville"
+      ]
+    },
+    "🏥": {
+      "name": "hôpital",
+      "keywords": [
+        "bâtiment",
+        "docteur",
+        "hôpital",
+        "médecin",
+        "urgences"
+      ]
+    },
+    "🏦": {
+      "name": "banque",
+      "keywords": [
+        "banque",
+        "bâtiment"
+      ]
+    },
+    "🏨": {
+      "name": "hôtel",
+      "keywords": [
+        "bâtiment",
+        "hôtel",
+        "voyage"
+      ]
+    },
+    "🏪": {
+      "name": "supérette",
+      "keywords": [
+        "24h/24",
+        "bâtiment",
+        "épicerie",
+        "magasin",
+        "supérette",
+        "supermarché"
+      ]
+    },
+    "🏫": {
+      "name": "école",
+      "keywords": [
+        "bâtiment",
+        "école"
+      ]
+    },
+    "🏭": {
+      "name": "usine",
+      "keywords": [
+        "bâtiment",
+        "usine"
+      ]
+    },
+    "🏯": {
+      "name": "château japonais",
+      "keywords": [
+        "bâtiment",
+        "château",
+        "japonais",
+        "voyage"
+      ]
+    },
+    "🏰": {
+      "name": "château",
+      "keywords": [
+        "bâtiment",
+        "château",
+        "européen",
+        "voyage"
+      ]
+    },
+    "🗼": {
+      "name": "tour de Tokyo",
+      "keywords": [
+        "Japon",
+        "Tokyo",
+        "tour",
+        "tour de Tokyo",
+        "voyage"
+      ]
+    },
+    "🗽": {
+      "name": "statue de la Liberté",
+      "keywords": [
+        "liberté",
+        "New York",
+        "statue",
+        "statue de la liberté",
+        "statue de la Liberté",
+        "voyage"
+      ]
+    },
+    "⛪": {
+      "name": "église",
+      "keywords": [
+        "bâtiment",
+        "chapelle",
+        "chrétien",
+        "croix",
+        "église",
+        "religion",
+        "voyage"
+      ]
+    },
+    "🕌": {
+      "name": "mosquée",
+      "keywords": [
+        "islam",
+        "mosquée",
+        "musulman",
+        "musulmane",
+        "religion",
+        "voyage"
+      ]
+    },
+    "🛕": {
+      "name": "temple hindou",
+      "keywords": [
+        "bouddhisme",
+        "hindou",
+        "pagode",
+        "religion",
+        "stupa",
+        "temple",
+        "temple bouddhiste"
+      ]
+    },
+    "🕍": {
+      "name": "synagogue",
+      "keywords": [
+        "judaïsme",
+        "juif",
+        "juive",
+        "religion",
+        "synagogue",
+        "temple",
+        "voyage"
+      ]
+    },
+    "⛩️": {
+      "name": "sanctuaire shinto",
+      "keywords": [
+        "religion",
+        "sanctuaire shinto",
+        "shinto",
+        "voyage"
+      ]
+    },
+    "🕋": {
+      "name": "kaaba",
+      "keywords": [
+        "islam",
+        "kaaba",
+        "Kaaba",
+        "musulman",
+        "musulmane",
+        "religion",
+        "voyage"
+      ]
+    },
+    "⛲": {
+      "name": "fontaine",
+      "keywords": [
+        "eau",
+        "fontaine"
+      ]
+    },
+    "⛺": {
+      "name": "tente",
+      "keywords": [
+        "camping",
+        "nature",
+        "tente",
+        "voyage"
+      ]
+    },
+    "♨️": {
+      "name": "sources chaudes",
+      "keywords": [
+        "chaud",
+        "source",
+        "sources chaudes",
+        "vapeur"
+      ]
+    },
+    "🎠": {
+      "name": "cheval de manège",
+      "keywords": [
+        "cheval",
+        "cheval de manège",
+        "manège"
+      ]
+    },
+    "🛝": {
+      "name": "toboggan",
+      "keywords": [
+        "aire de jeu",
+        "glissade",
+        "jouer",
+        "toboggan"
+      ]
+    },
+    "🎡": {
+      "name": "grande roue",
+      "keywords": [
+        "attractions",
+        "grande roue",
+        "parc d’attractions",
+        "roue"
+      ]
+    },
+    "🎢": {
+      "name": "montagnes russes",
+      "keywords": [
+        "attractions",
+        "montagnes",
+        "parc d’attractions",
+        "russes"
+      ]
+    },
+    "💈": {
+      "name": "enseigne de barbier",
+      "keywords": [
+        "barbier",
+        "coiffeur",
+        "coiffure",
+        "enseigne",
+        "enseigne de barbier",
+        "salon"
+      ]
+    },
+    "🎪": {
+      "name": "chapiteau",
+      "keywords": [
+        "chapiteau",
+        "cirque"
+      ]
+    },
+    "🚂": {
+      "name": "locomotive",
+      "keywords": [
+        "chemin de fer",
+        "locomotive",
+        "machine à vapeur",
+        "moyen de transport",
+        "rail",
+        "tchou tchou",
+        "train",
+        "vapeur",
+        "voyage"
+      ]
+    },
+    "🚃": {
+      "name": "wagon",
+      "keywords": [
+        "chemin de fer",
+        "moyen de transport",
+        "rail",
+        "train",
+        "tram",
+        "tramway",
+        "voiture",
+        "voyage",
+        "wagon"
+      ]
+    },
+    "🚄": {
+      "name": "TGV",
+      "keywords": [
+        "chemin de fer",
+        "moyen de transport",
+        "rail",
+        "rapide",
+        "TGV",
+        "train",
+        "train à grande vitesse",
+        "vitesse",
+        "voyage"
+      ]
+    },
+    "🚇": {
+      "name": "métro",
+      "keywords": [
+        "métro",
+        "moyen de transport"
+      ]
+    },
+    "🚌": {
+      "name": "bus",
+      "keywords": [
+        "bus",
+        "école",
+        "moyen de transport",
+        "véhicule"
+      ]
+    },
+    "🚑": {
+      "name": "ambulance",
+      "keywords": [
+        "ambulance",
+        "urgences",
+        "véhicule"
+      ]
+    },
+    "🚒": {
+      "name": "camion de pompier",
+      "keywords": [
+        "camion de pompier",
+        "pin-pon",
+        "pompier"
+      ]
+    },
+    "🚕": {
+      "name": "taxi",
+      "keywords": [
+        "moyen de transport",
+        "taxi",
+        "taxi jaune",
+        "uber",
+        "véhicule"
+      ]
+    },
+    "🚗": {
+      "name": "voiture",
+      "keywords": [
+        "automobile",
+        "conduire",
+        "moyen de transport",
+        "véhicule",
+        "voiture",
+        "voyage"
+      ]
+    },
+    "🚙": {
+      "name": "véhicule utilitaire sport",
+      "keywords": [
+        "automobile",
+        "conduire",
+        "loisirs",
+        "moyen de transport",
+        "véhicule de loisirs",
+        "véhicule utilitaire sport",
+        "voiture",
+        "voyage"
+      ]
+    },
+    "🛻": {
+      "name": "pick-up",
+      "keywords": [
+        "auto",
+        "camion benne",
+        "camionnette",
+        "pick-up",
+        "pickup",
+        "plateau",
+        "poids lourd",
+        "transports",
+        "véhicule"
+      ]
+    },
+    "🚚": {
+      "name": "camion de livraison",
+      "keywords": [
+        "camion",
+        "camion de livraison",
+        "camionnette",
+        "moyen de transport",
+        "véhicule"
+      ]
+    },
+    "🚜": {
+      "name": "tracteur",
+      "keywords": [
+        "moyen de transport",
+        "tracteur",
+        "véhicule"
+      ]
+    },
+    "🏎️": {
+      "name": "voiture de course",
+      "keywords": [
+        "course",
+        "course automobile",
+        "formule 1",
+        "voiture",
+        "voiture de course"
+      ]
+    },
+    "🏍️": {
+      "name": "moto",
+      "keywords": [
+        "course",
+        "moto"
+      ]
+    },
+    "🛵": {
+      "name": "scooter",
+      "keywords": [
+        "scooter"
+      ]
+    },
+    "🚲": {
+      "name": "vélo",
+      "keywords": [
+        "bicyclette",
+        "cyclisme",
+        "moyen de transport",
+        "vélo",
+        "voyage"
+      ]
+    },
+    "🛴": {
+      "name": "trottinette",
+      "keywords": [
+        "trottinette"
+      ]
+    },
+    "🛹": {
+      "name": "planche à roulettes",
+      "keywords": [
+        "glisse",
+        "longboard",
+        "planche à roulettes",
+        "roulettes",
+        "skate",
+        "skateboard"
+      ]
+    },
+    "🛼": {
+      "name": "patin à roulettes",
+      "keywords": [
+        "derby",
+        "patin à roulettes",
+        "roller",
+        "roulette",
+        "roulettes",
+        "sport"
+      ]
+    },
+    "🛢️": {
+      "name": "baril de pétrole",
+      "keywords": [
+        "baril",
+        "baril de pétrole",
+        "pétrole"
+      ]
+    },
+    "⛽": {
+      "name": "pompe à essence",
+      "keywords": [
+        "diesel",
+        "essence",
+        "gazole",
+        "pompe à essence",
+        "station"
+      ]
+    },
+    "🛞": {
+      "name": "roue",
+      "keywords": [
+        "cercle",
+        "pneu",
+        "roue",
+        "tourner",
+        "véhicule",
+        "voiture"
+      ]
+    },
+    "🚨": {
+      "name": "gyrophare",
+      "keywords": [
+        "alarme",
+        "alerte",
+        "gyrophare",
+        "lumière",
+        "police",
+        "sirène",
+        "urgences",
+        "voiture"
+      ]
+    },
+    "🚦": {
+      "name": "feu tricolore vertical",
+      "keywords": [
+        "carrefour",
+        "croisement",
+        "feu",
+        "feu de circulation",
+        "feu tricolore vertical",
+        "tricolore"
+      ]
+    },
+    "🛑": {
+      "name": "stop",
+      "keywords": [
+        "octogonal",
+        "panneau",
+        "signe",
+        "stop"
+      ]
+    },
+    "🚧": {
+      "name": "travaux",
+      "keywords": [
+        "barrière",
+        "travaux"
+      ]
+    },
+    "⚓": {
+      "name": "ancre",
+      "keywords": [
+        "ancre",
+        "bateau",
+        "outil",
+        "voyage"
+      ]
+    },
+    "🛟": {
+      "name": "bouée de sauvetage",
+      "keywords": [
+        "bouée de sauvetage",
+        "flotter",
+        "sauver",
+        "sauveteur",
+        "secours",
+        "sécurité"
+      ]
+    },
+    "⛵": {
+      "name": "voilier",
+      "keywords": [
+        "bateau",
+        "mer",
+        "moyen de transport",
+        "plaisance",
+        "voilier",
+        "voyage",
+        "yacht"
+      ]
+    },
+    "🚤": {
+      "name": "hors-bord",
+      "keywords": [
+        "bateau",
+        "été",
+        "hors-bord",
+        "luxe",
+        "moyen de transport",
+        "vedette",
+        "voyage"
+      ]
+    },
+    "🛳️": {
+      "name": "paquebot",
+      "keywords": [
+        "bateau",
+        "croisière",
+        "paquebot",
+        "voyage"
+      ]
+    },
+    "🚢": {
+      "name": "navire",
+      "keywords": [
+        "bateau",
+        "croisière",
+        "moyen de transport",
+        "navire",
+        "paquebot",
+        "Titanic",
+        "voyage"
+      ]
+    },
+    "✈️": {
+      "name": "avion",
+      "keywords": [
+        "avion",
+        "avion en vol",
+        "jet",
+        "moyen de transport",
+        "véhicule",
+        "vol",
+        "voyage"
+      ]
+    },
+    "💺": {
+      "name": "siège",
+      "keywords": [
+        "chaise",
+        "fauteuil",
+        "place",
+        "siège"
+      ]
+    },
+    "🚁": {
+      "name": "hélicoptère",
+      "keywords": [
+        "hélico",
+        "hélicoptère",
+        "moyen de transport",
+        "véhicule"
+      ]
+    },
+    "🚀": {
+      "name": "fusée",
+      "keywords": [
+        "décollage",
+        "espace",
+        "fusée",
+        "moyen de transport",
+        "voyage"
+      ]
+    },
+    "🛸": {
+      "name": "soucoupe volante",
+      "keywords": [
+        "alien",
+        "extraterrestre",
+        "ovni",
+        "OVNI",
+        "soucoupe volante"
+      ]
+    },
+    "🛎️": {
+      "name": "cloche de comptoir",
+      "keywords": [
+        "cloche",
+        "cloche de comptoir",
+        "clochette",
+        "hôtel",
+        "réception",
+        "sonnette"
+      ]
+    },
+    "🧳": {
+      "name": "bagage",
+      "keywords": [
+        "bagage",
+        "valise",
+        "voyage"
+      ]
+    },
+    "⌛": {
+      "name": "sablier",
+      "keywords": [
+        "chronomètre",
+        "minuteur",
+        "sable",
+        "sablier",
+        "temps"
+      ]
+    },
+    "⌚": {
+      "name": "montre",
+      "keywords": [
+        "heure",
+        "montre"
+      ]
+    },
+    "⏰": {
+      "name": "réveil",
+      "keywords": [
+        "alarme",
+        "attendre",
+        "dring",
+        "heure",
+        "matin",
+        "retard",
+        "réveil",
+        "sonnerie"
+      ]
+    },
+    "⏱️": {
+      "name": "chronomètre",
+      "keywords": [
+        "chronomètre",
+        "heure",
+        "temps"
+      ]
+    },
+    "🕰️": {
+      "name": "pendule",
+      "keywords": [
+        "horloge",
+        "horloge posée",
+        "pendule"
+      ]
+    },
+    "🕐": {
+      "name": "une heure",
+      "keywords": [
+        "1 h",
+        "13 h",
+        "heure",
+        "horloge",
+        "treize heures",
+        "une heure"
+      ]
+    },
+    "🌕": {
+      "name": "pleine lune",
+      "keywords": [
+        "espace",
+        "lune",
+        "nuit",
+        "pleine lune"
+      ]
+    },
+    "🌙": {
+      "name": "croissant de lune",
+      "keywords": [
+        "croissant",
+        "croissant de lune",
+        "espace",
+        "lune",
+        "nuit",
+        "Ramadan"
+      ]
+    },
+    "🌡️": {
+      "name": "thermomètre",
+      "keywords": [
+        "météo",
+        "thermomètre"
+      ]
+    },
+    "☀️": {
+      "name": "soleil",
+      "keywords": [
+        "beau temps",
+        "brillant",
+        "espace",
+        "grand soleil",
+        "météo",
+        "rayons",
+        "soleil"
+      ]
+    },
+    "🌞": {
+      "name": "soleil avec visage",
+      "keywords": [
+        "chaleur",
+        "chaud",
+        "éclatant",
+        "ensoleillé",
+        "jour",
+        "lumière",
+        "météo",
+        "plage",
+        "rayon de soleil",
+        "soleil",
+        "soleil à visage",
+        "soleil avec visage"
+      ]
+    },
+    "🪐": {
+      "name": "planète à anneaux",
+      "keywords": [
+        "anneaux",
+        "planète à anneaux",
+        "saturne",
+        "saturnien",
+        "saturnienne"
+      ]
+    },
+    "⭐": {
+      "name": "étoile",
+      "keywords": [
+        "astronomie",
+        "étoile",
+        "nuit"
+      ]
+    },
+    "🌟": {
+      "name": "étoile brillante",
+      "keywords": [
+        "éclat",
+        "étincelant",
+        "étincelle",
+        "étoile",
+        "étoile brillante",
+        "nuit",
+        "nuit étoilée",
+        "succès"
+      ]
+    },
+    "☁️": {
+      "name": "nuage",
+      "keywords": [
+        "gris",
+        "météo",
+        "nuage"
+      ]
+    },
+    "⛅": {
+      "name": "soleil derrière les nuages",
+      "keywords": [
+        "caché",
+        "météo",
+        "nuage",
+        "nuageux",
+        "soleil",
+        "soleil derrière les nuages",
+        "soleil derrière nuages"
+      ]
+    },
+    "⛈️": {
+      "name": "nuage avec éclair et pluie",
+      "keywords": [
+        "éclair",
+        "météo",
+        "nuage",
+        "nuage avec éclair et pluie",
+        "orage",
+        "pluie"
+      ]
+    },
+    "🌧️": {
+      "name": "nuage avec pluie",
+      "keywords": [
+        "averse",
+        "gouttes",
+        "mauvais temps",
+        "météo",
+        "nuage",
+        "nuage avec pluie",
+        "nuage de pluie",
+        "pluie"
+      ]
+    },
+    "🌪️": {
+      "name": "tornade",
+      "keywords": [
+        "cyclone",
+        "météo",
+        "nuage",
+        "tornade",
+        "tourbillon"
+      ]
+    },
+    "🌀": {
+      "name": "cyclone",
+      "keywords": [
+        "cyclone",
+        "spirale",
+        "tourbillon",
+        "typhon",
+        "vertige"
+      ]
+    },
+    "🌈": {
+      "name": "arc-en-ciel",
+      "keywords": [
+        "arc-en-ciel",
+        "bisexuelle",
+        "Gay Pride",
+        "homosexuelle",
+        "lesbienne",
+        "LGBTQIA",
+        "météo",
+        "nature",
+        "pluie",
+        "transgenre"
+      ]
+    },
+    "🌂": {
+      "name": "parapluie fermé",
+      "keywords": [
+        "météo",
+        "parapluie",
+        "parapluie fermé",
+        "pluie"
+      ]
+    },
+    "☂️": {
+      "name": "parapluie ouvert",
+      "keywords": [
+        "parapluie",
+        "parapluie ouvert",
+        "pluie"
+      ]
+    },
+    "⚡": {
+      "name": "haute tension",
+      "keywords": [
+        "courant",
+        "danger",
+        "éclair",
+        "électricité",
+        "haute tension",
+        "nature",
+        "orage",
+        "symbole haute tension",
+        "tension",
+        "vitesse"
+      ]
+    },
+    "❄️": {
+      "name": "flocon",
+      "keywords": [
+        "flocon",
+        "flocon de neige",
+        "froid",
+        "météo",
+        "neige"
+      ]
+    },
+    "⛄": {
+      "name": "bonhomme de neige sans neige",
+      "keywords": [
+        "bonhomme de neige",
+        "bonhomme de neige sans flocons",
+        "bonhomme de neige sans neige",
+        "froid",
+        "neige"
+      ]
+    },
+    "☄️": {
+      "name": "comète",
+      "keywords": [
+        "comète",
+        "espace",
+        "météore"
+      ]
+    },
+    "🔥": {
+      "name": "feu",
+      "keywords": [
+        "allumer",
+        "brûler",
+        "chaud",
+        "feu",
+        "flamme",
+        "fournaise",
+        "incendie"
+      ]
+    },
+    "💧": {
+      "name": "goutte d’eau",
+      "keywords": [
+        "BD",
+        "eau",
+        "froid",
+        "goutte",
+        "goutte d’eau",
+        "larme",
+        "météo",
+        "nature",
+        "pluie",
+        "sueurs froides",
+        "tristesse"
+      ]
+    },
+    "🌊": {
+      "name": "vague",
+      "keywords": [
+        "eau",
+        "Kanagawa",
+        "lame",
+        "large",
+        "marée",
+        "mer",
+        "nature",
+        "océan",
+        "remous",
+        "rouleau",
+        "surf",
+        "vague"
+      ]
+    },
+    "🎃": {
+      "name": "citrouille",
+      "keywords": [
+        "citrouille",
+        "halloween",
+        "Halloween",
+        "lanterne"
+      ]
+    },
+    "🎄": {
+      "name": "sapin de Noël",
+      "keywords": [
+        "arbre",
+        "fête",
+        "fêtes",
+        "guirlandes",
+        "Noël",
+        "sapin de Noël",
+        "Sapin de Noël"
+      ]
+    },
+    "✨": {
+      "name": "étincelles",
+      "keywords": [
+        "*",
+        "étincelles",
+        "étoile",
+        "étoiles",
+        "magie",
+        "nuit",
+        "nuit étoilée",
+        "scintiller"
+      ]
+    },
+    "🎈": {
+      "name": "ballon gonflable",
+      "keywords": [
+        "anniversaire",
+        "ballon",
+        "ballon de baudruche",
+        "ballon gonflable",
+        "fête"
+      ]
+    },
+    "🎉": {
+      "name": "cotillons",
+      "keywords": [
+        "anniversaire",
+        "cotillons",
+        "fête",
+        "super"
+      ]
+    },
+    "🎀": {
+      "name": "ruban",
+      "keywords": [
+        "fête",
+        "nœud",
+        "ruban",
+        "ruban rose"
+      ]
+    },
+    "🎁": {
+      "name": "cadeau",
+      "keywords": [
+        "anniversaire",
+        "cadeau",
+        "cadeau emballé",
+        "fête",
+        "Noël",
+        "nœud",
+        "surprise"
+      ]
+    },
+    "🎫": {
+      "name": "billet",
+      "keywords": [
+        "billet",
+        "place",
+        "spectacle"
+      ]
+    },
+    "🏆": {
+      "name": "trophée",
+      "keywords": [
+        "champion",
+        "championne",
+        "coupe",
+        "gagner",
+        "prix",
+        "trophée",
+        "victoire"
+      ]
+    },
+    "🥇": {
+      "name": "médaille d’or",
+      "keywords": [
+        "1er",
+        "médaille",
+        "médaille d’or",
+        "or",
+        "premier"
+      ]
+    },
+    "🥈": {
+      "name": "médaille d’argent",
+      "keywords": [
+        "2e",
+        "argent",
+        "deuxième",
+        "médaille",
+        "médaille d’argent"
+      ]
+    },
+    "🥉": {
+      "name": "médaille de bronze",
+      "keywords": [
+        "3e",
+        "bronze",
+        "médaille",
+        "médaille de bronze",
+        "troisième"
+      ]
+    },
+    "⚽": {
+      "name": "ballon de football",
+      "keywords": [
+        "balle",
+        "ballon",
+        "ballon de football",
+        "football",
+        "sport"
+      ]
+    },
+    "⚾": {
+      "name": "baseball",
+      "keywords": [
+        "balle",
+        "balle de baseball",
+        "baseball",
+        "sport"
+      ]
+    },
+    "🏀": {
+      "name": "basket",
+      "keywords": [
+        "ballon",
+        "basket",
+        "basket-ball",
+        "panier",
+        "sport"
+      ]
+    },
+    "🏐": {
+      "name": "volley-ball",
+      "keywords": [
+        "ballon",
+        "jeu",
+        "match",
+        "sport",
+        "volley",
+        "volley-ball"
+      ]
+    },
+    "🏈": {
+      "name": "football américain",
+      "keywords": [
+        "ballon",
+        "football américain",
+        "sport",
+        "Super Bowl"
+      ]
+    },
+    "🎾": {
+      "name": "tennis",
+      "keywords": [
+        "balle",
+        "balle de tennis",
+        "sport",
+        "tennis"
+      ]
+    },
+    "🎳": {
+      "name": "bowling",
+      "keywords": [
+        "boule",
+        "bowling",
+        "jeu",
+        "partie",
+        "quilles",
+        "sport",
+        "strike"
+      ]
+    },
+    "🏓": {
+      "name": "ping-pong",
+      "keywords": [
+        "balle",
+        "jeu",
+        "partie",
+        "ping-pong",
+        "raquette",
+        "sport",
+        "tennis de table"
+      ]
+    },
+    "🏸": {
+      "name": "badminton",
+      "keywords": [
+        "badminton",
+        "jeu",
+        "match",
+        "raquette",
+        "sport",
+        "volant"
+      ]
+    },
+    "🥊": {
+      "name": "gant de boxe",
+      "keywords": [
+        "boxe",
+        "gant",
+        "gant de boxe",
+        "sport"
+      ]
+    },
+    "🥅": {
+      "name": "cage",
+      "keywords": [
+        "but",
+        "cage",
+        "filet",
+        "sport"
+      ]
+    },
+    "⛳": {
+      "name": "drapeau de golf",
+      "keywords": [
+        "drapeau de golf",
+        "golf",
+        "sport",
+        "trou"
+      ]
+    },
+    "⛸️": {
+      "name": "patin à glace",
+      "keywords": [
+        "glace",
+        "patin",
+        "patin à glace",
+        "patiner",
+        "patinoire",
+        "sport"
+      ]
+    },
+    "🤿": {
+      "name": "masque de plongée",
+      "keywords": [
+        "apnée",
+        "masque",
+        "masque de plongée",
+        "masque et tuba",
+        "plongée",
+        "plonger",
+        "snorkeling",
+        "tuba"
+      ]
+    },
+    "🎯": {
+      "name": "dans le mille",
+      "keywords": [
+        "cible",
+        "dans le mille",
+        "fléchettes",
+        "jeu"
+      ]
+    },
+    "🔫": {
+      "name": "pistolet à eau",
+      "keywords": [
+        "arme",
+        "arme à feu",
+        "flingue",
+        "pistolet",
+        "pistolet à eau",
+        "revolver"
+      ]
+    },
+    "🎱": {
+      "name": "boule de billard",
+      "keywords": [
+        "8",
+        "billard",
+        "boule de billard",
+        "boule magique",
+        "huit",
+        "jeu",
+        "pool"
+      ]
+    },
+    "🔮": {
+      "name": "boule de cristal",
+      "keywords": [
+        "avenir",
+        "boule de cristal",
+        "cristal",
+        "magie",
+        "voyant",
+        "voyante"
+      ]
+    },
+    "🪄": {
+      "name": "baguette magique",
+      "keywords": [
+        "abracadabra",
+        "baguette magique",
+        "magicien",
+        "magie",
+        "sorcier",
+        "sorcière",
+        "sort",
+        "tour de magie"
+      ]
+    },
+    "🎮": {
+      "name": "jeu vidéo",
+      "keywords": [
+        "jeu vidéo",
+        "joystick",
+        "manette",
+        "playstation",
+        "xbox"
+      ]
+    },
+    "🕹️": {
+      "name": "manette de jeu",
+      "keywords": [
+        "jeu",
+        "jeu vidéo",
+        "joystick",
+        "manette de jeu"
+      ]
+    },
+    "🎰": {
+      "name": "machine à sous",
+      "keywords": [
+        "casino",
+        "jeu",
+        "machine à sous"
+      ]
+    },
+    "🎲": {
+      "name": "dés",
+      "keywords": [
+        "dé",
+        "dés",
+        "hasard",
+        "jeu"
+      ]
+    },
+    "🧩": {
+      "name": "pièce de puzzle",
+      "keywords": [
+        "assemblage",
+        "énigme",
+        "indice",
+        "interloqué",
+        "pièce de puzzle",
+        "pièce manquante",
+        "puzzle"
+      ]
+    },
+    "🧸": {
+      "name": "ours en peluche",
+      "keywords": [
+        "jeu",
+        "jouet",
+        "nounours",
+        "ours",
+        "ours en peluche",
+        "peluche"
+      ]
+    },
+    "🪩": {
+      "name": "boule à facettes",
+      "keywords": [
+        "boule à facettes",
+        "briller",
+        "danse",
+        "disco",
+        "fête",
+        "soirée"
+      ]
+    },
+    "♠️": {
+      "name": "pique",
+      "keywords": [
+        "carte",
+        "couleur",
+        "jeu",
+        "pique"
+      ]
+    },
+    "♥️": {
+      "name": "cœur cartes",
+      "keywords": [
+        "cartes à jouer",
+        "cœur",
+        "cœur cartes",
+        "couleur",
+        "jeu",
+        "rouge"
+      ]
+    },
+    "♦️": {
+      "name": "carreau",
+      "keywords": [
+        "carreau",
+        "carreaux",
+        "carte",
+        "couleur",
+        "jeu"
+      ]
+    },
+    "♣️": {
+      "name": "trèfle cartes",
+      "keywords": [
+        "cartes à jouer",
+        "couleur",
+        "jeu",
+        "noir",
+        "trèfle",
+        "trèfle cartes"
+      ]
+    },
+    "♟️": {
+      "name": "pion d’échec",
+      "keywords": [
+        "duper",
+        "échec",
+        "pion d’échec",
+        "sacrifiable"
+      ]
+    },
+    "🎭": {
+      "name": "spectacle vivant",
+      "keywords": [
+        "acteur",
+        "actrice",
+        "art",
+        "masque",
+        "spectacle",
+        "spectacle vivant",
+        "théâtre"
+      ]
+    },
+    "🖼️": {
+      "name": "cadre avec image",
+      "keywords": [
+        "art",
+        "cadre avec image",
+        "image",
+        "musée",
+        "peinture",
+        "tableau",
+        "tableau encadré"
+      ]
+    },
+    "🎨": {
+      "name": "palette de peinture",
+      "keywords": [
+        "art",
+        "artiste",
+        "couleurs",
+        "musée de peinture",
+        "palette de peinture",
+        "peindre",
+        "peintre",
+        "peinture"
+      ]
+    },
+    "🧵": {
+      "name": "bobine de fil",
+      "keywords": [
+        "aiguille",
+        "bobine",
+        "bobine de fil",
+        "coudre",
+        "couture",
+        "ficelle",
+        "fil"
+      ]
+    },
+    "🧶": {
+      "name": "fil",
+      "keywords": [
+        "boule",
+        "crochet",
+        "fil",
+        "laine",
+        "pelote",
+        "tricot"
+      ]
+    },
+    "👓": {
+      "name": "lunettes de vue",
+      "keywords": [
+        "accessoire",
+        "lunettes",
+        "lunettes de vue",
+        "œil",
+        "vêtements",
+        "yeux"
+      ]
+    },
+    "🕶️": {
+      "name": "lunettes de soleil",
+      "keywords": [
+        "lunettes",
+        "lunettes de soleil",
+        "lunettes noires",
+        "soleil"
+      ]
+    },
+    "🥽": {
+      "name": "lunettes",
+      "keywords": [
+        "lunettes",
+        "lunettes de chimiste",
+        "lunettes de labo",
+        "lunettes de piscine",
+        "lunettes de protection",
+        "lunettes de soudage",
+        "lunettes de soudure",
+        "masque",
+        "natation",
+        "protection des yeux",
+        "soudage"
+      ]
+    },
+    "👕": {
+      "name": "T-shirt",
+      "keywords": [
+        "bleu",
+        "chemise",
+        "courses",
+        "décontracté",
+        "polo",
+        "shopping",
+        "T-shirt",
+        "tee-shirt",
+        "vêtements",
+        "week-end"
+      ]
+    },
+    "👖": {
+      "name": "jean",
+      "keywords": [
+        "bleu",
+        "courses",
+        "denim",
+        "jean",
+        "pantalon",
+        "shopping",
+        "vêtements",
+        "week-end"
+      ]
+    },
+    "👗": {
+      "name": "robe",
+      "keywords": [
+        "courses",
+        "élégante",
+        "jolie",
+        "robe",
+        "shopping",
+        "vêtements"
+      ]
+    },
+    "👜": {
+      "name": "sac à main",
+      "keywords": [
+        "accessoire",
+        "courses",
+        "sac",
+        "sac à main",
+        "shopping",
+        "vêtements"
+      ]
+    },
+    "🛍️": {
+      "name": "sacs de shopping",
+      "keywords": [
+        "achats",
+        "courses",
+        "sac",
+        "sacs",
+        "sacs de shopping",
+        "shopping"
+      ]
+    },
+    "🎒": {
+      "name": "cartable",
+      "keywords": [
+        "cartable",
+        "école",
+        "sac",
+        "sac à dos"
+      ]
+    },
+    "👟": {
+      "name": "chaussure de sport",
+      "keywords": [
+        "accessoire",
+        "athlétisme",
+        "basket",
+        "chaussure",
+        "chaussure de sport",
+        "coup de pied",
+        "courir",
+        "courses",
+        "shopping",
+        "tennis",
+        "vêtements",
+        "vite"
+      ]
+    },
+    "👠": {
+      "name": "chaussure à talon haut",
+      "keywords": [
+        "accessoire",
+        "chaussure",
+        "chaussure à talon",
+        "chaussure à talon haut",
+        "chaussure de femme",
+        "courses",
+        "mode",
+        "shopping",
+        "stilletto",
+        "talon aiguille",
+        "talon haut",
+        "vêtements"
+      ]
+    },
+    "👑": {
+      "name": "couronne",
+      "keywords": [
+        "accessoire",
+        "couronne",
+        "famille royale",
+        "monarchie",
+        "monarque",
+        "reine",
+        "roi",
+        "royauté",
+        "succès",
+        "vêtements"
+      ]
+    },
+    "🎩": {
+      "name": "haut de forme",
+      "keywords": [
+        "accessoire",
+        "chapeau",
+        "élégant",
+        "haut de forme",
+        "haut-de-forme",
+        "magie",
+        "vêtements"
+      ]
+    },
+    "🎓": {
+      "name": "toque universitaire",
+      "keywords": [
+        "accessoire",
+        "chapeau",
+        "diplôme",
+        "étudiant",
+        "toque universitaire",
+        "université",
+        "vêtements"
+      ]
+    },
+    "🧢": {
+      "name": "casquette américaine",
+      "keywords": [
+        "baseball cap",
+        "casquette",
+        "casquette américaine",
+        "casquette de baseball",
+        "chapeau",
+        "vêtements"
+      ]
+    },
+    "💄": {
+      "name": "rouge à lèvres",
+      "keywords": [
+        "cosmétiques",
+        "maquillage",
+        "rendez-vous",
+        "rouge à lèvres"
+      ]
+    },
+    "💍": {
+      "name": "bague",
+      "keywords": [
+        "alliance",
+        "amour",
+        "bague",
+        "brillant",
+        "diamant",
+        "étincelant",
+        "fiançailles",
+        "mariage",
+        "solitaire"
+      ]
+    },
+    "💎": {
+      "name": "pierre précieuse",
+      "keywords": [
+        "argent",
+        "bijou",
+        "diamant",
+        "fiançailles",
+        "joyau",
+        "mariage",
+        "pierre précieuse",
+        "romantique"
+      ]
+    },
+    "🔇": {
+      "name": "muet",
+      "keywords": [
+        "chut",
+        "enceinte",
+        "haut-parleur barré",
+        "haut-parleur d’enceinte",
+        "muet",
+        "silence",
+        "son",
+        "sourdine"
+      ]
+    },
+    "🔈": {
+      "name": "volume des enceintes faible",
+      "keywords": [
+        "enceinte",
+        "haut-parleur",
+        "haut-parleur d’enceinte",
+        "son",
+        "volume bas",
+        "volume des enceintes faible"
+      ]
+    },
+    "🔉": {
+      "name": "volume des enceintes moyen",
+      "keywords": [
+        "enceinte",
+        "haut-parleur",
+        "haut-parleur d’enceinte",
+        "son",
+        "volume des enceintes moyen",
+        "volume moyen"
+      ]
+    },
+    "🔊": {
+      "name": "volume des enceintes élevé",
+      "keywords": [
+        "enceinte",
+        "fort",
+        "haut-parleur",
+        "haut-parleur d’enceinte",
+        "musique",
+        "son",
+        "volume des enceintes élevé",
+        "volume élevé"
+      ]
+    },
+    "📢": {
+      "name": "haut-parleur",
+      "keywords": [
+        "communication",
+        "fort",
+        "haut-parleur",
+        "mégaphone",
+        "message",
+        "son"
+      ]
+    },
+    "📣": {
+      "name": "porte-voix",
+      "keywords": [
+        "encourager",
+        "hourra",
+        "manifestation",
+        "mégaphone",
+        "porte-voix"
+      ]
+    },
+    "🔔": {
+      "name": "cloche",
+      "keywords": [
+        "cloche",
+        "clochette",
+        "sonner"
+      ]
+    },
+    "🔕": {
+      "name": "alarme désactivée",
+      "keywords": [
+        "alarme désactivée",
+        "barrée",
+        "cloche",
+        "silence"
+      ]
+    },
+    "🎼": {
+      "name": "partition",
+      "keywords": [
+        "musique",
+        "note",
+        "partition"
+      ]
+    },
+    "🎵": {
+      "name": "note de musique",
+      "keywords": [
+        "musique",
+        "note",
+        "note de musique"
+      ]
+    },
+    "🎶": {
+      "name": "notes de musique",
+      "keywords": [
+        "musique",
+        "note",
+        "notes",
+        "notes de musique",
+        "partition"
+      ]
+    },
+    "🎙️": {
+      "name": "micro de studio",
+      "keywords": [
+        "chant",
+        "enregistrement",
+        "micro",
+        "micro de studio",
+        "microphone",
+        "musique",
+        "studio"
+      ]
+    },
+    "🎤": {
+      "name": "micro",
+      "keywords": [
+        "chanter",
+        "karaoke",
+        "karaoké",
+        "micro",
+        "microphone",
+        "musique"
+      ]
+    },
+    "🎧": {
+      "name": "casque",
+      "keywords": [
+        "casque",
+        "écouteur",
+        "écouteurs",
+        "musique",
+        "son"
+      ]
+    },
+    "📻": {
+      "name": "radio",
+      "keywords": [
+        "actualités",
+        "communication",
+        "loisirs",
+        "musique",
+        "radio",
+        "vidéo"
+      ]
+    },
+    "🎷": {
+      "name": "saxophone",
+      "keywords": [
+        "instrument",
+        "musique",
+        "saxophone"
+      ]
+    },
+    "🎺": {
+      "name": "trompette",
+      "keywords": [
+        "instrument",
+        "musique",
+        "trompette"
+      ]
+    },
+    "🎸": {
+      "name": "guitare",
+      "keywords": [
+        "guitare",
+        "guitare électrique",
+        "instrument",
+        "musique"
+      ]
+    },
+    "🎹": {
+      "name": "piano",
+      "keywords": [
+        "clavier",
+        "instrument",
+        "musique",
+        "piano",
+        "touches"
+      ]
+    },
+    "🎻": {
+      "name": "violon",
+      "keywords": [
+        "instrument",
+        "musique",
+        "violon"
+      ]
+    },
+    "📱": {
+      "name": "téléphone portable",
+      "keywords": [
+        "communication",
+        "smartphone",
+        "téléphone",
+        "téléphone portable"
+      ]
+    },
+    "☎️": {
+      "name": "téléphone",
+      "keywords": [
+        "téléphone",
+        "téléphone rouge"
+      ]
+    },
+    "📞": {
+      "name": "combiné téléphonique",
+      "keywords": [
+        "combiné téléphonique",
+        "communication",
+        "téléphone"
+      ]
+    },
+    "📠": {
+      "name": "fax",
+      "keywords": [
+        "communication",
+        "fax",
+        "télécopieur"
+      ]
+    },
+    "🔋": {
+      "name": "pile",
+      "keywords": [
+        "pile"
+      ]
+    },
+    "🪫": {
+      "name": "pile faible",
+      "keywords": [
+        "batterie",
+        "batterie faible",
+        "déchargé",
+        "électronique",
+        "énergie faible",
+        "pile faible"
+      ]
+    },
+    "🔌": {
+      "name": "câble avec fiche électrique",
+      "keywords": [
+        "branché",
+        "câble avec fiche électrique",
+        "électricité",
+        "prise",
+        "prise électrique"
+      ]
+    },
+    "💻": {
+      "name": "ordinateur portable",
+      "keywords": [
+        "bureau",
+        "ordinateur",
+        "ordinateur portable",
+        "travail"
+      ]
+    },
+    "🖥️": {
+      "name": "ordinateur de bureau",
+      "keywords": [
+        "moniteur",
+        "ordinateur",
+        "ordinateur de bureau"
+      ]
+    },
+    "🖨️": {
+      "name": "imprimante",
+      "keywords": [
+        "imprimante",
+        "imprimer",
+        "ordinateur"
+      ]
+    },
+    "⌨️": {
+      "name": "clavier",
+      "keywords": [
+        "clavier",
+        "informatique",
+        "ordinateur"
+      ]
+    },
+    "🖱️": {
+      "name": "souris d’ordinateur",
+      "keywords": [
+        "informatique",
+        "souris",
+        "souris d’ordinateur"
+      ]
+    },
+    "💾": {
+      "name": "disquette",
+      "keywords": [
+        "disque",
+        "disquette",
+        "informatique",
+        "ordinateur"
+      ]
+    },
+    "💿": {
+      "name": "CD",
+      "keywords": [
+        "blu-ray",
+        "CD",
+        "disque",
+        "DVD"
+      ]
+    },
+    "🧮": {
+      "name": "abaque",
+      "keywords": [
+        "abaque",
+        "boulier",
+        "calcul",
+        "calculation",
+        "math",
+        "mathématiques"
+      ]
+    },
+    "🎥": {
+      "name": "caméra",
+      "keywords": [
+        "caméra",
+        "cinéma",
+        "film",
+        "filmer",
+        "réalisateur",
+        "réalisatrice",
+        "vidéo"
+      ]
+    },
+    "🎞️": {
+      "name": "pellicule",
+      "keywords": [
+        "bande",
+        "cinéma",
+        "film",
+        "pellicule"
+      ]
+    },
+    "🎬": {
+      "name": "clap",
+      "keywords": [
+        "action",
+        "ça tourne",
+        "clap",
+        "film"
+      ]
+    },
+    "📺": {
+      "name": "téléviseur",
+      "keywords": [
+        "petit écran",
+        "télé",
+        "téléviseur",
+        "télévision",
+        "TV"
+      ]
+    },
+    "📷": {
+      "name": "appareil photo",
+      "keywords": [
+        "appareil photo",
+        "photo",
+        "selfie",
+        "vidéo"
+      ]
+    },
+    "📹": {
+      "name": "caméscope",
+      "keywords": [
+        "caméra",
+        "caméscope",
+        "filmer",
+        "vidéo"
+      ]
+    },
+    "📼": {
+      "name": "cassette vidéo",
+      "keywords": [
+        "cassette vidéo",
+        "magnétoscope",
+        "vhs",
+        "vidéocassette",
+        "vintage"
+      ]
+    },
+    "🔍": {
+      "name": "loupe orientée à gauche",
+      "keywords": [
+        "agrandir",
+        "chercher",
+        "détective",
+        "loupe",
+        "loupe gauche",
+        "loupe orientée à gauche",
+        "recherche"
+      ]
+    },
+    "🕯️": {
+      "name": "bougie",
+      "keywords": [
+        "bougie",
+        "chandelle",
+        "lumière"
+      ]
+    },
+    "💡": {
+      "name": "ampoule",
+      "keywords": [
+        "allumer",
+        "ampoule",
+        "bande dessinée",
+        "BD",
+        "dessin",
+        "idée",
+        "lampe",
+        "lumière"
+      ]
+    },
+    "🔦": {
+      "name": "torche",
+      "keywords": [
+        "lampe électrique",
+        "lampe torche",
+        "lumière",
+        "outil",
+        "torche"
+      ]
+    },
+    "📕": {
+      "name": "livre fermé",
+      "keywords": [
+        "apprendre",
+        "école",
+        "enseignement",
+        "lire",
+        "littérature",
+        "livre",
+        "livre fermé",
+        "livre rouge",
+        "manuel scolaire",
+        "savoir"
+      ]
+    },
+    "📖": {
+      "name": "livre ouvert",
+      "keywords": [
+        "apprendre",
+        "bibliothèque",
+        "école",
+        "enseignement",
+        "étudier",
+        "lecture",
+        "lire",
+        "littérature",
+        "livre ouvert",
+        "manuel scolaire",
+        "roman",
+        "savoir"
+      ]
+    },
+    "📚": {
+      "name": "livres",
+      "keywords": [
+        "apprendre",
+        "bibliothèque",
+        "école",
+        "enseignement",
+        "étudier",
+        "lecture",
+        "lire",
+        "littérature",
+        "livres",
+        "manuels scolaires",
+        "roman",
+        "savoir"
+      ]
+    },
+    "📓": {
+      "name": "carnet",
+      "keywords": [
+        "cahier",
+        "carnet",
+        "écrire"
+      ]
+    },
+    "📜": {
+      "name": "parchemin",
+      "keywords": [
+        "papier",
+        "parchemin"
+      ]
+    },
+    "📄": {
+      "name": "page",
+      "keywords": [
+        "document",
+        "page"
+      ]
+    },
+    "📰": {
+      "name": "journal",
+      "keywords": [
+        "actualités",
+        "communication",
+        "gros titres",
+        "journal",
+        "presse",
+        "une"
+      ]
+    },
+    "📑": {
+      "name": "signets",
+      "keywords": [
+        "marque",
+        "marqueur",
+        "onglets",
+        "signet",
+        "signets"
+      ]
+    },
+    "🔖": {
+      "name": "marque-page",
+      "keywords": [
+        "marque-page",
+        "marqueur",
+        "signet"
+      ]
+    },
+    "🏷️": {
+      "name": "étiquette",
+      "keywords": [
+        "étiquette"
+      ]
+    },
+    "💰": {
+      "name": "sac plein d’argent",
+      "keywords": [
+        "argent",
+        "avare",
+        "banque",
+        "dollar",
+        "parier",
+        "payer",
+        "sac",
+        "sac d’argent",
+        "sac plein d’argent"
+      ]
+    },
+    "💵": {
+      "name": "billet en dollars",
+      "keywords": [
+        "argent",
+        "billet",
+        "billet de banque",
+        "billet en dollars",
+        "dollar",
+        "payer"
+      ]
+    },
+    "💳": {
+      "name": "carte bancaire",
+      "keywords": [
+        "argent",
+        "bancaire",
+        "banque",
+        "carte",
+        "carte de crédit",
+        "payer"
+      ]
+    },
+    "🧾": {
+      "name": "reçu",
+      "keywords": [
+        "compta",
+        "comptabilité",
+        "comptable",
+        "facture",
+        "faire les comptes",
+        "justificatif",
+        "preuve",
+        "reçu",
+        "ticket de caisse"
+      ]
+    },
+    "✉️": {
+      "name": "enveloppe",
+      "keywords": [
+        "courrier électronique",
+        "e-mail",
+        "enveloppe",
+        "lettre",
+        "message"
+      ]
+    },
+    "📧": {
+      "name": "e-mail",
+      "keywords": [
+        "courriel",
+        "courrier électronique",
+        "e-mail",
+        "lettre",
+        "message"
+      ]
+    },
+    "📤": {
+      "name": "boîte d’envoi",
+      "keywords": [
+        "boîte d’envoi",
+        "courriel",
+        "courrier électronique",
+        "e-mail",
+        "envoyer",
+        "flèche",
+        "lettre",
+        "message",
+        "message électronique"
+      ]
+    },
+    "📥": {
+      "name": "boîte de réception",
+      "keywords": [
+        "boîte de réception",
+        "courriel",
+        "courrier électronique",
+        "e-mail",
+        "flèche",
+        "lettre",
+        "message",
+        "message électronique",
+        "recevoir"
+      ]
+    },
+    "📦": {
+      "name": "colis",
+      "keywords": [
+        "boîte",
+        "colis",
+        "livraison",
+        "paquet"
+      ]
+    },
+    "📫": {
+      "name": "boîte aux lettres fermée drapeau levé",
+      "keywords": [
+        "boîte aux lettres",
+        "boîte aux lettres fermée drapeau levé",
+        "courrier"
+      ]
+    },
+    "✏️": {
+      "name": "crayon",
+      "keywords": [
+        "crayon",
+        "crayon à papier",
+        "gomme",
+        "mine"
+      ]
+    },
+    "✒️": {
+      "name": "stylo plume noir",
+      "keywords": [
+        "écrire",
+        "stylo",
+        "stylo plume noir"
+      ]
+    },
+    "🖌️": {
+      "name": "pinceau",
+      "keywords": [
+        "peinture",
+        "pinceau"
+      ]
+    },
+    "📝": {
+      "name": "mémo",
+      "keywords": [
+        "bloc-notes",
+        "crayon",
+        "écrire",
+        "mémo"
+      ]
+    },
+    "💼": {
+      "name": "porte-documents",
+      "keywords": [
+        "accessoire",
+        "bureau",
+        "cartable",
+        "porte-documents"
+      ]
+    },
+    "📁": {
+      "name": "dossier",
+      "keywords": [
+        "dossier",
+        "fichier",
+        "répertoire"
+      ]
+    },
+    "📂": {
+      "name": "dossier ouvert",
+      "keywords": [
+        "dossier",
+        "dossier ouvert",
+        "ouvrir",
+        "ouvrir le dossier",
+        "répertoire"
+      ]
+    },
+    "🗂️": {
+      "name": "intercalaires",
+      "keywords": [
+        "classement",
+        "classeur",
+        "index",
+        "intercalaire",
+        "intercalaires"
+      ]
+    },
+    "📅": {
+      "name": "calendrier",
+      "keywords": [
+        "calendrier",
+        "date"
+      ]
+    },
+    "📈": {
+      "name": "graphique en hausse",
+      "keywords": [
+        "croissance",
+        "données",
+        "graphique",
+        "graphique en hausse",
+        "hausse",
+        "haut",
+        "tendance"
+      ]
+    },
+    "📉": {
+      "name": "graphique en baisse",
+      "keywords": [
+        "baisse",
+        "bas",
+        "chute",
+        "données",
+        "graphique",
+        "graphique en baisse",
+        "négatif",
+        "tendance"
+      ]
+    },
+    "📊": {
+      "name": "graphiques à barres",
+      "keywords": [
+        "données",
+        "graphique",
+        "graphiques à barres"
+      ]
+    },
+    "📋": {
+      "name": "porte-bloc",
+      "keywords": [
+        "fournitures",
+        "liste",
+        "porte-bloc",
+        "presse-papiers"
+      ]
+    },
+    "📌": {
+      "name": "punaise",
+      "keywords": [
+        "fournitures",
+        "punaise"
+      ]
+    },
+    "📍": {
+      "name": "épingle",
+      "keywords": [
+        "carte",
+        "emplacement",
+        "épingle",
+        "fournitures",
+        "punaise ronde"
+      ]
+    },
+    "📎": {
+      "name": "trombone",
+      "keywords": [
+        "fournitures",
+        "trombone"
+      ]
+    },
+    "📏": {
+      "name": "règle",
+      "keywords": [
+        "fournitures",
+        "mathématiques",
+        "règle",
+        "règle plate"
+      ]
+    },
+    "📐": {
+      "name": "équerre",
+      "keywords": [
+        "équerre",
+        "fournitures",
+        "mathématiques"
+      ]
+    },
+    "✂️": {
+      "name": "ciseaux",
+      "keywords": [
+        "ciseaux",
+        "couper",
+        "découper",
+        "fournitures",
+        "papier"
+      ]
+    },
+    "🗄️": {
+      "name": "meuble à dossiers",
+      "keywords": [
+        "classement",
+        "classer",
+        "classeur",
+        "dossier",
+        "meuble",
+        "meuble à dossiers"
+      ]
+    },
+    "🗑️": {
+      "name": "corbeille à papiers",
+      "keywords": [
+        "corbeille",
+        "corbeille à papiers",
+        "poubelle"
+      ]
+    },
+    "🔒": {
+      "name": "cadenas fermé",
+      "keywords": [
+        "cadenas",
+        "cadenas fermé",
+        "privé",
+        "verrouillé",
+        "verrouiller"
+      ]
+    },
+    "🔓": {
+      "name": "cadenas ouvert",
+      "keywords": [
+        "cadenas",
+        "déverrouiller",
+        "ouvert",
+        "ouvrir"
+      ]
+    },
+    "🔑": {
+      "name": "clé",
+      "keywords": [
+        "clé",
+        "mot de passe",
+        "ouvrir",
+        "serrure"
+      ]
+    },
+    "🔨": {
+      "name": "marteau",
+      "keywords": [
+        "marteau",
+        "outil",
+        "réparer",
+        "travaux"
+      ]
+    },
+    "🪓": {
+      "name": "hache",
+      "keywords": [
+        "bois",
+        "bûcheron",
+        "fendre",
+        "hache",
+        "hachette"
+      ]
+    },
+    "⛏️": {
+      "name": "pioche",
+      "keywords": [
+        "mine",
+        "outil",
+        "pioche"
+      ]
+    },
+    "🛠️": {
+      "name": "marteau et clé à molette",
+      "keywords": [
+        "clé",
+        "clé à molette",
+        "marteau",
+        "marteau et clé à molette",
+        "outil",
+        "outils"
+      ]
+    },
+    "💣": {
+      "name": "bombe",
+      "keywords": [
+        "bande dessinée",
+        "BD",
+        "bombe",
+        "boum",
+        "danger",
+        "dessin",
+        "explosion"
+      ]
+    },
+    "🛡️": {
+      "name": "bouclier",
+      "keywords": [
+        "arme",
+        "bouclier"
+      ]
+    },
+    "🔧": {
+      "name": "clé à molette",
+      "keywords": [
+        "clé",
+        "clé à molette",
+        "outil",
+        "travaux"
+      ]
+    },
+    "🪛": {
+      "name": "tournevis",
+      "keywords": [
+        "outil",
+        "outillage",
+        "tournevis",
+        "vis"
+      ]
+    },
+    "🔩": {
+      "name": "vis et écrou",
+      "keywords": [
+        "boulon",
+        "écrou",
+        "outil",
+        "travaux",
+        "vis",
+        "vis et écrou"
+      ]
+    },
+    "⚙️": {
+      "name": "roue dentée",
+      "keywords": [
+        "engrenage",
+        "outil",
+        "roue dentée"
+      ]
+    },
+    "⚖️": {
+      "name": "balance à poids",
+      "keywords": [
+        "astrologie",
+        "balance",
+        "balance à poids",
+        "horoscope",
+        "justice",
+        "poids",
+        "zodiaque"
+      ]
+    },
+    "🔗": {
+      "name": "chaînons",
+      "keywords": [
+        "chaîne",
+        "chaînons",
+        "maillons",
+        "mousqueton"
+      ]
+    },
+    "🧰": {
+      "name": "boîte à outils",
+      "keywords": [
+        "boîte à outils",
+        "caisse à outils",
+        "coffre",
+        "mécanique",
+        "mécano",
+        "outil",
+        "outils"
+      ]
+    },
+    "🧲": {
+      "name": "aimant",
+      "keywords": [
+        "aimant",
+        "aimanter",
+        "attirer",
+        "attraction",
+        "fer à cheval",
+        "magnet",
+        "magnétique",
+        "positif négatif"
+      ]
+    },
+    "🪜": {
+      "name": "échelle",
+      "keywords": [
+        "ascension",
+        "barreau",
+        "échelle",
+        "échelon",
+        "escabeau",
+        "grimper",
+        "monter"
+      ]
+    },
+    "🧪": {
+      "name": "tube à essai",
+      "keywords": [
+        "chimie",
+        "chimiste",
+        "expérience",
+        "expérimentation",
+        "labo",
+        "laboratoire",
+        "réaction",
+        "science",
+        "sciences",
+        "tube à essai"
+      ]
+    },
+    "🧬": {
+      "name": "adn",
+      "keywords": [
+        "adn",
+        "biologie",
+        "biologiste",
+        "évolution",
+        "gène",
+        "génétique",
+        "science",
+        "vie"
+      ]
+    },
+    "🔬": {
+      "name": "microscope",
+      "keywords": [
+        "expérience",
+        "laboratoire",
+        "microscope",
+        "outil",
+        "science"
+      ]
+    },
+    "🔭": {
+      "name": "télescope",
+      "keywords": [
+        "astronomie",
+        "espace",
+        "outil",
+        "planètes",
+        "science",
+        "télescope"
+      ]
+    },
+    "📡": {
+      "name": "antenne satellite",
+      "keywords": [
+        "antenne",
+        "antenne parabolique",
+        "parabole",
+        "satellite",
+        "science"
+      ]
+    },
+    "💉": {
+      "name": "seringue",
+      "keywords": [
+        "aiguille",
+        "docteur",
+        "malade",
+        "médecine",
+        "piqûre",
+        "seringue",
+        "vaccin",
+        "vaccination"
+      ]
+    },
+    "💊": {
+      "name": "pilule",
+      "keywords": [
+        "docteur",
+        "gélule",
+        "malade",
+        "médecine",
+        "médicament",
+        "pilule",
+        "vitamines"
+      ]
+    },
+    "🩹": {
+      "name": "sparadrap",
+      "keywords": [
+        "bandage",
+        "bobo",
+        "médecine",
+        "pansement",
+        "premiers secours",
+        "sparadrap"
+      ]
+    },
+    "🩺": {
+      "name": "stéthoscope",
+      "keywords": [
+        "cœur",
+        "diagnostic",
+        "docteur",
+        "médecin",
+        "médecine",
+        "poumons",
+        "stéthoscope"
+      ]
+    },
+    "🚪": {
+      "name": "porte",
+      "keywords": [
+        "placard",
+        "porte",
+        "porte d’entrée"
+      ]
+    },
+    "🛏️": {
+      "name": "lit",
+      "keywords": [
+        "dormir",
+        "hôtel",
+        "lit"
+      ]
+    },
+    "🛋️": {
+      "name": "canapé et lampe",
+      "keywords": [
+        "canapé",
+        "canapé avec une lampe",
+        "canapé et lampe",
+        "lampe"
+      ]
+    },
+    "🪑": {
+      "name": "chaise",
+      "keywords": [
+        "assis",
+        "chaise",
+        "siège"
+      ]
+    },
+    "🚽": {
+      "name": "toilettes",
+      "keywords": [
+        "cabinets",
+        "toilettes",
+        "WC"
+      ]
+    },
+    "🛁": {
+      "name": "baignoire",
+      "keywords": [
+        "baignoire",
+        "bain",
+        "mousse"
+      ]
+    },
+    "🧴": {
+      "name": "bouteille de lotion",
+      "keywords": [
+        "après-shampoing",
+        "bouteille de lotion",
+        "crème hydratante",
+        "crème pour le corps",
+        "crème solaire",
+        "flacon",
+        "hydratant",
+        "lotion",
+        "shampoing",
+        "shampooing"
+      ]
+    },
+    "🧹": {
+      "name": "balai",
+      "keywords": [
+        "balai",
+        "balais",
+        "balayage",
+        "ménage",
+        "nettoie",
+        "nettoyage",
+        "nettoyé",
+        "nettoyer",
+        "sorcière"
+      ]
+    },
+    "🧺": {
+      "name": "panier",
+      "keywords": [
+        "agriculture",
+        "cueillette",
+        "lessive",
+        "linge",
+        "panier",
+        "pique-nique"
+      ]
+    },
+    "🧻": {
+      "name": "rouleau de papier",
+      "keywords": [
+        "essuie-tout",
+        "papier hygiénique",
+        "papier toilette",
+        "rouleau de papier",
+        "rouleau de pq"
+      ]
+    },
+    "🪣": {
+      "name": "seau",
+      "keywords": [
+        "conteneur",
+        "plage",
+        "seau"
+      ]
+    },
+    "🪥": {
+      "name": "brosse à dents",
+      "keywords": [
+        "brosse",
+        "brosse à dents",
+        "brosser les dents",
+        "dentaire",
+        "dents",
+        "hygiène",
+        "laver",
+        "laver les dents",
+        "salle de bain"
+      ]
+    },
+    "🧽": {
+      "name": "éponge",
+      "keywords": [
+        "absorbante",
+        "absorbe",
+        "éponge",
+        "laver",
+        "nettoyage",
+        "nettoyer",
+        "poreuse",
+        "savonner"
+      ]
+    },
+    "🧯": {
+      "name": "extincteur",
+      "keywords": [
+        "chaud",
+        "éteindre",
+        "extincteur",
+        "feu",
+        "fire",
+        "incendie"
+      ]
+    },
+    "🛒": {
+      "name": "chariot",
+      "keywords": [
+        "caddie",
+        "chariot",
+        "courses",
+        "panier",
+        "shopping",
+        "supermarché"
+      ]
+    },
+    "🪪": {
+      "name": "carte d’identité",
+      "keywords": [
+        "carte d’identité",
+        "justificatif",
+        "papiers",
+        "permis de conduire",
+        "pièce d’identité",
+        "sécurité"
+      ]
+    },
+    "🏧": {
+      "name": "distributeur de billets",
+      "keywords": [
+        "argent",
+        "banque",
+        "dab",
+        "distributeur",
+        "distributeur automatiques de billets",
+        "distributeur de billets",
+        "guichet automatique",
+        "retrait"
+      ]
+    },
+    "♿": {
+      "name": "symbole Accès handicapés",
+      "keywords": [
+        "accès",
+        "accès handicapés",
+        "fauteuil roulant",
+        "mobilité réduite",
+        "symbole Accès handicapés"
+      ]
+    },
+    "🚹": {
+      "name": "symbole Toilettes hommes",
+      "keywords": [
+        "homme",
+        "symbole Homme",
+        "symbole Toilettes hommes",
+        "toilettes",
+        "WC"
+      ]
+    },
+    "🚺": {
+      "name": "symbole Toilettes femmes",
+      "keywords": [
+        "femme",
+        "symbole Femme",
+        "symbole Toilettes femmes",
+        "toilettes",
+        "WC"
+      ]
+    },
+    "🚻": {
+      "name": "panneau Toilettes",
+      "keywords": [
+        "panneau Toilettes",
+        "toilettes",
+        "WC"
+      ]
+    },
+    "🚾": {
+      "name": "WC",
+      "keywords": [
+        "toilettes",
+        "WC"
+      ]
+    },
+    "⚠️": {
+      "name": "symbole d’avertissement",
+      "keywords": [
+        "attention",
+        "avertissement",
+        "symbole d’avertissement"
+      ]
+    },
+    "⛔": {
+      "name": "sens interdit",
+      "keywords": [
+        "circulation",
+        "entrée interdite",
+        "interdiction",
+        "interdit",
+        "non",
+        "panneau",
+        "sens interdit"
+      ]
+    },
+    "🚫": {
+      "name": "symbole d’interdiction",
+      "keywords": [
+        "entrée interdite",
+        "interdiction",
+        "interdit",
+        "symbole d’interdiction"
+      ]
+    },
+    "☢️": {
+      "name": "radioactif",
+      "keywords": [
+        "radioactif",
+        "radioactivité",
+        "symbole"
+      ]
+    },
+    "☣️": {
+      "name": "danger biologique",
+      "keywords": [
+        "danger",
+        "danger biologique",
+        "symbole"
+      ]
+    },
+    "⬆️": {
+      "name": "flèche haut",
+      "keywords": [
+        "direction",
+        "flèche",
+        "flèche haut",
+        "nord",
+        "sens"
+      ]
+    },
+    "↗️": {
+      "name": "flèche haut droite",
+      "keywords": [
+        "direction",
+        "flèche",
+        "flèche haut droite",
+        "nord-est",
+        "sens"
+      ]
+    },
+    "➡️": {
+      "name": "flèche droite",
+      "keywords": [
+        "direction",
+        "droite",
+        "est",
+        "flèche",
+        "sens"
+      ]
+    },
+    "↘️": {
+      "name": "flèche bas droite",
+      "keywords": [
+        "direction",
+        "flèche",
+        "flèche bas droite",
+        "sens",
+        "sud-est"
+      ]
+    },
+    "⬇️": {
+      "name": "flèche bas",
+      "keywords": [
+        "direction",
+        "flèche",
+        "flèche bas",
+        "sens",
+        "sud"
+      ]
+    },
+    "↙️": {
+      "name": "flèche bas gauche",
+      "keywords": [
+        "direction",
+        "flèche",
+        "flèche bas gauche",
+        "sens",
+        "sud-ouest"
+      ]
+    },
+    "⬅️": {
+      "name": "flèche gauche",
+      "keywords": [
+        "direction",
+        "flèche",
+        "flèche gauche",
+        "ouest",
+        "sens"
+      ]
+    },
+    "↖️": {
+      "name": "flèche haut gauche",
+      "keywords": [
+        "direction",
+        "flèche",
+        "flèche haut gauche",
+        "nord-ouest",
+        "sens"
+      ]
+    },
+    "↕️": {
+      "name": "flèche haut bas",
+      "keywords": [
+        "flèche",
+        "flèche dans les deux sens",
+        "flèche haut bas"
+      ]
+    },
+    "↔️": {
+      "name": "flèche gauche droite",
+      "keywords": [
+        "flèche",
+        "flèche gauche droite"
+      ]
+    },
+    "↩️": {
+      "name": "flèche courbe gauche",
+      "keywords": [
+        "flèche",
+        "flèche courbe gauche"
+      ]
+    },
+    "↪️": {
+      "name": "flèche courbe droite",
+      "keywords": [
+        "flèche",
+        "flèche courbe droite"
+      ]
+    },
+    "⤴️": {
+      "name": "flèche courbe haut",
+      "keywords": [
+        "flèche",
+        "flèche courbe haut",
+        "flèche courbe vers la droite et le haut"
+      ]
+    },
+    "⤵️": {
+      "name": "flèche courbe bas",
+      "keywords": [
+        "bas",
+        "flèche",
+        "flèche courbe bas"
+      ]
+    },
+    "🔃": {
+      "name": "flèches dans le sens horaire",
+      "keywords": [
+        "actualiser",
+        "flèche",
+        "flèches dans le sens horaire",
+        "sens des aiguilles d’une montre",
+        "sens horaire",
+        "symbole Recharger"
+      ]
+    },
+    "🔄": {
+      "name": "flèches dans le sens antihoraire",
+      "keywords": [
+        "actualiser",
+        "flèche",
+        "flèches",
+        "flèches dans le sens antihoraire",
+        "retour",
+        "sens antihoraire",
+        "sens contraire des aiguilles d’une montre",
+        "sens horaire inverse",
+        "sens inverse des aiguilles d’une montre"
+      ]
+    },
+    "⚛️": {
+      "name": "symbole de l’atome",
+      "keywords": [
+        "athée",
+        "atome",
+        "symbole de l’atome"
+      ]
+    },
+    "🕉️": {
+      "name": "om",
+      "keywords": [
+        "hindou",
+        "om",
+        "religion"
+      ]
+    },
+    "✡️": {
+      "name": "étoile de David",
+      "keywords": [
+        "David",
+        "étoile",
+        "étoile de David",
+        "judaïsme",
+        "juif",
+        "Juif",
+        "juive",
+        "religion"
+      ]
+    },
+    "☸️": {
+      "name": "roue du Dharma",
+      "keywords": [
+        "bouddhisme",
+        "bouddhiste",
+        "dharma",
+        "religion",
+        "roue",
+        "roue de dharma",
+        "roue du Dharma"
+      ]
+    },
+    "☯️": {
+      "name": "yin yang",
+      "keywords": [
+        "complémentaire",
+        "religion",
+        "tao",
+        "taoïsme",
+        "yang",
+        "yin"
+      ]
+    },
+    "✝️": {
+      "name": "croix latine",
+      "keywords": [
+        "chrétien",
+        "chrétienne",
+        "croix",
+        "croix latine",
+        "religion"
+      ]
+    },
+    "☦️": {
+      "name": "croix orthodoxe",
+      "keywords": [
+        "chrétien",
+        "chrétienne",
+        "croix",
+        "croix orthodoxe",
+        "religion"
+      ]
+    },
+    "☪️": {
+      "name": "lune et étoile",
+      "keywords": [
+        "étoile",
+        "islam",
+        "lune",
+        "lune et étoile",
+        "musulman",
+        "musulmane",
+        "ramadan",
+        "religion"
+      ]
+    },
+    "☮️": {
+      "name": "symbole de paix",
+      "keywords": [
+        "paix",
+        "paix et amour",
+        "peace and love",
+        "symbole de paix"
+      ]
+    },
+    "🕎": {
+      "name": "chandelier à sept branches",
+      "keywords": [
+        "candélabre",
+        "chandelier",
+        "chandelier à sept branches",
+        "Hanoucca",
+        "Hanoukka",
+        "judaïsme",
+        "juif",
+        "juive",
+        "menora",
+        "menorah",
+        "religion"
+      ]
+    },
+    "🔀": {
+      "name": "bouton lecture aléatoire",
+      "keywords": [
+        "bouton lecture aléatoire",
+        "flèche",
+        "flèches croisées",
+        "lecture aléatoire"
+      ]
+    },
+    "🔁": {
+      "name": "bouton répétition",
+      "keywords": [
+        "bouton répéter",
+        "bouton répétition",
+        "flèche",
+        "flèches en cercle",
+        "répéter",
+        "sens des aiguilles d’une montre",
+        "sens horaire"
+      ]
+    },
+    "▶️": {
+      "name": "bouton lecture",
+      "keywords": [
+        "bouton lecture",
+        "droite",
+        "flèche",
+        "lecture",
+        "lire",
+        "triangle"
+      ]
+    },
+    "⏩": {
+      "name": "bouton avance rapide",
+      "keywords": [
+        "avance",
+        "avance rapide",
+        "bouton",
+        "bouton avance rapide",
+        "double flèche",
+        "flèche Avance rapide"
+      ]
+    },
+    "⏭️": {
+      "name": "bouton piste suivante",
+      "keywords": [
+        "bouton piste suivante",
+        "bouton suivant",
+        "double flèche",
+        "piste suivante",
+        "scène suivante",
+        "suivant",
+        "triangle"
+      ]
+    },
+    "⏯️": {
+      "name": "bouton lecture/pause",
+      "keywords": [
+        "bouton lecture/pause",
+        "flèche",
+        "lecture",
+        "pause",
+        "triangle"
+      ]
+    },
+    "◀️": {
+      "name": "bouton retour",
+      "keywords": [
+        "bouton retour",
+        "flèche",
+        "gauche",
+        "retour",
+        "triangle"
+      ]
+    },
+    "⏪": {
+      "name": "bouton retour rapide",
+      "keywords": [
+        "bouton",
+        "bouton retour rapide",
+        "double flèche",
+        "flèche",
+        "flèche Retour rapide",
+        "retour",
+        "retour rapide"
+      ]
+    },
+    "⏮️": {
+      "name": "bouton piste précédente",
+      "keywords": [
+        "bouton piste précédente",
+        "bouton précédent",
+        "flèche",
+        "piste précédente",
+        "précédent",
+        "scène précédente",
+        "triangle"
+      ]
+    },
+    "🔼": {
+      "name": "petit triangle haut",
+      "keywords": [
+        "bouton haut",
+        "flèche",
+        "haut",
+        "petit triangle haut"
+      ]
+    },
+    "🔽": {
+      "name": "petit triangle bas",
+      "keywords": [
+        "bas",
+        "bouton bas",
+        "flèche",
+        "petit triangle bas"
+      ]
+    },
+    "⏸️": {
+      "name": "bouton pause",
+      "keywords": [
+        "bouton pause",
+        "pause"
+      ]
+    },
+    "⏹️": {
+      "name": "bouton stop",
+      "keywords": [
+        "bouton stop",
+        "carré",
+        "stop"
+      ]
+    },
+    "⏺️": {
+      "name": "bouton enregistrer",
+      "keywords": [
+        "bouton enregistrer",
+        "cercle",
+        "enregistrement",
+        "enregistrer",
+        "point blanc"
+      ]
+    },
+    "⏏️": {
+      "name": "bouton éjecter",
+      "keywords": [
+        "bouton éjecter",
+        "éjecter"
+      ]
+    },
+    "🔅": {
+      "name": "luminosité faible",
+      "keywords": [
+        "brillance",
+        "lumière",
+        "luminosité",
+        "luminosité faible",
+        "soleil"
+      ]
+    },
+    "📶": {
+      "name": "barres de réseau",
+      "keywords": [
+        "barres de réseau",
+        "communication",
+        "couverture",
+        "portable",
+        "réception",
+        "réseau",
+        "téléphone"
+      ]
+    },
+    "🛜": {
+      "name": "sans fil",
+      "keywords": [
+        "connexion",
+        "haut débit",
+        "hotspot",
+        "internet",
+        "ordinateur",
+        "réseau",
+        "routeur",
+        "sans fil",
+        "smartphone",
+        "Wi-Fi",
+        "wifi",
+        "wlan"
+      ]
+    },
+    "♀️": {
+      "name": "symbole de la femme",
+      "keywords": [
+        "femme",
+        "symbole de la femme"
+      ]
+    },
+    "♂️": {
+      "name": "symbole de l’homme",
+      "keywords": [
+        "homme",
+        "symbole de l’homme"
+      ]
+    },
+    "✖️": {
+      "name": "signe multiplier",
+      "keywords": [
+        "*",
+        "×",
+        "annuler",
+        "croix noire",
+        "multiplication",
+        "multiplier",
+        "non",
+        "signe multiplier",
+        "x"
+      ]
+    },
+    "➕": {
+      "name": "plus",
+      "keywords": [
+        "+",
+        "addition",
+        "ajouter",
+        "arithmétique",
+        "mathématiques",
+        "plus",
+        "signe plus",
+        "signe Plus",
+        "somme"
+      ]
+    },
+    "➖": {
+      "name": "moins",
+      "keywords": [
+        "-",
+        "−",
+        "arithmétique",
+        "mathématiques",
+        "moins",
+        "signe moins",
+        "signe Moins",
+        "soustraction",
+        "soustraire"
+      ]
+    },
+    "➗": {
+      "name": "signe diviser",
+      "keywords": [
+        "÷",
+        "algèbre",
+        "diviser",
+        "division",
+        "math",
+        "mathématique",
+        "mathématiques",
+        "signe"
+      ]
+    },
+    "🟰": {
+      "name": "signe égal gras",
+      "keywords": [
+        "égal",
+        "égalité",
+        "mathématiques",
+        "réponse",
+        "signe égal gras"
+      ]
+    },
+    "♾️": {
+      "name": "infini",
+      "keywords": [
+        "éternité",
+        "illimité",
+        "infini",
+        "universel"
+      ]
+    },
+    "‼️": {
+      "name": "double point d’exclamation",
+      "keywords": [
+        "!",
+        "!!",
+        "double point d’exclamation",
+        "exclamation",
+        "point",
+        "ponctuation",
+        "surprise"
+      ]
+    },
+    "⁉️": {
+      "name": "points d’exclamation et d’interrogation",
+      "keywords": [
+        "!",
+        "!?",
+        "?",
+        "exclamation",
+        "interrogation",
+        "point d’exclamation et d’interrogation",
+        "points d’exclamation et d’interrogation",
+        "ponctuation",
+        "question",
+        "surprise"
+      ]
+    },
+    "❓": {
+      "name": "point d’interrogation rouge",
+      "keywords": [
+        "?",
+        "interrogation",
+        "point d’interrogation",
+        "point d’interrogation rouge",
+        "ponctuation",
+        "question"
+      ]
+    },
+    "❗": {
+      "name": "point d’exclamation rouge",
+      "keywords": [
+        "!",
+        "exclamation",
+        "point d’exclamation",
+        "point d’exclamation rouge",
+        "ponctuation"
+      ]
+    },
+    "💲": {
+      "name": "symbole dollar",
+      "keywords": [
+        "argent",
+        "devise",
+        "dollar",
+        "espèces",
+        "payer",
+        "symbole dollar"
+      ]
+    },
+    "⚕️": {
+      "name": "caducée",
+      "keywords": [
+        "caducée",
+        "docteur",
+        "Esculape",
+        "médecine",
+        "personnel"
+      ]
+    },
+    "♻️": {
+      "name": "symbole Recyclage",
+      "keywords": [
+        "recyclage",
+        "symbole Recyclage"
+      ]
+    },
+    "⚜️": {
+      "name": "fleur de lys",
+      "keywords": [
+        "blason",
+        "fleur de lis",
+        "fleur de lys",
+        "reine",
+        "roi",
+        "royauté française"
+      ]
+    },
+    "🔱": {
+      "name": "trident",
+      "keywords": [
+        "ancre",
+        "bateau",
+        "fourche",
+        "mer",
+        "Poséidon",
+        "trident"
+      ]
+    },
+    "⭕": {
+      "name": "cercle rouge",
+      "keywords": [
+        "0",
+        "anneau",
+        "cercle",
+        "gros cercle",
+        "o",
+        "O",
+        "rouge"
+      ]
+    },
+    "✅": {
+      "name": "bouton coché",
+      "keywords": [
+        "✓",
+        "bouton coché",
+        "carré",
+        "coche",
+        "coche blanche",
+        "marque",
+        "OK",
+        "oui",
+        "sélection",
+        "terminé",
+        "voilà"
+      ]
+    },
+    "✔️": {
+      "name": "coche",
+      "keywords": [
+        "✓",
+        "coche",
+        "coche noire",
+        "OK",
+        "oui",
+        "sélection",
+        "terminé",
+        "voilà"
+      ]
+    },
+    "❌": {
+      "name": "croix",
+      "keywords": [
+        "×",
+        "annuler",
+        "croix",
+        "croix rouge",
+        "multiplication",
+        "multiplier",
+        "x"
+      ]
+    },
+    "©️": {
+      "name": "symbole copyright",
+      "keywords": [
+        "©",
+        "c",
+        "copyright",
+        "droits d’auteur",
+        "propriété intellectuelle",
+        "symbole copyright",
+        "symbole Copyright"
+      ]
+    },
+    "®️": {
+      "name": "marque déposée",
+      "keywords": [
+        "®",
+        "marque commerciale",
+        "marque déposée",
+        "r"
+      ]
+    },
+    "™️": {
+      "name": "marque commerciale déposée",
+      "keywords": [
+        "marque commerciale déposée",
+        "marque déposée",
+        "TM"
+      ]
+    },
+    "🔟": {
+      "name": "touches\u202F: 10",
+      "keywords": [
+        "touches"
+      ]
+    },
+    "🆗": {
+      "name": "bouton OK",
+      "keywords": [
+        "bouton OK",
+        "icône OK",
+        "OK"
+      ]
+    },
+    "🅿️": {
+      "name": "bouton P",
+      "keywords": [
+        "bouton",
+        "P",
+        "panneau parking",
+        "parking"
+      ]
+    },
+    "🆘": {
+      "name": "bouton SOS",
+      "keywords": [
+        "à l’aide",
+        "au secours",
+        "bouton SOS",
+        "icône SOS",
+        "SOS"
+      ]
+    },
+    "⚫": {
+      "name": "disque noir",
+      "keywords": [
+        "cercle",
+        "disque noir",
+        "forme géométrique",
+        "géométrie",
+        "noir",
+        "rond"
+      ]
+    },
+    "⚪": {
+      "name": "disque blanc",
+      "keywords": [
+        "blanc",
+        "cercle",
+        "disque blanc",
+        "forme géométrique",
+        "géométrie",
+        "rond"
+      ]
+    },
+    "⬛": {
+      "name": "grand carré noir",
+      "keywords": [
+        "carré",
+        "forme",
+        "forme géométrique",
+        "géométrie",
+        "grand carré noir"
+      ]
+    },
+    "⬜": {
+      "name": "grand carré blanc",
+      "keywords": [
+        "carré",
+        "forme",
+        "géométrie",
+        "grand carré blanc"
+      ]
+    },
+    "🔺": {
+      "name": "triangle rouge pointant vers le haut",
+      "keywords": [
+        "flèche",
+        "forme géométrique",
+        "géométrie",
+        "rouge",
+        "triangle haut",
+        "triangle rouge pointant vers le haut",
+        "triangle rouge pointé vers le haut"
+      ]
+    },
+    "🔻": {
+      "name": "triangle rouge pointant vers le bas",
+      "keywords": [
+        "bas",
+        "flèche",
+        "forme",
+        "géométrie",
+        "rouge",
+        "triangle bas",
+        "triangle rouge pointant vers le bas",
+        "triangle rouge pointé vers le bas"
+      ]
+    }
+  }
+}

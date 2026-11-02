@@ -5,7 +5,8 @@
 -->
 <!--
     The menu of a tab, a group's header or an item, opened by a right-click in Edit mode: « Rename », with « F2 » at the
-    end of the line. Shown in a Flyout under what was clicked; a choice closes it.
+    end of the line; under it, for a tab or a group only, « Icon… », which opens the icon picker. Shown in a Flyout under
+    what was clicked; a choice closes it.
 -->
 <UserControl x:Class="FolderSwitch.App.Views.EditMenu"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -29,6 +30,20 @@
                            Foreground="{DynamicResource Fs.MenuMuted}"
                            Text="F2" />
                 <TextBlock VerticalAlignment="Center" Text="{Binding Texts[Edit.Rename], ElementName=Root}" TextTrimming="CharacterEllipsis" />
+            </DockPanel>
+        </Button>
+        <Button x:Name="IconEntry" Style="{StaticResource Fs.MenuItemButton}" Click="OnIconClick">
+            <DockPanel>
+                <!-- An emoji drawn as the icons are: in the text's color. -->
+                <TextBlock DockPanel.Dock="Left"
+                           Width="16"
+                           Margin="0,0,9,0"
+                           VerticalAlignment="Center"
+                           TextAlignment="Center"
+                           FontFamily="{StaticResource Fs.EmojiFont}"
+                           FontSize="13"
+                           Text="🙂" />
+                <TextBlock VerticalAlignment="Center" Text="{Binding Texts[Edit.Icon], ElementName=Root}" TextTrimming="CharacterEllipsis" />
             </DockPanel>
         </Button>
     </StackPanel>

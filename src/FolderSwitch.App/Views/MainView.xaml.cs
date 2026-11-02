@@ -3,9 +3,11 @@
 // Additional terms under GPLv3 section 7: see the License section of README.md.
 
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 using FolderSwitch.App.Diagnostics;
 using FolderSwitch.Core.Services;
@@ -29,13 +31,15 @@ namespace FolderSwitch.App.Views;
 /// <para>
 /// <b>Flyouts.</b> One at a time (<see cref="Flyout"/>): a group's « Add ▾ » menu (<see cref="AddMenu"/>) or palette,
 /// in Customize mode; an item's menu (<see cref="ItemMenu"/>, a right-click), in normal use; a tab's, a group's or an
-/// item's menu (<see cref="EditMenu"/>, a right-click), in Customize mode. A flyout closes on a click outside it, on
+/// item's menu (<see cref="EditMenu"/>, a right-click), and the icon picker of a tab or a group (<see cref="IconPicker"/>,
+/// whose filter box takes the keyboard focus), in Customize mode. A flyout closes on a click outside it, on
 /// Escape (<see cref="CloseFlyout"/>, called by the window), when the window loses the focus to another window than the
 /// flyout's own or hides, when Customize mode starts or ends, when another tab is shown, and when a window of the
 /// dialog layer opens.
 /// </para>
 /// <para>
-/// <b>Rename.</b> Nothing in the window takes the keyboard focus but a rename's text box, so a click elsewhere would
+/// <b>Rename.</b> Nothing in the window takes the keyboard focus but a rename's text box (and, in its flyout, the icon
+/// picker's filter box), so a click elsewhere would
 /// leave it focused: such a click commits the rename first (<see cref="InlineRename.Commit"/>), then goes on to what
 /// it was on.
 /// </para>
@@ -47,6 +51,9 @@ public partial class MainView : UserControl
         typeof(ViewTexts),
         typeof(MainView),
         new PropertyMetadata(null));
+
+    /// <summary>The name of the icon button of a tab and of a group's header, where the icon picker opens.</summary>
+    internal const string IconButtonName = "IconButton";
 
     private readonly Flyout _flyout;
     private MainViewModel? _viewModel;
@@ -223,13 +230,74 @@ public partial class MainView : UserControl
         }
     }
 
-    /// <summary>Opens the Edit-mode menu of a tab, a group or an item under <paramref name="anchor"/> (a right-click).</summary>
+    /// <summary>
+    /// Opens the Edit-mode menu of a tab, a group or an item under <paramref name="anchor"/> (a right-click); its
+    /// « Icon… » opens the icon picker under the icon button inside <paramref name="anchor"/>.
+    /// </summary>
     internal void OpenEditMenu(RenamableViewModel target, FrameworkElement anchor)
     {
         if (_viewModel is { IsCustomizing: true } viewModel && Texts is { } texts && !IsDialogOpen)
         {
-            _flyout.Open(new EditMenu(viewModel, target, texts, () => CloseFlyout()), anchor, FlyoutAlignment.Left);
+            _flyout.Open(
+                new EditMenu(viewModel, target, texts, () => CloseFlyout(), t => OpenIconPicker(t, IconAnchorIn(anchor))),
+                anchor,
+                FlyoutAlignment.Left);
         }
+    }
+
+    /// <summary>
+    /// Opens the icon picker of a tab or a group under <paramref name="anchor"/> (its icon button), in Customize mode; a
+    /// click on the anchor of the open picker closes it instead. How long it took to show is logged.
+    /// </summary>
+    internal void OpenIconPicker(RenamableViewModel target, FrameworkElement anchor)
+    {
+        ArgumentNullException.ThrowIfNull(target);
+        ArgumentNullException.ThrowIfNull(anchor);
+
+        if (_viewModel is not { IsCustomizing: true } viewModel || Texts is not { } texts || IsDialogOpen)
+        {
+            return;
+        }
+
+        var clock = Stopwatch.StartNew();
+        if (viewModel.OpenIconPicker(target) is not { } picker)
+        {
+            return;
+        }
+
+        var view = new IconPicker(picker, texts, () => CloseFlyout());
+        if (!_flyout.Open(view, anchor, FlyoutAlignment.Left))
+        {
+            return;
+        }
+
+        // Shown: laid out and drawn with its first category. Then the other categories, in the background.
+        var shown = 0.0;
+        Dispatcher.BeginInvoke(DispatcherPriority.Background, () => shown = clock.Elapsed.TotalMilliseconds);
+        view.CompleteGrid(() => DebugLog.Info(FormattableString.Invariant(
+            $"Icons: picker shown in {shown:F0} ms, its whole grid in {clock.Elapsed.TotalMilliseconds:F0} ms")));
+    }
+
+    /// <summary>The icon button inside <paramref name="element"/> (a tab, a group's header), shown; else the element itself.</summary>
+    private static FrameworkElement IconAnchorIn(FrameworkElement element)
+    {
+        var pending = new Stack<DependencyObject>();
+        pending.Push(element);
+        while (pending.Count > 0)
+        {
+            var current = pending.Pop();
+            if (current is FrameworkElement { Name: IconButtonName, IsVisible: true } button)
+            {
+                return button;
+            }
+
+            for (var i = VisualTreeHelper.GetChildrenCount(current) - 1; i >= 0; i--)
+            {
+                pending.Push(VisualTreeHelper.GetChild(current, i));
+            }
+        }
+
+        return element;
     }
 
     /// <summary>
@@ -313,7 +381,7 @@ public partial class MainView : UserControl
                 // The menus of Edit mode end with it, and an item's menu is for normal use only.
                 CloseFlyout();
                 break;
-            case nameof(MainViewModel.ActiveTab) when _flyout.Content is AddMenu or ColorPalettePopup or ItemMenu or EditMenu:
+            case nameof(MainViewModel.ActiveTab) when _flyout.Content is AddMenu or ColorPalettePopup or ItemMenu or EditMenu or IconPicker:
                 // What a group's flyout acts on is no longer on screen.
                 CloseFlyout();
                 break;

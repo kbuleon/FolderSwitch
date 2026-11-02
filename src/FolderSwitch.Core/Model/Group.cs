@@ -14,6 +14,15 @@ public sealed class Group
     /// <summary>Header color as a hex string, for example <c>#3b82f6</c>.</summary>
     public string Color { get; set; } = string.Empty;
 
+    /// <summary>
+    /// The emoji shown before the name. <see langword="null"/> with <see cref="IconChosen"/> false is the
+    /// automatic, empty icon; <see langword="null"/> with <see cref="IconChosen"/> true is "no icon" chosen.
+    /// </summary>
+    public string? Icon { get; set; }
+
+    /// <summary>True once the user picked the icon (or "no icon"): renaming then never changes it.</summary>
+    public bool IconChosen { get; set; }
+
     public bool Collapsed { get; set; }
 
     public List<Item> Items { get; set; } = new();

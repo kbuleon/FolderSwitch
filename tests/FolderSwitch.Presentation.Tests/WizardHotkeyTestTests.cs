@@ -26,7 +26,7 @@ public class WizardHotkeyTestTests
     private readonly FakeAutostart _autostart = new();
     private readonly FakeConfigPersistence _persistence = new();
 
-    private WizardViewModel CreateWizard() => new(_localizer, _system, _hotkeys, _autostart, ExePath, _persistence);
+    private WizardViewModel CreateWizard() => new(_localizer, _system, _hotkeys, _autostart, ExePath, _persistence, TestIcons.Lazy());
 
     private static void GoToStep(WizardViewModel wizard, int step)
     {

@@ -23,6 +23,8 @@ internal static class TestConfigs
         var work = new Tab
         {
             Name = "Travail",
+            Icon = "💼",
+            IconChosen = true,
             Columns =
             {
                 new Column
@@ -33,6 +35,8 @@ internal static class TestConfigs
                         new Group
                         {
                             Name = "Projets été",
+                            Icon = "💵",
+                            IconChosen = false,
                             Color = "#f59e0b",
                             Collapsed = true,
                             Items =
@@ -98,6 +102,8 @@ internal static class TestConfigs
             var at = actual.Tabs[t];
             Assert.Equal(et.Id, at.Id);
             Assert.Equal(et.Name, at.Name);
+            Assert.Equal(et.Icon, at.Icon);
+            Assert.Equal(et.IconChosen, at.IconChosen);
             Assert.Equal(et.Columns.Count, at.Columns.Count);
             for (var c = 0; c < et.Columns.Count; c++)
             {
@@ -112,6 +118,8 @@ internal static class TestConfigs
                     var ag = ac.Groups[g];
                     Assert.Equal(eg.Id, ag.Id);
                     Assert.Equal(eg.Name, ag.Name);
+                    Assert.Equal(eg.Icon, ag.Icon);
+                    Assert.Equal(eg.IconChosen, ag.IconChosen);
                     Assert.Equal(eg.Color, ag.Color);
                     Assert.Equal(eg.Collapsed, ag.Collapsed);
                     Assert.Equal(eg.Items.Count, ag.Items.Count);

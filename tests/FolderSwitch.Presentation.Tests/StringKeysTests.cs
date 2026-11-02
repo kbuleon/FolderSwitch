@@ -64,6 +64,24 @@ public class StringKeysTests
     [InlineData("Update.InstallFailed")]
     public void Update_keys_exist_in_english(string key) => AssertEnglishHas(key);
 
+    [Theory]
+    [InlineData("Edit.Icon")]
+    [InlineData("Icon.Choose")]
+    [InlineData("Icon.Filter")]
+    [InlineData("Icon.Automatic")]
+    [InlineData("Icon.None")]
+    [InlineData("Icon.Results")]
+    [InlineData("Icon.NoResult")]
+    [InlineData("Icon.Category.SmileysEmotion")]
+    [InlineData("Icon.Category.PeopleBody")]
+    [InlineData("Icon.Category.AnimalsNature")]
+    [InlineData("Icon.Category.FoodDrink")]
+    [InlineData("Icon.Category.TravelPlaces")]
+    [InlineData("Icon.Category.Activities")]
+    [InlineData("Icon.Category.Objects")]
+    [InlineData("Icon.Category.Symbols")]
+    public void Icon_keys_exist_in_english(string key) => AssertEnglishHas(key);
+
     private static void AssertEnglishHas(string key)
     {
         using var document = JsonDocument.Parse(File.ReadAllBytes(EnglishFile()));

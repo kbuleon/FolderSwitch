@@ -1,0 +1,625 @@
+# Emojis kept out of the catalog by hand (one per line, a comment after the hash sign).
+# The automatic rules are in the tool; these are the ones whose one-colour drawing in Segoe UI Emoji is unreadable,
+# confusing or ambiguous at 16 px, found by looking at the contact sheets (run the tool with --sheet). When in doubt,
+# the emoji is left out: the sort is made on Windows 11 and has to stand for Windows 10 too.
+
+# Smileys & Emotion: colour-coded hearts that differ only by a hatching, near-identical faces, cat and monster faces, speech and effect symbols
+🧡 # 1F9E1 orange heart
+💛 # 1F49B yellow heart
+💚 # 1F49A green heart
+💙 # 1F499 blue heart
+🩵 # 1FA75 light blue heart
+💜 # 1F49C purple heart
+🤎 # 1F90E brown heart
+🩷 # 1FA77 pink heart
+🩶 # 1FA76 grey heart
+🫨 # 1FAE8 shaking face
+🫩 # 1FAE9 face with bags under eyes
+🫪 # 1FAEA distorted face
+🫡 # 1FAE1 saluting face
+🥸 # 1F978 disguised face
+🤡 # 1F921 clown face
+😤 # 1F624 face with steam from nose
+🤬 # 1F92C face with symbols on mouth
+🥱 # 1F971 yawning face
+🤭 # 1F92D face with hand over mouth
+🫢 # 1FAE2 face with open eyes and hand over mouth
+🫣 # 1FAE3 face with peeking eye
+😸 # 1F638 grinning cat with smiling eyes
+😹 # 1F639 cat with tears of joy
+😻 # 1F63B smiling cat with heart-eyes
+😼 # 1F63C cat with wry smile
+😽 # 1F63D kissing cat
+🙀 # 1F640 weary cat
+😿 # 1F63F crying cat
+😾 # 1F63E pouting cat
+👹 # 1F479 ogre
+👺 # 1F47A goblin
+🫯 # 1FAEF fight cloud
+💫 # 1F4AB dizzy
+🕳 # 1F573 hole
+🗨 # 1F5E8 left speech bubble
+🗯 # 1F5EF right anger bubble
+
+# People & Body: hands that read as blobs, body parts, and every person, role, gesture or couple (a small head and shoulders at 16 px)
+🫳 # 1FAF3 palm down hand
+🫴 # 1FAF4 palm up hand
+🫷 # 1FAF7 leftwards pushing hand
+🫸 # 1FAF8 rightwards pushing hand
+🤌 # 1F90C pinched fingers
+🤏 # 1F90F pinching hand
+🫰 # 1FAF0 hand with index finger and thumb crossed
+🤛 # 1F91B left-facing fist
+🤜 # 1F91C right-facing fist
+💅 # 1F485 nail polish
+🤳 # 1F933 selfie
+💪 # 1F4AA flexed biceps
+🦾 # 1F9BE mechanical arm
+🦿 # 1F9BF mechanical leg
+🦵 # 1F9B5 leg
+🦶 # 1F9B6 foot
+🫦 # 1FAE6 biting lip
+🧒 # 1F9D2 child
+👦 # 1F466 boy
+👧 # 1F467 girl
+👱 # 1F471 person: blond hair
+🧔 # 1F9D4 person: beard
+🧓 # 1F9D3 older person
+👴 # 1F474 old man
+👵 # 1F475 old woman
+🙍 # 1F64D person frowning
+🙎 # 1F64E person pouting
+🙅 # 1F645 person gesturing NO
+🙆 # 1F646 person gesturing OK
+💁 # 1F481 person tipping hand
+🙋 # 1F64B person raising hand
+🧏 # 1F9CF deaf person
+🙇 # 1F647 person bowing
+🤦 # 1F926 person facepalming
+🤷 # 1F937 person shrugging
+👮 # 1F46E police officer
+🕵 # 1F575 detective
+💂 # 1F482 guard
+🥷 # 1F977 ninja
+👷 # 1F477 construction worker
+🫅 # 1FAC5 person with crown
+🤴 # 1F934 prince
+👸 # 1F478 princess
+👳 # 1F473 person wearing turban
+👲 # 1F472 person with skullcap
+🧕 # 1F9D5 woman with headscarf
+🤵 # 1F935 person in tuxedo
+👰 # 1F470 person with veil
+🤰 # 1F930 pregnant woman
+🫃 # 1FAC3 pregnant man
+🫄 # 1FAC4 pregnant person
+🤱 # 1F931 breast-feeding
+👼 # 1F47C baby angel
+🎅 # 1F385 Santa Claus
+🤶 # 1F936 Mrs. Claus
+🦸 # 1F9B8 superhero
+🦹 # 1F9B9 supervillain
+🧙 # 1F9D9 mage
+🧚 # 1F9DA fairy
+🧛 # 1F9DB vampire
+🧜 # 1F9DC merperson
+🧝 # 1F9DD elf
+🧞 # 1F9DE genie
+🧟 # 1F9DF zombie
+🧌 # 1F9CC troll
+🫈 # 1FAC8 hairy creature
+💆 # 1F486 person getting massage
+💇 # 1F487 person getting haircut
+🧍 # 1F9CD person standing
+🧎 # 1F9CE person kneeling
+💃 # 1F483 woman dancing
+🕺 # 1F57A man dancing
+🕴 # 1F574 person in suit levitating
+👯 # 1F46F people with bunny ears
+🧖 # 1F9D6 person in steamy room
+🧗 # 1F9D7 person climbing
+🤺 # 1F93A person fencing
+🏇 # 1F3C7 horse racing
+🏂 # 1F3C2 snowboarder
+🏌 # 1F3CC person golfing
+🚣 # 1F6A3 person rowing boat
+⛹ # 26F9 person bouncing ball
+🚵 # 1F6B5 person mountain biking
+🤸 # 1F938 person cartwheeling
+🤼 # 1F93C people wrestling
+🤽 # 1F93D person playing water polo
+🤾 # 1F93E person playing handball
+🤹 # 1F939 person juggling
+👭 # 1F46D women holding hands
+👫 # 1F46B woman and man holding hands
+👬 # 1F46C men holding hands
+💏 # 1F48F kiss
+💑 # 1F491 couple with heart
+🫂 # 1FAC2 people hugging
+
+# Animals & Nature: animals that look like another one, small or blob-like animals, flowers and nests that are not recognisable
+🦧 # 1F9A7 orangutan
+🦮 # 1F9AE guide dog
+🫎 # 1FACE moose
+🫏 # 1FACF donkey
+🐅 # 1F405 tiger
+🐆 # 1F406 leopard
+🐂 # 1F402 ox
+🐃 # 1F403 water buffalo
+🐏 # 1F40F ram
+🐫 # 1F42B two-hump camel
+🐽 # 1F43D pig nose
+🦣 # 1F9A3 mammoth
+🐁 # 1F401 mouse
+🐀 # 1F400 rat
+🦫 # 1F9AB beaver
+🦥 # 1F9A5 sloth
+🦦 # 1F9A6 otter
+🦨 # 1F9A8 skunk
+🦘 # 1F998 kangaroo
+🦡 # 1F9A1 badger
+🐥 # 1F425 front-facing baby chick
+🦤 # 1F9A4 dodo
+🪿 # 1FABF goose
+🦚 # 1F99A peacock
+🐋 # 1F40B whale
+🦭 # 1F9AD seal
+🦪 # 1F9AA oyster
+🦗 # 1F997 cricket
+🪰 # 1FAB0 fly
+🪱 # 1FAB1 worm
+🦠 # 1F9A0 microbe
+🪳 # 1FAB3 cockroach
+💮 # 1F4AE white flower
+🪻 # 1FABB hyacinth
+🥀 # 1F940 wilted flower
+🪹 # 1FAB9 empty nest
+🪺 # 1FABA nest with eggs
+
+# Food & Drink: fruit, vegetables and dishes that read as a plain disc or blob, near-identical dishes and drinks
+🍈 # 1F348 melon
+🍊 # 1F34A tangerine
+🍍 # 1F34D pineapple
+🥭 # 1F96D mango
+🍏 # 1F34F green apple
+🫐 # 1FAD0 blueberries
+🥝 # 1F95D kiwi fruit
+🫒 # 1FAD2 olive
+🥥 # 1F965 coconut
+🥔 # 1F954 potato
+🥒 # 1F952 cucumber
+🥬 # 1F96C leafy green
+🧅 # 1F9C5 onion
+🫘 # 1FAD8 beans
+🌰 # 1F330 chestnut
+🫚 # 1FADA ginger root
+🫛 # 1FADB pea pod
+🫜 # 1FADC root vegetable
+🫓 # 1FAD3 flatbread
+🥯 # 1F96F bagel
+🥩 # 1F969 cut of meat
+🥓 # 1F953 bacon
+🌯 # 1F32F burrito
+🫔 # 1FAD4 tamale
+🥙 # 1F959 stuffed flatbread
+🧆 # 1F9C6 falafel
+🥘 # 1F958 shallow pan of food
+🍲 # 1F372 pot of food
+🫕 # 1FAD5 fondue
+🧈 # 1F9C8 butter
+🥫 # 1F96B canned food
+🍱 # 1F371 bento box
+🍘 # 1F358 rice cracker
+🍛 # 1F35B curry rice
+🍠 # 1F360 roasted sweet potato
+🍢 # 1F362 oden
+🍣 # 1F363 sushi
+🍤 # 1F364 fried shrimp
+🍥 # 1F365 fish cake with swirl
+🥮 # 1F96E moon cake
+🍡 # 1F361 dango
+🥟 # 1F95F dumpling
+🥠 # 1F960 fortune cookie
+🍧 # 1F367 shaved ice
+🍨 # 1F368 ice cream
+🥧 # 1F967 pie
+🍬 # 1F36C candy
+🍮 # 1F36E custard
+🍯 # 1F36F honey pot
+🍶 # 1F376 sake
+🍻 # 1F37B clinking beer mugs
+🥃 # 1F943 tumbler glass
+🫗 # 1FAD7 pouring liquid
+🧃 # 1F9C3 beverage box
+🧉 # 1F9C9 mate
+🫙 # 1FAD9 jar
+
+# Travel & Places: duplicates (globes, trains, oncoming vehicles, clocks, moon phases, weather), boxed scenery, tiny or obscure places and vehicles
+🌎 # 1F30E globe showing Americas
+🌏 # 1F30F globe showing Asia-Australia
+🛘 # 1F6D8 landslide
+🏜 # 1F3DC desert
+🏞 # 1F3DE national park
+🏟 # 1F3DF stadium
+🪨 # 1FAA8 rock
+🪵 # 1FAB5 wood
+🏘 # 1F3D8 houses
+🏚 # 1F3DA derelict house
+🏣 # 1F3E3 Japanese post office
+🏤 # 1F3E4 post office
+🏩 # 1F3E9 love hotel
+🏬 # 1F3EC department store
+💒 # 1F492 wedding
+🌁 # 1F301 foggy
+🌃 # 1F303 night with stars
+🏙 # 1F3D9 cityscape
+🌄 # 1F304 sunrise over mountains
+🌅 # 1F305 sunrise
+🌆 # 1F306 cityscape at dusk
+🌇 # 1F307 sunset
+🌉 # 1F309 bridge at night
+🚅 # 1F685 bullet train
+🚆 # 1F686 train
+🚈 # 1F688 light rail
+🚉 # 1F689 station
+🚊 # 1F68A tram
+🚝 # 1F69D monorail
+🚞 # 1F69E mountain railway
+🚋 # 1F68B tram car
+🚍 # 1F68D oncoming bus
+🚎 # 1F68E trolleybus
+🚐 # 1F690 minibus
+🚓 # 1F693 police car
+🚔 # 1F694 oncoming police car
+🚖 # 1F696 oncoming taxi
+🚘 # 1F698 oncoming automobile
+🚛 # 1F69B articulated lorry
+🦼 # 1F9BC motorized wheelchair
+🦽 # 1F9BD manual wheelchair
+🛺 # 1F6FA auto rickshaw
+🚏 # 1F68F bus stop
+🛣 # 1F6E3 motorway
+🛤 # 1F6E4 railway track
+🚥 # 1F6A5 horizontal traffic light
+🛶 # 1F6F6 canoe
+⛴ # 26F4 ferry
+🛥 # 1F6E5 motor boat
+🛩 # 1F6E9 small airplane
+🛫 # 1F6EB airplane departure
+🛬 # 1F6EC airplane arrival
+🪂 # 1FA82 parachute
+🚟 # 1F69F suspension railway
+🚠 # 1F6A0 mountain cableway
+🚡 # 1F6A1 aerial tramway
+🛰 # 1F6F0 satellite
+⏳ # 23F3 hourglass not done
+⏲ # 23F2 timer clock
+🕑 # 1F551 two o’clock
+🕒 # 1F552 three o’clock
+🕓 # 1F553 four o’clock
+🕔 # 1F554 five o’clock
+🕕 # 1F555 six o’clock
+🕖 # 1F556 seven o’clock
+🕗 # 1F557 eight o’clock
+🕘 # 1F558 nine o’clock
+🕙 # 1F559 ten o’clock
+🕚 # 1F55A eleven o’clock
+🕛 # 1F55B twelve o’clock
+🕜 # 1F55C one-thirty
+🕝 # 1F55D two-thirty
+🕞 # 1F55E three-thirty
+🕟 # 1F55F four-thirty
+🕠 # 1F560 five-thirty
+🕡 # 1F561 six-thirty
+🕢 # 1F562 seven-thirty
+🕣 # 1F563 eight-thirty
+🕤 # 1F564 nine-thirty
+🕥 # 1F565 ten-thirty
+🕦 # 1F566 eleven-thirty
+🕧 # 1F567 twelve-thirty
+🌑 # 1F311 new moon
+🌒 # 1F312 waxing crescent moon
+🌓 # 1F313 first quarter moon
+🌔 # 1F314 waxing gibbous moon
+🌖 # 1F316 waning gibbous moon
+🌗 # 1F317 last quarter moon
+🌘 # 1F318 waning crescent moon
+🌚 # 1F31A new moon face
+🌛 # 1F31B first quarter moon face
+🌜 # 1F31C last quarter moon face
+🌝 # 1F31D full moon face
+🌠 # 1F320 shooting star
+🌌 # 1F30C milky way
+🌤 # 1F324 sun behind small cloud
+🌥 # 1F325 sun behind large cloud
+🌦 # 1F326 sun behind rain cloud
+🌨 # 1F328 cloud with snow
+🌩 # 1F329 cloud with lightning
+🌫 # 1F32B fog
+🌬 # 1F32C wind face
+☔ # 2614 umbrella with rain drops
+⛱ # 26F1 umbrella on ground
+☃ # 2603 snowman
+
+# Activities: boxed pictures, near-identical balls and sports gear, tiny or obscure objects
+🎆 # 1F386 fireworks
+🎇 # 1F387 sparkler
+🧨 # 1F9E8 firecracker
+🎊 # 1F38A confetti ball
+🎋 # 1F38B tanabata tree
+🎍 # 1F38D pine decoration
+🎎 # 1F38E Japanese dolls
+🎏 # 1F38F carp streamer
+🎐 # 1F390 wind chime
+🎑 # 1F391 moon viewing ceremony
+🧧 # 1F9E7 red envelope
+🎗 # 1F397 reminder ribbon
+🎟 # 1F39F admission tickets
+🎖 # 1F396 military medal
+🏅 # 1F3C5 sports medal
+🥎 # 1F94E softball
+🥏 # 1F94F flying disc
+🏉 # 1F3C9 rugby football
+🏏 # 1F3CF cricket game
+🏑 # 1F3D1 field hockey
+🏒 # 1F3D2 ice hockey
+🥍 # 1F94D lacrosse
+🥋 # 1F94B martial arts uniform
+🎣 # 1F3A3 fishing pole
+🎽 # 1F3BD running shirt
+🎿 # 1F3BF skis
+🛷 # 1F6F7 sled
+🥌 # 1F94C curling stone
+🪀 # 1FA80 yo-yo
+🪁 # 1FA81 kite
+🪅 # 1FA85 piñata
+🪆 # 1FA86 nesting dolls
+🃏 # 1F0CF joker
+🀄 # 1F004 mahjong red dragon
+🎴 # 1F3B4 flower playing cards
+🪡 # 1FAA1 sewing needle
+🪢 # 1FAA2 knot
+
+# Objects: clothing and accessories that look alike, near-identical objects (pens, books, mailboxes, banknotes), tiny or obscure objects
+🥼 # 1F97C lab coat
+🦺 # 1F9BA safety vest
+👔 # 1F454 necktie
+🧣 # 1F9E3 scarf
+🧤 # 1F9E4 gloves
+🧥 # 1F9E5 coat
+🧦 # 1F9E6 socks
+👘 # 1F458 kimono
+🥻 # 1F97B sari
+🩱 # 1FA71 one-piece swimsuit
+🩲 # 1FA72 briefs
+🩳 # 1FA73 shorts
+👙 # 1F459 bikini
+👚 # 1F45A woman’s clothes
+🪭 # 1FAAD folding hand fan
+👛 # 1F45B purse
+👝 # 1F45D clutch bag
+🩴 # 1FA74 thong sandal
+👞 # 1F45E man’s shoe
+🥾 # 1F97E hiking boot
+🥿 # 1F97F flat shoe
+👡 # 1F461 woman’s sandal
+🩰 # 1FA70 ballet shoes
+👢 # 1F462 woman’s boot
+🪮 # 1FAAE hair pick
+👒 # 1F452 woman’s hat
+🪖 # 1FA96 military helmet
+⛑ # 26D1 rescue worker’s helmet
+📿 # 1F4FF prayer beads
+📯 # 1F4EF postal horn
+🎚 # 1F39A level slider
+🎛 # 1F39B control knobs
+🪗 # 1FA97 accordion
+🪕 # 1FA95 banjo
+🥁 # 1F941 drum
+🪘 # 1FA98 long drum
+🪇 # 1FA87 maracas
+🪈 # 1FA88 flute
+🪉 # 1FA89 harp
+🪊 # 1FA8A trombone
+📲 # 1F4F2 mobile phone with arrow
+📟 # 1F4DF pager
+🖲 # 1F5B2 trackball
+💽 # 1F4BD computer disk
+📀 # 1F4C0 dvd
+📽 # 1F4FD film projector
+📸 # 1F4F8 camera with flash
+🔎 # 1F50E magnifying glass tilted right
+🏮 # 1F3EE red paper lantern
+🪔 # 1FA94 diya lamp
+📔 # 1F4D4 notebook with decorative cover
+📗 # 1F4D7 green book
+📘 # 1F4D8 blue book
+📙 # 1F4D9 orange book
+📒 # 1F4D2 ledger
+📃 # 1F4C3 page with curl
+🗞 # 1F5DE rolled-up newspaper
+🪙 # 1FA99 coin
+🪎 # 1FA8E treasure chest
+💴 # 1F4B4 yen banknote
+💶 # 1F4B6 euro banknote
+💷 # 1F4B7 pound banknote
+💸 # 1F4B8 money with wings
+💹 # 1F4B9 chart increasing with yen
+📨 # 1F4E8 incoming envelope
+📩 # 1F4E9 envelope with arrow
+📪 # 1F4EA closed mailbox with lowered flag
+📬 # 1F4EC open mailbox with raised flag
+📭 # 1F4ED open mailbox with lowered flag
+📮 # 1F4EE postbox
+🗳 # 1F5F3 ballot box with ballot
+🖋 # 1F58B fountain pen
+🖊 # 1F58A pen
+🖍 # 1F58D crayon
+📆 # 1F4C6 tear-off calendar
+🗒 # 1F5D2 spiral notepad
+🗓 # 1F5D3 spiral calendar
+📇 # 1F4C7 card index
+🖇 # 1F587 linked paperclips
+🗃 # 1F5C3 card file box
+🔏 # 1F50F locked with pen
+🔐 # 1F510 locked with key
+🗝 # 1F5DD old key
+⚒ # 2692 hammer and pick
+🗡 # 1F5E1 dagger
+⚔ # 2694 crossed swords
+🪃 # 1FA83 boomerang
+🏹 # 1F3F9 bow and arrow
+🪚 # 1FA9A carpentry saw
+🗜 # 1F5DC clamp
+🦯 # 1F9AF white cane
+⛓ # 26D3 chains
+🪝 # 1FA9D hook
+🪏 # 1FA8F shovel
+⚗ # 2697 alembic
+🧫 # 1F9EB petri dish
+🩸 # 1FA78 drop of blood
+🩼 # 1FA7C crutch
+🩻 # 1FA7B x-ray
+🛗 # 1F6D7 elevator
+🪞 # 1FA9E mirror
+🪟 # 1FA9F window
+🪠 # 1FAA0 plunger
+🚿 # 1F6BF shower
+🪤 # 1FAA4 mouse trap
+🪒 # 1FA92 razor
+🧷 # 1F9F7 safety pin
+🧼 # 1F9FC soap
+🫧 # 1FAE7 bubbles
+🚬 # 1F6AC cigarette
+⚰ # 26B0 coffin
+🪦 # 1FAA6 headstone
+⚱ # 26B1 funeral urn
+🧿 # 1F9FF nazar amulet
+🪬 # 1FAAC hamsa
+🗿 # 1F5FF moai
+🪧 # 1FAA7 placard
+
+# Symbols: text-only boxes, zodiac, Japanese boxed characters, coloured circles, squares and diamonds that differ only by a hatching, tiny or duplicate signs
+ℹ️ # 2139 information: a letter for Unicode (category Ll), which no icon may be (IconText.IsPlausible)
+🚮 # 1F6AE litter in bin sign
+🚰 # 1F6B0 potable water
+🚼 # 1F6BC baby symbol
+🛂 # 1F6C2 passport control
+🛃 # 1F6C3 customs
+🛄 # 1F6C4 baggage claim
+🛅 # 1F6C5 left luggage
+🚸 # 1F6B8 children crossing
+🚳 # 1F6B3 no bicycles
+🚭 # 1F6AD no smoking
+🚯 # 1F6AF no littering
+🚱 # 1F6B1 non-potable water
+🚷 # 1F6B7 no pedestrians
+📵 # 1F4F5 no mobile phones
+🔞 # 1F51E no one under eighteen
+🔙 # 1F519 BACK arrow
+🔚 # 1F51A END arrow
+🔛 # 1F51B ON! arrow
+🔜 # 1F51C SOON arrow
+🔝 # 1F51D TOP arrow
+🛐 # 1F6D0 place of worship
+🔯 # 1F52F dotted six-pointed star
+🪯 # 1FAAF khanda
+♈ # 2648 Aries
+♉ # 2649 Taurus
+♊ # 264A Gemini
+♋ # 264B Cancer
+♌ # 264C Leo
+♍ # 264D Virgo
+♎ # 264E Libra
+♏ # 264F Scorpio
+♐ # 2650 Sagittarius
+♑ # 2651 Capricorn
+♒ # 2652 Aquarius
+♓ # 2653 Pisces
+⛎ # 26CE Ophiuchus
+🔂 # 1F502 repeat single button
+⏫ # 23EB fast up button
+⏬ # 23EC fast down button
+🎦 # 1F3A6 cinema
+🔆 # 1F506 bright button
+📳 # 1F4F3 vibration mode
+📴 # 1F4F4 mobile phone off
+⚧ # 26A7 transgender symbol
+❔ # 2754 white question mark
+❕ # 2755 white exclamation mark
+〰 # 3030 wavy dash
+💱 # 1F4B1 currency exchange
+📛 # 1F4DB name badge
+🔰 # 1F530 Japanese symbol for beginner
+☑ # 2611 check box with check
+❎ # 274E cross mark button
+➰ # 27B0 curly loop
+➿ # 27BF double curly loop
+〽 # 303D part alternation mark
+✳ # 2733 eight-spoked asterisk
+✴ # 2734 eight-pointed star
+❇ # 2747 sparkle
+🫟 # 1FADF splatter
+🔠 # 1F520 input latin uppercase
+🔡 # 1F521 input latin lowercase
+🔢 # 1F522 input numbers
+🔣 # 1F523 input symbols
+🔤 # 1F524 input latin letters
+🅰 # 1F170 A button (blood type)
+🆎 # 1F18E AB button (blood type)
+🅱 # 1F171 B button (blood type)
+🆑 # 1F191 CL button
+🆒 # 1F192 COOL button
+🆓 # 1F193 FREE button
+🆔 # 1F194 ID button
+Ⓜ # 24C2 circled M
+🆕 # 1F195 NEW button
+🆖 # 1F196 NG button
+🅾 # 1F17E O button (blood type)
+🆙 # 1F199 UP! button
+🆚 # 1F19A VS button
+🈁 # 1F201 Japanese “here” button
+🈂 # 1F202 Japanese “service charge” button
+🈷 # 1F237 Japanese “monthly amount” button
+🈶 # 1F236 Japanese “not free of charge” button
+🈯 # 1F22F Japanese “reserved” button
+🉐 # 1F250 Japanese “bargain” button
+🈹 # 1F239 Japanese “discount” button
+🈚 # 1F21A Japanese “free of charge” button
+🈲 # 1F232 Japanese “prohibited” button
+🉑 # 1F251 Japanese “acceptable” button
+🈸 # 1F238 Japanese “application” button
+🈴 # 1F234 Japanese “passing grade” button
+🈳 # 1F233 Japanese “vacancy” button
+㊗ # 3297 Japanese “congratulations” button
+㊙ # 3299 Japanese “secret” button
+🈺 # 1F23A Japanese “open for business” button
+🈵 # 1F235 Japanese “no vacancy” button
+🔴 # 1F534 red circle
+🟠 # 1F7E0 orange circle
+🟡 # 1F7E1 yellow circle
+🟢 # 1F7E2 green circle
+🔵 # 1F535 blue circle
+🟣 # 1F7E3 purple circle
+🟤 # 1F7E4 brown circle
+🟥 # 1F7E5 red square
+🟧 # 1F7E7 orange square
+🟨 # 1F7E8 yellow square
+🟩 # 1F7E9 green square
+🟦 # 1F7E6 blue square
+🟪 # 1F7EA purple square
+🟫 # 1F7EB brown square
+◼ # 25FC black medium square
+◻ # 25FB white medium square
+◾ # 25FE black medium-small square
+◽ # 25FD white medium-small square
+▪ # 25AA black small square
+▫ # 25AB white small square
+🔶 # 1F536 large orange diamond
+🔷 # 1F537 large blue diamond
+🔸 # 1F538 small orange diamond
+🔹 # 1F539 small blue diamond
+💠 # 1F4A0 diamond with a dot
+🔘 # 1F518 radio button
+🔳 # 1F533 white square button
+🔲 # 1F532 black square button
