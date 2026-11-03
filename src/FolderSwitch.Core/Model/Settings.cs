@@ -13,6 +13,9 @@ public sealed class Settings
 
     public bool StartWithWindows { get; set; } = true;
 
+    /// <summary>Whether FolderSwitch looks for a new version by itself, a minute after the start and then every day.</summary>
+    public bool CheckForUpdatesAutomatically { get; set; } = true;
+
     public bool FirstRunCompleted { get; set; }
 
     public Guid? ActiveTabId { get; set; }

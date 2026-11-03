@@ -220,6 +220,7 @@ internal sealed class Composition : IDisposable
         if (_updates is not null)
         {
             _updates.BusyChanged += OnUpdateBusyChanged;
+            _settings.AutomaticUpdatesChanged += OnAutomaticUpdatesChanged;
         }
 
         // Built once, for the whole life of the process.
@@ -252,7 +253,7 @@ internal sealed class Composition : IDisposable
             _updates.UpdateAvailabilityChanged += OnUpdateAvailabilityChanged;
             _updates.DownloadingChanged += OnUpdateDownloadingChanged;
             _tray.InstallUpdateRequested += OnInstallUpdateRequested;
-            _updates.Start();
+            _updates.SetAutomatic(_settings.CheckForUpdatesAutomatically);
         }
 
         _triggersWired = true;
@@ -333,6 +334,7 @@ internal sealed class Composition : IDisposable
             if (_settings is not null)
             {
                 _settings.ConfigReplaced -= OnConfigReplaced;
+                _settings.AutomaticUpdatesChanged -= OnAutomaticUpdatesChanged;
             }
 
             _hotkeyEditor?.Dispose();
@@ -714,6 +716,9 @@ internal sealed class Composition : IDisposable
             _settings.IsUpdateBusy = _updates.IsBusy;
         }
     }
+
+    /// <summary>The « check for updates automatically » setting changed (checkbox or import): the periodic check follows.</summary>
+    private void OnAutomaticUpdatesChanged(object? sender, bool enabled) => _updates?.SetAutomatic(enabled);
 
     /// <summary>
     /// The menu entry or the notification of an update was clicked: the offer is made once the menu has closed (the

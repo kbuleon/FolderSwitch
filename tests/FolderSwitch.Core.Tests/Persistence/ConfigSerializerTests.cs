@@ -424,6 +424,41 @@ public class ConfigSerializerTests
         Assert.Empty(config.Appearance.Backgrounds);
     }
 
+    // ----- Automatic update check -----
+
+    [Fact]
+    public void Automatic_update_check_is_on_when_the_setting_is_missing()
+    {
+        // A file written before the setting existed.
+        var json = """{ "schemaVersion": 2, "settings": { "startWithWindows": false }, "tabs": [ { "name": "A" } ] }""";
+
+        var config = ConfigSerializer.Deserialize(json);
+
+        Assert.True(config.Settings.CheckForUpdatesAutomatically);
+    }
+
+    [Fact]
+    public void Automatic_update_check_off_is_read_back()
+    {
+        var original = TestConfigs.Minimal();
+        original.Settings.CheckForUpdatesAutomatically = false;
+
+        var json = ConfigSerializer.Serialize(original);
+        var copy = ConfigSerializer.Deserialize(json);
+
+        Assert.Contains("\"checkForUpdatesAutomatically\": false", json);
+        Assert.False(copy.Settings.CheckForUpdatesAutomatically);
+        Assert.Equal(2, copy.SchemaVersion);
+    }
+
+    [Fact]
+    public void Automatic_update_check_of_the_wrong_type_is_a_format_error()
+    {
+        var json = """{ "schemaVersion": 2, "settings": { "checkForUpdatesAutomatically": "oui" }, "tabs": [ { "name": "A" } ] }""";
+
+        Assert.Throws<ConfigFormatException>(() => ConfigSerializer.Deserialize(json));
+    }
+
     [Fact]
     public void Missing_ids_are_generated()
     {

@@ -138,6 +138,7 @@
   "Settings.Export": "Configuratie exporteren…",
   "Settings.Import": "Configuratie importeren…",
   "Settings.Updates": "Controleren op updates",
+  "Settings.CheckUpdatesAutomatically": "Automatisch controleren op updates",
   "Settings.About": "Info",
   "Settings.Version": "Versie {0}",
   "Settings.General": "Algemeen",

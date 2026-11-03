@@ -3,6 +3,7 @@
 // Additional terms under GPLv3 section 7: see the License section of README.md.
 
 using System.ComponentModel;
+using System.Text.Json.Nodes;
 using FolderSwitch.Core.Hotkeys;
 using FolderSwitch.Core.Localization;
 using FolderSwitch.Core.Model;
@@ -412,6 +413,108 @@ public sealed class SettingsViewModelTests : IDisposable
         Assert.Contains(nameof(SettingsViewModel.StartWithWindows), changes);
         Assert.True(_config.Settings.StartWithWindows);
         Assert.Equal(0, _persistence.SaveCount);
+    }
+
+    // ----- Automatic update check -----
+
+    [Fact]
+    public void Automatic_update_check_follows_the_configuration()
+    {
+        Assert.True(Create().CheckForUpdatesAutomatically);
+
+        _config.Settings.CheckForUpdatesAutomatically = false;
+
+        Assert.False(Create().CheckForUpdatesAutomatically);
+    }
+
+    [Fact]
+    public void Turning_automatic_update_check_off_saves_and_tells()
+    {
+        var vm = Create();
+        var changes = RecordChanges(vm);
+        var told = new List<bool>();
+        vm.AutomaticUpdatesChanged += (_, enabled) => told.Add(enabled);
+
+        vm.CheckForUpdatesAutomatically = false;
+
+        Assert.False(_config.Settings.CheckForUpdatesAutomatically);
+        Assert.False(vm.CheckForUpdatesAutomatically);
+        Assert.Equal(1, _persistence.SaveCount);
+        Assert.Contains(nameof(SettingsViewModel.CheckForUpdatesAutomatically), changes);
+        Assert.Equal([false], told);
+    }
+
+    [Fact]
+    public void Setting_the_same_value_does_nothing()
+    {
+        var vm = Create();
+        var changes = RecordChanges(vm);
+        var told = 0;
+        vm.AutomaticUpdatesChanged += (_, _) => told++;
+
+        vm.CheckForUpdatesAutomatically = true;
+
+        Assert.True(_config.Settings.CheckForUpdatesAutomatically);
+        Assert.Equal(0, _persistence.SaveCount);
+        Assert.Empty(changes);
+        Assert.Equal(0, told);
+    }
+
+    [Fact]
+    public void Importing_a_configuration_applies_its_update_setting()
+    {
+        var vm = Create();
+        var changes = RecordChanges(vm);
+        var told = new List<bool>();
+        vm.AutomaticUpdatesChanged += (_, enabled) => told.Add(enabled);
+
+        var off = DefaultConfigs.Create(StartContent.EmptyTab, "Imported", "unused");
+        off.Settings.CheckForUpdatesAutomatically = false;
+        _prompts.ImportPathToPick = WriteImportFile(off);
+        vm.Import();
+
+        Assert.False(vm.CheckForUpdatesAutomatically);
+        Assert.False(_persistence.Saved[^1].Settings.CheckForUpdatesAutomatically);
+        Assert.Contains(nameof(SettingsViewModel.CheckForUpdatesAutomatically), changes);
+        Assert.Equal([false], told);
+
+        // A file written before the setting existed turns it on again.
+        var without = WriteImportFile(DefaultConfigs.Create(StartContent.EmptyTab, "Older", "unused"));
+        var json = JsonNode.Parse(File.ReadAllText(without))!.AsObject();
+        Assert.True(json["settings"]!.AsObject().Remove("checkForUpdatesAutomatically"));
+        File.WriteAllText(without, json.ToJsonString());
+        _prompts.ImportPathToPick = without;
+        vm.Import();
+
+        Assert.True(vm.CheckForUpdatesAutomatically);
+        Assert.True(_persistence.Saved[^1].Settings.CheckForUpdatesAutomatically);
+        Assert.Equal([false, true], told);
+    }
+
+    [Fact]
+    public void Importing_the_same_update_setting_tells_nothing()
+    {
+        var vm = Create();
+        var told = 0;
+        vm.AutomaticUpdatesChanged += (_, _) => told++;
+        _prompts.ImportPathToPick = WriteImportFile(DefaultConfigs.Create(StartContent.EmptyTab, "Imported", "unused"));
+
+        vm.Import();
+
+        Assert.True(vm.CheckForUpdatesAutomatically);
+        Assert.Equal(0, told);
+    }
+
+    [Fact]
+    public void The_update_setting_works_without_an_update_check()
+    {
+        var vm = Create(checkUpdates: null);
+
+        vm.CheckForUpdatesAutomatically = false;
+        vm.CheckForUpdatesAutomatically = true;
+
+        Assert.True(_config.Settings.CheckForUpdatesAutomatically);
+        Assert.Equal(2, _persistence.SaveCount);
     }
 
     // ----- Export -----

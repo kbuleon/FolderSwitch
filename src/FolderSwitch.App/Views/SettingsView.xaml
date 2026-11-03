@@ -96,6 +96,9 @@
                         <Run Text="·" />
                         <Run Text="{Binding VersionText, ElementName=Root, Mode=OneWay}" />
                     </TextBlock>
+                    <CheckBox Style="{StaticResource Fs.CheckBox}" Margin="0,0,0,8" IsChecked="{Binding CheckForUpdatesAutomatically, Mode=TwoWay}">
+                        <TextBlock Text="{Binding Texts[Settings.CheckUpdatesAutomatically], ElementName=Root}" TextWrapping="Wrap" />
+                    </CheckBox>
                     <Button Style="{StaticResource Fs.PanelButton}" HorizontalAlignment="Left" Command="{Binding CheckUpdatesCommand}">
                         <TextBlock Text="{Binding Texts[Settings.Updates], ElementName=Root}" TextTrimming="CharacterEllipsis" />
                     </Button>

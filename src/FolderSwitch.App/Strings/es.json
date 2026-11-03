@@ -138,6 +138,7 @@
   "Settings.Export": "Exportar configuración…",
   "Settings.Import": "Importar configuración…",
   "Settings.Updates": "Buscar actualizaciones",
+  "Settings.CheckUpdatesAutomatically": "Buscar actualizaciones automáticamente",
   "Settings.About": "Acerca de",
   "Settings.Version": "Versión {0}",
   "Settings.General": "General",

@@ -49,6 +49,7 @@ public class StringKeysTests
 
     [Theory]
     [InlineData("Settings.Updates")]
+    [InlineData("Settings.CheckUpdatesAutomatically")]
     [InlineData("Tray.InstallUpdate")]
     [InlineData("Tray.Ready")]
     [InlineData("Setup.Installed")]

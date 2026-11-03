@@ -7,7 +7,6 @@ using FolderSwitch.App.Diagnostics;
 using FolderSwitch.App.Services;
 using FolderSwitch.Core.Updates;
 using Velopack;
-using Velopack.Sources;
 
 namespace FolderSwitch.App.Startup;
 
@@ -20,14 +19,15 @@ namespace FolderSwitch.App.Startup;
 internal sealed record UpdateAvailability(string? Version, bool Notify);
 
 /// <summary>
-/// Looks for a new version in the feed (<see cref="UpdateFeed.Url"/>) with Velopack, and installs it when the user
-/// accepts: about a minute after the start, then every 24 hours, or when the user asks in the settings.
+/// Looks for a new version in the GitHub releases of the repository (<see cref="UpdateFeed.Url"/>) with Velopack, and
+/// installs it when the user accepts: about a minute after the start, then every 24 hours (while the setting
+/// « check for updates automatically » is on, see <see cref="SetAutomatic"/>), or when the user asks in the settings.
 /// </summary>
 /// <remarks>
 /// <para>
 /// There is no checker (<see cref="TryCreate"/> returns <c>null</c>) in a self-test, without a feed address, with an
-/// address that is not HTTPS (<see cref="IsAcceptedFeedUrl"/>), and in a copy that Velopack did not install (a
-/// development run): the update calls would fail there.
+/// address that is not a GitHub repository (<see cref="UpdateFeed.CreateSource"/>), and in a copy that Velopack did
+/// not install (a development run): the update calls would fail there.
 /// </para>
 /// <para>
 /// What a check finds is published (<see cref="UpdateAvailabilityChanged"/>): the menu entry of the notification area
@@ -49,7 +49,7 @@ internal sealed record UpdateAvailability(string? Version, bool Notify);
 /// </remarks>
 internal sealed class UpdateChecker : IDisposable
 {
-    /// <summary>The first check comes this long after <see cref="Start"/>: never on the startup path.</summary>
+    /// <summary>The first check comes this long after <see cref="SetAutomatic"/> turned the periodic check on: never on the startup path.</summary>
     internal static readonly TimeSpan FirstCheckDelay = TimeSpan.FromMinutes(1);
 
     /// <summary>The time between two periodic checks.</summary>
@@ -97,7 +97,7 @@ internal sealed class UpdateChecker : IDisposable
 
     /// <summary>
     /// The checker for this run, or <c>null</c> when updates are not available: self-test, no feed address, a copy
-    /// that is not installed by Velopack, or an address Velopack refuses (all logged).
+    /// that is not installed by Velopack, or an address that is not a GitHub repository (all logged).
     /// </summary>
     /// <param name="feedUrl">See <see cref="UpdateFeed.Url"/>.</param>
     /// <param name="selfTest">A self-test never looks for updates.</param>
@@ -120,21 +120,23 @@ internal sealed class UpdateChecker : IDisposable
             return null;
         }
 
-        if (!IsAcceptedFeedUrl(feedUrl))
+        var source = UpdateFeed.CreateSource(feedUrl);
+        if (source is null)
         {
-            DebugLog.Warn($"Updates: the feed address « {feedUrl} » is not HTTPS (nor a local test server), the check is disabled");
+            DebugLog.Warn($"Updates: the feed address « {feedUrl} » is not a GitHub repository, the check is disabled");
             return null;
         }
 
         try
         {
-            var manager = new UpdateManager(new SimpleWebSource(feedUrl));
+            var manager = new UpdateManager(source);
             if (!manager.IsInstalled)
             {
                 DebugLog.Info("Updates: this copy was not installed by Velopack (development run), the check is disabled");
                 return null;
             }
 
+            DebugLog.Info($"Updates: GitHub releases of {source.RepoUri.AbsolutePath.Trim('/')}");
             DebugLog.Info(FormattableString.Invariant(
                 $"Updates: version {manager.CurrentVersion}, first check in {FirstCheckDelay.TotalMinutes:F0} min, then every {CheckInterval.TotalHours:F0} h"));
             return new UpdateChecker(manager, prompts, quit);
@@ -147,20 +149,28 @@ internal sealed class UpdateChecker : IDisposable
     }
 
     /// <summary>
-    /// Whether FolderSwitch may fetch updates from <paramref name="feedUrl"/>: an absolute <c>https</c> address, or an
-    /// <c>http</c> one on this machine (<c>localhost</c>, <c>127.0.0.1</c>: the manual test of an update). The packages
-    /// come from the same server as the feed that lists their hashes: over plain HTTP, anyone on the network path
-    /// could replace both.
+    /// Turns the periodic check on (the first one comes after <see cref="FirstCheckDelay"/>) or off, following the
+    /// setting. Asking for the state it is in already does nothing; turning it off stops the timer only: a check or a
+    /// download that is running ends normally, and the update already found stays offered.
     /// </summary>
-    internal static bool IsAcceptedFeedUrl(string feedUrl) =>
-        Uri.TryCreate(feedUrl?.Trim(), UriKind.Absolute, out var uri)
-        && (uri.Scheme == Uri.UriSchemeHttps || (uri.Scheme == Uri.UriSchemeHttp && uri.IsLoopback));
-
-    /// <summary>Starts the periodic check: the first one after <see cref="FirstCheckDelay"/>.</summary>
-    public void Start()
+    public void SetAutomatic(bool enabled)
     {
-        ObjectDisposedException.ThrowIf(_disposed, this);
-        _timer.Start();
+        if (_disposed || enabled == _timer.IsEnabled)
+        {
+            return;
+        }
+
+        if (enabled)
+        {
+            _timer.Interval = FirstCheckDelay;
+            _timer.Start();
+        }
+        else
+        {
+            _timer.Stop();
+        }
+
+        DebugLog.Info(enabled ? "Updates: automatic check on" : "Updates: automatic check off");
     }
 
     /// <summary>

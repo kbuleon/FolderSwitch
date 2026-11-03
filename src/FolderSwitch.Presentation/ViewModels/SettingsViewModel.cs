@@ -17,7 +17,7 @@ namespace FolderSwitch.Presentation.ViewModels;
 
 /// <summary>
 /// The settings window: language, shortcut, start with Windows, export and import of the configuration, update
-/// check. Every change takes effect at once and is saved exactly once; a change the system
+/// check (automatic or asked for). Every change takes effect at once and is saved exactly once; a change the system
 /// refuses is reported (<see cref="IUserPrompts.ShowError"/>) and leaves the setting as it was.
 /// Meant to be used from the UI thread.
 /// </summary>
@@ -88,6 +88,12 @@ public sealed partial class SettingsViewModel : ObservableObject
     /// </summary>
     public event EventHandler<AppConfig>? ConfigReplaced;
 
+    /// <summary>
+    /// The periodic update check was turned on or off (the new value), by the checkbox or by an import that brought
+    /// the other value: the application starts or stops the timer of its update checker.
+    /// </summary>
+    public event EventHandler<bool>? AutomaticUpdatesChanged;
+
     /// <summary>The languages that can be chosen.</summary>
     public IReadOnlyList<LanguageOption> Languages { get; }
 
@@ -147,6 +153,27 @@ public sealed partial class SettingsViewModel : ObservableObject
             _config.Settings.StartWithWindows = value;
             OnPropertyChanged();
             Save();
+        }
+    }
+
+    /// <summary>
+    /// Whether FolderSwitch looks for updates by itself (on by default). A change is saved and announced by
+    /// <see cref="AutomaticUpdatesChanged"/>; it never interrupts a check or a download that is running.
+    /// </summary>
+    public bool CheckForUpdatesAutomatically
+    {
+        get => _config.Settings.CheckForUpdatesAutomatically;
+        set
+        {
+            if (value == _config.Settings.CheckForUpdatesAutomatically)
+            {
+                return;
+            }
+
+            _config.Settings.CheckForUpdatesAutomatically = value;
+            OnPropertyChanged();
+            Save();
+            AutomaticUpdatesChanged?.Invoke(this, value);
         }
     }
 
@@ -232,8 +259,10 @@ public sealed partial class SettingsViewModel : ObservableObject
     /// Then the current configuration is copied among the backups (a failure there replaces nothing either), and
     /// only then replaced. The imported configuration
     /// brings its language and shortcut, which take effect at once (a shortcut refused here leaves the current one,
-    /// with the reason shown); whether FolderSwitch starts with Windows, and whether its wizard was completed, stay as
-    /// they are on this PC. It is saved, edited from then on, and announced by <see cref="ConfigReplaced"/>.
+    /// with the reason shown), and whether it looks for updates by itself (a file without that setting turns it on),
+    /// announced by <see cref="AutomaticUpdatesChanged"/> when it differs; whether FolderSwitch starts with Windows,
+    /// and whether its wizard was completed, stay as they are on this PC. It is saved, edited from then on, and
+    /// announced by <see cref="ConfigReplaced"/>.
     /// </summary>
     [RelayCommand]
     public void Import()
@@ -285,8 +314,14 @@ public sealed partial class SettingsViewModel : ObservableObject
         Hotkey.SetInEffect(imported.Settings.Hotkey);
         Hotkey.Show(imported.Settings.Hotkey);
         OnPropertyChanged(nameof(Language));
+        OnPropertyChanged(nameof(CheckForUpdatesAutomatically));
         Save();
         ConfigReplaced?.Invoke(this, imported);
+
+        if (imported.Settings.CheckForUpdatesAutomatically != previous.Settings.CheckForUpdatesAutomatically)
+        {
+            AutomaticUpdatesChanged?.Invoke(this, imported.Settings.CheckForUpdatesAutomatically);
+        }
 
         if (hotkeyError is not null)
         {

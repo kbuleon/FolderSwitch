@@ -17,6 +17,10 @@ folder opens in a new Explorer window, a file opens with its associated applicat
 
 C# on .NET 10 with WPF, for Windows 10 and 11 (the installer is x64). Installed per user, without administrator rights.
 
+**Download** the installer of the latest version:
+[FolderSwitch-win-Setup.exe](https://github.com/kbuleon/FolderSwitch/releases/latest/download/FolderSwitch-win-Setup.exe).
+Every version, with its notes, is on the [releases page](https://github.com/kbuleon/FolderSwitch/releases).
+
 ## Screenshots
 
 The board, as the shortcut shows it (Fluent theme, light):
@@ -81,8 +85,10 @@ These images are drawn by the `--snapshot` diagnostic mode (see « Diagnostic mo
   language is one JSON file.
 - A first-run wizard (a message then says which shortcut opens FolderSwitch), a notification-area icon, start
   with Windows, export and import of the configuration.
-- An installer and updates (Velopack), updates being off until a feed address is set. Once an installation, a repair or
-  an update ends, a message box says so, with the version and the shortcut that opens FolderSwitch.
+- An installer and updates (Velopack), read from the releases of this repository on GitHub. An installed copy looks for
+  a new version by itself, a minute after it starts and then every day; « Check for updates automatically » in the
+  settings, ticked by default, turns that off, and the « Check for updates » button still works. Once an installation, a
+  repair or an update ends, a message box says so, with the version and the shortcut that opens FolderSwitch.
 
 ## Documentation
 
@@ -144,7 +150,8 @@ powershell -ExecutionPolicy Bypass -File build/pack.ps1
 The script (Windows PowerShell 5.1 or PowerShell 7) publishes the application self-contained, ReadyToRun, win-x64 to
 `artifacts/publish`, then packs it with `vpk` into `artifacts/releases`. The version released is the `<Version>` property of
 `Directory.Build.props`; `-Version` (`x.y.z` or `x.y.z-prerelease`) releases another one, such as a prerelease. It is
-also the version of the application (the settings show its `x.y.z` part). The executable is `FolderSwitch.exe`.
+also the version of the application (the settings show its `x.y.z` part). `-ReleaseNotes <file>` (a Markdown file that
+must exist) puts the notes of the version in the package. The executable is `FolderSwitch.exe`.
 `-ExecutionPolicy Bypass` is for a Windows client whose policy refuses unsigned scripts.
 
 | In `artifacts/releases`                | What it is                                               |
@@ -155,27 +162,51 @@ also the version of the application (the settings show its `x.y.z` part). The ex
 | `releases.win.json`, `RELEASES`        | the feed that lists the packages                         |
 | `assets.win.json`, `FolderSwitch-win-Portable.zip` | not needed for updates                       |
 
-Keep `artifacts/releases` between two releases: the next run builds its delta package from the previous one and adds it
-to the feed. `artifacts/` is not versioned.
+Run alone, the script keeps what `artifacts/releases` holds and builds the delta package from the previous release found
+there; `build/release.ps1` (below) rebuilds that folder from GitHub at each preparation. `artifacts/` is not versioned.
 
-**Publishing.** Upload the content of `artifacts/releases` to a folder of a web server (static files only) and, before
-building the release, set `UpdateFeed.Url` in `src/FolderSwitch.App/UpdateFeed.cs` to that folder's address (for
-instance `https://example.org/folderswitch/`). Empty, as it is by default, the update check and the « Check for
-updates » button of the settings are disabled. The address must be HTTPS (the packages come from the same server as
-the feed that lists their hashes); plain HTTP is accepted only on this machine (`localhost`, `127.0.0.1`), for the
-manual test below, and any other address disables the check as well. An installed copy checks about a minute after it starts, then every 24
-hours. It announces a version with a notification and an « Install update » entry in the notification menu: once per
-session, so again after the next start of FolderSwitch while the update is not installed, and during a session again
-only for a newer version. It installs the update when the user accepts (the entry reads « Downloading update… » and the
-« Check for updates » button is disabled meanwhile). A copy that Velopack did not install (a development run) never
-checks. The update accounts for one of the two kinds of network access of FolderSwitch (the other is the favicons of the
-sites, see « Privacy »): the request of the feed (`releases.win.json`, with the operating system, the architecture, the
-application id and the installed version in its query string) and, when the user accepts, the download of the package.
-No identifier, no telemetry.
+**Publishing.** The updates are the releases of `https://github.com/kbuleon/FolderSwitch` (`UpdateFeed.Url` in
+`src/FolderSwitch.App/UpdateFeed.cs`, the address of the repository: any other address disables the check and the « Check
+for updates » button of the settings). `build/release.ps1` makes one, from a PowerShell prompt at the root of the repository:
 
-**Source code.** The GPL requires each published binary to come with a way to get its source (section 6). Tag the
-commit of each published version `v<version>` (`git tag v1.8.0`, then `git push origin v1.8.0`), and link the download
-page to the repository and to that tag.
+```powershell
+powershell -ExecutionPolicy Bypass -File build/release.ps1 -Step Prepare   # build and test locally, upload nothing
+powershell -ExecutionPolicy Bypass -File build/release.ps1 -Step Publish   # tag and upload what Prepare built
+powershell -ExecutionPolicy Bypass -File build/release.ps1                 # All: Prepare, then Publish
+```
+
+It needs the [GitHub CLI](https://cli.github.com/) (`gh`), installed and signed in once (`gh auth login`). The release is the
+`<Version>` of `Directory.Build.props` (`x.y.z` only, never a prerelease), named `FolderSwitch <version>`, on the annotated
+tag `v<version>`; its notes are the version's entry of `CHANGELOG.md` (a line that starts with `* **<version> — `).
+*Prepare* runs the Core, Presentation and App tests, downloads the latest published release into an emptied
+`artifacts/releases` (the base of the delta package), packs with `pack.ps1 -ReleaseNotes`, and records the version and the
+commit in `artifacts/release-prepared.json`: try the installer it shows before publishing. *Publish* creates and pushes the
+tag on the prepared commit, uploads `artifacts/releases` as a draft release, then sets the notes and publishes it. Both
+refuse, saying what to do, unless `gh` is signed in, the branch is `main` with no uncommitted change and no untracked file
+(ignored ones do not count) and the same commit as `origin/main`, and the changelog has the entry; *Prepare* also refuses a
+tag or a release of that version already there, and a non-empty `artifacts/releases` it did not make (it holds a marker
+file, `.made-by-release-ps1`: set your own folder aside, e.g. as `artifacts/releases-before-github`), and *Publish* a missing or stale preparation, a published release and a tag on another commit. An
+interrupted *Publish* is run again: a draft that holds every file is only made visible, an empty one is filled, and one
+that holds only some is refused (delete the draft on GitHub, keep the tag, run it again). The token comes from
+`gh auth token` when it is needed and goes to `vpk` only, in an environment variable: never shown, never written to a file.
+The script never deletes a tag or a release and never changes a published release: fix a published version with a new one.
+
+The first version that reads GitHub cannot be found by an older installed copy (its update address was empty): it is
+installed by hand, with `FolderSwitch-win-Setup.exe`. From then on installed copies find each release themselves.
+
+An installed copy asks GitHub for the releases of the repository, then for the feed of each of them, about a minute after it
+starts and then every 24 hours (unless « Check for updates automatically » is unticked, which stops the timer at once and
+never interrupts a check or a download in progress). It announces a version with a notification and an « Install update »
+entry in the notification menu: once per session, so again after the next start of FolderSwitch while the update is not
+installed, and during a session again only for a newer version. It installs the update when the user accepts (the entry
+reads « Downloading update… » and the « Check for updates » button is disabled meanwhile). A copy that Velopack did not
+install (a development run) never checks. Without a token, the GitHub API answers 60 requests an hour per IP address, far
+more than one check a day needs; no token is built into the application. The update accounts for one of the two kinds of
+network access of FolderSwitch (the other is the favicons of the sites, see « Privacy »).
+
+**Source code.** The GPL requires each published binary to come with a way to get its source (section 6). The commit of
+each published version carries the tag `v<version>`, which `build/release.ps1` creates and pushes, and the release page is
+in the repository itself, next to that tag.
 
 **Signing.** `-SignParams` hands the parameters of `signtool.exe` to `vpk`, which runs its own copy of it to sign the
 application's files, the updater and the installer (the code signing certificate must be in the user's store, or named in
@@ -194,10 +225,10 @@ powershell -ExecutionPolicy Bypass -File build/pack.ps1 -SignParams '/a /fd sha2
    `%LocalAppData%\FolderSwitch\current\FolderSwitch.exe`; after signing out and in, FolderSwitch is running.
 2. Uninstall it from « Apps »: the `Run` value is gone, and `%APPDATA%\FolderSwitch` (the configuration and the debug
    log, `logs\folderswitch.log`) is kept.
-3. Update: set `UpdateFeed.Url` to `http://localhost:8000/`; from an empty `artifacts/releases`, pack 0.1.0 and install
-   it, then pack 0.1.1 and serve `artifacts/releases` (`python -m http.server 8000` in that folder, or any static
-   server). In the installed 0.1.0, press « Check for updates » in the settings: the offer for 0.1.1 appears, and
-   « Install » restarts FolderSwitch on 0.1.1 (the settings show the version). Put `UpdateFeed.Url` back afterwards.
+3. Update: with the previous version installed (from its release), press « Check for updates » in the settings: the offer
+   for the new release appears, and « Install » restarts FolderSwitch on it (the settings show the version).
+4. Untick « Check for updates automatically » in the settings: the debug log says « Updates: automatic check off », and no
+   check follows (tick it again: « automatic check on »).
 
 ## Tests
 
@@ -257,7 +288,11 @@ The configuration can be exported to a file and imported again from the Configur
 FolderSwitch collects nothing and sends nothing about you: no telemetry, no analytics, no identifier. Its debug log stays
 on the machine. It makes two kinds of network request, and no other:
 
-- The update feed, only when a feed address is configured (see « Publishing » above).
+- The update check: the list of the releases of this repository from the GitHub API, then the feed of each release, a
+  minute after FolderSwitch starts and then every 24 hours, unless « Check for updates automatically » is unticked (and
+  when the user presses « Check for updates » or accepts an update, which also downloads the package). GitHub sees the IP
+  address and the `User-Agent` header that Velopack sends, under GitHub's own privacy statement. FolderSwitch adds no
+  token and no identifier, and nothing from the board or the configuration is in a request.
 - The favicon of a web site, when a site is added to a board, and once per session for a site that has none in the
   cache. It is a plain `GET` of the site's own page, then of the icon the page declares or `/favicon.ico`, to the site
   itself, up to 5 redirects, with no cookie and the single header `User-Agent: FolderSwitch/<version>`; it gives up after
@@ -266,7 +301,8 @@ on the machine. It makes two kinds of network request, and no other:
 
 The emoji data of the icons is shipped with the program: nothing is downloaded for it.
 
-Without a configured feed and without a site on the board, FolderSwitch never connects.
+With automatic update checks turned off (or in a copy Velopack did not install) and without a site on the board,
+FolderSwitch never connects on its own.
 
 ## Known limits
 

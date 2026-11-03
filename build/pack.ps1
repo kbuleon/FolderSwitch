@@ -10,11 +10,12 @@
     Publishes the application (self-contained, ReadyToRun, win-x64) to artifacts/publish, then packs it with
     Velopack's vpk tool into artifacts/releases: the installer (FolderSwitch-win-Setup.exe), the full package
     (FolderSwitch-<version>-full.nupkg), a delta package from the previous version found in artifacts/releases,
-    and the feed file (releases.win.json). The content of artifacts/releases is what is uploaded to the update site
-    (see UpdateFeed.Url in src/FolderSwitch.App/UpdateFeed.cs).
+    and the feed file (releases.win.json). The content of artifacts/releases is what build/release.ps1 uploads to the
+    GitHub release of the version (see UpdateFeed.Url in src/FolderSwitch.App/UpdateFeed.cs).
 
-    Keep the previous releases in artifacts/releases between two runs: the next version builds its delta package
-    from them. artifacts/publish is rebuilt from scratch each time.
+    The delta package is built from whatever previous release artifacts/releases holds. build/release.ps1 rebuilds
+    that folder at each preparation, from the last release published on GitHub; run alone, this script keeps what is
+    there. artifacts/publish is rebuilt from scratch each time.
 
     vpk is a local dotnet tool (.config/dotnet-tools.json, same version as the Velopack package): nothing to install
     by hand, 'dotnet tool restore' is run here. Works in Windows PowerShell 5.1 and in PowerShell 7.
@@ -29,21 +30,38 @@
     updater and the installer, for instance '/a /fd sha256 /tr http://timestamp.digicert.com /td sha256' with the code
     signing certificate in the user's store. Not signed when omitted.
 
+.PARAMETER ReleaseNotes
+    Optional. A Markdown file with the notes of this version, which must exist; vpk puts them in the package
+    (--releaseNotes). build/release.ps1 passes the version's entry of CHANGELOG.md. No notes when omitted.
+
 .EXAMPLE
     powershell -ExecutionPolicy Bypass -File build/pack.ps1
 
 .EXAMPLE
     powershell -ExecutionPolicy Bypass -File build/pack.ps1 -Version 0.2.0-beta.1
+
+.EXAMPLE
+    powershell -ExecutionPolicy Bypass -File build/pack.ps1 -ReleaseNotes artifacts/release-notes.md
 #>
 [CmdletBinding()]
 param(
     [string] $Version,
 
-    [string] $SignParams
+    [string] $SignParams,
+
+    [string] $ReleaseNotes
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+
+# A full path, resolved from where the script is called: vpk runs from the repository root.
+if ($ReleaseNotes) {
+    if (-not (Test-Path -LiteralPath $ReleaseNotes -PathType Leaf)) {
+        throw "Release notes file not found: $ReleaseNotes."
+    }
+    $ReleaseNotes = (Resolve-Path -LiteralPath $ReleaseNotes).ProviderPath
+}
 
 # The version of the repository, unless another one is asked for.
 if (-not $Version) {
@@ -95,6 +113,10 @@ try {
         '-o', $releasesDir,
         '-r', 'win-x64'
     )
+
+    if ($ReleaseNotes) {
+        $vpkArgs += @('--releaseNotes', $ReleaseNotes)
+    }
 
     if ($SignParams) {
         # Windows PowerShell 5.1 (and PowerShell 7 before 7.3) hands a double quote of an argument to the program

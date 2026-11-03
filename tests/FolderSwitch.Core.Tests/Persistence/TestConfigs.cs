@@ -87,6 +87,7 @@ internal static class TestConfigs
         Assert.Equal(expected.Settings.Language, actual.Settings.Language);
         Assert.Equal(expected.Settings.Hotkey, actual.Settings.Hotkey);
         Assert.Equal(expected.Settings.StartWithWindows, actual.Settings.StartWithWindows);
+        Assert.Equal(expected.Settings.CheckForUpdatesAutomatically, actual.Settings.CheckForUpdatesAutomatically);
         Assert.Equal(expected.Settings.FirstRunCompleted, actual.Settings.FirstRunCompleted);
         Assert.Equal(expected.Settings.ActiveTabId, actual.Settings.ActiveTabId);
 
