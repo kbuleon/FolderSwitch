@@ -96,7 +96,7 @@ The domain, with no dependency on Windows, WPF or packages.
 ### Layout/
 
 - `ColumnWidths` — column width limits (150–520, step 10) and the automatic width rule.
-- `WindowPlacement` — centering, re-anchoring (keep top edge and horizontal centre) and clamping to a work area, in DIPs.
+- `WindowPlacement` — centering on a work area or on a point (the cursor), re-anchoring (keep top edge and horizontal centre), fitting a dropped window back inside and clamping to a work area, in DIPs.
 - `SizeD`, `RectD` — size and rectangle in DIPs.
 
 ### Editing/
@@ -224,7 +224,7 @@ Implements the Core ports against Win32, COM and the registry. `NativeMethods.tx
 - `SingleInstance` — session mutex and activation event.
 - `Autostart` — `IAutostart` over the current user's `Run` registry key.
 - `SystemInfo` — `ISystemInfo`: Windows generation, display language, dark-mode registry value and its change watch.
-- `DisplayMonitors`, `MonitorWorkArea` — monitor work area under the cursor or primary, with DPI scale; move a window in pixels.
+- `DisplayMonitors`, `MonitorWorkArea`, `MonitorPoint` — the cursor or a window's corner with the work area of its monitor, or the primary work area, with DPI scale; move a window in pixels.
 - `WindowFrame` — rounded corners and shadow of a borderless window.
 - `WindowsVersion` — Windows 11 detection by build number (internal).
 
@@ -246,7 +246,8 @@ The shell and composition root.
 - `Composition` — builds and releases everything in order; owns the services (the browser reader, the file type icons, the favicon connections), view models, window, icon, update checker; starts the loading of the emoji data in the background.
 - `StartupOptions` — what `Main` hands to the app (self-test, config folder, clock, UI context, instance, setup notice).
 - `SetupNotice`, `SetupKind` — an installation or an update reported by Velopack's hooks, and the text of the box that says so.
-- `WindowController` — shows, hides, recalls (to the front, new calling window), places and pre-renders the main window; captures the call context first; tells the view model of every hide; returns focus to the calling window (`IWindowHost`).
+- `WindowController` — shows, hides, recalls (to the front, new calling window), places (on the cursor or the screen) and pre-renders the main window; follows a drag of it and fits the drop inside its monitor; captures the call context first; tells the view model of every hide; returns focus to the calling window (`IWindowHost`).
+- `ShowPlacement` — where the hidden window appears: on the cursor (the shortcut) or on the screen (notification icon, second launch).
 - `ShortcutRouting`, `ShortcutAction` — pure: what a press of the shortcut does (show, hide, recall, test zone, nothing).
 - `FocusReturningActivator` — decorates the activator to tell the controller which window to give focus back to.
 - `FirstRunWizard` — runs the wizard modally with its theme and shortcut test, before the rest is built.

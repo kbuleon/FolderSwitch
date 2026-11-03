@@ -21,6 +21,9 @@ namespace FolderSwitch.App.Views;
 /// </summary>
 /// <remarks>
 /// <para>
+/// <b>Title bar.</b> Pressing the left button on it, anywhere but on its buttons, moves the window.
+/// </para>
+/// <para>
 /// <b>Settings and About.</b> The ⚙ and (?) buttons of the title bar, in normal use as in Customize mode, open the
 /// settings window (<see cref="SettingsView"/>) or the About window (<see cref="AboutView"/>), one at a time, in the
 /// dialog layer: over the whole window, on a dimmed backdrop; the window grows to hold it when the board is smaller.
@@ -423,6 +426,30 @@ public partial class MainView : UserControl
         {
             CloseDialog();
             e.Handled = true;
+        }
+    }
+
+    /// <summary>
+    /// The left button pressed on the title bar, not on one of its buttons (they handle their own press): the window
+    /// follows the mouse until the button is released (<see cref="Window.DragMove"/>, the system's move loop; the window
+    /// keeps the focus). Only in <see cref="MainWindow"/>: the snapshots draw this view in no window. Where the window
+    /// lands is the controller's (it is brought back inside the work area).
+    /// </summary>
+    private void OnTitleBarMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        if (Window.GetWindow(this) is not MainWindow window || e.ButtonState != MouseButtonState.Pressed)
+        {
+            return;
+        }
+
+        e.Handled = true;
+        try
+        {
+            window.DragMove();
+        }
+        catch (InvalidOperationException)
+        {
+            // The button was released before the move loop started: nothing to move.
         }
     }
 

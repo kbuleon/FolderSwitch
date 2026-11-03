@@ -3,6 +3,11 @@ This file is maintained by the agent: one section per version, the newest first,
 
 ------
 
+## 1.10.3 — Movable window, opens at the cursor
+<sub>2026-11-04 · FOS-0015</sub>
+
+The window moves by its title bar (anywhere but on its buttons), in normal use as in Edit mode; dropped partly off-screen, it slides back inside the work area of the screen it lands on, where it now stays when its content changes size or its screen's scale changes. The shortcut opens it centered on the mouse cursor, shifted just enough to be fully visible; the notification icon (click, « Open », « Customize ») and a second launch still center it on the screen. No position is kept from one opening to the next.
+
 ## 1.10.2 — Changelog by version
 <sub>2026-11-03</sub>
 

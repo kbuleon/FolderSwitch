@@ -643,9 +643,9 @@ internal sealed class Composition : IDisposable
     }
 
     /// <summary>
-    /// The shortcut, routed by <see cref="ShortcutRouting"/>: it shows the hidden window, hides the window in front,
-    /// brings back to the front a window left behind another one (Customize mode) with that window as the new calling
-    /// window, and does nothing while one of FolderSwitch's own boxes is open. While the settings show their shortcut page it goes
+    /// The shortcut, routed by <see cref="ShortcutRouting"/>: it shows the hidden window (centered on the mouse cursor),
+    /// hides the window in front, brings back to the front a window left behind another one (Customize mode) with that
+    /// window as the new calling window, and does nothing while one of FolderSwitch's own boxes is open. While the settings show their shortcut page it goes
     /// to the shortcut editor's test zone instead, which says it was recognized when the combination shown is the one in
     /// effect (see <see cref="HotkeyEditorViewModel.CanTest"/>).
     /// </summary>
@@ -669,7 +669,7 @@ internal sealed class Composition : IDisposable
                 _hotkeyEditor?.NotifyTriggered();
                 break;
             case ShortcutAction.Show:
-                controller.Open();
+                controller.Open(ShowPlacement.OnCursor);
                 break;
             case ShortcutAction.Hide:
                 controller.HideWindow();
@@ -680,7 +680,8 @@ internal sealed class Composition : IDisposable
         }
     }
 
-    private void OnOpenRequested(object? sender, EventArgs e) => _controller?.Open();
+    /// <summary>The notification icon (a click, « Open ») or a second launch: the window opens centered on the screen.</summary>
+    private void OnOpenRequested(object? sender, EventArgs e) => _controller?.Open(ShowPlacement.OnScreen);
 
     private void OnCustomizeRequested(object? sender, EventArgs e) => _controller?.ShowCustomize();
 

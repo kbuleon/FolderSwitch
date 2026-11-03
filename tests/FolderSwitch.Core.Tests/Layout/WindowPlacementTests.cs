@@ -225,6 +225,230 @@ public class WindowPlacementTests
         AssertInside(rect, workArea);
     }
 
+    // --- CenterOnPoint ----------------------------------------------------------------------
+
+    [Fact]
+    public void CenterOnPoint_centers_exactly_on_a_point_in_the_middle()
+    {
+        var rect = WindowPlacement.CenterOnPoint(new SizeD(800, 600), 960, 520, WorkArea);
+
+        Assert.Equal(new RectD(560, 220, 800, 600), rect);
+    }
+
+    [Fact]
+    public void CenterOnPoint_shifts_inside_near_the_left_edge_and_leaves_the_other_axis()
+    {
+        var rect = WindowPlacement.CenterOnPoint(new SizeD(800, 600), 100, 520, WorkArea);
+
+        Assert.Equal(new RectD(0, 220, 800, 600), rect);
+    }
+
+    [Fact]
+    public void CenterOnPoint_shifts_inside_near_the_right_edge_and_leaves_the_other_axis()
+    {
+        var rect = WindowPlacement.CenterOnPoint(new SizeD(800, 600), 1900, 520, WorkArea);
+
+        Assert.Equal(new RectD(1120, 220, 800, 600), rect);
+    }
+
+    [Fact]
+    public void CenterOnPoint_shifts_inside_near_the_top_edge_and_leaves_the_other_axis()
+    {
+        var rect = WindowPlacement.CenterOnPoint(new SizeD(800, 600), 960, 10, WorkArea);
+
+        Assert.Equal(new RectD(560, 0, 800, 600), rect);
+    }
+
+    [Fact]
+    public void CenterOnPoint_shifts_inside_near_the_bottom_edge_and_leaves_the_other_axis()
+    {
+        var rect = WindowPlacement.CenterOnPoint(new SizeD(800, 600), 960, 1030, WorkArea);
+
+        Assert.Equal(new RectD(560, 440, 800, 600), rect);
+    }
+
+    [Fact]
+    public void CenterOnPoint_shifts_inside_in_each_corner()
+    {
+        var size = new SizeD(800, 600);
+
+        Assert.Equal(new RectD(0, 0, 800, 600), WindowPlacement.CenterOnPoint(size, 0, 0, WorkArea));
+        Assert.Equal(new RectD(1120, 0, 800, 600), WindowPlacement.CenterOnPoint(size, 1920, 0, WorkArea));
+        Assert.Equal(new RectD(0, 440, 800, 600), WindowPlacement.CenterOnPoint(size, 0, 1040, WorkArea));
+        Assert.Equal(new RectD(1120, 440, 800, 600), WindowPlacement.CenterOnPoint(size, 1920, 1040, WorkArea));
+    }
+
+    [Fact]
+    public void CenterOnPoint_brings_back_a_point_outside_the_work_area()
+    {
+        var rect = WindowPlacement.CenterOnPoint(new SizeD(800, 600), 5000, 5000, WorkArea);
+
+        Assert.Equal(new RectD(1120, 440, 800, 600), rect);
+    }
+
+    [Fact]
+    public void CenterOnPoint_clamps_an_oversized_window_and_aligns_it_to_the_origin()
+    {
+        var rect = WindowPlacement.CenterOnPoint(new SizeD(3000, 2000), 500, 500, LeftMonitor);
+
+        Assert.Equal(new RectD(-1920, 0, 1920, 1040), rect);
+    }
+
+    [Fact]
+    public void CenterOnPoint_clamps_each_axis_independently()
+    {
+        // Too wide only: clamped and aligned horizontally, still centered on the point vertically.
+        var wide = WindowPlacement.CenterOnPoint(new SizeD(3000, 600), 500, 520, WorkArea);
+        Assert.Equal(new RectD(0, 220, 1920, 600), wide);
+
+        // Too tall only: clamped and aligned vertically, shifted horizontally at the right edge.
+        var tall = WindowPlacement.CenterOnPoint(new SizeD(800, 2000), 1800, 500, WorkArea);
+        Assert.Equal(new RectD(1120, 0, 800, 1040), tall);
+    }
+
+    [Fact]
+    public void CenterOnPoint_works_on_a_monitor_with_a_negative_origin()
+    {
+        var middle = WindowPlacement.CenterOnPoint(new SizeD(800, 600), -960, 520, LeftMonitor);
+        Assert.Equal(new RectD(-1360, 220, 800, 600), middle);
+
+        var leftEdge = WindowPlacement.CenterOnPoint(new SizeD(800, 600), -1900, 520, LeftMonitor);
+        Assert.Equal(new RectD(-1920, 220, 800, 600), leftEdge);
+        AssertInside(leftEdge, LeftMonitor);
+    }
+
+    [Fact]
+    public void CenterOnPoint_honours_a_work_area_below_a_top_taskbar()
+    {
+        var middle = WindowPlacement.CenterOnPoint(new SizeD(800, 600), 960, 560, TopTaskbar);
+        Assert.Equal(new RectD(560, 260, 800, 600), middle);
+
+        var top = WindowPlacement.CenterOnPoint(new SizeD(800, 600), 960, 50, TopTaskbar);
+        Assert.Equal(new RectD(560, 40, 800, 600), top);
+
+        var bottom = WindowPlacement.CenterOnPoint(new SizeD(800, 600), 960, 1075, TopTaskbar);
+        Assert.Equal(new RectD(560, 480, 800, 600), bottom);
+    }
+
+    [Theory]
+    [InlineData(-5000, -5000, 800, 600)]
+    [InlineData(5000, 5000, 800, 600)]
+    [InlineData(0, 0, 3000, 2000)]
+    [InlineData(960, 520, 1920, 1040)]
+    [InlineData(-1920, 1040, 100, 100)]
+    public void CenterOnPoint_never_overflows_the_work_area(double x, double y, double width, double height)
+    {
+        foreach (var workArea in new[] { WorkArea, LeftMonitor, TopTaskbar })
+        {
+            AssertInside(WindowPlacement.CenterOnPoint(new SizeD(width, height), x, y, workArea), workArea);
+        }
+    }
+
+    // --- FitInside --------------------------------------------------------------------------
+
+    [Fact]
+    public void FitInside_leaves_a_rect_already_inside_unchanged()
+    {
+        var rect = new RectD(100, 50, 600, 400);
+
+        Assert.Equal(rect, WindowPlacement.FitInside(rect, WorkArea));
+    }
+
+    [Fact]
+    public void FitInside_leaves_a_rect_exactly_as_big_as_the_work_area_unchanged()
+    {
+        Assert.Equal(TopTaskbar, WindowPlacement.FitInside(TopTaskbar, TopTaskbar));
+    }
+
+    [Fact]
+    public void FitInside_slides_back_a_rect_off_the_left_edge()
+    {
+        var rect = WindowPlacement.FitInside(new RectD(-100, 50, 600, 400), WorkArea);
+
+        Assert.Equal(new RectD(0, 50, 600, 400), rect);
+    }
+
+    [Fact]
+    public void FitInside_slides_back_a_rect_off_the_right_edge()
+    {
+        var rect = WindowPlacement.FitInside(new RectD(1500, 50, 600, 400), WorkArea);
+
+        Assert.Equal(new RectD(1320, 50, 600, 400), rect);
+    }
+
+    [Fact]
+    public void FitInside_slides_back_a_rect_off_the_top_edge()
+    {
+        var rect = WindowPlacement.FitInside(new RectD(100, -30, 600, 400), WorkArea);
+
+        Assert.Equal(new RectD(100, 0, 600, 400), rect);
+    }
+
+    [Fact]
+    public void FitInside_slides_back_a_rect_off_the_bottom_edge()
+    {
+        var rect = WindowPlacement.FitInside(new RectD(100, 800, 600, 400), WorkArea);
+
+        Assert.Equal(new RectD(100, 640, 600, 400), rect);
+    }
+
+    [Fact]
+    public void FitInside_slides_back_a_rect_off_a_corner()
+    {
+        var rect = WindowPlacement.FitInside(new RectD(1800, 900, 600, 400), WorkArea);
+
+        Assert.Equal(new RectD(1320, 640, 600, 400), rect);
+    }
+
+    [Fact]
+    public void FitInside_clamps_an_oversized_rect_and_aligns_it_to_the_origin()
+    {
+        var rect = WindowPlacement.FitInside(new RectD(-50, -50, 3000, 2000), WorkArea);
+
+        Assert.Equal(new RectD(0, 0, 1920, 1040), rect);
+    }
+
+    [Fact]
+    public void FitInside_clamps_each_axis_independently()
+    {
+        var wide = WindowPlacement.FitInside(new RectD(500, 100, 3000, 400), WorkArea);
+        Assert.Equal(new RectD(0, 100, 1920, 400), wide);
+
+        var tall = WindowPlacement.FitInside(new RectD(500, 100, 400, 2000), WorkArea);
+        Assert.Equal(new RectD(500, 0, 400, 1040), tall);
+    }
+
+    [Fact]
+    public void FitInside_works_on_a_monitor_with_a_negative_origin()
+    {
+        var rect = WindowPlacement.FitInside(new RectD(-2000, 20, 600, 400), LeftMonitor);
+
+        Assert.Equal(new RectD(-1920, 20, 600, 400), rect);
+        AssertInside(rect, LeftMonitor);
+    }
+
+    [Fact]
+    public void FitInside_honours_a_work_area_below_a_top_taskbar()
+    {
+        var rect = WindowPlacement.FitInside(new RectD(100, 0, 600, 400), TopTaskbar);
+
+        Assert.Equal(new RectD(100, 40, 600, 400), rect);
+    }
+
+    [Theory]
+    [InlineData(-50, -50, 600, 400)]
+    [InlineData(5000, 5000, 600, 400)]
+    [InlineData(-5000, -5000, 600, 400)]
+    [InlineData(0, 0, 2500, 300)]
+    [InlineData(1900, 1000, 3000, 2000)]
+    public void FitInside_never_overflows_the_work_area(double x, double y, double width, double height)
+    {
+        foreach (var workArea in new[] { WorkArea, LeftMonitor, TopTaskbar })
+        {
+            AssertInside(WindowPlacement.FitInside(new RectD(x, y, width, height), workArea), workArea);
+        }
+    }
+
     // --- ClampToWorkArea --------------------------------------------------------------------
 
     [Fact]

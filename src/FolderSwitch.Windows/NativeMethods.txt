@@ -123,12 +123,14 @@ AttachThreadInput
 GetCurrentThreadId
 IsHungAppWindow
 
-// System services: monitor under the mouse cursor, window placement in physical pixels
+// System services: monitor under the mouse cursor or holding a window, window placement in physical pixels
 GetCursorPos
 MonitorFromPoint
 GetMonitorInfo
 MONITORINFO
 GetDpiForMonitor
+MonitorFromWindow
+GetWindowRect
 SetWindowPos
 
 // Main window frame: rounded corners (Windows 11) and the DWM shadow of a borderless window

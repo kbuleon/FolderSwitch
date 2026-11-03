@@ -41,6 +41,35 @@ public static class WindowPlacement
             size.Height);
     }
 
+    /// <summary>
+    /// Centers a window of <paramref name="size"/> on the point (<paramref name="x"/>, <paramref name="y"/>),
+    /// then shifts it the least possible on each axis so it lies fully inside <paramref name="workArea"/>
+    /// (size clamped first).
+    /// </summary>
+    public static RectD CenterOnPoint(SizeD size, double x, double y, RectD workArea)
+    {
+        var clamped = ClampToWorkArea(size, workArea);
+        return new RectD(
+            Fit(x - clamped.Width / 2, clamped.Width, workArea.X, workArea.Width),
+            Fit(y - clamped.Height / 2, clamped.Height, workArea.Y, workArea.Height),
+            clamped.Width,
+            clamped.Height);
+    }
+
+    /// <summary>
+    /// Brings <paramref name="rect"/> fully inside <paramref name="workArea"/>: the size is clamped first,
+    /// then the position is shifted the least possible on each axis.
+    /// </summary>
+    public static RectD FitInside(RectD rect, RectD workArea)
+    {
+        var size = ClampToWorkArea(rect.Size, workArea);
+        return new RectD(
+            Fit(rect.X, size.Width, workArea.X, workArea.Width),
+            Fit(rect.Y, size.Height, workArea.Y, workArea.Height),
+            size.Width,
+            size.Height);
+    }
+
     /// <summary>Clamps the width and the height independently to the work area's.</summary>
     public static SizeD ClampToWorkArea(SizeD desired, RectD workArea) =>
         new(Math.Min(desired.Width, workArea.Width), Math.Min(desired.Height, workArea.Height));

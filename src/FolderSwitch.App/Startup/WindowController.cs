@@ -21,15 +21,22 @@ namespace FolderSwitch.App.Startup;
 /// <summary>
 /// Shows and hides the resident main window, which is built once and never closed.
 /// <para>
-/// <b>Show</b> (the shortcut while the window is hidden, see <see cref="ShortcutRouting"/>; <see cref="Open"/> on a
-/// click on the notification icon, its « Open » entry or a second launch; <see cref="ShowCustomize"/>): the calling
-/// window is captured first, before FolderSwitch takes the focus; the view model is told
-/// (<see cref="MainViewModel.OnShown"/>, which may change the tab shown, hence the size); the window is centered on the
-/// monitor that holds the mouse cursor (the primary monitor if that cannot be read); then shown, activated and brought
-/// to the foreground. The time from the trigger to the first frame is written to the debug log. The window follows the
-/// size of its content within that monitor's work area (beyond it the board scrolls); whenever that size changes while
-/// it is shown (a group collapsed, another tab), it keeps its top edge and its horizontal center (spec 5.2,
-/// <see cref="WindowPlacement.Reanchor"/>).
+/// <b>Show</b> (<see cref="Open"/>: the shortcut while the window is hidden, see <see cref="ShortcutRouting"/>; a click
+/// on the notification icon, its « Open » entry or a second launch; <see cref="ShowCustomize"/>): the calling window is
+/// captured first, before FolderSwitch takes the focus; the view model is told (<see cref="MainViewModel.OnShown"/>,
+/// which may change the tab shown, hence the size); the window is placed on the monitor that holds the mouse cursor
+/// (<see cref="ShowPlacement"/>): centered on the cursor for the shortcut, centered on the work area otherwise, always
+/// fully inside it (centered on the primary monitor if the cursor cannot be read); then shown, activated and brought to
+/// the foreground. The time from the trigger to the first frame is written to the debug log. Nothing of a previous
+/// placement is kept. The window follows the size of its content within that monitor's work area (beyond it the board
+/// scrolls); whenever that size changes while it is shown (a group collapsed, another tab), it keeps its top edge and
+/// its horizontal center (spec 5.2, <see cref="WindowPlacement.Reanchor"/>).
+/// </para>
+/// <para>
+/// <b>Move</b> (the title bar dragged, Windows' move loop): while it lasts, the window is left alone, even when Windows
+/// rescales it for a monitor with another DPI. Once dropped, it slides back just enough to be fully inside the work area
+/// of the monitor holding it (<see cref="WindowPlacement.FitInside"/>), which it now belongs to: a size change keeps its
+/// top edge and horizontal center there, and a DPI change keeps it where it is instead of centering it again.
 /// </para>
 /// <para>
 /// <b>Recall</b> (<see cref="Recall"/>, the shortcut while the window is on screen behind another window, which only
@@ -50,6 +57,12 @@ internal sealed class WindowController : IWindowHost
     /// <summary>Far outside every monitor: where the window is rendered once at startup, unseen.</summary>
     private const double OffScreen = -32000;
 
+    /// <summary>The window enters Windows' move (or size) loop: a drag of the title bar starts.</summary>
+    private const int WmEnterSizeMove = 0x0231;
+
+    /// <summary>The window leaves Windows' move (or size) loop: the drag ends.</summary>
+    private const int WmExitSizeMove = 0x0232;
+
     private readonly ICallContextProvider _contexts;
     private readonly IForegroundActivator _foreground;
     private readonly UserPrompts _prompts;
@@ -57,6 +70,7 @@ internal sealed class WindowController : IWindowHost
     private Window? _window;
     private MainViewModel? _viewModel;
     private nint _hwnd;
+    private HwndSource? _source;
     private bool _prerendering;
     private int _showCount;
     private nint _returnFocusTo;
@@ -65,7 +79,16 @@ internal sealed class WindowController : IWindowHost
     /// <summary>Where the window was last placed, in DIPs of <see cref="_placedOn"/>.</summary>
     private RectD? _placedRect;
 
+    /// <summary>How the window was placed last: applied again when its DPI changes.</summary>
+    private Anchor _anchor;
+
+    /// <summary>The mouse cursor when the window was shown, for <see cref="Anchor.Cursor"/>.</summary>
+    private MonitorPoint? _cursor;
+
     private bool _reanchoring;
+
+    /// <summary>True from the start of a drag of the window to the moment its drop is handled.</summary>
+    private bool _moving;
 
     public WindowController(ICallContextProvider contexts, IForegroundActivator foreground, UserPrompts prompts)
     {
@@ -106,6 +129,8 @@ internal sealed class WindowController : IWindowHost
         window.Deactivated += OnDeactivated;
         window.DpiChanged += OnDpiChanged;
         window.SizeChanged += OnSizeChanged;
+        _source = HwndSource.FromHwnd(_hwnd);
+        _source?.AddHook(OnWindowMessage);
     }
 
     /// <summary>Stops reacting to the window, before it is closed at exit.</summary>
@@ -119,6 +144,8 @@ internal sealed class WindowController : IWindowHost
         _window.Deactivated -= OnDeactivated;
         _window.DpiChanged -= OnDpiChanged;
         _window.SizeChanged -= OnSizeChanged;
+        _source?.RemoveHook(OnWindowMessage);
+        _source = null;
     }
 
     /// <summary>
@@ -163,13 +190,13 @@ internal sealed class WindowController : IWindowHost
     /// The shortcut while the window is on screen but behind another window (<see cref="ShortcutAction.Recall"/>): that
     /// window, now in the foreground, is captured as the calling window, the view model keeps its mode and tab
     /// (<see cref="MainViewModel.OnRecalled"/>), and the window comes to the front, where it is. A hidden window is shown
-    /// instead.
+    /// instead, centered on the mouse cursor, as the shortcut shows it.
     /// </summary>
     public void Recall()
     {
         if (!IsShown)
         {
-            ShowWindow();
+            ShowWindow(ShowPlacement.OnCursor);
             return;
         }
 
@@ -184,9 +211,10 @@ internal sealed class WindowController : IWindowHost
 
     /// <summary>
     /// A click on the notification icon, its « Open » entry, a second launch (spec 5.9), or the shortcut while the window
-    /// is hidden: shows the window, or brings it to the foreground if already shown. Never hides it.
+    /// is hidden: shows the window where <paramref name="placement"/> says, or brings it to the foreground, where it is,
+    /// if already shown. Never hides it.
     /// </summary>
-    public void Open()
+    public void Open(ShowPlacement placement)
     {
         if (IsShown)
         {
@@ -194,17 +222,17 @@ internal sealed class WindowController : IWindowHost
         }
         else
         {
-            ShowWindow();
+            ShowWindow(placement);
         }
     }
 
     /// <summary>
-    /// « Customize » in the notification menu: shows the window (or brings it to the foreground if already shown) and
-    /// enters Customize mode.
+    /// « Customize » in the notification menu: shows the window centered on the screen (or brings it to the foreground if
+    /// already shown) and enters Customize mode.
     /// </summary>
     public void ShowCustomize()
     {
-        Open();
+        Open(ShowPlacement.OnScreen);
 
         if (_viewModel is { IsCustomizing: false } viewModel)
         {
@@ -251,7 +279,7 @@ internal sealed class WindowController : IWindowHost
         }
     }
 
-    private void ShowWindow()
+    private void ShowWindow(ShowPlacement placement)
     {
         var window = RequireWindow();
         var viewModel = _viewModel!;
@@ -270,7 +298,7 @@ internal sealed class WindowController : IWindowHost
         viewModel.OnShown(ctx);
 
         // The tab shown may have changed: the window is sized to its content now, within the monitor it goes to.
-        PlaceOnCursorMonitor(window);
+        PlaceOnCursorMonitor(window, placement);
 
         window.Show();
         window.Activate();
@@ -280,26 +308,39 @@ internal sealed class WindowController : IWindowHost
     }
 
     /// <summary>
-    /// Centers the window on the work area of the monitor under the mouse cursor, or of the primary monitor when the
-    /// cursor's cannot be read, or at worst of WPF's own primary work area: the window must never stay where it was
-    /// rendered at startup, off-screen. It is first moved onto that monitor: if its DPI differs, Windows rescales the
-    /// window now, so that its size in DIPs and the monitor's scale agree for the centering. Its size is then bounded by
-    /// that monitor's work area (beyond it, the board scrolls) and brought up to date with its content. Coordinates are
-    /// DIPs of that monitor (its pixels divided by its scale).
+    /// Places the window on the work area of the monitor under the mouse cursor, as <paramref name="placement"/> says;
+    /// when the cursor cannot be read, centers it on the primary monitor's, or at worst on WPF's own primary work area:
+    /// the window must never stay where it was rendered at startup, off-screen. It is first moved onto that monitor: if
+    /// its DPI differs, Windows rescales the window now, so that its size in DIPs and the monitor's scale agree for the
+    /// placement. Its size is then bounded by that monitor's work area (beyond it, the board scrolls) and brought up to
+    /// date with its content. Coordinates are DIPs of that monitor (its pixels divided by its scale).
     /// </summary>
-    private void PlaceOnCursorMonitor(Window window)
+    private void PlaceOnCursorMonitor(Window window, ShowPlacement placement)
     {
-        var area = DisplayMonitors.AtCursor() ?? DisplayMonitors.Primary() ?? SystemWorkArea(window);
+        var cursor = DisplayMonitors.Cursor();
+        var area = cursor?.WorkArea ?? DisplayMonitors.Primary() ?? SystemWorkArea(window);
+        _anchor = placement == ShowPlacement.OnCursor && cursor is not null ? Anchor.Cursor : Anchor.Screen;
+        _cursor = _anchor == Anchor.Cursor ? cursor : null;
         _placedOn = area;
-        DisplayMonitors.MoveWindow(_hwnd, area.Left, area.Top);
 
-        // The largest size the work area allows: SizeToContent stays within it.
+        // A hidden window is in no drag: a drop left unhandled must not hold the window still from now on.
+        _moving = false;
+        DisplayMonitors.MoveWindow(_hwnd, area.Left, area.Top);
+        BoundTo(window, area);
+        window.UpdateLayout();
+
+        Place(window, area);
+    }
+
+    /// <summary>
+    /// The largest size the work area allows: SizeToContent stays within it, and the board scrolls beyond. In DIPs of
+    /// <paramref name="area"/>.
+    /// </summary>
+    private static void BoundTo(Window window, MonitorWorkArea area)
+    {
         var bounds = WindowPlacement.ClampToWorkArea(new SizeD(double.PositiveInfinity, double.PositiveInfinity), area.ToDips());
         window.MaxWidth = bounds.Width;
         window.MaxHeight = bounds.Height;
-        window.UpdateLayout();
-
-        Center(window, area);
     }
 
     /// <summary>The primary work area as WPF knows it (DIPs at the window's DPI), in pixels.</summary>
@@ -322,10 +363,56 @@ internal sealed class WindowController : IWindowHost
         _foreground.Activate(_hwnd);
     }
 
-    private void Center(Window window, MonitorWorkArea area)
+    /// <summary>
+    /// Centers the window on the mouse cursor of the show (<see cref="Anchor.Cursor"/>), or on the work area of
+    /// <paramref name="area"/>; fully inside that work area either way.
+    /// </summary>
+    private void Place(Window window, MonitorWorkArea area)
     {
         var size = new SizeD(window.ActualWidth, window.ActualHeight);
-        MoveTo(WindowPlacement.CenterOn(size, area.ToDips()), area);
+        var workArea = area.ToDips();
+        if (_anchor == Anchor.Cursor && _cursor is { } cursor)
+        {
+            var (x, y) = cursor.ToDips();
+            MoveTo(WindowPlacement.CenterOnPoint(size, x, y, workArea), area);
+        }
+        else
+        {
+            MoveTo(WindowPlacement.CenterOn(size, workArea), area);
+        }
+    }
+
+    /// <summary>
+    /// Leaves the window where it is, only brought fully inside the work area of the monitor holding it (the largest part
+    /// of it), which it now belongs to (<see cref="Anchor.User"/>): its size is bounded by that work area, then it slides
+    /// back the least possible. Nothing happens when that monitor cannot be read.
+    /// </summary>
+    private void FitWhereItIs(Window window)
+    {
+        if (DisplayMonitors.OfWindow(_hwnd) is not { } corner)
+        {
+            return;
+        }
+
+        // Bounded anew, the window may change size (from its top-left corner): no re-anchoring meanwhile.
+        _reanchoring = true;
+        try
+        {
+            var area = corner.WorkArea;
+            BoundTo(window, area);
+            window.UpdateLayout();
+
+            var (x, y) = corner.ToDips();
+            var rect = WindowPlacement.FitInside(new RectD(x, y, window.ActualWidth, window.ActualHeight), area.ToDips());
+            _anchor = Anchor.User;
+            _cursor = null;
+            _placedOn = area;
+            MoveTo(rect, area);
+        }
+        finally
+        {
+            _reanchoring = false;
+        }
     }
 
     /// <summary>Moves the window (never resizes it) to <paramref name="rect"/>, in DIPs of <paramref name="area"/>.</summary>
@@ -343,7 +430,9 @@ internal sealed class WindowController : IWindowHost
     /// </summary>
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
     {
-        if (!IsShown || _reanchoring || _placedOn is not { } area || _placedRect is not { } current)
+        // During a drag, the window is the user's to place: a rescale for another DPI resizes it, and the monitor it
+        // belonged to is no longer the right one. Its drop places it.
+        if (!IsShown || _moving || _reanchoring || _placedOn is not { } area || _placedRect is not { } current)
         {
             return;
         }
@@ -362,23 +451,69 @@ internal sealed class WindowController : IWindowHost
 
     /// <summary>
     /// A hidden window may only take the DPI of its monitor once shown: Windows then rescales it, and moves it as it
-    /// sees fit. It is centered again on the same monitor once that is done.
+    /// sees fit. Once that is done, it is placed again on the same monitor as it was shown (on the cursor, or on the
+    /// screen); a window the user moved is only kept inside the work area where it is (a change of the display scale).
+    /// During a drag onto a monitor with another DPI, nothing is done: the drop places the window.
     /// </summary>
     private void OnDpiChanged(object sender, DpiChangedEventArgs e)
     {
-        if (!IsShown || _placedOn is not { } area || _window is not { } window)
+        if (!IsShown || _moving || _window is not { } window)
         {
             return;
         }
 
         window.Dispatcher.BeginInvoke(DispatcherPriority.Loaded, () =>
         {
-            if (IsShown)
+            if (!IsShown || _moving)
             {
-                window.UpdateLayout();
-                Center(window, area);
+                return;
+            }
+
+            window.UpdateLayout();
+            if (_anchor == Anchor.User)
+            {
+                FitWhereItIs(window);
+            }
+            else if (_placedOn is { } area)
+            {
+                Place(window, area);
             }
         });
+    }
+
+    /// <summary>
+    /// Windows' move loop, which a drag of the title bar runs (<see cref="Window.DragMove"/>): the window is left alone
+    /// from its start (<see cref="_moving"/>) until the drop is handled, once the loop has ended and the layout has
+    /// caught up with a DPI change on the way (<see cref="OnDropped"/>).
+    /// </summary>
+    private nint OnWindowMessage(nint hwnd, int msg, nint wParam, nint lParam, ref bool handled)
+    {
+        switch (msg)
+        {
+            case WmEnterSizeMove:
+                _moving = true;
+                break;
+            case WmExitSizeMove when _moving && _window is { } window:
+                window.Dispatcher.BeginInvoke(DispatcherPriority.Loaded, OnDropped);
+                break;
+        }
+
+        return 0;
+    }
+
+    /// <summary>The window was dropped: it stays there, brought fully inside the work area of its monitor.</summary>
+    private void OnDropped()
+    {
+        if (!_moving)
+        {
+            return;
+        }
+
+        _moving = false;
+        if (IsShown)
+        {
+            FitWhereItIs(_window!);
+        }
     }
 
     private void OnDeactivated(object? sender, EventArgs e)
@@ -409,4 +544,17 @@ internal sealed class WindowController : IWindowHost
 
     private Window RequireWindow() =>
         _window ?? throw new InvalidOperationException("The main window is not attached yet.");
+
+    /// <summary>What the window's place is relative to, re-applied when its DPI changes.</summary>
+    private enum Anchor
+    {
+        /// <summary>Centered on the work area of its monitor.</summary>
+        Screen,
+
+        /// <summary>Centered on the mouse cursor of the show.</summary>
+        Cursor,
+
+        /// <summary>Where the user dropped it.</summary>
+        User,
+    }
 }

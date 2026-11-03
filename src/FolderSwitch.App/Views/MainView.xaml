@@ -26,114 +26,118 @@
             <DockPanel>
                 <!--
                     Title bar: icon and name, then Ko-fi's button in Customize mode; on the right « Edit », ⚙ (the
-                    settings), (?) (About) and ✕.
+                    settings), (?) (About) and ✕. Pressed anywhere but on a button, its margins included (the border's
+                    transparent background, which covers them, takes the clicks), it moves the window (see
+                    OnTitleBarMouseLeftButtonDown).
                 -->
-                <DockPanel DockPanel.Dock="Top" Margin="16,9,10,6">
-                    <Button DockPanel.Dock="Right"
-                            Margin="8,0,0,0"
-                            Style="{StaticResource Fs.CloseButton}"
-                            Command="{Binding CloseCommand}"
-                            ToolTip="{Binding Texts[Window.Close], ElementName=Root}"
-                            AutomationProperties.Name="{Binding Texts[Window.Close], ElementName=Root}" />
-                    <Button x:Name="AboutButton"
-                            DockPanel.Dock="Right"
-                            Margin="0"
-                            Padding="7,3,7,4"
-                            Style="{StaticResource Fs.ChromeButton}"
-                            ToolTip="{Binding Texts[Settings.About], ElementName=Root}"
-                            AutomationProperties.Name="{Binding Texts[Settings.About], ElementName=Root}"
-                            Click="OnAboutClick">
-                        <TextBlock Text="&#xE9CE;" FontFamily="{StaticResource Fs.IconFont}" FontSize="12" Margin="0,1,0,0" VerticalAlignment="Center" />
-                    </Button>
-                    <Button x:Name="SettingsButton"
-                            DockPanel.Dock="Right"
-                            Margin="0,0,6,0"
-                            Padding="7,3,7,4"
-                            Style="{StaticResource Fs.ChromeButton}"
-                            ToolTip="{Binding Texts[Window.Settings], ElementName=Root}"
-                            AutomationProperties.Name="{Binding Texts[Window.Settings], ElementName=Root}"
-                            Click="OnSettingsClick">
-                        <TextBlock Text="&#xE713;" FontFamily="{StaticResource Fs.IconFont}" FontSize="12" Margin="0,1,0,0" VerticalAlignment="Center" />
-                    </Button>
-                    <Button DockPanel.Dock="Right" Margin="0,0,6,0" Style="{StaticResource Fs.CustomizeButton}" Command="{Binding ToggleCustomizeCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock FontFamily="{StaticResource Fs.IconFont}" FontSize="11" Margin="0,1,6,0" VerticalAlignment="Center">
-                                <TextBlock.Style>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="Text" Value="&#xE70F;" />
+                <Border DockPanel.Dock="Top" Background="Transparent" MouseLeftButtonDown="OnTitleBarMouseLeftButtonDown">
+                    <DockPanel Margin="16,9,10,6">
+                        <Button DockPanel.Dock="Right"
+                                Margin="8,0,0,0"
+                                Style="{StaticResource Fs.CloseButton}"
+                                Command="{Binding CloseCommand}"
+                                ToolTip="{Binding Texts[Window.Close], ElementName=Root}"
+                                AutomationProperties.Name="{Binding Texts[Window.Close], ElementName=Root}" />
+                        <Button x:Name="AboutButton"
+                                DockPanel.Dock="Right"
+                                Margin="0"
+                                Padding="7,3,7,4"
+                                Style="{StaticResource Fs.ChromeButton}"
+                                ToolTip="{Binding Texts[Settings.About], ElementName=Root}"
+                                AutomationProperties.Name="{Binding Texts[Settings.About], ElementName=Root}"
+                                Click="OnAboutClick">
+                            <TextBlock Text="&#xE9CE;" FontFamily="{StaticResource Fs.IconFont}" FontSize="12" Margin="0,1,0,0" VerticalAlignment="Center" />
+                        </Button>
+                        <Button x:Name="SettingsButton"
+                                DockPanel.Dock="Right"
+                                Margin="0,0,6,0"
+                                Padding="7,3,7,4"
+                                Style="{StaticResource Fs.ChromeButton}"
+                                ToolTip="{Binding Texts[Window.Settings], ElementName=Root}"
+                                AutomationProperties.Name="{Binding Texts[Window.Settings], ElementName=Root}"
+                                Click="OnSettingsClick">
+                            <TextBlock Text="&#xE713;" FontFamily="{StaticResource Fs.IconFont}" FontSize="12" Margin="0,1,0,0" VerticalAlignment="Center" />
+                        </Button>
+                        <Button DockPanel.Dock="Right" Margin="0,0,6,0" Style="{StaticResource Fs.CustomizeButton}" Command="{Binding ToggleCustomizeCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="{StaticResource Fs.IconFont}" FontSize="11" Margin="0,1,6,0" VerticalAlignment="Center">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Text" Value="&#xE70F;" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsCustomizing}" Value="True">
+                                                    <Setter Property="Text" Value="&#xE73E;" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <layout:TextRoom VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding CustomizeLabel}" />
+                                </layout:TextRoom>
+                            </StackPanel>
+                        </Button>
+                        <layout:TitleRowPanel x:Name="TitleRow" VerticalAlignment="Center">
+                            <Image x:Name="AppIcon" Width="16" Height="16" Margin="0,0,9,0" VerticalAlignment="Center" />
+                            <layout:TextRoom VerticalAlignment="Center">
+                                <!-- The name, then the version that runs, lighter. -->
+                                <TextBlock FontSize="12.8" Foreground="{DynamicResource Fs.OnBackgroundMuted}">
+                                    <Run Text="FolderSwitch" FontWeight="SemiBold" />
+                                    <Run x:Name="VersionRun" FontSize="11.4" />
+                                </TextBlock>
+                            </layout:TextRoom>
+                            <!--
+                                Customize mode only: Ko-fi's button, which opens the author's Ko-fi page in the browser. Drawn
+                                as Ko-fi's « Buy me a coffee » button (its yellow, its cup, dark bold text) but with the text
+                                in the language shown, at the size of the name. As high as the other buttons; left out when
+                                the title bar lacks room for it (see TitleRowPanel).
+                            -->
+                            <Button x:Name="SupportButton"
+                                    Margin="28,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Focusable="False"
+                                    Cursor="Hand"
+                                    ToolTip="{Binding Texts[Window.Support], ElementName=Root}"
+                                    AutomationProperties.Name="{Binding Texts[Window.Support], ElementName=Root}"
+                                    Click="OnSupportClick">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <!-- The cup's picture has the same yellow around it, so it melts into the background. -->
+                                        <Border x:Name="Face" Height="26" Padding="7,0,10,0" CornerRadius="7" Background="#FFDA6E">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Height="15"
+                                                       Margin="0,0,6,0"
+                                                       VerticalAlignment="Center"
+                                                       Source="/FolderSwitch;component/Assets/ko-fi-cup.png"
+                                                       RenderOptions.BitmapScalingMode="HighQuality" />
+                                                <TextBlock VerticalAlignment="Center"
+                                                           FontSize="12.8"
+                                                           FontWeight="Bold"
+                                                           Foreground="#202020"
+                                                           Text="{Binding Texts[Window.SupportButton], ElementName=Root}" />
+                                            </StackPanel>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="Face" Property="Opacity" Value="0.85" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Visibility" Value="Collapsed" />
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding IsCustomizing}" Value="True">
-                                                <Setter Property="Text" Value="&#xE73E;" />
+                                                <Setter Property="Visibility" Value="Visible" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                            <layout:TextRoom VerticalAlignment="Center">
-                                <TextBlock Text="{Binding CustomizeLabel}" />
-                            </layout:TextRoom>
-                        </StackPanel>
-                    </Button>
-                    <layout:TitleRowPanel x:Name="TitleRow" VerticalAlignment="Center">
-                        <Image x:Name="AppIcon" Width="16" Height="16" Margin="0,0,9,0" VerticalAlignment="Center" />
-                        <layout:TextRoom VerticalAlignment="Center">
-                            <!-- The name, then the version that runs, lighter. -->
-                            <TextBlock FontSize="12.8" Foreground="{DynamicResource Fs.OnBackgroundMuted}">
-                                <Run Text="FolderSwitch" FontWeight="SemiBold" />
-                                <Run x:Name="VersionRun" FontSize="11.4" />
-                            </TextBlock>
-                        </layout:TextRoom>
-                        <!--
-                            Customize mode only: Ko-fi's button, which opens the author's Ko-fi page in the browser. Drawn
-                            as Ko-fi's « Buy me a coffee » button (its yellow, its cup, dark bold text) but with the text
-                            in the language shown, at the size of the name. As high as the other buttons; left out when
-                            the title bar lacks room for it (see TitleRowPanel).
-                        -->
-                        <Button x:Name="SupportButton"
-                                Margin="28,0,0,0"
-                                VerticalAlignment="Center"
-                                Focusable="False"
-                                Cursor="Hand"
-                                ToolTip="{Binding Texts[Window.Support], ElementName=Root}"
-                                AutomationProperties.Name="{Binding Texts[Window.Support], ElementName=Root}"
-                                Click="OnSupportClick">
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <!-- The cup's picture has the same yellow around it, so it melts into the background. -->
-                                    <Border x:Name="Face" Height="26" Padding="7,0,10,0" CornerRadius="7" Background="#FFDA6E">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image Height="15"
-                                                   Margin="0,0,6,0"
-                                                   VerticalAlignment="Center"
-                                                   Source="/FolderSwitch;component/Assets/ko-fi-cup.png"
-                                                   RenderOptions.BitmapScalingMode="HighQuality" />
-                                            <TextBlock VerticalAlignment="Center"
-                                                       FontSize="12.8"
-                                                       FontWeight="Bold"
-                                                       Foreground="#202020"
-                                                       Text="{Binding Texts[Window.SupportButton], ElementName=Root}" />
-                                        </StackPanel>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="Face" Property="Opacity" Value="0.85" />
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-                            <Button.Style>
-                                <Style TargetType="Button">
-                                    <Setter Property="Visibility" Value="Collapsed" />
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsCustomizing}" Value="True">
-                                            <Setter Property="Visibility" Value="Visible" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                        </Button>
-                    </layout:TitleRowPanel>
-                </DockPanel>
+                                </Button.Style>
+                            </Button>
+                        </layout:TitleRowPanel>
+                    </DockPanel>
+                </Border>
 
                 <local:TabBar DockPanel.Dock="Top" />
 

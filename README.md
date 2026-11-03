@@ -53,7 +53,8 @@ These images are drawn by the `--snapshot` diagnostic mode (see « Diagnostic mo
 - **Global shortcut**, Ctrl + Win pressed alone by default. It acts when the keys are released, so the Windows
   shortcuts that start with Ctrl + Win keep working. Any other combination can be chosen. Pressed again it hides the
   window; in Edit mode, a window left behind another one comes back to the front instead, keeping Edit mode
-  and taking the window you came from as the new calling window.
+  and taking the window you came from as the new calling window. The shortcut opens the window centered on the mouse
+  cursor, always fully on screen; the notification icon opens it centered on the screen. It moves by its title bar.
 - **Context aware**: the calling Explorer window (its active tab on Windows 11) or file dialog (modern and legacy Open,
   Save As, folder pickers) is moved to the folder. Ctrl + click opens a new Explorer tab on Windows 11, a new window
   on Windows 10. A right-click on an item opens its menu: « Open in File Explorer » (a new window; a file's folder for

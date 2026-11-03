@@ -26,21 +26,55 @@ public readonly record struct MonitorWorkArea(int Left, int Top, int Width, int 
 }
 
 /// <summary>
-/// The monitor under the mouse cursor (or the primary one), and moving a window in physical pixels: what is needed
-/// to center a window on the screen the user is looking at, whatever its DPI.
+/// A point in physical pixels (the mouse cursor, a window's top-left corner), with the work area of the monitor it
+/// belongs to.
+/// </summary>
+public readonly record struct MonitorPoint(int X, int Y, MonitorWorkArea WorkArea)
+{
+    /// <summary>The point in device-independent pixels of its monitor, as <see cref="MonitorWorkArea.ToDips"/>.</summary>
+    public (double X, double Y) ToDips() => (X / WorkArea.Scale, Y / WorkArea.Scale);
+}
+
+/// <summary>
+/// The monitor under the mouse cursor (or the primary one, or the one holding a window), and moving a window in
+/// physical pixels: what is needed to place a window on the screen the user is looking at, whatever its DPI.
 /// </summary>
 /// <remarks>Plain Win32 calls that never wait on another window; any thread. Nothing is thrown.</remarks>
 public static class DisplayMonitors
 {
     private const double BaseDpi = 96;
 
-    /// <summary>The work area of the monitor that holds the mouse cursor (the nearest one); <c>null</c> if it cannot be read.</summary>
-    public static MonitorWorkArea? AtCursor()
+    /// <summary>
+    /// The mouse cursor's position, with the work area of the monitor that holds it (the nearest one); <c>null</c> if
+    /// either cannot be read.
+    /// </summary>
+    public static MonitorPoint? Cursor()
     {
         try
         {
             return PInvoke.GetCursorPos(out var cursor)
-                ? WorkArea(PInvoke.MonitorFromPoint(cursor, MONITOR_FROM_FLAGS.MONITOR_DEFAULTTONEAREST))
+                && WorkArea(PInvoke.MonitorFromPoint(cursor, MONITOR_FROM_FLAGS.MONITOR_DEFAULTTONEAREST)) is { } area
+                ? new MonitorPoint(cursor.X, cursor.Y, area)
+                : null;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// The top-left corner of a top-level window, with the work area of the monitor that holds the largest part of it
+    /// (the nearest one when it is on none); <c>null</c> if either cannot be read.
+    /// </summary>
+    public static MonitorPoint? OfWindow(nint hwnd)
+    {
+        try
+        {
+            return hwnd != 0
+                && PInvoke.GetWindowRect((HWND)hwnd, out var rect)
+                && WorkArea(PInvoke.MonitorFromWindow((HWND)hwnd, MONITOR_FROM_FLAGS.MONITOR_DEFAULTTONEAREST)) is { } area
+                ? new MonitorPoint(rect.left, rect.top, area)
                 : null;
         }
         catch (Exception)
