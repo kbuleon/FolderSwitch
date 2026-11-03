@@ -32,7 +32,7 @@
 
 .PARAMETER ReleaseNotes
     Optional. A Markdown file with the notes of this version, which must exist; vpk puts them in the package
-    (--releaseNotes). build/release.ps1 passes the version's entry of CHANGELOG.md. No notes when omitted.
+    (--releaseNotes). build/release.ps1 passes the version's section of CHANGELOG.md. No notes when omitted.
 
 .EXAMPLE
     powershell -ExecutionPolicy Bypass -File build/pack.ps1

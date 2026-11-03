@@ -178,13 +178,13 @@ powershell -ExecutionPolicy Bypass -File build/release.ps1                 # All
 
 It needs the [GitHub CLI](https://cli.github.com/) (`gh`), installed and signed in once (`gh auth login`). The release is the
 `<Version>` of `Directory.Build.props` (`x.y.z` only, never a prerelease), named `FolderSwitch <version>`, on the annotated
-tag `v<version>`; its notes are the version's entry of `CHANGELOG.md` (a line that starts with `* **<version> — `).
+tag `v<version>`; its notes are the version's section of `CHANGELOG.md` (titled `## <version> — `), its title in bold.
 *Prepare* runs the Core, Presentation and App tests, downloads the latest published release into an emptied
 `artifacts/releases` (the base of the delta package), packs with `pack.ps1 -ReleaseNotes`, and records the version and the
 commit in `artifacts/release-prepared.json`: try the installer it shows before publishing. *Publish* creates and pushes the
 tag on the prepared commit, uploads `artifacts/releases` as a draft release, then sets the notes and publishes it. Both
 refuse, saying what to do, unless `gh` is signed in, the branch is `main` with no uncommitted change and no untracked file
-(ignored ones do not count) and the same commit as `origin/main`, and the changelog has the entry; *Prepare* also refuses a
+(ignored ones do not count) and the same commit as `origin/main`, and the changelog has the section; *Prepare* also refuses a
 tag or a release of that version already there, and a non-empty `artifacts/releases` it did not make (it holds a marker
 file, `.made-by-release-ps1`: set your own folder aside, e.g. as `artifacts/releases-before-github`), and *Publish* a missing or stale preparation, a published release and a tag on another commit. An
 interrupted *Publish* is run again: a draft that holds every file is only made visible, an empty one is filled, and one

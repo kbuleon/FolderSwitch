@@ -13,7 +13,7 @@
 
     Prepare builds locally and uploads nothing: it runs the test projects that open no window (Core, Presentation and
     App, in Release), empties artifacts/releases, downloads the latest published release into it (vpk download
-    github, the base of the delta package), writes the version's entry of CHANGELOG.md to artifacts/release-notes.md,
+    github, the base of the delta package), writes the version's section of CHANGELOG.md to artifacts/release-notes.md,
     runs build/pack.ps1 with these notes, and records the version and the commit in artifacts/release-prepared.json.
     Try the installer it shows before publishing.
 
@@ -26,9 +26,8 @@
 
     Both steps first check the repository and refuse, saying what to do, unless: the GitHub CLI (gh) is on the PATH
     and signed in; the branch is main, with no uncommitted change and no untracked file (ignored ones do not count),
-    at the same commit as origin/main; the
-    version is x.y.z; CHANGELOG.md has an entry for it ("* **<version> - " with an em dash). Prepare also refuses an
-    existing tag v<version> (local or on origin) and an existing release of the version (published or draft), and
+    at the same commit as origin/main; the version is x.y.z; CHANGELOG.md has a section for it (titled
+    "## <version> - " with an em dash). Prepare also refuses an existing tag v<version> (local or on origin) and an existing release of the version (published or draft), and
     a non-empty artifacts/releases without the marker file .made-by-release-ps1 that Prepare writes into it (it
     empties that folder): set a folder of your own aside (rename it, e.g. to artifacts/releases-before-github) first.
     Publish also refuses a missing preparation or one of another version or commit, a published release of the
@@ -135,21 +134,22 @@ function Get-GitHubToken {
     $script:token
 }
 
-# The entry of the version in CHANGELOG.md, without its leading '* ' and without trailing spaces, from its line
-# '* **<version> - ' (em dash) to the line before the next bullet ('* **') or date ('## '); $null without one.
+# The section of the version in CHANGELOG.md, from its title '## <version> - ' (em dash) to the line before the next
+# title ('## '), without trailing spaces: the title in bold (without its '## '), then the lines below it; $null
+# without one.
 function Get-ChangelogEntry {
     param([string] $Version)
     $text = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'CHANGELOG.md')
-    $start = "* **$Version $emDash "
+    $start = "## $Version $emDash "
     $entry = $null
     foreach ($line in ($text -split '\r?\n')) {
         if ($null -eq $entry) {
             if ($line.StartsWith($start, [StringComparison]::Ordinal)) {
                 $entry = New-Object System.Collections.Generic.List[string]
-                $entry.Add($line.Substring(2).TrimEnd())
+                $entry.Add('**' + $line.Substring(3).Trim() + '**')
             }
         }
-        elseif ($line.StartsWith('* **', [StringComparison]::Ordinal) -or $line.StartsWith('## ', [StringComparison]::Ordinal)) {
+        elseif ($line.StartsWith('## ', [StringComparison]::Ordinal)) {
             break
         }
         else {
@@ -214,7 +214,7 @@ function Assert-ReleasesDirEmptiable {
 function Assert-ChangelogEntry {
     param([string] $Version)
     if ($null -eq (Get-ChangelogEntry $Version)) {
-        throw "No entry for $Version in CHANGELOG.md: add a line that starts with '* **$Version $emDash ' (its release notes), commit it, then run again."
+        throw "No section for $Version in CHANGELOG.md: add one titled '## $Version $emDash <what it changes>' (its release notes), commit it, then run again."
     }
 }
 
