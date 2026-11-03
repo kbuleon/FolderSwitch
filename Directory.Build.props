@@ -7,7 +7,7 @@
     <LangVersion>latest</LangVersion>
     <!-- The application's version (semantic versioning), bumped with every change of the software.
          build/pack.ps1 releases this version unless it is given another one. -->
-    <Version>1.9.1</Version>
+    <Version>1.10.0</Version>
     <!-- Shown in the executable's properties; the license is GPL-3.0-or-later (LICENSE, README). -->
     <Copyright>Copyright (C) 2026 Karl BULEON</Copyright>
     <!-- Builds check the code style rules raised to warnings in .editorconfig: the file header (IDE0073). -->

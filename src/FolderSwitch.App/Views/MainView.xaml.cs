@@ -91,7 +91,15 @@ public partial class MainView : UserControl
     /// <summary>The pictures of the items: file type icons and favicons (<see cref="ItemIcon"/>); none, the drawn icons only.</summary>
     internal ItemIcons? Icons { get; set; }
 
-    /// <summary>Opens the license and the third-party notices from the About window; none, its links do nothing.</summary>
+    /// <summary>
+    /// The author's Ko-fi page, which Ko-fi's button of the title bar opens (Customize mode), as the README's button.
+    /// </summary>
+    internal const string SupportPage = "https://ko-fi.com/karlbuleon";
+
+    /// <summary>
+    /// Opens the license and the third-party notices from the About window, and the Ko-fi page; none, these links do
+    /// nothing.
+    /// </summary>
     internal IShellLauncher? Shell { get; set; }
 
     /// <summary>
@@ -421,4 +429,7 @@ public partial class MainView : UserControl
     private void OnSettingsClick(object sender, RoutedEventArgs e) => OpenSettings();
 
     private void OnAboutClick(object sender, RoutedEventArgs e) => OpenAbout();
+
+    /// <summary>Opens the Ko-fi page in the default browser; a failure is the shell's to tell (<see cref="IShellLauncher.OpenUrl"/>).</summary>
+    private void OnSupportClick(object sender, RoutedEventArgs e) => Shell?.OpenUrl(SupportPage);
 }

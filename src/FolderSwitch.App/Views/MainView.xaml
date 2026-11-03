@@ -24,7 +24,10 @@
     <AdornerDecorator>
         <Grid>
             <DockPanel>
-                <!-- Title bar: icon and name; on the right « Edit », ⚙ (the settings), (?) (About) and ✕. -->
+                <!--
+                    Title bar: icon and name, then Ko-fi's button in Customize mode; on the right « Edit », ⚙ (the
+                    settings), (?) (About) and ✕.
+                -->
                 <DockPanel DockPanel.Dock="Top" Margin="16,9,10,6">
                     <Button DockPanel.Dock="Right"
                             Margin="8,0,0,0"
@@ -71,7 +74,7 @@
                             </layout:TextRoom>
                         </StackPanel>
                     </Button>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <layout:TitleRowPanel x:Name="TitleRow" VerticalAlignment="Center">
                         <Image x:Name="AppIcon" Width="16" Height="16" Margin="0,0,9,0" VerticalAlignment="Center" />
                         <layout:TextRoom VerticalAlignment="Center">
                             <!-- The name, then the version that runs, lighter. -->
@@ -80,7 +83,43 @@
                                 <Run x:Name="VersionRun" FontSize="11.4" />
                             </TextBlock>
                         </layout:TextRoom>
-                    </StackPanel>
+                        <!--
+                            Customize mode only: Ko-fi's button, which opens the author's Ko-fi page in the browser. As
+                            high as the other buttons; left out when the title bar lacks room for it (see TitleRowPanel).
+                        -->
+                        <Button x:Name="SupportButton"
+                                Margin="14,0,0,0"
+                                VerticalAlignment="Center"
+                                Focusable="False"
+                                Cursor="Hand"
+                                ToolTip="{Binding Texts[Window.Support], ElementName=Root}"
+                                AutomationProperties.Name="{Binding Texts[Window.Support], ElementName=Root}"
+                                Click="OnSupportClick">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Image x:Name="Picture"
+                                           Height="26"
+                                           Source="/FolderSwitch;component/Assets/ko-fi-button.png"
+                                           RenderOptions.BitmapScalingMode="HighQuality" />
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Picture" Property="Opacity" Value="0.85" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsCustomizing}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </layout:TitleRowPanel>
                 </DockPanel>
 
                 <local:TabBar DockPanel.Dock="Top" />

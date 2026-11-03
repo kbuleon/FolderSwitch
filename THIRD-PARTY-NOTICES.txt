@@ -13,6 +13,7 @@ its own license, whose notice follows.
  6. Windows Desktop runtime 10.0.14 (Microsoft.WindowsDesktop.App)
  7. Unicode CLDR 49 (emoji annotations)
  8. Unicode Emoji data 18.0 (emoji-test.txt)
+ 9. Ko-fi « Buy me a coffee » button image
 
 ==============================================================================
 1. H.NotifyIcon.Wpf, H.NotifyIcon, H.GeneratedIcons.System.Drawing 2.4.1
@@ -1874,3 +1875,14 @@ Except as contained in this notice, the name of a copyright holder shall
 not be used in advertising or otherwise to promote the sale, use or other
 dealings in these Data Files or Software without prior written
 authorization of the copyright holder.
+
+==============================================================================
+9. Ko-fi « Buy me a coffee » button image
+==============================================================================
+
+https://more.ko-fi.com/brand-assets
+The image of the button of Edit mode (assets/ko-fi/kofi-button.png, compiled
+into FolderSwitch.exe) is Ko-fi Labs' button
+https://storage.ko-fi.com/cdn/kofi2.png, unchanged. Ko-fi offers it among its
+brand assets to link to a Ko-fi page, which is all FolderSwitch does with it.
+It is not under the GPL. « Ko-fi » and its logo are Ko-fi Labs' trademarks.

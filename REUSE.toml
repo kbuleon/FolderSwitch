@@ -17,3 +17,10 @@ path = ["src/FolderSwitch.App/Emoji/catalog.json", "src/FolderSwitch.App/Emoji/k
 precedence = "closest"
 SPDX-FileCopyrightText = "Unicode, Inc."
 SPDX-License-Identifier = "Unicode-3.0"
+
+# Ko-fi's button image, unchanged: Ko-fi Labs' own brand asset, offered to link to a Ko-fi page; not under the GPL.
+[[annotations]]
+path = "assets/ko-fi/kofi-button.png"
+precedence = "closest"
+SPDX-FileCopyrightText = "Ko-fi Labs Limited"
+SPDX-License-Identifier = "LicenseRef-Ko-fi-Brand-Assets"

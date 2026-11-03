@@ -39,6 +39,8 @@
   <ItemGroup>
     <!-- The same icon file, as a resource of the assembly: the notification area icon (see TrayIconImage) and the wizard window's. -->
     <Resource Include="..\..\assets\icon\FolderSwitch.ico" Link="Assets\FolderSwitch.ico" />
+    <!-- Ko-fi's « Buy me a coffee » button, as the README shows it (Ko-fi's own image, not under the GPL): the title bar's, in Customize mode. -->
+    <Resource Include="..\..\assets\ko-fi\kofi-button.png" Link="Assets\ko-fi-button.png" />
   </ItemGroup>
 
   <ItemGroup>
