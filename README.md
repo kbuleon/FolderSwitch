@@ -67,7 +67,7 @@ These images are drawn by the `--snapshot` diagnostic mode (see « Diagnostic mo
   « File… » and « URL… » (an address typed or pasted; the clipboard's is offered). A column, group or item held over another tab for a
   moment shows that tab, where it can be dropped. A right-click on a tab, a group's header or an item offers « Rename »
   (F2) (and « Icon… » for a tab or a group). Every change is saved at once. The window keeps the width of its widest tab: the tabs stay in place when you
-  switch. Edit mode also shows Ko-fi's « Buy me a coffee » button after the name in the title bar, which opens the
+  switch. Edit mode also shows Ko-fi's « Buy me a coffee » button, in the language shown, after the name in the title bar, which opens the
   author's Ko-fi page in the browser; it gives way when the title bar lacks room.
 - **Emoji icons for tabs and groups**, left of the name, drawn in one colour, the text's, with the Windows font
   `Segoe UI Emoji`. The icon comes from the name as it is typed, when a tab or a group is created or renamed (« Finance »
@@ -300,7 +300,7 @@ on the machine. It makes two kinds of network request, and no other:
   5 s in all, and reads 256 KiB at most from any response. Nothing from the board or the configuration is in a request.
   Reading the address of the page a browser shows (for « Current URL ») stays on the machine.
 
-The emoji data of the icons is shipped with the program: nothing is downloaded for it. So is the image of Ko-fi's button
+The emoji data of the icons is shipped with the program: nothing is downloaded for it. So is the cup of Ko-fi's button
 in Edit mode: only a click on it opens the Ko-fi page, in the browser.
 
 With automatic update checks turned off (or in a copy Velopack did not install) and without a site on the board,
@@ -390,6 +390,6 @@ annotations) and is under the Unicode License v3, also compatible with the GPLv3
 [THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt), installed next to `FolderSwitch.exe` with the license
 (`LICENSE.txt`); the About window links to both.
 
-The image of Ko-fi's « Buy me a coffee » button (`assets/ko-fi/kofi-button.png`), compiled into the executable, is
-Ko-fi Labs' own, used as Ko-fi's brand assets allow to link to a Ko-fi page. It is not under the GPL, and « Ko-fi » is
-Ko-fi Labs' trademark; a modified version may leave the button out.
+The cup on Ko-fi's button in Edit mode (`assets/ko-fi/kofi-cup.png`), compiled into the executable, is cropped from
+Ko-fi Labs' « Buy me a coffee » button, used as Ko-fi's brand assets allow to link to a Ko-fi page. It is not under the
+GPL, and « Ko-fi » is Ko-fi Labs' trademark; a modified version may leave the button out.

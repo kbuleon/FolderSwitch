@@ -84,11 +84,13 @@
                             </TextBlock>
                         </layout:TextRoom>
                         <!--
-                            Customize mode only: Ko-fi's button, which opens the author's Ko-fi page in the browser. As
-                            high as the other buttons; left out when the title bar lacks room for it (see TitleRowPanel).
+                            Customize mode only: Ko-fi's button, which opens the author's Ko-fi page in the browser. Drawn
+                            as Ko-fi's « Buy me a coffee » button (its yellow, its cup, dark bold text) but with the text
+                            in the language shown, at the size of the name. As high as the other buttons; left out when
+                            the title bar lacks room for it (see TitleRowPanel).
                         -->
                         <Button x:Name="SupportButton"
-                                Margin="14,0,0,0"
+                                Margin="28,0,0,0"
                                 VerticalAlignment="Center"
                                 Focusable="False"
                                 Cursor="Hand"
@@ -97,13 +99,24 @@
                                 Click="OnSupportClick">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
-                                    <Image x:Name="Picture"
-                                           Height="26"
-                                           Source="/FolderSwitch;component/Assets/ko-fi-button.png"
-                                           RenderOptions.BitmapScalingMode="HighQuality" />
+                                    <!-- The cup's picture has the same yellow around it, so it melts into the background. -->
+                                    <Border x:Name="Face" Height="26" Padding="7,0,10,0" CornerRadius="7" Background="#FFDA6E">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Height="15"
+                                                   Margin="0,0,6,0"
+                                                   VerticalAlignment="Center"
+                                                   Source="/FolderSwitch;component/Assets/ko-fi-cup.png"
+                                                   RenderOptions.BitmapScalingMode="HighQuality" />
+                                            <TextBlock VerticalAlignment="Center"
+                                                       FontSize="12.8"
+                                                       FontWeight="Bold"
+                                                       Foreground="#202020"
+                                                       Text="{Binding Texts[Window.SupportButton], ElementName=Root}" />
+                                        </StackPanel>
+                                    </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="Picture" Property="Opacity" Value="0.85" />
+                                            <Setter TargetName="Face" Property="Opacity" Value="0.85" />
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>

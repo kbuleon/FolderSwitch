@@ -1881,8 +1881,10 @@ authorization of the copyright holder.
 ==============================================================================
 
 https://more.ko-fi.com/brand-assets
-The image of the button of Edit mode (assets/ko-fi/kofi-button.png, compiled
-into FolderSwitch.exe) is Ko-fi Labs' button
-https://storage.ko-fi.com/cdn/kofi2.png, unchanged. Ko-fi offers it among its
-brand assets to link to a Ko-fi page, which is all FolderSwitch does with it.
-It is not under the GPL. « Ko-fi » and its logo are Ko-fi Labs' trademarks.
+The cup on the button of Edit mode (assets/ko-fi/kofi-cup.png, compiled into
+FolderSwitch.exe) is cropped from Ko-fi Labs' button
+https://storage.ko-fi.com/cdn/kofi2.png; the button around it, Ko-fi's yellow
+and a text in the language shown, is drawn by FolderSwitch, as Ko-fi's button
+maker lets one choose the text. Ko-fi offers these brand assets to link to a
+Ko-fi page, which is all FolderSwitch does with them. They are not under the
+GPL. « Ko-fi » and its logo are Ko-fi Labs' trademarks.
