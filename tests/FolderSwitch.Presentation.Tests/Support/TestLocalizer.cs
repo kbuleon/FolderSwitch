@@ -60,7 +60,7 @@ internal static class TestLocalizer
             {
                 ["_meta.nativeName"] = "Français",
                 ["Window.Customize"] = "Configurer",
-                ["Window.Done"] = "Terminé",
+                ["Window.Done"] = "Terminer",
                 ["AddMenu.FromExplorer"] = "Appel depuis l'Explorateur",
                 ["Tab.New"] = "Nouvel onglet",
                 ["Group.New"] = "Nouveau groupe",

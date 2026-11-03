@@ -187,7 +187,7 @@ public class StringFilesTests
 
     [Theory]
     [InlineData("en", "Edit", "Done")]
-    [InlineData("fr", "Modifier", "Terminé")]
+    [InlineData("fr", "Modifier", "Terminer")]
     [InlineData("es", "Editar", "Listo")]
     [InlineData("de", "Bearbeiten", "Fertig")]
     [InlineData("it", "Modifica", "Fine")]
@@ -211,7 +211,7 @@ public class StringFilesTests
         var expected = new Dictionary<string, string>
         {
             ["Window.Customize"] = "Modifier",
-            ["Window.Done"] = "Terminé",
+            ["Window.Done"] = "Terminer",
             ["Board.AddColumn"] = "+ Colonne",
             ["Board.AddGroup"] = "+ Groupe",
             ["Tab.New"] = "Nouvel onglet",

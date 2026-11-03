@@ -5,6 +5,7 @@ This file is maintained by the agent. The log is timestamped and **concise**. It
 
 ## 2026-11-03
 
+* **1.9.1 — French « Done » button**: the button that leaves Edit mode reads « Terminer », an action like « Modifier », instead of « Terminé ».
 * **1.9.0 — Updates from GitHub releases** (FOS-0011): installed copies look for updates in the GitHub releases of `kbuleon/FolderSwitch` (stable ones, no token) instead of a feed folder; the `localhost` test address is gone, and any address that is not that of a GitHub repository turns the check off. A « Check for updates automatically » box in the settings, ticked by default, unticked stops the automatic checks (the first one a minute after the start, then daily) at once, without a restart (the « Check for updates » button still works, and an import brings its value); the configuration stays schema 2, and a 1.8.0 ignores the setting. `build/release.ps1` (`Prepare`, `Publish`, `All`) tests, tags `v<version>` and publishes a release with the `CHANGELOG.md` entry as notes; `pack.ps1 -ReleaseNotes`. Nine languages.
 
 ## 2026-11-02
