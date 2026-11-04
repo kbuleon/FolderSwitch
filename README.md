@@ -2,6 +2,8 @@
 
 **Your favorite folders and files, opened instantly.**
 
+![A complete animated English tour of FolderSwitch, using a fictional configuration](assets/gif/folderswitch-complete-tour-en.gif)
+
 [![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue)](LICENSE)
 ![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white)
 ![WPF](https://img.shields.io/badge/UI-WPF-512BD4)
