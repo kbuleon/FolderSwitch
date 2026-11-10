@@ -18,6 +18,8 @@ namespace FolderSwitch.Core.Activation;
 /// <para>
 /// A web site (<see cref="ItemKind.Url"/>) skips the resolution and the check: its address is normalized and handed to the
 /// default browser, and « Open in File Explorer » is <see cref="ActivationOutcome.TargetUnavailable"/> for it.
+/// A separator (<see cref="ItemKind.Separator"/>) is never opened: both are <see cref="ActivationOutcome.TargetUnavailable"/>
+/// at once (the view model never asks for it).
 /// </para>
 /// <para>
 /// The existence check waits at most 2 seconds, even if the resolver ignores its timeout. Only that
@@ -58,14 +60,20 @@ public sealed class ActivationService(
     }
 
     public Task<ActivationOutcome> ActivateAsync(Item item, CallContext ctx, bool ctrl) =>
-        item.Kind == ItemKind.Url
-            ? Task.FromResult(OpenUrl(item, ctx, ctrl))
-            : ActivateAsync(item, ctx, resolved => ActivationRouter.Plan(ctx, item.Kind, resolved, ctrl, os));
+        item.Kind switch
+        {
+            ItemKind.Separator => Task.FromResult(SeparatorOutcome()),
+            ItemKind.Url => Task.FromResult(OpenUrl(item, ctx, ctrl)),
+            _ => ActivateAsync(item, ctx, resolved => ActivationRouter.Plan(ctx, item.Kind, resolved, ctrl, os)),
+        };
 
     public Task<ActivationOutcome> OpenInExplorerAsync(Item item) =>
-        item.Kind == ItemKind.Url
-            ? Task.FromResult(Report(ActivationOutcome.TargetUnavailable, "a web address has no folder to show", item.Url, null, null))
-            : ActivateAsync(item, CallContext.None, resolved => ActivationRouter.PlanInExplorer(item.Kind, resolved));
+        item.Kind switch
+        {
+            ItemKind.Separator => Task.FromResult(SeparatorOutcome()),
+            ItemKind.Url => Task.FromResult(Report(ActivationOutcome.TargetUnavailable, "a web address has no folder to show", item.Url, null, null)),
+            _ => ActivateAsync(item, CallContext.None, resolved => ActivationRouter.PlanInExplorer(item.Kind, resolved)),
+        };
 
     public bool CtrlOpensNewTab(ItemKind kind, CallContext ctx) => ActivationRouter.CtrlOpensNewTab(ctx, kind, os);
 
@@ -105,7 +113,7 @@ public sealed class ActivationService(
     /// <summary>
     /// Opens a web site: there is nothing to resolve nor to check on disk. The stored address may have been edited by
     /// hand (spaces, upper case), so it goes through <see cref="WebAddress.TryNormalize"/> first; one that is not an
-    /// <c>http</c> or <c>https</c> address makes the item unavailable, and nothing is launched.
+    /// <c>http</c>, <c>https</c>, <c>ftp</c> or <c>file</c> address makes the item unavailable, and nothing is launched.
     /// </summary>
     private ActivationOutcome OpenUrl(Item item, CallContext ctx, bool ctrl)
     {
@@ -114,7 +122,7 @@ public sealed class ActivationService(
         {
             if (!WebAddress.TryNormalize(item.Url, out var url))
             {
-                return Report(ActivationOutcome.TargetUnavailable, "the item holds no valid http or https address", item.Url, null, null);
+                return Report(ActivationOutcome.TargetUnavailable, "the item holds no valid http, https, ftp or file address", item.Url, null, null);
             }
 
             plan = ActivationRouter.Plan(ctx, item.Kind, url, ctrl, os);
@@ -125,6 +133,10 @@ public sealed class ActivationService(
             return Report(ActivationOutcome.Failed, "an exception was thrown", item.Url, plan, e);
         }
     }
+
+    /// <summary>A separator has nothing to open: nothing is resolved, checked or launched.</summary>
+    private ActivationOutcome SeparatorOutcome() =>
+        Report(ActivationOutcome.TargetUnavailable, "a separator has nothing to open", null, null, null);
 
     /// <summary>Where the action of <paramref name="kind"/> takes place when it succeeds.</summary>
     private static ActivationOutcome SuccessOf(ActivationKind kind) =>

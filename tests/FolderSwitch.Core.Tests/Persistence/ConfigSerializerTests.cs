@@ -48,7 +48,7 @@ public class ConfigSerializerTests
     {
         var json = ConfigSerializer.Serialize(TestConfigs.Minimal());
 
-        Assert.Contains("\"schemaVersion\": 2", json);
+        Assert.Contains("\"schemaVersion\": 3", json);
         Assert.Contains("\"startWithWindows\"", json);
         Assert.DoesNotContain("\"SchemaVersion\"", json);
         Assert.Contains("\n", json);
@@ -98,14 +98,14 @@ public class ConfigSerializerTests
 
         Assert.Contains("\"icon\": \"💼\"", json);
         Assert.Contains("\"iconChosen\": true", json);
-        Assert.Contains("\"schemaVersion\": 2", json);
+        Assert.Contains("\"schemaVersion\": 3", json);
         TestConfigs.AssertEquivalent(original, copy);
         Assert.Equal("💼", copy.Tabs[0].Icon);
         Assert.True(copy.Tabs[0].IconChosen);
         var group = copy.Tabs[0].Columns[0].Groups[0];
         Assert.Equal("💵", group.Icon);
         Assert.False(group.IconChosen);
-        Assert.Equal(2, copy.SchemaVersion);
+        Assert.Equal(3, copy.SchemaVersion);
     }
 
     [Fact]
@@ -158,7 +158,7 @@ public class ConfigSerializerTests
     [Fact]
     public void Deserialize_rejects_newer_schema()
     {
-        var json = """{ "schemaVersion": 3, "tabs": [ { "name": "A" } ] }""";
+        var json = """{ "schemaVersion": 4, "tabs": [ { "name": "A" } ] }""";
 
         Assert.Throws<ConfigFormatException>(() => ConfigSerializer.Deserialize(json));
     }
@@ -291,7 +291,7 @@ public class ConfigSerializerTests
 
         Assert.Contains("\"kind\": \"url\"", json);
         Assert.Contains("\"url\": \"https://www.morningstar.fr/fr/funds\"", json);
-        Assert.Contains("\"schemaVersion\": 2", json);
+        Assert.Contains("\"schemaVersion\": 3", json);
         TestConfigs.AssertEquivalent(original, copy);
         var item = copy.Tabs[0].Columns[0].Groups[0].Items[3];
         Assert.Equal(ItemKind.Url, item.Kind);
@@ -313,7 +313,91 @@ public class ConfigSerializerTests
 
         Assert.Equal(2, config.Tabs[0].Columns[0].Groups[0].Items.Count);
         // Written back, the file carries the current version.
-        Assert.Contains("\"schemaVersion\": 2", ConfigSerializer.Serialize(config));
+        Assert.Contains("\"schemaVersion\": 3", ConfigSerializer.Serialize(config));
+    }
+
+    [Fact]
+    public void Version_2_file_is_read()
+    {
+        var json = """
+            { "schemaVersion": 2, "tabs": [ { "name": "A", "columns": [ { "groups": [ { "name": "G", "color": "#22c55e", "items": [
+              { "kind": "folder", "path": "C:\\Work" }, { "kind": "url", "url": "https://example.com/" }
+            ] } ] } ] } ] }
+            """;
+
+        var config = ConfigSerializer.Deserialize(json);
+
+        Assert.Equal(
+            new[] { ItemKind.Folder, ItemKind.Url },
+            config.Tabs[0].Columns[0].Groups[0].Items.Select(item => item.Kind));
+        Assert.Contains("\"schemaVersion\": 3", ConfigSerializer.Serialize(config));
+    }
+
+    // ----- Separators -----
+
+    [Fact]
+    public void Separator_is_written_with_its_id_and_kind_only_and_read_back()
+    {
+        var original = TestConfigs.Minimal();
+        var group = new Group { Name = "G", Color = DefaultColor };
+        var separator = new Item { Kind = ItemKind.Separator };
+        group.Items.Add(new Item { Kind = ItemKind.Folder, Path = @"C:\Work" });
+        group.Items.Add(separator);
+        original.Tabs[0].Columns[0].Groups.Add(group);
+
+        var json = ConfigSerializer.Serialize(original);
+        var copy = ConfigSerializer.Deserialize(json);
+
+        using (var document = System.Text.Json.JsonDocument.Parse(json))
+        {
+            var written = document.RootElement.GetProperty("tabs")[0].GetProperty("columns")[0]
+                .GetProperty("groups")[0].GetProperty("items")[1];
+            Assert.Equal(new[] { "id", "kind" }, written.EnumerateObject().Select(property => property.Name));
+            Assert.Equal("separator", written.GetProperty("kind").GetString());
+        }
+
+        // The other items keep every property, null ones included.
+        Assert.Contains("\"url\": null", json);
+        var items = copy.Tabs[0].Columns[0].Groups[0].Items;
+        Assert.Equal(new[] { ItemKind.Folder, ItemKind.Separator }, items.Select(item => item.Kind));
+        Assert.Equal(separator.Id, items[1].Id);
+    }
+
+    [Fact]
+    public void Leading_trailing_and_consecutive_separators_are_kept()
+    {
+        var json = """
+            { "schemaVersion": 3, "tabs": [ { "name": "A", "columns": [ { "groups": [
+              { "name": "G", "color": "#22c55e", "items": [
+                { "kind": "separator" }, { "kind": "folder", "path": "C:\\Work" }, { "kind": "separator" }, { "kind": "separator" } ] },
+              { "name": "Only lines", "color": "#22c55e", "items": [ { "kind": "separator" } ] }
+            ] } ] } ] }
+            """;
+
+        var groups = ConfigSerializer.Deserialize(json).Tabs[0].Columns[0].Groups;
+
+        Assert.Equal(
+            new[] { ItemKind.Separator, ItemKind.Folder, ItemKind.Separator, ItemKind.Separator },
+            groups[0].Items.Select(item => item.Kind));
+        Assert.Equal(ItemKind.Separator, Assert.Single(groups[1].Items).Kind);
+    }
+
+    [Fact]
+    public void Name_path_special_and_url_of_a_separator_are_dropped()
+    {
+        var json = """
+            { "schemaVersion": 3, "tabs": [ { "name": "A", "columns": [ { "groups": [ { "name": "G", "color": "#22c55e", "items": [
+              { "kind": "separator", "name": "Line", "path": "C:\\Work", "special": "desktop", "url": "https://example.com/" }
+            ] } ] } ] } ] }
+            """;
+
+        var separator = Assert.Single(ConfigSerializer.Deserialize(json).Tabs[0].Columns[0].Groups[0].Items);
+
+        Assert.Equal(ItemKind.Separator, separator.Kind);
+        Assert.Null(separator.Name);
+        Assert.Null(separator.Path);
+        Assert.Null(separator.Special);
+        Assert.Null(separator.Url);
     }
 
     [Fact]
@@ -321,9 +405,29 @@ public class ConfigSerializerTests
         Assert.Equal(ConfigSerializer.CurrentSchemaVersion, new AppConfig().SchemaVersion);
 
     [Theory]
+    [InlineData("file:///C:/wiki/index.html")]
+    [InlineData("file://server/share/index.html")]
+    [InlineData("ftp://example.com/pub")]
+    public void File_and_ftp_url_items_are_kept(string address)
+    {
+        var json = $$"""
+            { "schemaVersion": 2, "tabs": [ { "name": "A", "columns": [ { "groups": [ { "name": "G", "color": "#22c55e", "items": [
+              { "kind": "url", "url": "{{address}}" }
+            ] } ] } ] } ] }
+            """;
+
+        var items = ConfigSerializer.Deserialize(json).Tabs[0].Columns[0].Groups[0].Items;
+
+        Assert.Equal(address, Assert.Single(items).Url);
+    }
+
+    [Theory]
     [InlineData("""{ "kind": "url" }""")]
     [InlineData("""{ "kind": "url", "url": "javascript:x" }""")]
-    [InlineData("""{ "kind": "url", "url": "ftp://x" }""")]
+    [InlineData("""{ "kind": "url", "url": "gopher://x" }""")]
+    [InlineData("""{ "kind": "url", "url": "ftp://user:pw@x/" }""")]
+    [InlineData("""{ "kind": "url", "url": "file:C:/x.html" }""")]
+    [InlineData("""{ "kind": "url", "url": "C:/x.html" }""")]
     [InlineData("""{ "kind": "url", "url": "example.com" }""")]
     [InlineData("""{ "kind": "url", "url": "   " }""")]
     public void Url_item_without_valid_web_address_is_removed(string item)
@@ -448,7 +552,7 @@ public class ConfigSerializerTests
 
         Assert.Contains("\"checkForUpdatesAutomatically\": false", json);
         Assert.False(copy.Settings.CheckForUpdatesAutomatically);
-        Assert.Equal(2, copy.SchemaVersion);
+        Assert.Equal(3, copy.SchemaVersion);
     }
 
     [Fact]

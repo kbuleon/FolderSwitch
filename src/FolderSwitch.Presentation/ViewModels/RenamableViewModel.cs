@@ -26,6 +26,9 @@ public abstract partial class RenamableViewModel : ObservableObject
     /// <summary>The name as shown, which the rename box starts from.</summary>
     internal abstract string CurrentName { get; }
 
+    /// <summary>Whether it has a name to change: false for a separator.</summary>
+    internal virtual bool IsRenamable => true;
+
     /// <summary>Raises the change notifications of the displayed name once the model was renamed.</summary>
     internal abstract void NotifyRenamed();
 }

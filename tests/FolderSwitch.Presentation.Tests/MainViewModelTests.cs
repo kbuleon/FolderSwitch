@@ -1171,6 +1171,75 @@ public class MainViewModelTests
         Assert.Equal(1, h.Persistence.SaveCount);
     }
 
+    [Theory]
+    [InlineData("file:///C:/wiki/index.html", "index.html", @"C:\wiki\index.html")]
+    [InlineData("file://server/share/page.html", "page.html", @"\\server\share\page.html")]
+    [InlineData("ftp://www.a.fr/pub", "a.fr", "a.fr")]
+    public void AddUrl_accepts_file_and_ftp_addresses(string address, string name, string secondary)
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        var inbox = h.GroupVm("Inbox");
+        h.Prompts.UrlToAsk = address;
+
+        vm.AddUrl(inbox);
+
+        var stored = Assert.Single(h.Inbox.Items);
+        Assert.Equal(ItemKind.Url, stored.Kind);
+        Assert.Equal(address, stored.Url);
+        var item = Assert.Single(inbox.Items);
+        Assert.Equal(name, item.DisplayName);
+        Assert.Equal(secondary, item.SecondaryText);
+    }
+
+    [Fact]
+    public void AddUrl_tells_http_and_ftp_addresses_of_one_host_apart()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        var inbox = h.GroupVm("Inbox");
+
+        h.Prompts.UrlToAsk = "https://a.fr/";
+        vm.AddUrl(inbox);
+        h.Prompts.UrlToAsk = "ftp://a.fr/";
+        vm.AddUrl(inbox);
+
+        Assert.Equal(2, inbox.Items.Count);
+    }
+
+    [Fact]
+    public void File_and_ftp_sites_never_ask_for_a_favicon()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness(h =>
+        {
+            h.Favicons.Result = _ => @"C:\fav\a.fr.png";
+            h.Media.Items.Add(Site("file:///C:/wiki/index.html"));
+            h.Media.Items.Add(Site("file://server/share/page.html"));
+            h.Media.Items.Add(Site("ftp://a.fr/pub"));
+        });
+        Thread.Sleep(100);
+        ui.Pump();
+
+        Assert.Empty(h.Favicons.Fetches);
+        Assert.All(h.GroupVm("Media").Items, s => Assert.Null(s.FaviconPath));
+    }
+
+    [Fact]
+    public void AddCurrentUrl_accepts_a_local_page()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        var inbox = h.GroupVm("Inbox");
+        h.Prompts.AcceptsUrlPrefill = true;
+
+        vm.AddCurrentUrl(inbox, new BrowserPage("file:///C:/wiki/index.html", "Wiki"));
+
+        var item = Assert.Single(h.Inbox.Items);
+        Assert.Equal("file:///C:/wiki/index.html", item.Url);
+        Assert.Equal("Wiki", item.Name);
+    }
+
     [Fact]
     public void AddUrl_cancelled_adds_nothing()
     {

@@ -193,6 +193,15 @@ public sealed class AddMenuViewModel : ObservableObject, IDisposable
         }
     }
 
+    /// <summary>Adds a separator at the end of the group (never « already present »: a group may hold several).</summary>
+    public void AddSeparator()
+    {
+        if (!_disposed)
+        {
+            _main.AddSeparator(_group);
+        }
+    }
+
     /// <summary>Adds a special folder of <see cref="SpecialFolders"/>.</summary>
     public void AddSpecialFolder(SpecialFolderKey key)
     {

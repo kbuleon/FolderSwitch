@@ -9,7 +9,10 @@ using FolderSwitch.Core.Web;
 
 namespace FolderSwitch.Presentation.ViewModels;
 
-/// <summary>A folder or file shortcut, as shown in its group. A projection of its <see cref="Item"/>.</summary>
+/// <summary>
+/// A folder, file or site shortcut, as shown in its group, or a separator (<see cref="IsSeparator"/>): a line with no
+/// name, no icon and nothing to open. A projection of its <see cref="Item"/>.
+/// </summary>
 public sealed class ItemViewModel : RenamableViewModel
 {
     private readonly Func<string, string> _localize;
@@ -26,13 +29,18 @@ public sealed class ItemViewModel : RenamableViewModel
     /// <summary>The group the item is in.</summary>
     public GroupViewModel Group { get; internal set; }
 
-    /// <summary>The user's name, else the translated special folder name, else the last segment of the path.</summary>
+    /// <summary>The user's name, else the translated special folder name, else the last segment of the path; empty for a separator.</summary>
     public string DisplayName => ItemNaming.DisplayName(Model, _localize);
 
-    /// <summary>The greyed line under the name: the path, the readable form of a special folder, or the host of a site.</summary>
-    public string SecondaryText => Model.Special is { } special
-        ? StorageFormOf(special)
-        : IsUrl ? WebAddress.HostLabel(Model.Url ?? string.Empty) : Model.Path ?? string.Empty;
+    /// <summary>
+    /// The greyed line under the name: the path, the readable form of a special folder, or the host of a site (the local
+    /// path of a <c>file</c> address); empty for a separator.
+    /// </summary>
+    public string SecondaryText => IsSeparator
+        ? string.Empty
+        : Model.Special is { } special
+            ? StorageFormOf(special)
+            : IsUrl ? WebAddress.LocationLabel(Model.Url ?? string.Empty) : Model.Path ?? string.Empty;
 
     public bool IsFolder => Model.Kind == ItemKind.Folder;
 
@@ -40,12 +48,16 @@ public sealed class ItemViewModel : RenamableViewModel
 
     public bool IsUrl => Model.Kind == ItemKind.Url;
 
+    /// <summary>A separator: drawn as a line, moved and removed like an item, never renamed, given an icon or opened.</summary>
+    public bool IsSeparator => Model.IsSeparator;
+
     /// <summary>The address of a site (« Copy address »); <c>null</c> for anything else.</summary>
     public string? Url => IsUrl ? Model.Url : null;
 
     /// <summary>
     /// Whether a click does something in the current call context: a file or a site is not (a file dialog can only be
-    /// moved to a folder), unless the board is being customized. Kept up to date by <see cref="MainViewModel"/>.
+    /// moved to a folder), and a separator never is, unless the board is being customized. Kept up to date by
+    /// <see cref="MainViewModel"/>.
     /// </summary>
     public bool IsUsable
     {
@@ -68,6 +80,8 @@ public sealed class ItemViewModel : RenamableViewModel
     internal override Guid Id => Model.Id;
 
     internal override string CurrentName => DisplayName;
+
+    internal override bool IsRenamable => !IsSeparator;
 
     internal override void NotifyRenamed() => OnPropertyChanged(nameof(DisplayName));
 

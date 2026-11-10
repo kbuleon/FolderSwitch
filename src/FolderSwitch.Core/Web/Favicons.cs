@@ -9,7 +9,8 @@ namespace FolderSwitch.Core.Web;
 
 /// <summary>
 /// <see cref="IFavicons"/> over a <see cref="FaviconCache"/> and a <see cref="FaviconFetcher"/>. The icon is kept per
-/// host: two addresses of the same site share it.
+/// host: two addresses of the same site share it. Only <c>http</c> and <c>https</c> addresses have one: <c>file</c> and
+/// <c>ftp</c> addresses give <c>null</c> without touching the cache or the network.
 /// </summary>
 /// <param name="cache">Where the icons are kept.</param>
 /// <param name="fetcher">Retrieves an icon from the network.</param>
@@ -68,13 +69,14 @@ public sealed class Favicons(FaviconCache cache, FaviconFetcher fetcher, Action<
     private static bool TryHostOf(string url, out string address, out string host)
     {
         address = host = string.Empty;
-        if (!WebAddress.TryNormalize(url, out var normalized))
+        if (!WebAddress.TryNormalize(url, out var normalized) || WebAddress.WebHost(normalized) is not { } webHost)
         {
+            // Not a web page (file, ftp): no icon, and no request at all.
             return false;
         }
 
         address = normalized;
-        host = new Uri(normalized).IdnHost;
+        host = webHost;
         return true;
     }
 }

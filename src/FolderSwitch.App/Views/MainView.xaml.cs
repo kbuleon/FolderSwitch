@@ -229,10 +229,13 @@ public partial class MainView : UserControl
         }
     }
 
-    /// <summary>Opens the menu of <paramref name="item"/> under <paramref name="anchor"/> (a right-click, in normal use).</summary>
+    /// <summary>
+    /// Opens the menu of <paramref name="item"/> under <paramref name="anchor"/> (a right-click, in normal use); a
+    /// separator has none.
+    /// </summary>
     internal void OpenItemMenu(ItemViewModel item, FrameworkElement anchor)
     {
-        if (_viewModel is { IsCustomizing: false } viewModel && Texts is { } texts && !IsDialogOpen)
+        if (_viewModel is { IsCustomizing: false } viewModel && Texts is { } texts && !IsDialogOpen && !item.IsSeparator)
         {
             _flyout.Open(
                 new ItemMenu(viewModel, item, texts, () => CloseFlyout(), OpenInExplorer, i => ActivateItem(i, ctrl: true)),

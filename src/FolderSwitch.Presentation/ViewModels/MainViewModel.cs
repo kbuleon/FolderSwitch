@@ -277,12 +277,15 @@ public sealed partial class MainViewModel : ObservableObject
     /// Windows 11). The entry then does what Ctrl+click does.
     /// </summary>
     public bool CanOpenInNewTab(ItemViewModel item) =>
-        IsLive(item) && !IsCustomizing && _activator.CtrlOpensNewTab(item.Model.Kind, Context);
+        IsLive(item) && !IsCustomizing && !item.IsSeparator && _activator.CtrlOpensNewTab(item.Model.Kind, Context);
 
-    /// <summary>Runs one activation of <paramref name="item"/> (see <see cref="ActivateItemAsync"/>) and acts on its outcome.</summary>
+    /// <summary>
+    /// Runs one activation of <paramref name="item"/> (see <see cref="ActivateItemAsync"/>) and acts on its outcome. A
+    /// separator has nothing to open: it is ignored.
+    /// </summary>
     private async Task RunActivationAsync(ItemViewModel item, Func<Task<ActivationOutcome>> activate)
     {
-        if (!IsLive(item) || IsCustomizing || _activating)
+        if (!IsLive(item) || IsCustomizing || _activating || item.IsSeparator)
         {
             return;
         }
@@ -636,6 +639,20 @@ public sealed partial class MainViewModel : ObservableObject
     }
 
     /// <summary>
+    /// Adds a separator at the end of the group, from where it is dragged like an item. A group may hold any number of
+    /// them, anywhere.
+    /// </summary>
+    public void AddSeparator(GroupViewModel? group)
+    {
+        if (!IsCustomizing || !IsLive(group))
+        {
+            return;
+        }
+
+        AddItem(group, new Item { Kind = ItemKind.Separator });
+    }
+
+    /// <summary>
     /// The Add menu of a group, for the window FolderSwitch was called from. When that is a browser, the menu starts
     /// reading its page (see <see cref="AddMenuViewModel"/>); that read ends when the menu is disposed, when another
     /// menu is opened, and when the window hides, is called again, leaves Customize mode or is reloaded.
@@ -740,11 +757,14 @@ public sealed partial class MainViewModel : ObservableObject
 
     // ----- Customize mode: rename -----
 
-    /// <summary>Starts renaming a tab, a group or an item (double-click); it also becomes the selection.</summary>
+    /// <summary>
+    /// Starts renaming a tab, a group or an item (double-click); it also becomes the selection. A separator has no name:
+    /// nothing happens.
+    /// </summary>
     [RelayCommand(CanExecute = nameof(CanCustomize))]
     public void BeginRename(object? target)
     {
-        if (IsCustomizing && target is RenamableViewModel renamable && IsLive(renamable))
+        if (IsCustomizing && target is RenamableViewModel { IsRenamable: true } renamable && IsLive(renamable))
         {
             StartRename(renamable);
         }
@@ -793,7 +813,7 @@ public sealed partial class MainViewModel : ObservableObject
         }
     }
 
-    /// <summary>F2: renames the selected tab, group or item; without a selection, the tab shown.</summary>
+    /// <summary>F2: renames the selected tab, group or item; without a selection, the tab shown; nothing for a separator.</summary>
     [RelayCommand(CanExecute = nameof(CanCustomize))]
     public void RenameSelected() => BeginRename(Selected ?? _activeTab);
 
@@ -1061,7 +1081,10 @@ public sealed partial class MainViewModel : ObservableObject
     private IEnumerable<ItemViewModel> AllItems() =>
         Tabs.SelectMany(tab => tab.Columns).SelectMany(column => column.Groups).SelectMany(group => group.Items);
 
-    /// <summary>A folder is always usable; a file or a site is not from a file dialog, except in Customize mode.</summary>
+    /// <summary>
+    /// A folder is always usable; a file or a site is not from a file dialog, and a separator never is, except in
+    /// Customize mode.
+    /// </summary>
     private bool IsUsableNow(ItemViewModel item) => IsCustomizing || ActivationRouter.IsUsable(Context.Kind, item.Model.Kind);
 
     /// <summary>The context or the mode changed: every item notifies its new <see cref="ItemViewModel.IsUsable"/>.</summary>
@@ -1192,8 +1215,8 @@ public sealed partial class MainViewModel : ObservableObject
         _ui.Post(_ => work(), null);
     }
 
-    private static string? HostOf(string url) =>
-        Uri.TryCreate(url, UriKind.Absolute, out var uri) && !string.IsNullOrEmpty(uri.IdnHost) ? uri.IdnHost : null;
+    /// <summary>The host a favicon is looked up for; <c>null</c> for a <c>file</c> or <c>ftp</c> address, which has none.</summary>
+    private static string? HostOf(string url) => WebAddress.WebHost(url);
 
     private void StartRename(RenamableViewModel target)
     {

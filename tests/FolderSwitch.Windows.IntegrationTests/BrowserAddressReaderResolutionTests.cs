@@ -148,13 +148,109 @@ public sealed class BrowserAddressReaderResolutionTests
     [InlineData("edge://version", "edge://version/")]
     [InlineData("about:blank", "about:blank")]
     [InlineData("", "about:newtab")]
-    [InlineData("file:///C:/Users/", "file:///C:/Users/")]
+    [InlineData("gopher://example.org/", "gopher://example.org/")]
     [InlineData("deux mots", "http://localhost:5000/page")]
     public void Internal_page_or_text_that_is_not_an_address_gives_null(string address, string documentUrl)
     {
         var reading = new Reading(address, documentUrl, "Titre", "Titre - Google Chrome");
 
         Assert.Null(BrowserAddressReader.Resolve(reading, BrowserKind.Chrome, trustAddressAlone: true));
+    }
+
+    [Theory]
+    // Firefox and Chrome show the scheme; Chrome or Edge may show a bare path: the document confirms it.
+    [InlineData("file:///C:/wiki/index.html")]
+    [InlineData("C:/wiki/index.html")]
+    [InlineData(@"C:\wiki\index.html")]
+    public void Local_page_is_confirmed_by_its_document(string address)
+    {
+        var reading = new Reading(address, "file:///C:/wiki/index.html", "Wiki", "Wiki - Google Chrome");
+
+        var page = BrowserAddressReader.Resolve(reading, BrowserKind.Chrome, trustAddressAlone: false);
+
+        Assert.Equal(new("file:///C:/wiki/index.html", "Wiki"), page);
+    }
+
+    [Theory]
+    // The bar may show the path in another case than the document (a drive letter typed in lower case), or with the
+    // local host spelled out: Windows paths ignore case, and localhost is the local machine.
+    [InlineData("c:/WIKI/index.html")]
+    [InlineData("file:///c:/wiki/INDEX.html")]
+    [InlineData("file://localhost/C:/wiki/index.html")]
+    public void Local_page_is_confirmed_by_its_document_whatever_the_case(string address)
+    {
+        var reading = new Reading(address, "file:///C:/wiki/index.html", "Wiki", "Wiki - Google Chrome");
+
+        var page = BrowserAddressReader.Resolve(reading, BrowserKind.Chrome, trustAddressAlone: false);
+
+        Assert.Equal(new("file:///C:/wiki/index.html", "Wiki"), page);
+    }
+
+    [Fact]
+    public void Local_page_named_with_localhost_is_stored_without_it()
+    {
+        var reading = new Reading("file://localhost/C:/wiki/index.html", "file://localhost/C:/wiki/index.html", "Wiki", "Wiki - Mozilla Firefox");
+
+        var page = BrowserAddressReader.Resolve(reading, BrowserKind.Firefox, trustAddressAlone: false);
+
+        Assert.Equal(new("file:///C:/wiki/index.html", "Wiki"), page);
+    }
+
+    [Fact]
+    public void Local_page_with_spaces_is_encoded_from_firefox_decoded_address()
+    {
+        var reading = new Reading("file:///C:/My Dir/a b.html", "file:///C:/My%20Dir/a%20b.html", "A B", "A B - Mozilla Firefox");
+
+        var page = BrowserAddressReader.Resolve(reading, BrowserKind.Firefox, trustAddressAlone: false);
+
+        Assert.Equal(new("file:///C:/My%20Dir/a%20b.html", "A B"), page);
+    }
+
+    [Fact]
+    public void Network_local_page_is_confirmed_by_its_document_from_a_bare_unc_path()
+    {
+        var reading = new Reading(@"\\server\share\index.html", "file://server/share/index.html", "Wiki", "Wiki - Microsoft Edge");
+
+        var page = BrowserAddressReader.Resolve(reading, BrowserKind.Edge, trustAddressAlone: false);
+
+        Assert.Equal(new("file://server/share/index.html", "Wiki"), page);
+    }
+
+    [Fact]
+    public void Local_address_with_its_scheme_is_kept_alone_once_trusted()
+    {
+        var reading = new Reading("file:///C:/wiki/index.html", null, null, "Wiki - Google Chrome");
+
+        Assert.Equal(
+            new("file:///C:/wiki/index.html", "Wiki"),
+            BrowserAddressReader.Resolve(reading, BrowserKind.Chrome, trustAddressAlone: false));
+    }
+
+    [Fact]
+    public void Bare_local_path_without_a_document_gives_null()
+    {
+        // Without a document nothing tells a path from text being typed: it is never completed into an address.
+        var reading = new Reading("C:/wiki/index.html", null, null, "Wiki - Google Chrome");
+
+        Assert.Null(BrowserAddressReader.Resolve(reading, BrowserKind.Chrome, trustAddressAlone: true));
+    }
+
+    [Fact]
+    public void Bare_local_path_is_not_confirmed_by_a_web_document()
+    {
+        var reading = new Reading("C:/wiki/index.html", "http://localhost:5000/page", "Page", "Page - Google Chrome");
+
+        Assert.Null(BrowserAddressReader.Resolve(reading, BrowserKind.Chrome, trustAddressAlone: true));
+    }
+
+    [Fact]
+    public void Ftp_page_is_resolved()
+    {
+        var reading = new Reading("ftp://files.example.org/pub", "ftp://files.example.org/pub", "Index of /pub", "Index of /pub - Mozilla Firefox");
+
+        var page = BrowserAddressReader.Resolve(reading, BrowserKind.Firefox, trustAddressAlone: false);
+
+        Assert.Equal(new("ftp://files.example.org/pub", "Index of /pub"), page);
     }
 
     [Fact]

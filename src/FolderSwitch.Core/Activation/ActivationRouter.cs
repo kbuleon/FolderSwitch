@@ -55,10 +55,11 @@ public static class ActivationRouter
 
     /// <summary>
     /// Whether an item of <paramref name="kind"/> can be used from a call of <paramref name="ctx"/>: a file dialog can
-    /// only be moved to a folder, so a file or a site is greyed out there (spec 5.7). The view model applies the guard.
+    /// only be moved to a folder, so a file or a site is greyed out there (spec 5.7). A separator is never usable: it has
+    /// nothing to open (it is drawn as a line all the same, never greyed out). The view model applies the guard.
     /// </summary>
     public static bool IsUsable(CallContextKind ctx, ItemKind kind) =>
-        !(ctx == CallContextKind.FileDialog && (kind == ItemKind.File || kind == ItemKind.Url));
+        kind != ItemKind.Separator && !(ctx == CallContextKind.FileDialog && (kind == ItemKind.File || kind == ItemKind.Url));
 
     /// <summary>
     /// « Open in File Explorer » (the item's menu): a new Explorer window on the folder, whatever the calling context;

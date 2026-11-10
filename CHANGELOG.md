@@ -3,6 +3,11 @@ This file is maintained by the agent: one section per version, the newest first,
 
 ------
 
+## 1.11.0 — Separators, local and FTP addresses, update offer
+<sub>2026-11-10 · FOS-0016</sub>
+
+A group can hold separators: plain lines added from « Add ▾ » → « Separator » in Edit mode, moved and removed like items (across groups and tabs), with no name, icon or target, inert in normal use and left out of the item count; configuration schema 3 (version 1 and 2 files read as is; an older version refuses the file). Sites accept `file://` (a local page, `file:///C:/…/index.html`, or a share) and `ftp://` addresses besides `http` and `https`, typed or read from the browser; a click hands them to Windows; no favicon is fetched for them; a `file` address is named after its file and shows its Windows path. When the automatic check finds a new version, the « Install / Later » box opens instead of a notification, at once or as soon as no window or box of FolderSwitch is on screen (on top, without taking the keyboard; the shortcut brings an open box of FolderSwitch to the front); « Later » keeps the menu entry and asks no more during the session. `file://localhost/` addresses become `file:///`, and two `file` addresses are the same site whatever their case. The window always opens centered on the screen that holds the mouse cursor, the shortcut included. The notification icon's menu opens at the mouse pointer on every screen: on a screen left of or above the main one, it opened on the main screen (H.NotifyIcon reads the click position without its sign). Nine languages.
+
 ## 1.10.3 — Movable window, opens at the cursor
 <sub>2026-11-04 · FOS-0015</sub>
 

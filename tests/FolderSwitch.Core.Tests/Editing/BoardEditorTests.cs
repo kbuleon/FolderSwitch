@@ -641,6 +641,18 @@ public class BoardEditorTests
     }
 
     [Fact]
+    public void ContainsTarget_matches_same_ftp_and_file_address_but_not_another_scheme()
+    {
+        var group = new Group();
+        group.Items.Add(new Item { Kind = ItemKind.Url, Url = "https://example.com/" });
+        group.Items.Add(new Item { Kind = ItemKind.Url, Url = "file:///C:/wiki/index.html" });
+
+        Assert.False(BoardEditor.ContainsTarget(group, new Item { Kind = ItemKind.Url, Url = "ftp://example.com/" }));
+        Assert.True(BoardEditor.ContainsTarget(group, new Item { Kind = ItemKind.Url, Url = "file:///C:/wiki/index.html" }));
+        Assert.False(BoardEditor.ContainsTarget(group, new Item { Kind = ItemKind.Url, Url = "file:///C:/wiki/other.html" }));
+    }
+
+    [Fact]
     public void ContainsTarget_matches_same_site()
     {
         var group = new Group();
@@ -662,5 +674,85 @@ public class BoardEditorTests
         Assert.False(BoardEditor.ContainsTarget(group, FolderItem(@"E:\Clients")));
         Assert.False(BoardEditor.ContainsTarget(group, new Item { Special = SpecialFolderKey.Documents }));
         Assert.False(BoardEditor.ContainsTarget(new Group(), FolderItem(@"D:\Clients")));
+    }
+
+    // ----- Separators -----
+
+    private static Item Separator() => new() { Kind = ItemKind.Separator };
+
+    [Fact]
+    public void Separators_are_appended_anywhere_and_side_by_side()
+    {
+        var config = ConfigWithTabs("A");
+        var group = BoardEditor.AddGroup(config.Tabs[0].Columns[0], "G", Blue);
+
+        var leading = BoardEditor.AddItem(group, Separator());
+        var folder = BoardEditor.AddItem(group, FolderItem(@"D:\X"));
+        var first = BoardEditor.AddItem(group, Separator());
+        var second = BoardEditor.AddItem(group, Separator());
+
+        Assert.Equal(new[] { leading, folder, first, second }, group.Items);
+    }
+
+    [Fact]
+    public void ContainsTarget_never_matches_a_separator()
+    {
+        var group = new Group();
+        group.Items.Add(Separator());
+        group.Items.Add(FolderItem(@"D:\Clients"));
+
+        Assert.False(BoardEditor.ContainsTarget(group, Separator()));
+        Assert.False(BoardEditor.ContainsTarget(new Group { Items = [Separator()] }, Separator()));
+        Assert.False(BoardEditor.ContainsTarget(new Group { Items = [Separator()] }, new Item { Kind = ItemKind.Folder, Special = SpecialFolderKey.Desktop }));
+        Assert.False(BoardEditor.ContainsTarget(new Group { Items = [Separator()] }, new Item { Kind = ItemKind.Url, Url = "https://example.com/" }));
+        Assert.True(BoardEditor.ContainsTarget(group, FolderItem(@"D:\Clients")));
+    }
+
+    [Fact]
+    public void Separator_moves_within_its_group_across_groups_and_across_tabs()
+    {
+        var config = ConfigWithTabs("A", "B");
+        var source = BoardEditor.AddGroup(config.Tabs[0].Columns[0], "Source", Blue);
+        var other = BoardEditor.AddGroup(config.Tabs[0].Columns[1], "Other", Blue);
+        var away = BoardEditor.AddGroup(config.Tabs[1].Columns[0], "Away", Blue);
+        var a = BoardEditor.AddItem(source, FolderItem(@"D:\A"));
+        var b = BoardEditor.AddItem(source, FolderItem(@"D:\B"));
+        var separator = BoardEditor.AddItem(source, Separator());
+
+        Assert.True(BoardEditor.MoveItem(config, separator.Id, source.Id, 1).Ok);
+        Assert.Equal(new[] { a, separator, b }, source.Items);
+
+        Assert.True(BoardEditor.MoveItem(config, separator.Id, other.Id, 0).Ok);
+        Assert.Equal(new[] { a, b }, source.Items);
+        Assert.Same(separator, Assert.Single(other.Items));
+
+        Assert.True(BoardEditor.MoveItem(config, separator.Id, away.Id, 0).Ok);
+        Assert.Empty(other.Items);
+        Assert.Same(separator, Assert.Single(away.Items));
+    }
+
+    [Fact]
+    public void Separator_is_removed_like_an_item()
+    {
+        var config = ConfigWithTabs("A");
+        var group = BoardEditor.AddGroup(config.Tabs[0].Columns[0], "G", Blue);
+        var keep = BoardEditor.AddItem(group, Separator());
+        var drop = BoardEditor.AddItem(group, Separator());
+
+        Assert.True(BoardEditor.RemoveItem(config, drop.Id).Ok);
+
+        Assert.Same(keep, Assert.Single(group.Items));
+    }
+
+    [Fact]
+    public void Separator_cannot_be_renamed_nor_given_an_icon()
+    {
+        var config = ConfigWithTabs("A");
+        var group = BoardEditor.AddGroup(config.Tabs[0].Columns[0], "G", Blue);
+        var separator = BoardEditor.AddItem(group, Separator());
+
+        Assert.Equal(EditError.NotRenamable, BoardEditor.Rename(config, separator.Id, "Name").Error);
+        Assert.Equal(EditError.NotFound, BoardEditor.SetIcon(config, separator.Id, "💼", true).Error);
+        Assert.Null(separator.Name);
     }
 }

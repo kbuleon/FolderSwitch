@@ -45,6 +45,7 @@ internal static class TestConfigs
                                 new Item { Kind = ItemKind.Folder, Path = @"\\nas\partage", Name = "Partage NAS" },
                                 new Item { Kind = ItemKind.File, Path = @"C:\Docs\notes.txt" },
                                 new Item { Kind = ItemKind.Url, Url = "https://www.morningstar.fr/fr/funds", Name = "Morningstar" },
+                                new Item { Kind = ItemKind.Separator },
                             },
                         },
                     },

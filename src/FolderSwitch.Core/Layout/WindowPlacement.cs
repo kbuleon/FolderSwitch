@@ -42,21 +42,6 @@ public static class WindowPlacement
     }
 
     /// <summary>
-    /// Centers a window of <paramref name="size"/> on the point (<paramref name="x"/>, <paramref name="y"/>),
-    /// then shifts it the least possible on each axis so it lies fully inside <paramref name="workArea"/>
-    /// (size clamped first).
-    /// </summary>
-    public static RectD CenterOnPoint(SizeD size, double x, double y, RectD workArea)
-    {
-        var clamped = ClampToWorkArea(size, workArea);
-        return new RectD(
-            Fit(x - clamped.Width / 2, clamped.Width, workArea.X, workArea.Width),
-            Fit(y - clamped.Height / 2, clamped.Height, workArea.Y, workArea.Height),
-            clamped.Width,
-            clamped.Height);
-    }
-
-    /// <summary>
     /// Brings <paramref name="rect"/> fully inside <paramref name="workArea"/>: the size is clamped first,
     /// then the position is shifted the least possible on each axis.
     /// </summary>

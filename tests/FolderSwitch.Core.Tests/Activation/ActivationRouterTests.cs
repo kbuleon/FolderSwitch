@@ -128,6 +128,17 @@ public class ActivationRouterTests
     public void Every_kind_of_item_is_usable_from_a_browser(ItemKind kind) =>
         Assert.True(ActivationRouter.IsUsable(CallContextKind.Browser, kind));
 
+    [Theory]
+    [InlineData(CallContextKind.Explorer)]
+    [InlineData(CallContextKind.FileDialog)]
+    [InlineData(CallContextKind.Browser)]
+    [InlineData(CallContextKind.Other)]
+    public void A_separator_is_never_usable_nor_opened_in_a_new_tab(CallContextKind context)
+    {
+        Assert.False(ActivationRouter.IsUsable(context, ItemKind.Separator));
+        Assert.False(ActivationRouter.CtrlOpensNewTab(new CallContext(context, 1, @"C:\Work"), ItemKind.Separator, WindowsGeneration.Windows11));
+    }
+
     // Spec 5.3: other context, folder.
 
     [Theory]

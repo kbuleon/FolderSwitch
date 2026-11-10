@@ -13,4 +13,7 @@ public enum EditError
     ColumnNotEmpty,
     LastColumnCannotBeRemoved,
     InvalidIcon,
+
+    /// <summary>The object has no name to change: a separator.</summary>
+    NotRenamable,
 }

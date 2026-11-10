@@ -46,7 +46,7 @@ namespace FolderSwitch.Windows.Browsers;
 /// </para>
 /// <para>
 /// <b>Failures.</b> Nothing is thrown: a zero or closed window, a window that is not the browser's, a page that is not
-/// an <c>http</c> or <c>https</c> page, or any exception (a window closed during the read gives a
+/// an <c>http</c>, <c>https</c>, <c>ftp</c> or <c>file</c> page, or any exception (a window closed during the read gives a
 /// <see cref="COMException"/>) gives <c>null</c>.
 /// </para>
 /// </remarks>
@@ -154,15 +154,17 @@ public sealed class BrowserAddressReader : IBrowserAddressReader, IDisposable
     /// The page an attempt read, or <c>null</c>:
     /// <list type="number">
     /// <item>no address bar, or an empty one, gives <c>null</c>;</item>
-    /// <item>the web document whose address, scheme aside, is the bar's text (normalized, so that Firefox's decoded
+    /// <item>the document whose address, <c>http</c> or <c>https</c> scheme aside, is the bar's text (normalized, so that Firefox's decoded
     /// address and a root address without its <c>/</c> match) confirms the bar: its address is kept, complete and
-    /// encoded, where the bar of Chrome and Edge hides the scheme;</item>
+    /// encoded, where the bar of Chrome and Edge hides the scheme. A local page (<c>file:///C:/dir/page.html</c>) is
+    /// confirmed whether the bar shows it with its <c>file:///</c> prefix or as a bare path (<c>C:/dir/page.html</c>):
+    /// that form is only ever compared with a <c>file</c> document, never completed into an address;</item>
     /// <item>a bar that no document confirms (no document yet, an empty one, <c>about:blank</c> while the page loads,
     /// only a side panel's, text being typed) is completed by <see cref="WebAddress.TryNormalize"/>, which gives
     /// <c>https://</c> to text without a scheme. The confirming document may come at the next attempt: until
     /// <paramref name="trustAddressAlone"/>, such a bar gives <c>null</c>, except a bar with its scheme when a web
     /// document of another page is there (an address typed in full) or when the window title gives a title;</item>
-    /// <item>what is not an <c>http</c> or <c>https</c> address gives <c>null</c>.</item>
+    /// <item>what is not an <c>http</c>, <c>https</c>, <c>ftp</c> or <c>file</c> address gives <c>null</c>.</item>
     /// </list>
     /// The title is the name of the confirming document, or else the window title without the browser's suffix
     /// (<see cref="BrowserTitle.PageTitle"/>): Edge's window title says « … et N pages de plus » with several tabs.
@@ -185,7 +187,7 @@ public sealed class BrowserAddressReader : IBrowserAddressReader, IDisposable
             ? document.Name.Trim()
             : BrowserTitle.PageTitle(reading.WindowTitle, browser);
         if (document is null && !trustAddressAlone
-            && (!WebAddress.IsWebUrl(address) || (!reading.Documents.Any(d => WebAddress.IsWebUrl(d.Url)) && title is null)))
+            && (!WebAddress.IsSiteUrl(address) || (!reading.Documents.Any(d => WebAddress.IsSiteUrl(d.Url)) && title is null)))
         {
             return null;
         }
@@ -193,18 +195,25 @@ public sealed class BrowserAddressReader : IBrowserAddressReader, IDisposable
         return new BrowserPage(url, title);
     }
 
-    /// <summary>The web document that confirms the address bar, or <c>null</c>.</summary>
+    /// <summary>The document that confirms the address bar, or <c>null</c>.</summary>
     internal static PageDocument? MatchingDocument(Reading reading)
     {
         var address = reading.Address?.Trim();
         return string.IsNullOrEmpty(address)
             ? null
-            : reading.Documents.FirstOrDefault(d => WebAddress.IsWebUrl(d.Url) && SamePage(d.Url, address));
+            : reading.Documents.FirstOrDefault(d => WebAddress.IsSiteUrl(d.Url) && SamePage(d.Url, address));
     }
 
-    /// <summary>Whether both addresses, their <c>http</c> or <c>https</c> scheme removed, are the same once normalized.</summary>
+    /// <summary>
+    /// Whether both addresses are the same once normalized. For an <c>http</c> or <c>https</c> document the scheme of
+    /// either is ignored (the bar of Chrome and Edge hides it); any other document (<c>file</c>, <c>ftp</c>) is compared
+    /// with its scheme, the bar's bare Windows path (<c>C:/dir/page.html</c>, <c>\\server\share\page.html</c>) being
+    /// read as a <c>file</c> address.
+    /// </summary>
     private static bool SamePage(string documentUrl, string address) =>
-        WebAddress.SameSite("https://" + WithoutScheme(documentUrl), "https://" + WithoutScheme(address));
+        documentUrl.TrimStart().StartsWith("http", StringComparison.OrdinalIgnoreCase)
+            ? WebAddress.SameSite("https://" + WithoutScheme(documentUrl), "https://" + WithoutScheme(address))
+            : WebAddress.SameSite(documentUrl, AsFileAddress(address));
 
     private static string WithoutScheme(string address)
     {
@@ -217,6 +226,17 @@ public sealed class BrowserAddressReader : IBrowserAddressReader, IDisposable
         }
 
         return address;
+    }
+
+    /// <summary>The <c>file</c> address of a bare Windows path (drive or UNC), as a browser may show a local page; any other text as is.</summary>
+    private static string AsFileAddress(string address)
+    {
+        if (address.Length >= 3 && char.IsAsciiLetter(address[0]) && address[1] == ':' && address[2] is '/' or '\\')
+        {
+            return "file:///" + address.Replace('\\', '/');
+        }
+
+        return address.StartsWith(@"\\", StringComparison.Ordinal) ? "file:" + address.Replace('\\', '/') : address;
     }
 
     /// <summary>The time on the reader's clock since it was created.</summary>

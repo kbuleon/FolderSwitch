@@ -42,6 +42,30 @@ public class ActivationServiceTests
         Assert.Empty(_shell.Calls);
     }
 
+    // A separator has nothing to open.
+
+    [Fact]
+    public async Task Separator_is_never_resolved_checked_nor_launched()
+    {
+        var resolved = 0;
+        _resolver.ResolveFunc = _ =>
+        {
+            resolved++;
+            return @"C:\Work";
+        };
+        var separator = new Item { Kind = ItemKind.Separator };
+        var service = CreateService();
+
+        Assert.Equal(ActivationOutcome.TargetUnavailable, await service.ActivateAsync(separator, ExplorerContext, ctrl: false));
+        Assert.Equal(ActivationOutcome.TargetUnavailable, await service.ActivateAsync(separator, DialogContext, ctrl: true));
+        Assert.Equal(ActivationOutcome.TargetUnavailable, await service.OpenInExplorerAsync(separator));
+        Assert.False(service.CtrlOpensNewTab(ItemKind.Separator, ExplorerContext));
+
+        Assert.Equal(0, resolved);
+        Assert.Empty(_resolver.ExistsCalls);
+        AssertNothingCalled();
+    }
+
     // Resolution and existence check.
 
     [Fact]
@@ -390,6 +414,18 @@ public class ActivationServiceTests
         Assert.Empty(_dialog.Calls);
     }
 
+    [Theory]
+    [InlineData("file:///C:/wiki/index.html", "file:///C:/wiki/index.html")]
+    [InlineData("FILE://Server/share/a b.html", "file://server/share/a%20b.html")]
+    [InlineData("ftp://Files.example.com/pub", "ftp://files.example.com/pub")]
+    public async Task File_and_ftp_urls_are_handed_to_the_shell(string address, string expected)
+    {
+        var outcome = await CreateService().ActivateAsync(Url(address), OtherContext, ctrl: false);
+
+        Assert.Equal(ActivationOutcome.OpenedElsewhere, outcome);
+        Assert.Equal([expected], _shell.Calls);
+    }
+
     [Fact]
     public async Task Url_is_normalized_before_it_is_launched()
     {
@@ -400,9 +436,11 @@ public class ActivationServiceTests
     }
 
     [Theory]
-    [InlineData("ftp://x")]
+    [InlineData("gopher://x")]
     [InlineData("javascript:alert(1)")]
-    [InlineData("file:///C:/")]
+    [InlineData(@"C:\Windows
+otepad.exe")]
+    [InlineData("ftp://user:pass@x/")]
     [InlineData("")]
     [InlineData(null)]
     public async Task Url_item_with_invalid_address_is_unavailable(string? address)

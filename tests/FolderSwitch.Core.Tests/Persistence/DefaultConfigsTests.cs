@@ -104,7 +104,7 @@ public class DefaultConfigsTests
         var settings = new Settings();
         var appearance = new Appearance();
 
-        Assert.Equal(2, config.SchemaVersion);
+        Assert.Equal(3, config.SchemaVersion);
         Assert.Equal(settings.Language, config.Settings.Language);
         Assert.Equal(settings.Hotkey, config.Settings.Hotkey);
         Assert.Equal(settings.StartWithWindows, config.Settings.StartWithWindows);

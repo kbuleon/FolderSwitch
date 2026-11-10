@@ -33,6 +33,33 @@ public class UrlPromptViewModelTests
         Assert.False(vm.ShowsError);
     }
 
+    [Theory]
+    [InlineData("file:///C:/wiki/index.html")]
+    [InlineData("ftp://files.a.fr/pub")]
+    public void A_file_or_ftp_address_prefills_the_field_and_is_accepted(string address)
+    {
+        var vm = new UrlPromptViewModel(address);
+
+        Assert.Equal(address, vm.Text);
+        Assert.True(vm.CanAdd);
+
+        vm.Accept();
+
+        Assert.Equal(address, vm.Result);
+    }
+
+    [Theory]
+    [InlineData(@"C:\wiki\index.html")]
+    [InlineData("ftp://user:pass@a.fr/")]
+    [InlineData("file://user:pass@server/share/x.html")]
+    public void A_path_or_an_address_with_credentials_cannot_be_added(string text)
+    {
+        var vm = new UrlPromptViewModel(null) { Text = text };
+
+        Assert.False(vm.CanAdd);
+        Assert.True(vm.ShowsError);
+    }
+
     [Fact]
     public void An_address_without_a_scheme_is_completed_by_Accept()
     {
@@ -75,7 +102,7 @@ public class UrlPromptViewModelTests
         var changed = new List<string?>();
         vm.PropertyChanged += (_, e) => changed.Add(e.PropertyName);
 
-        vm.Text = "ftp://x";
+        vm.Text = "gopher://x";
 
         Assert.Contains(nameof(UrlPromptViewModel.CanAdd), changed);
         Assert.Contains(nameof(UrlPromptViewModel.ShowsError), changed);

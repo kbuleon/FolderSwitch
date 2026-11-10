@@ -33,17 +33,24 @@ internal sealed class PromptWindow : Window
     private readonly IPromptContent _view;
     private bool _answer;
 
-    public PromptWindow(PromptView view, Window? owner)
-        : this(view, view, owner)
+    /// <param name="view">The content.</param>
+    /// <param name="owner">The window it belongs to, when it is on screen.</param>
+    /// <param name="onTop">
+    /// Without an owner, the box is topmost and shown without being activated, so that it is not lost behind other
+    /// windows when Windows refuses the foreground to a background application; it does not take the keyboard focus
+    /// by itself (a click or the global shortcut gives it).
+    /// </param>
+    public PromptWindow(PromptView view, Window? owner, bool onTop = false)
+        : this(view, view, owner, onTop)
     {
     }
 
     public PromptWindow(UrlPromptView view, Window? owner)
-        : this(view, view, owner)
+        : this(view, view, owner, onTop: false)
     {
     }
 
-    private PromptWindow(UserControl content, IPromptContent view, Window? owner)
+    private PromptWindow(UserControl content, IPromptContent view, Window? owner, bool onTop)
     {
         ArgumentNullException.ThrowIfNull(content);
         ArgumentNullException.ThrowIfNull(view);
@@ -63,6 +70,8 @@ internal sealed class PromptWindow : Window
         else
         {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            Topmost = onTop;
+            ShowActivated = !onTop;
         }
 
         SetResourceReference(BackgroundProperty, ThemeKeys.Menu);
@@ -72,6 +81,15 @@ internal sealed class PromptWindow : Window
 
         view.Answered += OnAnswered;
         Loaded += (_, _) => view.FocusStart();
+
+        // A box shown without the focus is activated later (the shortcut, a click): the keyboard starts where it would.
+        Activated += (_, _) =>
+        {
+            if (!IsKeyboardFocusWithin)
+            {
+                view.FocusStart();
+            }
+        };
     }
 
     /// <summary>Shows the box until it is answered: true for « Yes », false for anything else.</summary>

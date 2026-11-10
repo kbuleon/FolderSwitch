@@ -12,11 +12,7 @@ namespace FolderSwitch.App.Startup;
 
 /// <summary>What the last check found, for the notification area.</summary>
 /// <param name="Version">The version that can be installed, as shown to the user; <c>null</c> when FolderSwitch is up to date.</param>
-/// <param name="Notify">
-/// Whether the notification area should announce it with a balloon: the user was not told about this version or a newer
-/// one yet, and the check was not one they asked for.
-/// </param>
-internal sealed record UpdateAvailability(string? Version, bool Notify);
+internal sealed record UpdateAvailability(string? Version);
 
 /// <summary>
 /// Looks for a new version in the GitHub releases of the repository (<see cref="UpdateFeed.Url"/>) with Velopack, and
@@ -31,10 +27,16 @@ internal sealed record UpdateAvailability(string? Version, bool Notify);
 /// </para>
 /// <para>
 /// What a check finds is published (<see cref="UpdateAvailabilityChanged"/>): the menu entry of the notification area
-/// follows the last check, and a balloon announces a version once per session, then again only when a newer one comes
-/// out (<see cref="UpdateAnnouncements{TVersion}"/>). The entry opens the offer (<see cref="OfferAnnouncedAsync"/>).
-/// Failures of the periodic check are logged, never shown; the user is told about those of what they asked for (the
-/// check of the settings, the installation).
+/// follows the last check, at once. When the periodic check finds a version whose box did not open yet in this session
+/// (<see cref="UpdateAnnouncements{TVersion}"/>), the « Install / Later » box opens by itself, but only while FolderSwitch
+/// is not in use: no window, box or picker of it on screen (the <c>isInUse</c> test given to <see cref="TryCreate"/>).
+/// Otherwise the offer is postponed: it is tried again every <see cref="PostponeRetryDelay"/>, with the update already
+/// found (GitHub is not asked again), until FolderSwitch is left alone. That box has no owner: it opens on top of the
+/// other windows without taking the keyboard focus (see <see cref="UserPrompts.OfferUpdate"/>), which the shortcut gives
+/// it. A box opens once per version: « Later » keeps the entry in the menu, and only a newer version opens a box again;
+/// the box opened from the entry (<see cref="OfferAnnouncedAsync"/>) or by the check of the settings counts too, and
+/// drops a postponed offer of that version. Failures of the periodic check are logged, never shown; the user is told
+/// about those of what they asked for (the check of the settings) and of the installation, whoever started it.
 /// </para>
 /// <para>
 /// To install, the package is downloaded (progress in the log, <see cref="DownloadingChanged"/> for the menu entry),
@@ -43,8 +45,9 @@ internal sealed record UpdateAvailability(string? Version, bool Notify);
 /// exit would not do.
 /// </para>
 /// <para>
-/// UI thread only; one operation at a time (<see cref="IsBusy"/>): a request made meanwhile is ignored, and the
-/// interface says so (the settings button is disabled, the menu entry shows the download).
+/// UI thread only; one operation at a time (<see cref="IsBusy"/>: a check, an open box, a download; not a postponed
+/// offer, which waits without holding anything): a request made meanwhile is ignored, and the interface says so (the
+/// settings button is disabled, the menu entry shows the download).
 /// </para>
 /// </remarks>
 internal sealed class UpdateChecker : IDisposable
@@ -58,6 +61,9 @@ internal sealed class UpdateChecker : IDisposable
     /// <summary>A periodic check that finds an operation of the user running tries again after this.</summary>
     private static readonly TimeSpan BusyRetryDelay = TimeSpan.FromMinutes(5);
 
+    /// <summary>A postponed offer (FolderSwitch was in use) is tried again this often, until its box can open.</summary>
+    internal static readonly TimeSpan PostponeRetryDelay = TimeSpan.FromMinutes(1);
+
     /// <summary>A check that takes longer fails (the package download has its own, longer, limit in Velopack).</summary>
     private static readonly TimeSpan CheckTimeout = TimeSpan.FromSeconds(60);
 
@@ -67,20 +73,28 @@ internal sealed class UpdateChecker : IDisposable
     private readonly UpdateManager _manager;
     private readonly UserPrompts _prompts;
     private readonly Action _quit;
+    private readonly Func<bool> _isInUse;
     private readonly DispatcherTimer _timer;
+
+    /// <summary>Runs while an offer is postponed (<see cref="UpdateAnnouncements{TVersion}.Pending"/>).</summary>
+    private readonly DispatcherTimer _retry;
+
     private readonly CancellationTokenSource _cancellation = new();
     private readonly UpdateAnnouncements<SemanticVersion> _announcements = new();
     private UpdateInfo? _found;
     private bool _busy;
     private bool _disposed;
 
-    private UpdateChecker(UpdateManager manager, UserPrompts prompts, Action quit)
+    private UpdateChecker(UpdateManager manager, UserPrompts prompts, Action quit, Func<bool> isInUse)
     {
         _manager = manager;
         _prompts = prompts;
         _quit = quit;
+        _isInUse = isInUse;
         _timer = new DispatcherTimer(DispatcherPriority.Background) { Interval = FirstCheckDelay };
         _timer.Tick += OnTimerTick;
+        _retry = new DispatcherTimer(DispatcherPriority.Background) { Interval = PostponeRetryDelay };
+        _retry.Tick += OnRetryTick;
     }
 
     /// <summary>A check (periodic or asked for) found an update, or found none any more; raised on the UI thread.</summary>
@@ -103,11 +117,16 @@ internal sealed class UpdateChecker : IDisposable
     /// <param name="selfTest">A self-test never looks for updates.</param>
     /// <param name="prompts">Where the user is asked and told.</param>
     /// <param name="quit">Ends the application, once an update is ready to be applied.</param>
-    public static UpdateChecker? TryCreate(string feedUrl, bool selfTest, UserPrompts prompts, Action quit)
+    /// <param name="isInUse">
+    /// Whether FolderSwitch is in use (a window, a box, a picker or the notification menu of it on screen): the box of
+    /// the periodic check waits meanwhile.
+    /// </param>
+    public static UpdateChecker? TryCreate(string feedUrl, bool selfTest, UserPrompts prompts, Action quit, Func<bool> isInUse)
     {
         ArgumentNullException.ThrowIfNull(feedUrl);
         ArgumentNullException.ThrowIfNull(prompts);
         ArgumentNullException.ThrowIfNull(quit);
+        ArgumentNullException.ThrowIfNull(isInUse);
 
         if (selfTest)
         {
@@ -139,7 +158,7 @@ internal sealed class UpdateChecker : IDisposable
             DebugLog.Info($"Updates: GitHub releases of {source.RepoUri.AbsolutePath.Trim('/')}");
             DebugLog.Info(FormattableString.Invariant(
                 $"Updates: version {manager.CurrentVersion}, first check in {FirstCheckDelay.TotalMinutes:F0} min, then every {CheckInterval.TotalHours:F0} h"));
-            return new UpdateChecker(manager, prompts, quit);
+            return new UpdateChecker(manager, prompts, quit, isInUse);
         }
         catch (Exception e) when (!ExceptionPolicy.IsCritical(e))
         {
@@ -150,8 +169,9 @@ internal sealed class UpdateChecker : IDisposable
 
     /// <summary>
     /// Turns the periodic check on (the first one comes after <see cref="FirstCheckDelay"/>) or off, following the
-    /// setting. Asking for the state it is in already does nothing; turning it off stops the timer only: a check or a
-    /// download that is running ends normally, and the update already found stays offered.
+    /// setting. Asking for the state it is in already does nothing; turning it off stops the timers only: a check or a
+    /// download that is running ends normally, and the update already found stays offered in the menu, but a postponed
+    /// box no longer opens by itself.
     /// </summary>
     public void SetAutomatic(bool enabled)
     {
@@ -168,6 +188,8 @@ internal sealed class UpdateChecker : IDisposable
         else
         {
             _timer.Stop();
+            _retry.Stop();
+            _announcements.Drop();
         }
 
         DebugLog.Info(enabled ? "Updates: automatic check on" : "Updates: automatic check off");
@@ -208,7 +230,7 @@ internal sealed class UpdateChecker : IDisposable
                 return;
             }
 
-            Publish(update, notify: false);
+            Publish(update, periodic: false);
             if (update is null)
             {
                 _prompts.ShowInfo("Update.UpToDate");
@@ -229,9 +251,10 @@ internal sealed class UpdateChecker : IDisposable
     }
 
     /// <summary>
-    /// Offers the update found by the last check (menu entry or notification): « Install » downloads it and restarts
-    /// FolderSwitch, « Later » leaves the entry in the menu. Does nothing while another operation is running. A
-    /// critical exception is let through (see <see cref="ExceptionPolicy"/>); the others are logged.
+    /// Offers the update found by the last check (the menu entry): « Install » downloads it and restarts FolderSwitch,
+    /// « Later » leaves the entry in the menu; either way a postponed box of that version no longer opens by itself.
+    /// Does nothing while another operation is running. A critical exception is let through (see
+    /// <see cref="ExceptionPolicy"/>); the others are logged.
     /// </summary>
     public async Task OfferAnnouncedAsync()
     {
@@ -255,7 +278,7 @@ internal sealed class UpdateChecker : IDisposable
         }
     }
 
-    /// <summary>Stops the periodic check and any download in progress. Idempotent.</summary>
+    /// <summary>Stops the periodic check, a postponed offer and any download in progress. Idempotent.</summary>
     public void Dispose()
     {
         if (_disposed)
@@ -266,6 +289,8 @@ internal sealed class UpdateChecker : IDisposable
         _disposed = true;
         _timer.Stop();
         _timer.Tick -= OnTimerTick;
+        _retry.Stop();
+        _retry.Tick -= OnRetryTick;
         _cancellation.Cancel();
         _cancellation.Dispose();
     }
@@ -286,15 +311,93 @@ internal sealed class UpdateChecker : IDisposable
 
         // From now on every 24 hours (the first interval was the short one).
         _timer.Interval = CheckInterval;
+        var waiting = false;
         SetBusy(true);
         try
         {
-            Publish(await FindAsync(), notify: true);
+            var update = await FindAsync();
+            if (_disposed)
+            {
+                return;
+            }
+
+            waiting = Publish(update, periodic: true);
         }
         catch (Exception exception) when (!ExceptionPolicy.IsCritical(exception))
         {
-            // Never shown: the next check is in 24 hours, and the user did not ask for this one.
+            // Never shown: the next check is in 24 hours, and the user did not ask for this one (the failure of an
+            // installation is shown by OfferAsync).
             DebugLog.Warn("Updates: the periodic check failed", exception);
+        }
+        finally
+        {
+            SetBusy(false);
+        }
+
+        // Out of the check's busy state: a postponed offer holds nothing while it waits.
+        if (waiting)
+        {
+            await OfferPendingAsync();
+        }
+    }
+
+    /// <summary>A postponed offer tries again: its box opens if FolderSwitch is no longer in use.</summary>
+    private async void OnRetryTick(object? sender, EventArgs e)
+    {
+        if (_disposed)
+        {
+            return;
+        }
+
+        await OfferPendingAsync();
+    }
+
+    /// <summary>
+    /// Opens the box of the version the periodic check found (<see cref="UpdateAnnouncements{TVersion}.Pending"/>) if
+    /// FolderSwitch is not in use and no other operation runs; otherwise postpones it (<see cref="_retry"/>). Nothing
+    /// waits any more once the box opened, whoever opened it. A critical exception is let through (see
+    /// <see cref="ExceptionPolicy"/>); the others are logged.
+    /// </summary>
+    private async Task OfferPendingAsync()
+    {
+        if (_disposed)
+        {
+            return;
+        }
+
+        switch (_announcements.Decide(_busy, _isInUse()))
+        {
+            case AutomaticOffer.None:
+                _retry.Stop();
+                return;
+            case AutomaticOffer.Postpone:
+                if (!_retry.IsEnabled)
+                {
+                    DebugLog.Info($"Updates: FolderSwitch is in use, the offer of version {_announcements.Pending} waits");
+                    _retry.Start();
+                }
+
+                return;
+        }
+
+        _retry.Stop();
+
+        // The update found must still be the one that waits (a later check may have found another, or none).
+        if (_found is not { } update || _announcements.Pending is not { } pending
+            || update.TargetFullRelease.Version.CompareTo(pending) != 0)
+        {
+            _announcements.Drop();
+            return;
+        }
+
+        SetBusy(true);
+        try
+        {
+            await OfferAsync(update, automatic: true);
+        }
+        catch (Exception e) when (!ExceptionPolicy.IsCritical(e))
+        {
+            DebugLog.Error("Updates: the automatic offer stopped on an error", e);
         }
         finally
         {
@@ -312,29 +415,49 @@ internal sealed class UpdateChecker : IDisposable
     }
 
     /// <summary>
-    /// Keeps what the check found as the update to offer (none: up to date) and tells the notification area. The
-    /// balloon is for a version that the user was not told about yet (<see cref="UpdateAnnouncements{TVersion}"/>).
+    /// Keeps what the check found as the update to offer (none: up to date, and no offer waits any more) and tells the
+    /// notification area at once.
     /// </summary>
-    private void Publish(UpdateInfo? update, bool notify)
+    /// <param name="periodic">
+    /// The periodic check found it: a version whose box did not open yet in this session waits for its box
+    /// (<see cref="UpdateAnnouncements{TVersion}.Hold"/>). The check of the settings offers what it found itself.
+    /// </param>
+    /// <returns>Whether a box waits for the version found (<see cref="OfferPendingAsync"/>).</returns>
+    private bool Publish(UpdateInfo? update, bool periodic)
     {
         _found = update;
         if (update is null)
         {
-            UpdateAvailabilityChanged?.Invoke(this, new UpdateAvailability(null, Notify: false));
-            return;
+            _announcements.Drop();
+            UpdateAvailabilityChanged?.Invoke(this, new UpdateAvailability(null));
+            return false;
         }
 
         var version = update.TargetFullRelease.Version;
-        var isNew = _announcements.TryAnnounce(version);
-        UpdateAvailabilityChanged?.Invoke(this, new UpdateAvailability(version.ToString(), notify && isNew));
+        var waiting = periodic && _announcements.Hold(version);
+        UpdateAvailabilityChanged?.Invoke(this, new UpdateAvailability(version.ToString()));
+        return waiting;
     }
 
-    private async Task OfferAsync(UpdateInfo update)
+    /// <summary>
+    /// Opens the « Install / Later » box of <paramref name="update"/>, which counts as its announcement
+    /// (<see cref="UpdateAnnouncements{TVersion}.TryAnnounce"/>), and installs it on « Install ».
+    /// </summary>
+    /// <param name="update">The update to offer.</param>
+    /// <param name="automatic">The periodic check made the offer, not the user: the box is shown on top, without an owner (see <see cref="UserPrompts.OfferUpdate"/>).</param>
+    private async Task OfferAsync(UpdateInfo update, bool automatic = false)
     {
         var version = update.TargetFullRelease.Version.ToString();
-        if (!_prompts.OfferUpdate(version))
+        _announcements.TryAnnounce(update.TargetFullRelease.Version);
+        if (!_prompts.OfferUpdate(version, automatic))
         {
             DebugLog.Info($"Updates: version {version} postponed by the user");
+            return;
+        }
+
+        // Released while the box was open (the Windows session ending): no download for a composition that is gone.
+        if (_disposed)
+        {
             return;
         }
 
@@ -363,9 +486,9 @@ internal sealed class UpdateChecker : IDisposable
         catch (Exception e) when (!ExceptionPolicy.IsCritical(e))
         {
             DebugLog.Error($"Updates: version {version} could not be installed", e);
-            DownloadingChanged?.Invoke(this, false);
             if (!_disposed)
             {
+                DownloadingChanged?.Invoke(this, false);
                 _prompts.ShowError("Update.InstallFailed");
             }
 

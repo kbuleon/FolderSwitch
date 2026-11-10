@@ -206,7 +206,7 @@ internal sealed class Composition : IDisposable
 
         // None (a null delegate: the settings button stays disabled) without a feed address, in a copy that was not
         // installed, and in a self-test.
-        _updates = UpdateChecker.TryCreate(UpdateFeed.Url, _options.SelfTest, prompts, _quit);
+        _updates = UpdateChecker.TryCreate(UpdateFeed.Url, _options.SelfTest, prompts, _quit, IsInUse);
 
         _hotkeyEditor = new HotkeyEditorViewModel(config.Settings.Hotkey, _hotkeys, Localizer, KeyNames.Instance);
         _settings = new SettingsViewModel(
@@ -643,10 +643,12 @@ internal sealed class Composition : IDisposable
     }
 
     /// <summary>
-    /// The shortcut, routed by <see cref="ShortcutRouting"/>: it shows the hidden window (centered on the mouse cursor),
-    /// hides the window in front, brings back to the front a window left behind another one (Customize mode) with that
-    /// window as the new calling window, and does nothing while one of FolderSwitch's own boxes is open. While the settings show their shortcut page it goes
-    /// to the shortcut editor's test zone instead, which says it was recognized when the combination shown is the one in
+    /// The shortcut, routed by <see cref="ShortcutRouting"/>: it shows the hidden window (centered on the work area of
+    /// the monitor that holds the mouse cursor), hides the window in front, brings back to the front a window left behind
+    /// another one (Customize mode) with that window as the new calling window, brings to the front, with the keyboard,
+    /// one of FolderSwitch's own boxes that is open (the update offer opened by itself among them), and does nothing
+    /// while a Windows picker of FolderSwitch's is open. While the settings show their shortcut page it goes to the
+    /// shortcut editor's test zone instead, which says it was recognized when the combination shown is the one in
     /// effect (see <see cref="HotkeyEditorViewModel.CanTest"/>).
     /// </summary>
     private void OnHotkeyTriggered(object? sender, EventArgs e)
@@ -661,15 +663,19 @@ internal sealed class Composition : IDisposable
             windowShown: shown,
             ownWindowInFront: shown && controller.IsInFront,
             hotkeyTestShown: shown && _window is { MainContent.IsHotkeyTestShown: true },
-            promptOpen: controller.IsPromptOpen);
+            promptOpen: controller.IsPromptOpen,
+            boxOpen: controller.IsBoxOpen);
 
         switch (action)
         {
             case ShortcutAction.TestZone:
                 _hotkeyEditor?.NotifyTriggered();
                 break;
+            case ShortcutAction.FrontBox:
+                controller.BringBoxToFront();
+                break;
             case ShortcutAction.Show:
-                controller.Open(ShowPlacement.OnCursor);
+                controller.Open();
                 break;
             case ShortcutAction.Hide:
                 controller.HideWindow();
@@ -680,8 +686,31 @@ internal sealed class Composition : IDisposable
         }
     }
 
-    /// <summary>The notification icon (a click, « Open ») or a second launch: the window opens centered on the screen.</summary>
-    private void OnOpenRequested(object? sender, EventArgs e) => _controller?.Open(ShowPlacement.OnScreen);
+    /// <summary>
+    /// Whether FolderSwitch is in use: a window of it on screen (the main window, a box), a box or a Windows picker open,
+    /// or the notification menu open. The update offer of the periodic check waits meanwhile (see
+    /// <see cref="UpdateChecker"/>).
+    /// </summary>
+    private bool IsInUse()
+    {
+        if (Prompts is { IsOpen: true } || _tray is { ContextMenu.IsOpen: true })
+        {
+            return true;
+        }
+
+        foreach (Window window in Application.Current.Windows)
+        {
+            if (window.IsVisible)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>The notification icon (a click, « Open ») or a second launch: the window opens centered on the work area of the monitor that holds the mouse cursor, as for the shortcut.</summary>
+    private void OnOpenRequested(object? sender, EventArgs e) => _controller?.Open();
 
     private void OnCustomizeRequested(object? sender, EventArgs e) => _controller?.ShowCustomize();
 
@@ -692,14 +721,13 @@ internal sealed class Composition : IDisposable
     }
 
     /// <summary>
-    /// A check found an update (the menu entry « Install update », and the notification when it is new to the user)
-    /// or found none any more (the entry goes).
+    /// A check found an update (the menu entry « Install update ») or found none any more (the entry goes).
     /// </summary>
     private void OnUpdateAvailabilityChanged(object? sender, UpdateAvailability availability)
     {
         if (availability.Version is { } version)
         {
-            _tray?.AnnounceUpdate(version, availability.Notify);
+            _tray?.AnnounceUpdate(version);
         }
         else
         {
@@ -722,7 +750,7 @@ internal sealed class Composition : IDisposable
     private void OnAutomaticUpdatesChanged(object? sender, bool enabled) => _updates?.SetAutomatic(enabled);
 
     /// <summary>
-    /// The menu entry or the notification of an update was clicked: the offer is made once the menu has closed (the
+    /// The menu entry of an update was clicked: the offer is made once the menu has closed (the
     /// offer is a modal box).
     /// </summary>
     private void OnInstallUpdateRequested(object? sender, EventArgs e) =>

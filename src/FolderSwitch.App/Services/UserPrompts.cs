@@ -19,7 +19,8 @@ namespace FolderSwitch.App.Services;
 /// (<see cref="PromptWindow"/>), folders and files in the Windows pickers (<see cref="OpenFolderDialog"/>,
 /// <see cref="OpenFileDialog"/>, <see cref="SaveFileDialog"/>). Each is owned by the main window while it is visible,
 /// so that the focus goes back to it when the box closes; with the window hidden (a message at startup) it has no
-/// owner.
+/// owner, nor has the update offer that FolderSwitch opens by itself (<see cref="OfferUpdate"/>). The global shortcut
+/// brings the box that is open forward (<see cref="OpenBox"/>).
 /// </summary>
 /// <remarks>
 /// UI thread only, except <see cref="ShowErrorLater"/>. Silent (a self-test): nothing is ever shown, every message is
@@ -34,6 +35,7 @@ internal sealed class UserPrompts : IUserPrompts
     private readonly Func<Window?> _owner;
     private readonly Dispatcher _dispatcher;
     private readonly bool _silent;
+    private readonly List<PromptWindow> _boxes = [];
     private int _open;
 
     /// <param name="owner">The main window, once it exists.</param>
@@ -55,6 +57,13 @@ internal sealed class UserPrompts : IUserPrompts
     /// </summary>
     public bool IsOpen => _open > 0;
 
+    /// <summary>
+    /// The box of FolderSwitch's own that answers now (the last one opened, when one opened another), a message box or
+    /// the web address window; <c>null</c> when none is open. A Windows picker is not one: it is not FolderSwitch's to
+    /// bring forward.
+    /// </summary>
+    public Window? OpenBox => _boxes.Count > 0 ? _boxes[^1] : null;
+
     public bool Confirm(string messageKey) => Run(() => Show(messageKey, PromptKind.Confirm));
 
     public void ShowError(string messageKey) => Run(() => Show(messageKey, PromptKind.Error));
@@ -70,11 +79,15 @@ internal sealed class UserPrompts : IUserPrompts
 
     /// <summary>
     /// Offers to install the update <paramref name="version"/>: true for « Install », false for « Later » (also the
-    /// default answer, and Escape).
+    /// default answer, and Escape). With <paramref name="automatic"/> (the periodic check, not the user, opens it, and
+    /// only while no window of FolderSwitch is on screen) the box has no owner, is topmost and does not take the focus:
+    /// a background application cannot be given the foreground by Windows, and the box would stay behind the other
+    /// windows; the shortcut gives it the keyboard (see <see cref="OpenBox"/>). Other boxes answer something the user
+    /// just did, so they keep the normal stacking.
     /// </summary>
-    public bool OfferUpdate(string version) =>
+    public bool OfferUpdate(string version, bool automatic = false) =>
         Run(() => Present("Update.Prompt", _localizer.Format("Update.Prompt", version), PromptKind.Update,
-            _localizer["Update.Install"], _localizer["Update.Later"]));
+            _localizer["Update.Install"], _localizer["Update.Later"], automatic));
 
     /// <summary>Shows an error once the current operation is over: callable in the middle of an edit, from any thread.</summary>
     public void ShowErrorLater(string messageKey) =>
@@ -126,7 +139,7 @@ internal sealed class UserPrompts : IUserPrompts
 
         var viewModel = new UrlPromptViewModel(prefill ?? ReadClipboardText());
         var view = new UrlPromptView(viewModel, key => _localizer[key]);
-        return Run(() => new PromptWindow(view, VisibleOwner()).Ask()) ? viewModel.Result : null;
+        return Run(() => Ask(new PromptWindow(view, VisibleOwner()))) ? viewModel.Result : null;
     }
 
     /// <summary>The main window when it is on screen; otherwise no owner (a hidden owner would hide the box with it).</summary>
@@ -137,7 +150,12 @@ internal sealed class UserPrompts : IUserPrompts
 
     /// <param name="messageKey">What the log says when nothing is shown.</param>
     /// <param name="message">The text, already localized and formatted.</param>
-    private bool Present(string messageKey, string message, PromptKind kind, string? yesText = null, string? noText = null)
+    /// <param name="automatic">
+    /// Opened by FolderSwitch itself, not in answer to the user: never owned, topmost without focus (see
+    /// <see cref="PromptWindow"/>).
+    /// </param>
+    private bool Present(string messageKey, string message, PromptKind kind, string? yesText = null, string? noText = null,
+        bool automatic = false)
     {
         if (_silent)
         {
@@ -146,7 +164,21 @@ internal sealed class UserPrompts : IUserPrompts
         }
 
         var view = new PromptView(kind, message, key => _localizer[key], yesText, noText);
-        return new PromptWindow(view, VisibleOwner()).Ask();
+        return Ask(new PromptWindow(view, automatic ? null : VisibleOwner(), onTop: automatic));
+    }
+
+    /// <summary>Shows <paramref name="box"/> until it is answered, as <see cref="OpenBox"/> meanwhile.</summary>
+    private bool Ask(PromptWindow box)
+    {
+        _boxes.Add(box);
+        try
+        {
+            return box.Ask();
+        }
+        finally
+        {
+            _boxes.Remove(box);
+        }
     }
 
     /// <summary>The text on the clipboard; <c>null</c> when there is none or when the clipboard is busy.</summary>

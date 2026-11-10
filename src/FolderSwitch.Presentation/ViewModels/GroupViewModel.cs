@@ -50,8 +50,11 @@ public sealed class GroupViewModel : RenamableViewModel
 
     public bool IsCollapsed => Model.Collapsed;
 
-    /// <summary>Number of items, shown in the header while the group is collapsed.</summary>
-    public int Count => Items.Count;
+    /// <summary>
+    /// Number of items, shown in the header while the group is collapsed and in Customize mode; separators are not
+    /// counted.
+    /// </summary>
+    public int Count => Items.Count(item => !item.IsSeparator);
 
     public ObservableCollection<ItemViewModel> Items { get; }
 

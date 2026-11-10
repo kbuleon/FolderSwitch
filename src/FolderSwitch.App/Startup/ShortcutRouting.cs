@@ -7,8 +7,14 @@ namespace FolderSwitch.App.Startup;
 /// <summary>What a press of the global shortcut does.</summary>
 internal enum ShortcutAction
 {
-    /// <summary>Nothing: one of FolderSwitch's own boxes or pickers is open and must be answered first.</summary>
+    /// <summary>Nothing: a Windows picker of FolderSwitch's is open and must be answered first.</summary>
     None,
+
+    /// <summary>
+    /// One of FolderSwitch's own boxes is open (a message, the web address window, the update offer): it comes to the
+    /// front and takes the keyboard, wherever it was (behind another application, or shown without the focus).
+    /// </summary>
+    FrontBox,
 
     /// <summary>The window is hidden: it is shown for the calling window, in normal use.</summary>
     Show,
@@ -37,18 +43,29 @@ internal static class ShortcutRouting
     /// <param name="ownWindowInFront">The foreground window is one of FolderSwitch's (the main window, one of its menus).</param>
     /// <param name="hotkeyTestShown">The settings window shows its shortcut page, with its test zone.</param>
     /// <param name="promptOpen">One of FolderSwitch's own boxes or pickers is open.</param>
-    public static ShortcutAction Decide(bool windowShown, bool ownWindowInFront, bool hotkeyTestShown, bool promptOpen)
+    /// <param name="boxOpen">
+    /// One of FolderSwitch's own boxes is open (then <paramref name="promptOpen"/> too), with the main window shown or
+    /// not: the update offer opens with the window hidden.
+    /// </param>
+    public static ShortcutAction Decide(bool windowShown, bool ownWindowInFront, bool hotkeyTestShown, bool promptOpen,
+        bool boxOpen = false)
     {
+        // The test zone is for a press made while looking at it: a window left behind another one (the settings stay
+        // open when the focus goes elsewhere) is recalled instead.
+        if (windowShown && hotkeyTestShown && ownWindowInFront)
+        {
+            return ShortcutAction.TestZone;
+        }
+
+        // Modal, a box disables the main window: showing, hiding or recalling it would leave the box unanswered.
+        if (boxOpen)
+        {
+            return ShortcutAction.FrontBox;
+        }
+
         if (!windowShown)
         {
             return ShortcutAction.Show;
-        }
-
-        // The test zone is for a press made while looking at it: a window left behind another one (the settings stay
-        // open when the focus goes elsewhere) is recalled instead.
-        if (hotkeyTestShown && ownWindowInFront)
-        {
-            return ShortcutAction.TestZone;
         }
 
         if (promptOpen)

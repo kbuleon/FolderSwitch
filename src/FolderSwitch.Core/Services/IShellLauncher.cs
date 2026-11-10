@@ -17,7 +17,7 @@ public interface IShellLauncher
     /// <summary>Opens the web address in the default browser.</summary>
     /// <returns>
     /// <c>true</c> when the address was handed to the browser, or when the user declined a prompt of the shell;
-    /// <c>false</c> when the address is not an <c>http</c> or <c>https</c> one (nothing is launched), or when the shell
+    /// <c>false</c> when the address is not an <c>http</c>, <c>https</c>, <c>ftp</c> or <c>file</c> one (nothing is launched), or when the shell
     /// could not open it and has already told the user so, with its own message.
     /// </returns>
     bool OpenUrl(string url);

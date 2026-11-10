@@ -26,7 +26,7 @@ public sealed record SpecialFolderEntry(SpecialFolderKey Key, string Name, strin
 /// </summary>
 /// <remarks>
 /// <para>
-/// What adds at once (the current folder, a special folder) is carried out first, then the menu closes: the menu's view
+/// What adds at once (the current folder, a special folder, a separator) is carried out first, then the menu closes: the menu's view
 /// model holds what was read, and a disposed one does nothing.
 /// </para>
 /// <para>
@@ -128,6 +128,8 @@ public partial class AddMenu : UserControl, IDisposable
     private void OnFileClick(object sender, RoutedEventArgs e) => CloseThenAsk(_main.AddFile);
 
     private void OnUrlClick(object sender, RoutedEventArgs e) => CloseThenAsk(_main.AddUrl);
+
+    private void OnSeparatorClick(object sender, RoutedEventArgs e) => RunThenClose(_menu.AddSeparator);
 
     private void OnSpecialClick(object sender, RoutedEventArgs e)
     {

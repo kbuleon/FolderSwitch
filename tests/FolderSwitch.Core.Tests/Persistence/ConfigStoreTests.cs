@@ -138,7 +138,7 @@ public class ConfigStoreTests : IDisposable
     [Fact]
     public void Load_file_with_newer_schema_is_treated_as_invalid()
     {
-        const string newer = """{ "schemaVersion": 3, "tabs": [ { "name": "Future" } ] }""";
+        const string newer = """{ "schemaVersion": 4, "tabs": [ { "name": "Future" } ] }""";
         File.WriteAllText(ConfigPath, newer);
         WriteBackup("config-20261030-100000.json", ConfigSerializer.Serialize(TestConfigs.Minimal("Backup")));
 

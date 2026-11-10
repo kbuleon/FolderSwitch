@@ -30,7 +30,7 @@ public interface IUserPrompts
 
     /// <summary>
     /// Asks for a web address, the field starting with <paramref name="prefill"/>, or with the clipboard when it holds
-    /// one and nothing is given. The normalized <c>http</c> or <c>https</c> address; <c>null</c> when cancelled.
+    /// one and nothing is given. The normalized address (<c>http</c>, <c>https</c>, <c>ftp</c> or <c>file</c>); <c>null</c> when cancelled.
     /// </summary>
     string? AskUrl(string? prefill = null);
 }

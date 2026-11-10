@@ -11,8 +11,9 @@ namespace FolderSwitch.App.Views;
 
 /// <summary>
 /// The menu of a tab, a group or an item in Edit mode: rename it, as F2 does (<see cref="MainViewModel.BeginRename"/>);
-/// for a tab or a group, choose its icon (the icon picker, opened by the window). A choice closes the menu first; the
-/// picker opens once the menu is gone, in the same flyout.
+/// for a tab or a group, choose its icon (the icon picker, opened by the window). A separator has no name: its menu
+/// removes it instead (<see cref="MainViewModel.RemoveItem"/>). A choice closes the menu first; the picker opens once
+/// the menu is gone, in the same flyout.
 /// </summary>
 public partial class EditMenu : UserControl
 {
@@ -36,6 +37,10 @@ public partial class EditMenu : UserControl
         Texts = texts;
         InitializeComponent();
         IconEntry.Visibility = target is TabViewModel or GroupViewModel ? Visibility.Visible : Visibility.Collapsed;
+
+        var separator = target is ItemViewModel { IsSeparator: true };
+        RenameEntry.Visibility = separator ? Visibility.Collapsed : Visibility.Visible;
+        RemoveEntry.Visibility = separator ? Visibility.Visible : Visibility.Collapsed;
     }
 
     public ViewTexts Texts { get; }
@@ -44,6 +49,15 @@ public partial class EditMenu : UserControl
     {
         _close();
         _main.BeginRename(_target);
+    }
+
+    private void OnRemoveClick(object sender, RoutedEventArgs e)
+    {
+        _close();
+        if (_target is ItemViewModel item)
+        {
+            _main.RemoveItem(item);
+        }
     }
 
     private void OnIconClick(object sender, RoutedEventArgs e)

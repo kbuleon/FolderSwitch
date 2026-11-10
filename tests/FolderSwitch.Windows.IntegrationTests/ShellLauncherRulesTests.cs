@@ -66,12 +66,15 @@ public sealed class ShellLauncherRulesTests
 
     [Theory]
     [InlineData("javascript:alert(1)")]
-    [InlineData("file:///C:/Windows/notepad.exe")]
     [InlineData("mailto:a@b.c")]
-    [InlineData("ftp://example.com/")]
+    [InlineData("gopher://example.com/")]
+    [InlineData("file:C:/Windows/notepad.exe")]
+    [InlineData("C:/Windows/notepad.exe")]
+    [InlineData("ftp://user:pass@example.com/")]
+    [InlineData("file://user:pass@server/share/x.html")]
     [InlineData(@"C:\Windows\notepad.exe")]
     [InlineData("example.com")]
-    public void OpenUrl_refuses_what_is_not_a_web_address_and_launches_nothing(string url)
+    public void OpenUrl_refuses_what_is_not_a_site_address_and_launches_nothing(string url)
     {
         Assert.False(new ShellLauncher().OpenUrl(url));
     }

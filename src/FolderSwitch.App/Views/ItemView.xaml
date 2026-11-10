@@ -9,6 +9,9 @@
     the icon Windows gives the type of a file, the site's own icon, or the drawn file outline or globe until that one is
     known and when there is none. Click or Ctrl+click opens it. An item the calling window cannot use (a file or a site,
     from a file dialog) is faded, and its tooltip says why.
+    A separator is a thin line across the row instead, in the group's muted text color, never faded: 1 DIP with 3 DIPs
+    of room above and below (7 DIPs in all) in normal use, where it does nothing (no highlight, no menu, no tooltip);
+    16 DIPs in Customize mode, so that it is easy to grab, to right-click and to remove.
     Customize mode: a click selects it (F2 renames it), a double-click on it renames it in place, a drag moves it
     within its group or to another group of the tab, and ✕ shows under the mouse to remove it.
 -->
@@ -28,6 +31,12 @@
                         <Setter Property="Opacity" Value="0.4" />
                         <Setter Property="Cursor" Value="Arrow" />
                     </DataTrigger>
+                    <!-- A separator (after the trigger above, which it overrides): never faded, no tooltip, a short row. -->
+                    <DataTrigger Binding="{Binding IsSeparator}" Value="True">
+                        <Setter Property="ToolTip" Value="{x:Null}" />
+                        <Setter Property="Opacity" Value="1" />
+                        <Setter Property="Padding" Value="8,3,8,3" />
+                    </DataTrigger>
                 </Style.Triggers>
             </Style>
         </ContentControl.Style>
@@ -36,7 +45,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <layout:ItemRowPanel Spacing="8">
+            <layout:ItemRowPanel Spacing="8" Visibility="{Binding IsSeparator, Converter={StaticResource Fs.InverseBoolToVisibility}}">
                 <Grid Width="16" Height="16">
                     <Viewbox Visibility="{Binding HasPicture, ElementName=Picture, Converter={StaticResource Fs.InverseBoolToVisibility}}">
                         <Canvas Width="24" Height="24">
@@ -63,17 +72,45 @@
                            TextTrimming="CharacterEllipsis" />
             </layout:ItemRowPanel>
 
+            <!-- A separator: the line, across the row, with 10 DIPs of room in Customize mode (the hit area). Shown to
+                 accessibility tools as a separator. -->
+            <Grid Visibility="{Binding IsSeparator, Converter={StaticResource Fs.BoolToVisibility}}">
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding DataContext.IsCustomizing, RelativeSource={RelativeSource AncestorType=local:MainView}}" Value="True">
+                                <Setter Property="MinHeight" Value="10" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <Separator Height="1"
+                           Margin="0"
+                           VerticalAlignment="Center"
+                           Focusable="False"
+                           Background="{DynamicResource Fs.Group.ItemMuted}"
+                           Opacity="0.5"
+                           SnapsToDevicePixels="True"
+                           AutomationProperties.Name="{Binding Texts[Item.Separator], RelativeSource={RelativeSource AncestorType=local:MainView}}">
+                    <Separator.Template>
+                        <ControlTemplate TargetType="Separator">
+                            <Border Background="{TemplateBinding Background}" />
+                        </ControlTemplate>
+                    </Separator.Template>
+                </Separator>
+            </Grid>
+
             <!-- Customize mode: ✕, shown under the mouse (its room is kept, so that nothing moves). -->
             <Button Grid.Column="1"
-                    Margin="6,-2,-4,-2"
                     Foreground="{DynamicResource Fs.Group.ItemMuted}"
                     Command="{Binding DataContext.RemoveItemCommand, RelativeSource={RelativeSource AncestorType=local:MainView}}"
-                    CommandParameter="{Binding}"
-                    ToolTip="{Binding Texts[Item.Remove], RelativeSource={RelativeSource AncestorType=local:MainView}}"
-                    AutomationProperties.Name="{Binding Texts[Item.Remove], RelativeSource={RelativeSource AncestorType=local:MainView}}">
+                    CommandParameter="{Binding}">
                 <Button.Style>
                     <Style TargetType="Button" BasedOn="{StaticResource Fs.RemoveButton}">
                         <Setter Property="Visibility" Value="Collapsed" />
+                        <Setter Property="Margin" Value="6,-2,-4,-2" />
+                        <Setter Property="ToolTip" Value="{Binding Texts[Item.Remove], RelativeSource={RelativeSource AncestorType=local:MainView}}" />
+                        <Setter Property="AutomationProperties.Name" Value="{Binding Texts[Item.Remove], RelativeSource={RelativeSource AncestorType=local:MainView}}" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding DataContext.IsCustomizing, RelativeSource={RelativeSource AncestorType=local:MainView}}" Value="True">
                                 <Setter Property="Visibility" Value="Hidden" />
@@ -85,6 +122,12 @@
                                 </MultiDataTrigger.Conditions>
                                 <Setter Property="Visibility" Value="Visible" />
                             </MultiDataTrigger>
+                            <!-- A separator's row is 10 DIPs high inside: the ✕ overflows it a little more. -->
+                            <DataTrigger Binding="{Binding IsSeparator}" Value="True">
+                                <Setter Property="Margin" Value="6,-4,-4,-4" />
+                                <Setter Property="ToolTip" Value="{Binding Texts[Item.RemoveSeparator], RelativeSource={RelativeSource AncestorType=local:MainView}}" />
+                                <Setter Property="AutomationProperties.Name" Value="{Binding Texts[Item.RemoveSeparator], RelativeSource={RelativeSource AncestorType=local:MainView}}" />
+                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Button.Style>

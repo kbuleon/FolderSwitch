@@ -18,7 +18,7 @@ public sealed partial class UrlPromptViewModel : ObservableObject
     /// <param name="initialText">The text to start with, <c>null</c> when none: it prefills the field only when it is a web address.</param>
     public UrlPromptViewModel(string? initialText)
     {
-        Text = WebAddress.IsWebUrl(initialText) ? initialText!.Trim() : string.Empty;
+        Text = WebAddress.IsSiteUrl(initialText) ? initialText!.Trim() : string.Empty;
     }
 
     /// <summary>What the field holds.</summary>

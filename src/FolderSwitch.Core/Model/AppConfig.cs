@@ -8,7 +8,7 @@ namespace FolderSwitch.Core.Model;
 public sealed class AppConfig
 {
     /// <summary>Format version of the file; kept equal to <c>ConfigSerializer.CurrentSchemaVersion</c>.</summary>
-    public int SchemaVersion { get; set; } = 2;
+    public int SchemaVersion { get; set; } = 3;
 
     public Settings Settings { get; set; } = new();
 

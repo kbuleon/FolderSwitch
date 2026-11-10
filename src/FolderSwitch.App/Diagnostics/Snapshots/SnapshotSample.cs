@@ -10,7 +10,7 @@ namespace FolderSwitch.App.Diagnostics.Snapshots;
 /// The configuration the snapshots are drawn with: the board of the mockups (tab « Travail », three columns: Projets,
 /// Clients / Personnel, Archives collapsed, Finance / Outils, Réseau collapsed; then « Maison » and « Admin »). Finance
 /// holds one item of each kind: a folder, two files of types Windows has icons for, a site whose favicon is in the
-/// snapshot's cache (<see cref="FaviconHost"/>) and one without. The tabs and groups have icons, except « Clients »
+/// snapshot's cache (<see cref="FaviconHost"/>) and one without, the files and the sites set apart by a separator. The tabs and groups have icons, except « Clients »
 /// (beside « Projets », which has one) and a few of the twelve tabs. Names, icons, paths and addresses are examples,
 /// in French like the mockups: they are the user's content, never translated.
 /// </summary>
@@ -56,6 +56,7 @@ internal static class SnapshotSample
                     Folder(@"D:\Finance\Relevés"),
                     File(@"D:\Finance\Budget 2026.xlsx"),
                     File(@"D:\Finance\Avis d'imposition 2025.pdf"),
+                    Separator(),
                     Site("https://" + FaviconHost + "/fr/", "Morningstar"),
                     Site("https://www.boursorama.com/bourse/"))),
             Column(
@@ -171,4 +172,6 @@ internal static class SnapshotSample
     private static Item Special(SpecialFolderKey key) => new() { Kind = ItemKind.Folder, Special = key };
 
     private static Item Site(string url, string? name = null) => new() { Kind = ItemKind.Url, Url = url, Name = name };
+
+    private static Item Separator() => new() { Kind = ItemKind.Separator };
 }

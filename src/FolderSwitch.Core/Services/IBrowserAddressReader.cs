@@ -22,8 +22,8 @@ public interface IBrowserAddressReader
     /// most; then the address bar is used alone. A pause in the attempts starts a new series.
     /// </remarks>
     /// <returns>
-    /// The page, or <c>null</c> when the address bar is not found, when its value is not an <c>http</c> or
-    /// <c>https</c> address (an internal page, text being typed), while the page document is awaited, when the
+    /// The page, or <c>null</c> when the address bar is not found, when its value is not an <c>http</c>,
+    /// <c>https</c>, <c>ftp</c> or <c>file</c> address (an internal page, text being typed), while the page document is awaited, when the
     /// window is gone, or on any failure.
     /// </returns>
     BrowserPage? TryRead(nint window, BrowserKind browser);

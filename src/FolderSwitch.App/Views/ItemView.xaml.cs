@@ -14,7 +14,9 @@ namespace FolderSwitch.App.Views;
 /// An item of a group, bound to an <see cref="ItemViewModel"/>. In normal use a click opens it and a right-click opens
 /// its menu (<see cref="ItemMenu"/>), unless the calling window cannot use it (<see cref="ItemViewModel.IsUsable"/>):
 /// then neither does anything, and only its tooltip shows. In Customize mode a click selects it, a double-click renames
-/// it and a drag moves it (<see cref="BoardDragDrop"/>).
+/// it and a drag moves it (<see cref="BoardDragDrop"/>). A separator is never usable in normal use, so it does nothing
+/// there; in Customize mode it is selected, dragged and given the Edit menu (which offers its removal) like an item,
+/// but a double-click does not rename it.
 /// </summary>
 public partial class ItemView : UserControl
 {
@@ -94,7 +96,8 @@ public partial class ItemView : UserControl
 
     private bool BeginRename()
     {
-        if (ViewModel is not { IsCustomizing: true } viewModel || DataContext is not ItemViewModel item)
+        // A separator has no name: its double-click stays an ordinary press (a drag may follow).
+        if (ViewModel is not { IsCustomizing: true } viewModel || DataContext is not ItemViewModel { IsSeparator: false } item)
         {
             return false;
         }

@@ -29,6 +29,12 @@ public class StringKeysTests
     public void Add_menu_keys_exist_in_english(string key) => AssertEnglishHas(key);
 
     [Theory]
+    [InlineData("AddMenu.Separator")]
+    [InlineData("Item.Separator")]
+    [InlineData("Item.RemoveSeparator")]
+    public void Separator_keys_exist_in_english(string key) => AssertEnglishHas(key);
+
+    [Theory]
     [InlineData("Key.Ctrl")]
     [InlineData("Key.Alt")]
     [InlineData("Key.Shift")]
@@ -56,7 +62,6 @@ public class StringKeysTests
     [InlineData("Setup.Updated")]
     [InlineData("Setup.OpenWith")]
     [InlineData("Tray.UpdateDownloading")]
-    [InlineData("Update.Available")]
     [InlineData("Update.Prompt")]
     [InlineData("Update.Install")]
     [InlineData("Update.Later")]

@@ -89,6 +89,20 @@ public class FaviconsTests : IDisposable
     }
 
     [Fact]
+    public async Task File_and_ftp_addresses_have_no_favicon_and_no_request()
+    {
+        var handler = new StubHttpHandler().OnBytes("https://a.fr/favicon.ico", Png);
+        var favicons = Create(handler);
+
+        Assert.Null(await favicons.FetchAsync("ftp://a.fr/pub", CancellationToken.None));
+        Assert.Null(await favicons.FetchAsync("file://a.fr/share/x.html", CancellationToken.None));
+        Assert.Null(favicons.CachedPath("ftp://a.fr/pub"));
+        Assert.Null(favicons.CachedPath("file:///C:/x.html"));
+        Assert.Empty(handler.Requests);
+        Assert.False(Directory.Exists(directory) && Directory.GetFiles(directory).Length > 0);
+    }
+
+    [Fact]
     public async Task An_address_that_is_not_a_web_address_gives_null_without_request()
     {
         var handler = new StubHttpHandler();

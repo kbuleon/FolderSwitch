@@ -8,7 +8,8 @@
     window shows, « Current folder » or « Current URL » with its path or address in grey (greyed out and checked when the
     group holds it already), and a separator, only when there is one; « Folder… » (the Windows folder picker),
     « Special folders ▸ », « File… » (the Windows file picker) and « URL… » (the address prompt), the first and the last
-    with a (?) whose tooltip tells how to get the first line; then, called from File Explorer, a file dialog or a
+    with a (?) whose tooltip tells how to get the first line; « Separator », which appends a line to the group at once
+    (dragged into place afterwards); then, called from File Explorer, a file dialog or a
     browser, a grey line that says so, which does nothing. « Special folders ▸ » shows the special folders in place of
     the menu, personal then system (one the group holds already greyed out and checked), under « ◂ », which comes back.
     Shown in a Flyout under the button; a choice closes it.
@@ -222,6 +223,18 @@
                     </Viewbox>
                 </Border>
             </Grid>
+
+            <!-- A separator, added at the end of the group (several are allowed: never greyed out). -->
+            <Button Style="{StaticResource Fs.MenuItemButton}" Click="OnSeparatorClick">
+                <DockPanel>
+                    <Viewbox Style="{StaticResource LineIcon}">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M3,12 H21" Stroke="{DynamicResource Fs.Accent}" StrokeThickness="2" StrokeStartLineCap="Round" StrokeEndLineCap="Round" />
+                        </Canvas>
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Texts[AddMenu.Separator], ElementName=Root}" TextTrimming="CharacterEllipsis" />
+                </DockPanel>
+            </Button>
 
             <!-- Where FolderSwitch was called from: a line that does nothing. -->
             <StackPanel Visibility="{Binding Footer, Converter={StaticResource Fs.NullToCollapsed}}">

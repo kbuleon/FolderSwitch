@@ -193,6 +193,10 @@ public static class BoardEditor
 
     // ----- Items -----
 
+    /// <summary>
+    /// Appends an item at the end of the group. A separator (<see cref="ItemKind.Separator"/>) is an item too: a group
+    /// may hold any number of them, anywhere, side by side included.
+    /// </summary>
     public static Item AddItem(Group g, Item item)
     {
         g.Items.Add(item);
@@ -225,7 +229,10 @@ public static class BoardEditor
 
     // ----- Rename -----
 
-    /// <summary>Renames a tab, a group or an item. The name is trimmed; a blank name is refused.</summary>
+    /// <summary>
+    /// Renames a tab, a group or an item. The name is trimmed; a blank name is refused, and so is a separator, which has
+    /// no name (<see cref="EditError.NotRenamable"/>).
+    /// </summary>
     public static EditResult Rename(AppConfig c, Guid id, string newName)
     {
         var name = newName?.Trim();
@@ -244,6 +251,11 @@ public static class BoardEditor
         }
         else if (FindItem(c, id) is { } item)
         {
+            if (item.Item.IsSeparator)
+            {
+                return Fail(EditError.NotRenamable);
+            }
+
             item.Item.Name = name;
         }
         else
@@ -291,6 +303,7 @@ public static class BoardEditor
     /// <summary>
     /// True when the group already holds the same target: same <see cref="Item.Special"/>, or same
     /// <see cref="Item.Path"/> ignoring case and a trailing backslash, or same web site (<see cref="WebAddress.SameSite"/>).
+    /// A separator has no target: it never matches, so a group may hold several.
     /// </summary>
     public static bool ContainsTarget(Group g, Item candidate)
     {
@@ -299,6 +312,11 @@ public static class BoardEditor
 
     private static bool SameTarget(Item a, Item b)
     {
+        if (a.IsSeparator || b.IsSeparator)
+        {
+            return false;
+        }
+
         if (a.Kind == ItemKind.Url || b.Kind == ItemKind.Url)
         {
             return a.Kind == b.Kind && a.Url is not null && b.Url is not null && WebAddress.SameSite(a.Url, b.Url);

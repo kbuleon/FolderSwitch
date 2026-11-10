@@ -61,4 +61,48 @@ public class ShortcutRoutingTests
     {
         Assert.Equal(ShortcutAction.Show, ShortcutRouting.Decide(false, ownWindowInFront: false, hotkeyTestShown: true, promptOpen: false));
     }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void A_box_open_with_the_window_hidden_comes_to_the_front_instead_of_the_window(bool ownWindowInFront)
+    {
+        // The update offer, opened by itself without the focus, or a message at startup: the press gives it the keyboard.
+        Assert.Equal(ShortcutAction.FrontBox,
+            ShortcutRouting.Decide(false, ownWindowInFront, hotkeyTestShown: false, promptOpen: true, boxOpen: true));
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void A_box_open_over_the_window_comes_to_the_front_rather_than_hiding_or_recalling(bool ownWindowInFront)
+    {
+        // In front, or left behind another application with the window it belongs to.
+        Assert.Equal(ShortcutAction.FrontBox,
+            ShortcutRouting.Decide(true, ownWindowInFront, hotkeyTestShown: false, promptOpen: true, boxOpen: true));
+    }
+
+    [Fact]
+    public void A_box_open_over_the_shortcut_page_behind_another_window_comes_to_the_front()
+    {
+        Assert.Equal(ShortcutAction.FrontBox,
+            ShortcutRouting.Decide(true, ownWindowInFront: false, hotkeyTestShown: true, promptOpen: true, boxOpen: true));
+    }
+
+    [Fact]
+    public void The_shortcut_page_in_front_keeps_the_press_for_its_test_zone_even_with_a_box_open()
+    {
+        Assert.Equal(ShortcutAction.TestZone,
+            ShortcutRouting.Decide(true, ownWindowInFront: true, hotkeyTestShown: true, promptOpen: true, boxOpen: true));
+    }
+
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void An_open_Windows_picker_is_not_brought_forward(bool ownWindowInFront)
+    {
+        // A picker is not one of FolderSwitch's boxes: the press does nothing until it is answered.
+        Assert.Equal(ShortcutAction.None,
+            ShortcutRouting.Decide(true, ownWindowInFront, hotkeyTestShown: false, promptOpen: true, boxOpen: false));
+    }
 }

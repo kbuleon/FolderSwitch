@@ -6,8 +6,8 @@
 <!--
     The resident main window: built once at startup, shown and hidden, never closed (closing hides it). Borderless, no
     system title bar: its content is MainView, whose own title bar moves the window when dragged. The window follows the
-    size of its content, within the work area of its screen (WindowController places it, on the mouse cursor or on the
-    screen depending on what showed it, keeps it inside the work area where it is dropped, and sets the bounds); it is
+    size of its content, within the work area of its screen (WindowController centers it on the work area of the monitor
+    that holds the mouse cursor, keeps it inside the work area where it is dropped, and sets the bounds); it is
     never maximized, snapped or resized by hand. The Desktop Window Manager rounds its corners on Windows 11 and gives it
     a shadow, while Windows 10 gets a 1 px border instead (see the code-behind).
     Keyboard: Tab / Shift+Tab change tab and never move the focus, Escape hides (spec 5.3); in Customize mode F2

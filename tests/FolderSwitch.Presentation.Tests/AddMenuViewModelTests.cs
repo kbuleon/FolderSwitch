@@ -498,6 +498,7 @@ public sealed class AddMenuViewModelTests
         menu.AddFile();
         menu.AddUrl();
         menu.AddSpecialFolder(SpecialFolderKey.Documents);
+        menu.AddSeparator();
 
         Assert.Empty(h.Inbox.Items);
         Assert.Equal(0, h.Persistence.SaveCount);
@@ -578,6 +579,43 @@ public sealed class AddMenuViewModelTests
     }
 
     // ----- Delegations -----
+
+    [Fact]
+    public void AddSeparator_appends_one_each_time_and_never_greys_out()
+    {
+        var h = new Harness();
+        Show(h, new CallContext(CallContextKind.Explorer, 1, Folder));
+
+        using (var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox")))
+        {
+            menu.AddSeparator();
+        }
+
+        using (var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox")))
+        {
+            // A group holding a separator does not hold the current folder.
+            Assert.False(menu.CurrentAlreadyPresent);
+            menu.AddSeparator();
+        }
+
+        Assert.Equal([ItemKind.Separator, ItemKind.Separator], h.Inbox.Items.Select(item => item.Kind));
+        Assert.Equal(2, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void Separators_never_make_a_special_folder_or_a_page_already_present()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness(h => h.Inbox.Items.Add(new Item { Kind = ItemKind.Separator }));
+        h.Browser.Responder = _ => new BrowserPage(PageUrl, "Docs");
+        Show(h, BrowserContext(BrowserKind.Firefox));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        ui.WaitUntil(() => menu.CurrentKind == AddMenuCurrent.Url);
+
+        Assert.False(menu.CurrentAlreadyPresent);
+        Assert.All(menu.SpecialFolders, state => Assert.False(state.AlreadyPresent));
+    }
 
     [Fact]
     public void AddFolder_AddFile_and_AddUrl_delegate_to_the_prompts()

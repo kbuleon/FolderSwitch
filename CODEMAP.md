@@ -35,11 +35,11 @@ The domain, with no dependency on Windows, WPF or packages.
 - `AppConfig` — root: schema version, settings, appearance, tabs.
 - `Settings` — language, shortcut, start with Windows, automatic update check, first-run flag, active tab id.
 - `Appearance` — mode, theme key, background per `theme:variant`, group corner radius.
-- `Tab`, `Column`, `Group`, `Item` — the board tree; ids are GUIDs; a column width is optional (automatic when absent); an item has a path, a special-folder key or a web address (`url`); a tab and a group have an emoji `Icon` and `IconChosen` (chosen by hand, or automatic).
+- `Tab`, `Column`, `Group`, `Item` — the board tree; ids are GUIDs; a column width is optional (automatic when absent); an item has a path, a special-folder key or a web address (`url`), or is a separator (a kind with no name, path or address); a tab and a group have an emoji `Icon` and `IconChosen` (chosen by hand, or automatic).
 - `Hotkey` — modifiers plus an optional virtual key (none: modifier-only).
 - `KeyModifiers` — flags Ctrl, Alt, Shift, Win.
-- `ItemKind` (folder, file, url), `ThemeMode`, `GroupRadius`, `SpecialFolderKey` — the enumerations of the model.
-- `ItemNaming` — the displayed name of an item: user name, else translated special-folder name, else the host of a site (without `www.`), else last path segment.
+- `ItemKind` (folder, file, url, separator), `ThemeMode`, `GroupRadius`, `SpecialFolderKey` — the enumerations of the model.
+- `ItemNaming` — the displayed name of an item: user name, else translated special-folder name, else the default name of a site (`WebAddress.DefaultName`: host without `www.`, the file name for a `file` address), else last path segment; none for a separator.
 
 ### Activation/ — what a click does
 
@@ -64,7 +64,7 @@ The domain, with no dependency on Windows, WPF or packages.
 - `IFileDialogNavigator` — move a file dialog to a folder.
 - `IItemActivator` — carries out a click on an item and « Open in File Explorer »; tells whether Ctrl+click opens a new tab.
 - `IPathResolver` — item to path, and existence check with timeout.
-- `IShellLauncher` — open a file, or a web address in the default browser, with the shell.
+- `IShellLauncher` — open a file, or a site address (`http`, `https`, `ftp`, `file`), with the shell.
 - `IBrowserAddressReader` — one bounded attempt to read the address and title of the page a browser window shows.
 - `IFavicons` — a site's favicon: the cached file (disk only) and the retrieval (network).
 - `IFileTypeIcons` — the small icon Windows gives a file extension, as pixels (`IconPixels`).
@@ -96,7 +96,7 @@ The domain, with no dependency on Windows, WPF or packages.
 ### Layout/
 
 - `ColumnWidths` — column width limits (150–520, step 10) and the automatic width rule.
-- `WindowPlacement` — centering on a work area or on a point (the cursor), re-anchoring (keep top edge and horizontal centre), fitting a dropped window back inside and clamping to a work area, in DIPs.
+- `WindowPlacement` — centering on a work area, re-anchoring (keep top edge and horizontal centre), fitting a dropped window back inside and clamping to a work area, in DIPs.
 - `SizeD`, `RectD` — size and rectangle in DIPs.
 
 ### Editing/
@@ -106,7 +106,7 @@ The domain, with no dependency on Windows, WPF or packages.
 
 ### Persistence/
 
-- `ConfigSerializer` — JSON read and write; strict structure, tolerant content (normalisation, an `url` item without a valid web address dropped, an icon that is not an emoji dropped); schema version check (current: 2, version 1 read as is); the `icon` property written as is, not escaped.
+- `ConfigSerializer` — JSON read and write; strict structure, tolerant content (normalisation, an `url` item without a valid site address dropped, a separator stripped of any name or target, an icon that is not an emoji dropped); schema version check (current: 3, versions 1 and 2 read as is; a separator is written with `id` and `kind` only); the `icon` property written as is, not escaped.
 - `ConfigStore` — `config.json` in `%APPDATA%\FolderSwitch`: atomic, flushed save, load with repair, rolling backups, atomic export, import.
 - `LoadResult`, `LoadOutcome` — how a load ended (loaded, created, restored from backup, reset).
 - `DefaultConfigs`, `StartContent` — the first-run configuration (sample tab or empty tab); its names are given their automatic icons.
@@ -133,7 +133,7 @@ The domain, with no dependency on Windows, WPF or packages.
 
 ### Web/ — web sites, pure (no Windows, no WPF)
 
-- `WebAddress` — validation and normalisation of an `http` or `https` address (`https://` added when there is no scheme), host label without `www.`, same-site comparison.
+- `WebAddress` — validation and normalisation of an `http`, `https`, `ftp` or `file` address (`https://` added when there is no scheme; credentials refused), `IsSiteUrl`, `WebHost` (`http`/`https` only: the favicon's host), host label without `www.`, `DefaultName`, `LocationLabel` (host, or the Windows path of a `file` address), same-site comparison.
 - `BrowserPage` — the address and title read from a browser window.
 - `BrowserTitle` — the page title out of a browser's window title (suffix, private-window and profile marks removed).
 - `FaviconFetcher` — retrieves a favicon over an `HttpMessageHandler`: the page, the icons it declares, then `/favicon.ico`; bounded time, size and redirects, each redirect checked.
@@ -144,7 +144,7 @@ The domain, with no dependency on Windows, WPF or packages.
 
 ### Updates/
 
-- `UpdateAnnouncements<TVersion>` — remembers the newest version announced, so a version is announced once per session.
+- `UpdateAnnouncements<TVersion>`, `AutomaticOffer` — remembers the newest version whose box opened, so a box opens once per version per session, and the version the periodic check found that waits for its box; decides whether that box opens now or is postponed (FolderSwitch in use).
 
 ### Diagnostics/
 
@@ -203,7 +203,7 @@ Implements the Core ports against Win32, COM and the registry. `NativeMethods.tx
 - `ExplorerController` — `IExplorerController`: navigate the active tab with an ID list, new tab (undocumented command), new window; bounded STA worker.
 - `ExplorerWindows`, `ExplorerBrowser`, `ShellLocation` — enumeration of open Explorer browsers through `IShellWindows` and their current folder with its shell name (internal).
 - `ShellInterop.cs` — hand-declared shell COM interfaces and the `ShellNative` helpers (ID lists, parsing names, `ShellExecuteEx`).
-- `ShellLauncher` — `IShellLauncher`: opens files, locations and web addresses (`http` and `https` only) with `ShellExecuteEx` on an STA thread; a failed launch has shown the shell's own error.
+- `ShellLauncher` — `IShellLauncher`: opens files, locations and site addresses (`http`, `https`, `ftp`, `file` only) with `ShellExecuteEx` on an STA thread; a failed launch has shown the shell's own error.
 - `FileTypeIcons` — `IFileTypeIcons`: the icon of an extension from the shell's registry data, without touching a file (`SHGetFileInfo`), on its own STA thread, bounded, one answer kept per extension.
 - `ShellNamespace` — resolves displayed folder names back to a parsing name by walking the shell namespace.
 - `WindowInspector` — class, process and bounded descendant listing of a window without messaging it (internal).
@@ -246,17 +246,16 @@ The shell and composition root.
 - `Composition` — builds and releases everything in order; owns the services (the browser reader, the file type icons, the favicon connections), view models, window, icon, update checker; starts the loading of the emoji data in the background.
 - `StartupOptions` — what `Main` hands to the app (self-test, config folder, clock, UI context, instance, setup notice).
 - `SetupNotice`, `SetupKind` — an installation or an update reported by Velopack's hooks, and the text of the box that says so.
-- `WindowController` — shows, hides, recalls (to the front, new calling window), places (on the cursor or the screen) and pre-renders the main window; follows a drag of it and fits the drop inside its monitor; captures the call context first; tells the view model of every hide; returns focus to the calling window (`IWindowHost`).
-- `ShowPlacement` — where the hidden window appears: on the cursor (the shortcut) or on the screen (notification icon, second launch).
-- `ShortcutRouting`, `ShortcutAction` — pure: what a press of the shortcut does (show, hide, recall, test zone, nothing).
+- `WindowController` — shows, hides, recalls (to the front, new calling window), places (always centered on the work area of the monitor under the cursor) and pre-renders the main window; follows a drag of it and fits the drop inside its monitor; captures the call context first; tells the view model of every hide; returns focus to the calling window (`IWindowHost`); brings an open box of FolderSwitch's to the front for the shortcut.
+- `ShortcutRouting`, `ShortcutAction` — pure: what a press of the shortcut does (show, hide, recall, test zone, bring the open box to the front, nothing).
 - `FocusReturningActivator` — decorates the activator to tell the controller which window to give focus back to.
 - `FirstRunWizard` — runs the wizard modally with its theme and shortcut test, before the rest is built.
-- `UpdateChecker`, `UpdateAvailability` — Velopack check, offer, download and apply; timer and busy state; `SetAutomatic` starts or stops the periodic check; no checker for an address that is not a GitHub repository.
+- `UpdateChecker`, `UpdateAvailability` — Velopack check, offer, download and apply; timer and busy state; the periodic check's box postponed (one-minute retry) while FolderSwitch is in use; `SetAutomatic` starts or stops the periodic check; no checker for an address that is not a GitHub repository.
 
 ### Services/
 
 - `ConfigPersistence` — `IConfigPersistence` over `ConfigStore`: failures logged and reported once; read-only session mode.
-- `UserPrompts` — `IUserPrompts`: themed message boxes, Windows file and folder pickers, the web address prompt, update offer; silent mode.
+- `UserPrompts` — `IUserPrompts`: themed message boxes, Windows file and folder pickers, the web address prompt, update offer (never owned, on top, without taking focus, when the periodic check makes it); the box open now, for the shortcut; silent mode.
 
 ### Diagnostics/
 
@@ -264,7 +263,7 @@ The shell and composition root.
 - `ExceptionPolicy` — which exceptions are critical (the process must end).
 - `ErrorBreaker` — counts handled UI exceptions; trips at five within ten seconds.
 - `Snapshots/SnapshotRunner` — renders every look, interaction and wizard step to PNG off-screen.
-- `Snapshots/SnapshotSample` — the sample configuration of the snapshots (files of several types, sites, icons on tabs and groups).
+- `Snapshots/SnapshotSample` — the sample configuration of the snapshots (files of several types, sites, a separator, icons on tabs and groups).
 - `Snapshots/SnapshotServices` — inert implementations of every service the view models need (one favicon file, a browser page), and the real emoji data from the build's `Emoji` folder.
 
 ### Themes/
@@ -278,7 +277,7 @@ The shell and composition root.
 
 ### Tray/
 
-- `TrayIcon` (`TrayIcon.xaml`) — the notification-area icon and menu; update entry and balloon; the ready notification of the first run.
+- `TrayIcon` (`TrayIcon.xaml`) — the notification-area icon and menu; update entry; the ready notification of the first run.
 - `TrayIconImage` — loads the right icon size for the system scale.
 
 ### Views/
@@ -291,11 +290,11 @@ The shell and composition root.
 - `ThemePreview` — a theme's thumbnail drawn with the real catalog colours.
 - `SettingsView` — the settings window: categories (`SettingsPage`, `SettingsPageChoice`) and their pages (General: language, autostart, updates and the automatic check, version; Shortcut; Appearance; Configuration: import/export).
 - `AboutView` — the About window: icon, name, version, description; the legal notices (copyright, license, no warranty) with links that open `LICENSE.txt` and `THIRD-PARTY-NOTICES.txt` next to the executable.
-- `AddMenu` — the « Add ▾ » menu of a group: current folder or URL, folder, special folders, file, URL, footer (with the `SpecialFolderEntry` record).
+- `AddMenu` — the « Add ▾ » menu of a group: current folder or URL, folder, special folders, file, URL, separator, footer (with the `SpecialFolderEntry` record).
 - `UrlPromptView` — the content of the web address prompt (shown in a `PromptWindow`).
 - `ItemIcon.cs` — `ItemIcons`: the pictures of the items that do not come from the application (a file type's icon, a favicon), made off the UI thread and kept for the process.
 - `ItemMenu` — an item's right-click menu in normal use: open in File Explorer, open in a new tab (Ctrl+click); for a site, copy the address.
-- `EditMenu` — the right-click menu of a tab, a group's header or an item in Customize mode: rename (F2), and « Icon… » for a tab or a group.
+- `EditMenu` — the right-click menu of a tab, a group's header or an item in Customize mode: rename (F2), and « Icon… » for a tab or a group; « Remove this separator » for a separator.
 - `IconPicker` — the icon picker (a flyout): filter, « Automatic » and « No icon », category row, grid of emojis built category by category (the first at once), tooltips with the names.
 - `EmojiGlyphs` — `IEmojiGlyphs` over the character map of « Segoe UI Emoji »; holds the name of the emoji font.
 - `ColorPalettePopup` — the group colour palette.
@@ -359,7 +358,7 @@ xUnit, mirrors the Core folders.
 
 xUnit, view models over fakes.
 
-- `MainViewModelTests`, `AppearanceViewModelTests`, `SettingsViewModelTests`, `HotkeyEditorViewModelTests`, `WizardViewModelTests`, `WizardHotkeyTestTests`, `InsertionSlotTests`, `AddMenuViewModelTests` (page reading over a manual clock and context), `UrlPromptViewModelTests`, `IconPickerViewModelTests` — behaviour of the matching types.
+- `MainViewModelTests`, `AppearanceViewModelTests`, `SettingsViewModelTests`, `HotkeyEditorViewModelTests`, `WizardViewModelTests`, `WizardHotkeyTestTests`, `InsertionSlotTests`, `AddMenuViewModelTests` (page reading over a manual clock and context), `UrlPromptViewModelTests`, `IconPickerViewModelTests`, `SeparatorTests` (adding, moving, removing, badge) — behaviour of the matching types.
 - `StringKeysTests` — keys the view models use exist in the shipped English file.
 - `Support/` — `Harness` (a main view model over a known board), fakes `FakeItemActivator`, `FakeConfigPersistence`, `FakeUserPrompts`, `FakeWindowHost`, `FakeHotkeyService`, `FakeSystemInfo`, `FakeAutostart`, `FakeBrowserAddressReader`, `FakeFavicons`, `FakeEmojiGlyphs` and `TestIcons` (an icon finder over a small emoji library); `ManualTimeProvider`, `ManualSynchronizationContext`, `TestLocalizer`, `TempDirectory`.
 

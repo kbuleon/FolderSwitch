@@ -47,6 +47,18 @@ public class ItemNamingTests
         Assert.Equal(expected, ItemNaming.DisplayName(item, Localize));
     }
 
+    [Theory]
+    [InlineData("ftp://www.a.fr/pub", "a.fr")]
+    [InlineData("file:///C:/wiki/index.html", "index.html")]
+    [InlineData("file://server/share/My%20Page.html", "My Page.html")]
+    [InlineData("file://server/", "server")]
+    public void Ftp_and_file_items_without_name_are_named_by_host_or_file(string url, string expected)
+    {
+        var item = new Item { Kind = ItemKind.Url, Url = url };
+
+        Assert.Equal(expected, ItemNaming.DisplayName(item, Localize));
+    }
+
     [Fact]
     public void Url_item_without_name_is_named_by_host()
     {
@@ -91,6 +103,22 @@ public class ItemNamingTests
 
         Assert.Equal("SpecialFolder.ThisPC", received);
         Assert.Equal("Ce PC", result);
+    }
+
+    [Fact]
+    public void DisplayName_of_a_separator_is_empty_whatever_it_carries()
+    {
+        var called = false;
+        var item = new Item { Kind = ItemKind.Separator, Name = "Line", Path = @"D:\X", Special = SpecialFolderKey.Desktop };
+
+        var result = ItemNaming.DisplayName(item, key =>
+        {
+            called = true;
+            return key;
+        });
+
+        Assert.Equal(string.Empty, result);
+        Assert.False(called);
     }
 
     [Fact]

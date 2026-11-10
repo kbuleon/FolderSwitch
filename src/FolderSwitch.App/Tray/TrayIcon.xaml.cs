@@ -3,6 +3,8 @@
 // Additional terms under GPLv3 section 7: see the License section of README.md.
 
 using System.Windows;
+using System.Windows.Controls.Primitives;
+using System.Windows.Interop;
 using CommunityToolkit.Mvvm.Input;
 using FolderSwitch.App.Diagnostics;
 using FolderSwitch.Core.Localization;
@@ -39,7 +41,7 @@ public partial class TrayIcon : TaskbarIcon
         _image = TrayIconImage.Create();
         Icon = _image;
         LeftClickCommand = new RelayCommand(() => OpenRequested?.Invoke(this, EventArgs.Empty));
-        TrayBalloonTipClicked += OnBalloonTipClicked;
+        PreviewTrayContextMenuOpen += OnPreviewTrayContextMenuOpen;
 
         ApplyTexts();
         _localizer.LanguageChanged += OnLanguageChanged;
@@ -61,15 +63,14 @@ public partial class TrayIcon : TaskbarIcon
     /// <summary>Menu « Quit ».</summary>
     public event EventHandler? QuitRequested;
 
-    /// <summary>Menu « Install update », or a click on the notification that announces an update.</summary>
+    /// <summary>Menu « Install update ».</summary>
     public event EventHandler? InstallUpdateRequested;
 
     /// <summary>
     /// Puts the entry « Install update <paramref name="version"/> » in the menu (replacing the one of an older
-    /// version) and, with <paramref name="notify"/>, shows the notification « FolderSwitch <paramref name="version"/> is
-    /// available »; a click on it raises <see cref="InstallUpdateRequested"/>.
+    /// version); a click on it raises <see cref="InstallUpdateRequested"/>.
     /// </summary>
-    public void AnnounceUpdate(string version, bool notify)
+    public void AnnounceUpdate(string version)
     {
         ArgumentException.ThrowIfNullOrEmpty(version);
 
@@ -83,21 +84,6 @@ public partial class TrayIcon : TaskbarIcon
         UpdateSeparator.Visibility = Visibility.Visible;
         UpdateItem.Visibility = Visibility.Visible;
         UpdateItem.IsEnabled = !_downloading;
-
-        if (!notify)
-        {
-            return;
-        }
-
-        try
-        {
-            // The notification can be refused by the system (notifications off): the menu entry remains.
-            ShowNotification("FolderSwitch", _localizer.Format("Update.Available", version), NotificationIcon.None, sound: false);
-        }
-        catch (Exception e) when (!ExceptionPolicy.IsCritical(e))
-        {
-            DebugLog.Warn("The update notification could not be shown", e);
-        }
     }
 
     /// <summary>
@@ -159,7 +145,7 @@ public partial class TrayIcon : TaskbarIcon
 
         _closed = true;
         _localizer.LanguageChanged -= OnLanguageChanged;
-        TrayBalloonTipClicked -= OnBalloonTipClicked;
+        PreviewTrayContextMenuOpen -= OnPreviewTrayContextMenuOpen;
         Dispose();
         _image.Dispose();
     }
@@ -179,6 +165,31 @@ public partial class TrayIcon : TaskbarIcon
 
     private void OnLanguageChanged(object? sender, EventArgs e) => ApplyTexts();
 
+    /// <summary>
+    /// Opens the menu at the mouse pointer instead of H.NotifyIcon's position. H.NotifyIcon reads the position of the
+    /// click from the notification message without its sign: on a monitor left of or above the primary one, a negative
+    /// coordinate becomes a large positive one, and WPF then pulls the menu back onto the primary monitor. WPF reads the
+    /// pointer itself, in the right coordinates of any monitor. As H.NotifyIcon does, the menu's window then takes the
+    /// foreground, so that a click elsewhere closes it.
+    /// </summary>
+    private void OnPreviewTrayContextMenuOpen(object sender, RoutedEventArgs e)
+    {
+        if (ContextMenu is not { } menu)
+        {
+            return;
+        }
+
+        e.Handled = true;
+        menu.Placement = PlacementMode.MousePoint;
+        menu.HorizontalOffset = 0;
+        menu.VerticalOffset = 0;
+        menu.IsOpen = true;
+        if (PresentationSource.FromVisual(menu) is HwndSource source)
+        {
+            WindowUtilities.SetForegroundWindow(source.Handle);
+        }
+    }
+
     private void OnOpenClick(object sender, RoutedEventArgs e) => OpenRequested?.Invoke(this, EventArgs.Empty);
 
     private void OnCustomizeClick(object sender, RoutedEventArgs e) => CustomizeRequested?.Invoke(this, EventArgs.Empty);
@@ -186,16 +197,4 @@ public partial class TrayIcon : TaskbarIcon
     private void OnInstallUpdateClick(object sender, RoutedEventArgs e) => InstallUpdateRequested?.Invoke(this, EventArgs.Empty);
 
     private void OnQuitClick(object sender, RoutedEventArgs e) => QuitRequested?.Invoke(this, EventArgs.Empty);
-
-    /// <summary>
-    /// A click on a notification: the one of an update opens its offer; the ready notification of the first run has
-    /// nothing to open (unless an update was announced since, whose offer is then what the click opens).
-    /// </summary>
-    private void OnBalloonTipClicked(object sender, RoutedEventArgs e)
-    {
-        if (_updateVersion is not null)
-        {
-            InstallUpdateRequested?.Invoke(this, EventArgs.Empty);
-        }
-    }
 }

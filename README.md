@@ -55,19 +55,21 @@ These images are drawn by the `--snapshot` diagnostic mode (see « Diagnostic mo
 - **Global shortcut**, Ctrl + Win pressed alone by default. It acts when the keys are released, so the Windows
   shortcuts that start with Ctrl + Win keep working. Any other combination can be chosen. Pressed again it hides the
   window; in Edit mode, a window left behind another one comes back to the front instead, keeping Edit mode
-  and taking the window you came from as the new calling window. The shortcut opens the window centered on the mouse
-  cursor, always fully on screen; the notification icon opens it centered on the screen. It moves by its title bar.
+  and taking the window you came from as the new calling window. Whatever opens it (the shortcut, the notification
+  icon, a second launch), the window appears centered on the work area of the monitor that holds the mouse cursor. It moves by its title bar.
 - **Context aware**: the calling Explorer window (its active tab on Windows 11) or file dialog (modern and legacy Open,
   Save As, folder pickers) is moved to the folder. Ctrl + click opens a new Explorer tab on Windows 11, a new window
   on Windows 10. A right-click on an item opens its menu: « Open in File Explorer » (a new window; a file's folder for
   a file), and « Open in new tab » when Ctrl + click would open one; for a site, « Copy address ». The title bar shows
   the version that runs. From a file dialog only folders can be used: files and sites are greyed out, with a tooltip.
 - **A board you organise by drag and drop** in Edit mode (« Edit » in the title bar): tabs, columns (moved by their
-  ⠿ grip) of fixed or automatic width, groups with a colour that collapse, folders, files, web sites and Windows special folders (Desktop, Documents, This PC…). A group's
+  ⠿ grip) of fixed or automatic width, groups with a colour that collapse, folders, files, web sites (`http`, `https`, `ftp` or `file` addresses), Windows special folders (Desktop, Documents, This PC…) and separators. A group's
   « Add ▾ » menu starts with what the window you called FolderSwitch from shows: « Current folder » from Explorer or a
   file dialog, added in one click, « Current URL » from Firefox, Chrome or Edge, whose address opens in the « URL… » prompt to be
   trimmed (of a session id, say) before it is added. It goes on with « Folder… », « Special folders »,
-  « File… » and « URL… » (an address typed or pasted; the clipboard's is offered). A column, group or item held over another tab for a
+  « File… » and « URL… » (an address typed or pasted; the clipboard's is offered), then « Separator »: a plain horizontal
+  line added at the end of the group, with no name or target, moved and removed like an item (« Remove this separator »)
+  and not counted in the group's badge. A column, group or item held over another tab for a
   moment shows that tab, where it can be dropped. A right-click on a tab, a group's header or an item offers « Rename »
   (F2) (and « Icon… » for a tab or a group). Every change is saved at once. The window keeps the width of its widest tab: the tabs stay in place when you
   switch. Edit mode also shows Ko-fi's « Buy me a coffee » button, in the language shown, after the name in the title bar, which opens the
@@ -82,7 +84,7 @@ These images are drawn by the `--snapshot` diagnostic mode (see « Diagnostic mo
   exist get no icon until they are renamed or given one.
 - **Icons that say what an item is**: a file shows the icon Windows gives its type, found without touching the file; a
   site shows its favicon, fetched once in the background when the site is added (and tried once more per session when
-  the cache has none), and a globe until then or when it has none.
+  the cache has none), and a globe until then or when it has none (an `ftp` or `file` address has no favicon).
 - **Seven themes**, each in a light and a dark variant (or following the Windows mode), with a choice of background
   and group corners.
 - **Nine languages**: English, French, Spanish, German, Italian, Portuguese (Brazil and Portugal), Dutch, Polish. A
@@ -200,9 +202,12 @@ installed by hand, with `FolderSwitch-win-Setup.exe`. From then on installed cop
 
 An installed copy asks GitHub for the releases of the repository, then for the feed of each of them, about a minute after it
 starts and then every 24 hours (unless « Check for updates automatically » is unticked, which stops the timer at once and
-never interrupts a check or a download in progress). It announces a version with a notification and an « Install update »
-entry in the notification menu: once per session, so again after the next start of FolderSwitch while the update is not
-installed, and during a session again only for a newer version. It installs the update when the user accepts (the entry
+never interrupts a check or a download in progress). It announces a version by an « Install update » entry in the
+notification menu, at once, and by opening the « Install / Later » box, on top and without taking the keyboard focus (the
+shortcut gives it), but only while FolderSwitch shows no window: while it is in use, the box waits and is tried again every
+minute, without asking GitHub again. The box opens once per session, so again after the next start of FolderSwitch while
+the update is not installed, and during a session again only for a newer version; the box opened from the menu entry
+counts too. « Later » leaves the entry in the menu. It installs the update when the user accepts (the entry
 reads « Downloading update… » and the « Check for updates » button is disabled meanwhile). A copy that Velopack did not
 install (a development run) never checks. Without a token, the GitHub API answers 60 requests an hour per IP address, far
 more than one check a day needs; no token is built into the application. The update accounts for one of the two kinds of

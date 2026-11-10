@@ -62,14 +62,15 @@ public sealed class ShellLauncher : IShellLauncher
 
     /// <inheritdoc/>
     /// <returns>
-    /// <c>false</c> without launching anything when <paramref name="url"/> is not an <c>http</c> or <c>https</c>
-    /// address (<c>javascript:</c>, <c>file:</c>, <c>mailto:</c>, a bare path: the shell would run them);
-    /// otherwise as <see cref="OpenFile"/>.
+    /// <c>false</c> without launching anything when <paramref name="url"/> is not an <c>http</c>, <c>https</c>,
+    /// <c>ftp</c> or <c>file</c> address (<c>javascript:</c>, <c>mailto:</c>, any other scheme, a bare path: the shell
+    /// would run them). A <c>file</c> address is as trusted as a File item, which the shell opens too; otherwise as
+    /// <see cref="OpenFile"/>.
     /// </returns>
     public bool OpenUrl(string url)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(url);
-        if (!WebAddress.IsWebUrl(url))
+        if (!WebAddress.IsSiteUrl(url))
         {
             return false;
         }
