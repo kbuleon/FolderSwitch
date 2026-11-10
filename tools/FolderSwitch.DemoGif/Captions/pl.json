@@ -1,0 +1,36 @@
+{
+  "intro": {
+    "tagline": "Ulubione foldery i pliki, otwierane natychmiast",
+    "label": "Windows 10 i 11 · bezpłatny · open source"
+  },
+  "board": {
+    "title": "Wszystko pod ręką, jednym skrótem",
+    "body": "Foldery, pliki, strony internetowe i foldery specjalne Windows, uporządkowane w karty, kolumny i kolorowe grupy."
+  },
+  "keys": ["Ctrl", "⊞ Win"],
+  "add": {
+    "title": "Dodaj to, co masz przed sobą, jednym kliknięciem",
+    "body": "Menu „Dodaj” proponuje stronę wyświetlaną w przeglądarce (Firefox, Chrome, Edge) jako „Bieżący URL”, a z Eksploratora plików lub okna dialogowego plików – „Bieżący folder”."
+  },
+  "edit": {
+    "title": "Urządź go po swojemu",
+    "body": "Kliknij „Edytuj”: dodawaj karty, kolumny, grupy i elementy, zmieniaj ich nazwy i kolory, przenoś je metodą przeciągnij i upuść. Każda zmiana jest od razu zapisywana."
+  },
+  "icons": {
+    "title": "Ikona dla każdej grupy",
+    "body": "„Automatyczna” proponuje emoji na podstawie nazwy karty lub grupy. Możesz też sam wybrać tę, która ci się podoba."
+  },
+  "context": {
+    "title": "Wie, skąd go wywołujesz",
+    "body": "Wywołany z Eksploratora plików lub okna Otwórz / Zapisz jako, po kliknięciu folderu przenosi tam właśnie to okno. Z okna dialogowego proponuje tylko foldery."
+  },
+  "dialogTitle": "Zapisz jako",
+  "settings": {
+    "title": "Dopasuj go do siebie",
+    "body": "Siedem motywów, tryb Jasny, Ciemny lub Auto (jak Windows), dziewięć języków oraz eksport i import konfiguracji."
+  },
+  "outro": {
+    "line": "Bezpłatny i otwartoźródłowy. Pobierz z GitHuba:",
+    "url": "github.com/kbuleon/FolderSwitch"
+  }
+}

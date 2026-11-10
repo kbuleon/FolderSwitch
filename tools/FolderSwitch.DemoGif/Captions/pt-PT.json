@@ -1,0 +1,36 @@
+{
+  "intro": {
+    "tagline": "As suas pastas e ficheiros favoritos, abertos instantaneamente",
+    "label": "Windows 10 e 11 · gratuito · código aberto"
+  },
+  "board": {
+    "title": "Tudo à mão, com um atalho",
+    "body": "Pastas, ficheiros, sites e pastas especiais do Windows, organizados em separadores, colunas e grupos coloridos."
+  },
+  "keys": ["Ctrl", "⊞ Win"],
+  "add": {
+    "title": "Adicione o que tem à sua frente, com um clique",
+    "body": "O menu “Adicionar” propõe a página apresentada pelo browser (Firefox, Chrome, Edge) como “URL atual” e, a partir do Explorador de Ficheiros ou de uma caixa de diálogo de ficheiros, a “Pasta atual”."
+  },
+  "edit": {
+    "title": "Organize à sua maneira",
+    "body": "Clique em “Editar”: adicione, mude o nome e a cor de separadores, colunas, grupos e itens, e mova-os arrastando e largando. Cada alteração é guardada de imediato."
+  },
+  "icons": {
+    "title": "Um ícone para cada grupo",
+    "body": "“Automático” sugere um emoji a partir do nome do separador ou do grupo. Ou escolha o que preferir."
+  },
+  "context": {
+    "title": "Sabe de onde o chamou",
+    "body": "Chamado a partir do Explorador de Ficheiros ou de uma caixa Abrir / Guardar como, um clique numa pasta leva essa mesma janela até lá. A partir de uma caixa de diálogo, só são propostas pastas."
+  },
+  "dialogTitle": "Guardar como",
+  "settings": {
+    "title": "À sua medida",
+    "body": "Sete temas, modo Claro, Escuro ou Auto (como o Windows), nove idiomas, e exportação e importação da configuração."
+  },
+  "outro": {
+    "line": "Gratuito e de código aberto. Disponível no GitHub:",
+    "url": "github.com/kbuleon/FolderSwitch"
+  }
+}

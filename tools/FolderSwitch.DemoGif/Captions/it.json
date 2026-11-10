@@ -1,0 +1,36 @@
+{
+  "intro": {
+    "tagline": "Le tue cartelle e i tuoi file preferiti, aperti all'istante",
+    "label": "Windows 10 e 11 · gratuito · open source"
+  },
+  "board": {
+    "title": "Tutto a portata di mano, con una scorciatoia",
+    "body": "Cartelle, file, siti web e cartelle speciali di Windows, ordinati in schede, colonne e gruppi colorati."
+  },
+  "keys": ["Ctrl", "⊞ Win"],
+  "add": {
+    "title": "Aggiungi ciò che hai davanti, con un clic",
+    "body": "Il menu «Aggiungi» propone la pagina mostrata dal browser (Firefox, Chrome, Edge) come «URL corrente» e, da Esplora file o da una finestra di dialogo dei file, la «Cartella corrente»."
+  },
+  "edit": {
+    "title": "Organizzalo a modo tuo",
+    "body": "Fai clic su «Modifica»: aggiungi, rinomina e ricolora schede, colonne, gruppi ed elementi, e spostali trascinandoli. Ogni modifica viene salvata subito."
+  },
+  "icons": {
+    "title": "Un’icona per ogni gruppo",
+    "body": "«Automatica» suggerisce un emoji in base al nome della scheda o del gruppo. Oppure scegli tu quella che preferisci."
+  },
+  "context": {
+    "title": "Sa da dove lo richiami",
+    "body": "Richiamato da Esplora file o da una finestra Apri / Salva con nome, un clic su una cartella porta lì proprio quella finestra. Da una finestra di dialogo vengono proposte solo cartelle."
+  },
+  "dialogTitle": "Salva con nome",
+  "settings": {
+    "title": "Su misura per te",
+    "body": "Sette temi, modalità Chiaro, Scuro o Auto (come Windows), nove lingue, ed esportazione e importazione della configurazione."
+  },
+  "outro": {
+    "line": "Gratuito e open source. Disponibile su GitHub:",
+    "url": "github.com/kbuleon/FolderSwitch"
+  }
+}

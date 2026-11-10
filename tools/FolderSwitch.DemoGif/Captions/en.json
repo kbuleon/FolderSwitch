@@ -1,0 +1,36 @@
+{
+  "intro": {
+    "tagline": "Your favorite folders and files, opened instantly",
+    "label": "Windows 10 and 11 · free · open source"
+  },
+  "board": {
+    "title": "Your board, one shortcut away",
+    "body": "Folders, files, web sites and Windows special folders, grouped in tabs, columns and colored groups."
+  },
+  "keys": ["Ctrl", "⊞ Win"],
+  "add": {
+    "title": "Add where you are, in one click",
+    "body": "The “Add” menu offers the page your browser shows (Firefox, Chrome, Edge) as “Current URL” and, from File Explorer or a file dialog, the “Current folder”."
+  },
+  "edit": {
+    "title": "Arrange it your way",
+    "body": "Click “Edit”: add, rename and recolor tabs, columns, groups and items, and move them by drag and drop. Every change is saved at once."
+  },
+  "icons": {
+    "title": "An icon for every group",
+    "body": "“Automatic” suggests an emoji from the name of the tab or group. Or pick the one you like by hand."
+  },
+  "context": {
+    "title": "It knows where you called it from",
+    "body": "Called from File Explorer or an Open / Save As dialog, a click on a folder takes that very window there. From a dialog, only folders are offered."
+  },
+  "dialogTitle": "Save As",
+  "settings": {
+    "title": "Make it yours",
+    "body": "Seven themes, Light, Dark or Auto mode (like Windows), nine languages, and export and import of the configuration."
+  },
+  "outro": {
+    "line": "Free and open source. Get it on GitHub:",
+    "url": "github.com/kbuleon/FolderSwitch"
+  }
+}

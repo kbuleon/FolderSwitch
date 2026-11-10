@@ -1,0 +1,36 @@
+{
+  "intro": {
+    "tagline": "Vos dossiers et fichiers favoris, ouverts instantanément",
+    "label": "Windows 10 et 11 · gratuit · open source"
+  },
+  "board": {
+    "title": "Tout sous la main, d’un raccourci",
+    "body": "Dossiers, fichiers, sites web et dossiers spéciaux de Windows, rangés en onglets, colonnes et groupes de couleur."
+  },
+  "keys": ["Ctrl", "⊞ Win"],
+  "add": {
+    "title": "Ajoutez d’où vous êtes, en un clic",
+    "body": "Le menu « Ajouter » propose la page affichée par votre navigateur (Firefox, Chrome, Edge) en « URL courante » et, depuis l’Explorateur ou une boîte de dialogue de fichiers, le « Dossier courant »."
+  },
+  "edit": {
+    "title": "Organisez-le à votre façon",
+    "body": "Cliquez sur « Modifier » : ajoutez, renommez et recolorez onglets, colonnes, groupes et éléments, déplacez-les par glisser-déposer. Chaque changement est enregistré aussitôt."
+  },
+  "icons": {
+    "title": "Une icône pour chaque groupe",
+    "body": "« Automatique » suggère un emoji d’après le nom de l’onglet ou du groupe. Ou choisissez vous-même celui qui vous plaît."
+  },
+  "context": {
+    "title": "Il sait d’où vous l’appelez",
+    "body": "Appelé depuis l’Explorateur ou une boîte Ouvrir / Enregistrer sous, un clic sur un dossier y emmène cette fenêtre même. Depuis une boîte de dialogue, seuls les dossiers sont proposés."
+  },
+  "dialogTitle": "Enregistrer sous",
+  "settings": {
+    "title": "À votre image",
+    "body": "Sept thèmes, mode Clair, Sombre ou Auto (comme Windows), neuf langues, et l’export et l’import de la configuration."
+  },
+  "outro": {
+    "line": "Gratuit et open source. Disponible sur GitHub :",
+    "url": "github.com/kbuleon/FolderSwitch"
+  }
+}

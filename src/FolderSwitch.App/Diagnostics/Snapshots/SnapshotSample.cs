@@ -7,12 +7,13 @@ using FolderSwitch.Core.Model;
 namespace FolderSwitch.App.Diagnostics.Snapshots;
 
 /// <summary>
-/// The configuration the snapshots are drawn with: the board of the mockups (tab « Travail », three columns: Projets,
-/// Clients / Personnel, Archives collapsed, Finance / Outils, Réseau collapsed; then « Maison » and « Admin »). Finance
-/// holds one item of each kind: a folder, two files of types Windows has icons for, a site whose favicon is in the
-/// snapshot's cache (<see cref="FaviconHost"/>) and one without, the files and the sites set apart by a separator. The tabs and groups have icons, except « Clients »
-/// (beside « Projets », which has one) and a few of the twelve tabs. Names, icons, paths and addresses are examples,
-/// in French like the mockups: they are the user's content, never translated.
+/// The configuration the snapshots are drawn with: the board of the mockups (first tab, three columns: Projects,
+/// Clients / Personal, Archive collapsed, Finance / Tools, Network collapsed; then the home and the admin tabs).
+/// Finance holds one item of each kind: a folder, two files of types Windows has icons for, a site whose favicon is in
+/// the snapshot's cache (<see cref="FaviconHost"/>) and one without, the files and the sites set apart by a separator.
+/// The tabs and groups have icons, except Clients (beside Projects, which has one) and a few of the twelve tabs.
+/// Names, icons, paths and addresses are examples: they are the user's content, so they follow the snapshot's
+/// language (<see cref="SampleNames"/>), French being the reference of the mockups.
 /// </summary>
 internal static class SnapshotSample
 {
@@ -29,66 +30,67 @@ internal static class SnapshotSample
     /// <summary>The host of the site whose favicon the snapshots keep (see <see cref="SnapshotServices.FaviconFile"/>).</summary>
     public const string FaviconHost = "www.morningstar.fr";
 
-    /// <summary>The mockups' board, on « Travail », every column automatic.</summary>
-    public static AppConfig Create()
+    /// <summary>The mockups' board, on the first tab, every column automatic.</summary>
+    public static AppConfig Create(string language)
     {
-        var work = Tab("Travail", "💼",
+        var n = SampleNames.For(language);
+        var work = Tab(n.TabWork, "💼",
             Column(
-                Group("Projets", "📁", Blue, false,
+                Group(n.Projects, "📁", Blue, false,
                     Folder(@"C:\Claude Projects\FolderSwitch"),
-                    Folder(@"D:\Clients\Acme\site-web", "Site Acme"),
-                    Folder(@"D:\Design\Maquettes"),
-                    File(@"D:\Clients\Acme\Cahier des charges.docx")),
-                Group("Clients", Cyan, false,
-                    Folder(@"D:\Clients\Acme"),
-                    Folder(@"D:\Clients\Durand", "Durand & Fils"),
-                    Folder(@"D:\Compta\Factures\2026", "Factures 2026"))),
+                    Folder($@"D:\{n.ClientsDir}\Acme\{n.WebsiteDir}", n.AcmeSite),
+                    Folder($@"D:\{n.DesignDir}\{n.Mockups}"),
+                    File($@"D:\{n.ClientsDir}\Acme\{n.ProjectBrief}")),
+                Group(n.Clients, Cyan, false,
+                    Folder(n.AcmePath),
+                    Folder($@"D:\{n.ClientsDir}\{n.CompanyDir}", n.Company),
+                    Folder($@"D:\{n.AccountingDir}\{n.InvoicesDir}6", n.Invoices))),
             Column(
-                Group("Personnel", "👤", Amber, false,
+                Group(n.Personal, "👤", Amber, false,
                     Special(SpecialFolderKey.Downloads),
                     Special(SpecialFolderKey.Documents),
                     Special(SpecialFolderKey.Desktop),
-                    File(@"%USERPROFILE%\Documents\Notes de réunion.md")),
-                Group("Archives", "🗄️", Slate, true,
-                    Folder(@"E:\Archives\2024"),
-                    Folder(@"E:\Archives\2025")),
-                Group("Finance", "💵", Red, false,
-                    Folder(@"D:\Finance\Relevés"),
-                    File(@"D:\Finance\Budget 2026.xlsx"),
-                    File(@"D:\Finance\Avis d'imposition 2025.pdf"),
+                    File($@"%USERPROFILE%\Documents\{n.MeetingNotes}")),
+                Group(n.Archive, "🗄️", Slate, true,
+                    Folder($@"E:\{n.ArchiveDir}4"),
+                    Folder($@"E:\{n.ArchiveDir}5")),
+                Group(n.Finance, "💵", Red, false,
+                    Folder($@"D:\{n.Finance}\{n.Statements}"),
+                    File($@"D:\{n.Finance}\{n.Budget}"),
+                    File($@"D:\{n.Finance}\{n.TaxNotice}"),
                     Separator(),
                     Site("https://" + FaviconHost + "/fr/", "Morningstar"),
-                    Site("https://www.boursorama.com/bourse/"))),
+                    Site(n.SecondSite))),
             Column(
-                Group("Outils", "🧰", Violet, false,
-                    Folder(@"C:\Outils\Scripts"),
-                    Folder(@"C:\ProgramData\MonApp\logs", "Logs"),
+                Group(n.Tools, "🧰", Violet, false,
+                    Folder($@"C:\{n.ToolsDir}\Scripts"),
+                    Folder($@"C:\ProgramData\{n.AppDir}\logs", n.Logs),
                     File(@"C:\Windows\System32\drivers\etc\hosts")),
-                Group("Réseau", "🌐", Green, true,
-                    Folder(@"\\nas\partage", "Partage NAS"),
-                    Folder(@"\\nas\photos", "Photos"))));
+                Group(n.Network, "🌐", Green, true,
+                    Folder($@"\\nas\{n.ShareDir}", n.NasShare),
+                    Folder($@"\\nas\{n.Photos.ToLowerInvariant()}", n.Photos))));
 
-        var home = Tab("Maison", "🏠",
-            Column(Group("Papiers", "🧾", Orange, false,
-                Folder(@"D:\Perso\Maison\Factures", "Factures maison"),
-                Folder(@"D:\Perso\Assurances"),
-                File(@"D:\Perso\Maison\Plan travaux.pdf"))),
-            Column(Group("Photos", "📷", Pink, false,
-                Folder(@"D:\Photos\2025"),
-                Folder(@"D:\Photos\2026"),
-                Folder(@"D:\Photos\Albums"))),
-            Column(Group("Loisirs", "🎮", Green, true,
+        var home = Tab(n.TabHome, "🏠",
+            Column(Group(n.Papers, "🧾", Orange, false,
+                Folder($@"D:\{n.PersonalDir}\{n.HomeDir}\{n.InvoicesDir}", n.HomeBills),
+                Folder($@"D:\{n.PersonalDir}\{n.Insurance}"),
+                File($@"D:\{n.PersonalDir}\{n.HomeDir}\{n.RenovationPlan}"))),
+            Column(Group(n.Photos, "📷", Pink, false,
+                Folder($@"D:\{n.Photos}5"),
+                Folder($@"D:\{n.Photos}6"),
+                Folder($@"D:\{n.Photos}\{n.PhotoAlbums}"))),
+            Column(Group(n.Leisure, "🎮", Green, true,
                 Special(SpecialFolderKey.Music),
-                Folder(@"%USERPROFILE%\Saved Games", "Sauvegardes jeux"))));
+                Folder(@"%USERPROFILE%\Saved Games", n.SavedGames))));
 
-        var admin = Tab("Admin", "⚙️",
-            Column(Group("Système", "💻", Slate, false,
+        var admin = Tab(n.TabAdmin, "⚙️",
+            Column(Group(n.System, "💻", Slate, false,
                 Special(SpecialFolderKey.ProgramFiles),
                 Special(SpecialFolderKey.RoamingAppData),
                 File(@"C:\Windows\System32\drivers\etc\hosts"))),
-            Column(Group("Partages", "🌐", Cyan, false,
-                Folder(@"\\nas\partage", "NAS partage"),
-                Folder(@"\\nas\backup", "NAS sauvegardes"))));
+            Column(Group(n.Shares, "🌐", Cyan, false,
+                Folder($@"\\nas\{n.ShareDir}", n.NasShareAlt),
+                Folder(@"\\nas\backup", n.NasBackups))));
 
         return Config(work, home, admin);
     }
@@ -96,19 +98,20 @@ internal static class SnapshotSample
     /// <summary>
     /// Long names in narrow fixed columns (150 and 160 DIPs): what an ellipsized name and path look like.
     /// </summary>
-    public static AppConfig CreateNarrow()
+    public static AppConfig CreateNarrow(string language)
     {
-        var tab = Tab("Un onglet au nom vraiment très long pour la barre", "📄",
+        var n = SampleNames.For(language);
+        var tab = Tab(n.LongTab, "📄",
             Column(150,
-                Group("Un groupe au nom bien trop long pour sa colonne", "📦", Blue, false,
-                    Folder(@"D:\Clients\Acme\Documents contractuels et annexes signées", "Documents contractuels et annexes signées"),
-                    Folder(@"D:\Clients\Acme"),
-                    File(@"D:\Clients\Acme\Cahier des charges version définitive.docx")),
-                Group("Replié", Slate, true,
-                    Folder(@"E:\Archives\2024"))),
+                Group(n.LongGroup, "📦", Blue, false,
+                    Folder($@"D:\{n.ClientsDir}\Acme\{n.ContractDocs}", n.ContractDocs),
+                    Folder(n.AcmePath),
+                    File($@"D:\{n.ClientsDir}\Acme\{n.LongBrief}")),
+                Group(n.Collapsed, Slate, true,
+                    Folder($@"E:\{n.ArchiveDir}4"))),
             Column(160,
-                Group("Outils", "🧰", Violet, false,
-                    Folder(@"C:\Outils\Scripts"),
+                Group(n.Tools, "🧰", Violet, false,
+                    Folder($@"C:\{n.ToolsDir}\Scripts"),
                     File(@"C:\Windows\System32\drivers\etc\hosts"))));
 
         return Config(tab);
@@ -118,27 +121,22 @@ internal static class SnapshotSample
     /// Twelve tabs over a two-column board: more tabs than one line of a narrow screen holds, so that the tab bar wraps.
     /// The active tab is on the second line.
     /// </summary>
-    public static AppConfig CreateManyTabs()
+    public static AppConfig CreateManyTabs(string language)
     {
-        string[] names =
-        [
-            "Travail", "Maison", "Admin", "Clients 2026", "Comptabilité", "Projets en cours",
-            "Archives", "Photos", "Musique", "Développement", "Réseau", "Téléchargements",
-        ];
+        var n = SampleNames.For(language);
 
-        // Some of them without an icon.
-        var icons = new Dictionary<string, string>
+        // Some of them without an icon (by position).
+        var icons = new Dictionary<int, string>
         {
-            ["Travail"] = "💼", ["Maison"] = "🏠", ["Admin"] = "⚙️", ["Photos"] = "📷", ["Musique"] = "🎵",
-            ["Développement"] = "💻", ["Téléchargements"] = "📥",
+            [0] = "💼", [1] = "🏠", [2] = "⚙️", [7] = "📷", [8] = "🎵", [9] = "💻", [11] = "📥",
         };
 
-        var tabs = names.Select(name => Tab(name, icons.GetValueOrDefault(name),
-            Column(Group("Dossiers", Blue, false,
+        var tabs = n.ManyTabs.Select((name, index) => Tab(name, icons.GetValueOrDefault(index),
+            Column(Group(n.FolderGroup, Blue, false,
                 Folder(@"D:\" + name, name),
                 Special(SpecialFolderKey.Documents))),
-            Column(Group("Fichiers", Amber, false,
-                File(@"D:\" + name + @"\Notes.md"))))).ToArray();
+            Column(Group(n.FileGroup, Amber, false,
+                File(@"D:\" + name + @"\" + n.NotesFile))))).ToArray();
 
         var config = Config(tabs);
         config.Settings.ActiveTabId = tabs[8].Id;

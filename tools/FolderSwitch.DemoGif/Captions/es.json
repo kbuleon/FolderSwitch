@@ -1,0 +1,36 @@
+{
+  "intro": {
+    "tagline": "Sus carpetas y archivos favoritos, abiertos al instante",
+    "label": "Windows 10 y 11 · gratis · código abierto"
+  },
+  "board": {
+    "title": "Todo a mano, con un atajo de teclado",
+    "body": "Carpetas, archivos, sitios web y carpetas especiales de Windows, organizados en pestañas, columnas y grupos de colores."
+  },
+  "keys": ["Ctrl", "⊞ Win"],
+  "add": {
+    "title": "Añada lo que tiene delante, con un clic",
+    "body": "El menú «Añadir» ofrece la página que muestra su navegador (Firefox, Chrome, Edge) como «URL actual» y, desde el Explorador de archivos o un cuadro de diálogo de archivos, la «Carpeta actual»."
+  },
+  "edit": {
+    "title": "Organícelo a su manera",
+    "body": "Haga clic en «Editar»: añada pestañas, columnas, grupos y elementos, cámbieles el nombre y el color, y muévalos arrastrando y soltando. Cada cambio se guarda al instante."
+  },
+  "icons": {
+    "title": "Un icono para cada grupo",
+    "body": "«Automático» sugiere un emoji a partir del nombre de la pestaña o del grupo. O elija usted mismo el que más le guste."
+  },
+  "context": {
+    "title": "Sabe desde dónde lo llama",
+    "body": "Llamado desde el Explorador de archivos o un cuadro Abrir / Guardar como, un clic en una carpeta lleva allí esa misma ventana. Desde un cuadro de diálogo, solo se ofrecen carpetas."
+  },
+  "dialogTitle": "Guardar como",
+  "settings": {
+    "title": "A su gusto",
+    "body": "Siete temas, modo Claro, Oscuro o Auto (como Windows), nueve idiomas, y exportación e importación de la configuración."
+  },
+  "outro": {
+    "line": "Gratis y de código abierto. Disponible en GitHub:",
+    "url": "github.com/kbuleon/FolderSwitch"
+  }
+}

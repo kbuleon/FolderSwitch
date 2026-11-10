@@ -1,0 +1,36 @@
+{
+  "intro": {
+    "tagline": "Uw favoriete mappen en bestanden, direct geopend",
+    "label": "Windows 10 en 11 · gratis · open source"
+  },
+  "board": {
+    "title": "Alles binnen handbereik, met één sneltoets",
+    "body": "Mappen, bestanden, websites en speciale mappen van Windows, geordend in tabbladen, kolommen en gekleurde groepen."
+  },
+  "keys": ["Ctrl", "⊞ Win"],
+  "add": {
+    "title": "Voeg toe waar u bent, met één klik",
+    "body": "Het menu ‘Toevoegen’ biedt de pagina die uw browser toont (Firefox, Chrome, Edge) aan als ‘Huidige URL’ en, vanuit Verkenner of een bestandsdialoogvenster, de ‘Huidige map’."
+  },
+  "edit": {
+    "title": "Richt het in zoals u wilt",
+    "body": "Klik op ‘Bewerken’: voeg tabbladen, kolommen, groepen en items toe, wijzig hun naam en kleur en verplaats ze met slepen en neerzetten. Elke wijziging wordt meteen opgeslagen."
+  },
+  "icons": {
+    "title": "Een pictogram voor elke groep",
+    "body": "‘Automatisch’ stelt een emoji voor op basis van de naam van het tabblad of de groep. Of kies er zelf een die u bevalt."
+  },
+  "context": {
+    "title": "Het weet vanwaar u het aanroept",
+    "body": "Aangeroepen vanuit Verkenner of een dialoogvenster Openen / Opslaan als, brengt een klik op een map precies dat venster daarheen. Vanuit een dialoogvenster worden alleen mappen aangeboden."
+  },
+  "dialogTitle": "Opslaan als",
+  "settings": {
+    "title": "Helemaal naar uw smaak",
+    "body": "Zeven thema’s, modus Licht, Donker of Auto (zoals Windows), negen talen, en export en import van de configuratie."
+  },
+  "outro": {
+    "line": "Gratis en open source. Te downloaden op GitHub:",
+    "url": "github.com/kbuleon/FolderSwitch"
+  }
+}

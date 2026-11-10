@@ -17,4 +17,9 @@
     <PackageVersion Include="Velopack" Version="1.2.161" />
   </ItemGroup>
 
+  <ItemGroup Label="Tools">
+    <!-- tools/FolderSwitch.DemoGif: encodes the README's animated tour (not shipped with the application). -->
+    <PackageVersion Include="Magick.NET-Q8-AnyCPU" Version="15.0.0" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,36 @@
+{
+  "intro": {
+    "tagline": "Ihre Lieblingsordner und -dateien, sofort geöffnet",
+    "label": "Windows 10 und 11 · kostenlos · Open Source"
+  },
+  "board": {
+    "title": "Alles griffbereit, mit einer Tastenkombination",
+    "body": "Ordner, Dateien, Websites und spezielle Ordner von Windows, geordnet in Registerkarten, Spalten und farbigen Gruppen."
+  },
+  "keys": ["Strg", "⊞ Win"],
+  "add": {
+    "title": "Mit einem Klick hinzufügen, wo Sie gerade sind",
+    "body": "Das Menü „Hinzufügen“ bietet die Seite Ihres Browsers (Firefox, Chrome, Edge) als „Aktuelle URL“ und, aus dem Explorer oder einem Dateidialog, den Eintrag „Aktueller Ordner“ an."
+  },
+  "edit": {
+    "title": "Ordnen Sie alles, wie Sie möchten",
+    "body": "Klicken Sie auf „Bearbeiten“: Registerkarten, Spalten, Gruppen und Einträge hinzufügen, umbenennen, umfärben und per Drag & Drop verschieben. Jede Änderung wird sofort gespeichert."
+  },
+  "icons": {
+    "title": "Ein Symbol für jede Gruppe",
+    "body": "„Automatisch“ schlägt ein Emoji passend zum Namen der Registerkarte oder Gruppe vor. Oder Sie wählen selbst eines aus."
+  },
+  "context": {
+    "title": "Es weiß, woher Sie es aufrufen",
+    "body": "Aus dem Explorer oder einem Dialog „Öffnen“ / „Speichern unter“ aufgerufen, führt ein Klick auf einen Ordner genau dieses Fenster dorthin. Aus einem Dialog werden nur Ordner angeboten."
+  },
+  "dialogTitle": "Speichern unter",
+  "settings": {
+    "title": "Ganz nach Ihrem Geschmack",
+    "body": "Sieben Designs, Modus Hell, Dunkel oder Auto (wie Windows), neun Sprachen sowie Export und Import der Konfiguration."
+  },
+  "outro": {
+    "line": "Kostenlos und Open Source. Erhältlich auf GitHub:",
+    "url": "github.com/kbuleon/FolderSwitch"
+  }
+}

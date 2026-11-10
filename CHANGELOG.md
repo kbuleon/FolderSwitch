@@ -3,6 +3,11 @@ This file is maintained by the agent: one section per version, the newest first,
 
 ------
 
+## 1.11.1 — README in nine languages
+<sub>2026-11-10 · FOS-0012</sub>
+
+The README presents FolderSwitch to its users, in the nine languages of the application (`README.<language>.md`, linked from each header), with screenshots and an animated tour in each language; the build, packaging, test and diagnostic details move to `DEVELOPMENT.md` (English). The sample board of `--snapshot` follows `--snapshot-language` (French unchanged). `build/readme-assets.ps1` regenerates every README image; `tools/FolderSwitch.DemoGif` draws the tour.
+
 ## 1.11.0 — Separators, local and FTP addresses, update offer
 <sub>2026-11-10 · FOS-0016</sub>
 

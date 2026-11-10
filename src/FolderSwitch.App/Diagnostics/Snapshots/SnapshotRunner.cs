@@ -155,10 +155,11 @@ internal static class SnapshotRunner
             var services = new SnapshotServices { FaviconFile = WriteFavicon(Path.Combine(storeDirectory, "favicons")) };
             using var fileTypes = new FileTypeIcons();
             var icons = new ItemIcons(fileTypes);
-            var config = SnapshotSample.Create();
+            var names = SampleNames.For(code);
+            var config = SnapshotSample.Create(code);
             var main = new MainViewModel(config, services, services, services, services, services, services, localizer, services.Icons);
-            var narrow = new MainViewModel(SnapshotSample.CreateNarrow(), services, services, services, services, services, services, localizer, services.Icons);
-            var manyTabs = new MainViewModel(SnapshotSample.CreateManyTabs(), services, services, services, services, services, services, localizer, services.Icons);
+            var narrow = new MainViewModel(SnapshotSample.CreateNarrow(code), services, services, services, services, services, services, localizer, services.Icons);
+            var manyTabs = new MainViewModel(SnapshotSample.CreateManyTabs(code), services, services, services, services, services, services, localizer, services.Icons);
             using var appearance = new AppearanceViewModel(config, services, services);
             using var applier = new ThemeApplier(appearance, application.Resources);
 
@@ -224,7 +225,7 @@ internal static class SnapshotRunner
                     }
 
                     Use(appearance, theme, variant);
-                    written += SaveInteractions(scene, main, services, directory, theme, variant, scale, suffix);
+                    written += SaveInteractions(scene, main, services, names, directory, theme, variant, scale, suffix);
                 }
 
                 foreach (var (theme, variant) in AdditionLooks)
@@ -235,14 +236,14 @@ internal static class SnapshotRunner
                     }
 
                     Use(appearance, theme, variant);
-                    written += SaveAdditions(scene, main, directory, theme, variant, scale, suffix);
+                    written += SaveAdditions(scene, main, names, directory, theme, variant, scale, suffix);
                 }
 
                 Use(appearance, "fluent", Variant.Light);
-                main.OnShown(new CallContext(CallContextKind.Explorer, 0, @"D:\Clients\Acme\Contrats"));
+                main.OnShown(new CallContext(CallContextKind.Explorer, 0, names.ContractsPath));
 
                 // The menu of an item, called from Explorer: a folder (with « Open in new tab »), a file and a site.
-                foreach (var (name, kind) in new[] { ("Maquettes", "itemmenu"), ("Cahier des charges.docx", "itemmenu-file"), ("Morningstar", "itemmenu-site") })
+                foreach (var (name, kind) in new[] { (names.Mockups, "itemmenu"), (names.ProjectBrief, "itemmenu-file"), ("Morningstar", "itemmenu-site") })
                 {
                     var item = scene.Item(name);
                     scene.View.OpenItemMenu((ItemViewModel)item.DataContext, item.MenuAnchor);
@@ -255,13 +256,13 @@ internal static class SnapshotRunner
 
                 // The menu of an item in Customize mode: « Rename ».
                 main.ToggleCustomize();
-                var renamed = scene.Item("Maquettes");
+                var renamed = scene.Item(names.Mockups);
                 scene.View.OpenEditMenu((ItemViewModel)renamed.DataContext, renamed.MenuAnchor);
                 scene.Save(Path.Combine(directory, FileName("fluent", Variant.Light, "editmenu", scale, suffix)), Variant.Light);
                 scene.View.CloseFlyout();
 
                 // The menu of a group: « Rename » and « Icon… ».
-                var outils = scene.Group("Outils");
+                var outils = scene.Group(names.Tools);
                 scene.View.OpenEditMenu((GroupViewModel)outils.DataContext, outils.HeaderAnchor);
                 scene.Save(Path.Combine(directory, FileName("fluent", Variant.Light, "editmenu-group", scale, suffix)), Variant.Light);
                 scene.View.CloseFlyout();
@@ -271,9 +272,9 @@ internal static class SnapshotRunner
                 scene.View.DataContext = narrow;
                 scene.Save(Path.Combine(directory, FileName("fluent", Variant.Light, "narrow", scale, suffix)), Variant.Light);
 
-                // The icon picker of a group whose icon was chosen (« Outils », the same 🧰): marked in the grid.
+                // The icon picker of a group whose icon was chosen (Tools, the same 🧰): marked in the grid.
                 narrow.ToggleCustomize();
-                var tools = scene.Group("Outils");
+                var tools = scene.Group(names.Tools);
                 narrow.SetChosenIcon((GroupViewModel)tools.DataContext, "🧰");
                 scene.View.OpenIconPicker((GroupViewModel)tools.DataContext, tools.IconAnchor);
                 scene.Layout();
@@ -314,7 +315,7 @@ internal static class SnapshotRunner
     }
 
     /// <summary>The interactions of Customize mode in one look; returns the number of files written.</summary>
-    private static int SaveInteractions(Scene scene, MainViewModel main, SnapshotServices services, string directory, string theme, Variant variant, double scale, string suffix)
+    private static int SaveInteractions(Scene scene, MainViewModel main, SnapshotServices services, SampleNames names, string directory, string theme, Variant variant, double scale, string suffix)
     {
         string File(string kind) => Path.Combine(directory, FileName(theme, variant, kind, scale, suffix));
 
@@ -355,16 +356,16 @@ internal static class SnapshotRunner
         view.CloseDialog();
         written++;
 
-        // The palette of « Projets » (blue).
-        var projects = scene.Group("Projets");
+        // The palette of the Projects group (blue).
+        var projects = scene.Group(names.Projects);
         view.OpenPalette((GroupViewModel)projects.DataContext, projects.ColorDotAnchor);
         scene.Save(File("palette"), variant);
         view.CloseFlyout();
         written++;
 
-        // The icon picker of « Finance » (automatic icon), then filtered on « chat ». How long it takes to open and lay
+        // The icon picker of the Finance group (automatic icon), then filtered on « chat ». How long it takes to open and lay
         // out is logged (the first look pays for the code's first use too).
-        var finance = scene.Group("Finance");
+        var finance = scene.Group(names.Finance);
         var clock = Stopwatch.StartNew();
         view.OpenIconPicker((GroupViewModel)finance.DataContext, finance.IconAnchor);
         var picker = view.OpenFlyoutContent as IconPicker ?? throw new InvalidOperationException("The icon picker did not open.");
@@ -379,17 +380,17 @@ internal static class SnapshotRunner
         view.CloseFlyout();
         written += 2;
 
-        // A rename in progress: « Clients », the whole name selected.
-        var clients = (GroupViewModel)scene.Group("Clients").DataContext;
+        // A rename in progress: the Clients group, the whole name selected.
+        var clients = (GroupViewModel)scene.Group(names.Clients).DataContext;
         main.BeginRename(clients);
         scene.Save(File("rename"), variant);
         main.CancelRename(clients);
         main.Selected = null;
         written++;
 
-        // « Maquettes » dragged from « Projets » to between the first two items of « Clients ».
-        var dragged = scene.Item("Maquettes");
-        var target = scene.Group("Clients");
+        // The mockups folder dragged from Projects to between the first two items of Clients.
+        var dragged = scene.Item(names.Mockups);
+        var target = scene.Group(names.Clients);
         dragged.Opacity = 0.4;
         scene.Layout();
         BoardDragDrop.ShowIndicator(target.Items, 1, Orientation.Vertical);
@@ -429,7 +430,7 @@ internal static class SnapshotRunner
     }
 
     /// <summary>What adds an item, in one look; returns the number of files written.</summary>
-    private static int SaveAdditions(Scene scene, MainViewModel main, string directory, string theme, Variant variant, double scale, string suffix)
+    private static int SaveAdditions(Scene scene, MainViewModel main, SampleNames names, string directory, string theme, Variant variant, double scale, string suffix)
     {
         string File(string kind) => Path.Combine(directory, FileName(theme, variant, kind, scale, suffix));
 
@@ -437,7 +438,7 @@ internal static class SnapshotRunner
         var view = scene.View;
 
         // Normal use, called from a file dialog: only the folders can be used.
-        main.OnShown(new CallContext(CallContextKind.FileDialog, 0, @"D:\Clients\Acme\Contrats"));
+        main.OnShown(new CallContext(CallContextKind.FileDialog, 0, names.ContractsPath));
         scene.Save(File("filedialog"), variant);
         written++;
 
@@ -446,10 +447,10 @@ internal static class SnapshotRunner
         main.ToggleCustomize();
         foreach (var (kind, group, context) in new (string, string, CallContext)[]
         {
-            ("addmenu", "Finance", CallContext.None),
-            ("addmenu-explorer", "Projets", new CallContext(CallContextKind.Explorer, 0, @"D:\Clients\Acme\Contrats")),
-            ("addmenu-present", "Clients", new CallContext(CallContextKind.Explorer, 0, @"D:\Clients\Acme")),
-            ("addmenu-browser", "Finance", new CallContext(CallContextKind.Browser, 0, null, Browser: BrowserKind.Firefox)),
+            ("addmenu", names.Finance, CallContext.None),
+            ("addmenu-explorer", names.Projects, new CallContext(CallContextKind.Explorer, 0, names.ContractsPath)),
+            ("addmenu-present", names.Clients, new CallContext(CallContextKind.Explorer, 0, names.AcmePath)),
+            ("addmenu-browser", names.Finance, new CallContext(CallContextKind.Browser, 0, null, Browser: BrowserKind.Firefox)),
         })
         {
             main.OnRecalled(context);
@@ -459,9 +460,9 @@ internal static class SnapshotRunner
             written++;
         }
 
-        // Its special folders, for « Personnel », which holds Downloads, Documents and Desktop: those are checked.
+        // Its special folders, for the Personal group, which holds Downloads, Documents and Desktop: those are checked.
         main.OnRecalled(CallContext.None);
-        OpenAddMenu(scene, "Personnel").ShowSpecialFolders(true);
+        OpenAddMenu(scene, names.Personal).ShowSpecialFolders(true);
         scene.Save(File("addmenu-special"), variant);
         view.CloseFlyout();
         written++;
