@@ -13,7 +13,7 @@
 
 FolderSwitch is a small resident Windows utility that gives instant access to remembered folders and files. A global
 shortcut (Ctrl + Win by default) shows a window that was built once and is only hidden between calls: tabs hold
-columns, columns hold collapsible coloured groups, groups hold folders, files and web sites. One click takes the File Explorer
+columns, columns hold collapsible coloured groups, groups hold folders, files and web sites, which separators can set apart. One click takes the File Explorer
 window, or the Open / Save As / folder-picker dialog, you called it from to that folder. From any other window the
 folder opens in a new Explorer window, a file opens with its associated application and a site in the default browser.
 
@@ -25,14 +25,15 @@ Every version, with its notes, is on the [releases page](https://github.com/kbul
 
 ## Screenshots
 
-The board, as the shortcut shows it (Fluent theme, light):
+The board, as the shortcut shows it (Fluent theme, light). In the Finance group, a separator sets the two sites apart
+from the folder and the files:
 
-![The FolderSwitch window: three tabs and three columns of coloured groups of folders and files, with an emoji icon left of most tab and group names](assets/screenshots/board.png)
+![The FolderSwitch window: three tabs and three columns of coloured groups of folders, files and sites, with an emoji icon left of most tab and group names; in the Finance group a horizontal line separates the sites from the folder and the files](assets/screenshots/board.png)
 
 Edit mode, where tabs, columns, groups and items are added, renamed, recoloured and moved by drag and drop (Cards
 theme, dark):
 
-![Edit mode: Ko-fi's « Buy me a coffee » button after the name in the title bar, grips, colour and delete buttons on every group, an « Add ▾ » button under each group, an empty slot where the group Clients has no icon, « + Group » and « + Column » buttons](assets/screenshots/edit-mode.png)
+![Edit mode: Ko-fi's « Buy me a coffee » button after the name in the title bar, grips, colour and delete buttons on every group, an « Add ▾ » button under each group, an empty slot where the group Clients has no icon, the separator of the group Finance, « + Group » and « + Column » buttons](assets/screenshots/edit-mode.png)
 
 The icon picker, opened from the icon of the Finance group in Edit mode: a filter, « Automatic » (the icon the group's name
 gives), « No icon », the categories, and the emojis the machine's font can draw:
@@ -40,9 +41,10 @@ gives), « No icon », the categories, and the emojis the machine's font can dra
 ![The icon picker of the Finance group: the filter box, Automatic and No icon, a row of eight categories and the grid of smileys](assets/screenshots/icon-picker.png)
 
 The « Add ▾ » menu of a group, called from Firefox: the page shown by the browser comes first, then the folder picker,
-the special folders, the file picker and the address prompt. Called from Explorer, « Current folder » comes first:
+the special folders, the file picker, the address prompt and « Separator », which adds a horizontal line at the end of
+the group. Called from Explorer, « Current folder » comes first:
 
-![The Add menu of the Finance group, called from Firefox: Current URL, Folder…, Special folders, File…, URL…](assets/screenshots/add-menu.png)
+![The Add menu of the Finance group, called from Firefox: Current URL, Folder…, Special folders, File…, URL…, Separator](assets/screenshots/add-menu.png)
 
 The Appearance page of the settings: the mode, the theme, the background colour and the group corners:
 
