@@ -348,4 +348,40 @@ public class AppearanceViewModelTests
         Assert.Equal(GroupRadius.Theme, _config.Appearance.Radius);
         Assert.Same(imported, _persistence.Saved.Single());
     }
+
+    [Fact]
+    public void DefaultColumnWidth_rounds_clamps_and_saves()
+    {
+        _config.Appearance.DefaultColumnWidth = 300;
+        using var vm = Create();
+
+        vm.DefaultColumnWidth = 223;
+
+        Assert.Equal(220, vm.DefaultColumnWidth);
+        Assert.Equal(1, _persistence.SaveCount);
+
+        vm.DefaultColumnWidth = 9999;
+
+        Assert.Equal(520, _config.Appearance.DefaultColumnWidth);
+        Assert.Equal(2, _persistence.SaveCount);
+
+        vm.DefaultColumnWidth = 520;
+        vm.DefaultColumnWidth = 9999;
+
+        Assert.Equal(2, _persistence.SaveCount);
+    }
+
+    [Fact]
+    public void Reload_raises_DefaultColumnWidth()
+    {
+        using var vm = Create();
+        var changes = RecordChanges(vm);
+        var imported = new AppConfig();
+        imported.Appearance.DefaultColumnWidth = 300;
+
+        vm.Reload(imported);
+
+        Assert.Contains(nameof(AppearanceViewModel.DefaultColumnWidth), changes);
+        Assert.Equal(300, vm.DefaultColumnWidth);
+    }
 }

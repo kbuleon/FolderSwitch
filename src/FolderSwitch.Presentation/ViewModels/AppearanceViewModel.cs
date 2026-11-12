@@ -3,6 +3,7 @@
 // Additional terms under GPLv3 section 7: see the License section of README.md.
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using FolderSwitch.Core.Layout;
 using FolderSwitch.Core.Model;
 using FolderSwitch.Core.Services;
 using FolderSwitch.Core.Theming;
@@ -11,7 +12,7 @@ using FolderSwitch.Presentation.Services;
 namespace FolderSwitch.Presentation.ViewModels;
 
 /// <summary>
-/// The appearance menu: mode, theme, background color and group corners, written to <c>config.Appearance</c>.
+/// The appearance menu: mode, theme, background color, group corners and default column width, written to <c>config.Appearance</c>.
 /// <para>
 /// Every change is written to the configuration, which is then saved exactly once; a value already in place, or
 /// one that is not valid, changes and saves nothing. Whenever what the window is drawn with changes (a change of
@@ -166,6 +167,24 @@ public sealed class AppearanceViewModel : ObservableObject, IDisposable
         }
     }
 
+    /// <summary>Default width of a column in pixels (150 to 520, step 10): rounded and clamped when set.</summary>
+    public int DefaultColumnWidth
+    {
+        get => Appearance.DefaultColumnWidth;
+        set
+        {
+            var width = ColumnWidths.Clamp(value);
+            if (width == Appearance.DefaultColumnWidth)
+            {
+                return;
+            }
+
+            Appearance.DefaultColumnWidth = width;
+            OnPropertyChanged();
+            Save();
+        }
+    }
+
     /// <summary>The tokens the window is drawn with now: the value <see cref="AppearanceChanged"/> last carried.</summary>
     public ThemeTokens Tokens => _tokens;
 
@@ -193,6 +212,7 @@ public sealed class AppearanceViewModel : ObservableObject, IDisposable
         OnPropertyChanged(nameof(Mode));
         OnPropertyChanged(nameof(Theme));
         OnPropertyChanged(nameof(Radius));
+        OnPropertyChanged(nameof(DefaultColumnWidth));
         Refresh();
     }
 

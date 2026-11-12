@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 using FolderSwitch.Core.Icons;
+using FolderSwitch.Core.Layout;
 using FolderSwitch.Core.Model;
 using FolderSwitch.Core.Web;
 
@@ -180,6 +181,9 @@ public static class ConfigSerializer
             config.Appearance.Backgrounds.Remove(key);
         }
 
+        config.Appearance.DefaultColumnWidth = ColumnWidths.Clamp(config.Appearance.DefaultColumnWidth);
+        var defaultColumnWidth = config.Appearance.DefaultColumnWidth;
+
         config.Tabs ??= new List<Tab>();
         config.Tabs.RemoveAll(tab => tab is null);
         if (config.Tabs.Count == 0)
@@ -196,11 +200,12 @@ public static class ConfigSerializer
             if (tab.Columns.Count == 0)
             {
                 // A tab keeps at least one column (older versions let the last one be removed).
-                tab.Columns.Add(new Column());
+                tab.Columns.Add(new Column { Width = defaultColumnWidth });
             }
 
             foreach (var column in tab.Columns)
             {
+                column.Width = ColumnWidths.Clamp(column.Width ?? defaultColumnWidth);
                 column.Groups ??= new List<Group>();
                 column.Groups.RemoveAll(group => group is null);
 

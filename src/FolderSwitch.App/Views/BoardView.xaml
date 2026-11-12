@@ -19,16 +19,21 @@
              DragOver="OnDragOver"
              DragLeave="OnDragLeave"
              Drop="OnDrop">
-    <!-- Transparent (above): a column dragged over the gaps between the columns still lands on the board. -->
-    <layout:SpacingPanel Orientation="Horizontal" Spacing="{DynamicResource Fs.ColumnGap}">
+    <!-- Transparent (above): a column dragged over the gaps between the columns still lands on the board.
+         In normal use the groups reach their column's edges: the columns are Fs.GroupGap apart, and the board keeps
+         Fs.GroupGap between the tab bar's line and the groups (Fs.BoardMargin), as between two groups. -->
+    <layout:SpacingPanel Orientation="Horizontal">
         <layout:SpacingPanel.Style>
             <Style TargetType="layout:SpacingPanel">
-                <Setter Property="Margin" Value="12,4,12,18" />
+                <Setter Property="Margin" Value="{DynamicResource Fs.BoardMargin}" />
+                <Setter Property="Spacing" Value="{DynamicResource Fs.GroupGap}" />
                 <Style.Triggers>
                     <!-- Room above the columns for what sits on their top edge (⠿, ✕, the width being dragged): the
                          board's scroller clips what goes past its top. -->
                     <DataTrigger Binding="{Binding DataContext.IsCustomizing, RelativeSource={RelativeSource AncestorType=local:MainView}}" Value="True">
+                        <!-- ThemeApplier.BoardSide / BoardBottom derive from these values plus the column presenter's 4 px margin. -->
                         <Setter Property="Margin" Value="12,10,12,18" />
+                        <Setter Property="Spacing" Value="{DynamicResource Fs.ColumnGap}" />
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
@@ -36,7 +41,18 @@
         <ItemsControl x:Name="ColumnsList" ItemsSource="{Binding Columns}" Focusable="False">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <layout:SpacingPanel Orientation="Horizontal" Spacing="{DynamicResource Fs.ColumnGap}" />
+                    <layout:SpacingPanel Orientation="Horizontal">
+                        <layout:SpacingPanel.Style>
+                            <Style TargetType="layout:SpacingPanel">
+                                <Setter Property="Spacing" Value="{DynamicResource Fs.GroupGap}" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding DataContext.IsCustomizing, RelativeSource={RelativeSource AncestorType=local:MainView}}" Value="True">
+                                        <Setter Property="Spacing" Value="{DynamicResource Fs.ColumnGap}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </layout:SpacingPanel.Style>
+                    </layout:SpacingPanel>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>

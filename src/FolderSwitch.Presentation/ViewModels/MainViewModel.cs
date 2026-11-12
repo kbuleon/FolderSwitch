@@ -46,6 +46,7 @@ public sealed partial class MainViewModel : ObservableObject
     private readonly Localizer _localizer;
     private readonly Lazy<IconFinder> _icons;
     private readonly TimeProvider _time;
+    private readonly Random _random;
     private readonly SynchronizationContext? _ui = SynchronizationContext.Current;
 
     /// <summary>The hosts whose favicon was already asked for in this session: one attempt each, whatever the outcome.</summary>
@@ -75,7 +76,8 @@ public sealed partial class MainViewModel : ObservableObject
         IFavicons favicons,
         Localizer localizer,
         Lazy<IconFinder> icons,
-        TimeProvider? time = null)
+        TimeProvider? time = null,
+        Random? random = null)
     {
         ArgumentNullException.ThrowIfNull(activator);
         ArgumentNullException.ThrowIfNull(persistence);
@@ -96,6 +98,7 @@ public sealed partial class MainViewModel : ObservableObject
         _localizer = localizer;
         _icons = icons;
         _time = time ?? TimeProvider.System;
+        _random = random ?? Random.Shared;
 
         Load(config);
         _localizer.LanguageChanged += OnLanguageChanged;
@@ -156,7 +159,8 @@ public sealed partial class MainViewModel : ObservableObject
 
     private IEnumerable<IRelayCommand> CustomizeCommands =>
     [
-        AddTabCommand, RemoveTabCommand, AddColumnCommand, RemoveColumnCommand, AddGroupCommand, RemoveGroupCommand,
+        AddTabCommand, RemoveTabCommand, AddColumnCommand, RemoveColumnCommand, EqualizeColumnWidthsCommand,
+        ColorColumnsCommand, AddGroupCommand, RemoveGroupCommand,
         AddFolderCommand, AddFileCommand, RemoveItemCommand, BeginRenameCommand,
         RenameSelectedCommand,
     ];
@@ -399,7 +403,7 @@ public sealed partial class MainViewModel : ObservableObject
         }
 
         var tab = _activeTab;
-        tab.Columns.Add(new ColumnViewModel(BoardEditor.AddColumn(tab.Model), tab, _localizer, _icons));
+        tab.Columns.Add(new ColumnViewModel(BoardEditor.AddColumn(tab.Model, _config.Appearance.DefaultColumnWidth), tab, _localizer, _icons));
         Save();
     }
 
@@ -448,10 +452,10 @@ public sealed partial class MainViewModel : ObservableObject
     }
 
     /// <summary>
-    /// Sets a fixed width (rounded to 10 and clamped to 150..520) or, with <c>null</c>, automatic width.
-    /// Called once, at the end of a resize gesture.
+    /// Sets the width of a column (rounded to 10 and clamped to 150..520). Called once, at the end of a resize
+    /// gesture.
     /// </summary>
-    public void SetColumnWidth(ColumnViewModel column, int? width)
+    public void SetColumnWidth(ColumnViewModel column, int width)
     {
         if (!IsCustomizing || !IsLive(column)
             || !Succeeded(BoardEditor.SetColumnWidth(column.Tab.Model, column.Model.Id, width)))
@@ -460,6 +464,47 @@ public sealed partial class MainViewModel : ObservableObject
         }
 
         column.NotifyWidth();
+        Save();
+    }
+
+    /// <summary>Gives a column the current default width.</summary>
+    public void ResetColumnWidth(ColumnViewModel column) => SetColumnWidth(column, _config.Appearance.DefaultColumnWidth);
+
+    /// <summary>Gives every column of the active tab the default width.</summary>
+    [RelayCommand(CanExecute = nameof(CanCustomize))]
+    public void EqualizeColumnWidths()
+    {
+        if (!IsCustomizing)
+        {
+            return;
+        }
+
+        var tab = _activeTab;
+        BoardEditor.EqualizeColumnWidths(tab.Model, _config.Appearance.DefaultColumnWidth);
+        foreach (var column in tab.Columns)
+        {
+            column.NotifyWidth();
+        }
+
+        Save();
+    }
+
+    /// <summary>Gives each column of the active tab its own color, shared by all its groups.</summary>
+    [RelayCommand(CanExecute = nameof(CanCustomize))]
+    public void ColorColumns()
+    {
+        if (!IsCustomizing)
+        {
+            return;
+        }
+
+        var tab = _activeTab;
+        BoardEditor.ColorColumns(tab.Model, _random);
+        foreach (var group in tab.Columns.SelectMany(column => column.Groups))
+        {
+            group.NotifyColor();
+        }
+
         Save();
     }
 

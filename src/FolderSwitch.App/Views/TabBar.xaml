@@ -22,7 +22,18 @@
              xmlns:local="clr-namespace:FolderSwitch.App.Views"
              xmlns:layout="clr-namespace:FolderSwitch.App.Views.Layout"
              x:Name="Root">
-    <Grid Margin="0,0,0,9">
+    <Grid>
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <!-- In normal use the board alone sets the gap under the line (Fs.BoardMargin). -->
+                <Setter Property="Margin" Value="0" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsCustomizing}" Value="True">
+                        <Setter Property="Margin" Value="0,0,0,9" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
         <Border Height="1" VerticalAlignment="Bottom" Background="{DynamicResource Fs.Border}" />
         <WrapPanel Orientation="Horizontal" Margin="16,0">
             <ItemsControl x:Name="TabsList"

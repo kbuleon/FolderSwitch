@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
-using FolderSwitch.App.Views.Layout;
 using FolderSwitch.Presentation.ViewModels;
 
 namespace FolderSwitch.App.Views;
@@ -87,9 +86,6 @@ public static class InlineRename
         }
 
         Wire(box);
-
-        // The box and the name take turns in the same place: an automatic column fits whichever shows.
-        ColumnWidthPresenter.InvalidateColumnOf(box);
         if (e.NewValue is not true)
         {
             return;
@@ -125,7 +121,6 @@ public static class InlineRename
         box.SetValue(IsWiredProperty, true);
         box.PreviewKeyDown += OnPreviewKeyDown;
         box.LostKeyboardFocus += OnLostKeyboardFocus;
-        box.TextChanged += OnTextChanged;
     }
 
     private static void OnPreviewKeyDown(object sender, KeyEventArgs e)
@@ -150,9 +145,6 @@ public static class InlineRename
     }
 
     private static void OnLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) => End((TextBox)sender, commit: true);
-
-    /// <summary>The box sizes an automatic column like the name it covers: the column fits what is typed.</summary>
-    private static void OnTextChanged(object sender, TextChangedEventArgs e) => ColumnWidthPresenter.InvalidateColumnOf((TextBox)sender);
 
     private static void End(TextBox box, bool commit)
     {

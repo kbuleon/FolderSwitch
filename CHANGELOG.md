@@ -3,6 +3,11 @@ This file is maintained by the agent: one section per version, the newest first,
 
 ------
 
+## 1.12.0 — Default column width, Edit-mode tools, tighter board
+<sub>2026-11-12 · FOS-0017</sub>
+
+Columns no longer follow their content: every column has a width, and a long name is cut with « … » instead of widening it. A new setting, « Default column width » (Appearance page, 220 px, 150 to 520 by steps of 10), gives the width of new columns and of a column whose grip is double-clicked; changing it moves no existing column. On update, the columns that were automatic take the default width, the ones resized by hand keep theirs; the configuration format is unchanged (an earlier version still opens it). Edit mode has a small toolbar of two icon buttons left of « Done »: one sets every column of the current tab to the default width, the other gives each column of the current tab a random color from the palette, shared by its groups and never the same as its neighbour's. In normal use, the gap between columns and the gap under the tabs equal the gap between groups. Nine languages.
+
 ## 1.11.1 — README in nine languages
 <sub>2026-11-10 · FOS-0012</sub>
 

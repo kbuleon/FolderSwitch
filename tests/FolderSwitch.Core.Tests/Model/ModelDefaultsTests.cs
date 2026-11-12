@@ -35,6 +35,7 @@ public class ModelDefaultsTests
         Assert.Equal("fluent", config.Appearance.Theme);
         Assert.Empty(config.Appearance.Backgrounds);
         Assert.Equal(GroupRadius.Theme, config.Appearance.Radius);
+        Assert.Equal(220, config.Appearance.DefaultColumnWidth);
     }
 
     [Fact]

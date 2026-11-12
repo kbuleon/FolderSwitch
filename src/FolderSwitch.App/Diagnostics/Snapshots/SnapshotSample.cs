@@ -30,7 +30,7 @@ internal static class SnapshotSample
     /// <summary>The host of the site whose favicon the snapshots keep (see <see cref="SnapshotServices.FaviconFile"/>).</summary>
     public const string FaviconHost = "www.morningstar.fr";
 
-    /// <summary>The mockups' board, on the first tab, every column automatic.</summary>
+    /// <summary>The mockups' board, on the first tab, every column at the default width.</summary>
     public static AppConfig Create(string language)
     {
         var n = SampleNames.For(language);

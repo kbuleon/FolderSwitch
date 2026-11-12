@@ -8,9 +8,8 @@ using System.Windows.Controls;
 namespace FolderSwitch.App.Views.Layout;
 
 /// <summary>
-/// Shows its content, or while <see cref="IsCollapsed"/> takes no height at all and shows nothing of it, while still
-/// measuring its width: the items of a collapsed group keep counting for the width of their column, so that collapsing
-/// a group never makes the window narrower (the mockups' groups collapse the same way).
+/// Shows its content, or while <see cref="IsCollapsed"/> takes no height at all and shows nothing of it (the mockups'
+/// groups collapse the same way).
 /// </summary>
 public sealed class CollapsibleBox : Decorator
 {

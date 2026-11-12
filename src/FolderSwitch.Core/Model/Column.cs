@@ -9,7 +9,7 @@ public sealed class Column
 {
     public Guid Id { get; set; } = Guid.NewGuid();
 
-    /// <summary>Width in pixels; <c>null</c> means automatic.</summary>
+    /// <summary>Width in pixels; always set after loading, <c>null</c> only in files of older versions.</summary>
     public int? Width { get; set; }
 
     public List<Group> Groups { get; set; } = new();

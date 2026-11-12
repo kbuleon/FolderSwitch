@@ -4,8 +4,8 @@
     Additional terms under GPLv3 section 7: see the License section of README.md.
 -->
 <!--
-    A column of the board, bound to a ColumnViewModel: its groups stacked, all at the column's effective width (fixed,
-    or fitted to the content).
+    A column of the board, bound to a ColumnViewModel: its groups stacked, all at the column's width (names too long for
+    it are ellipsized). In normal use the groups reach the column's edges, so that the board alone sets the gaps.
     Customize mode: outlined with dashes, « + Group » at the bottom, the grip ⠿ the column is dragged by in the middle
     of its top edge, ✕ on its corner while it is empty, the resize grip on its right edge (with the width shown above
     the column while it is dragged, over the ⠿ grip), and it takes the groups dropped on it (an insertion line shows
@@ -42,7 +42,18 @@
                    Stroke="{DynamicResource Fs.ColumnOutline}"
                    IsHitTestVisible="False"
                    Visibility="{Binding IsCustomizing, ElementName=Root, Converter={StaticResource Fs.BoolToVisibility}}" />
-        <layout:ColumnWidthPresenter x:Name="WidthPresenter" Margin="4" FixedWidth="{Binding Width}">
+        <layout:ColumnWidthPresenter x:Name="WidthPresenter" FixedWidth="{Binding Width}">
+            <layout:ColumnWidthPresenter.Style>
+                <Style TargetType="layout:ColumnWidthPresenter">
+                    <Setter Property="Margin" Value="0" />
+                    <Style.Triggers>
+                        <!-- Inside the dashed outline. -->
+                        <DataTrigger Binding="{Binding IsCustomizing, ElementName=Root}" Value="True">
+                            <Setter Property="Margin" Value="4" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </layout:ColumnWidthPresenter.Style>
             <StackPanel>
                 <ItemsControl x:Name="GroupsList" ItemsSource="{Binding Groups}" Focusable="False">
                     <ItemsControl.ItemsPanel>

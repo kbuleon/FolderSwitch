@@ -6,8 +6,8 @@
 <!--
     The resize grip on the right edge of a column (Customize mode): a thin bar, in the accent color under the mouse
     and while it is dragged. Dragging sets the column's width (150 to 520 DIPs, in steps of 10, shown above the
-    column meanwhile), recorded once when the button is released; a double-click gives the column back its automatic
-    width. See the code-behind.
+    column meanwhile), recorded once when the button is released; a double-click gives the column the default width.
+    See the code-behind.
 -->
 <UserControl x:Class="FolderSwitch.App.Views.ColumnResizeGrip"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

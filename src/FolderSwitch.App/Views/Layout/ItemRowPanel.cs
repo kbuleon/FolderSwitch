@@ -17,10 +17,7 @@ namespace FolderSwitch.App.Views.Layout;
 /// When the row is short of room for the name too, the name is given what there is and ellipsized by its
 /// <c>TextBlock</c>.
 /// </para>
-/// <para>
-/// Measured without a width limit, the row asks for its icon and name only: the secondary text never widens an
-/// automatic column (spec 5.2: an automatic column fits the longest group or item name).
-/// </para>
+/// <para>Measured without a width limit, the row asks for its icon and name only.</para>
 /// <para>Children, in order: icon, name, secondary text; any further child is ignored.</para>
 /// </remarks>
 public sealed class ItemRowPanel : Panel

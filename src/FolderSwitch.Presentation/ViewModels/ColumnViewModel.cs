@@ -5,6 +5,7 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using FolderSwitch.Core.Icons;
+using FolderSwitch.Core.Layout;
 using FolderSwitch.Core.Localization;
 using FolderSwitch.Core.Model;
 
@@ -28,8 +29,8 @@ public sealed class ColumnViewModel : ObservableObject
     /// <summary>The tab the column is in.</summary>
     public TabViewModel Tab { get; internal set; }
 
-    /// <summary>Fixed width in pixels (150 to 520, step 10); <c>null</c> when the width follows the content.</summary>
-    public int? Width => Model.Width;
+    /// <summary>Width in pixels (150 to 520, step 10).</summary>
+    public int Width => Model.Width ?? ColumnWidths.Default;
 
     public ObservableCollection<GroupViewModel> Groups { get; }
 

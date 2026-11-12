@@ -55,11 +55,11 @@
                     <local:ItemIcon x:Name="Picture" Extension="{Binding Extension}" FaviconPath="{Binding FaviconPath}" />
                 </Grid>
                 <Grid>
-                    <layout:FitText Text="{Binding DisplayName}"
-                                    FontSize="{DynamicResource Fs.ItemFontSize}"
-                                    Foreground="{DynamicResource Fs.Group.ItemText}"
-                                    TextTrimming="CharacterEllipsis"
-                                    Visibility="{Binding IsRenaming, Converter={StaticResource Fs.InverseBoolToVisibility}}" />
+                    <TextBlock Text="{Binding DisplayName}"
+                               FontSize="{DynamicResource Fs.ItemFontSize}"
+                               Foreground="{DynamicResource Fs.Group.ItemText}"
+                               TextTrimming="CharacterEllipsis"
+                               Visibility="{Binding IsRenaming, Converter={StaticResource Fs.InverseBoolToVisibility}}" />
                     <TextBox Style="{StaticResource Fs.RenameBox}"
                              Margin="-4,-3,0,-3"
                              FontSize="{DynamicResource Fs.ItemFontSize}"

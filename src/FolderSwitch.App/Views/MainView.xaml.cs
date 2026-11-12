@@ -55,6 +55,12 @@ public partial class MainView : UserControl
         typeof(MainView),
         new PropertyMetadata(null));
 
+    public static readonly DependencyProperty AppearanceProperty = DependencyProperty.Register(
+        nameof(Appearance),
+        typeof(AppearanceViewModel),
+        typeof(MainView),
+        new PropertyMetadata(null));
+
     /// <summary>The name of the icon button of a tab and of a group's header, where the icon picker opens.</summary>
     internal const string IconButtonName = "IconButton";
 
@@ -85,8 +91,12 @@ public partial class MainView : UserControl
         set => SetValue(TextsProperty, value);
     }
 
-    /// <summary>The view model of the settings window's appearance page.</summary>
-    public AppearanceViewModel? Appearance { get; set; }
+    /// <summary>The view model of the settings window's appearance page (a dependency property: the title bar binds to it).</summary>
+    public AppearanceViewModel? Appearance
+    {
+        get => (AppearanceViewModel?)GetValue(AppearanceProperty);
+        set => SetValue(AppearanceProperty, value);
+    }
 
     /// <summary>The settings window's view model.</summary>
     public SettingsViewModel? Settings { get; set; }

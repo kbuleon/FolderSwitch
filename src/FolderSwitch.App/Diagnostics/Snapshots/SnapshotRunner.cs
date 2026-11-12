@@ -791,6 +791,11 @@ internal static class SnapshotRunner
             {
                 var rescaled = EnsureScale();
                 _desk.Measure(new Size(WorkArea.Width + (2 * DeskPadding), WorkArea.Height + (2 * DeskPadding)));
+
+                // The measure above stops at the elements still valid: one changed below them (a theme's gap in the
+                // board's panel) is measured from the layout queue here, which tells its parents, as in a window. Left
+                // to the arrange, it would be measured there, and a measure made while arranging tells no parent.
+                _desk.UpdateLayout();
                 _desk.Arrange(new Rect(_desk.DesiredSize));
                 _desk.UpdateLayout();
                 Settle();

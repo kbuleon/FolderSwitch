@@ -4,6 +4,7 @@
 
 using FolderSwitch.Core.Editing;
 using FolderSwitch.Core.Model;
+using FolderSwitch.Core.Theming;
 
 namespace FolderSwitch.Core.Tests.Editing;
 
@@ -102,17 +103,36 @@ public class BoardEditorTests
     // ----- Columns -----
 
     [Fact]
-    public void AddColumn_appends_an_empty_auto_width_column()
+    public void AddColumn_appends_an_empty_column_of_the_given_width()
     {
         var config = ConfigWithTabs("A");
         var tab = config.Tabs[0];
 
-        var column = BoardEditor.AddColumn(tab);
+        var column = BoardEditor.AddColumn(tab, 220);
 
         Assert.Equal(3, tab.Columns.Count);
         Assert.Same(column, tab.Columns[2]);
         Assert.Empty(column.Groups);
-        Assert.Null(column.Width);
+        Assert.Equal(220, column.Width);
+    }
+
+    [Fact]
+    public void AddColumn_uses_given_width()
+    {
+        var tab = ConfigWithTabs("A").Tabs[0];
+
+        Assert.Equal(250, BoardEditor.AddColumn(tab, 245).Width);
+    }
+
+    [Fact]
+    public void AddTab_columns_have_default_width()
+    {
+        var config = new AppConfig();
+        config.Appearance.DefaultColumnWidth = 300;
+
+        var tab = BoardEditor.AddTab(config, "A");
+
+        Assert.All(tab.Columns, column => Assert.Equal(300, column.Width));
     }
 
     [Fact]
@@ -157,44 +177,8 @@ public class BoardEditorTests
         Assert.Same(last, Assert.Single(tab.Columns));
     }
 
-    [Theory]
-    [InlineData(100, 150)]
-    [InlineData(150, 150)]
-    [InlineData(154, 150)]
-    [InlineData(155, 160)]
-    [InlineData(333, 330)]
-    [InlineData(520, 520)]
-    [InlineData(900, 520)]
-    public void ClampColumnWidth_rounds_to_tens_and_clamps(int requested, int expected)
-    {
-        Assert.Equal(expected, BoardEditor.ClampColumnWidth(requested));
-    }
-
-    [Theory]
-    [InlineData(int.MinValue, 150)]
-    [InlineData(-1, 150)]
-    [InlineData(int.MaxValue, 520)]
-    public void ClampColumnWidth_survives_extreme_values(int requested, int expected)
-    {
-        Assert.Equal(expected, BoardEditor.ClampColumnWidth(requested));
-    }
-
     [Fact]
-    public void SetColumnWidth_null_means_auto()
-    {
-        var config = ConfigWithTabs("A");
-        var tab = config.Tabs[0];
-        var column = tab.Columns[0];
-        BoardEditor.SetColumnWidth(tab, column.Id, 300);
-
-        var result = BoardEditor.SetColumnWidth(tab, column.Id, null);
-
-        Assert.True(result.Ok);
-        Assert.Null(column.Width);
-    }
-
-    [Fact]
-    public void SetColumnWidth_stores_the_clamped_value()
+    public void SetColumnWidth_rounds_and_clamps()
     {
         var config = ConfigWithTabs("A");
         var tab = config.Tabs[0];
@@ -208,11 +192,109 @@ public class BoardEditorTests
     }
 
     [Fact]
+    public void EqualizeColumnWidths_sets_every_column_of_the_tab_only()
+    {
+        var config = ConfigWithTabs("A", "B");
+        var (a, b) = (config.Tabs[0], config.Tabs[1]);
+        BoardEditor.SetColumnWidth(a, a.Columns[0].Id, 180);
+        BoardEditor.SetColumnWidth(a, a.Columns[1].Id, 400);
+        BoardEditor.SetColumnWidth(b, b.Columns[0].Id, 180);
+        BoardEditor.SetColumnWidth(b, b.Columns[1].Id, 400);
+
+        BoardEditor.EqualizeColumnWidths(a, 220);
+
+        Assert.All(a.Columns, column => Assert.Equal(220, column.Width));
+        Assert.Equal(new int?[] { 180, 400 }, b.Columns.Select(column => column.Width));
+    }
+
+    [Fact]
+    public void EqualizeColumnWidths_clamps_the_width()
+    {
+        var tab = ConfigWithTabs("A").Tabs[0];
+
+        BoardEditor.EqualizeColumnWidths(tab, 9999);
+
+        Assert.All(tab.Columns, column => Assert.Equal(520, column.Width));
+    }
+
+    private static Tab TabWithColumns(params int[] groupCounts)
+    {
+        var tab = new Tab { Name = "T" };
+        foreach (var count in groupCounts)
+        {
+            var column = BoardEditor.AddColumn(tab, 220);
+            for (var i = 0; i < count; i++)
+            {
+                BoardEditor.AddGroup(column, "G" + i, Blue);
+            }
+        }
+
+        return tab;
+    }
+
+    [Fact]
+    public void ColorColumns_gives_each_group_its_column_color()
+    {
+        var tab = TabWithColumns(3, 2, 1);
+        var palette = ThemeCatalog.GroupPalette.Select(color => color.Hex).ToList();
+
+        BoardEditor.ColorColumns(tab, new Random(1));
+
+        foreach (var column in tab.Columns)
+        {
+            var colors = column.Groups.Select(group => group.Color).Distinct().ToList();
+            var color = Assert.Single(colors);
+            Assert.Contains(color, palette);
+        }
+    }
+
+    [Fact]
+    public void ColorColumns_neighbours_differ()
+    {
+        for (var seed = 0; seed < 1000; seed++)
+        {
+            var tab = TabWithColumns(1, 1, 1, 1, 1, 1);
+
+            BoardEditor.ColorColumns(tab, new Random(seed));
+
+            for (var i = 1; i < tab.Columns.Count; i++)
+            {
+                Assert.NotEqual(tab.Columns[i - 1].Groups[0].Color, tab.Columns[i].Groups[0].Color);
+            }
+        }
+    }
+
+    [Fact]
+    public void ColorColumns_skips_empty_columns()
+    {
+        for (var seed = 0; seed < 1000; seed++)
+        {
+            var tab = TabWithColumns(1, 0, 1);
+
+            BoardEditor.ColorColumns(tab, new Random(seed));
+
+            Assert.NotEqual(tab.Columns[0].Groups[0].Color, tab.Columns[2].Groups[0].Color);
+            Assert.Empty(tab.Columns[1].Groups);
+        }
+    }
+
+    [Fact]
+    public void ColorColumns_single_column()
+    {
+        var tab = TabWithColumns(2);
+
+        BoardEditor.ColorColumns(tab, new Random(7));
+
+        Assert.All(tab.Columns[0].Groups, group =>
+            Assert.Contains(group.Color, ThemeCatalog.GroupPalette.Select(color => color.Hex)));
+    }
+
+    [Fact]
     public void MoveColumn_reorders_with_its_groups_and_width()
     {
         var config = ConfigWithTabs("A");
         var tab = config.Tabs[0];
-        var third = BoardEditor.AddColumn(tab);
+        var third = BoardEditor.AddColumn(tab, 220);
         var group = BoardEditor.AddGroup(third, "Clients", Blue);
         BoardEditor.SetColumnWidth(tab, third.Id, 300);
         var (first, second) = (tab.Columns[0], tab.Columns[1]);
@@ -230,7 +312,7 @@ public class BoardEditorTests
     {
         var config = ConfigWithTabs("A");
         var tab = config.Tabs[0];
-        BoardEditor.AddColumn(tab);
+        BoardEditor.AddColumn(tab, 220);
         var (a, b, c) = (tab.Columns[0], tab.Columns[1], tab.Columns[2]);
 
         BoardEditor.MoveColumn(config, a.Id, tab.Id, 99);

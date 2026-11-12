@@ -3,7 +3,9 @@
 // Additional terms under GPLv3 section 7: see the License section of README.md.
 
 using FolderSwitch.Core.Icons;
+using FolderSwitch.Core.Layout;
 using FolderSwitch.Core.Model;
+using FolderSwitch.Core.Theming;
 using FolderSwitch.Core.Web;
 
 namespace FolderSwitch.Core.Editing;
@@ -16,10 +18,6 @@ namespace FolderSwitch.Core.Editing;
 /// </summary>
 public static class BoardEditor
 {
-    private const int MinColumnWidth = 150;
-    private const int MaxColumnWidth = 520;
-    private const int ColumnWidthStep = 10;
-
     private static readonly EditResult Success = new(EditError.None);
 
     // ----- Tabs -----
@@ -27,8 +25,8 @@ public static class BoardEditor
     public static Tab AddTab(AppConfig c, string name)
     {
         var tab = new Tab { Name = name };
-        tab.Columns.Add(new Column());
-        tab.Columns.Add(new Column());
+        tab.Columns.Add(new Column { Width = c.Appearance.DefaultColumnWidth });
+        tab.Columns.Add(new Column { Width = c.Appearance.DefaultColumnWidth });
         c.Tabs.Add(tab);
         return tab;
     }
@@ -64,9 +62,9 @@ public static class BoardEditor
 
     // ----- Columns -----
 
-    public static Column AddColumn(Tab t)
+    public static Column AddColumn(Tab t, int width)
     {
-        var column = new Column();
+        var column = new Column { Width = ColumnWidths.Clamp(width) };
         t.Columns.Add(column);
         return column;
     }
@@ -115,8 +113,8 @@ public static class BoardEditor
         return Success;
     }
 
-    /// <summary>Sets the width of a column; <c>null</c> means automatic, otherwise the width is clamped.</summary>
-    public static EditResult SetColumnWidth(Tab t, Guid columnId, int? width)
+    /// <summary>Sets the width of a column, rounded to 10 and clamped to 150..520.</summary>
+    public static EditResult SetColumnWidth(Tab t, Guid columnId, int width)
     {
         var column = t.Columns.Find(col => col.Id == columnId);
         if (column is null)
@@ -124,16 +122,40 @@ public static class BoardEditor
             return Fail(EditError.NotFound);
         }
 
-        column.Width = width is { } requested ? ClampColumnWidth(requested) : null;
+        column.Width = ColumnWidths.Clamp(width);
         return Success;
     }
 
-    /// <summary>Rounds to the nearest multiple of 10 (midpoints go up), then clamps to 150..520.</summary>
-    public static int ClampColumnWidth(int requested)
+    /// <summary>Gives every column of the tab the same width (rounded to 10 and clamped to 150..520).</summary>
+    public static void EqualizeColumnWidths(Tab t, int width)
     {
-        // Clamping first is equivalent (both bounds are multiples of the step) and cannot overflow.
-        var clamped = Math.Clamp(requested, MinColumnWidth, MaxColumnWidth);
-        return (clamped + ColumnWidthStep / 2) / ColumnWidthStep * ColumnWidthStep;
+        var clamped = ColumnWidths.Clamp(width);
+        foreach (var column in t.Columns)
+        {
+            column.Width = clamped;
+        }
+    }
+
+    /// <summary>
+    /// Gives each non-empty column its own palette color, applied to all its groups. A column never gets the color of
+    /// the previous non-empty column; empty columns are skipped.
+    /// </summary>
+    public static void ColorColumns(Tab t, Random random)
+    {
+        var palette = ThemeCatalog.GroupPalette;
+        string? previous = null;
+        foreach (var column in t.Columns.Where(c => c.Groups.Count > 0))
+        {
+            // Uniform over the palette minus the previous non-empty column's color.
+            var candidates = palette.Select(p => p.Hex).Where(h => h != previous).ToList();
+            var color = candidates[random.Next(candidates.Count)];
+            foreach (var group in column.Groups)
+            {
+                group.Color = color;
+            }
+
+            previous = color;
+        }
     }
 
     // ----- Groups -----

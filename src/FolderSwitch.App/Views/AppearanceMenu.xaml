@@ -4,10 +4,11 @@
     Additional terms under GPLv3 section 7: see the License section of README.md.
 -->
 <!--
-    The appearance menu (spec 5.4), bound to AppearanceViewModel, compact (one screen, no scrolling): the mode
-    (Light, Dark, Auto), a thumbnail per theme drawn in the variant shown, the background (the theme's own first, the
-    tints of the variant, then a custom color typed as #rrggbb) and the group corners. Every choice takes effect and is
-    saved at once. The Appearance page of the settings window (SettingsView).
+    The appearance menu (spec 5.4), bound to AppearanceViewModel, compact (it scrolls in the settings window when it
+    does not fit): the mode (Light, Dark, Auto), a thumbnail per theme drawn in the variant shown, the background (the
+    theme's own first, the tints of the variant, then a custom color typed as #rrggbb), the group corners and the
+    default column width. Every choice takes effect and is saved at once. The Appearance page of the settings window
+    (SettingsView).
 -->
 <UserControl x:Class="FolderSwitch.App.Views.AppearanceMenu"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -137,5 +138,42 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+
+        <!-- Default column width: typed, or stepped by 10 with - and +; applied with Enter or when the box is left. -->
+        <TextBlock Style="{StaticResource Fs.MenuLabel}" Margin="4,10,4,4" Text="{Binding Texts[Appearance.DefaultColumnWidth], ElementName=Root, Converter={StaticResource Fs.UpperCase}}" />
+        <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+            <Button Style="{StaticResource Fs.SegmentButton}"
+                    Width="28"
+                    Height="26"
+                    Padding="0"
+                    Background="{DynamicResource Fs.SegmentTrack}"
+                    Content="&#x2212;"
+                    FontSize="14"
+                    Click="OnWidthMinusClick"
+                    AutomationProperties.Name="&#x2212;" />
+            <TextBox x:Name="WidthBox"
+                     Style="{StaticResource Fs.HexBox}"
+                     Width="56"
+                     Height="26"
+                     Margin="6,0,6,0"
+                     MaxLength="4"
+                     TextAlignment="Center"
+                     VerticalContentAlignment="Center"
+                     Text="{Binding DefaultColumnWidth, Mode=OneWay}"
+                     AutomationProperties.Name="{Binding Texts[Appearance.DefaultColumnWidth], ElementName=Root}"
+                     PreviewKeyDown="OnWidthKeyDown"
+                     LostKeyboardFocus="OnWidthLostFocus" />
+            <TextBlock VerticalAlignment="Center" FontSize="12" Foreground="{DynamicResource Fs.MenuMuted}" Text="px" />
+            <Button Style="{StaticResource Fs.SegmentButton}"
+                    Width="28"
+                    Height="26"
+                    Margin="6,0,0,0"
+                    Padding="0"
+                    Background="{DynamicResource Fs.SegmentTrack}"
+                    Content="+"
+                    FontSize="14"
+                    Click="OnWidthPlusClick"
+                    AutomationProperties.Name="+" />
+        </StackPanel>
     </StackPanel>
 </UserControl>

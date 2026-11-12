@@ -20,9 +20,9 @@ namespace FolderSwitch.App.Views;
 /// <b>Gesture.</b> The press captures the mouse; while it moves, the column is drawn at the width under the mouse
 /// (<see cref="ColumnWidthPresenter.PreviewWidth"/>, which the column also shows as a number), stepped and bounded by
 /// <see cref="ColumnWidths"/>; the release records it with one <see cref="MainViewModel.SetColumnWidth"/>, and so one
-/// save. A release at the width the column started at records nothing (an automatic column stays automatic). A capture
-/// lost along the way (another window took the mouse) records nothing either. A double-click records the automatic
-/// width (<c>null</c>).
+/// save. A release at the width the column started at records nothing. A capture
+/// lost along the way (another window took the mouse) records nothing either. A double-click records the default
+/// width (<see cref="MainViewModel.ResetColumnWidth"/>).
 /// </para>
 /// <para>
 /// <b>Coordinates.</b> The width follows the mouse in screen coordinates: while the column grows, the window keeps its
@@ -68,7 +68,7 @@ public partial class ColumnResizeGrip : UserControl
         if (e.ClickCount >= 2)
         {
             Cancel();
-            viewModel.SetColumnWidth(column, null);
+            viewModel.ResetColumnWidth(column);
             return;
         }
 

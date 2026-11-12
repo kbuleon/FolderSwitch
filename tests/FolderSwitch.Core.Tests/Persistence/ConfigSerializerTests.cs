@@ -23,7 +23,7 @@ public class ConfigSerializerTests
         TestConfigs.AssertEquivalent(original, copy);
         // Spot checks of the values called out in the specification.
         Assert.Equal(330, copy.Tabs[0].Columns[0].Width);
-        Assert.Null(copy.Tabs[0].Columns[1].Width);
+        Assert.Equal(240, copy.Tabs[0].Columns[1].Width);
         var group = copy.Tabs[0].Columns[0].Groups[0];
         Assert.True(group.Collapsed);
         Assert.Equal("#f59e0b", group.Color);
@@ -443,6 +443,73 @@ public class ConfigSerializerTests
         Assert.Equal("https://example.com/", Assert.Single(items).Url);
     }
 
+    // ----- Column width -----
+
+    private static string OneColumnJson(string appearance, string column) =>
+        "{ \"schemaVersion\": 3, " + appearance + "\"tabs\": [ { \"name\": \"A\", \"columns\": [ " + column + " ] } ] }";
+
+    [Fact]
+    public void Column_without_width_gets_default_width()
+    {
+        var config = ConfigSerializer.Deserialize(OneColumnJson("\"appearance\": { }, ", "{ \"groups\": [] }"));
+
+        Assert.Equal(220, config.Tabs[0].Columns[0].Width);
+        Assert.Equal(220, config.Appearance.DefaultColumnWidth);
+    }
+
+    [Fact]
+    public void Column_with_null_width_gets_appearance_default()
+    {
+        var json = OneColumnJson("\"appearance\": { \"defaultColumnWidth\": 300 }, ", "{ \"width\": null, \"groups\": [] }");
+
+        Assert.Equal(300, ConfigSerializer.Deserialize(json).Tabs[0].Columns[0].Width);
+    }
+
+    [Fact]
+    public void Manual_width_is_kept()
+    {
+        var json = OneColumnJson("\"appearance\": { \"defaultColumnWidth\": 300 }, ", "{ \"width\": 340, \"groups\": [] }");
+
+        Assert.Equal(340, ConfigSerializer.Deserialize(json).Tabs[0].Columns[0].Width);
+    }
+
+    [Theory]
+    [InlineData(0, 150)]
+    [InlineData(-5, 150)]
+    [InlineData(9999, 520)]
+    [InlineData(223, 220)]
+    [InlineData(225, 230)]
+    public void Default_column_width_is_clamped_and_rounded(int stored, int expected)
+    {
+        var json = OneColumnJson("\"appearance\": { \"defaultColumnWidth\": " + stored + " }, ", "{ \"groups\": [] }");
+
+        var config = ConfigSerializer.Deserialize(json);
+
+        Assert.Equal(expected, config.Appearance.DefaultColumnWidth);
+        Assert.Equal(expected, config.Tabs[0].Columns[0].Width);
+    }
+
+    [Fact]
+    public void Tab_without_column_gets_one_at_default_width()
+    {
+        var json = "{ \"schemaVersion\": 3, \"tabs\": [ { \"name\": \"A\", \"columns\": [] } ] }";
+
+        Assert.Equal(220, Assert.Single(ConfigSerializer.Deserialize(json).Tabs[0].Columns).Width);
+    }
+
+    [Fact]
+    public void Default_column_width_round_trips()
+    {
+        var original = TestConfigs.Minimal();
+        original.Appearance.DefaultColumnWidth = 310;
+
+        var json = ConfigSerializer.Serialize(original);
+
+        Assert.Contains("\"defaultColumnWidth\"", json);
+        Assert.Contains("\"schemaVersion\": 3", json);
+        Assert.Equal(310, ConfigSerializer.Deserialize(json).Appearance.DefaultColumnWidth);
+    }
+
     [Theory]
     [InlineData("""{ "schemaVersion": 1, "tabs": [ { "name": "A", "columns": [] } ] }""")]
     [InlineData("""{ "schemaVersion": 1, "tabs": [ { "name": "A", "columns": [ null ] } ] }""")]
@@ -452,7 +519,7 @@ public class ConfigSerializerTests
         var column = Assert.Single(ConfigSerializer.Deserialize(json).Tabs[0].Columns);
 
         Assert.Empty(column.Groups);
-        Assert.Null(column.Width);
+        Assert.Equal(220, column.Width);
     }
 
     [Fact]

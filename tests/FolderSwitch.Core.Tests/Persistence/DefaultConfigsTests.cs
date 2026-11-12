@@ -81,7 +81,7 @@ public class DefaultConfigsTests
         Assert.All(tab.Columns, column =>
         {
             Assert.Empty(column.Groups);
-            Assert.Null(column.Width);
+            Assert.Equal(220, column.Width);
         });
     }
 

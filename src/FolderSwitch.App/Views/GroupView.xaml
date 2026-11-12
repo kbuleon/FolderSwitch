@@ -153,13 +153,13 @@
                                                      HorizontalAlignment="Left"
                                                      VerticalAlignment="Center"
                                                      Visibility="{Binding IsRenaming, Converter={StaticResource Fs.InverseBoolToVisibility}}">
-                                        <layout:FitText x:Name="NameText"
-                                                        Text="{Binding Title, ElementName=Root}"
-                                                        FontWeight="SemiBold"
-                                                        FontSize="{DynamicResource Fs.Group.TitleFontSize}"
-                                                        Foreground="{DynamicResource Fs.Group.HeaderText}"
-                                                        Effect="{DynamicResource Fs.Group.TitleEffect}"
-                                                        TextTrimming="CharacterEllipsis" />
+                                        <TextBlock x:Name="NameText"
+                                                   Text="{Binding Title, ElementName=Root}"
+                                                   FontWeight="SemiBold"
+                                                   FontSize="{DynamicResource Fs.Group.TitleFontSize}"
+                                                   Foreground="{DynamicResource Fs.Group.HeaderText}"
+                                                   Effect="{DynamicResource Fs.Group.TitleEffect}"
+                                                   TextTrimming="CharacterEllipsis" />
                                     </layout:TextRoom>
                                     <TextBox x:Name="RenameBox"
                                              Style="{StaticResource Fs.RenameBox}"
@@ -179,10 +179,10 @@
                                     VerticalAlignment="Center"
                                     Background="{DynamicResource Fs.Group.CountBackground}"
                                     Visibility="{Binding CountVisibility, ElementName=Root}">
-                                <layout:FitText Text="{Binding Count}"
-                                                FontSize="11.2"
-                                                FontWeight="SemiBold"
-                                                Foreground="{DynamicResource Fs.Group.CountText}" />
+                                <TextBlock Text="{Binding Count}"
+                                           FontSize="11.2"
+                                           FontWeight="SemiBold"
+                                           Foreground="{DynamicResource Fs.Group.CountText}" />
                             </Border>
 
                             <!-- Customize mode: the color dot that opens the palette. -->
@@ -208,7 +208,7 @@
                         </Grid>
                     </Border>
 
-                    <!-- Collapsed, the items take no height but still count for the column's width. -->
+                    <!-- Collapsed, the items take no height. -->
                     <layout:CollapsibleBox IsCollapsed="{Binding IsCollapsed, ElementName=Root}">
                         <StackPanel>
                             <ItemsControl x:Name="ItemsList" ItemsSource="{Binding Items}" Focusable="False" Margin="5" MinHeight="12">

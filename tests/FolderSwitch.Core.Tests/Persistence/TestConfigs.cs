@@ -50,7 +50,7 @@ internal static class TestConfigs
                         },
                     },
                 },
-                new Column { Width = null },
+                new Column { Width = 240 },
             },
         };
         var home = new Tab

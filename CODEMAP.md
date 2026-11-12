@@ -38,8 +38,8 @@ The domain, with no dependency on Windows, WPF or packages.
 
 - `AppConfig` — root: schema version, settings, appearance, tabs.
 - `Settings` — language, shortcut, start with Windows, automatic update check, first-run flag, active tab id.
-- `Appearance` — mode, theme key, background per `theme:variant`, group corner radius.
-- `Tab`, `Column`, `Group`, `Item` — the board tree; ids are GUIDs; a column width is optional (automatic when absent); an item has a path, a special-folder key or a web address (`url`), or is a separator (a kind with no name, path or address); a tab and a group have an emoji `Icon` and `IconChosen` (chosen by hand, or automatic).
+- `Appearance` — mode, theme key, background per `theme:variant`, group corner radius, default column width (220).
+- `Tab`, `Column`, `Group`, `Item` — the board tree; ids are GUIDs; a column always has a width once loaded (absent or `null` only in files of versions before 1.12.0); an item has a path, a special-folder key or a web address (`url`), or is a separator (a kind with no name, path or address); a tab and a group have an emoji `Icon` and `IconChosen` (chosen by hand, or automatic).
 - `Hotkey` — modifiers plus an optional virtual key (none: modifier-only).
 - `KeyModifiers` — flags Ctrl, Alt, Shift, Win.
 - `ItemKind` (folder, file, url, separator), `ThemeMode`, `GroupRadius`, `SpecialFolderKey` — the enumerations of the model.
@@ -99,18 +99,18 @@ The domain, with no dependency on Windows, WPF or packages.
 
 ### Layout/
 
-- `ColumnWidths` — column width limits (150–520, step 10) and the automatic width rule.
+- `ColumnWidths` — column width limits (150–520, step 10), the default width (220) and `Clamp` (nearest step, within the limits).
 - `WindowPlacement` — centering on a work area, re-anchoring (keep top edge and horizontal centre), fitting a dropped window back inside and clamping to a work area, in DIPs.
 - `SizeD`, `RectD` — size and rectangle in DIPs.
 
 ### Editing/
 
-- `BoardEditor` — every edit of the board as a pure operation on `AppConfig` (tabs, columns, groups, items, rename, icon, move within or across tabs, collapse, colour, width); a tab keeps at least one column.
+- `BoardEditor` — every edit of the board as a pure operation on `AppConfig` (tabs, columns, groups, items, rename, icon, move within or across tabs, collapse, colour, width, the widths of a tab made equal, one random palette colour per column with neighbours different); a tab keeps at least one column.
 - `EditResult`, `EditError` — success or the reason an edit was refused (an invalid icon included).
 
 ### Persistence/
 
-- `ConfigSerializer` — JSON read and write; strict structure, tolerant content (normalisation, an `url` item without a valid site address dropped, a separator stripped of any name or target, an icon that is not an emoji dropped); schema version check (current: 3, versions 1 and 2 read as is; a separator is written with `id` and `kind` only); the `icon` property written as is, not escaped.
+- `ConfigSerializer` — JSON read and write; strict structure, tolerant content (normalisation, an `url` item without a valid site address dropped, a separator stripped of any name or target, an icon that is not an emoji dropped, a column without width given the default width, widths clamped); schema version check (current: 3, versions 1 and 2 read as is; a separator is written with `id` and `kind` only); the `icon` property written as is, not escaped.
 - `ConfigStore` — `config.json` in `%APPDATA%\FolderSwitch`: atomic, flushed save, load with repair, rolling backups, atomic export, import.
 - `LoadResult`, `LoadOutcome` — how a load ended (loaded, created, restored from backup, reset).
 - `DefaultConfigs`, `StartContent` — the first-run configuration (sample tab or empty tab); its names are given their automatic icons.
@@ -166,7 +166,7 @@ View models and the UI-facing ports. Depends on Core and CommunityToolkit.Mvvm.
 
 ### ViewModels/
 
-- `MainViewModel` — the window: board projection, normal use and Customize mode, all edits, rename (the automatic icon of the new name), the icon commands and the opening of the icon picker, activation and its outcomes, which items the calling window can use, adding a site (and fetching its favicon: at once, and once per host per session when missing), opening the Add menu, tab shown during a drag across tabs, `OnShown`/`OnHidden`/`OnDeactivated`, `Reload` after an import.
+- `MainViewModel` — the window: board projection, normal use and Customize mode, all edits, rename (the automatic icon of the new name), the icon commands and the opening of the icon picker, activation and its outcomes, which items the calling window can use, adding a site (and fetching its favicon: at once, and once per host per session when missing), opening the Add menu, tab shown during a drag across tabs, `OnShown`/`OnHidden`/`OnDeactivated`, `Reload` after an import; the Edit-mode tools (equalize the widths of the tab, random colours per column) and the reset of a column to the default width.
 - `AddMenuViewModel` — the « Add ▾ » menu of a group: the first line for the calling window (folder or page), the footer, the additions; reads a browser's page while the menu is open (every 200 ms, for 2 s), and stops when disposed.
 - `UrlPromptViewModel` — the web address prompt: prefill (a browser's page or the clipboard), validation, the normalised result.
 - `TabViewModel`, `ColumnViewModel`, `GroupViewModel`, `ItemViewModel` — projections of the model objects; a tab and a group carry their `Icon` and `HasIcon`, empty when the font cannot draw it.
@@ -175,7 +175,7 @@ View models and the UI-facing ports. Depends on Core and CommunityToolkit.Mvvm.
 - `RenamableViewModel` — base of the three nameable objects (tab, group, item).
 - `InsertionSlot` — converts a drop slot into the index the model expects.
 - `SpecialFolderState` — one entry of the Add menu's special folders (name, already present).
-- `AppearanceViewModel` — mode, theme, background, corners; resolves the effective variant (live Windows mode) and raises `AppearanceChanged`.
+- `AppearanceViewModel` — mode, theme, background, corners, default column width; resolves the effective variant (live Windows mode) and raises `AppearanceChanged`.
 - `AppearanceChangedEventArgs` — the new tokens and radius.
 - `SettingsViewModel` — language, shortcut, start with Windows, export, import (`ConfigReplaced`), update check, automatic update check (`CheckForUpdatesAutomatically`, `AutomaticUpdatesChanged`).
 - `LanguageOption` — a selectable language.
@@ -288,10 +288,10 @@ The shell and composition root.
 ### Views/
 
 - `MainWindow` — the borderless resident window: frame, keyboard (Tab, Escape, F2), hide on close.
-- `MainView` — the window's content: title bar (with ⚙ and (?), and Ko-fi's button after the name in Customize mode, which opens the author's Ko-fi page), tab bar, the boards of every tab (the active one shown); flyout host; dialog layer (settings and About over a dimmed backdrop); rename focus handling.
+- `MainView` — the window's content: title bar (with ⚙ and (?), and in Customize mode Ko-fi's button after the name, which opens the author's Ko-fi page, and a small toolbar left of « Done »: equalize widths, random colours), tab bar, the boards of every tab (the active one shown); flyout host; dialog layer (settings and About over a dimmed backdrop); rename focus handling.
 - `TabBar`, `BoardView`, `ColumnView`, `GroupView`, `ItemView` — the board's views (the tab bar wraps, and shows the tab a drag rests on; a tab and a group header show their icon left of the name, or a discreet slot in Customize mode); Customize-mode gestures and drop targets.
-- `ColumnResizeGrip` — drag a column's width, double-click for automatic.
-- `AppearanceMenu` — the settings' Appearance page: mode, theme tiles, backgrounds, corners (with `ThemeTile`, `ModeChoice`, `BackgroundSwatch`, `RadiusChoice`).
+- `ColumnResizeGrip` — drag a column's width, double-click for the default width.
+- `AppearanceMenu` — the settings' Appearance page: mode, theme tiles, backgrounds, corners, default column width (with `ThemeTile`, `ModeChoice`, `BackgroundSwatch`, `RadiusChoice`).
 - `ThemePreview` — a theme's thumbnail drawn with the real catalog colours.
 - `SettingsView` — the settings window: categories (`SettingsPage`, `SettingsPageChoice`) and their pages (General: language, autostart, updates and the automatic check, version; Shortcut; Appearance; Configuration: import/export).
 - `AboutView` — the About window: icon, name, version, description; the legal notices (copyright, license, no warranty) with links that open `LICENSE.txt` and `THIRD-PARTY-NOTICES.txt` next to the executable.
@@ -316,11 +316,10 @@ The shell and composition root.
 - `DragDrop/BoardDragDrop` — drag-and-drop start, targets and slot finding for tabs (line by line when they wrap), columns, groups and items, within a tab or across tabs.
 - `DragDrop/PressGesture` — press, click, double-click or drag-start recogniser.
 - `DragDrop/InsertionAdorner` — the insertion line shown while dragging.
-- `Layout/ColumnWidthPresenter` — gives a column its effective width (preview, fixed or content-driven).
+- `Layout/ColumnWidthPresenter` — gives a column's content the column's width (its stored width, or the grip's preview while it is dragged).
 - `Layout/TabBoardsPanel` — holds every tab's board: as wide as the widest, as tall as the one shown.
-- `Layout/CollapsibleBox` — collapses height but keeps measuring width.
+- `Layout/CollapsibleBox` — collapses its content to no height.
 - `Layout/ItemRowPanel` — icon, name, then path that yields room to the name.
-- `Layout/FitText` — text that tells its column to re-fit when it changes.
 - `Layout/TitleRowPanel` — the left of the title bar: its last child (Ko-fi's button) never widens the window and is left out when it does not fit.
 - `Layout/TextRoom` — one device pixel of room for ellipsized text at fractional scales.
 - `Layout/RoundedClip`, `Layout/SpacingPanel` — rounded clipping; spaced stack panel.
@@ -389,6 +388,7 @@ xUnit, the App's own decisions; no window shown, temporary folders only, run one
 - `UpdateFeedTests` — the feed address rule (only a GitHub repository address; the source it builds).
 - `EmojiGlyphsTests` — what the machine's emoji font is said to draw (the font's character map).
 - `TitleRowPanelTests` — the title bar's last child: never asked for, shown when it fits whole (laid out on an STA thread, no window).
+- `MainViewBindingTests` — the Edit-mode « equalize » button's tooltip and accessible name show the default column width and follow it (a real `MainView` on an STA thread, no window).
 - `Support/` — `FakeTime`, `TempDirectory`, the assembly's no-parallelization setting.
 
 ## tests/FolderSwitch.Windows.IntegrationTests (net10.0-windows)

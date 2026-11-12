@@ -854,7 +854,7 @@ public class MainViewModelTests
     }
 
     [Fact]
-    public void SetColumnWidth_clamps_and_can_return_to_automatic()
+    public void SetColumnWidth_rounds_and_clamps()
     {
         var h = new Harness();
         var vm = h.Customizing();
@@ -867,10 +867,10 @@ public class MainViewModelTests
         Assert.Equal(330, h.WorkLeft.Width);
         Assert.Contains(nameof(ColumnViewModel.Width), changes);
 
-        vm.SetColumnWidth(left, null);
+        vm.SetColumnWidth(left, 9999);
 
-        Assert.Null(left.Width);
-        Assert.Null(h.WorkLeft.Width);
+        Assert.Equal(520, left.Width);
+        Assert.Equal(520, h.WorkLeft.Width);
         Assert.Equal(2, h.Persistence.SaveCount);
     }
 
@@ -2438,5 +2438,121 @@ public class MainViewModelTests
         Assert.Null(group.Icon);
         Assert.False(group.IconChosen);
         Assert.Equal(0, h.Persistence.SaveCount);
+    }
+
+    // ----- Column widths and colors -----
+
+    [Fact]
+    public void EqualizeColumnWidths_sets_active_tab_columns_to_default()
+    {
+        var h = new Harness(x =>
+        {
+            x.Config.Appearance.DefaultColumnWidth = 300;
+            x.WorkLeft.Width = 180;
+            x.WorkRight.Width = 400;
+            x.HomeMain.Width = 170;
+        });
+        var vm = h.Customizing();
+        vm.ActiveTab = h.TabVm("Work");
+        var saves = h.Persistence.SaveCount;
+        var changes = RecordChanges(h.ColumnVm("Work", 0));
+
+        vm.EqualizeColumnWidths();
+
+        Assert.Equal(300, h.WorkLeft.Width);
+        Assert.Equal(300, h.WorkRight.Width);
+        Assert.Equal(300, h.ColumnVm("Work", 1).Width);
+        Assert.Contains(nameof(ColumnViewModel.Width), changes);
+        Assert.Equal(170, h.HomeMain.Width);
+        Assert.Equal(saves + 1, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void EqualizeColumnWidths_does_nothing_outside_customize()
+    {
+        var h = new Harness(x => x.WorkLeft.Width = 180);
+        h.Vm.ActiveTab = h.TabVm("Work");
+        var saves = h.Persistence.SaveCount;
+
+        Assert.False(h.Vm.EqualizeColumnWidthsCommand.CanExecute(null));
+        h.Vm.EqualizeColumnWidths();
+
+        Assert.Equal(180, h.WorkLeft.Width);
+        Assert.Equal(saves, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void ColorColumns_colors_active_tab_by_column()
+    {
+        var h = new Harness(random: new Random(1));
+        var vm = h.Customizing();
+        vm.ActiveTab = h.TabVm("Work");
+        var saves = h.Persistence.SaveCount;
+        var projectsChanges = RecordChanges(h.GroupVm("Projects"));
+        var inboxChanges = RecordChanges(h.GroupVm("Inbox"));
+
+        vm.ColorColumns();
+
+        Assert.Equal(h.Projects.Color, h.Inbox.Color);
+        Assert.Equal(h.Projects.Color, h.GroupVm("Projects").Color);
+        Assert.Equal("#ef4444", h.Media.Color);
+        Assert.Contains(nameof(GroupViewModel.Color), projectsChanges);
+        Assert.Contains(nameof(GroupViewModel.Color), inboxChanges);
+        Assert.Equal(saves + 1, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void ColorColumns_does_nothing_outside_customize()
+    {
+        var h = new Harness(random: new Random(1));
+        h.Vm.ActiveTab = h.TabVm("Work");
+        var saves = h.Persistence.SaveCount;
+
+        Assert.False(h.Vm.ColorColumnsCommand.CanExecute(null));
+        h.Vm.ColorColumns();
+
+        Assert.Equal("#3b82f6", h.Projects.Color);
+        Assert.Equal("#22c55e", h.Inbox.Color);
+        Assert.Equal(saves, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void ResetColumnWidth_uses_current_default()
+    {
+        var h = new Harness(x =>
+        {
+            x.Config.Appearance.DefaultColumnWidth = 260;
+            x.HomeMain.Width = 400;
+        });
+        var vm = h.Customizing();
+
+        vm.ResetColumnWidth(h.ColumnVm("Home", 0));
+
+        Assert.Equal(260, h.HomeMain.Width);
+        Assert.Equal(260, h.ColumnVm("Home", 0).Width);
+        Assert.Equal(1, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void AddColumn_uses_current_default()
+    {
+        var h = new Harness(x => x.Config.Appearance.DefaultColumnWidth = 330);
+        var vm = h.Customizing();
+
+        vm.AddColumn();
+
+        Assert.Equal(330, h.Home.Columns[^1].Width);
+        Assert.Equal(330, h.TabVm("Home").Columns[^1].Width);
+    }
+
+    [Fact]
+    public void AddTab_columns_use_current_default()
+    {
+        var h = new Harness(x => x.Config.Appearance.DefaultColumnWidth = 280);
+        var vm = h.Customizing();
+
+        vm.AddTab();
+
+        Assert.All(h.Config.Tabs[^1].Columns, c => Assert.Equal(280, c.Width));
     }
 }

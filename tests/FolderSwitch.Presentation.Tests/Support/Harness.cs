@@ -19,7 +19,7 @@ namespace FolderSwitch.Presentation.Tests.Support;
 internal sealed class Harness
 {
     /// <param name="arrange">Runs on the configuration before the view model is built.</param>
-    public Harness(Action<Harness>? arrange = null)
+    public Harness(Action<Harness>? arrange = null, Random? random = null)
     {
         Acme = new Item { Kind = ItemKind.Folder, Path = @"C:\Projects\Acme" };
         Desktop = new Item { Kind = ItemKind.Folder, Special = SpecialFolderKey.Desktop };
@@ -44,7 +44,7 @@ internal sealed class Harness
         arrange?.Invoke(this);
 
         Localizer = TestLocalizer.Create();
-        Vm = new MainViewModel(Config, Activator, Persistence, Prompts, Host, Browser, Favicons, Localizer, TestIcons.Lazy(Glyphs), Time);
+        Vm = new MainViewModel(Config, Activator, Persistence, Prompts, Host, Browser, Favicons, Localizer, TestIcons.Lazy(Glyphs), Time, random);
     }
 
     public AppConfig Config { get; }

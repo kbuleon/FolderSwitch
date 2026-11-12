@@ -51,6 +51,14 @@ internal sealed class ThemeApplier : IDisposable
     /// <summary>Side of the tile of the dotted board background.</summary>
     private const double DotPitch = 14;
 
+    /// <summary>
+    /// The board's left and right margins in normal use, and its bottom one: those of Customize mode (12 and 18, in
+    /// <c>BoardView</c>) plus the 4 DIPs the columns keep inside their outline there.
+    /// </summary>
+    private const double BoardSide = 16;
+
+    private const double BoardBottom = 22;
+
     private static readonly Uri GenericUri = new("/FolderSwitch;component/Themes/Generic.xaml", UriKind.Relative);
 
     private readonly AppearanceViewModel _appearance;
@@ -97,6 +105,7 @@ internal sealed class ThemeApplier : IDisposable
         var menu = MenuSurface(t, dark);
         var menuText = ColorMath.EnsureContrast(t.Text, menu, TextMinRatio);
         var menuMuted = ColorMath.EnsureContrast(t.Muted, menu, MutedMinRatio);
+        var groupGap = t.Dense ? 8.0 : 11.0;
         var resources = new ResourceDictionary
         {
             [ThemeKeys.Background] = SolidBrush(t.Background),
@@ -112,7 +121,8 @@ internal sealed class ThemeApplier : IDisposable
             [ThemeKeys.Dense] = t.Dense,
             [ThemeKeys.UppercaseTitles] = t.UppercaseTitles,
             [ThemeKeys.ColumnGap] = t.Dense ? 10.0 : 13.0,
-            [ThemeKeys.GroupGap] = t.Dense ? 8.0 : 11.0,
+            [ThemeKeys.GroupGap] = groupGap,
+            [ThemeKeys.BoardMargin] = new Thickness(BoardSide, groupGap, BoardSide, BoardBottom),
             [ThemeKeys.ItemPadding] = t.Dense ? new Thickness(8, 3, 8, 3) : new Thickness(8, 5, 8, 5),
             [ThemeKeys.ItemFontSize] = t.Dense ? 12.8 : 13.75,
             [ThemeKeys.Appearance] = state,

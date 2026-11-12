@@ -53,6 +53,12 @@ internal static class ThemeKeys
     /// <summary>Space between the groups of a column (<c>double</c>).</summary>
     public const string GroupGap = "Fs.GroupGap";
 
+    /// <summary>
+    /// Margin of the board in normal use (<c>Thickness</c>): <see cref="GroupGap"/> between the tab bar's line and the
+    /// groups, as between two groups.
+    /// </summary>
+    public const string BoardMargin = "Fs.BoardMargin";
+
     /// <summary>Padding of an item row (<c>Thickness</c>).</summary>
     public const string ItemPadding = "Fs.ItemPadding";
 
