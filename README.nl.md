@@ -51,7 +51,7 @@ Uw bord, zoals de sneltoets het toont:
 De modus Bewerken, waarin tabbladen, kolommen, groepen en items worden toegevoegd, hernoemd, anders gekleurd en met
 slepen en neerzetten verplaatst (hier met het thema Kaarten, donker):
 
-![Modus Bewerken: greepjes, kleur- en verwijderknoppen op elke groep, een knop ‘Toevoegen ▾’ onder elke groep, knoppen ‘+ Groep’ en ‘+ Kolom’](assets/screenshots/nl/edit-mode.png)
+![Modus Bewerken: greepjes, kleur- en verwijderknoppen op elke groep, een knop ‘Toevoegen ▾’ onder elke groep, knoppen ‘+ Groep’ en ‘+ Kolom’, en links van ‘Klaar’ de knoppen die de kolommen even breed maken en ze kleuren](assets/screenshots/nl/edit-mode.png)
 
 Het menu ‘Toevoegen ▾’ van een groep, opgeroepen vanuit Firefox: de pagina die de browser toont staat bovenaan. Vanuit
 Verkenner opgeroepen is dat de huidige map:
@@ -75,7 +75,8 @@ De instellingen, met zeven thema's in licht en donker:
   nieuw tabblad van Verkenner (op Windows 10 in een nieuw venster).
 - **Een bord dat u indeelt met slepen en neerzetten.** Tabbladen, kolommen, gekleurde groepen die u kunt inklappen, en
   daarin mappen, bestanden, websites, speciale Windows-mappen (Bureaublad, Documenten, Deze pc…) en scheidingslijnen.
-  Elke wijziging wordt meteen opgeslagen.
+  Kolommen houden de breedte die u ze geeft: in de modus Bewerken maakt één klik ze allemaal even breed en geeft een
+  andere klik elke kolom een eigen kleur. Elke wijziging wordt meteen opgeslagen.
 - **Voeg dingen toe waar u bent.** Vanuit Verkenner of een bestandsdialoogvenster voegt ‘Huidige map’ met één klik de
   map toe waarin u zich bevindt. Vanuit Firefox, Chrome of Edge voegt ‘Huidige URL’ de pagina toe die u leest.
 - **Pictogrammen die spreken.** Tabbladen en groepen krijgen een emoji op basis van hun naam (‘Financiën’ krijgt een

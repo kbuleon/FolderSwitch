@@ -100,13 +100,17 @@ internal sealed class Tour(string snapshots, string language, Captions captions)
         return Product(0, Blue, captions.Board, rect, root => root.Children.Add(Painter.Lifted(context => context.DrawImage(image, rect))), Keys);
     }
 
-    // Add: the window in Edit mode and its « Add ▾ » menu called from a browser, laid over the window's lower right corner.
+    // Add: the window in Edit mode and its « Add ▾ » menu called from a browser, laid over the window's lower right corner;
+    // a menu the snapshot draws over the window's bottom edge, where it opens, is shown there, with the window, as one.
     private BitmapSource Add()
     {
         var snapshot = Load("addmenu-browser");
         if (snapshot.Shapes.Count < 2)
         {
-            throw new InvalidDataException("The snapshot of the Add menu does not show the menu apart from the window.");
+            var whole = snapshot.Main;
+            var rect = Fit(whole.Bounds.Width, whole.Bounds.Height, 0.9);
+            var image = snapshot.Cutout(whole);
+            return Product(1, Amber, captions.Add, rect, root => root.Children.Add(Painter.Lifted(context => context.DrawImage(image, rect))));
         }
 
         var window = snapshot.Shapes[0].Bounds;

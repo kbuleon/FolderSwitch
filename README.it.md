@@ -51,7 +51,7 @@ La tua bacheca, come la mostra la scorciatoia:
 La modalità Modifica, in cui schede, colonne, gruppi ed elementi si aggiungono, rinominano, ricolorano e spostano con il
 trascinamento (qui con il tema Schede, scuro):
 
-![Modalità Modifica: maniglie, pulsanti di colore e di eliminazione su ogni gruppo, un pulsante «Aggiungi ▾» sotto ogni gruppo, pulsanti «+ Gruppo» e «+ Colonna»](assets/screenshots/it/edit-mode.png)
+![Modalità Modifica: maniglie, pulsanti di colore e di eliminazione su ogni gruppo, un pulsante «Aggiungi ▾» sotto ogni gruppo, pulsanti «+ Gruppo» e «+ Colonna», e a sinistra di «Fine» i pulsanti che uniformano la larghezza delle colonne e le colorano](assets/screenshots/it/edit-mode.png)
 
 Il menu «Aggiungi ▾» di un gruppo, richiamato da Firefox: la pagina mostrata dal browser viene per prima. Richiamato da
 Esplora file, è la cartella corrente:
@@ -74,8 +74,9 @@ Le impostazioni, con sette temi in chiaro e scuro:
   con nome e di selezione cartella vanno direttamente alla cartella su cui fai clic. Ctrl + clic la apre invece in una
   nuova scheda di Esplora file (una nuova finestra in Windows 10).
 - **Una bacheca che disponi con il trascinamento.** Schede, colonne, gruppi colorati che si comprimono e, al loro
-  interno, cartelle, file, siti web, cartelle speciali di Windows (Desktop, Documenti, Questo PC…) e separatori. Ogni
-  modifica viene salvata subito.
+  interno, cartelle, file, siti web, cartelle speciali di Windows (Desktop, Documenti, Questo PC…) e separatori. Le
+  colonne mantengono la larghezza che dai loro: in modalità Modifica, un clic le porta tutte alla stessa larghezza, un
+  altro dà a ciascuna il suo colore. Ogni modifica viene salvata subito.
 - **Aggiungi le cose dove ti trovi.** Da Esplora file o da una finestra di dialogo dei file, «Cartella corrente»
   aggiunge la cartella in cui sei, con un clic. Da Firefox, Chrome o Edge, «URL corrente» aggiunge la pagina che stai
   leggendo.

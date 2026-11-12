@@ -51,7 +51,7 @@ Votre tableau, tel que le raccourci l'affiche :
 Le mode Modifier, où l'on ajoute, renomme, recolore et déplace par glisser-déposer onglets, colonnes, groupes et éléments
 (ici avec le thème Cartes, sombre) :
 
-![Mode Modifier : poignées, boutons de couleur et de suppression sur chaque groupe, un bouton « Ajouter ▾ » sous chaque groupe, boutons « + Groupe » et « + Colonne »](assets/screenshots/fr/edit-mode.png)
+![Mode Modifier : poignées, boutons de couleur et de suppression sur chaque groupe, un bouton « Ajouter ▾ » sous chaque groupe, boutons « + Groupe » et « + Colonne », et à gauche de « Terminer » les boutons qui harmonisent la largeur des colonnes et les colorent](assets/screenshots/fr/edit-mode.png)
 
 Le menu « Ajouter ▾ » d'un groupe, appelé depuis Firefox : la page affichée par le navigateur passe en premier. Appelé
 depuis l'Explorateur de fichiers, c'est le dossier courant :
@@ -73,9 +73,10 @@ Les paramètres, avec sept thèmes en clair et en sombre :
 - **Il sait d'où vous l'appelez.** L'Explorateur de fichiers (son onglet courant sous Windows 11) et les boîtes de
   dialogue Ouvrir, Enregistrer sous et de sélection de dossier vont directement au dossier sur lequel vous cliquez.
   Ctrl + clic l'ouvre plutôt dans un nouvel onglet de l'Explorateur (une nouvelle fenêtre sous Windows 10).
-- **Un tableau que vous organisez par glisser-déposer.** Des onglets, des colonnes, des groupes colorés et repliables, et
-  dedans des dossiers, des fichiers, des sites web, des dossiers spéciaux de Windows (Bureau, Documents, Ce PC…) et des
-  séparateurs. Chaque modification est enregistrée immédiatement.
+- **Un tableau que vous organisez par glisser-déposer.** Des onglets, des colonnes, des groupes colorés et repliables,
+  et dedans des dossiers, des fichiers, des sites web, des dossiers spéciaux de Windows (Bureau, Documents, Ce PC…) et
+  des séparateurs. Les colonnes gardent la largeur que vous leur donnez : en mode Modifier, un clic leur donne à toutes
+  la même largeur, un autre une couleur à chacune. Chaque modification est enregistrée immédiatement.
 - **Ajoutez les choses là où vous êtes.** Depuis l'Explorateur de fichiers ou une boîte de dialogue de fichier,
   « Dossier courant » ajoute le dossier dans lequel vous vous trouvez, en un clic. Depuis Firefox, Chrome ou Edge,
   « URL courante » ajoute la page que vous lisez.

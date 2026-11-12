@@ -51,7 +51,7 @@ Tu tablero, tal como lo muestra el atajo:
 El modo Editar, donde se añaden, renombran, recolorean y mueven con arrastrar y soltar las pestañas, columnas, grupos y
 elementos (aquí con el tema Tarjetas, oscuro):
 
-![Modo Editar: asas, botones de color y de eliminar en cada grupo, un botón «Añadir ▾» bajo cada grupo, botones «+ Grupo» y «+ Columna»](assets/screenshots/es/edit-mode.png)
+![Modo Editar: asas, botones de color y de eliminar en cada grupo, un botón «Añadir ▾» bajo cada grupo, botones «+ Grupo» y «+ Columna», y a la izquierda de «Listo» los botones que igualan el ancho de las columnas y las colorean](assets/screenshots/es/edit-mode.png)
 
 El menú «Añadir ▾» de un grupo, llamado desde Firefox: la página que muestra el navegador va primero. Si se llama desde
 el Explorador de archivos, es la carpeta actual:
@@ -75,7 +75,8 @@ Los ajustes, con siete temas en claro y oscuro:
   en una pestaña nueva del Explorador (una ventana nueva en Windows 10).
 - **Un tablero que organizas con arrastrar y soltar.** Pestañas, columnas, grupos de colores que se pueden plegar y,
   dentro, carpetas, archivos, sitios web, carpetas especiales de Windows (Escritorio, Documentos, Este equipo…) y
-  separadores. Cada cambio se guarda al instante.
+  separadores. Las columnas conservan el ancho que les das: en el modo Editar, un clic les da a todas el mismo ancho y
+  otro, un color a cada una. Cada cambio se guarda al instante.
 - **Añade cosas allí donde estés.** Desde el Explorador de archivos o un cuadro de diálogo de archivos, «Carpeta
   actual» añade la carpeta en la que estás con un solo clic. Desde Firefox, Chrome o Edge, «URL actual» añade la página
   que estás leyendo.

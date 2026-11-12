@@ -51,7 +51,7 @@ O seu painel, tal como o atalho o mostra:
 O modo Editar, em que separadores, colunas, grupos e itens são adicionados, renomeados, recoloridos e movidos com
 arrastar e largar (aqui com o tema Cartões, escuro):
 
-![Modo Editar: pegas, botões de cor e de eliminação em cada grupo, um botão “Adicionar ▾” sob cada grupo, botões “+ Grupo” e “+ Coluna”](assets/screenshots/pt-PT/edit-mode.png)
+![Modo Editar: pegas, botões de cor e de eliminação em cada grupo, um botão “Adicionar ▾” sob cada grupo, botões “+ Grupo” e “+ Coluna”, e à esquerda de “Concluído” os botões que igualam a largura das colunas e as colorem](assets/screenshots/pt-PT/edit-mode.png)
 
 O menu “Adicionar ▾” de um grupo, chamado a partir do Firefox: a página que o navegador está a mostrar vem primeiro.
 Chamado a partir do Explorador de Ficheiros, é a pasta atual:
@@ -75,7 +75,8 @@ As definições, com sete temas em claro e escuro:
   novo separador do Explorador (numa nova janela no Windows 10).
 - **Um painel que organiza com arrastar e largar.** Separadores, colunas, grupos coloridos que se podem recolher e,
   dentro deles, pastas, ficheiros, sites, pastas especiais do Windows (Ambiente de trabalho, Documentos, Este PC…) e
-  linhas de separação. Cada alteração é guardada de imediato.
+  linhas de separação. As colunas mantêm a largura que lhes der: no modo Editar, um clique dá-lhes a todas a mesma
+  largura, outro dá a cada uma a sua cor. Cada alteração é guardada de imediato.
 - **Adicione coisas onde estiver.** No Explorador de Ficheiros ou numa caixa de diálogo de ficheiros, “Pasta atual”
   adiciona a pasta em que se encontra, com um clique. No Firefox, no Chrome ou no Edge, “URL atual” adiciona a página
   que está a ler.

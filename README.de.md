@@ -51,7 +51,7 @@ Ihre Übersicht, so wie die Tastenkombination sie zeigt:
 Der Modus „Bearbeiten“, in dem Registerkarten, Spalten, Gruppen und Einträge hinzugefügt, umbenannt, umgefärbt und per Drag
 and drop verschoben werden (hier mit dem Design „Karten“, dunkel):
 
-![Modus „Bearbeiten“: Griffe sowie Farb- und Löschen-Schaltflächen an jeder Gruppe, unter jeder Gruppe eine Schaltfläche „Hinzufügen ▾“, Schaltflächen „+ Gruppe“ und „+ Spalte“](assets/screenshots/de/edit-mode.png)
+![Modus „Bearbeiten“: Griffe sowie Farb- und Löschen-Schaltflächen an jeder Gruppe, unter jeder Gruppe eine Schaltfläche „Hinzufügen ▾“, Schaltflächen „+ Gruppe“ und „+ Spalte“, links von „Fertig“ die Schaltflächen, die die Spalten gleich breit machen und einfärben](assets/screenshots/de/edit-mode.png)
 
 Das Menü „Hinzufügen ▾“ einer Gruppe, aufgerufen aus Firefox: Die Seite, die der Browser gerade zeigt, steht an erster
 Stelle. Aus dem Datei-Explorer aufgerufen, ist es der aktuelle Ordner:
@@ -75,7 +75,8 @@ Die Einstellungen, mit sieben Designs in Hell und Dunkel:
   öffnet ihn stattdessen in einem neuen Explorer-Tab (unter Windows 10 in einem neuen Fenster).
 - **Eine Übersicht, die Sie per Drag and drop anordnen.** Registerkarten, Spalten, farbige Gruppen, die sich einklappen
   lassen, und darin Ordner, Dateien, Webseiten, spezielle Windows-Ordner (Desktop, Dokumente, Dieser PC …) und
-  Trennlinien. Jede Änderung wird sofort gespeichert.
+  Trennlinien. Spalten behalten die Breite, die Sie ihnen geben: Im Modus „Bearbeiten“ bringt ein Klick alle auf
+  dieselbe Breite, ein anderer gibt jeder ihre eigene Farbe. Jede Änderung wird sofort gespeichert.
 - **Fügen Sie Dinge dort hinzu, wo Sie gerade sind.** Im Datei-Explorer oder in einem Dateidialog fügt „Aktueller
   Ordner“ den Ordner, in dem Sie sich befinden, mit einem Klick hinzu. In Firefox, Chrome oder Edge fügt „Aktuelle URL“
   die Seite hinzu, die Sie gerade lesen.

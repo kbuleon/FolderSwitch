@@ -51,7 +51,7 @@ Seu quadro, como o atalho o mostra:
 O modo Editar, em que guias, colunas, grupos e itens são adicionados, renomeados, recoloridos e movidos com arrastar e
 soltar (aqui com o tema Cartões, escuro):
 
-![Modo Editar: alças, botões de cor e de exclusão em cada grupo, um botão “Adicionar ▾” sob cada grupo, botões “+ Grupo” e “+ Coluna”](assets/screenshots/pt-BR/edit-mode.png)
+![Modo Editar: alças, botões de cor e de exclusão em cada grupo, um botão “Adicionar ▾” sob cada grupo, botões “+ Grupo” e “+ Coluna”, e à esquerda de “Concluído” os botões que igualam a largura das colunas e as colorem](assets/screenshots/pt-BR/edit-mode.png)
 
 O menu “Adicionar ▾” de um grupo, chamado a partir do Firefox: a página que o navegador está mostrando vem primeiro.
 Chamado a partir do Explorador de Arquivos, é a pasta atual:
@@ -75,7 +75,8 @@ As configurações, com sete temas em claro e escuro:
   guia do Explorador (uma nova janela no Windows 10).
 - **Um quadro que você organiza com arrastar e soltar.** Guias, colunas, grupos coloridos que podem ser recolhidos e,
   dentro deles, pastas, arquivos, sites, pastas especiais do Windows (Área de Trabalho, Documentos, Este Computador…) e
-  separadores. Cada alteração é salva na hora.
+  separadores. As colunas mantêm a largura que você der a elas: no modo Editar, um clique deixa todas com a mesma
+  largura, outro dá a cada uma a sua cor. Cada alteração é salva na hora.
 - **Adicione coisas onde você está.** No Explorador de Arquivos ou em uma caixa de diálogo de arquivos, “Pasta atual”
   adiciona a pasta em que você está, com um clique. No Firefox, no Chrome ou no Edge, “URL atual” adiciona a página que
   você está lendo.

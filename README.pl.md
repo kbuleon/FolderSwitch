@@ -51,7 +51,7 @@ Twoja tablica, taka, jaką pokazuje skrót:
 Tryb Edytuj, w którym karty, kolumny, grupy i elementy dodaje się, zmienia im nazwy i kolory oraz przenosi je metodą
 przeciągnij i upuść (tu z motywem Karty, ciemnym):
 
-![Tryb Edytuj: uchwyty oraz przyciski koloru i usuwania na każdej grupie, przycisk „Dodaj ▾” pod każdą grupą, przyciski „+ Grupa” i „+ Kolumna”](assets/screenshots/pl/edit-mode.png)
+![Tryb Edytuj: uchwyty oraz przyciski koloru i usuwania na każdej grupie, przycisk „Dodaj ▾” pod każdą grupą, przyciski „+ Grupa” i „+ Kolumna”, a na lewo od „Gotowe” przyciski, które wyrównują szerokość kolumn i je kolorują](assets/screenshots/pl/edit-mode.png)
 
 Menu „Dodaj ▾” grupy, wywołane z Firefoksa: na pierwszym miejscu jest strona, którą pokazuje przeglądarka. Wywołane
 z Eksploratora plików, na pierwszym miejscu jest bieżący folder:
@@ -73,9 +73,10 @@ Ustawienia, z siedmioma motywami w wersji jasnej i ciemnej:
 - **Wie, skąd go wywołujesz.** Eksplorator plików (w Windows 11 jego bieżąca karta) oraz okna dialogowe Otwórz,
   Zapisz jako i wyboru folderu przechodzą prosto do klikniętego folderu. Ctrl + klik otwiera go zamiast tego w nowej
   karcie Eksploratora (w Windows 10 w nowym oknie).
-- **Tablica, którą układasz przeciąganiem.** Karty, kolumny, kolorowe grupy, które można zwijać, a w nich foldery, pliki,
-  strony internetowe, foldery specjalne systemu Windows (Pulpit, Dokumenty, Ten komputer…) i separatory. Każda zmiana
-  jest zapisywana od razu.
+- **Tablica, którą układasz przeciąganiem.** Karty, kolumny, kolorowe grupy, które można zwijać, a w nich foldery,
+  pliki, strony internetowe, foldery specjalne systemu Windows (Pulpit, Dokumenty, Ten komputer…) i separatory. Kolumny
+  zachowują szerokość, którą im nadasz: w trybie Edytuj jedno kliknięcie wyrównuje ich szerokość, a drugie nadaje każdej
+  własny kolor. Każda zmiana jest zapisywana od razu.
 - **Dodawaj rzeczy tam, gdzie jesteś.** W Eksploratorze plików lub oknie dialogowym plików „Bieżący folder” dodaje
   folder, w którym się znajdujesz, jednym kliknięciem. W Firefoksie, Chrome lub Edge „Bieżący URL” dodaje stronę, którą
   czytasz.

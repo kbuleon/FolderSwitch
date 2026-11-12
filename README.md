@@ -50,7 +50,7 @@ Your board, as the shortcut shows it:
 Edit mode, where tabs, columns, groups and items are added, renamed, recolored and moved by drag and drop (here with
 the Cards theme, dark):
 
-![Edit mode: grips, color and delete buttons on every group, an « Add ▾ » button under each group, « + Group » and « + Column » buttons](assets/screenshots/en/edit-mode.png)
+![Edit mode: grips, color and delete buttons on every group, an « Add ▾ » button under each group, « + Group » and « + Column » buttons, and left of « Done » the buttons that make the columns the same width and color them](assets/screenshots/en/edit-mode.png)
 
 The « Add ▾ » menu of a group, called from Firefox: the page the browser shows comes first. Called from File Explorer,
 the current folder does:
@@ -72,8 +72,9 @@ The settings, with seven themes in light and dark:
 - **It knows where you called it from.** File Explorer (its current tab on Windows 11) and the Open, Save As and
   folder-picker dialogs go straight to the folder you click. Ctrl + click opens it in a new Explorer tab instead (a new window on Windows 10).
 - **A board you arrange by drag and drop.** Tabs, columns, groups with a color that fold away, and in them folders,
-  files, web sites, Windows special folders (Desktop, Documents, This PC…) and separators. Every change is saved at
-  once.
+  files, web sites, Windows special folders (Desktop, Documents, This PC…) and separators. Columns keep the width you
+  give them: in Edit mode, one click sets them all to the same width, another gives each one its own color. Every change
+  is saved at once.
 - **Add things where you are.** From File Explorer or a file dialog, « Current folder » adds the folder you are in, in
   one click. From Firefox, Chrome or Edge, « Current URL » adds the page you are reading.
 - **Icons that speak.** Tabs and groups get an emoji from their name (« Finance » gets a banknote, « Photos » a
