@@ -3,6 +3,11 @@ This file is maintained by the agent: one section per version, the newest first,
 
 ------
 
+## 1.12.2 — Release notes cover the unpublished versions
+<sub>2026-11-12</sub>
+
+The notes of a release made by `build/release.ps1` hold the version's section of `CHANGELOG.md`, then those of the versions since the last published release, never released on their own (1.12.1's notes left out 1.12.0). Before the first release, the version's section alone.
+
 ## 1.12.1 — Column width setting on the General page
 <sub>2026-11-12 · FOS-0017</sub>
 

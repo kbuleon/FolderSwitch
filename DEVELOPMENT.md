@@ -90,7 +90,8 @@ powershell -ExecutionPolicy Bypass -File build/release.ps1                 # All
 
 It needs the [GitHub CLI](https://cli.github.com/) (`gh`), installed and signed in once (`gh auth login`). The release is the
 `<Version>` of `Directory.Build.props` (`x.y.z` only, never a prerelease), named `FolderSwitch <version>`, on the annotated
-tag `v<version>`; its notes are the version's section of `CHANGELOG.md` (titled `## <version> — `), its title in bold.
+tag `v<version>`; its notes are the version's section of `CHANGELOG.md` (titled `## <version> — `), its title in bold,
+followed by the sections of the versions since the last published release, which were never released on their own.
 *Prepare* runs the Core, Presentation and App tests, downloads the latest published release into an emptied
 `artifacts/releases` (the base of the delta package), packs with `pack.ps1 -ReleaseNotes`, and records the version and the
 commit in `artifacts/release-prepared.json`: try the installer it shows before publishing. *Publish* creates and pushes the

@@ -13,7 +13,8 @@
 
     Prepare builds locally and uploads nothing: it runs the test projects that open no window (Core, Presentation and
     App, in Release), empties artifacts/releases, downloads the latest published release into it (vpk download
-    github, the base of the delta package), writes the version's section of CHANGELOG.md to artifacts/release-notes.md,
+    github, the base of the delta package), writes the release notes to artifacts/release-notes.md (the version's
+    section of CHANGELOG.md, then those of the versions since the last published release, never released on their own),
     runs build/pack.ps1 with these notes, and records the version and the commit in artifacts/release-prepared.json.
     Try the installer it shows before publishing.
 
@@ -134,32 +135,79 @@ function Get-GitHubToken {
     $script:token
 }
 
-# The section of the version in CHANGELOG.md, from its title '## <version> - ' (em dash) to the line before the next
-# title ('## '), without trailing spaces: the title in bold (without its '## '), then the lines below it; $null
-# without one.
-function Get-ChangelogEntry {
-    param([string] $Version)
+# The sections of CHANGELOG.md, newest first: each one from its title '## <version> - ' (em dash) to the line before
+# the next title ('## '), without trailing spaces, as its version and its text: the title in bold (without its
+# '## '), then the lines below it. A title whose first word is no x.y.z version starts no section.
+function Get-ChangelogSections {
     $text = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root 'CHANGELOG.md')
-    $start = "## $Version $emDash "
+    $sections = New-Object System.Collections.Generic.List[object]
     $entry = $null
+    $version = $null
     foreach ($line in ($text -split '\r?\n')) {
-        if ($null -eq $entry) {
-            if ($line.StartsWith($start, [StringComparison]::Ordinal)) {
+        if ($line.StartsWith('## ', [StringComparison]::Ordinal)) {
+            if ($null -ne $entry) {
+                $sections.Add((New-Object PSObject -Property @{ Version = $version; Text = ($entry -join "`n").TrimEnd() }))
+                $entry = $null
+            }
+            $parts = $line.Substring(3).Split([char[]] @(' '), 3)
+            if ($parts.Count -eq 3 -and $parts[0] -match '^\d+\.\d+\.\d+$' -and $parts[1] -eq [string] $emDash) {
+                $version = [version] $parts[0]
                 $entry = New-Object System.Collections.Generic.List[string]
                 $entry.Add('**' + $line.Substring(3).Trim() + '**')
             }
         }
-        elseif ($line.StartsWith('## ', [StringComparison]::Ordinal)) {
-            break
-        }
-        else {
+        elseif ($null -ne $entry) {
             $entry.Add($line.TrimEnd())
         }
     }
-    if ($null -eq $entry) {
-        return $null
+    if ($null -ne $entry) {
+        $sections.Add((New-Object PSObject -Property @{ Version = $version; Text = ($entry -join "`n").TrimEnd() }))
     }
-    ($entry -join "`n").TrimEnd()
+    , $sections
+}
+
+# The section of the version in CHANGELOG.md (see Get-ChangelogSections); $null without one.
+function Get-ChangelogEntry {
+    param([string] $Version)
+    $wanted = [version] $Version
+    foreach ($section in (Get-ChangelogSections)) {
+        if ($section.Version -eq $wanted) {
+            return $section.Text
+        }
+    }
+    $null
+}
+
+# The newest version published on GitHub (drafts and prereleases left out), as a [version]; $null before the first.
+function Get-LastPublishedVersion {
+    $json = gh release list --repo $repoName --json 'tagName,isDraft,isPrerelease' --limit 100
+    if ($LASTEXITCODE -ne 0) {
+        throw "gh release list failed (exit code $LASTEXITCODE): check the network and 'gh auth status'."
+    }
+    $last = $null
+    # Windows PowerShell 5.1 outputs a JSON array as one object: foreach goes through its elements.
+    $all = ($json -join "`n") | ConvertFrom-Json
+    foreach ($release in $all) {
+        if (-not $release.isDraft -and -not $release.isPrerelease -and $release.tagName -match '^v(\d+\.\d+\.\d+)$') {
+            $published = [version] $Matches[1]
+            if ($null -eq $last -or $published -gt $last) {
+                $last = $published
+            }
+        }
+    }
+    $last
+}
+
+# The release notes of the version: its section of CHANGELOG.md and those of the versions between the last published
+# one and it, never released on their own, newest first, a blank line apart; the version's section alone before the
+# first release.
+function Get-ReleaseNotes {
+    param([string] $Version, $Since)
+    $upTo = [version] $Version
+    $texts = @((Get-ChangelogSections) | Where-Object {
+            $_.Version -eq $upTo -or ($null -ne $Since -and $_.Version -gt $Since -and $_.Version -lt $upTo)
+        } | ForEach-Object { $_.Text })
+    $texts -join "`n`n"
 }
 
 # --- The checks: each one stops the script with a message that says what to do. ---
@@ -429,8 +477,9 @@ function Invoke-Prepare {
     # The latest published release: vpk pack builds the delta package from it. None before the first release.
     Invoke-Vpk 'Downloading the latest published release' @('download', 'github', '--repoUrl', $repoUrl, '-o', $releasesDir) '.'
 
+    $since = Get-LastPublishedVersion
     Write-Host "==> Writing the release notes to $notesPath"
-    [System.IO.File]::WriteAllText((Join-Path $root $notesPath), (Get-ChangelogEntry $Version) + "`n", $utf8NoBom)
+    [System.IO.File]::WriteAllText((Join-Path $root $notesPath), (Get-ReleaseNotes $Version $since) + "`n", $utf8NoBom)
 
     & (Join-Path $PSScriptRoot 'pack.ps1') -ReleaseNotes $notesPath
 
