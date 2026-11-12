@@ -90,6 +90,55 @@
                         <TextBlock Text="{Binding Texts[Settings.StartWithWindows], ElementName=Root}" TextWrapping="Wrap" />
                     </CheckBox>
 
+                    <!-- The board: the width of new columns, typed or stepped by 10 with − and +; applied with Enter or when the box is left. -->
+                    <TextBlock Style="{StaticResource Fs.MenuLabel}" Margin="0,20,0,5" Text="{Binding Texts[Settings.BoardSection], ElementName=Root, Converter={StaticResource Fs.UpperCase}}" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="0,0,10,0"
+                                   VerticalAlignment="Center"
+                                   FontSize="12.8"
+                                   Foreground="{DynamicResource Fs.MenuText}"
+                                   TextWrapping="Wrap"
+                                   Text="{Binding Texts[Settings.DefaultColumnWidth], ElementName=Root}" />
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Button Style="{StaticResource Fs.SegmentButton}"
+                                    Width="28"
+                                    Height="26"
+                                    Padding="0"
+                                    Background="{DynamicResource Fs.SegmentTrack}"
+                                    Content="&#x2212;"
+                                    FontSize="14"
+                                    Click="OnWidthMinusClick"
+                                    AutomationProperties.Name="&#x2212;" />
+                            <TextBox x:Name="WidthBox"
+                                     Style="{StaticResource Fs.HexBox}"
+                                     Width="56"
+                                     Height="26"
+                                     Margin="6,0,6,0"
+                                     MaxLength="4"
+                                     TextAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     Text="{Binding Appearance.DefaultColumnWidth, ElementName=Root, Mode=OneWay}"
+                                     AutomationProperties.Name="{Binding Texts[Settings.DefaultColumnWidth], ElementName=Root}"
+                                     PreviewKeyDown="OnWidthKeyDown"
+                                     LostKeyboardFocus="OnWidthLostFocus" />
+                            <TextBlock VerticalAlignment="Center" FontSize="12" Foreground="{DynamicResource Fs.MenuMuted}" Text="px" />
+                            <Button Style="{StaticResource Fs.SegmentButton}"
+                                    Width="28"
+                                    Height="26"
+                                    Margin="6,0,0,0"
+                                    Padding="0"
+                                    Background="{DynamicResource Fs.SegmentTrack}"
+                                    Content="+"
+                                    FontSize="14"
+                                    Click="OnWidthPlusClick"
+                                    AutomationProperties.Name="+" />
+                        </StackPanel>
+                    </Grid>
+
                     <TextBlock Style="{StaticResource Fs.MenuLabel}" Margin="0,20,0,5" Text="{Binding Texts[Settings.UpdatesSection], ElementName=Root, Converter={StaticResource Fs.UpperCase}}" />
                     <TextBlock Margin="0,0,0,8" FontSize="12.2" Foreground="{DynamicResource Fs.MenuMuted}">
                         <Run Text="FolderSwitch" FontWeight="SemiBold" Foreground="{DynamicResource Fs.MenuText}" />

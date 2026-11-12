@@ -62,9 +62,6 @@ public partial class AppearanceMenu : UserControl, IDisposable
     public static readonly DependencyProperty HexPreviewProperty = DependencyProperty.Register(
         nameof(HexPreview), typeof(Brush), typeof(AppearanceMenu));
 
-    /// <summary>The - and + buttons of the default column width change it by this much.</summary>
-    private const int WidthStep = 10;
-
     /// <summary>The little boxes of the corner choices are this much less round than the groups.</summary>
     private const double BoxRadiusScale = 1.8;
 
@@ -285,51 +282,6 @@ public partial class AppearanceMenu : UserControl, IDisposable
             ApplyHex();
             HexBox.SelectAll();
         }
-    }
-
-    // The −/+ buttons take no focus: a width typed but not yet applied is applied first, then stepped.
-    private void OnWidthMinusClick(object sender, RoutedEventArgs e)
-    {
-        ApplyWidth();
-        _appearance.DefaultColumnWidth -= WidthStep;
-    }
-
-    private void OnWidthPlusClick(object sender, RoutedEventArgs e)
-    {
-        ApplyWidth();
-        _appearance.DefaultColumnWidth += WidthStep;
-    }
-
-    private void OnWidthKeyDown(object sender, KeyEventArgs e)
-    {
-        if (e.Key == Key.Enter)
-        {
-            e.Handled = true;
-            ApplyWidth();
-            WidthBox.SelectAll();
-        }
-    }
-
-    private void OnWidthLostFocus(object sender, KeyboardFocusChangedEventArgs e) => ApplyWidth();
-
-    /// <summary>
-    /// Applies the width typed in the box (the view model rounds and clamps it); a text that is no number goes back to
-    /// the current width. Not once the menu is closed (see <see cref="ApplyHex"/>).
-    /// </summary>
-    private void ApplyWidth()
-    {
-        if (_disposed)
-        {
-            return;
-        }
-
-        if (int.TryParse(WidthBox.Text.Trim(), NumberStyles.None, CultureInfo.InvariantCulture, out var width))
-        {
-            _appearance.DefaultColumnWidth = width;
-        }
-
-        // The view model says nothing when the width stays: read it again (keeping the binding) in every case.
-        WidthBox.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
     }
 
     private void OnHexLostFocus(object sender, KeyboardFocusChangedEventArgs e) => ApplyHex();

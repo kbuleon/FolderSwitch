@@ -3,6 +3,11 @@ This file is maintained by the agent: one section per version, the newest first,
 
 ------
 
+## 1.12.1 — Column width setting on the General page
+<sub>2026-11-12 · FOS-0017</sub>
+
+« Default column width » moves from the bottom of the Appearance page, where it needed scrolling, to a « Board » section of the General page, under « Start with Windows »; the Appearance page fits without scrolling again. Nine languages.
+
 ## 1.12.0 — Default column width, Edit-mode tools, tighter board
 <sub>2026-11-12 · FOS-0017</sub>
 

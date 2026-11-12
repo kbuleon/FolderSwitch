@@ -291,9 +291,9 @@ The shell and composition root.
 - `MainView` — the window's content: title bar (with ⚙ and (?), and in Customize mode Ko-fi's button after the name, which opens the author's Ko-fi page, and a small toolbar left of « Done »: equalize widths, random colours), tab bar, the boards of every tab (the active one shown); flyout host; dialog layer (settings and About over a dimmed backdrop); rename focus handling.
 - `TabBar`, `BoardView`, `ColumnView`, `GroupView`, `ItemView` — the board's views (the tab bar wraps, and shows the tab a drag rests on; a tab and a group header show their icon left of the name, or a discreet slot in Customize mode); Customize-mode gestures and drop targets.
 - `ColumnResizeGrip` — drag a column's width, double-click for the default width.
-- `AppearanceMenu` — the settings' Appearance page: mode, theme tiles, backgrounds, corners, default column width (with `ThemeTile`, `ModeChoice`, `BackgroundSwatch`, `RadiusChoice`).
+- `AppearanceMenu` — the settings' Appearance page: mode, theme tiles, backgrounds, corners (with `ThemeTile`, `ModeChoice`, `BackgroundSwatch`, `RadiusChoice`).
 - `ThemePreview` — a theme's thumbnail drawn with the real catalog colours.
-- `SettingsView` — the settings window: categories (`SettingsPage`, `SettingsPageChoice`) and their pages (General: language, autostart, updates and the automatic check, version; Shortcut; Appearance; Configuration: import/export).
+- `SettingsView` — the settings window: categories (`SettingsPage`, `SettingsPageChoice`) and their pages (General: language, autostart, the default column width, updates and the automatic check, version; Shortcut; Appearance; Configuration: import/export).
 - `AboutView` — the About window: icon, name, version, description; the legal notices (copyright, license, no warranty) with links that open `LICENSE.txt` and `THIRD-PARTY-NOTICES.txt` next to the executable.
 - `AddMenu` — the « Add ▾ » menu of a group: current folder or URL, folder, special folders, file, URL, separator, footer (with the `SpecialFolderEntry` record).
 - `UrlPromptView` — the content of the web address prompt (shown in a `PromptWindow`).

@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using FolderSwitch.Core.Layout;
 using FolderSwitch.Presentation.ViewModels;
 
 namespace FolderSwitch.App.Views;
@@ -75,6 +77,9 @@ public partial class SettingsView : UserControl, IDisposable
     public SettingsViewModel Settings { get; }
 
     public ViewTexts Texts { get; }
+
+    /// <summary>The appearance settings: the appearance page, and the default column width of the general page.</summary>
+    public AppearanceViewModel Appearance => _appearance;
 
     /// <summary>The category shown.</summary>
     public SettingsPage Page { get; private set; }
@@ -179,4 +184,49 @@ public partial class SettingsView : UserControl, IDisposable
     }
 
     private void OnCloseClick(object sender, RoutedEventArgs e) => _close();
+
+    // The −/+ buttons take no focus: a width typed but not yet applied is applied first, then stepped.
+    private void OnWidthMinusClick(object sender, RoutedEventArgs e)
+    {
+        ApplyWidth();
+        _appearance.DefaultColumnWidth -= ColumnWidths.Step;
+    }
+
+    private void OnWidthPlusClick(object sender, RoutedEventArgs e)
+    {
+        ApplyWidth();
+        _appearance.DefaultColumnWidth += ColumnWidths.Step;
+    }
+
+    private void OnWidthKeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Enter)
+        {
+            e.Handled = true;
+            ApplyWidth();
+            WidthBox.SelectAll();
+        }
+    }
+
+    private void OnWidthLostFocus(object sender, KeyboardFocusChangedEventArgs e) => ApplyWidth();
+
+    /// <summary>
+    /// Applies the width typed in the box (the view model rounds and clamps it); a text that is no number goes back to
+    /// the current width. Not once the window is closed.
+    /// </summary>
+    private void ApplyWidth()
+    {
+        if (_disposed)
+        {
+            return;
+        }
+
+        if (int.TryParse(WidthBox.Text.Trim(), NumberStyles.None, CultureInfo.InvariantCulture, out var width))
+        {
+            _appearance.DefaultColumnWidth = width;
+        }
+
+        // The view model says nothing when the width stays: read it again (keeping the binding) in every case.
+        WidthBox.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
+    }
 }
