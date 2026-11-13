@@ -6,7 +6,10 @@
 <!--
     The « Add ▾ » menu of a group (Customize mode), bound to an AddMenuViewModel. From top to bottom: what the calling
     window shows, « Current folder » or « Current URL » with its path or address in grey (greyed out and checked when the
-    group holds it already), and a separator, only when there is one; « Folder… » (the Windows folder picker),
+    group holds it already); « File from current folder… », when « Current folder » is a folder other than the Recycle Bin (the Windows file picker,
+    opened on it); « Selected file », when File Explorer was called with one file selected, with its name in grey (it
+    adds that file at once; greyed out and checked when the group holds it already); and a separator, only when there
+    is one of these lines; « Folder… » (the Windows folder picker),
     « Special folders ▸ », « File… » (the Windows file picker) and « URL… » (the address prompt), the first and the last
     with a (?) whose tooltip tells how to get the first line; « Separator », which appends a line to the group at once
     (dragged into place afterwards); then, called from File Explorer, a file dialog or a
@@ -85,12 +88,23 @@
                 <StackPanel.Style>
                     <Style TargetType="StackPanel">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding CurrentKind}" Value="{x:Static vm:AddMenuCurrent.None}">
+                            <DataTrigger Binding="{Binding ShowsTopSection}" Value="False">
                                 <Setter Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </StackPanel.Style>
+                <!-- « Current folder » or « Current URL ». -->
+                <StackPanel>
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CurrentKind}" Value="{x:Static vm:AddMenuCurrent.None}">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
                 <Button x:Name="CurrentEntry"
                         IsEnabled="{Binding CurrentAlreadyPresent, Converter={StaticResource Fs.Not}}"
                         ToolTipService.ShowOnDisabled="True"
@@ -147,6 +161,55 @@
                         </TextBlock>
                     </DockPanel>
                 </Button>
+                </StackPanel>
+
+                <!-- The Windows file picker, opened on the current folder: the same as « File… », never greyed out. -->
+                <Button Style="{StaticResource Fs.MenuItemButton}"
+                        Visibility="{Binding ShowsCurrentFolderFile, Converter={StaticResource Fs.BoolToVisibility}}"
+                        Click="OnFileClick">
+                    <DockPanel>
+                        <Viewbox Style="{StaticResource LineIcon}">
+                            <Canvas Width="24" Height="24">
+                                <Path Style="{StaticResource Fs.OutlineIcon}" Data="{StaticResource Fs.FileGeometry}" Stroke="{DynamicResource Fs.Accent}" StrokeThickness="1.7" />
+                            </Canvas>
+                        </Viewbox>
+                        <TextBlock VerticalAlignment="Center" Text="{Binding Texts[AddMenu.CurrentFolderFile], ElementName=Root}" TextTrimming="CharacterEllipsis" />
+                    </DockPanel>
+                </Button>
+
+                <!-- The one file selected in File Explorer: added at once (greyed out and checked when the group holds it). -->
+                <Button x:Name="SelectedFileEntry"
+                        Visibility="{Binding ShowsSelectedFile, Converter={StaticResource Fs.BoolToVisibility}}"
+                        IsEnabled="{Binding SelectedFileAlreadyPresent, Converter={StaticResource Fs.Not}}"
+                        ToolTipService.ShowOnDisabled="True"
+                        Click="OnSelectedFileClick">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource Fs.MenuItemButton}">
+                            <Setter Property="ToolTip" Value="{Binding SelectedFilePath}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedFileAlreadyPresent}" Value="True">
+                                    <Setter Property="ToolTip" Value="{Binding Texts[Item.AlreadyPresent], ElementName=Root}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <DockPanel>
+                        <Viewbox Style="{StaticResource LineIcon}">
+                            <Canvas Width="24" Height="24">
+                                <Path Style="{StaticResource Fs.OutlineIcon}" Data="{StaticResource Fs.FileGeometry}" Stroke="{DynamicResource Fs.Accent}" StrokeThickness="1.7" />
+                            </Canvas>
+                        </Viewbox>
+                        <TextBlock DockPanel.Dock="Right"
+                                   Margin="6,0,0,0"
+                                   VerticalAlignment="Center"
+                                   FontWeight="SemiBold"
+                                   Text="✓"
+                                   Visibility="{Binding SelectedFileAlreadyPresent, Converter={StaticResource Fs.BoolToVisibility}}" />
+                        <TextBlock Style="{StaticResource LineHint}" MaxWidth="160" Text="{Binding SelectedFileName}" />
+                        <TextBlock VerticalAlignment="Center" Text="{Binding Texts[AddMenu.SelectedFile], ElementName=Root}" TextTrimming="CharacterEllipsis" />
+                    </DockPanel>
+                </Button>
+
                 <Border Height="1" Margin="4,5,4,5" Background="{DynamicResource Fs.Border}" />
             </StackPanel>
 

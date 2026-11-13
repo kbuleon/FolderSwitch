@@ -26,6 +26,8 @@
   "AddMenu.Button": "Aggiungi",
   "AddMenu.CurrentFolder": "Cartella corrente",
   "AddMenu.CurrentUrl": "URL corrente",
+  "AddMenu.CurrentFolderFile": "File della cartella corrente…",
+  "AddMenu.SelectedFile": "File selezionato",
   "AddMenu.Folder": "Cartella…",
   "AddMenu.SpecialFolders": "Cartelle speciali",
   "AddMenu.File": "File…",

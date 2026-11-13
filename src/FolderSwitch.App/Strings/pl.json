@@ -26,6 +26,8 @@
   "AddMenu.Button": "Dodaj",
   "AddMenu.CurrentFolder": "Bieżący folder",
   "AddMenu.CurrentUrl": "Bieżący URL",
+  "AddMenu.CurrentFolderFile": "Plik z bieżącego folderu…",
+  "AddMenu.SelectedFile": "Zaznaczony plik",
   "AddMenu.Folder": "Folder…",
   "AddMenu.SpecialFolders": "Foldery specjalne",
   "AddMenu.File": "Plik…",

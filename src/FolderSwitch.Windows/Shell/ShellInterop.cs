@@ -23,6 +23,9 @@ internal static class ShellGuids
 
     /// <summary>SID_STopLevelBrowser: the service giving the top-level <see cref="IShellBrowser"/> of a browser.</summary>
     public static readonly Guid TopLevelBrowser = new("4C96BE40-915C-11CF-99D3-00AA004AE837");
+
+    /// <summary>CLSID_ShellLink: a shell shortcut (<c>.lnk</c>), read through <see cref="IPersistFile"/> and <see cref="IShellLinkW"/>.</summary>
+    public static readonly Guid ShellLink = new("00021401-0000-0000-C000-000000000046");
 }
 
 /// <summary><c>IShellWindows</c> (dual): only <c>Count</c> and <c>Item</c>.</summary>
@@ -204,7 +207,7 @@ internal interface IShellBrowser
     int QueryActiveShellView([MarshalAs(UnmanagedType.Interface)] out object? view);
 }
 
-/// <summary><c>IFolderView</c>, up to <c>GetFolder</c>.</summary>
+/// <summary><c>IFolderView</c>, up to <c>Items</c>.</summary>
 [ComImport]
 [Guid("CDE725B0-CCC9-4519-917E-325D72FAB4CE")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -216,6 +219,82 @@ internal interface IFolderView
 
     [PreserveSig]
     int GetFolder(in Guid riid, [MarshalAs(UnmanagedType.Interface)] out object? folder);
+
+    void Item(int index, out nint pidl);
+
+    /// <summary>The number of items of the view that <paramref name="flags"/> covers (<c>SVGIO_SELECTION</c>: the selected ones).</summary>
+    [PreserveSig]
+    int ItemCount(uint flags, out int count);
+
+    /// <summary>The items of the view that <paramref name="flags"/> covers, as <paramref name="riid"/> (an <see cref="IShellItemArray"/>...).</summary>
+    [PreserveSig]
+    int Items(uint flags, in Guid riid, [MarshalAs(UnmanagedType.Interface)] out object? items);
+}
+
+/// <summary><c>IShellItemArray</c>, up to <c>GetItemAt</c>.</summary>
+[ComImport]
+[Guid("B63EA76D-1F85-456F-A19C-48159EFA858B")]
+[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+internal interface IShellItemArray
+{
+    void BindToHandler(nint bindContext, in Guid handler, in Guid riid, out nint result);
+
+    void GetPropertyStore(int flags, in Guid riid, out nint store);
+
+    void GetPropertyDescriptionList(nint keyType, in Guid riid, out nint list);
+
+    void GetAttributes(int attributeFlags, uint mask, out uint attributes);
+
+    [PreserveSig]
+    int GetCount(out uint count);
+
+    [PreserveSig]
+    int GetItemAt(uint index, [MarshalAs(UnmanagedType.Interface)] out IShellItem? item);
+}
+
+/// <summary><c>IShellItem</c>, up to <c>GetAttributes</c>.</summary>
+[ComImport]
+[Guid("43826D1E-E718-42EE-BC55-A1E261C37BFE")]
+[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+internal interface IShellItem
+{
+    void BindToHandler(nint bindContext, in Guid handler, in Guid riid, out nint result);
+
+    void GetParent(out nint parent);
+
+    /// <summary>A name of the item (a <c>SIGDN_*</c> form), allocated with <c>CoTaskMemAlloc</c>; fails for a form it has not.</summary>
+    [PreserveSig]
+    int GetDisplayName(uint sigdn, out nint name);
+
+    /// <returns>S_OK when every attribute of <paramref name="mask"/> is set, S_FALSE when some are not.</returns>
+    [PreserveSig]
+    int GetAttributes(uint mask, out uint attributes);
+}
+
+/// <summary><c>IShellLinkW</c>: only <c>GetPath</c>.</summary>
+[ComImport]
+[Guid("000214F9-0000-0000-C000-000000000046")]
+[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+internal interface IShellLinkW
+{
+    /// <summary>The target's path, written to <paramref name="file"/> (<paramref name="size"/> characters), as stored: no resolution.</summary>
+    /// <returns>S_OK with the path, S_FALSE when the target has none (an item outside the file system).</returns>
+    [PreserveSig]
+    int GetPath(nint file, int size, nint findData, uint flags);
+}
+
+/// <summary><c>IPersistFile</c>, with the <c>IPersist</c> method it inherits, up to <c>Load</c>.</summary>
+[ComImport]
+[Guid("0000010B-0000-0000-C000-000000000046")]
+[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+internal interface IPersistFile
+{
+    void GetClassID(out Guid clsid);
+
+    void IsDirty();
+
+    [PreserveSig]
+    int Load([MarshalAs(UnmanagedType.LPWStr)] string fileName, uint mode);
 }
 
 /// <summary><c>IPersistFolder2</c>, with the <c>IPersist</c> and <c>IPersistFolder</c> methods it inherits.</summary>
@@ -361,6 +440,9 @@ internal static class ShellNative
 
     /// <summary><c>SFGAO_STREAM</c>: the item has a stream, i.e. it is a file (including a .zip "folder").</summary>
     public const uint SfgaoStream = 0x00400000;
+
+    /// <summary><c>SFGAO_LINK</c>: the item is a shortcut (a <c>.lnk</c>, but also an Internet shortcut <c>.url</c>...).</summary>
+    public const uint SfgaoLink = 0x00010000;
 
     public const uint ShgdnNormal = 0x0000;
     public const uint ShgdnInFolder = 0x0001;

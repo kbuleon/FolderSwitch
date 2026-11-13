@@ -33,7 +33,10 @@ public enum AddMenuCurrent
 /// <para>
 /// A browser's page cannot be read at the call itself (the budget of the call is short), and the folder of an Explorer
 /// window or a file dialog may not have been read in that budget: the menu reads what is missing while it is open, from
-/// the thread pool, one attempt every 200 ms, for 2 s at most, and stops at the first success. The result is published
+/// the thread pool, one attempt every 200 ms, for 2 s at most, and stops at the first success. From an Explorer window
+/// it also reads, the same way, the file selected there (« Selected file »; <see cref="ExplorerSelection.NoFile"/> is
+/// an answer too and ends that reading); a « File from current folder… » line goes with the « Current folder » line.
+/// The reads may run together: <see cref="IsReading"/> holds until the last one ends. The result is published
 /// on the synchronization context the menu was opened on; a folder read so also completes the context of the call
 /// (<see cref="MainViewModel.OnCurrentFolderRead"/>). After <see cref="Dispose"/>, nothing is attempted or published any
 /// more. Meant to be created and used from the UI thread (<see cref="MainViewModel.OpenAddMenu"/>): it needs the
@@ -56,6 +59,10 @@ public sealed class AddMenuViewModel : ObservableObject, IDisposable
     private readonly CancellationTokenSource _stop = new();
     private readonly long _opened;
 
+    private int _reads;
+    private bool _currentIsRecycleBin;
+    private string? _selectedFilePath;
+    private bool _selectedFileAlreadyPresent;
     private AddMenuCurrent _currentKind;
     private string? _currentDetail;
     private bool _currentAlreadyPresent;
@@ -93,6 +100,12 @@ public sealed class AddMenuViewModel : ObservableObject, IDisposable
                     StartReading(() => folderReader.TryRead(kind, window), folder => ShowFolderRead(context, folder));
                 }
 
+                if (context.Kind == CallContextKind.Explorer && context.Window != 0)
+                {
+                    var explorerWindow = context.Window;
+                    StartReading(() => folderReader.TryReadSelection(explorerWindow), ShowSelection);
+                }
+
                 break;
             case { Kind: CallContextKind.Browser, Browser: { } browser }:
                 Footer = _localizer.Format("AddMenu.FromBrowser", browser.ToString());
@@ -106,8 +119,52 @@ public sealed class AddMenuViewModel : ObservableObject, IDisposable
     public AddMenuCurrent CurrentKind
     {
         get => _currentKind;
-        private set => SetProperty(ref _currentKind, value);
+        private set
+        {
+            if (SetProperty(ref _currentKind, value))
+            {
+                OnPropertyChanged(nameof(ShowsCurrentFolderFile));
+                OnPropertyChanged(nameof(ShowsTopSection));
+            }
+        }
     }
+
+    /// <summary>
+    /// True when the « File from current folder… » line is shown: with the « Current folder » line, except when that
+    /// folder is the Recycle Bin. Never greyed.
+    /// </summary>
+    public bool ShowsCurrentFolderFile => CurrentKind == AddMenuCurrent.Folder && !_currentIsRecycleBin;
+
+    /// <summary>The file selected in the calling Explorer window (a shortcut's target); <c>null</c> when there is none to offer.</summary>
+    public string? SelectedFilePath
+    {
+        get => _selectedFilePath;
+        private set
+        {
+            if (SetProperty(ref _selectedFilePath, value))
+            {
+                OnPropertyChanged(nameof(SelectedFileName));
+                OnPropertyChanged(nameof(ShowsSelectedFile));
+                OnPropertyChanged(nameof(ShowsTopSection));
+            }
+        }
+    }
+
+    /// <summary>The name, with its extension, of <see cref="SelectedFilePath"/>.</summary>
+    public string? SelectedFileName => _selectedFilePath is null ? null : Path.GetFileName(_selectedFilePath);
+
+    /// <summary>True when the group already holds the selected file: its line is greyed out and checked.</summary>
+    public bool SelectedFileAlreadyPresent
+    {
+        get => _selectedFileAlreadyPresent;
+        private set => SetProperty(ref _selectedFileAlreadyPresent, value);
+    }
+
+    /// <summary>True when the « Selected file » line is shown.</summary>
+    public bool ShowsSelectedFile => _selectedFilePath is not null;
+
+    /// <summary>True when the block of the lines that add what the calling window shows, and its separator, are shown.</summary>
+    public bool ShowsTopSection => CurrentKind != AddMenuCurrent.None || ShowsCurrentFolderFile || ShowsSelectedFile;
 
     /// <summary>The folder's path (its name, for a place without a path) or the page's address, shown in grey under the first line.</summary>
     public string? CurrentDetail
@@ -123,7 +180,7 @@ public sealed class AddMenuViewModel : ObservableObject, IDisposable
         private set => SetProperty(ref _currentAlreadyPresent, value);
     }
 
-    /// <summary>True while the page of a browser, or the folder the call could not read, is being read.</summary>
+    /// <summary>True while the page of a browser, the folder the call could not read or the selected file is being read.</summary>
     public bool IsReading
     {
         get => _isReading;
@@ -175,7 +232,20 @@ public sealed class AddMenuViewModel : ObservableObject, IDisposable
         }
     }
 
-    /// <summary>Asks for a file with the file picker and adds it.</summary>
+    /// <summary>
+    /// Adds the selected file at once; nothing when there is none, when the group already holds it, or once disposed.
+    /// </summary>
+    public void AddSelectedFile()
+    {
+        if (_disposed || SelectedFileAlreadyPresent || _selectedFilePath is not { } path)
+        {
+            return;
+        }
+
+        _main.AddFilePath(_group, path);
+    }
+
+    /// <summary>Asks for a file with the file picker, opened on the current folder of the call when it has one, and adds it.</summary>
     public void AddFile()
     {
         if (!_disposed)
@@ -232,7 +302,10 @@ public sealed class AddMenuViewModel : ObservableObject, IDisposable
             return;
         }
 
+        _currentIsRecycleBin = item.Special == SpecialFolderKey.RecycleBin;
         CurrentKind = AddMenuCurrent.Folder;
+        OnPropertyChanged(nameof(ShowsCurrentFolderFile));
+        OnPropertyChanged(nameof(ShowsTopSection));
         CurrentDetail = item.Special is { } special
             ? _localizer[SpecialFolderCatalog.All.First(info => info.Key == special).NameKey]
             : item.Name ?? item.Path;
@@ -264,6 +337,7 @@ public sealed class AddMenuViewModel : ObservableObject, IDisposable
 
         // Taken now: the source may be disposed with the menu before the task starts.
         var stop = _stop.Token;
+        _reads++;
         _isReading = true;
         _ = Task.Run(() => ReadAsync(attempt, publish, stop));
     }
@@ -301,8 +375,24 @@ public sealed class AddMenuViewModel : ObservableObject, IDisposable
         }
         finally
         {
-            PostToUi(() => IsReading = false);
+            PostToUi(() =>
+            {
+                _reads--;
+                IsReading = _reads > 0;
+            });
         }
+    }
+
+    /// <summary>The answer about the selected file: a file is offered, <see cref="ExplorerSelection.NoFile"/> shows nothing.</summary>
+    private void ShowSelection(ExplorerSelection selection)
+    {
+        if (selection.FilePath is not { } path)
+        {
+            return;
+        }
+
+        SelectedFileAlreadyPresent = BoardEditor.ContainsTarget(_group.Model, new Item { Kind = ItemKind.File, Path = path });
+        SelectedFilePath = path;
     }
 
     private void ShowPage(BrowserPage page)

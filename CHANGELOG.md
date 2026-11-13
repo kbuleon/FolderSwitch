@@ -3,6 +3,11 @@ This file is maintained by the agent: one section per version, the newest first,
 
 ------
 
+## 1.13.0 — Add a file from where you are
+<sub>2026-11-13 · FOS-0018</sub>
+
+Called from File Explorer or a file dialog, the Add menu has a « File from current folder… » line under « Current folder » (never greyed), and « File… » too opens its picker in the current folder (the Windows default when there is none, for search results and the Recycle Bin). Called from File Explorer only, a « Selected file » line adds at once the one file selected in the active tab, with its name at the right: a shortcut counts by its target, and nothing is offered for a folder, several items or the Recycle Bin. The selection is read when the menu opens, like a missed folder (200 ms, 2 s). Nine languages.
+
 ## 1.12.3 — Current folder read again by the Add menu
 <sub>2026-11-13</sub>
 

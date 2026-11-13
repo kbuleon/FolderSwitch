@@ -26,11 +26,12 @@ public sealed record SpecialFolderEntry(SpecialFolderKey Key, string Name, strin
 /// </summary>
 /// <remarks>
 /// <para>
-/// What adds at once (the current folder, a special folder, a separator) is carried out first, then the menu closes: the menu's view
+/// What adds at once (the current folder, the selected file, a special folder, a separator) is carried out first, then the menu closes: the menu's view
 /// model holds what was read, and a disposed one does nothing.
 /// </para>
 /// <para>
-/// « Folder… », « File… », « URL… » and « Current URL » (whose address is confirmed in the address prompt, its page
+/// « Folder… », « File… », « File from current folder… » (the same as « File… »: the main view model opens the picker on
+/// the call's current folder), « URL… » and « Current URL » (whose address is confirmed in the address prompt, its page
 /// taken from the menu beforehand) open a modal window (a picker, the address prompt). The menu closes first, and
 /// the window opens once it is gone, from the main view model: a popup stays above a modal window, and closing it
 /// from the modal window's own message loop would tear it down under its click handler. The main view model ignores
@@ -126,6 +127,8 @@ public partial class AddMenu : UserControl, IDisposable
     private void OnBackClick(object sender, RoutedEventArgs e) => ShowSpecialFolders(false);
 
     private void OnFileClick(object sender, RoutedEventArgs e) => CloseThenAsk(_main.AddFile);
+
+    private void OnSelectedFileClick(object sender, RoutedEventArgs e) => RunThenClose(_menu.AddSelectedFile);
 
     private void OnUrlClick(object sender, RoutedEventArgs e) => CloseThenAsk(_main.AddUrl);
 

@@ -26,6 +26,8 @@
   "AddMenu.Button": "Toevoegen",
   "AddMenu.CurrentFolder": "Huidige map",
   "AddMenu.CurrentUrl": "Huidige URL",
+  "AddMenu.CurrentFolderFile": "Bestand uit huidige map…",
+  "AddMenu.SelectedFile": "Geselecteerd bestand",
   "AddMenu.Folder": "Map…",
   "AddMenu.SpecialFolders": "Speciale mappen",
   "AddMenu.File": "Bestand…",

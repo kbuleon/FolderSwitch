@@ -78,8 +78,8 @@ Le impostazioni, con sette temi in chiaro e scuro:
   colonne mantengono la larghezza che dai loro: in modalità Modifica, un clic le porta tutte alla stessa larghezza, un
   altro dà a ciascuna il suo colore. Ogni modifica viene salvata subito.
 - **Aggiungi le cose dove ti trovi.** Da Esplora file o da una finestra di dialogo dei file, «Cartella corrente»
-  aggiunge la cartella in cui sei, con un clic. Da Firefox, Chrome o Edge, «URL corrente» aggiunge la pagina che stai
-  leggendo.
+  aggiunge la cartella in cui sei, con un clic, e il selettore di file si apre lì; da Esplora file, «File selezionato»
+  aggiunge il file selezionato. Da Firefox, Chrome o Edge, «URL corrente» aggiunge la pagina che stai leggendo.
 - **Icone che parlano.** Le schede e i gruppi ricevono un'emoji dal loro nome («Finanze» riceve una banconota, «Foto»
   una fotocamera), oppure quella che scegli tu. I file mostrano la loro icona di Windows, e i siti la propria.
 - **Sette temi**, ciascuno in chiaro e scuro, o in linea con Windows.

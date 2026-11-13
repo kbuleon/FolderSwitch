@@ -4,6 +4,7 @@
 
 using FolderSwitch.Core.Localization;
 using FolderSwitch.Core.Model;
+using FolderSwitch.Core.Services;
 using FolderSwitch.Presentation.ViewModels;
 
 namespace FolderSwitch.Presentation.Tests.Support;
@@ -87,7 +88,8 @@ internal sealed class Harness
 
     public FakeBrowserAddressReader Browser { get; } = new();
 
-    public FakeCurrentFolderReader Folders { get; } = new();
+    /// <summary>Reads nothing selected in Explorer by default: the tests that look at the selection script their own.</summary>
+    public FakeCurrentFolderReader Folders { get; } = new() { SelectionResponder = _ => ExplorerSelection.NoFile };
 
     public FakeFavicons Favicons { get; } = new();
 

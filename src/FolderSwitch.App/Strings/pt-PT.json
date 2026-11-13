@@ -26,6 +26,8 @@
   "AddMenu.Button": "Adicionar",
   "AddMenu.CurrentFolder": "Pasta atual",
   "AddMenu.CurrentUrl": "URL atual",
+  "AddMenu.CurrentFolderFile": "Ficheiro da pasta atual…",
+  "AddMenu.SelectedFile": "Ficheiro selecionado",
   "AddMenu.Folder": "Pasta…",
   "AddMenu.SpecialFolders": "Pastas especiais",
   "AddMenu.File": "Ficheiro…",

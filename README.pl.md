@@ -78,8 +78,8 @@ Ustawienia, z siedmioma motywami w wersji jasnej i ciemnej:
   zachowują szerokość, którą im nadasz: w trybie Edytuj jedno kliknięcie wyrównuje ich szerokość, a drugie nadaje każdej
   własny kolor. Każda zmiana jest zapisywana od razu.
 - **Dodawaj rzeczy tam, gdzie jesteś.** W Eksploratorze plików lub oknie dialogowym plików „Bieżący folder” dodaje
-  folder, w którym się znajdujesz, jednym kliknięciem. W Firefoksie, Chrome lub Edge „Bieżący URL” dodaje stronę, którą
-  czytasz.
+  folder, w którym się znajdujesz, jednym kliknięciem, a selektor plików otwiera się w nim; w Eksploratorze plików
+  „Zaznaczony plik” dodaje zaznaczony plik. W Firefoksie, Chrome lub Edge „Bieżący URL” dodaje stronę, którą czytasz.
 - **Ikony, które mówią same za siebie.** Karty i grupy dostają emoji na podstawie nazwy („Finanse” dostają banknot,
   „Zdjęcia” aparat) albo to, które wybierzesz. Pliki pokazują swoją ikonę z Windows, a strony własną.
 - **Siedem motywów**, każdy w wersji jasnej i ciemnej lub zgodnie z Windows.

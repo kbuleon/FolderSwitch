@@ -2,6 +2,7 @@
 // Copyright (C) 2026 Karl BULEON
 // Additional terms under GPLv3 section 7: see the License section of README.md.
 
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Threading;
@@ -99,10 +100,28 @@ internal sealed class UserPrompts : IUserPrompts
         return Run(() => ShowDialog(dialog)) ? dialog.FolderName : null;
     }
 
-    public string? PickFile()
+    /// <summary>
+    /// The file picker, opened on <paramref name="initialFolder"/> when there is one (a path, or a virtual location such
+    /// as <c>::{CLSID}</c>). When Windows refuses that location the picker opens again without it, as when no folder was
+    /// given: never an error, never no picker.
+    /// </summary>
+    public string? PickFile(string? initialFolder)
     {
-        var dialog = new OpenFileDialog { Multiselect = false, CheckFileExists = true };
-        return Run(() => ShowDialog(dialog)) ? dialog.FileName : null;
+        if (initialFolder is not null)
+        {
+            var dialog = new OpenFileDialog { Multiselect = false, CheckFileExists = true, InitialDirectory = initialFolder };
+            try
+            {
+                return Run(() => ShowDialog(dialog)) ? dialog.FileName : null;
+            }
+            catch (Exception exception) when (!ExceptionPolicy.IsCritical(exception))
+            {
+                DebugLog.Warn($"The file picker could not open on the current folder: {exception.Message}");
+            }
+        }
+
+        var fresh = new OpenFileDialog { Multiselect = false, CheckFileExists = true };
+        return Run(() => ShowDialog(fresh)) ? fresh.FileName : null;
     }
 
     public string? PickExportPath()

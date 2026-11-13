@@ -78,7 +78,8 @@ De instellingen, met zeven thema's in licht en donker:
   Kolommen houden de breedte die u ze geeft: in de modus Bewerken maakt één klik ze allemaal even breed en geeft een
   andere klik elke kolom een eigen kleur. Elke wijziging wordt meteen opgeslagen.
 - **Voeg dingen toe waar u bent.** Vanuit Verkenner of een bestandsdialoogvenster voegt ‘Huidige map’ met één klik de
-  map toe waarin u zich bevindt. Vanuit Firefox, Chrome of Edge voegt ‘Huidige URL’ de pagina toe die u leest.
+  map toe waarin u zich bevindt, en de bestandskiezer opent daar; vanuit Verkenner voegt ‘Geselecteerd bestand’ het
+  geselecteerde bestand toe. Vanuit Firefox, Chrome of Edge voegt ‘Huidige URL’ de pagina toe die u leest.
 - **Pictogrammen die spreken.** Tabbladen en groepen krijgen een emoji op basis van hun naam (‘Financiën’ krijgt een
   bankbiljet, ‘Foto's’ een camera), of die u zelf kiest. Bestanden tonen hun Windows-pictogram en websites hun eigen.
 - **Zeven thema's**, elk in licht en donker, of in de stijl van Windows.

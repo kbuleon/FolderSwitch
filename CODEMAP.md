@@ -65,7 +65,8 @@ The domain, with no dependency on Windows, WPF or packages.
 
 - `IHotkeyService` — register, probe, capture and trigger of the global shortcut.
 - `ICallContextProvider` — captures the foreground window as a `CallContext`.
-- `ICurrentFolderReader` — one bounded attempt to read, after the call, the folder an Explorer window or a file dialog shows (`FolderLocation`).
+- `ICurrentFolderReader` — one bounded attempt to read, after the call, the folder an Explorer window or a file dialog shows (`FolderLocation`); `TryReadSelection` makes the same kind of attempt for the selected file (`ExplorerSelection`).
+- `ExplorerSelection` — what an Explorer window's active tab selects, as a definite answer: the path of the one selected file (a shortcut's target), or `NoFile`.
 - `IExplorerController` — navigate, new tab, new window.
 - `IFileDialogNavigator` — move a file dialog to a folder.
 - `IItemActivator` — carries out a click on an item and « Open in File Explorer »; tells whether Ctrl+click opens a new tab.
@@ -163,13 +164,13 @@ View models and the UI-facing ports. Depends on Core and CommunityToolkit.Mvvm.
 ### Services/
 
 - `IConfigPersistence` — save the configuration after every change.
-- `IUserPrompts` — confirmations, errors, file and folder pickers, the web address prompt, export and import paths.
+- `IUserPrompts` — confirmations, errors, file pickers (`PickFile` opens in a given folder) and folder pickers, the web address prompt, export and import paths.
 - `IWindowHost` — hide the main window.
 
 ### ViewModels/
 
 - `MainViewModel` — the window: board projection, normal use and Customize mode, all edits, rename (the automatic icon of the new name), the icon commands and the opening of the icon picker, activation and its outcomes, which items the calling window can use, adding a site (and fetching its favicon: at once, and once per host per session when missing), opening the Add menu, tab shown during a drag across tabs, `OnShown`/`OnHidden`/`OnDeactivated`, `Reload` after an import; the Edit-mode tools (equalize the widths of the tab, random colours per column) and the reset of a column to the default width.
-- `AddMenuViewModel` — the « Add ▾ » menu of a group: the first line for the calling window (folder or page), the footer, the additions; reads a browser's page, or a folder the call could not read, while the menu is open (every 200 ms, for 2 s), and stops when disposed.
+- `AddMenuViewModel` — the « Add ▾ » menu of a group: the top block for the calling window (« Current folder » or the page, « File from current folder… », « Selected file »), the footer, the additions; reads a browser's page, a folder the call could not read, and (Explorer only) the selected file, while the menu is open (every 200 ms, for 2 s), and stops when disposed.
 - `UrlPromptViewModel` — the web address prompt: prefill (a browser's page or the clipboard), validation, the normalised result.
 - `TabViewModel`, `ColumnViewModel`, `GroupViewModel`, `ItemViewModel` — projections of the model objects; a tab and a group carry their `Icon` and `HasIcon`, empty when the font cannot draw it.
 - `IconPickerViewModel`, `IconSection` — the icon picker of a tab or group: the filter, « Automatic » and « No icon », the categories and their emojis, the current choice; a choice is carried out by the main view model.
@@ -207,7 +208,7 @@ Implements the Core ports against Win32, COM and the registry. `NativeMethods.tx
 ### Shell/
 
 - `ExplorerController` — `IExplorerController`: navigate the active tab with an ID list, new tab (undocumented command), new window; bounded STA worker.
-- `ExplorerWindows`, `ExplorerBrowser`, `ShellLocation` — enumeration of open Explorer browsers through `IShellWindows` and their current folder with its shell name (internal).
+- `ExplorerWindows`, `ExplorerBrowser`, `ShellLocation` — enumeration of open Explorer browsers through `IShellWindows`, their current folder with its shell name, and the file selected in the active tab (a shortcut's target; internal).
 - `ShellInterop.cs` — hand-declared shell COM interfaces and the `ShellNative` helpers (ID lists, parsing names, `ShellExecuteEx`).
 - `ShellLauncher` — `IShellLauncher`: opens files, locations and site addresses (`http`, `https`, `ftp`, `file` only) with `ShellExecuteEx` on an STA thread; a failed launch has shown the shell's own error.
 - `FileTypeIcons` — `IFileTypeIcons`: the icon of an extension from the shell's registry data, without touching a file (`SHGetFileInfo`), on its own STA thread, bounded, one answer kept per extension.
@@ -223,7 +224,7 @@ Implements the Core ports against Win32, COM and the registry. `NativeMethods.tx
 
 ### System/ (namespace `FolderSwitch.Windows.SystemServices`)
 
-- `CallContextProvider` — `ICallContextProvider` and `ICurrentFolderReader`: classification (the browser kind included; nothing is read from the browser) plus bounded folder (and shell name) lookup on an STA worker, each worker warmed up first; the same lookup, with 500 ms, for a folder the capture missed.
+- `CallContextProvider` — `ICallContextProvider` and `ICurrentFolderReader`: classification (the browser kind included; nothing is read from the browser) plus bounded folder (and shell name) lookup on an STA worker, each worker warmed up first; the same lookup, with 500 ms, for a folder the capture missed, and the same worker and gate for the selected file (`TryReadSelection`).
 - `StaWorker` — dedicated STA thread running timed work items, with an optional clean-up when it ends; abandonment semantics (internal).
 - `PathResolver` — `IPathResolver`: special folders and environment variables to paths; bounded existence checks with abandoned-probe limits, per UNC share and mapped network drive.
 - `ForegroundActivator` — `IForegroundActivator`, with the attached-input fallback; foreground ownership by process id.
@@ -261,7 +262,7 @@ The shell and composition root.
 ### Services/
 
 - `ConfigPersistence` — `IConfigPersistence` over `ConfigStore`: failures logged and reported once; read-only session mode.
-- `UserPrompts` — `IUserPrompts`: themed message boxes, Windows file and folder pickers, the web address prompt, update offer (never owned, on top, without taking focus, when the periodic check makes it); the box open now, for the shortcut; silent mode.
+- `UserPrompts` — `IUserPrompts`: themed message boxes, Windows file and folder pickers (the file picker opens in the folder it is given), the web address prompt, update offer (never owned, on top, without taking focus, when the periodic check makes it); the box open now, for the shortcut; silent mode.
 
 ### Diagnostics/
 
@@ -297,7 +298,7 @@ The shell and composition root.
 - `ThemePreview` — a theme's thumbnail drawn with the real catalog colours.
 - `SettingsView` — the settings window: categories (`SettingsPage`, `SettingsPageChoice`) and their pages (General: language, autostart, the default column width, updates and the automatic check, version; Shortcut; Appearance; Configuration: import/export).
 - `AboutView` — the About window: icon, name, version, description; the legal notices (copyright, license, no warranty) with links that open `LICENSE.txt` and `THIRD-PARTY-NOTICES.txt` next to the executable.
-- `AddMenu` — the « Add ▾ » menu of a group: current folder or URL, folder, special folders, file, URL, separator, footer (with the `SpecialFolderEntry` record).
+- `AddMenu` — the « Add ▾ » menu of a group: current folder or URL, file from current folder, selected file, folder, special folders, file, URL, separator, footer (with the `SpecialFolderEntry` record).
 - `UrlPromptView` — the content of the web address prompt (shown in a `PromptWindow`).
 - `ItemIcon.cs` — `ItemIcons`: the pictures of the items that do not come from the application (a file type's icon, a favicon), made off the UI thread and kept for the process.
 - `ItemMenu` — an item's right-click menu in normal use: open in File Explorer, open in a new tab (Ctrl+click); for a site, copy the address.
@@ -375,7 +376,7 @@ xUnit, mirrors the Core folders.
 
 xUnit, view models over fakes.
 
-- `MainViewModelTests`, `AppearanceViewModelTests`, `SettingsViewModelTests`, `HotkeyEditorViewModelTests`, `WizardViewModelTests`, `WizardHotkeyTestTests`, `InsertionSlotTests`, `AddMenuViewModelTests` (page and missed-folder reading over a manual clock and context), `UrlPromptViewModelTests`, `IconPickerViewModelTests`, `SeparatorTests` (adding, moving, removing, badge) — behaviour of the matching types.
+- `MainViewModelTests`, `AppearanceViewModelTests`, `SettingsViewModelTests`, `HotkeyEditorViewModelTests`, `WizardViewModelTests`, `WizardHotkeyTestTests`, `InsertionSlotTests`, `AddMenuViewModelTests` (page, missed-folder and selection reading over a manual clock and context), `UrlPromptViewModelTests`, `IconPickerViewModelTests`, `SeparatorTests` (adding, moving, removing, badge) — behaviour of the matching types.
 - `StringKeysTests` — keys the view models use exist in the shipped English file.
 - `Support/` — `Harness` (a main view model over a known board), fakes `FakeItemActivator`, `FakeConfigPersistence`, `FakeUserPrompts`, `FakeWindowHost`, `FakeHotkeyService`, `FakeSystemInfo`, `FakeAutostart`, `FakeBrowserAddressReader`, `FakeCurrentFolderReader`, `FakeFavicons`, `FakeEmojiGlyphs` and `TestIcons` (an icon finder over a small emoji library); `ManualTimeProvider`, `ManualSynchronizationContext`, `TestLocalizer`, `TempDirectory`.
 
@@ -399,6 +400,7 @@ Real services on the real desktop session; every class is tagged `Category=Deskt
 
 - `BrowserAddressReaderTests` — reading the page of real Firefox, Chrome and Edge instances (throwaway profiles, local pages; a browser not installed skips its tests); `BrowserAddressReaderResolutionTests`, `DocumentGraceTrackerTests` — the resolution rule and the grace per window, without a browser.
 - `CallContextProviderTests` — context capture over real Explorer windows, dialogs, a browser and a message box.
+- `CallContextProviderSelectionTests` — the selected file read from real Explorer windows (file, folder, several items, nothing, `.zip`, shortcuts to a file, to a folder, to a missing file and damaged, Internet shortcut), and the read rules without a window (no window, window gone, overrun, disposed provider).
 - `FileTypeIconsTests` — the icon of a type, without a file, and the failure cases.
 - `ExplorerControllerTests` — navigation, new tab, new window, overruns.
 - `FileDialogNavigatorTests` — moving each kind of dialog, hung and slow dialogs, deferred OK.
@@ -408,7 +410,7 @@ Real services on the real desktop session; every class is tagged `Category=Deskt
 - `ShellNamespaceTests` — display-name walk against the real namespace.
 - `SystemServicesTests` — path resolution, existence checks, autostart (test registry key), system info, single instance.
 - `WindowInspectorTests` — window trees built from hidden windows.
-- `Support/` — `DialogHostProcess` (runs and talks to DialogHost), `OpenedExplorer`, `MessageBoxScope`, `Foreground`, `ForegroundCollection` (serial collection), `BrowserSession` (starts and stops a browser of its own), `LocalWebServer` (pages for the browsers), `Sta`, `TempFolder`.
+- `Support/` — `DialogHostProcess` (runs and talks to DialogHost), `OpenedExplorer`, `ExplorerViewSelection`, `Shortcut`, `MessageBoxScope`, `Foreground`, `ForegroundCollection` (serial collection), `BrowserSession` (starts and stops a browser of its own), `LocalWebServer` (pages for the browsers), `Sta`, `TempFolder`.
 
 ## tests/DialogHost (net10.0-windows, WPF executable)
 

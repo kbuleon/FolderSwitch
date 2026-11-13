@@ -76,7 +76,8 @@ The settings, with seven themes in light and dark:
   give them: in Edit mode, one click sets them all to the same width, another gives each one its own color. Every change
   is saved at once.
 - **Add things where you are.** From File Explorer or a file dialog, « Current folder » adds the folder you are in, in
-  one click. From Firefox, Chrome or Edge, « Current URL » adds the page you are reading.
+  one click, and the file picker opens there; from File Explorer, « Selected file » adds the file you have selected.
+  From Firefox, Chrome or Edge, « Current URL » adds the page you are reading.
 - **Icons that speak.** Tabs and groups get an emoji from their name (« Finance » gets a banknote, « Photos » a
   camera), or the one you pick. Files show their Windows icon, and sites their own icon.
 - **Seven themes**, each in light and dark, or following Windows.

@@ -1153,6 +1153,84 @@ public class MainViewModelTests
         Assert.Equal(1, h.Persistence.SaveCount);
     }
 
+    [Theory]
+    [InlineData(CallContextKind.Explorer, @"C:\Users\Me\Work", @"C:\Users\Me\Work")]
+    [InlineData(CallContextKind.FileDialog, @"D:\Out", @"D:\Out")]
+    [InlineData(CallContextKind.Explorer, "::{F874310E-B6B7-47DC-BC84-B9E6B38F5903}", "::{F874310E-B6B7-47DC-BC84-B9E6B38F5903}")]
+    [InlineData(CallContextKind.Explorer, ThisPcClsid, ThisPcClsid)]
+    [InlineData(CallContextKind.Explorer, "shell:Downloads", "shell:Downloads")]
+    [InlineData(CallContextKind.Explorer, "search-ms:query=a", null)]
+    [InlineData(CallContextKind.Explorer, RecycleBinClsid, null)]
+    [InlineData(CallContextKind.FileDialog, RecycleBinClsid, null)]
+    [InlineData(CallContextKind.Explorer, null, null)]
+    [InlineData(CallContextKind.Explorer, "  ", null)]
+    public void AddFile_opens_the_picker_on_the_folder_of_the_call_when_there_is_one_to_go_back_to(
+        CallContextKind kind, string? current, string? expected)
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        vm.OnShown(new CallContext(kind, 42, current));
+        vm.IsCustomizing = true;
+
+        vm.AddFile(h.GroupVm("Inbox"));
+
+        Assert.Equal([expected], h.Prompts.PickFileFolders);
+    }
+
+    [Fact]
+    public void AddFile_opens_the_picker_as_before_from_another_window_or_a_browser()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        var inbox = h.GroupVm("Inbox");
+
+        vm.OnShown(CallContext.None);
+        vm.IsCustomizing = true;
+        vm.AddFile(inbox);
+        vm.OnShown(new CallContext(CallContextKind.Browser, 44, null, null, BrowserKind.Firefox));
+        vm.IsCustomizing = true;
+        vm.AddFile(inbox);
+
+        Assert.Equal([null, null], h.Prompts.PickFileFolders);
+    }
+
+    [Fact]
+    public void AddFile_uses_the_folder_the_menu_read_late()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        h.Folders.Responder = _ => new FolderLocation(@"E:\Late", null);
+        var vm = h.Customizing();
+        vm.OnShown(new CallContext(CallContextKind.Explorer, 42, null));
+        vm.IsCustomizing = true;
+        var inbox = h.GroupVm("Inbox");
+
+        using var menu = vm.OpenAddMenu(inbox);
+        ui.WaitUntil(() => menu.CurrentKind == AddMenuCurrent.Folder);
+        vm.AddFile(inbox);
+
+        Assert.Equal([@"E:\Late"], h.Prompts.PickFileFolders);
+    }
+
+    [Fact]
+    public void AddFilePath_adds_the_file_without_the_picker_and_only_in_customize_mode()
+    {
+        var h = new Harness();
+        var vm = h.Customizing();
+        var inbox = h.GroupVm("Inbox");
+
+        vm.AddFilePath(inbox, @"E:\Plans\budget.xlsx");
+
+        var item = Assert.Single(h.Inbox.Items);
+        Assert.Equal((ItemKind.File, @"E:\Plans\budget.xlsx"), (item.Kind, item.Path));
+        Assert.Empty(h.Prompts.PickFileFolders);
+        Assert.Equal(1, h.Persistence.SaveCount);
+
+        vm.IsCustomizing = false;
+        vm.AddFilePath(inbox, @"E:\Plans\other.xlsx");
+        Assert.Single(h.Inbox.Items);
+    }
+
     [Fact]
     public void AddUrl_adds_a_url_item_named_by_host()
     {

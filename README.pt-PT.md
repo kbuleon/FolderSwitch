@@ -78,8 +78,9 @@ As definições, com sete temas em claro e escuro:
   linhas de separação. As colunas mantêm a largura que lhes der: no modo Editar, um clique dá-lhes a todas a mesma
   largura, outro dá a cada uma a sua cor. Cada alteração é guardada de imediato.
 - **Adicione coisas onde estiver.** No Explorador de Ficheiros ou numa caixa de diálogo de ficheiros, “Pasta atual”
-  adiciona a pasta em que se encontra, com um clique. No Firefox, no Chrome ou no Edge, “URL atual” adiciona a página
-  que está a ler.
+  adiciona a pasta em que se encontra, com um clique, e o seletor de ficheiros abre nela; no Explorador de Ficheiros,
+  “Ficheiro selecionado” adiciona o ficheiro selecionado. No Firefox, no Chrome ou no Edge, “URL atual” adiciona a
+  página que está a ler.
 - **Ícones que falam por si.** Os separadores e os grupos recebem um emoji a partir do nome (“Finanças” recebe uma nota
   de banco, “Fotos” uma câmara), ou o que escolher. Os ficheiros mostram o respetivo ícone do Windows, e os sites o seu.
 - **Sete temas**, cada um em claro e escuro, ou a acompanhar o Windows.

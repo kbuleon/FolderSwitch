@@ -19,8 +19,11 @@ public interface IUserPrompts
     /// <summary>The Windows folder picker; <c>null</c> when cancelled.</summary>
     string? PickFolder();
 
-    /// <summary>The Windows file picker (open); <c>null</c> when cancelled.</summary>
-    string? PickFile();
+    /// <summary>
+    /// The Windows file picker (open), opened on <paramref name="initialFolder"/> when there is one and Windows accepts
+    /// it, on Windows' last folder otherwise; <c>null</c> when cancelled.
+    /// </summary>
+    string? PickFile(string? initialFolder);
 
     /// <summary>Where to export the configuration (save dialog); <c>null</c> when cancelled.</summary>
     string? PickExportPath();

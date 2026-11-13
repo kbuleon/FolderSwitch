@@ -629,7 +629,10 @@ public sealed partial class MainViewModel : ObservableObject
         }
     }
 
-    /// <summary>Adds a file chosen with the file picker; nothing when the picker is cancelled.</summary>
+    /// <summary>
+    /// Adds a file chosen with the file picker, which opens on the current folder of the calling window when there is
+    /// one to go back to (see <see cref="PickerFolder"/>); nothing when the picker is cancelled.
+    /// </summary>
     [RelayCommand(CanExecute = nameof(CanCustomize))]
     public void AddFile(GroupViewModel? group)
     {
@@ -638,11 +641,23 @@ public sealed partial class MainViewModel : ObservableObject
             return;
         }
 
-        var path = WhilePromptOpen(_prompts.PickFile);
+        var folder = PickerFolder(Context);
+        var path = WhilePromptOpen(() => _prompts.PickFile(folder));
         if (!string.IsNullOrWhiteSpace(path) && IsLive(group))
         {
             AddItem(group, new Item { Kind = ItemKind.File, Path = path });
         }
+    }
+
+    /// <summary>Adds the file at <paramref name="path"/> at once, without the file picker (a file selected in Explorer).</summary>
+    public void AddFilePath(GroupViewModel? group, string path)
+    {
+        if (!IsCustomizing || !IsLive(group) || string.IsNullOrWhiteSpace(path))
+        {
+            return;
+        }
+
+        AddItem(group, new Item { Kind = ItemKind.File, Path = path });
     }
 
     /// <summary>
@@ -703,7 +718,7 @@ public sealed partial class MainViewModel : ObservableObject
 
     /// <summary>
     /// The Add menu of a group, for the window FolderSwitch was called from. When that is a browser, or an Explorer
-    /// window or a file dialog whose folder the call could not read, the menu starts reading its page or its folder (see
+    /// window or a file dialog whose folder the call could not read, the menu starts reading its page or its folder, and from an Explorer window the file selected there (see
     /// <see cref="AddMenuViewModel"/>); that read ends when the menu is disposed, when another menu is opened, and when
     /// the window hides, is called again, leaves Customize mode or is reloaded.
     /// </summary>
@@ -1034,6 +1049,20 @@ public sealed partial class MainViewModel : ObservableObject
         var name = IsVirtualLocation(folder) && !string.IsNullOrWhiteSpace(shellName) ? shellName.Trim() : null;
         return new Item { Kind = ItemKind.Folder, Path = folder, Name = name };
     }
+
+    /// <summary>
+    /// The folder the file picker opens on: the current folder of <paramref name="context"/> when it was called from
+    /// File Explorer or a file dialog and knows it, except search results and the Recycle Bin, which are no place to
+    /// pick a file from; <c>null</c> (Windows' last folder) otherwise. A virtual location is passed as is.
+    /// </summary>
+    internal static string? PickerFolder(CallContext context) =>
+        context.Kind is CallContextKind.Explorer or CallContextKind.FileDialog
+        && context.CurrentFolder is { } folder
+        && !string.IsNullOrWhiteSpace(folder)
+        && !IsSearchResults(folder)
+        && !string.Equals(folder, RecycleBinClsid, StringComparison.OrdinalIgnoreCase)
+            ? folder
+            : null;
 
     /// <summary>A location without a path: <c>::{CLSID}</c> (Home, a library...) or <c>shell:</c>.</summary>
     private static bool IsVirtualLocation(string folder) =>

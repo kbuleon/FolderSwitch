@@ -2,8 +2,10 @@
 // Copyright (C) 2026 Karl BULEON
 // Additional terms under GPLv3 section 7: see the License section of README.md.
 
+using System.ComponentModel;
 using FolderSwitch.Core.Activation;
 using FolderSwitch.Core.Model;
+using FolderSwitch.Core.Services;
 using FolderSwitch.Core.Web;
 using FolderSwitch.Presentation.Tests.Support;
 using FolderSwitch.Presentation.ViewModels;
@@ -748,6 +750,361 @@ public sealed class AddMenuViewModelTests
         Assert.Equal(AddMenuCurrent.Folder, menu.CurrentKind);
     }
 
+    // ----- « File from current folder… » -----
+
+    [Fact]
+    public void File_from_current_folder_is_shown_with_the_current_folder()
+    {
+        var h = new Harness();
+        Show(h, new CallContext(CallContextKind.Explorer, 1, Folder));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+
+        Assert.True(menu.ShowsCurrentFolderFile);
+        Assert.True(menu.ShowsTopSection);
+    }
+
+    [Fact]
+    public void File_from_current_folder_stays_available_when_the_folder_is_already_in_the_group()
+    {
+        var h = new Harness();
+        Show(h, new CallContext(CallContextKind.Explorer, 1, @"c:\projects\acme\"));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Projects"));
+
+        Assert.True(menu.CurrentAlreadyPresent);
+        Assert.True(menu.ShowsCurrentFolderFile);
+    }
+
+    [Theory]
+    [InlineData("::{645FF040-5081-101B-9F08-00AA002F954E}")]
+    [InlineData("search-ms:query=a")]
+    [InlineData(null)]
+    public void File_from_current_folder_is_hidden_for_the_recycle_bin_search_results_and_no_folder(string? current)
+    {
+        var h = new Harness();
+        Show(h, new CallContext(CallContextKind.Explorer, 1, current));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+
+        Assert.False(menu.ShowsCurrentFolderFile);
+    }
+
+    [Fact]
+    public void Recycle_bin_keeps_its_current_folder_line_and_the_top_section()
+    {
+        var h = new Harness();
+        Show(h, new CallContext(CallContextKind.Explorer, 1, "::{645FF040-5081-101B-9F08-00AA002F954E}"));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+
+        Assert.Equal(AddMenuCurrent.Folder, menu.CurrentKind);
+        Assert.False(menu.ShowsCurrentFolderFile);
+        Assert.True(menu.ShowsTopSection);
+    }
+
+    [Fact]
+    public void File_from_current_folder_is_hidden_from_another_window()
+    {
+        var h = new Harness();
+        Show(h, CallContext.None);
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+
+        Assert.False(menu.ShowsCurrentFolderFile);
+        Assert.False(menu.ShowsTopSection);
+    }
+
+    [Fact]
+    public void File_from_current_folder_appears_with_the_folder_read_late()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        h.Folders.Responder = _ => new FolderLocation(Folder, null);
+        Show(h, new CallContext(CallContextKind.Explorer, ExplorerWindow, null));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        var changes = RecordChanges(menu);
+        Assert.False(menu.ShowsCurrentFolderFile);
+        ui.WaitUntil(() => menu.CurrentKind == AddMenuCurrent.Folder);
+
+        Assert.True(menu.ShowsCurrentFolderFile);
+        Assert.True(menu.ShowsTopSection);
+        Assert.Contains(nameof(AddMenuViewModel.ShowsCurrentFolderFile), changes);
+        Assert.Contains(nameof(AddMenuViewModel.ShowsTopSection), changes);
+    }
+
+    [Fact]
+    public void Top_section_follows_the_page_of_a_browser()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        h.Browser.Responder = _ => new BrowserPage(PageUrl, "Docs");
+        Show(h, BrowserContext(BrowserKind.Firefox));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        var changes = RecordChanges(menu);
+        Assert.False(menu.ShowsTopSection);
+        ui.WaitUntil(() => menu.CurrentKind == AddMenuCurrent.Url);
+
+        Assert.True(menu.ShowsTopSection);
+        Assert.False(menu.ShowsCurrentFolderFile);
+        Assert.Contains(nameof(AddMenuViewModel.ShowsTopSection), changes);
+    }
+
+    // ----- « Selected file » -----
+
+    [Fact]
+    public void Selected_file_is_published_with_its_name()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        h.Folders.SelectionResponder = _ => new ExplorerSelection(@"E:\Archive\Plan.pdf");
+        Show(h, new CallContext(CallContextKind.Explorer, ExplorerWindow, Folder));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        var changes = RecordChanges(menu);
+        Assert.False(menu.ShowsSelectedFile);
+        ui.WaitUntil(() => menu.ShowsSelectedFile);
+        ui.WaitUntil(() => !menu.IsReading);
+
+        Assert.Equal(@"E:\Archive\Plan.pdf", menu.SelectedFilePath);
+        Assert.Equal("Plan.pdf", menu.SelectedFileName);
+        Assert.False(menu.SelectedFileAlreadyPresent);
+        Assert.True(menu.ShowsTopSection);
+        Assert.Equal(ExplorerWindow, h.Folders.LastSelectionWindow);
+        Assert.Contains(nameof(AddMenuViewModel.ShowsSelectedFile), changes);
+        Assert.Contains(nameof(AddMenuViewModel.SelectedFileName), changes);
+        Assert.Contains(nameof(AddMenuViewModel.ShowsTopSection), changes);
+    }
+
+    [Fact]
+    public void Selected_file_is_read_whether_or_not_the_folder_is_known()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        h.Folders.SelectionResponder = _ => new ExplorerSelection(@"E:\Archive\Plan.pdf");
+        Show(h, ExplorerNoFolder);
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        ui.WaitUntil(() => menu.ShowsSelectedFile);
+
+        Assert.Equal("Plan.pdf", menu.SelectedFileName);
+        Assert.Equal(AddMenuCurrent.None, menu.CurrentKind);
+        Assert.True(menu.ShowsTopSection);
+    }
+
+    [Fact]
+    public void No_file_shows_nothing_and_stops_the_reading()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        h.Folders.SelectionResponder = _ => ExplorerSelection.NoFile;
+        Show(h, new CallContext(CallContextKind.Explorer, ExplorerWindow, Folder));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        ui.WaitUntil(() => h.Folders.SelectionCalls == 1);
+        Settle(ui);
+        h.Time.Advance(TimeSpan.FromSeconds(5));
+        Settle(ui);
+
+        Assert.Equal(1, h.Folders.SelectionCalls);
+        Assert.False(menu.ShowsSelectedFile);
+        Assert.Null(menu.SelectedFilePath);
+        Assert.Null(menu.SelectedFileName);
+        Assert.False(menu.IsReading);
+    }
+
+    [Fact]
+    public void Failed_selection_attempts_are_retried_until_a_file_comes()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        h.Folders.SelectionResponder = call => call < 3 ? null : new ExplorerSelection(@"E:\Archive\Plan.pdf");
+        Show(h, new CallContext(CallContextKind.Explorer, ExplorerWindow, Folder));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        Assert.True(menu.IsReading);
+        NextSelectionAttempt(ui, h);
+        Assert.False(menu.ShowsSelectedFile);
+        NextSelectionAttempt(ui, h);
+        ui.WaitUntil(() => menu.ShowsSelectedFile);
+        ui.WaitUntil(() => !menu.IsReading);
+
+        Assert.Equal(3, h.Folders.SelectionCalls);
+        Assert.Equal("Plan.pdf", menu.SelectedFileName);
+    }
+
+    [Fact]
+    public void Selection_is_not_read_after_two_seconds()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        h.Folders.SelectionResponder = _ => null;
+        Show(h, new CallContext(CallContextKind.Explorer, ExplorerWindow, Folder));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        for (var i = 0; i < 9; i++)
+        {
+            NextSelectionAttempt(ui, h);
+        }
+
+        ui.WaitUntil(() => h.Time.PendingTimers == 1);
+        h.Time.Advance(Step);
+        ui.WaitUntil(() => !menu.IsReading);
+
+        Assert.Equal(10, h.Folders.SelectionCalls);
+        Assert.False(menu.ShowsSelectedFile);
+    }
+
+    [Fact]
+    public void Selection_answer_coming_after_two_seconds_is_not_shown()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        using var gate = new ManualResetEventSlim();
+        h.Folders.SelectionResponder = _ =>
+        {
+            gate.Wait(TimeSpan.FromSeconds(5));
+            return new ExplorerSelection(@"E:\Archive\Plan.pdf");
+        };
+        Show(h, new CallContext(CallContextKind.Explorer, ExplorerWindow, Folder));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        ui.WaitUntil(() => h.Folders.SelectionCalls == 1);
+        h.Time.Advance(TimeSpan.FromSeconds(3)); // Passes while the attempt is not over.
+        gate.Set();
+        Settle(ui);
+
+        Assert.False(menu.ShowsSelectedFile);
+    }
+
+    [Fact]
+    public void Selection_is_not_published_after_dispose()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        h.Folders.SelectionResponder = call => call < 2 ? null : new ExplorerSelection(@"E:\Archive\Plan.pdf");
+        Show(h, new CallContext(CallContextKind.Explorer, ExplorerWindow, Folder));
+
+        var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        ui.WaitUntil(() => h.Folders.SelectionCalls == 1 && h.Time.PendingTimers == 1);
+        menu.Dispose();
+        h.Time.Advance(Step);
+        Settle(ui);
+
+        Assert.False(menu.ShowsSelectedFile);
+        Assert.Equal(1, h.Folders.SelectionCalls);
+    }
+
+    [Fact]
+    public void Selection_is_never_read_from_a_file_dialog_a_browser_another_window_or_without_a_window()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        h.Folders.SelectionResponder = _ => new ExplorerSelection(@"E:\Archive\Plan.pdf");
+        h.Browser.Responder = _ => new BrowserPage(PageUrl, "Docs");
+
+        foreach (var context in new[]
+                 {
+                     new CallContext(CallContextKind.FileDialog, ExplorerWindow, Folder),
+                     new CallContext(CallContextKind.FileDialog, ExplorerWindow, null),
+                     BrowserContext(BrowserKind.Firefox),
+                     CallContext.None,
+                     new CallContext(CallContextKind.Explorer, 0, Folder),
+                 })
+        {
+            Show(h, context);
+            using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+            Settle(ui);
+
+            Assert.False(menu.ShowsSelectedFile);
+        }
+
+        Assert.Equal(0, h.Folders.SelectionCalls);
+    }
+
+    [Fact]
+    public void Selected_file_already_in_the_group_is_marked_and_not_added_again()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness(h => h.Inbox.Items.Add(new Item { Kind = ItemKind.File, Path = @"E:\Archive\Plan.pdf" }));
+        h.Folders.SelectionResponder = _ => new ExplorerSelection(@"e:\archive\plan.pdf");
+        Show(h, new CallContext(CallContextKind.Explorer, ExplorerWindow, Folder));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        ui.WaitUntil(() => menu.ShowsSelectedFile);
+        menu.AddSelectedFile();
+
+        Assert.True(menu.SelectedFileAlreadyPresent);
+        Assert.Single(h.Inbox.Items);
+        Assert.Equal(0, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void AddSelectedFile_adds_a_file_item_without_the_picker()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        h.Folders.SelectionResponder = _ => new ExplorerSelection(@"E:\Archive\Plan.pdf");
+        Show(h, new CallContext(CallContextKind.Explorer, ExplorerWindow, Folder));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        ui.WaitUntil(() => menu.ShowsSelectedFile);
+        menu.AddSelectedFile();
+
+        var item = Assert.Single(h.Inbox.Items);
+        Assert.Equal((ItemKind.File, @"E:\Archive\Plan.pdf"), (item.Kind, item.Path));
+        Assert.Empty(h.Prompts.PickFileFolders);
+        Assert.Equal(1, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void AddSelectedFile_does_nothing_without_a_file_or_once_disposed()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        h.Folders.SelectionResponder = _ => new ExplorerSelection(@"E:\Archive\Plan.pdf");
+        Show(h, new CallContext(CallContextKind.Explorer, ExplorerWindow, Folder));
+
+        var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        menu.AddSelectedFile(); // Not read yet.
+        Assert.Empty(h.Inbox.Items);
+
+        ui.WaitUntil(() => menu.ShowsSelectedFile);
+        menu.Dispose();
+        menu.AddSelectedFile();
+
+        Assert.Empty(h.Inbox.Items);
+        Assert.Equal(0, h.Persistence.SaveCount);
+    }
+
+    [Fact]
+    public void IsReading_holds_until_both_reads_end()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        h.Folders.Responder = _ => new FolderLocation(Folder, null);
+        h.Folders.SelectionResponder = call => call < 3 ? null : ExplorerSelection.NoFile;
+        Show(h, ExplorerNoFolder);
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        Assert.True(menu.IsReading);
+
+        // The folder read ends first: the selection one is still under way.
+        ui.WaitUntil(() => menu.CurrentKind == AddMenuCurrent.Folder);
+        ui.WaitUntil(() => h.Folders.SelectionCalls == 1 && h.Time.PendingTimers == 1);
+        Settle(ui);
+        Assert.True(menu.IsReading);
+
+        NextSelectionAttempt(ui, h);
+        Assert.True(menu.IsReading);
+        NextSelectionAttempt(ui, h);
+        ui.WaitUntil(() => !menu.IsReading);
+
+        Assert.Equal(3, h.Folders.SelectionCalls);
+    }
+
     // ----- Delegations -----
 
     [Fact]
@@ -886,6 +1243,24 @@ public sealed class AddMenuViewModelTests
 
         Assert.Equal(3, h.Projects.Items.Count);
         Assert.Equal(SpecialFolderKey.Documents, h.Projects.Items[2].Special);
+    }
+
+    private static CallContext ExplorerNoFolder => new(CallContextKind.Explorer, ExplorerWindow, null);
+
+    private static List<string?> RecordChanges(INotifyPropertyChanged source)
+    {
+        var names = new List<string?>();
+        source.PropertyChanged += (_, e) => names.Add(e.PropertyName);
+        return names;
+    }
+
+    /// <summary>As <see cref="NextAttempt"/>, for the read of the selected file.</summary>
+    private static void NextSelectionAttempt(ManualSynchronizationContext ui, Harness h)
+    {
+        var before = h.Folders.SelectionCalls;
+        ui.WaitUntil(() => h.Time.PendingTimers == 1);
+        h.Time.Advance(Step);
+        ui.WaitUntil(() => h.Folders.SelectionCalls > before);
     }
 
     /// <summary>The window is shown for <paramref name="context"/> and put in Customize mode, where the menu lives.</summary>

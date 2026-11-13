@@ -9,20 +9,29 @@ namespace FolderSwitch.Presentation.Tests.Support;
 
 /// <summary>
 /// A scripted <see cref="ICurrentFolderReader"/>: <see cref="Responder"/> answers each attempt by its number (1 for the
-/// first), and the calls are recorded. Safe to call from the thread pool.
+/// first), <see cref="SelectionResponder"/> each selection attempt by its own number, and the calls are recorded. Safe to
+/// call from the thread pool.
 /// </summary>
 internal sealed class FakeCurrentFolderReader : ICurrentFolderReader
 {
     private int _calls;
+    private int _selectionCalls;
 
     /// <summary>The answer to attempt number n; by default <c>null</c> every time.</summary>
     public Func<int, FolderLocation?> Responder { get; set; } = _ => null;
 
+    /// <summary>The answer to selection attempt number n; by default <c>null</c> (not read) every time.</summary>
+    public Func<int, ExplorerSelection?> SelectionResponder { get; set; } = _ => null;
+
     public int Calls => Volatile.Read(ref _calls);
+
+    public int SelectionCalls => Volatile.Read(ref _selectionCalls);
 
     public CallContextKind LastKind { get; private set; }
 
     public nint LastWindow { get; private set; }
+
+    public nint LastSelectionWindow { get; private set; }
 
     public FolderLocation? TryRead(CallContextKind kind, nint window)
     {
@@ -30,5 +39,12 @@ internal sealed class FakeCurrentFolderReader : ICurrentFolderReader
         LastKind = kind;
         LastWindow = window;
         return Responder(number);
+    }
+
+    public ExplorerSelection? TryReadSelection(nint explorerWindow)
+    {
+        var number = Interlocked.Increment(ref _selectionCalls);
+        LastSelectionWindow = explorerWindow;
+        return SelectionResponder(number);
     }
 }

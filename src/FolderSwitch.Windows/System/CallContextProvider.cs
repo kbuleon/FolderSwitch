@@ -42,9 +42,9 @@ namespace FolderSwitch.Windows.SystemServices;
 /// <para>
 /// <b>Threads.</b> <see cref="CaptureForeground"/> may be called from any thread, STA or MTA. The
 /// classification runs on the calling thread: plain Win32 calls that never wait on another window. The
-/// folder lookups (shell COM, messages to the dialog), the captures' and <see cref="TryRead"/>'s, are
-/// serialized; each runs on an STA thread owned by the provider, which the caller waits for with the
-/// remaining budget. A capture waits for a lookup under way within its own budget only.
+/// lookups (shell COM, messages to the dialog), the captures' and those of <see cref="TryRead"/> and
+/// <see cref="TryReadSelection"/>, are serialized; each runs on an STA thread owned by the provider, which the caller
+/// waits for with the remaining budget. A capture waits for a lookup under way within its own budget only.
 /// </para>
 /// <para>
 /// <b>Overruns.</b> A lookup that overruns is abandoned with its thread, which ends when the lookup
@@ -52,7 +52,8 @@ namespace FolderSwitch.Windows.SystemServices;
 /// first one that does not answer ends the lookup. A COM call into Explorer is not: it waits as long as
 /// the window it reaches does not answer (a window hung on an offline share, say), and the enumeration
 /// asks every Explorer window for its handle. Nor is the walk through the shell namespace that resolves
-/// a display path (a network location can take long). So at most one abandoned thread is kept: while it
+/// a display path (a network location can take long), nor the existence probe of a selected shortcut's target (an
+/// unreachable share can hold it for tens of seconds). So at most one abandoned thread is kept: while it
 /// is still alive, captures skip the lookup altogether (kind and window kept, no current folder) instead
 /// of starting another thread that would block the same way. Once it ends, the next capture starts a
 /// new lookup thread.
@@ -65,7 +66,9 @@ namespace FolderSwitch.Windows.SystemServices;
 /// <b>Later reads.</b> A folder the capture could not read in its budget (many Explorer windows, network folders) is
 /// read again later by <see cref="TryRead"/>, with <see cref="ReadBudget"/>: the same lookup, on the same lookup
 /// thread, under the same rules (serialized with the captures, abandoned on an overrun). After a capture that overran,
-/// that thread is a new one once the abandoned lookup has ended, and warms up first, within the read's budget.
+/// that thread is a new one once the abandoned lookup has ended, and warms up first, within the read's budget. The
+/// file selected in an Explorer window, which a capture never reads, is read by <see cref="TryReadSelection"/> the same
+/// way, as a later read.
 /// </para>
 /// </remarks>
 public sealed class CallContextProvider : ICallContextProvider, ICurrentFolderReader, IDisposable
@@ -73,7 +76,7 @@ public sealed class CallContextProvider : ICallContextProvider, ICurrentFolderRe
     /// <summary>The time a capture may take.</summary>
     public static readonly TimeSpan DefaultBudget = TimeSpan.FromMilliseconds(50);
 
-    /// <summary>The time a later read of the folder (<see cref="TryRead"/>) may take.</summary>
+    /// <summary>The time a later read (<see cref="TryRead"/>, <see cref="TryReadSelection"/>) may take.</summary>
     public static readonly TimeSpan ReadBudget = TimeSpan.FromMilliseconds(500);
 
     /// <summary>A warm-up still running after this long is stuck: its thread is abandoned.</summary>
@@ -86,6 +89,7 @@ public sealed class CallContextProvider : ICallContextProvider, ICurrentFolderRe
     private readonly TimeSpan _readBudget;
     private readonly Lock _gate = new();
     private readonly Func<CallContextKind, nint, ShellLocation?> _lookup;
+    private readonly Func<nint, ExplorerSelection?> _selectionLookup;
     private readonly bool _warmUp;
     private LookupWorker? _worker;
 
@@ -101,16 +105,22 @@ public sealed class CallContextProvider : ICallContextProvider, ICurrentFolderRe
     /// <summary>
     /// Test seam: a provider with another time budget and, optionally, another folder lookup (run on
     /// the lookup thread in place of <see cref="ExplorerWindows"/> / <see cref="FileDialogInspector"/>;
-    /// no warm-up then, and no name), and another budget for <see cref="TryRead"/>.
+    /// no name then), another budget for the later reads, and another selection lookup (run on the lookup thread in
+    /// place of <see cref="ExplorerWindows.Selection"/>). No warm-up when either lookup is replaced.
     /// </summary>
-    internal CallContextProvider(TimeSpan budget, Func<CallContextKind, nint, string?>? lookup = null, TimeSpan? readBudget = null)
+    internal CallContextProvider(
+        TimeSpan budget,
+        Func<CallContextKind, nint, string?>? lookup = null,
+        TimeSpan? readBudget = null,
+        Func<nint, ExplorerSelection?>? selectionLookup = null)
     {
         _budget = budget;
         _readBudget = readBudget ?? ReadBudget;
-        _warmUp = lookup is null;
+        _warmUp = lookup is null && selectionLookup is null;
         _lookup = lookup is null
             ? LookUp
             : (kind, window) => lookup(kind, window) is { } folder ? new ShellLocation(folder, null) : null;
+        _selectionLookup = selectionLookup ?? ExplorerWindows.Selection;
         _worker = new LookupWorker(_warmUp);
     }
 
@@ -192,41 +202,20 @@ public sealed class CallContextProvider : ICallContextProvider, ICurrentFolderRe
     /// Bounded by <see cref="ReadBudget"/>, the wait for a capture under way included. <c>null</c> at once for another
     /// kind, a window that is gone, a disposed provider, or while an abandoned lookup is still running.
     /// </remarks>
-    public FolderLocation? TryRead(CallContextKind kind, nint window)
-    {
-        var start = Stopwatch.GetTimestamp();
-        try
-        {
-            if (kind is not (CallContextKind.Explorer or CallContextKind.FileDialog)
-                || window == 0
-                || !PInvoke.IsWindow((HWND)window))
-            {
-                return null;
-            }
+    public FolderLocation? TryRead(CallContextKind kind, nint window) =>
+        kind is CallContextKind.Explorer or CallContextKind.FileDialog
+        && ReadLater(window, () => _lookup(kind, window)) is { } location
+            ? new FolderLocation(location.ParsingName, location.DisplayName)
+            : null;
 
-            // A capture or another read under way holds the gate: waited for within this read's budget only.
-            var remaining = Remaining(start, _readBudget);
-            if (!_gate.TryEnter(remaining > TimeSpan.Zero ? remaining : TimeSpan.Zero))
-            {
-                return null;
-            }
-
-            try
-            {
-                return !_disposed && LookUpFolder(kind, window, start, _readBudget) is { } location
-                    ? new FolderLocation(location.ParsingName, location.DisplayName)
-                    : null;
-            }
-            finally
-            {
-                _gate.Exit();
-            }
-        }
-        catch (Exception)
-        {
-            return null;
-        }
-    }
+    /// <inheritdoc/>
+    /// <remarks>
+    /// Read as <see cref="TryRead"/> reads a folder: bounded by <see cref="ReadBudget"/>, the wait for a capture or another
+    /// read under way included, on the same lookup thread, abandoned on an overrun. <c>null</c> at once for no window, a
+    /// window that is gone, a disposed provider, or while an abandoned lookup is still running.
+    /// </remarks>
+    public ExplorerSelection? TryReadSelection(nint explorerWindow) =>
+        ReadLater(explorerWindow, () => _selectionLookup(explorerWindow));
 
     /// <summary>Test seam: whether an abandoned lookup is still running, so that captures skip the lookup.</summary>
     internal bool IsLookupSuspended
@@ -283,11 +272,57 @@ public sealed class CallContextProvider : ICallContextProvider, ICurrentFolderRe
     }
 
     /// <summary>
-    /// Under the gate: the current folder and its name, or <c>null</c> if it is unknown, not read within what is left
-    /// of <paramref name="budget"/> since <paramref name="start"/>, or not looked up (an abandoned lookup still running, a
-    /// new lookup thread still warming up).
+    /// A later read: <paramref name="lookup"/> run under the gate, within <see cref="ReadBudget"/> from now, the wait for
+    /// a capture or another read under way included (see <see cref="RunLookup"/>). <c>null</c> at once for no window, a
+    /// window that is gone or a disposed provider, and on any failure.
     /// </summary>
-    private ShellLocation? LookUpFolder(CallContextKind kind, nint window, long start, TimeSpan budget)
+    private T? ReadLater<T>(nint window, Func<T?> lookup)
+        where T : class
+    {
+        var start = Stopwatch.GetTimestamp();
+        try
+        {
+            if (window == 0 || !PInvoke.IsWindow((HWND)window))
+            {
+                return null;
+            }
+
+            // A capture or another read under way holds the gate: waited for within this read's budget only.
+            var remaining = Remaining(start, _readBudget);
+            if (!_gate.TryEnter(remaining > TimeSpan.Zero ? remaining : TimeSpan.Zero))
+            {
+                return null;
+            }
+
+            try
+            {
+                return _disposed ? null : RunLookup(lookup, start, _readBudget);
+            }
+            finally
+            {
+                _gate.Exit();
+            }
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Under the gate: the current folder and its name, or <c>null</c> if it is unknown, not read within what is left
+    /// of <paramref name="budget"/> since <paramref name="start"/>, or not looked up (see <see cref="RunLookup"/>).
+    /// </summary>
+    private ShellLocation? LookUpFolder(CallContextKind kind, nint window, long start, TimeSpan budget) =>
+        RunLookup(() => _lookup(kind, window), start, budget);
+
+    /// <summary>
+    /// Under the gate: what <paramref name="lookup"/> gives on the lookup thread, or <c>null</c> if it did not finish
+    /// within what is left of <paramref name="budget"/> since <paramref name="start"/> (it is abandoned then, with its
+    /// thread), or was not run (an abandoned lookup still running, a new lookup thread still warming up).
+    /// </summary>
+    private T? RunLookup<T>(Func<T?> lookup, long start, TimeSpan budget)
+        where T : class
     {
         if (_abandoned is not null)
         {
@@ -316,9 +351,9 @@ public sealed class CallContextProvider : ICallContextProvider, ICurrentFolderRe
             return null;
         }
 
-        if (worker.Thread.TryRun(() => _lookup(kind, window), remaining, out var location))
+        if (worker.Thread.TryRun(lookup, remaining, out var result))
         {
-            return location;
+            return result;
         }
 
         Abandon();

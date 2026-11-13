@@ -78,8 +78,9 @@ Los ajustes, con siete temas en claro y oscuro:
   separadores. Las columnas conservan el ancho que les das: en el modo Editar, un clic les da a todas el mismo ancho y
   otro, un color a cada una. Cada cambio se guarda al instante.
 - **Añade cosas allí donde estés.** Desde el Explorador de archivos o un cuadro de diálogo de archivos, «Carpeta
-  actual» añade la carpeta en la que estás con un solo clic. Desde Firefox, Chrome o Edge, «URL actual» añade la página
-  que estás leyendo.
+  actual» añade la carpeta en la que estás con un solo clic, y el selector de archivos se abre en ella; desde el
+  Explorador, «Archivo seleccionado» añade el archivo seleccionado. Desde Firefox, Chrome o Edge, «URL actual» añade
+  la página que estás leyendo.
 - **Iconos que hablan.** Las pestañas y los grupos reciben un emoji a partir de su nombre («Finanzas» recibe un billete,
   «Fotos» una cámara), o el que tú elijas. Los archivos muestran su icono de Windows, y los sitios web el suyo.
 - **Siete temas**, cada uno en claro y oscuro, o siguiendo a Windows.

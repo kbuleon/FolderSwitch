@@ -3,6 +3,7 @@
 // Additional terms under GPLv3 section 7: see the License section of README.md.
 
 using System.Runtime.InteropServices;
+using FolderSwitch.Core.Services;
 
 namespace FolderSwitch.Windows.Shell;
 
@@ -16,7 +17,7 @@ namespace FolderSwitch.Windows.Shell;
 /// than throw: a window closed meanwhile, a folder with no view, gives <c>null</c>. They have no
 /// timeout: a call waits as long as the Explorer window it reaches does not answer, and enumerating
 /// asks every window for its handle, so one hung window blocks <see cref="Enumerate"/>,
-/// <see cref="FindActive"/> and <see cref="CurrentFolder"/>. Callers bound that themselves (see
+/// <see cref="FindActive"/>, <see cref="CurrentFolder"/> and <see cref="Selection"/>. Callers bound that themselves (see
 /// <c>CallContextProvider</c>).
 /// </para>
 /// <para>
@@ -89,6 +90,16 @@ internal static class ExplorerWindows
     {
         using var browser = FindActive(explorerWindow);
         return browser?.CurrentLocation();
+    }
+
+    /// <summary>
+    /// The file selected in the active tab of <paramref name="explorerWindow"/> (see <see cref="ExplorerBrowser.Selection"/>),
+    /// or <c>null</c> if it could not be read.
+    /// </summary>
+    public static ExplorerSelection? Selection(nint explorerWindow)
+    {
+        using var browser = FindActive(explorerWindow);
+        return browser?.Selection();
     }
 
     /// <summary>The browsers whose top-level window satisfies <paramref name="topLevelFilter"/>.</summary>
@@ -183,12 +194,29 @@ internal sealed record ShellLocation(string ParsingName, string? DisplayName);
 internal sealed class ExplorerBrowser : IDisposable
 {
     private static readonly Guid PersistFolder2Iid = typeof(IPersistFolder2).GUID;
+    private static readonly Guid ShellItemArrayIid = typeof(IShellItemArray).GUID;
 
     /// <summary><c>SBSP_SAMEBROWSER</c>: in this browser, never a new window.</summary>
     private const uint SameBrowser = 0x0001;
 
     /// <summary><c>SBSP_ABSOLUTE</c>: the ID list is absolute.</summary>
     private const uint Absolute = 0x0000;
+
+    /// <summary><c>SVGIO_SELECTION</c>: the selected items of a view.</summary>
+    private const uint SelectedItems = 0x0001;
+
+    /// <summary>The attributes that tell what the selected item is.</summary>
+    private const uint SelectionAttributes =
+        ShellNative.SfgaoFolder | ShellNative.SfgaoStream | ShellNative.SfgaoFileSystem | ShellNative.SfgaoLink;
+
+    /// <summary><c>STGM_READ</c>.</summary>
+    private const uint ReadOnly = 0x0000;
+
+    /// <summary>The room for a shortcut's target path, in characters: the longest path, its terminator included.</summary>
+    private const int TargetPathLength = 32768;
+
+    /// <summary>The parsing name of the Recycle Bin.</summary>
+    private const string RecycleBin = "::{645FF040-5081-101B-9F08-00AA002F954E}";
 
     private IWebBrowser2? _webBrowser;
     private IShellBrowser? _shellBrowser;
@@ -265,6 +293,85 @@ internal sealed class ExplorerBrowser : IDisposable
     }
 
     /// <summary>
+    /// The file selected in the folder shown, read from the active shell view: the one selected item when it is a file,
+    /// or a shortcut's target when that is an existing file; <see cref="ExplorerSelection.NoFile"/> when there is none
+    /// to offer (see <see cref="ExplorerSelection"/>); <c>null</c> if it could not be read. A shortcut is only read from
+    /// its file, never resolved: no search for a moved target, no UI.
+    /// </summary>
+    public ExplorerSelection? Selection()
+    {
+        if (_shellBrowser is not { } browser)
+        {
+            return null;
+        }
+
+        object? view = null;
+        object? folder = null;
+        object? items = null;
+        IShellItem? item = null;
+        var pidl = nint.Zero;
+        try
+        {
+            if (browser.QueryActiveShellView(out view) != ShellNative.S_OK
+                || view is not IFolderView folderView
+                || folderView.ItemCount(SelectedItems, out var count) != ShellNative.S_OK)
+            {
+                return null;
+            }
+
+            if (count != 1)
+            {
+                return ExplorerSelection.NoFile;
+            }
+
+            // The items of the Recycle Bin have a file-system path (where the bin keeps them): none is offered.
+            if (folderView.GetFolder(PersistFolder2Iid, out folder) != ShellNative.S_OK
+                || folder is not IPersistFolder2 persist
+                || persist.GetCurFolder(out pidl) != ShellNative.S_OK
+                || ShellNative.ParsingName(pidl) is not { } folderName)
+            {
+                return null;
+            }
+
+            if (string.Equals(folderName, RecycleBin, StringComparison.OrdinalIgnoreCase))
+            {
+                return ExplorerSelection.NoFile;
+            }
+
+            // The selection may have changed since it was counted: the items read now are the answer.
+            if (folderView.Items(SelectedItems, ShellItemArrayIid, out items) != ShellNative.S_OK
+                || items is not IShellItemArray array
+                || array.GetCount(out var selected) != ShellNative.S_OK)
+            {
+                return null;
+            }
+
+            if (selected != 1)
+            {
+                return ExplorerSelection.NoFile;
+            }
+
+            return array.GetItemAt(0, out item) == ShellNative.S_OK && item is not null ? FileOf(item) : null;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+        finally
+        {
+            if (pidl != 0)
+            {
+                Marshal.FreeCoTaskMem(pidl);
+            }
+
+            ShellNative.Release(item);
+            ShellNative.Release(items);
+            ShellNative.Release(folder);
+            ShellNative.Release(view);
+        }
+    }
+
+    /// <summary>
     /// Navigates this browser itself to the absolute ID list <paramref name="idList"/>
     /// (<c>IShellBrowser.BrowseObject</c> with <c>SBSP_SAMEBROWSER | SBSP_ABSOLUTE</c>); <c>false</c> if it has no
     /// <c>IShellBrowser</c> or refused.
@@ -300,5 +407,77 @@ internal sealed class ExplorerBrowser : IDisposable
         ShellNative.Release(_webBrowser);
         _shellBrowser = null;
         _webBrowser = null;
+    }
+
+    /// <summary>What the one selected <paramref name="item"/> offers; <c>null</c> if it could not be read.</summary>
+    private static ExplorerSelection? FileOf(IShellItem item)
+    {
+        if (item.GetAttributes(SelectionAttributes, out var attributes) < 0)
+        {
+            return null;
+        }
+
+        var result = item.GetDisplayName(ShellNative.SigdnFileSysPath, out var name);
+        var path = ShellNative.TakeString(name);
+        if (result != ShellNative.S_OK || string.IsNullOrEmpty(path))
+        {
+            // An item outside the file system (This PC, a library...) has no path: nothing to offer. A file-system item
+            // that did not give one was not read.
+            return (attributes & ShellNative.SfgaoFileSystem) == 0 ? ExplorerSelection.NoFile : null;
+        }
+
+        // A shortcut counts by its target; one that is not a shell link (an Internet shortcut) is a plain file.
+        if ((attributes & ShellNative.SfgaoLink) != 0 && ShortcutTarget(path) is { } target)
+        {
+            return target;
+        }
+
+        // A folder is not a file; a .zip, a folder that has a stream, is one.
+        return (attributes & (ShellNative.SfgaoFolder | ShellNative.SfgaoStream)) == ShellNative.SfgaoFolder
+            ? ExplorerSelection.NoFile
+            : new ExplorerSelection(path);
+    }
+
+    /// <summary>
+    /// What the shortcut <paramref name="path"/> offers: its target when that is an existing file, else
+    /// <see cref="ExplorerSelection.NoFile"/> (a folder, a missing target, a target with no path, a <c>.lnk</c> that does
+    /// not load: damaged, denied, not available offline); <c>null</c> when another kind of shortcut does not load as a shell
+    /// link (an Internet shortcut...). Read from the file (<c>STGM_READ</c>) in this process, never resolved. Throws if no
+    /// shell link object can be made.
+    /// </summary>
+    private static ExplorerSelection? ShortcutTarget(string path)
+    {
+        object? link = null;
+        var buffer = nint.Zero;
+        try
+        {
+            link = Activator.CreateInstance(Type.GetTypeFromCLSID(ShellGuids.ShellLink, throwOnError: true)!);
+            if (((IPersistFile)link!).Load(path, ReadOnly) < 0)
+            {
+                // A .lnk is a shell link whatever its content: its target could not be read.
+                return string.Equals(Path.GetExtension(path), ".lnk", StringComparison.OrdinalIgnoreCase)
+                    ? ExplorerSelection.NoFile
+                    : null;
+            }
+
+            buffer = Marshal.AllocCoTaskMem(TargetPathLength * sizeof(char));
+            var target = ((IShellLinkW)link).GetPath(buffer, TargetPathLength, 0, 0) == ShellNative.S_OK
+                ? Marshal.PtrToStringUni(buffer)
+                : null;
+
+            // File.Exists is false for a folder, a missing file and a file it cannot reach.
+            return !string.IsNullOrEmpty(target) && File.Exists(target)
+                ? new ExplorerSelection(target)
+                : ExplorerSelection.NoFile;
+        }
+        finally
+        {
+            if (buffer != 0)
+            {
+                Marshal.FreeCoTaskMem(buffer);
+            }
+
+            ShellNative.Release(link);
+        }
     }
 }

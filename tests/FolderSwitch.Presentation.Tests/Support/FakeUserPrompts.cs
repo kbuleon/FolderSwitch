@@ -30,6 +30,9 @@ internal sealed class FakeUserPrompts : IUserPrompts
     /// <summary>Runs while a prompt is "on screen", the way a modal dialog lets window events through.</summary>
     public Action? DuringPrompt { get; set; }
 
+    /// <summary>The initial folder each file picker was given, <c>null</c> for none.</summary>
+    public List<string?> PickFileFolders { get; } = new();
+
     public List<string> Confirmations { get; } = new();
 
     public List<string> Errors { get; } = new();
@@ -53,8 +56,9 @@ internal sealed class FakeUserPrompts : IUserPrompts
         return FolderToPick;
     }
 
-    public string? PickFile()
+    public string? PickFile(string? initialFolder)
     {
+        PickFileFolders.Add(initialFolder);
         DuringPrompt?.Invoke();
         return FileToPick;
     }

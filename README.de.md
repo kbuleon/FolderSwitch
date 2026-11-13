@@ -78,7 +78,8 @@ Die Einstellungen, mit sieben Designs in Hell und Dunkel:
   Trennlinien. Spalten behalten die Breite, die Sie ihnen geben: Im Modus „Bearbeiten“ bringt ein Klick alle auf
   dieselbe Breite, ein anderer gibt jeder ihre eigene Farbe. Jede Änderung wird sofort gespeichert.
 - **Fügen Sie Dinge dort hinzu, wo Sie gerade sind.** Im Datei-Explorer oder in einem Dateidialog fügt „Aktueller
-  Ordner“ den Ordner, in dem Sie sich befinden, mit einem Klick hinzu. In Firefox, Chrome oder Edge fügt „Aktuelle URL“
+  Ordner“ den Ordner, in dem Sie sich befinden, mit einem Klick hinzu, und die Dateiauswahl öffnet sich dort; im
+  Datei-Explorer fügt „Ausgewählte Datei“ die markierte Datei hinzu. In Firefox, Chrome oder Edge fügt „Aktuelle URL“
   die Seite hinzu, die Sie gerade lesen.
 - **Symbole, die etwas sagen.** Registerkarten und Gruppen erhalten aus ihrem Namen ein Emoji („Finanzen“ bekommt eine
   Banknote, „Fotos“ eine Kamera) oder das, das Sie auswählen. Dateien zeigen ihr Windows-Symbol und Webseiten ihr

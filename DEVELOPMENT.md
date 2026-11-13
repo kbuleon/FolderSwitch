@@ -273,8 +273,10 @@ In the current version:
   locations qualify, the Recycle Bin and the Control Panel do not). The move is limited to 1.5 s and fails with a
   message rather than waiting.
 - The calling window's current folder is read within 50 ms. If Explorer or the dialog does not answer in time,
-  FolderSwitch still knows the kind of window but « Current folder » is unavailable for that call. It is unavailable
-  too for search results, which are a query rather than a place.
+  FolderSwitch still knows the kind of window, and the Add menu reads the folder again when it opens (one attempt every
+  200 ms for 2 s); otherwise « Current folder » is unavailable for that call. It is unavailable too for search results, which are a query rather than a place.
+- « Selected file » is read from File Explorer only, when the Add menu opens (not at the call): one attempt every 200 ms for
+  2 s. It is offered for one selected file (a shortcut's target) and not in a file dialog.
 - The OneDrive special folder resolves only when the OneDrive client has set its environment variable.
 - Emoji icons are drawn in one colour, and some are less readable that way than others. The list leaves out flags, skin tone
   variants and composed emojis (families, professions), which WPF cannot assemble, and the few emojis that do not read well in

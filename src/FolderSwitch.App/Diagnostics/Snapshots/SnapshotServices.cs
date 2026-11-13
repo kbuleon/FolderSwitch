@@ -63,7 +63,7 @@ internal sealed class SnapshotServices : IItemActivator, IConfigPersistence, IUs
 
     public string? PickFolder() => null;
 
-    public string? PickFile() => null;
+    public string? PickFile(string? initialFolder) => null;
 
     public string? PickExportPath() => null;
 
@@ -76,6 +76,9 @@ internal sealed class SnapshotServices : IItemActivator, IConfigPersistence, IUs
     }
 
     public FolderLocation? TryRead(CallContextKind kind, nint window) => null;
+
+    /// <summary>No file is ever selected: a snapshot reads nothing from Explorer.</summary>
+    public ExplorerSelection? TryReadSelection(nint explorerWindow) => ExplorerSelection.NoFile;
 
     /// <summary>The page every browser shows: what the Add menu of a snapshot reads, at once.</summary>
     public static BrowserPage BrowserPage { get; } =

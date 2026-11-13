@@ -77,9 +77,10 @@ Les paramètres, avec sept thèmes en clair et en sombre :
   et dedans des dossiers, des fichiers, des sites web, des dossiers spéciaux de Windows (Bureau, Documents, Ce PC…) et
   des séparateurs. Les colonnes gardent la largeur que vous leur donnez : en mode Modifier, un clic leur donne à toutes
   la même largeur, un autre une couleur à chacune. Chaque modification est enregistrée immédiatement.
-- **Ajoutez les choses là où vous êtes.** Depuis l'Explorateur de fichiers ou une boîte de dialogue de fichier,
-  « Dossier courant » ajoute le dossier dans lequel vous vous trouvez, en un clic. Depuis Firefox, Chrome ou Edge,
-  « URL courante » ajoute la page que vous lisez.
+- **Ajoutez les choses là où vous êtes.** Depuis l'Explorateur de fichiers ou une boîte de dialogue de fichier, «
+  Dossier courant » ajoute le dossier dans lequel vous vous trouvez, en un clic, et le sélecteur de fichier s'y ouvre
+  ; depuis l'Explorateur, « Fichier sélectionné » ajoute le fichier sélectionné. Depuis Firefox, Chrome ou Edge, « URL
+  courante » ajoute la page que vous lisez.
 - **Des icônes parlantes.** Les onglets et les groupes reçoivent un emoji d'après leur nom (« Finance » obtient un
   billet de banque, « Photos » un appareil photo), ou celui que vous choisissez. Les fichiers affichent leur icône
   Windows, et les sites la leur.

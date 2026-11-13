@@ -78,8 +78,9 @@ As configurações, com sete temas em claro e escuro:
   separadores. As colunas mantêm a largura que você der a elas: no modo Editar, um clique deixa todas com a mesma
   largura, outro dá a cada uma a sua cor. Cada alteração é salva na hora.
 - **Adicione coisas onde você está.** No Explorador de Arquivos ou em uma caixa de diálogo de arquivos, “Pasta atual”
-  adiciona a pasta em que você está, com um clique. No Firefox, no Chrome ou no Edge, “URL atual” adiciona a página que
-  você está lendo.
+  adiciona a pasta em que você está, com um clique, e o seletor de arquivos abre nela; no Explorador de Arquivos,
+  “Arquivo selecionado” adiciona o arquivo selecionado. No Firefox, no Chrome ou no Edge, “URL atual” adiciona a
+  página que você está lendo.
 - **Ícones que falam.** Guias e grupos ganham um emoji a partir do nome (“Finanças” ganha uma nota de dinheiro, “Fotos”
   uma câmera), ou o que você escolher. Os arquivos mostram o ícone deles no Windows, e os sites, o seu próprio.
 - **Sete temas**, cada um em claro e escuro, ou acompanhando o Windows.
