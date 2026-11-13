@@ -198,7 +198,7 @@ internal sealed class Composition : IDisposable
         }
 
         _controller = new WindowController(_contexts, foreground, prompts);
-        _main = new MainViewModel(config, new FocusReturningActivator(activation, _controller), persistence, prompts, _controller, _browserReader, favicons, Localizer, icons);
+        _main = new MainViewModel(config, new FocusReturningActivator(activation, _controller), persistence, prompts, _controller, _browserReader, _contexts, favicons, Localizer, icons);
         _appearance = new AppearanceViewModel(config, _system, persistence);
 
         // Before the window: its views read the theme's resources from the first layout on.

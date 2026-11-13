@@ -157,9 +157,9 @@ internal static class SnapshotRunner
             var icons = new ItemIcons(fileTypes);
             var names = SampleNames.For(code);
             var config = SnapshotSample.Create(code);
-            var main = new MainViewModel(config, services, services, services, services, services, services, localizer, services.Icons);
-            var narrow = new MainViewModel(SnapshotSample.CreateNarrow(code), services, services, services, services, services, services, localizer, services.Icons);
-            var manyTabs = new MainViewModel(SnapshotSample.CreateManyTabs(code), services, services, services, services, services, services, localizer, services.Icons);
+            var main = new MainViewModel(config, services, services, services, services, services, services, services, localizer, services.Icons);
+            var narrow = new MainViewModel(SnapshotSample.CreateNarrow(code), services, services, services, services, services, services, services, localizer, services.Icons);
+            var manyTabs = new MainViewModel(SnapshotSample.CreateManyTabs(code), services, services, services, services, services, services, services, localizer, services.Icons);
             using var appearance = new AppearanceViewModel(config, services, services);
             using var applier = new ThemeApplier(appearance, application.Resources);
 

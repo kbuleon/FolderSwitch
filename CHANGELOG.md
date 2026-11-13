@@ -3,6 +3,11 @@ This file is maintained by the agent: one section per version, the newest first,
 
 ------
 
+## 1.12.3 — Current folder read again by the Add menu
+<sub>2026-11-13</sub>
+
+Called from File Explorer or a file dialog, the Add menu could show « Called from File Explorer » without its « Current folder » line: on a machine with many Explorer windows or network folders, reading the folder took 15 to 30 ms and sometimes went past the 50 ms the call allows, and the folder was dropped. A folder the call could not read is now read again when the Add menu opens, one attempt (500 ms at most) every 200 ms for 2 s, on the call's lookup thread; once read, it is offered and added as before. A call made while such a read is under way waits for it no longer than its own 50 ms.
+
 ## 1.12.2 — Release notes cover the unpublished versions
 <sub>2026-11-12</sub>
 

@@ -18,9 +18,10 @@ namespace FolderSwitch.App.Diagnostics.Snapshots;
 /// The services the view models of a snapshot are built with: they do nothing, save nothing, show nothing and open
 /// nothing. A snapshot never touches the user's configuration, windows, files, keyboard, startup programs or the
 /// network. A browser « shows » <see cref="BrowserPage"/>, and the favicon cache holds one file, made by the snapshot.
-/// The icons of tabs and groups are the application's own (<see cref="Icons"/>).
+/// A folder a snapshot's context lacks is never read later. The icons of tabs and groups are the application's own
+/// (<see cref="Icons"/>).
 /// </summary>
-internal sealed class SnapshotServices : IItemActivator, IConfigPersistence, IUserPrompts, IWindowHost, IBrowserAddressReader, IFavicons, ISystemInfo, IHotkeyService, IAutostart
+internal sealed class SnapshotServices : IItemActivator, IConfigPersistence, IUserPrompts, IWindowHost, IBrowserAddressReader, ICurrentFolderReader, IFavicons, ISystemInfo, IHotkeyService, IAutostart
 {
     public event EventHandler? ThemeChanged
     {
@@ -73,6 +74,8 @@ internal sealed class SnapshotServices : IItemActivator, IConfigPersistence, IUs
     public void HideWindow()
     {
     }
+
+    public FolderLocation? TryRead(CallContextKind kind, nint window) => null;
 
     /// <summary>The page every browser shows: what the Add menu of a snapshot reads, at once.</summary>
     public static BrowserPage BrowserPage { get; } =

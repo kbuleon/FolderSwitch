@@ -16,6 +16,7 @@ public sealed class AddMenuViewModelTests
     private const string Folder = @"C:\Work\Clients";
     private const string PageUrl = "https://example.com/docs";
     private static readonly nint BrowserWindow = 4242;
+    private static readonly nint ExplorerWindow = 2424;
 
     private static readonly TimeSpan Step = TimeSpan.FromMilliseconds(200);
 
@@ -114,6 +115,175 @@ public sealed class AddMenuViewModelTests
         Assert.Equal(ItemKind.Folder, item.Kind);
         Assert.Equal(Folder, item.Path);
         Assert.Single(h.GroupVm("Inbox").Items);
+    }
+
+    // ----- Context: Explorer or file dialog whose folder the capture could not read -----
+
+    [Fact]
+    public void Folder_already_captured_is_not_read_again()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        Show(h, new CallContext(CallContextKind.Explorer, ExplorerWindow, Folder));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        Settle(ui);
+
+        Assert.False(menu.IsReading);
+        Assert.Equal(0, h.Folders.Calls);
+    }
+
+    [Theory]
+    [InlineData(CallContextKind.Explorer)]
+    [InlineData(CallContextKind.FileDialog)]
+    public void Folder_missing_from_the_capture_is_read_when_the_menu_opens(CallContextKind kind)
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        h.Folders.Responder = call => call < 2 ? null : new FolderLocation(Folder, null);
+        Show(h, new CallContext(kind, ExplorerWindow, null));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+
+        // Nothing is known when the menu opens: the first line comes once read.
+        Assert.Equal(AddMenuCurrent.None, menu.CurrentKind);
+        Assert.True(menu.IsReading);
+
+        NextFolderAttempt(ui, h);
+        ui.WaitUntil(() => menu.CurrentKind == AddMenuCurrent.Folder);
+
+        Assert.Equal(Folder, menu.CurrentDetail);
+        Assert.False(menu.CurrentAlreadyPresent);
+        Assert.False(menu.IsReading);
+        Assert.Equal(2, h.Folders.Calls);
+        Assert.Equal(kind, h.Folders.LastKind);
+        Assert.Equal(ExplorerWindow, h.Folders.LastWindow);
+
+        // The read stops at the first success.
+        h.Time.Advance(TimeSpan.FromSeconds(5));
+        Assert.Equal(2, h.Folders.Calls);
+    }
+
+    [Fact]
+    public void Folder_read_late_completes_the_context_and_can_be_added()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        h.Folders.Responder = _ => new FolderLocation("::{F874310E-B6B7-47DC-BC84-B9E6B38F5903}", "Home");
+        Show(h, new CallContext(CallContextKind.Explorer, ExplorerWindow, null));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        ui.WaitUntil(() => menu.CurrentKind == AddMenuCurrent.Folder);
+        menu.AddCurrent();
+
+        Assert.Equal("Home", menu.CurrentDetail);
+        Assert.Equal("Home", h.Vm.Context.CurrentFolderName);
+        var item = Assert.Single(h.Inbox.Items);
+        Assert.Equal("::{F874310E-B6B7-47DC-BC84-B9E6B38F5903}", item.Path);
+        Assert.Equal("Home", item.Name);
+    }
+
+    [Fact]
+    public void Folder_read_late_already_in_group_is_marked()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        h.Folders.Responder = _ => new FolderLocation(@"c:\projects\acme\", null);
+        Show(h, new CallContext(CallContextKind.Explorer, ExplorerWindow, null));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Projects"));
+        ui.WaitUntil(() => menu.CurrentKind == AddMenuCurrent.Folder);
+
+        Assert.True(menu.CurrentAlreadyPresent);
+    }
+
+    [Fact]
+    public void Folder_read_gives_up_after_two_seconds()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        Show(h, new CallContext(CallContextKind.Explorer, ExplorerWindow, null));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        for (var i = 0; i < 9; i++)
+        {
+            NextFolderAttempt(ui, h);
+        }
+
+        ui.WaitUntil(() => h.Time.PendingTimers == 1);
+        h.Time.Advance(Step);
+        ui.WaitUntil(() => !menu.IsReading);
+
+        Assert.Equal(10, h.Folders.Calls);
+        Assert.Equal(AddMenuCurrent.None, menu.CurrentKind);
+        Assert.Null(h.Vm.Context.CurrentFolder);
+        Assert.Equal(h.Localizer["AddMenu.FromExplorer"], menu.Footer);
+    }
+
+    [Fact]
+    public void Folder_read_late_does_not_touch_a_newer_context()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        h.Folders.Responder = call => call < 2 ? null : new FolderLocation(Folder, null);
+        Show(h, new CallContext(CallContextKind.Explorer, ExplorerWindow, null));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        ui.WaitUntil(() => h.Folders.Calls == 1 && h.Time.PendingTimers == 1);
+
+        // A new call ends the menu's read: the folder of the old call never reaches the new context.
+        var newer = new CallContext(CallContextKind.Explorer, 77, null);
+        h.Vm.OnRecalled(newer);
+        h.Time.Advance(Step);
+        Settle(ui);
+
+        Assert.Same(newer, h.Vm.Context);
+        Assert.Equal(AddMenuCurrent.None, menu.CurrentKind);
+        Assert.Equal(1, h.Folders.Calls);
+    }
+
+    [Fact]
+    public void Search_results_are_not_read_again()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        Show(h, new CallContext(CallContextKind.Explorer, ExplorerWindow, "search-ms:query=a"));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        Settle(ui);
+
+        Assert.False(menu.IsReading);
+        Assert.Equal(0, h.Folders.Calls);
+    }
+
+    [Fact]
+    public void Folder_read_late_as_search_results_offers_nothing()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        h.Folders.Responder = _ => new FolderLocation("search-ms:query=a", null);
+        Show(h, new CallContext(CallContextKind.Explorer, ExplorerWindow, null));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        ui.WaitUntil(() => !menu.IsReading);
+        Settle(ui);
+
+        Assert.Equal(AddMenuCurrent.None, menu.CurrentKind);
+        Assert.Equal(1, h.Folders.Calls);
+    }
+
+    [Fact]
+    public void Folder_is_not_read_without_a_window()
+    {
+        using var ui = new ManualSynchronizationContext();
+        var h = new Harness();
+        Show(h, new CallContext(CallContextKind.Explorer, 0, null));
+
+        using var menu = h.Vm.OpenAddMenu(h.GroupVm("Inbox"));
+        Settle(ui);
+
+        Assert.False(menu.IsReading);
+        Assert.Equal(0, h.Folders.Calls);
     }
 
     // ----- Context: browser -----
@@ -749,5 +919,14 @@ public sealed class AddMenuViewModelTests
         ui.WaitUntil(() => h.Time.PendingTimers == 1);
         h.Time.Advance(Step);
         ui.WaitUntil(() => h.Browser.Calls > before);
+    }
+
+    /// <summary>As <see cref="NextAttempt"/>, for the read of the current folder.</summary>
+    private static void NextFolderAttempt(ManualSynchronizationContext ui, Harness h)
+    {
+        var before = h.Folders.Calls;
+        ui.WaitUntil(() => h.Time.PendingTimers == 1);
+        h.Time.Advance(Step);
+        ui.WaitUntil(() => h.Folders.Calls > before);
     }
 }

@@ -31,11 +31,13 @@ public enum AddMenuCurrent
 /// page of a browser), a grey footer that says where FolderSwitch was called from, then the other additions, which
 /// are <see cref="MainViewModel"/>'s.
 /// <para>
-/// A browser's page cannot be read at the call itself (the budget of the call is short): the menu reads it while it is
-/// open, from the thread pool, one attempt every 200 ms, for 2 s at most, and stops at the first success. The result is
-/// published on the synchronization context the menu was opened on. After <see cref="Dispose"/>, nothing is attempted
-/// or published any more. Meant to be created and used from the UI thread (<see cref="MainViewModel.OpenAddMenu"/>):
-/// it needs the synchronization context of that thread to publish, and without one a browser page is not read at all.
+/// A browser's page cannot be read at the call itself (the budget of the call is short), and the folder of an Explorer
+/// window or a file dialog may not have been read in that budget: the menu reads what is missing while it is open, from
+/// the thread pool, one attempt every 200 ms, for 2 s at most, and stops at the first success. The result is published
+/// on the synchronization context the menu was opened on; a folder read so also completes the context of the call
+/// (<see cref="MainViewModel.OnCurrentFolderRead"/>). After <see cref="Dispose"/>, nothing is attempted or published any
+/// more. Meant to be created and used from the UI thread (<see cref="MainViewModel.OpenAddMenu"/>): it needs the
+/// synchronization context of that thread to publish, and without one nothing is read at all.
 /// </para>
 /// </summary>
 public sealed class AddMenuViewModel : ObservableObject, IDisposable
@@ -48,7 +50,6 @@ public sealed class AddMenuViewModel : ObservableObject, IDisposable
 
     private readonly MainViewModel _main;
     private readonly GroupViewModel _group;
-    private readonly IBrowserAddressReader _reader;
     private readonly TimeProvider _time;
     private readonly Localizer _localizer;
     private readonly SynchronizationContext? _ui = SynchronizationContext.Current;
@@ -67,37 +68,36 @@ public sealed class AddMenuViewModel : ObservableObject, IDisposable
         GroupViewModel group,
         CallContext context,
         IBrowserAddressReader reader,
+        ICurrentFolderReader folderReader,
         TimeProvider time,
         Localizer localizer)
     {
         _main = main;
         _group = group;
-        _reader = reader;
         _time = time;
         _localizer = localizer;
         _opened = time.GetTimestamp();
 
         switch (context)
         {
-            case { Kind: CallContextKind.Explorer }:
-                Footer = _localizer["AddMenu.FromExplorer"];
-                ShowFolder(context);
-                break;
-            case { Kind: CallContextKind.FileDialog }:
-                Footer = _localizer["AddMenu.FromFileDialog"];
-                ShowFolder(context);
+            case { Kind: CallContextKind.Explorer or CallContextKind.FileDialog }:
+                Footer = _localizer[context.Kind == CallContextKind.Explorer ? "AddMenu.FromExplorer" : "AddMenu.FromFileDialog"];
+                if (context.CurrentFolder is not null)
+                {
+                    ShowFolder(context);
+                }
+                else if (context.Window != 0)
+                {
+                    // Not read within the budget of the call: read now, with more time.
+                    var (kind, window) = (context.Kind, context.Window);
+                    StartReading(() => folderReader.TryRead(kind, window), folder => ShowFolderRead(context, folder));
+                }
+
                 break;
             case { Kind: CallContextKind.Browser, Browser: { } browser }:
                 Footer = _localizer.Format("AddMenu.FromBrowser", browser.ToString());
-
-                // The result is published on the context of the opening: without one there is nowhere to show it.
-                if (_ui is not null)
-                {
-                    _isReading = true;
-                    var window = context.Window;
-                    _ = Task.Run(() => ReadAsync(window, browser, _stop.Token));
-                }
-
+                var browserWindow = context.Window;
+                StartReading(() => reader.TryRead(browserWindow, browser), ShowPage);
                 break;
         }
     }
@@ -123,7 +123,7 @@ public sealed class AddMenuViewModel : ObservableObject, IDisposable
         private set => SetProperty(ref _currentAlreadyPresent, value);
     }
 
-    /// <summary>True while the page of a browser is being read.</summary>
+    /// <summary>True while the page of a browser, or the folder the call could not read, is being read.</summary>
     public bool IsReading
     {
         get => _isReading;
@@ -240,23 +240,53 @@ public sealed class AddMenuViewModel : ObservableObject, IDisposable
     }
 
     /// <summary>
-    /// Runs on the thread pool: attempts to read the page until one succeeds or <see cref="ReadTimeout"/> has passed
-    /// since the menu opened, every <see cref="RetryInterval"/>. The reader never throws; a cancellation ends it.
+    /// A folder read after the call: the context of the call is completed with it (the main view model keeps it only
+    /// while that call is still the current one), and the first line offers it.
     /// </summary>
-    private async Task ReadAsync(nint window, BrowserKind browser, CancellationToken stop)
+    private void ShowFolderRead(CallContext context, FolderLocation folder)
+    {
+        var completed = context with { CurrentFolder = folder.Folder, CurrentFolderName = folder.Name };
+        _main.OnCurrentFolderRead(context, completed);
+        ShowFolder(completed);
+    }
+
+    /// <summary>
+    /// Starts reading on the thread pool what the menu does not know yet, when there is a synchronization context to
+    /// publish the result on (without one there is nowhere to show it).
+    /// </summary>
+    private void StartReading<T>(Func<T?> attempt, Action<T> publish)
+        where T : class
+    {
+        if (_ui is null)
+        {
+            return;
+        }
+
+        // Taken now: the source may be disposed with the menu before the task starts.
+        var stop = _stop.Token;
+        _isReading = true;
+        _ = Task.Run(() => ReadAsync(attempt, publish, stop));
+    }
+
+    /// <summary>
+    /// Runs on the thread pool: attempts the read until one succeeds or <see cref="ReadTimeout"/> has passed since the
+    /// menu opened, every <see cref="RetryInterval"/>. The readers never throw; a cancellation ends it.
+    /// </summary>
+    private async Task ReadAsync<T>(Func<T?> attempt, Action<T> publish, CancellationToken stop)
+        where T : class
     {
         try
         {
             while (!stop.IsCancellationRequested && _time.GetElapsedTime(_opened) < ReadTimeout)
             {
-                var page = _reader.TryRead(window, browser);
+                var result = attempt();
 
-                if (page is not null)
+                if (result is not null)
                 {
-                    // An attempt may take long: a page that comes after the deadline is not shown.
+                    // An attempt may take long: a result that comes after the deadline is not shown.
                     if (_time.GetElapsedTime(_opened) < ReadTimeout)
                     {
-                        PostToUi(() => ShowPage(page));
+                        PostToUi(() => publish(result));
                     }
 
                     return;

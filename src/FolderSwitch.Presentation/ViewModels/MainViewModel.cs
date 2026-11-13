@@ -42,6 +42,7 @@ public sealed partial class MainViewModel : ObservableObject
     private readonly IUserPrompts _prompts;
     private readonly IWindowHost _host;
     private readonly IBrowserAddressReader _browserReader;
+    private readonly ICurrentFolderReader _folderReader;
     private readonly IFavicons _favicons;
     private readonly Localizer _localizer;
     private readonly Lazy<IconFinder> _icons;
@@ -73,6 +74,7 @@ public sealed partial class MainViewModel : ObservableObject
         IUserPrompts prompts,
         IWindowHost host,
         IBrowserAddressReader browserReader,
+        ICurrentFolderReader folderReader,
         IFavicons favicons,
         Localizer localizer,
         Lazy<IconFinder> icons,
@@ -84,6 +86,7 @@ public sealed partial class MainViewModel : ObservableObject
         ArgumentNullException.ThrowIfNull(prompts);
         ArgumentNullException.ThrowIfNull(host);
         ArgumentNullException.ThrowIfNull(browserReader);
+        ArgumentNullException.ThrowIfNull(folderReader);
         ArgumentNullException.ThrowIfNull(favicons);
         ArgumentNullException.ThrowIfNull(localizer);
         ArgumentNullException.ThrowIfNull(icons);
@@ -94,6 +97,7 @@ public sealed partial class MainViewModel : ObservableObject
         _prompts = prompts;
         _host = host;
         _browserReader = browserReader;
+        _folderReader = folderReader;
         _favicons = favicons;
         _localizer = localizer;
         _icons = icons;
@@ -698,17 +702,31 @@ public sealed partial class MainViewModel : ObservableObject
     }
 
     /// <summary>
-    /// The Add menu of a group, for the window FolderSwitch was called from. When that is a browser, the menu starts
-    /// reading its page (see <see cref="AddMenuViewModel"/>); that read ends when the menu is disposed, when another
-    /// menu is opened, and when the window hides, is called again, leaves Customize mode or is reloaded.
+    /// The Add menu of a group, for the window FolderSwitch was called from. When that is a browser, or an Explorer
+    /// window or a file dialog whose folder the call could not read, the menu starts reading its page or its folder (see
+    /// <see cref="AddMenuViewModel"/>); that read ends when the menu is disposed, when another menu is opened, and when
+    /// the window hides, is called again, leaves Customize mode or is reloaded.
     /// </summary>
     public AddMenuViewModel OpenAddMenu(GroupViewModel group)
     {
         ArgumentNullException.ThrowIfNull(group);
 
         EndAddMenu();
-        _addMenu = new AddMenuViewModel(this, group, Context, _browserReader, _time, _localizer);
+        _addMenu = new AddMenuViewModel(this, group, Context, _browserReader, _folderReader, _time, _localizer);
         return _addMenu;
+    }
+
+    /// <summary>
+    /// The Add menu read the folder the call <paramref name="captured"/> could not: <see cref="Context"/> becomes
+    /// <paramref name="completed"/>, so that <see cref="AddCurrentFolder"/> adds it, but only while it is still that
+    /// call's context (a newer call keeps its own).
+    /// </summary>
+    internal void OnCurrentFolderRead(CallContext captured, CallContext completed)
+    {
+        if (ReferenceEquals(Context, captured))
+        {
+            Context = completed;
+        }
     }
 
     /// <summary>

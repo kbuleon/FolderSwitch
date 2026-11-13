@@ -44,7 +44,7 @@ internal sealed class Harness
         arrange?.Invoke(this);
 
         Localizer = TestLocalizer.Create();
-        Vm = new MainViewModel(Config, Activator, Persistence, Prompts, Host, Browser, Favicons, Localizer, TestIcons.Lazy(Glyphs), Time, random);
+        Vm = new MainViewModel(Config, Activator, Persistence, Prompts, Host, Browser, Folders, Favicons, Localizer, TestIcons.Lazy(Glyphs), Time, random);
     }
 
     public AppConfig Config { get; }
@@ -86,6 +86,8 @@ internal sealed class Harness
     public FakeWindowHost Host { get; } = new();
 
     public FakeBrowserAddressReader Browser { get; } = new();
+
+    public FakeCurrentFolderReader Folders { get; } = new();
 
     public FakeFavicons Favicons { get; } = new();
 

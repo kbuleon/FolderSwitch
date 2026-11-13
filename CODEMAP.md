@@ -54,6 +54,7 @@ The domain, with no dependency on Windows, WPF or packages.
 - `ActivationProblem` — an activation that did not simply succeed, for the log: outcome, reason, target, plan, exception.
 - `FileNameBoxRule`, `DialogOk`, `DialogMove` — pure rule of the file-dialog navigator: when the file name box may get its text back after an OK.
 - `CallContext`, `CallContextKind` — the window FolderSwitch was called from (Explorer, file dialog, browser, other), its handle, current folder and the shell's name for it, and its `BrowserKind` for a browser.
+- `FolderLocation` — a folder (path or shell form) and the shell's name for it, as read after the call.
 - `BrowserKind` — Firefox, Chrome or Edge.
 - `WindowClassifier` — pure: decides Explorer, file dialog (modern or legacy, folder pickers included), browser (process name and window class) or other from a `WindowInfo`.
 - `WindowInfo` — class, process and descendant classes and control ids of a window.
@@ -64,6 +65,7 @@ The domain, with no dependency on Windows, WPF or packages.
 
 - `IHotkeyService` — register, probe, capture and trigger of the global shortcut.
 - `ICallContextProvider` — captures the foreground window as a `CallContext`.
+- `ICurrentFolderReader` — one bounded attempt to read, after the call, the folder an Explorer window or a file dialog shows (`FolderLocation`).
 - `IExplorerController` — navigate, new tab, new window.
 - `IFileDialogNavigator` — move a file dialog to a folder.
 - `IItemActivator` — carries out a click on an item and « Open in File Explorer »; tells whether Ctrl+click opens a new tab.
@@ -167,7 +169,7 @@ View models and the UI-facing ports. Depends on Core and CommunityToolkit.Mvvm.
 ### ViewModels/
 
 - `MainViewModel` — the window: board projection, normal use and Customize mode, all edits, rename (the automatic icon of the new name), the icon commands and the opening of the icon picker, activation and its outcomes, which items the calling window can use, adding a site (and fetching its favicon: at once, and once per host per session when missing), opening the Add menu, tab shown during a drag across tabs, `OnShown`/`OnHidden`/`OnDeactivated`, `Reload` after an import; the Edit-mode tools (equalize the widths of the tab, random colours per column) and the reset of a column to the default width.
-- `AddMenuViewModel` — the « Add ▾ » menu of a group: the first line for the calling window (folder or page), the footer, the additions; reads a browser's page while the menu is open (every 200 ms, for 2 s), and stops when disposed.
+- `AddMenuViewModel` — the « Add ▾ » menu of a group: the first line for the calling window (folder or page), the footer, the additions; reads a browser's page, or a folder the call could not read, while the menu is open (every 200 ms, for 2 s), and stops when disposed.
 - `UrlPromptViewModel` — the web address prompt: prefill (a browser's page or the clipboard), validation, the normalised result.
 - `TabViewModel`, `ColumnViewModel`, `GroupViewModel`, `ItemViewModel` — projections of the model objects; a tab and a group carry their `Icon` and `HasIcon`, empty when the font cannot draw it.
 - `IconPickerViewModel`, `IconSection` — the icon picker of a tab or group: the filter, « Automatic » and « No icon », the categories and their emojis, the current choice; a choice is carried out by the main view model.
@@ -221,7 +223,7 @@ Implements the Core ports against Win32, COM and the registry. `NativeMethods.tx
 
 ### System/ (namespace `FolderSwitch.Windows.SystemServices`)
 
-- `CallContextProvider` — `ICallContextProvider`: classification (the browser kind included; nothing is read from the browser) plus bounded folder (and shell name) lookup on an STA worker, each worker warmed up first.
+- `CallContextProvider` — `ICallContextProvider` and `ICurrentFolderReader`: classification (the browser kind included; nothing is read from the browser) plus bounded folder (and shell name) lookup on an STA worker, each worker warmed up first; the same lookup, with 500 ms, for a folder the capture missed.
 - `StaWorker` — dedicated STA thread running timed work items, with an optional clean-up when it ends; abandonment semantics (internal).
 - `PathResolver` — `IPathResolver`: special folders and environment variables to paths; bounded existence checks with abandoned-probe limits, per UNC share and mapped network drive.
 - `ForegroundActivator` — `IForegroundActivator`, with the attached-input fallback; foreground ownership by process id.
@@ -373,9 +375,9 @@ xUnit, mirrors the Core folders.
 
 xUnit, view models over fakes.
 
-- `MainViewModelTests`, `AppearanceViewModelTests`, `SettingsViewModelTests`, `HotkeyEditorViewModelTests`, `WizardViewModelTests`, `WizardHotkeyTestTests`, `InsertionSlotTests`, `AddMenuViewModelTests` (page reading over a manual clock and context), `UrlPromptViewModelTests`, `IconPickerViewModelTests`, `SeparatorTests` (adding, moving, removing, badge) — behaviour of the matching types.
+- `MainViewModelTests`, `AppearanceViewModelTests`, `SettingsViewModelTests`, `HotkeyEditorViewModelTests`, `WizardViewModelTests`, `WizardHotkeyTestTests`, `InsertionSlotTests`, `AddMenuViewModelTests` (page and missed-folder reading over a manual clock and context), `UrlPromptViewModelTests`, `IconPickerViewModelTests`, `SeparatorTests` (adding, moving, removing, badge) — behaviour of the matching types.
 - `StringKeysTests` — keys the view models use exist in the shipped English file.
-- `Support/` — `Harness` (a main view model over a known board), fakes `FakeItemActivator`, `FakeConfigPersistence`, `FakeUserPrompts`, `FakeWindowHost`, `FakeHotkeyService`, `FakeSystemInfo`, `FakeAutostart`, `FakeBrowserAddressReader`, `FakeFavicons`, `FakeEmojiGlyphs` and `TestIcons` (an icon finder over a small emoji library); `ManualTimeProvider`, `ManualSynchronizationContext`, `TestLocalizer`, `TempDirectory`.
+- `Support/` — `Harness` (a main view model over a known board), fakes `FakeItemActivator`, `FakeConfigPersistence`, `FakeUserPrompts`, `FakeWindowHost`, `FakeHotkeyService`, `FakeSystemInfo`, `FakeAutostart`, `FakeBrowserAddressReader`, `FakeCurrentFolderReader`, `FakeFavicons`, `FakeEmojiGlyphs` and `TestIcons` (an icon finder over a small emoji library); `ManualTimeProvider`, `ManualSynchronizationContext`, `TestLocalizer`, `TempDirectory`.
 
 ## tests/FolderSwitch.App.Tests (net10.0-windows)
 

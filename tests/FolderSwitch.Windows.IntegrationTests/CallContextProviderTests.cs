@@ -391,6 +391,143 @@ public sealed class CallContextProviderTests(ITestOutputHelper output) : IDispos
     }
 
     [Fact]
+    public void A_folder_missed_by_the_capture_is_read_later()
+    {
+        using var explorer = OpenedExplorer.Open(_folder.Path, _folder.Path);
+
+        // No budget for the capture (as when Explorer is slow to answer): the folder is missing...
+        using var sut = new CallContextProvider(TimeSpan.Zero, lookup: null, readBudget: CallContextProvider.ReadBudget);
+        Assert.Equal(new CallContext(CallContextKind.Explorer, explorer.Window, null), sut.Capture(explorer.Window));
+
+        // ...and read later, with the time a read has. The first reads of the lookup thread may run cold.
+        FolderLocation? location = null;
+        var deadline = DateTime.UtcNow + SettleTimeout;
+        while (DateTime.UtcNow < deadline
+            && !string.Equals((location = sut.TryRead(CallContextKind.Explorer, explorer.Window))?.Folder, _folder.Path, StringComparison.OrdinalIgnoreCase))
+        {
+            Thread.Sleep(50);
+        }
+
+        Assert.NotNull(location);
+        Assert.Equal(_folder.Path, location.Folder, ignoreCase: true);
+    }
+
+    [Fact]
+    public void A_folder_missed_by_a_capture_that_overran_is_read_once_the_lookup_has_ended()
+    {
+        using var host = DialogHostProcess.Start("open", _folder.Path);
+        using var release = new ManualResetEventSlim();
+        var calls = 0;
+        using var sut = new CallContextProvider(
+            CallContextProvider.DefaultBudget,
+            (_, _) =>
+            {
+                // The first lookup is slow (a busy Explorer window): the capture overruns and abandons it.
+                if (Interlocked.Increment(ref calls) == 1)
+                {
+                    release.Wait(TimeSpan.FromSeconds(10));
+                }
+
+                return _folder.Path;
+            });
+
+        Assert.Equal(new CallContext(CallContextKind.FileDialog, host.Dialog, null), sut.Capture(host.Dialog));
+        Assert.True(sut.IsLookupSuspended);
+        Assert.Null(sut.TryRead(CallContextKind.FileDialog, host.Dialog));
+
+        release.Set();
+        FolderLocation? location = null;
+        var deadline = DateTime.UtcNow + TimeSpan.FromSeconds(2);
+        while (DateTime.UtcNow < deadline && (location = sut.TryRead(CallContextKind.FileDialog, host.Dialog)) is null)
+        {
+            Thread.Sleep(200);
+        }
+
+        Assert.Equal(new FolderLocation(_folder.Path, null), location);
+    }
+
+    [Fact]
+    public async Task A_capture_waits_for_a_read_under_way_no_longer_than_its_budget()
+    {
+        using var host = DialogHostProcess.Start("open", _folder.Path);
+        using var release = new ManualResetEventSlim();
+        using var lookingUp = new ManualResetEventSlim();
+        using var sut = new CallContextProvider(
+            CallContextProvider.DefaultBudget,
+            (_, _) =>
+            {
+                lookingUp.Set();
+                release.Wait(TimeSpan.FromSeconds(10));
+                return _folder.Path;
+            },
+            readBudget: TimeSpan.FromSeconds(5));
+
+        // A slow read holds the lookup.
+        var read = Task.Run(() => sut.TryRead(CallContextKind.FileDialog, host.Dialog));
+        Assert.True(lookingUp.Wait(TimeSpan.FromSeconds(5)));
+
+        var watch = Stopwatch.StartNew();
+        var context = sut.Capture(host.Dialog);
+        watch.Stop();
+        output.WriteLine($"capture during a read: {watch.Elapsed.TotalMilliseconds:F1} ms");
+
+        // The capture keeps the kind and the window, without a folder, within its budget.
+        Assert.Equal(new CallContext(CallContextKind.FileDialog, host.Dialog, null), context);
+        Assert.True(watch.Elapsed < TimeSpan.FromMilliseconds(150), $"{watch.Elapsed.TotalMilliseconds:F1} ms");
+
+        release.Set();
+        Assert.Equal(new FolderLocation(_folder.Path, null), await read);
+    }
+
+    [Fact]
+    public void A_read_gives_null_for_another_kind_no_window_or_a_disposed_provider()
+    {
+        using var box = MessageBoxScope.Show();
+
+        Assert.Null(_sut.TryRead(CallContextKind.Other, box.Window));
+        Assert.Null(_sut.TryRead(CallContextKind.Browser, box.Window));
+        Assert.Null(_sut.TryRead(CallContextKind.Explorer, 0));
+
+        var disposed = new CallContextProvider();
+        disposed.Dispose();
+        Assert.Null(disposed.TryRead(CallContextKind.FileDialog, box.Window));
+    }
+
+    [Fact]
+    public void A_read_that_overruns_gives_null_within_its_budget_and_suspends_the_lookup()
+    {
+        using var host = DialogHostProcess.Start("open", _folder.Path);
+        using var release = new ManualResetEventSlim();
+        using var sut = new CallContextProvider(
+            CallContextProvider.DefaultBudget,
+            (_, _) =>
+            {
+                release.Wait(TimeSpan.FromSeconds(10));
+                return "released";
+            },
+            readBudget: TimeSpan.FromMilliseconds(200));
+
+        var watch = Stopwatch.StartNew();
+        var location = sut.TryRead(CallContextKind.FileDialog, host.Dialog);
+        watch.Stop();
+        output.WriteLine($"read that overran: {watch.Elapsed.TotalMilliseconds:F1} ms");
+
+        Assert.Null(location);
+        Assert.True(watch.Elapsed < TimeSpan.FromMilliseconds(400), $"{watch.Elapsed.TotalMilliseconds:F1} ms");
+        Assert.True(sut.IsLookupSuspended);
+
+        // Once the abandoned lookup has returned, the next read runs on a new thread.
+        release.Set();
+        var deadline = DateTime.UtcNow + TimeSpan.FromSeconds(5);
+        while (sut.IsLookupSuspended && DateTime.UtcNow < deadline)
+        {
+            Thread.Sleep(10);
+        }
+
+        Assert.Equal(new FolderLocation("released", null), sut.TryRead(CallContextKind.FileDialog, host.Dialog));
+    }
+
+    [Fact]
     public void Capture_from_an_STA_thread_gives_the_same_context()
     {
         using var host = DialogHostProcess.Start("legacy-open", _folder.Path);
