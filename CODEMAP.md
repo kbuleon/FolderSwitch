@@ -29,6 +29,7 @@ One line per significant type or file: what it is for. A XAML view and its code-
 - `assets/ko-fi/kofi-cup.png` — the cup of Ko-fi's « Buy me a coffee » button, cropped from Ko-fi Labs' image (not under the GPL), compiled into the executable; `MainView` draws the button around it.
 - `assets/screenshots/<language>/` — the README's screenshots of each language (`board.png`, `edit-mode.png`, `icon-picker.png`, `add-menu.png`, `settings-appearance.png`), copied from that language's `--snapshot` output at 144 DPI by `build/readme-assets.ps1`.
 - `assets/gif/folderswitch-tour-<language>.gif` — the README's animated tour of each language, drawn by `tools/FolderSwitch.DemoGif`.
+- `assets/social/folderswitch-social-preview.png` — the repository's social preview (1280 × 640), uploaded by hand in the GitHub repository's settings; composed once from `assets/icon/FolderSwitch.svg` and `assets/screenshots/en/board.png`, no script redraws it.
 
 ## src/FolderSwitch.Core (net10.0)
 
